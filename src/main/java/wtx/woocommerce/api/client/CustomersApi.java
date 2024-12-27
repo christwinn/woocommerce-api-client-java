@@ -29,7 +29,6 @@ import java.io.IOException;
 
 import wtx.woocommerce.api.client.model.ApiError;
 import wtx.woocommerce.api.client.model.Customer;
-import java.time.OffsetDateTime;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -82,13 +81,11 @@ public class CustomersApi {
      * @param search Limit results to those matching a string. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
-     * @param after Limit response to resources created after a given ISO8601 compliant date. (optional)
-     * @param before Limit response to resources created before a given ISO8601 compliant date. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending (asc as default). (optional)
      * @param orderby Sort collection by object attribute. (optional)
      * @param email Limit result set to resources with a specific email address. (optional)
-     * @param role Limit result set to resources with a specific role. (optional)
+     * @param role Limit result set to resources with a specific role. Default is customer. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -101,7 +98,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersCall(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, OffsetDateTime after, OffsetDateTime before, Integer offset, String order, String orderby, String email, String role, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllCustomersCall(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -150,14 +147,6 @@ public class CustomersApi {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "include", include));
         }
 
-        if (after != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("after", after));
-        }
-
-        if (before != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("before", before));
-        }
-
         if (offset != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
         }
@@ -198,8 +187,8 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllCustomersValidateBeforeCall(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, OffsetDateTime after, OffsetDateTime before, Integer offset, String order, String orderby, String email, String role, final ApiCallback _callback) throws ApiException {
-        return listAllCustomersCall(context, page, perPage, search, exclude, include, after, before, offset, order, orderby, email, role, _callback);
+    private okhttp3.Call listAllCustomersValidateBeforeCall(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role, final ApiCallback _callback) throws ApiException {
+        return listAllCustomersCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
 
     }
 
@@ -212,13 +201,11 @@ public class CustomersApi {
      * @param search Limit results to those matching a string. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
-     * @param after Limit response to resources created after a given ISO8601 compliant date. (optional)
-     * @param before Limit response to resources created before a given ISO8601 compliant date. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending (asc as default). (optional)
      * @param orderby Sort collection by object attribute. (optional)
      * @param email Limit result set to resources with a specific email address. (optional)
-     * @param role Limit result set to resources with a specific role. (optional)
+     * @param role Limit result set to resources with a specific role. Default is customer. (optional)
      * @return List&lt;Customer&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -230,8 +217,8 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public List<Customer> listAllCustomers(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, OffsetDateTime after, OffsetDateTime before, Integer offset, String order, String orderby, String email, String role) throws ApiException {
-        ApiResponse<List<Customer>> localVarResp = listAllCustomersWithHttpInfo(context, page, perPage, search, exclude, include, after, before, offset, order, orderby, email, role);
+    public List<Customer> listAllCustomers(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role) throws ApiException {
+        ApiResponse<List<Customer>> localVarResp = listAllCustomersWithHttpInfo(context, page, perPage, search, exclude, include, offset, order, orderby, email, role);
         return localVarResp.getData();
     }
 
@@ -244,13 +231,11 @@ public class CustomersApi {
      * @param search Limit results to those matching a string. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
-     * @param after Limit response to resources created after a given ISO8601 compliant date. (optional)
-     * @param before Limit response to resources created before a given ISO8601 compliant date. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending (asc as default). (optional)
      * @param orderby Sort collection by object attribute. (optional)
      * @param email Limit result set to resources with a specific email address. (optional)
-     * @param role Limit result set to resources with a specific role. (optional)
+     * @param role Limit result set to resources with a specific role. Default is customer. (optional)
      * @return ApiResponse&lt;List&lt;Customer&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -262,8 +247,8 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Customer>> listAllCustomersWithHttpInfo(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, OffsetDateTime after, OffsetDateTime before, Integer offset, String order, String orderby, String email, String role) throws ApiException {
-        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, after, before, offset, order, orderby, email, role, null);
+    public ApiResponse<List<Customer>> listAllCustomersWithHttpInfo(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role) throws ApiException {
+        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, null);
         Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -277,13 +262,11 @@ public class CustomersApi {
      * @param search Limit results to those matching a string. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
-     * @param after Limit response to resources created after a given ISO8601 compliant date. (optional)
-     * @param before Limit response to resources created before a given ISO8601 compliant date. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending (asc as default). (optional)
      * @param orderby Sort collection by object attribute. (optional)
      * @param email Limit result set to resources with a specific email address. (optional)
-     * @param role Limit result set to resources with a specific role. (optional)
+     * @param role Limit result set to resources with a specific role. Default is customer. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -296,9 +279,9 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersAsync(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, OffsetDateTime after, OffsetDateTime before, Integer offset, String order, String orderby, String email, String role, final ApiCallback<List<Customer>> _callback) throws ApiException {
+    public okhttp3.Call listAllCustomersAsync(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role, final ApiCallback<List<Customer>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, after, before, offset, order, orderby, email, role, _callback);
+        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
         Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

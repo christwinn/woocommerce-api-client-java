@@ -24,7 +24,7 @@ public class WooCommerceApiClientUsageDemo {
 
         try {
 
-            List<Customer> customers = customersApi.listAllCustomers(null, null, null, null, null, null, null, null, null, null, null, null, null);
+            List<Customer> customers = customersApi.listAllCustomers(null, null, null, null, null, null, null, null, null, null, null);
 
             // Example list of customer emails:
             for (Customer customer : customers) {

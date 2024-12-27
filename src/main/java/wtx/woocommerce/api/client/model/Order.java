@@ -20,12 +20,17 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import wtx.woocommerce.api.client.model.Billing;
+import wtx.woocommerce.api.client.model.MetaData;
+import wtx.woocommerce.api.client.model.OrderCouponLine;
+import wtx.woocommerce.api.client.model.OrderFeeLine;
 import wtx.woocommerce.api.client.model.OrderLineItem;
+import wtx.woocommerce.api.client.model.OrderRefund;
+import wtx.woocommerce.api.client.model.OrderShippingLine;
+import wtx.woocommerce.api.client.model.OrderTaxLine;
 import wtx.woocommerce.api.client.model.Shipping;
 
 import com.google.gson.Gson;
@@ -54,62 +59,558 @@ import wtx.woocommerce.api.client.invoker.JSON;
 /**
  * Order
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-26T19:20:41.898235500+01:00[Europe/Warsaw]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T00:49:53.851918900+01:00[Europe/Warsaw]", comments = "Generator version: 7.10.0")
 public class Order {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
+  public static final String SERIALIZED_NAME_PARENT_ID = "parent_id";
+  @SerializedName(SERIALIZED_NAME_PARENT_ID)
+  @javax.annotation.Nullable
+  private Integer parentId;
+
   public static final String SERIALIZED_NAME_NUMBER = "number";
   @SerializedName(SERIALIZED_NAME_NUMBER)
   @javax.annotation.Nullable
   private String number;
 
+  public static final String SERIALIZED_NAME_ORDER_KEY = "order_key";
+  @SerializedName(SERIALIZED_NAME_ORDER_KEY)
+  @javax.annotation.Nullable
+  private String orderKey;
+
+  public static final String SERIALIZED_NAME_CREATED_VIA = "created_via";
+  @SerializedName(SERIALIZED_NAME_CREATED_VIA)
+  @javax.annotation.Nullable
+  private String createdVia;
+
+  public static final String SERIALIZED_NAME_VERSION = "version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  @javax.annotation.Nullable
+  private String version;
+
+  /**
+   * Order status.
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    PENDING("pending"),
+    
+    PROCESSING("processing"),
+    
+    ON_HOLD("on-hold"),
+    
+    COMPLETED("completed"),
+    
+    CANCELLED("cancelled"),
+    
+    REFUNDED("refunded"),
+    
+    FAILED("failed");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
+    }
+  }
+
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   @javax.annotation.Nullable
-  private String status;
+  private StatusEnum status;
+
+  /**
+   * Currency the order was created with, in ISO format.
+   */
+  @JsonAdapter(CurrencyEnum.Adapter.class)
+  public enum CurrencyEnum {
+    AED("AED"),
+    
+    AFN("AFN"),
+    
+    ALL("ALL"),
+    
+    AMD("AMD"),
+    
+    ANG("ANG"),
+    
+    AOA("AOA"),
+    
+    ARS("ARS"),
+    
+    AUD("AUD"),
+    
+    AWG("AWG"),
+    
+    AZN("AZN"),
+    
+    BAM("BAM"),
+    
+    BBD("BBD"),
+    
+    BDT("BDT"),
+    
+    BGN("BGN"),
+    
+    BHD("BHD"),
+    
+    BIF("BIF"),
+    
+    BMD("BMD"),
+    
+    BND("BND"),
+    
+    BOB("BOB"),
+    
+    BRL("BRL"),
+    
+    BSD("BSD"),
+    
+    BTC("BTC"),
+    
+    BTN("BTN"),
+    
+    BWP("BWP"),
+    
+    BYR("BYR"),
+    
+    BYN("BYN"),
+    
+    BZD("BZD"),
+    
+    CAD("CAD"),
+    
+    CDF("CDF"),
+    
+    CHF("CHF"),
+    
+    CLP("CLP"),
+    
+    CNY("CNY"),
+    
+    COP("COP"),
+    
+    CRC("CRC"),
+    
+    CUC("CUC"),
+    
+    CUP("CUP"),
+    
+    CVE("CVE"),
+    
+    CZK("CZK"),
+    
+    DJF("DJF"),
+    
+    DKK("DKK"),
+    
+    DOP("DOP"),
+    
+    DZD("DZD"),
+    
+    EGP("EGP"),
+    
+    ERN("ERN"),
+    
+    ETB("ETB"),
+    
+    EUR("EUR"),
+    
+    FJD("FJD"),
+    
+    FKP("FKP"),
+    
+    GBP("GBP"),
+    
+    GEL("GEL"),
+    
+    GGP("GGP"),
+    
+    GHS("GHS"),
+    
+    GIP("GIP"),
+    
+    GMD("GMD"),
+    
+    GNF("GNF"),
+    
+    GTQ("GTQ"),
+    
+    GYD("GYD"),
+    
+    HKD("HKD"),
+    
+    HNL("HNL"),
+    
+    HRK("HRK"),
+    
+    HTG("HTG"),
+    
+    HUF("HUF"),
+    
+    IDR("IDR"),
+    
+    ILS("ILS"),
+    
+    IMP("IMP"),
+    
+    INR("INR"),
+    
+    IQD("IQD"),
+    
+    IRR("IRR"),
+    
+    IRT("IRT"),
+    
+    ISK("ISK"),
+    
+    JEP("JEP"),
+    
+    JMD("JMD"),
+    
+    JOD("JOD"),
+    
+    JPY("JPY"),
+    
+    KES("KES"),
+    
+    KGS("KGS"),
+    
+    KHR("KHR"),
+    
+    KMF("KMF"),
+    
+    KPW("KPW"),
+    
+    KRW("KRW"),
+    
+    KWD("KWD"),
+    
+    KYD("KYD"),
+    
+    KZT("KZT"),
+    
+    LAK("LAK"),
+    
+    LBP("LBP"),
+    
+    LKR("LKR"),
+    
+    LRD("LRD"),
+    
+    LSL("LSL"),
+    
+    LYD("LYD"),
+    
+    MAD("MAD"),
+    
+    MDL("MDL"),
+    
+    MGA("MGA"),
+    
+    MKD("MKD"),
+    
+    MMK("MMK"),
+    
+    MNT("MNT"),
+    
+    MOP("MOP"),
+    
+    MRU("MRU"),
+    
+    MUR("MUR"),
+    
+    MVR("MVR"),
+    
+    MWK("MWK"),
+    
+    MXN("MXN"),
+    
+    MYR("MYR"),
+    
+    MZN("MZN"),
+    
+    NAD("NAD"),
+    
+    NGN("NGN"),
+    
+    NIO("NIO"),
+    
+    NOK("NOK"),
+    
+    NPR("NPR"),
+    
+    NZD("NZD"),
+    
+    OMR("OMR"),
+    
+    PAB("PAB"),
+    
+    PEN("PEN"),
+    
+    PGK("PGK"),
+    
+    PHP("PHP"),
+    
+    PKR("PKR"),
+    
+    PLN("PLN"),
+    
+    PRB("PRB"),
+    
+    PYG("PYG"),
+    
+    QAR("QAR"),
+    
+    RON("RON"),
+    
+    RSD("RSD"),
+    
+    RUB("RUB"),
+    
+    RWF("RWF"),
+    
+    SAR("SAR"),
+    
+    SBD("SBD"),
+    
+    SCR("SCR"),
+    
+    SDG("SDG"),
+    
+    SEK("SEK"),
+    
+    SGD("SGD"),
+    
+    SHP("SHP"),
+    
+    SLL("SLL"),
+    
+    SOS("SOS"),
+    
+    SRD("SRD"),
+    
+    SSP("SSP"),
+    
+    STN("STN"),
+    
+    SYP("SYP"),
+    
+    SZL("SZL"),
+    
+    THB("THB"),
+    
+    TJS("TJS"),
+    
+    TMT("TMT"),
+    
+    TND("TND"),
+    
+    TOP("TOP"),
+    
+    TRY("TRY"),
+    
+    TTD("TTD"),
+    
+    TWD("TWD"),
+    
+    TZS("TZS"),
+    
+    UAH("UAH"),
+    
+    UGX("UGX"),
+    
+    USD("USD"),
+    
+    UYU("UYU"),
+    
+    UZS("UZS"),
+    
+    VEF("VEF"),
+    
+    VES("VES"),
+    
+    VND("VND"),
+    
+    VUV("VUV"),
+    
+    WST("WST"),
+    
+    XAF("XAF"),
+    
+    XCD("XCD"),
+    
+    XOF("XOF"),
+    
+    XPF("XPF"),
+    
+    YER("YER"),
+    
+    ZAR("ZAR"),
+    
+    ZMW("ZMW");
+
+    private String value;
+
+    CurrencyEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CurrencyEnum fromValue(String value) {
+      for (CurrencyEnum b : CurrencyEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<CurrencyEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CurrencyEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CurrencyEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return CurrencyEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      CurrencyEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
+  private CurrencyEnum currency;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED)
   @javax.annotation.Nullable
-  private OffsetDateTime dateCreated;
+  private String dateCreated;
+
+  public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
+  @SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
+  @javax.annotation.Nullable
+  private String dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
   @SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
   @javax.annotation.Nullable
-  private OffsetDateTime dateModified;
+  private String dateModified;
 
-  public static final String SERIALIZED_NAME_DATE_PAID = "date_paid";
-  @SerializedName(SERIALIZED_NAME_DATE_PAID)
+  public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
+  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
   @javax.annotation.Nullable
-  private OffsetDateTime datePaid;
+  private String dateModifiedGmt;
 
-  public static final String SERIALIZED_NAME_DATE_COMPLETED = "date_completed";
-  @SerializedName(SERIALIZED_NAME_DATE_COMPLETED)
+  public static final String SERIALIZED_NAME_DISCOUNT_TOTAL = "discount_total";
+  @SerializedName(SERIALIZED_NAME_DISCOUNT_TOTAL)
   @javax.annotation.Nullable
-  private OffsetDateTime dateCompleted;
+  private String discountTotal;
 
-  public static final String SERIALIZED_NAME_TOTAL = "total";
-  @SerializedName(SERIALIZED_NAME_TOTAL)
+  public static final String SERIALIZED_NAME_DISCOUNT_TAX = "discount_tax";
+  @SerializedName(SERIALIZED_NAME_DISCOUNT_TAX)
   @javax.annotation.Nullable
-  private String total;
+  private String discountTax;
 
   public static final String SERIALIZED_NAME_SHIPPING_TOTAL = "shipping_total";
   @SerializedName(SERIALIZED_NAME_SHIPPING_TOTAL)
   @javax.annotation.Nullable
   private String shippingTotal;
 
-  public static final String SERIALIZED_NAME_PAYMENT_METHOD_TITLE = "payment_method_title";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TITLE)
+  public static final String SERIALIZED_NAME_SHIPPING_TAX = "shipping_tax";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_TAX)
   @javax.annotation.Nullable
-  private String paymentMethodTitle;
+  private String shippingTax;
+
+  public static final String SERIALIZED_NAME_CART_TAX = "cart_tax";
+  @SerializedName(SERIALIZED_NAME_CART_TAX)
+  @javax.annotation.Nullable
+  private String cartTax;
+
+  public static final String SERIALIZED_NAME_TOTAL = "total";
+  @SerializedName(SERIALIZED_NAME_TOTAL)
+  @javax.annotation.Nullable
+  private String total;
+
+  public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
+  @SerializedName(SERIALIZED_NAME_TOTAL_TAX)
+  @javax.annotation.Nullable
+  private String totalTax;
+
+  public static final String SERIALIZED_NAME_PRICES_INCLUDE_TAX = "prices_include_tax";
+  @SerializedName(SERIALIZED_NAME_PRICES_INCLUDE_TAX)
+  @javax.annotation.Nullable
+  private Boolean pricesIncludeTax;
 
   public static final String SERIALIZED_NAME_CUSTOMER_ID = "customer_id";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
   @javax.annotation.Nullable
   private Integer customerId;
+
+  public static final String SERIALIZED_NAME_CUSTOMER_IP_ADDRESS = "customer_ip_address";
+  @SerializedName(SERIALIZED_NAME_CUSTOMER_IP_ADDRESS)
+  @javax.annotation.Nullable
+  private String customerIpAddress;
+
+  public static final String SERIALIZED_NAME_CUSTOMER_USER_AGENT = "customer_user_agent";
+  @SerializedName(SERIALIZED_NAME_CUSTOMER_USER_AGENT)
+  @javax.annotation.Nullable
+  private String customerUserAgent;
 
   public static final String SERIALIZED_NAME_CUSTOMER_NOTE = "customer_note";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_NOTE)
@@ -126,10 +627,85 @@ public class Order {
   @javax.annotation.Nullable
   private Shipping shipping;
 
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
+  @javax.annotation.Nullable
+  private String paymentMethod;
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_TITLE = "payment_method_title";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TITLE)
+  @javax.annotation.Nullable
+  private String paymentMethodTitle;
+
+  public static final String SERIALIZED_NAME_TRANSACTION_ID = "transaction_id";
+  @SerializedName(SERIALIZED_NAME_TRANSACTION_ID)
+  @javax.annotation.Nullable
+  private String transactionId;
+
+  public static final String SERIALIZED_NAME_DATE_PAID = "date_paid";
+  @SerializedName(SERIALIZED_NAME_DATE_PAID)
+  @javax.annotation.Nullable
+  private String datePaid;
+
+  public static final String SERIALIZED_NAME_DATE_PAID_GMT = "date_paid_gmt";
+  @SerializedName(SERIALIZED_NAME_DATE_PAID_GMT)
+  @javax.annotation.Nullable
+  private String datePaidGmt;
+
+  public static final String SERIALIZED_NAME_DATE_COMPLETED = "date_completed";
+  @SerializedName(SERIALIZED_NAME_DATE_COMPLETED)
+  @javax.annotation.Nullable
+  private String dateCompleted;
+
+  public static final String SERIALIZED_NAME_DATE_COMPLETED_GMT = "date_completed_gmt";
+  @SerializedName(SERIALIZED_NAME_DATE_COMPLETED_GMT)
+  @javax.annotation.Nullable
+  private String dateCompletedGmt;
+
+  public static final String SERIALIZED_NAME_CART_HASH = "cart_hash";
+  @SerializedName(SERIALIZED_NAME_CART_HASH)
+  @javax.annotation.Nullable
+  private String cartHash;
+
+  public static final String SERIALIZED_NAME_META_DATA = "meta_data";
+  @SerializedName(SERIALIZED_NAME_META_DATA)
+  @javax.annotation.Nullable
+  private List<MetaData> metaData = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_LINE_ITEMS = "line_items";
   @SerializedName(SERIALIZED_NAME_LINE_ITEMS)
   @javax.annotation.Nullable
   private List<OrderLineItem> lineItems = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_TAX_LINES = "tax_lines";
+  @SerializedName(SERIALIZED_NAME_TAX_LINES)
+  @javax.annotation.Nullable
+  private List<OrderTaxLine> taxLines = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SHIPPING_LINES = "shipping_lines";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_LINES)
+  @javax.annotation.Nullable
+  private List<OrderShippingLine> shippingLines = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_FEE_LINES = "fee_lines";
+  @SerializedName(SERIALIZED_NAME_FEE_LINES)
+  @javax.annotation.Nullable
+  private List<OrderFeeLine> feeLines = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_COUPON_LINES = "coupon_lines";
+  @SerializedName(SERIALIZED_NAME_COUPON_LINES)
+  @javax.annotation.Nullable
+  private List<OrderCouponLine> couponLines = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_REFUNDS = "refunds";
+  @SerializedName(SERIALIZED_NAME_REFUNDS)
+  @javax.annotation.Nullable
+  private List<OrderRefund> refunds = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SET_PAID = "set_paid";
+  @SerializedName(SERIALIZED_NAME_SET_PAID)
+  @javax.annotation.Nullable
+  private Boolean setPaid;
 
   public Order() {
   }
@@ -153,6 +729,25 @@ public class Order {
   }
 
 
+  public Order parentId(@javax.annotation.Nullable Integer parentId) {
+    this.parentId = parentId;
+    return this;
+  }
+
+  /**
+   * Parent order ID.
+   * @return parentId
+   */
+  @javax.annotation.Nullable
+  public Integer getParentId() {
+    return parentId;
+  }
+
+  public void setParentId(@javax.annotation.Nullable Integer parentId) {
+    this.parentId = parentId;
+  }
+
+
   public Order number(@javax.annotation.Nullable String number) {
     this.number = number;
     return this;
@@ -172,26 +767,102 @@ public class Order {
   }
 
 
-  public Order status(@javax.annotation.Nullable String status) {
+  public Order orderKey(@javax.annotation.Nullable String orderKey) {
+    this.orderKey = orderKey;
+    return this;
+  }
+
+  /**
+   * Order key.
+   * @return orderKey
+   */
+  @javax.annotation.Nullable
+  public String getOrderKey() {
+    return orderKey;
+  }
+
+  public void setOrderKey(@javax.annotation.Nullable String orderKey) {
+    this.orderKey = orderKey;
+  }
+
+
+  public Order createdVia(@javax.annotation.Nullable String createdVia) {
+    this.createdVia = createdVia;
+    return this;
+  }
+
+  /**
+   * Shows where the order was created.
+   * @return createdVia
+   */
+  @javax.annotation.Nullable
+  public String getCreatedVia() {
+    return createdVia;
+  }
+
+  public void setCreatedVia(@javax.annotation.Nullable String createdVia) {
+    this.createdVia = createdVia;
+  }
+
+
+  public Order version(@javax.annotation.Nullable String version) {
+    this.version = version;
+    return this;
+  }
+
+  /**
+   * Version of WooCommerce which last updated the order.
+   * @return version
+   */
+  @javax.annotation.Nullable
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(@javax.annotation.Nullable String version) {
+    this.version = version;
+  }
+
+
+  public Order status(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
     return this;
   }
 
   /**
-   * Order status. Options: pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is pending.
+   * Order status.
    * @return status
    */
   @javax.annotation.Nullable
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
-  public void setStatus(@javax.annotation.Nullable String status) {
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
   }
 
 
-  public Order dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
+  public Order currency(@javax.annotation.Nullable CurrencyEnum currency) {
+    this.currency = currency;
+    return this;
+  }
+
+  /**
+   * Currency the order was created with, in ISO format.
+   * @return currency
+   */
+  @javax.annotation.Nullable
+  public CurrencyEnum getCurrency() {
+    return currency;
+  }
+
+  public void setCurrency(@javax.annotation.Nullable CurrencyEnum currency) {
+    this.currency = currency;
+  }
+
+
+  public Order dateCreated(@javax.annotation.Nullable String dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
@@ -201,16 +872,35 @@ public class Order {
    * @return dateCreated
    */
   @javax.annotation.Nullable
-  public OffsetDateTime getDateCreated() {
+  public String getDateCreated() {
     return dateCreated;
   }
 
-  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable String dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public Order dateModified(@javax.annotation.Nullable OffsetDateTime dateModified) {
+  public Order dateCreatedGmt(@javax.annotation.Nullable String dateCreatedGmt) {
+    this.dateCreatedGmt = dateCreatedGmt;
+    return this;
+  }
+
+  /**
+   * The date the order was created, as GMT.
+   * @return dateCreatedGmt
+   */
+  @javax.annotation.Nullable
+  public String getDateCreatedGmt() {
+    return dateCreatedGmt;
+  }
+
+  public void setDateCreatedGmt(@javax.annotation.Nullable String dateCreatedGmt) {
+    this.dateCreatedGmt = dateCreatedGmt;
+  }
+
+
+  public Order dateModified(@javax.annotation.Nullable String dateModified) {
     this.dateModified = dateModified;
     return this;
   }
@@ -220,69 +910,69 @@ public class Order {
    * @return dateModified
    */
   @javax.annotation.Nullable
-  public OffsetDateTime getDateModified() {
+  public String getDateModified() {
     return dateModified;
   }
 
-  public void setDateModified(@javax.annotation.Nullable OffsetDateTime dateModified) {
+  public void setDateModified(@javax.annotation.Nullable String dateModified) {
     this.dateModified = dateModified;
   }
 
 
-  public Order datePaid(@javax.annotation.Nullable OffsetDateTime datePaid) {
-    this.datePaid = datePaid;
+  public Order dateModifiedGmt(@javax.annotation.Nullable String dateModifiedGmt) {
+    this.dateModifiedGmt = dateModifiedGmt;
     return this;
   }
 
   /**
-   * The date the order was paid, in the site&#39;s timezone.
-   * @return datePaid
+   * The date the order was last modified, as GMT.
+   * @return dateModifiedGmt
    */
   @javax.annotation.Nullable
-  public OffsetDateTime getDatePaid() {
-    return datePaid;
+  public String getDateModifiedGmt() {
+    return dateModifiedGmt;
   }
 
-  public void setDatePaid(@javax.annotation.Nullable OffsetDateTime datePaid) {
-    this.datePaid = datePaid;
+  public void setDateModifiedGmt(@javax.annotation.Nullable String dateModifiedGmt) {
+    this.dateModifiedGmt = dateModifiedGmt;
   }
 
 
-  public Order dateCompleted(@javax.annotation.Nullable OffsetDateTime dateCompleted) {
-    this.dateCompleted = dateCompleted;
+  public Order discountTotal(@javax.annotation.Nullable String discountTotal) {
+    this.discountTotal = discountTotal;
     return this;
   }
 
   /**
-   * The date the order was completed, in the site&#39;s timezone.
-   * @return dateCompleted
+   * Total discount amount for the order.
+   * @return discountTotal
    */
   @javax.annotation.Nullable
-  public OffsetDateTime getDateCompleted() {
-    return dateCompleted;
+  public String getDiscountTotal() {
+    return discountTotal;
   }
 
-  public void setDateCompleted(@javax.annotation.Nullable OffsetDateTime dateCompleted) {
-    this.dateCompleted = dateCompleted;
+  public void setDiscountTotal(@javax.annotation.Nullable String discountTotal) {
+    this.discountTotal = discountTotal;
   }
 
 
-  public Order total(@javax.annotation.Nullable String total) {
-    this.total = total;
+  public Order discountTax(@javax.annotation.Nullable String discountTax) {
+    this.discountTax = discountTax;
     return this;
   }
 
   /**
-   * Grand total (purchased products and shipping price).
-   * @return total
+   * Total discount tax amount for the order.
+   * @return discountTax
    */
   @javax.annotation.Nullable
-  public String getTotal() {
-    return total;
+  public String getDiscountTax() {
+    return discountTax;
   }
 
-  public void setTotal(@javax.annotation.Nullable String total) {
-    this.total = total;
+  public void setDiscountTax(@javax.annotation.Nullable String discountTax) {
+    this.discountTax = discountTax;
   }
 
 
@@ -305,22 +995,98 @@ public class Order {
   }
 
 
-  public Order paymentMethodTitle(@javax.annotation.Nullable String paymentMethodTitle) {
-    this.paymentMethodTitle = paymentMethodTitle;
+  public Order shippingTax(@javax.annotation.Nullable String shippingTax) {
+    this.shippingTax = shippingTax;
     return this;
   }
 
   /**
-   * Payment method title.
-   * @return paymentMethodTitle
+   * Total shipping tax amount for the order.
+   * @return shippingTax
    */
   @javax.annotation.Nullable
-  public String getPaymentMethodTitle() {
-    return paymentMethodTitle;
+  public String getShippingTax() {
+    return shippingTax;
   }
 
-  public void setPaymentMethodTitle(@javax.annotation.Nullable String paymentMethodTitle) {
-    this.paymentMethodTitle = paymentMethodTitle;
+  public void setShippingTax(@javax.annotation.Nullable String shippingTax) {
+    this.shippingTax = shippingTax;
+  }
+
+
+  public Order cartTax(@javax.annotation.Nullable String cartTax) {
+    this.cartTax = cartTax;
+    return this;
+  }
+
+  /**
+   * Sum of line item taxes only.
+   * @return cartTax
+   */
+  @javax.annotation.Nullable
+  public String getCartTax() {
+    return cartTax;
+  }
+
+  public void setCartTax(@javax.annotation.Nullable String cartTax) {
+    this.cartTax = cartTax;
+  }
+
+
+  public Order total(@javax.annotation.Nullable String total) {
+    this.total = total;
+    return this;
+  }
+
+  /**
+   * Grand total.
+   * @return total
+   */
+  @javax.annotation.Nullable
+  public String getTotal() {
+    return total;
+  }
+
+  public void setTotal(@javax.annotation.Nullable String total) {
+    this.total = total;
+  }
+
+
+  public Order totalTax(@javax.annotation.Nullable String totalTax) {
+    this.totalTax = totalTax;
+    return this;
+  }
+
+  /**
+   * Sum of all taxes.
+   * @return totalTax
+   */
+  @javax.annotation.Nullable
+  public String getTotalTax() {
+    return totalTax;
+  }
+
+  public void setTotalTax(@javax.annotation.Nullable String totalTax) {
+    this.totalTax = totalTax;
+  }
+
+
+  public Order pricesIncludeTax(@javax.annotation.Nullable Boolean pricesIncludeTax) {
+    this.pricesIncludeTax = pricesIncludeTax;
+    return this;
+  }
+
+  /**
+   * True the prices included tax during checkout.
+   * @return pricesIncludeTax
+   */
+  @javax.annotation.Nullable
+  public Boolean getPricesIncludeTax() {
+    return pricesIncludeTax;
+  }
+
+  public void setPricesIncludeTax(@javax.annotation.Nullable Boolean pricesIncludeTax) {
+    this.pricesIncludeTax = pricesIncludeTax;
   }
 
 
@@ -330,7 +1096,7 @@ public class Order {
   }
 
   /**
-   * User ID who owns the order. 0 for guests. Default is 0.
+   * User ID who owns the order. 0 for guests.
    * @return customerId
    */
   @javax.annotation.Nullable
@@ -340,6 +1106,44 @@ public class Order {
 
   public void setCustomerId(@javax.annotation.Nullable Integer customerId) {
     this.customerId = customerId;
+  }
+
+
+  public Order customerIpAddress(@javax.annotation.Nullable String customerIpAddress) {
+    this.customerIpAddress = customerIpAddress;
+    return this;
+  }
+
+  /**
+   * Customer&#39;s IP address.
+   * @return customerIpAddress
+   */
+  @javax.annotation.Nullable
+  public String getCustomerIpAddress() {
+    return customerIpAddress;
+  }
+
+  public void setCustomerIpAddress(@javax.annotation.Nullable String customerIpAddress) {
+    this.customerIpAddress = customerIpAddress;
+  }
+
+
+  public Order customerUserAgent(@javax.annotation.Nullable String customerUserAgent) {
+    this.customerUserAgent = customerUserAgent;
+    return this;
+  }
+
+  /**
+   * User agent of the customer.
+   * @return customerUserAgent
+   */
+  @javax.annotation.Nullable
+  public String getCustomerUserAgent() {
+    return customerUserAgent;
+  }
+
+  public void setCustomerUserAgent(@javax.annotation.Nullable String customerUserAgent) {
+    this.customerUserAgent = customerUserAgent;
   }
 
 
@@ -400,6 +1204,185 @@ public class Order {
   }
 
 
+  public Order paymentMethod(@javax.annotation.Nullable String paymentMethod) {
+    this.paymentMethod = paymentMethod;
+    return this;
+  }
+
+  /**
+   * Payment method ID.
+   * @return paymentMethod
+   */
+  @javax.annotation.Nullable
+  public String getPaymentMethod() {
+    return paymentMethod;
+  }
+
+  public void setPaymentMethod(@javax.annotation.Nullable String paymentMethod) {
+    this.paymentMethod = paymentMethod;
+  }
+
+
+  public Order paymentMethodTitle(@javax.annotation.Nullable String paymentMethodTitle) {
+    this.paymentMethodTitle = paymentMethodTitle;
+    return this;
+  }
+
+  /**
+   * Payment method title.
+   * @return paymentMethodTitle
+   */
+  @javax.annotation.Nullable
+  public String getPaymentMethodTitle() {
+    return paymentMethodTitle;
+  }
+
+  public void setPaymentMethodTitle(@javax.annotation.Nullable String paymentMethodTitle) {
+    this.paymentMethodTitle = paymentMethodTitle;
+  }
+
+
+  public Order transactionId(@javax.annotation.Nullable String transactionId) {
+    this.transactionId = transactionId;
+    return this;
+  }
+
+  /**
+   * Unique transaction ID.
+   * @return transactionId
+   */
+  @javax.annotation.Nullable
+  public String getTransactionId() {
+    return transactionId;
+  }
+
+  public void setTransactionId(@javax.annotation.Nullable String transactionId) {
+    this.transactionId = transactionId;
+  }
+
+
+  public Order datePaid(@javax.annotation.Nullable String datePaid) {
+    this.datePaid = datePaid;
+    return this;
+  }
+
+  /**
+   * The date the order was paid, in the site&#39;s timezone.
+   * @return datePaid
+   */
+  @javax.annotation.Nullable
+  public String getDatePaid() {
+    return datePaid;
+  }
+
+  public void setDatePaid(@javax.annotation.Nullable String datePaid) {
+    this.datePaid = datePaid;
+  }
+
+
+  public Order datePaidGmt(@javax.annotation.Nullable String datePaidGmt) {
+    this.datePaidGmt = datePaidGmt;
+    return this;
+  }
+
+  /**
+   * The date the order was paid, as GMT.
+   * @return datePaidGmt
+   */
+  @javax.annotation.Nullable
+  public String getDatePaidGmt() {
+    return datePaidGmt;
+  }
+
+  public void setDatePaidGmt(@javax.annotation.Nullable String datePaidGmt) {
+    this.datePaidGmt = datePaidGmt;
+  }
+
+
+  public Order dateCompleted(@javax.annotation.Nullable String dateCompleted) {
+    this.dateCompleted = dateCompleted;
+    return this;
+  }
+
+  /**
+   * The date the order was completed, in the site&#39;s timezone.
+   * @return dateCompleted
+   */
+  @javax.annotation.Nullable
+  public String getDateCompleted() {
+    return dateCompleted;
+  }
+
+  public void setDateCompleted(@javax.annotation.Nullable String dateCompleted) {
+    this.dateCompleted = dateCompleted;
+  }
+
+
+  public Order dateCompletedGmt(@javax.annotation.Nullable String dateCompletedGmt) {
+    this.dateCompletedGmt = dateCompletedGmt;
+    return this;
+  }
+
+  /**
+   * The date the order was completed, as GMT.
+   * @return dateCompletedGmt
+   */
+  @javax.annotation.Nullable
+  public String getDateCompletedGmt() {
+    return dateCompletedGmt;
+  }
+
+  public void setDateCompletedGmt(@javax.annotation.Nullable String dateCompletedGmt) {
+    this.dateCompletedGmt = dateCompletedGmt;
+  }
+
+
+  public Order cartHash(@javax.annotation.Nullable String cartHash) {
+    this.cartHash = cartHash;
+    return this;
+  }
+
+  /**
+   * MD5 hash of cart items to ensure orders are not modified.
+   * @return cartHash
+   */
+  @javax.annotation.Nullable
+  public String getCartHash() {
+    return cartHash;
+  }
+
+  public void setCartHash(@javax.annotation.Nullable String cartHash) {
+    this.cartHash = cartHash;
+  }
+
+
+  public Order metaData(@javax.annotation.Nullable List<MetaData> metaData) {
+    this.metaData = metaData;
+    return this;
+  }
+
+  public Order addMetaDataItem(MetaData metaDataItem) {
+    if (this.metaData == null) {
+      this.metaData = new ArrayList<>();
+    }
+    this.metaData.add(metaDataItem);
+    return this;
+  }
+
+  /**
+   * Meta data properties.
+   * @return metaData
+   */
+  @javax.annotation.Nullable
+  public List<MetaData> getMetaData() {
+    return metaData;
+  }
+
+  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
+    this.metaData = metaData;
+  }
+
+
   public Order lineItems(@javax.annotation.Nullable List<OrderLineItem> lineItems) {
     this.lineItems = lineItems;
     return this;
@@ -427,6 +1410,160 @@ public class Order {
   }
 
 
+  public Order taxLines(@javax.annotation.Nullable List<OrderTaxLine> taxLines) {
+    this.taxLines = taxLines;
+    return this;
+  }
+
+  public Order addTaxLinesItem(OrderTaxLine taxLinesItem) {
+    if (this.taxLines == null) {
+      this.taxLines = new ArrayList<>();
+    }
+    this.taxLines.add(taxLinesItem);
+    return this;
+  }
+
+  /**
+   * Tax lines data.
+   * @return taxLines
+   */
+  @javax.annotation.Nullable
+  public List<OrderTaxLine> getTaxLines() {
+    return taxLines;
+  }
+
+  public void setTaxLines(@javax.annotation.Nullable List<OrderTaxLine> taxLines) {
+    this.taxLines = taxLines;
+  }
+
+
+  public Order shippingLines(@javax.annotation.Nullable List<OrderShippingLine> shippingLines) {
+    this.shippingLines = shippingLines;
+    return this;
+  }
+
+  public Order addShippingLinesItem(OrderShippingLine shippingLinesItem) {
+    if (this.shippingLines == null) {
+      this.shippingLines = new ArrayList<>();
+    }
+    this.shippingLines.add(shippingLinesItem);
+    return this;
+  }
+
+  /**
+   * Shipping lines data.
+   * @return shippingLines
+   */
+  @javax.annotation.Nullable
+  public List<OrderShippingLine> getShippingLines() {
+    return shippingLines;
+  }
+
+  public void setShippingLines(@javax.annotation.Nullable List<OrderShippingLine> shippingLines) {
+    this.shippingLines = shippingLines;
+  }
+
+
+  public Order feeLines(@javax.annotation.Nullable List<OrderFeeLine> feeLines) {
+    this.feeLines = feeLines;
+    return this;
+  }
+
+  public Order addFeeLinesItem(OrderFeeLine feeLinesItem) {
+    if (this.feeLines == null) {
+      this.feeLines = new ArrayList<>();
+    }
+    this.feeLines.add(feeLinesItem);
+    return this;
+  }
+
+  /**
+   * Fee lines data.
+   * @return feeLines
+   */
+  @javax.annotation.Nullable
+  public List<OrderFeeLine> getFeeLines() {
+    return feeLines;
+  }
+
+  public void setFeeLines(@javax.annotation.Nullable List<OrderFeeLine> feeLines) {
+    this.feeLines = feeLines;
+  }
+
+
+  public Order couponLines(@javax.annotation.Nullable List<OrderCouponLine> couponLines) {
+    this.couponLines = couponLines;
+    return this;
+  }
+
+  public Order addCouponLinesItem(OrderCouponLine couponLinesItem) {
+    if (this.couponLines == null) {
+      this.couponLines = new ArrayList<>();
+    }
+    this.couponLines.add(couponLinesItem);
+    return this;
+  }
+
+  /**
+   * Fee lines data.
+   * @return couponLines
+   */
+  @javax.annotation.Nullable
+  public List<OrderCouponLine> getCouponLines() {
+    return couponLines;
+  }
+
+  public void setCouponLines(@javax.annotation.Nullable List<OrderCouponLine> couponLines) {
+    this.couponLines = couponLines;
+  }
+
+
+  public Order refunds(@javax.annotation.Nullable List<OrderRefund> refunds) {
+    this.refunds = refunds;
+    return this;
+  }
+
+  public Order addRefundsItem(OrderRefund refundsItem) {
+    if (this.refunds == null) {
+      this.refunds = new ArrayList<>();
+    }
+    this.refunds.add(refundsItem);
+    return this;
+  }
+
+  /**
+   * List of refunds.
+   * @return refunds
+   */
+  @javax.annotation.Nullable
+  public List<OrderRefund> getRefunds() {
+    return refunds;
+  }
+
+  public void setRefunds(@javax.annotation.Nullable List<OrderRefund> refunds) {
+    this.refunds = refunds;
+  }
+
+
+  public Order setPaid(@javax.annotation.Nullable Boolean setPaid) {
+    this.setPaid = setPaid;
+    return this;
+  }
+
+  /**
+   * Define if the order is paid. It will set the status to processing and reduce stock items.
+   * @return setPaid
+   */
+  @javax.annotation.Nullable
+  public Boolean getSetPaid() {
+    return setPaid;
+  }
+
+  public void setSetPaid(@javax.annotation.Nullable Boolean setPaid) {
+    this.setPaid = setPaid;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -438,25 +1575,52 @@ public class Order {
     }
     Order order = (Order) o;
     return Objects.equals(this.id, order.id) &&
+        Objects.equals(this.parentId, order.parentId) &&
         Objects.equals(this.number, order.number) &&
+        Objects.equals(this.orderKey, order.orderKey) &&
+        Objects.equals(this.createdVia, order.createdVia) &&
+        Objects.equals(this.version, order.version) &&
         Objects.equals(this.status, order.status) &&
+        Objects.equals(this.currency, order.currency) &&
         Objects.equals(this.dateCreated, order.dateCreated) &&
+        Objects.equals(this.dateCreatedGmt, order.dateCreatedGmt) &&
         Objects.equals(this.dateModified, order.dateModified) &&
-        Objects.equals(this.datePaid, order.datePaid) &&
-        Objects.equals(this.dateCompleted, order.dateCompleted) &&
-        Objects.equals(this.total, order.total) &&
+        Objects.equals(this.dateModifiedGmt, order.dateModifiedGmt) &&
+        Objects.equals(this.discountTotal, order.discountTotal) &&
+        Objects.equals(this.discountTax, order.discountTax) &&
         Objects.equals(this.shippingTotal, order.shippingTotal) &&
-        Objects.equals(this.paymentMethodTitle, order.paymentMethodTitle) &&
+        Objects.equals(this.shippingTax, order.shippingTax) &&
+        Objects.equals(this.cartTax, order.cartTax) &&
+        Objects.equals(this.total, order.total) &&
+        Objects.equals(this.totalTax, order.totalTax) &&
+        Objects.equals(this.pricesIncludeTax, order.pricesIncludeTax) &&
         Objects.equals(this.customerId, order.customerId) &&
+        Objects.equals(this.customerIpAddress, order.customerIpAddress) &&
+        Objects.equals(this.customerUserAgent, order.customerUserAgent) &&
         Objects.equals(this.customerNote, order.customerNote) &&
         Objects.equals(this.billing, order.billing) &&
         Objects.equals(this.shipping, order.shipping) &&
-        Objects.equals(this.lineItems, order.lineItems);
+        Objects.equals(this.paymentMethod, order.paymentMethod) &&
+        Objects.equals(this.paymentMethodTitle, order.paymentMethodTitle) &&
+        Objects.equals(this.transactionId, order.transactionId) &&
+        Objects.equals(this.datePaid, order.datePaid) &&
+        Objects.equals(this.datePaidGmt, order.datePaidGmt) &&
+        Objects.equals(this.dateCompleted, order.dateCompleted) &&
+        Objects.equals(this.dateCompletedGmt, order.dateCompletedGmt) &&
+        Objects.equals(this.cartHash, order.cartHash) &&
+        Objects.equals(this.metaData, order.metaData) &&
+        Objects.equals(this.lineItems, order.lineItems) &&
+        Objects.equals(this.taxLines, order.taxLines) &&
+        Objects.equals(this.shippingLines, order.shippingLines) &&
+        Objects.equals(this.feeLines, order.feeLines) &&
+        Objects.equals(this.couponLines, order.couponLines) &&
+        Objects.equals(this.refunds, order.refunds) &&
+        Objects.equals(this.setPaid, order.setPaid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, number, status, dateCreated, dateModified, datePaid, dateCompleted, total, shippingTotal, paymentMethodTitle, customerId, customerNote, billing, shipping, lineItems);
+    return Objects.hash(id, parentId, number, orderKey, createdVia, version, status, currency, dateCreated, dateCreatedGmt, dateModified, dateModifiedGmt, discountTotal, discountTax, shippingTotal, shippingTax, cartTax, total, totalTax, pricesIncludeTax, customerId, customerIpAddress, customerUserAgent, customerNote, billing, shipping, paymentMethod, paymentMethodTitle, transactionId, datePaid, datePaidGmt, dateCompleted, dateCompletedGmt, cartHash, metaData, lineItems, taxLines, shippingLines, feeLines, couponLines, refunds, setPaid);
   }
 
   @Override
@@ -464,20 +1628,47 @@ public class Order {
     StringBuilder sb = new StringBuilder();
     sb.append("class Order {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
+    sb.append("    orderKey: ").append(toIndentedString(orderKey)).append("\n");
+    sb.append("    createdVia: ").append(toIndentedString(createdVia)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    dateCreated: ").append(toIndentedString(dateCreated)).append("\n");
+    sb.append("    dateCreatedGmt: ").append(toIndentedString(dateCreatedGmt)).append("\n");
     sb.append("    dateModified: ").append(toIndentedString(dateModified)).append("\n");
-    sb.append("    datePaid: ").append(toIndentedString(datePaid)).append("\n");
-    sb.append("    dateCompleted: ").append(toIndentedString(dateCompleted)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    dateModifiedGmt: ").append(toIndentedString(dateModifiedGmt)).append("\n");
+    sb.append("    discountTotal: ").append(toIndentedString(discountTotal)).append("\n");
+    sb.append("    discountTax: ").append(toIndentedString(discountTax)).append("\n");
     sb.append("    shippingTotal: ").append(toIndentedString(shippingTotal)).append("\n");
-    sb.append("    paymentMethodTitle: ").append(toIndentedString(paymentMethodTitle)).append("\n");
+    sb.append("    shippingTax: ").append(toIndentedString(shippingTax)).append("\n");
+    sb.append("    cartTax: ").append(toIndentedString(cartTax)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    totalTax: ").append(toIndentedString(totalTax)).append("\n");
+    sb.append("    pricesIncludeTax: ").append(toIndentedString(pricesIncludeTax)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    customerIpAddress: ").append(toIndentedString(customerIpAddress)).append("\n");
+    sb.append("    customerUserAgent: ").append(toIndentedString(customerUserAgent)).append("\n");
     sb.append("    customerNote: ").append(toIndentedString(customerNote)).append("\n");
     sb.append("    billing: ").append(toIndentedString(billing)).append("\n");
     sb.append("    shipping: ").append(toIndentedString(shipping)).append("\n");
+    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
+    sb.append("    paymentMethodTitle: ").append(toIndentedString(paymentMethodTitle)).append("\n");
+    sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
+    sb.append("    datePaid: ").append(toIndentedString(datePaid)).append("\n");
+    sb.append("    datePaidGmt: ").append(toIndentedString(datePaidGmt)).append("\n");
+    sb.append("    dateCompleted: ").append(toIndentedString(dateCompleted)).append("\n");
+    sb.append("    dateCompletedGmt: ").append(toIndentedString(dateCompletedGmt)).append("\n");
+    sb.append("    cartHash: ").append(toIndentedString(cartHash)).append("\n");
+    sb.append("    metaData: ").append(toIndentedString(metaData)).append("\n");
     sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
+    sb.append("    taxLines: ").append(toIndentedString(taxLines)).append("\n");
+    sb.append("    shippingLines: ").append(toIndentedString(shippingLines)).append("\n");
+    sb.append("    feeLines: ").append(toIndentedString(feeLines)).append("\n");
+    sb.append("    couponLines: ").append(toIndentedString(couponLines)).append("\n");
+    sb.append("    refunds: ").append(toIndentedString(refunds)).append("\n");
+    sb.append("    setPaid: ").append(toIndentedString(setPaid)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -501,20 +1692,47 @@ public class Order {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
+    openapiFields.add("parent_id");
     openapiFields.add("number");
+    openapiFields.add("order_key");
+    openapiFields.add("created_via");
+    openapiFields.add("version");
     openapiFields.add("status");
+    openapiFields.add("currency");
     openapiFields.add("date_created");
+    openapiFields.add("date_created_gmt");
     openapiFields.add("date_modified");
-    openapiFields.add("date_paid");
-    openapiFields.add("date_completed");
-    openapiFields.add("total");
+    openapiFields.add("date_modified_gmt");
+    openapiFields.add("discount_total");
+    openapiFields.add("discount_tax");
     openapiFields.add("shipping_total");
-    openapiFields.add("payment_method_title");
+    openapiFields.add("shipping_tax");
+    openapiFields.add("cart_tax");
+    openapiFields.add("total");
+    openapiFields.add("total_tax");
+    openapiFields.add("prices_include_tax");
     openapiFields.add("customer_id");
+    openapiFields.add("customer_ip_address");
+    openapiFields.add("customer_user_agent");
     openapiFields.add("customer_note");
     openapiFields.add("billing");
     openapiFields.add("shipping");
+    openapiFields.add("payment_method");
+    openapiFields.add("payment_method_title");
+    openapiFields.add("transaction_id");
+    openapiFields.add("date_paid");
+    openapiFields.add("date_paid_gmt");
+    openapiFields.add("date_completed");
+    openapiFields.add("date_completed_gmt");
+    openapiFields.add("cart_hash");
+    openapiFields.add("meta_data");
     openapiFields.add("line_items");
+    openapiFields.add("tax_lines");
+    openapiFields.add("shipping_lines");
+    openapiFields.add("fee_lines");
+    openapiFields.add("coupon_lines");
+    openapiFields.add("refunds");
+    openapiFields.add("set_paid");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -544,17 +1762,67 @@ public class Order {
       if ((jsonObj.get("number") != null && !jsonObj.get("number").isJsonNull()) && !jsonObj.get("number").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("number").toString()));
       }
+      if ((jsonObj.get("order_key") != null && !jsonObj.get("order_key").isJsonNull()) && !jsonObj.get("order_key").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `order_key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("order_key").toString()));
+      }
+      if ((jsonObj.get("created_via") != null && !jsonObj.get("created_via").isJsonNull()) && !jsonObj.get("created_via").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `created_via` to be a primitive type in the JSON string but got `%s`", jsonObj.get("created_via").toString()));
+      }
+      if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) && !jsonObj.get("version").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
+      }
       if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
-      if ((jsonObj.get("total") != null && !jsonObj.get("total").isJsonNull()) && !jsonObj.get("total").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total").toString()));
+      // validate the optional field `status`
+      if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
+        StatusEnum.validateJsonElement(jsonObj.get("status"));
+      }
+      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
+      }
+      // validate the optional field `currency`
+      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) {
+        CurrencyEnum.validateJsonElement(jsonObj.get("currency"));
+      }
+      if ((jsonObj.get("date_created") != null && !jsonObj.get("date_created").isJsonNull()) && !jsonObj.get("date_created").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `date_created` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_created").toString()));
+      }
+      if ((jsonObj.get("date_created_gmt") != null && !jsonObj.get("date_created_gmt").isJsonNull()) && !jsonObj.get("date_created_gmt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `date_created_gmt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_created_gmt").toString()));
+      }
+      if ((jsonObj.get("date_modified") != null && !jsonObj.get("date_modified").isJsonNull()) && !jsonObj.get("date_modified").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `date_modified` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_modified").toString()));
+      }
+      if ((jsonObj.get("date_modified_gmt") != null && !jsonObj.get("date_modified_gmt").isJsonNull()) && !jsonObj.get("date_modified_gmt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `date_modified_gmt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_modified_gmt").toString()));
+      }
+      if ((jsonObj.get("discount_total") != null && !jsonObj.get("discount_total").isJsonNull()) && !jsonObj.get("discount_total").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `discount_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("discount_total").toString()));
+      }
+      if ((jsonObj.get("discount_tax") != null && !jsonObj.get("discount_tax").isJsonNull()) && !jsonObj.get("discount_tax").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `discount_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("discount_tax").toString()));
       }
       if ((jsonObj.get("shipping_total") != null && !jsonObj.get("shipping_total").isJsonNull()) && !jsonObj.get("shipping_total").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `shipping_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shipping_total").toString()));
       }
-      if ((jsonObj.get("payment_method_title") != null && !jsonObj.get("payment_method_title").isJsonNull()) && !jsonObj.get("payment_method_title").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `payment_method_title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_method_title").toString()));
+      if ((jsonObj.get("shipping_tax") != null && !jsonObj.get("shipping_tax").isJsonNull()) && !jsonObj.get("shipping_tax").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `shipping_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shipping_tax").toString()));
+      }
+      if ((jsonObj.get("cart_tax") != null && !jsonObj.get("cart_tax").isJsonNull()) && !jsonObj.get("cart_tax").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cart_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cart_tax").toString()));
+      }
+      if ((jsonObj.get("total") != null && !jsonObj.get("total").isJsonNull()) && !jsonObj.get("total").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total").toString()));
+      }
+      if ((jsonObj.get("total_tax") != null && !jsonObj.get("total_tax").isJsonNull()) && !jsonObj.get("total_tax").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `total_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_tax").toString()));
+      }
+      if ((jsonObj.get("customer_ip_address") != null && !jsonObj.get("customer_ip_address").isJsonNull()) && !jsonObj.get("customer_ip_address").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customer_ip_address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customer_ip_address").toString()));
+      }
+      if ((jsonObj.get("customer_user_agent") != null && !jsonObj.get("customer_user_agent").isJsonNull()) && !jsonObj.get("customer_user_agent").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customer_user_agent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customer_user_agent").toString()));
       }
       if ((jsonObj.get("customer_note") != null && !jsonObj.get("customer_note").isJsonNull()) && !jsonObj.get("customer_note").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `customer_note` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customer_note").toString()));
@@ -567,6 +1835,44 @@ public class Order {
       if (jsonObj.get("shipping") != null && !jsonObj.get("shipping").isJsonNull()) {
         Shipping.validateJsonElement(jsonObj.get("shipping"));
       }
+      if ((jsonObj.get("payment_method") != null && !jsonObj.get("payment_method").isJsonNull()) && !jsonObj.get("payment_method").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payment_method` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_method").toString()));
+      }
+      if ((jsonObj.get("payment_method_title") != null && !jsonObj.get("payment_method_title").isJsonNull()) && !jsonObj.get("payment_method_title").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payment_method_title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_method_title").toString()));
+      }
+      if ((jsonObj.get("transaction_id") != null && !jsonObj.get("transaction_id").isJsonNull()) && !jsonObj.get("transaction_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `transaction_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("transaction_id").toString()));
+      }
+      if ((jsonObj.get("date_paid") != null && !jsonObj.get("date_paid").isJsonNull()) && !jsonObj.get("date_paid").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `date_paid` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_paid").toString()));
+      }
+      if ((jsonObj.get("date_paid_gmt") != null && !jsonObj.get("date_paid_gmt").isJsonNull()) && !jsonObj.get("date_paid_gmt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `date_paid_gmt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_paid_gmt").toString()));
+      }
+      if ((jsonObj.get("date_completed") != null && !jsonObj.get("date_completed").isJsonNull()) && !jsonObj.get("date_completed").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `date_completed` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_completed").toString()));
+      }
+      if ((jsonObj.get("date_completed_gmt") != null && !jsonObj.get("date_completed_gmt").isJsonNull()) && !jsonObj.get("date_completed_gmt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `date_completed_gmt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_completed_gmt").toString()));
+      }
+      if ((jsonObj.get("cart_hash") != null && !jsonObj.get("cart_hash").isJsonNull()) && !jsonObj.get("cart_hash").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cart_hash` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cart_hash").toString()));
+      }
+      if (jsonObj.get("meta_data") != null && !jsonObj.get("meta_data").isJsonNull()) {
+        JsonArray jsonArraymetaData = jsonObj.getAsJsonArray("meta_data");
+        if (jsonArraymetaData != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("meta_data").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `meta_data` to be an array in the JSON string but got `%s`", jsonObj.get("meta_data").toString()));
+          }
+
+          // validate the optional field `meta_data` (array)
+          for (int i = 0; i < jsonArraymetaData.size(); i++) {
+            MetaData.validateJsonElement(jsonArraymetaData.get(i));
+          };
+        }
+      }
       if (jsonObj.get("line_items") != null && !jsonObj.get("line_items").isJsonNull()) {
         JsonArray jsonArraylineItems = jsonObj.getAsJsonArray("line_items");
         if (jsonArraylineItems != null) {
@@ -578,6 +1884,76 @@ public class Order {
           // validate the optional field `line_items` (array)
           for (int i = 0; i < jsonArraylineItems.size(); i++) {
             OrderLineItem.validateJsonElement(jsonArraylineItems.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("tax_lines") != null && !jsonObj.get("tax_lines").isJsonNull()) {
+        JsonArray jsonArraytaxLines = jsonObj.getAsJsonArray("tax_lines");
+        if (jsonArraytaxLines != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("tax_lines").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `tax_lines` to be an array in the JSON string but got `%s`", jsonObj.get("tax_lines").toString()));
+          }
+
+          // validate the optional field `tax_lines` (array)
+          for (int i = 0; i < jsonArraytaxLines.size(); i++) {
+            OrderTaxLine.validateJsonElement(jsonArraytaxLines.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("shipping_lines") != null && !jsonObj.get("shipping_lines").isJsonNull()) {
+        JsonArray jsonArrayshippingLines = jsonObj.getAsJsonArray("shipping_lines");
+        if (jsonArrayshippingLines != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("shipping_lines").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `shipping_lines` to be an array in the JSON string but got `%s`", jsonObj.get("shipping_lines").toString()));
+          }
+
+          // validate the optional field `shipping_lines` (array)
+          for (int i = 0; i < jsonArrayshippingLines.size(); i++) {
+            OrderShippingLine.validateJsonElement(jsonArrayshippingLines.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("fee_lines") != null && !jsonObj.get("fee_lines").isJsonNull()) {
+        JsonArray jsonArrayfeeLines = jsonObj.getAsJsonArray("fee_lines");
+        if (jsonArrayfeeLines != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("fee_lines").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `fee_lines` to be an array in the JSON string but got `%s`", jsonObj.get("fee_lines").toString()));
+          }
+
+          // validate the optional field `fee_lines` (array)
+          for (int i = 0; i < jsonArrayfeeLines.size(); i++) {
+            OrderFeeLine.validateJsonElement(jsonArrayfeeLines.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("coupon_lines") != null && !jsonObj.get("coupon_lines").isJsonNull()) {
+        JsonArray jsonArraycouponLines = jsonObj.getAsJsonArray("coupon_lines");
+        if (jsonArraycouponLines != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("coupon_lines").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `coupon_lines` to be an array in the JSON string but got `%s`", jsonObj.get("coupon_lines").toString()));
+          }
+
+          // validate the optional field `coupon_lines` (array)
+          for (int i = 0; i < jsonArraycouponLines.size(); i++) {
+            OrderCouponLine.validateJsonElement(jsonArraycouponLines.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("refunds") != null && !jsonObj.get("refunds").isJsonNull()) {
+        JsonArray jsonArrayrefunds = jsonObj.getAsJsonArray("refunds");
+        if (jsonArrayrefunds != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("refunds").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `refunds` to be an array in the JSON string but got `%s`", jsonObj.get("refunds").toString()));
+          }
+
+          // validate the optional field `refunds` (array)
+          for (int i = 0; i < jsonArrayrefunds.size(); i++) {
+            OrderRefund.validateJsonElement(jsonArrayrefunds.get(i));
           };
         }
       }

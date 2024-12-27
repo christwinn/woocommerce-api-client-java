@@ -20,7 +20,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,10 +50,10 @@ import java.util.Set;
 import wtx.woocommerce.api.client.invoker.JSON;
 
 /**
- * OrderLineItem
+ * OrderFeeLine
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T00:49:53.851918900+01:00[Europe/Warsaw]", comments = "Generator version: 7.10.0")
-public class OrderLineItem {
+public class OrderFeeLine {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
@@ -65,40 +64,67 @@ public class OrderLineItem {
   @javax.annotation.Nullable
   private String name;
 
-  public static final String SERIALIZED_NAME_PARENT_NAME = "parent_name";
-  @SerializedName(SERIALIZED_NAME_PARENT_NAME)
-  @javax.annotation.Nullable
-  private String parentName;
-
-  public static final String SERIALIZED_NAME_PRODUCT_ID = "product_id";
-  @SerializedName(SERIALIZED_NAME_PRODUCT_ID)
-  @javax.annotation.Nullable
-  private String productId;
-
-  public static final String SERIALIZED_NAME_VARIATION_ID = "variation_id";
-  @SerializedName(SERIALIZED_NAME_VARIATION_ID)
-  @javax.annotation.Nullable
-  private Integer variationId;
-
-  public static final String SERIALIZED_NAME_QUANTITY = "quantity";
-  @SerializedName(SERIALIZED_NAME_QUANTITY)
-  @javax.annotation.Nullable
-  private Integer quantity;
-
   public static final String SERIALIZED_NAME_TAX_CLASS = "tax_class";
   @SerializedName(SERIALIZED_NAME_TAX_CLASS)
   @javax.annotation.Nullable
   private String taxClass;
 
-  public static final String SERIALIZED_NAME_SUBTOTAL = "subtotal";
-  @SerializedName(SERIALIZED_NAME_SUBTOTAL)
-  @javax.annotation.Nullable
-  private String subtotal;
+  /**
+   * Tax status of fee.
+   */
+  @JsonAdapter(TaxStatusEnum.Adapter.class)
+  public enum TaxStatusEnum {
+    TAXABLE("taxable"),
+    
+    NONE("none");
 
-  public static final String SERIALIZED_NAME_SUBTOTAL_TAX = "subtotal_tax";
-  @SerializedName(SERIALIZED_NAME_SUBTOTAL_TAX)
+    private String value;
+
+    TaxStatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TaxStatusEnum fromValue(String value) {
+      for (TaxStatusEnum b : TaxStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<TaxStatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TaxStatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TaxStatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return TaxStatusEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TaxStatusEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_TAX_STATUS = "tax_status";
+  @SerializedName(SERIALIZED_NAME_TAX_STATUS)
   @javax.annotation.Nullable
-  private String subtotalTax;
+  private TaxStatusEnum taxStatus;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
@@ -120,20 +146,10 @@ public class OrderLineItem {
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SKU = "sku";
-  @SerializedName(SERIALIZED_NAME_SKU)
-  @javax.annotation.Nullable
-  private String sku;
-
-  public static final String SERIALIZED_NAME_PRICE = "price";
-  @SerializedName(SERIALIZED_NAME_PRICE)
-  @javax.annotation.Nullable
-  private BigDecimal price;
-
-  public OrderLineItem() {
+  public OrderFeeLine() {
   }
 
-  public OrderLineItem id(@javax.annotation.Nullable Integer id) {
+  public OrderFeeLine id(@javax.annotation.Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -152,13 +168,13 @@ public class OrderLineItem {
   }
 
 
-  public OrderLineItem name(@javax.annotation.Nullable String name) {
+  public OrderFeeLine name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * Product name.
+   * Fee name.
    * @return name
    */
   @javax.annotation.Nullable
@@ -171,89 +187,13 @@ public class OrderLineItem {
   }
 
 
-  public OrderLineItem parentName(@javax.annotation.Nullable String parentName) {
-    this.parentName = parentName;
-    return this;
-  }
-
-  /**
-   * Parent product name if the product is a variation.
-   * @return parentName
-   */
-  @javax.annotation.Nullable
-  public String getParentName() {
-    return parentName;
-  }
-
-  public void setParentName(@javax.annotation.Nullable String parentName) {
-    this.parentName = parentName;
-  }
-
-
-  public OrderLineItem productId(@javax.annotation.Nullable String productId) {
-    this.productId = productId;
-    return this;
-  }
-
-  /**
-   * Product ID.
-   * @return productId
-   */
-  @javax.annotation.Nullable
-  public String getProductId() {
-    return productId;
-  }
-
-  public void setProductId(@javax.annotation.Nullable String productId) {
-    this.productId = productId;
-  }
-
-
-  public OrderLineItem variationId(@javax.annotation.Nullable Integer variationId) {
-    this.variationId = variationId;
-    return this;
-  }
-
-  /**
-   * Variation ID, if applicable.
-   * @return variationId
-   */
-  @javax.annotation.Nullable
-  public Integer getVariationId() {
-    return variationId;
-  }
-
-  public void setVariationId(@javax.annotation.Nullable Integer variationId) {
-    this.variationId = variationId;
-  }
-
-
-  public OrderLineItem quantity(@javax.annotation.Nullable Integer quantity) {
-    this.quantity = quantity;
-    return this;
-  }
-
-  /**
-   * Quantity ordered.
-   * @return quantity
-   */
-  @javax.annotation.Nullable
-  public Integer getQuantity() {
-    return quantity;
-  }
-
-  public void setQuantity(@javax.annotation.Nullable Integer quantity) {
-    this.quantity = quantity;
-  }
-
-
-  public OrderLineItem taxClass(@javax.annotation.Nullable String taxClass) {
+  public OrderFeeLine taxClass(@javax.annotation.Nullable String taxClass) {
     this.taxClass = taxClass;
     return this;
   }
 
   /**
-   * Tax class of product.
+   * Tax class of fee.
    * @return taxClass
    */
   @javax.annotation.Nullable
@@ -266,45 +206,26 @@ public class OrderLineItem {
   }
 
 
-  public OrderLineItem subtotal(@javax.annotation.Nullable String subtotal) {
-    this.subtotal = subtotal;
+  public OrderFeeLine taxStatus(@javax.annotation.Nullable TaxStatusEnum taxStatus) {
+    this.taxStatus = taxStatus;
     return this;
   }
 
   /**
-   * Line subtotal (before discounts).
-   * @return subtotal
+   * Tax status of fee.
+   * @return taxStatus
    */
   @javax.annotation.Nullable
-  public String getSubtotal() {
-    return subtotal;
+  public TaxStatusEnum getTaxStatus() {
+    return taxStatus;
   }
 
-  public void setSubtotal(@javax.annotation.Nullable String subtotal) {
-    this.subtotal = subtotal;
-  }
-
-
-  public OrderLineItem subtotalTax(@javax.annotation.Nullable String subtotalTax) {
-    this.subtotalTax = subtotalTax;
-    return this;
-  }
-
-  /**
-   * Line subtotal tax (before discounts).
-   * @return subtotalTax
-   */
-  @javax.annotation.Nullable
-  public String getSubtotalTax() {
-    return subtotalTax;
-  }
-
-  public void setSubtotalTax(@javax.annotation.Nullable String subtotalTax) {
-    this.subtotalTax = subtotalTax;
+  public void setTaxStatus(@javax.annotation.Nullable TaxStatusEnum taxStatus) {
+    this.taxStatus = taxStatus;
   }
 
 
-  public OrderLineItem total(@javax.annotation.Nullable String total) {
+  public OrderFeeLine total(@javax.annotation.Nullable String total) {
     this.total = total;
     return this;
   }
@@ -323,7 +244,7 @@ public class OrderLineItem {
   }
 
 
-  public OrderLineItem totalTax(@javax.annotation.Nullable String totalTax) {
+  public OrderFeeLine totalTax(@javax.annotation.Nullable String totalTax) {
     this.totalTax = totalTax;
     return this;
   }
@@ -342,12 +263,12 @@ public class OrderLineItem {
   }
 
 
-  public OrderLineItem taxes(@javax.annotation.Nullable List<OrderTaxLine> taxes) {
+  public OrderFeeLine taxes(@javax.annotation.Nullable List<OrderTaxLine> taxes) {
     this.taxes = taxes;
     return this;
   }
 
-  public OrderLineItem addTaxesItem(OrderTaxLine taxesItem) {
+  public OrderFeeLine addTaxesItem(OrderTaxLine taxesItem) {
     if (this.taxes == null) {
       this.taxes = new ArrayList<>();
     }
@@ -369,12 +290,12 @@ public class OrderLineItem {
   }
 
 
-  public OrderLineItem metaData(@javax.annotation.Nullable List<MetaData> metaData) {
+  public OrderFeeLine metaData(@javax.annotation.Nullable List<MetaData> metaData) {
     this.metaData = metaData;
     return this;
   }
 
-  public OrderLineItem addMetaDataItem(MetaData metaDataItem) {
+  public OrderFeeLine addMetaDataItem(MetaData metaDataItem) {
     if (this.metaData == null) {
       this.metaData = new ArrayList<>();
     }
@@ -396,44 +317,6 @@ public class OrderLineItem {
   }
 
 
-  public OrderLineItem sku(@javax.annotation.Nullable String sku) {
-    this.sku = sku;
-    return this;
-  }
-
-  /**
-   * Product SKU.
-   * @return sku
-   */
-  @javax.annotation.Nullable
-  public String getSku() {
-    return sku;
-  }
-
-  public void setSku(@javax.annotation.Nullable String sku) {
-    this.sku = sku;
-  }
-
-
-  public OrderLineItem price(@javax.annotation.Nullable BigDecimal price) {
-    this.price = price;
-    return this;
-  }
-
-  /**
-   * Product price.
-   * @return price
-   */
-  @javax.annotation.Nullable
-  public BigDecimal getPrice() {
-    return price;
-  }
-
-  public void setPrice(@javax.annotation.Nullable BigDecimal price) {
-    this.price = price;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -443,48 +326,34 @@ public class OrderLineItem {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrderLineItem orderLineItem = (OrderLineItem) o;
-    return Objects.equals(this.id, orderLineItem.id) &&
-        Objects.equals(this.name, orderLineItem.name) &&
-        Objects.equals(this.parentName, orderLineItem.parentName) &&
-        Objects.equals(this.productId, orderLineItem.productId) &&
-        Objects.equals(this.variationId, orderLineItem.variationId) &&
-        Objects.equals(this.quantity, orderLineItem.quantity) &&
-        Objects.equals(this.taxClass, orderLineItem.taxClass) &&
-        Objects.equals(this.subtotal, orderLineItem.subtotal) &&
-        Objects.equals(this.subtotalTax, orderLineItem.subtotalTax) &&
-        Objects.equals(this.total, orderLineItem.total) &&
-        Objects.equals(this.totalTax, orderLineItem.totalTax) &&
-        Objects.equals(this.taxes, orderLineItem.taxes) &&
-        Objects.equals(this.metaData, orderLineItem.metaData) &&
-        Objects.equals(this.sku, orderLineItem.sku) &&
-        Objects.equals(this.price, orderLineItem.price);
+    OrderFeeLine orderFeeLine = (OrderFeeLine) o;
+    return Objects.equals(this.id, orderFeeLine.id) &&
+        Objects.equals(this.name, orderFeeLine.name) &&
+        Objects.equals(this.taxClass, orderFeeLine.taxClass) &&
+        Objects.equals(this.taxStatus, orderFeeLine.taxStatus) &&
+        Objects.equals(this.total, orderFeeLine.total) &&
+        Objects.equals(this.totalTax, orderFeeLine.totalTax) &&
+        Objects.equals(this.taxes, orderFeeLine.taxes) &&
+        Objects.equals(this.metaData, orderFeeLine.metaData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, parentName, productId, variationId, quantity, taxClass, subtotal, subtotalTax, total, totalTax, taxes, metaData, sku, price);
+    return Objects.hash(id, name, taxClass, taxStatus, total, totalTax, taxes, metaData);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrderLineItem {\n");
+    sb.append("class OrderFeeLine {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    parentName: ").append(toIndentedString(parentName)).append("\n");
-    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
-    sb.append("    variationId: ").append(toIndentedString(variationId)).append("\n");
-    sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    taxClass: ").append(toIndentedString(taxClass)).append("\n");
-    sb.append("    subtotal: ").append(toIndentedString(subtotal)).append("\n");
-    sb.append("    subtotalTax: ").append(toIndentedString(subtotalTax)).append("\n");
+    sb.append("    taxStatus: ").append(toIndentedString(taxStatus)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    totalTax: ").append(toIndentedString(totalTax)).append("\n");
     sb.append("    taxes: ").append(toIndentedString(taxes)).append("\n");
     sb.append("    metaData: ").append(toIndentedString(metaData)).append("\n");
-    sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
-    sb.append("    price: ").append(toIndentedString(price)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -509,19 +378,12 @@ public class OrderLineItem {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("name");
-    openapiFields.add("parent_name");
-    openapiFields.add("product_id");
-    openapiFields.add("variation_id");
-    openapiFields.add("quantity");
     openapiFields.add("tax_class");
-    openapiFields.add("subtotal");
-    openapiFields.add("subtotal_tax");
+    openapiFields.add("tax_status");
     openapiFields.add("total");
     openapiFields.add("total_tax");
     openapiFields.add("taxes");
     openapiFields.add("meta_data");
-    openapiFields.add("sku");
-    openapiFields.add("price");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -531,40 +393,35 @@ public class OrderLineItem {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to OrderLineItem
+   * @throws IOException if the JSON Element is invalid with respect to OrderFeeLine
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!OrderLineItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in OrderLineItem is not found in the empty JSON string", OrderLineItem.openapiRequiredFields.toString()));
+        if (!OrderFeeLine.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in OrderFeeLine is not found in the empty JSON string", OrderFeeLine.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!OrderLineItem.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OrderLineItem` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!OrderFeeLine.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OrderFeeLine` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if ((jsonObj.get("parent_name") != null && !jsonObj.get("parent_name").isJsonNull()) && !jsonObj.get("parent_name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `parent_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parent_name").toString()));
-      }
-      if ((jsonObj.get("product_id") != null && !jsonObj.get("product_id").isJsonNull()) && !jsonObj.get("product_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `product_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("product_id").toString()));
-      }
       if ((jsonObj.get("tax_class") != null && !jsonObj.get("tax_class").isJsonNull()) && !jsonObj.get("tax_class").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `tax_class` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tax_class").toString()));
       }
-      if ((jsonObj.get("subtotal") != null && !jsonObj.get("subtotal").isJsonNull()) && !jsonObj.get("subtotal").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subtotal` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subtotal").toString()));
+      if ((jsonObj.get("tax_status") != null && !jsonObj.get("tax_status").isJsonNull()) && !jsonObj.get("tax_status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tax_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tax_status").toString()));
       }
-      if ((jsonObj.get("subtotal_tax") != null && !jsonObj.get("subtotal_tax").isJsonNull()) && !jsonObj.get("subtotal_tax").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subtotal_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subtotal_tax").toString()));
+      // validate the optional field `tax_status`
+      if (jsonObj.get("tax_status") != null && !jsonObj.get("tax_status").isJsonNull()) {
+        TaxStatusEnum.validateJsonElement(jsonObj.get("tax_status"));
       }
       if ((jsonObj.get("total") != null && !jsonObj.get("total").isJsonNull()) && !jsonObj.get("total").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total").toString()));
@@ -600,31 +457,28 @@ public class OrderLineItem {
           };
         }
       }
-      if ((jsonObj.get("sku") != null && !jsonObj.get("sku").isJsonNull()) && !jsonObj.get("sku").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `sku` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sku").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!OrderLineItem.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'OrderLineItem' and its subtypes
+       if (!OrderFeeLine.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'OrderFeeLine' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<OrderLineItem> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(OrderLineItem.class));
+       final TypeAdapter<OrderFeeLine> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(OrderFeeLine.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<OrderLineItem>() {
+       return (TypeAdapter<T>) new TypeAdapter<OrderFeeLine>() {
            @Override
-           public void write(JsonWriter out, OrderLineItem value) throws IOException {
+           public void write(JsonWriter out, OrderFeeLine value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public OrderLineItem read(JsonReader in) throws IOException {
+           public OrderFeeLine read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -635,18 +489,18 @@ public class OrderLineItem {
   }
 
   /**
-   * Create an instance of OrderLineItem given an JSON string
+   * Create an instance of OrderFeeLine given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of OrderLineItem
-   * @throws IOException if the JSON string is invalid with respect to OrderLineItem
+   * @return An instance of OrderFeeLine
+   * @throws IOException if the JSON string is invalid with respect to OrderFeeLine
    */
-  public static OrderLineItem fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, OrderLineItem.class);
+  public static OrderFeeLine fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, OrderFeeLine.class);
   }
 
   /**
-   * Convert an instance of OrderLineItem to an JSON string
+   * Convert an instance of OrderFeeLine to an JSON string
    *
    * @return JSON string
    */

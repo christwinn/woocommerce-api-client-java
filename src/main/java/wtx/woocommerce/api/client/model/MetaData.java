@@ -48,7 +48,7 @@ import wtx.woocommerce.api.client.invoker.JSON;
 /**
  * MetaData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-26T19:20:41.898235500+01:00[Europe/Warsaw]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T00:49:53.851918900+01:00[Europe/Warsaw]", comments = "Generator version: 7.10.0")
 public class MetaData {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -64,6 +64,16 @@ public class MetaData {
   @SerializedName(SERIALIZED_NAME_VALUE)
   @javax.annotation.Nullable
   private Object value;
+
+  public static final String SERIALIZED_NAME_DISPLAY_KEY = "display_key";
+  @SerializedName(SERIALIZED_NAME_DISPLAY_KEY)
+  @javax.annotation.Nullable
+  private String displayKey;
+
+  public static final String SERIALIZED_NAME_DISPLAY_VALUE = "display_value";
+  @SerializedName(SERIALIZED_NAME_DISPLAY_VALUE)
+  @javax.annotation.Nullable
+  private Object displayValue;
 
   public MetaData() {
   }
@@ -125,6 +135,44 @@ public class MetaData {
   }
 
 
+  public MetaData displayKey(@javax.annotation.Nullable String displayKey) {
+    this.displayKey = displayKey;
+    return this;
+  }
+
+  /**
+   * Meta key for UI display.
+   * @return displayKey
+   */
+  @javax.annotation.Nullable
+  public String getDisplayKey() {
+    return displayKey;
+  }
+
+  public void setDisplayKey(@javax.annotation.Nullable String displayKey) {
+    this.displayKey = displayKey;
+  }
+
+
+  public MetaData displayValue(@javax.annotation.Nullable Object displayValue) {
+    this.displayValue = displayValue;
+    return this;
+  }
+
+  /**
+   * Meta value for UI display.
+   * @return displayValue
+   */
+  @javax.annotation.Nullable
+  public Object getDisplayValue() {
+    return displayValue;
+  }
+
+  public void setDisplayValue(@javax.annotation.Nullable Object displayValue) {
+    this.displayValue = displayValue;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -137,12 +185,14 @@ public class MetaData {
     MetaData metaData = (MetaData) o;
     return Objects.equals(this.id, metaData.id) &&
         Objects.equals(this.key, metaData.key) &&
-        Objects.equals(this.value, metaData.value);
+        Objects.equals(this.value, metaData.value) &&
+        Objects.equals(this.displayKey, metaData.displayKey) &&
+        Objects.equals(this.displayValue, metaData.displayValue);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, value);
+    return Objects.hash(id, key, value, displayKey, displayValue);
   }
 
   @Override
@@ -152,6 +202,8 @@ public class MetaData {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    displayKey: ").append(toIndentedString(displayKey)).append("\n");
+    sb.append("    displayValue: ").append(toIndentedString(displayValue)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -177,6 +229,8 @@ public class MetaData {
     openapiFields.add("id");
     openapiFields.add("key");
     openapiFields.add("value");
+    openapiFields.add("display_key");
+    openapiFields.add("display_value");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -205,6 +259,9 @@ public class MetaData {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("key") != null && !jsonObj.get("key").isJsonNull()) && !jsonObj.get("key").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("key").toString()));
+      }
+      if ((jsonObj.get("display_key") != null && !jsonObj.get("display_key").isJsonNull()) && !jsonObj.get("display_key").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `display_key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("display_key").toString()));
       }
   }
 

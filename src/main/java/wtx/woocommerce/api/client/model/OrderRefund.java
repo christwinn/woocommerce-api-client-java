@@ -21,7 +21,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import wtx.woocommerce.api.client.model.ApiErrorData;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,82 +46,82 @@ import java.util.Set;
 import wtx.woocommerce.api.client.invoker.JSON;
 
 /**
- * ApiError
+ * OrderRefund
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-28T00:49:53.851918900+01:00[Europe/Warsaw]", comments = "Generator version: 7.10.0")
-public class ApiError {
-  public static final String SERIALIZED_NAME_CODE = "code";
-  @SerializedName(SERIALIZED_NAME_CODE)
+public class OrderRefund {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
-  private String code;
+  private Integer id;
 
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  public static final String SERIALIZED_NAME_REASON = "reason";
+  @SerializedName(SERIALIZED_NAME_REASON)
   @javax.annotation.Nullable
-  private String message;
+  private String reason;
 
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
+  public static final String SERIALIZED_NAME_TOTAL = "total";
+  @SerializedName(SERIALIZED_NAME_TOTAL)
   @javax.annotation.Nullable
-  private ApiErrorData data;
+  private String total;
 
-  public ApiError() {
+  public OrderRefund() {
   }
 
-  public ApiError code(@javax.annotation.Nullable String code) {
-    this.code = code;
+  public OrderRefund id(@javax.annotation.Nullable Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get code
-   * @return code
+   * Refund ID.
+   * @return id
    */
   @javax.annotation.Nullable
-  public String getCode() {
-    return code;
+  public Integer getId() {
+    return id;
   }
 
-  public void setCode(@javax.annotation.Nullable String code) {
-    this.code = code;
+  public void setId(@javax.annotation.Nullable Integer id) {
+    this.id = id;
   }
 
 
-  public ApiError message(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public OrderRefund reason(@javax.annotation.Nullable String reason) {
+    this.reason = reason;
     return this;
   }
 
   /**
-   * Get message
-   * @return message
+   * Refund reason.
+   * @return reason
    */
   @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  public String getReason() {
+    return reason;
   }
 
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public void setReason(@javax.annotation.Nullable String reason) {
+    this.reason = reason;
   }
 
 
-  public ApiError data(@javax.annotation.Nullable ApiErrorData data) {
-    this.data = data;
+  public OrderRefund total(@javax.annotation.Nullable String total) {
+    this.total = total;
     return this;
   }
 
   /**
-   * Get data
-   * @return data
+   * Refund total.
+   * @return total
    */
   @javax.annotation.Nullable
-  public ApiErrorData getData() {
-    return data;
+  public String getTotal() {
+    return total;
   }
 
-  public void setData(@javax.annotation.Nullable ApiErrorData data) {
-    this.data = data;
+  public void setTotal(@javax.annotation.Nullable String total) {
+    this.total = total;
   }
 
 
@@ -135,24 +134,24 @@ public class ApiError {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ApiError apiError = (ApiError) o;
-    return Objects.equals(this.code, apiError.code) &&
-        Objects.equals(this.message, apiError.message) &&
-        Objects.equals(this.data, apiError.data);
+    OrderRefund orderRefund = (OrderRefund) o;
+    return Objects.equals(this.id, orderRefund.id) &&
+        Objects.equals(this.reason, orderRefund.reason) &&
+        Objects.equals(this.total, orderRefund.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, message, data);
+    return Objects.hash(id, reason, total);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ApiError {\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class OrderRefund {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -175,9 +174,9 @@ public class ApiError {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("code");
-    openapiFields.add("message");
-    openapiFields.add("data");
+    openapiFields.add("id");
+    openapiFields.add("reason");
+    openapiFields.add("total");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -187,32 +186,28 @@ public class ApiError {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ApiError
+   * @throws IOException if the JSON Element is invalid with respect to OrderRefund
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!ApiError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ApiError is not found in the empty JSON string", ApiError.openapiRequiredFields.toString()));
+        if (!OrderRefund.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in OrderRefund is not found in the empty JSON string", OrderRefund.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ApiError.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ApiError` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!OrderRefund.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OrderRefund` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
+      if ((jsonObj.get("reason") != null && !jsonObj.get("reason").isJsonNull()) && !jsonObj.get("reason").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reason").toString()));
       }
-      if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
-      }
-      // validate the optional field `data`
-      if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
-        ApiErrorData.validateJsonElement(jsonObj.get("data"));
+      if ((jsonObj.get("total") != null && !jsonObj.get("total").isJsonNull()) && !jsonObj.get("total").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total").toString()));
       }
   }
 
@@ -220,22 +215,22 @@ public class ApiError {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ApiError.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ApiError' and its subtypes
+       if (!OrderRefund.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'OrderRefund' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ApiError> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ApiError.class));
+       final TypeAdapter<OrderRefund> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(OrderRefund.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ApiError>() {
+       return (TypeAdapter<T>) new TypeAdapter<OrderRefund>() {
            @Override
-           public void write(JsonWriter out, ApiError value) throws IOException {
+           public void write(JsonWriter out, OrderRefund value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ApiError read(JsonReader in) throws IOException {
+           public OrderRefund read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -246,18 +241,18 @@ public class ApiError {
   }
 
   /**
-   * Create an instance of ApiError given an JSON string
+   * Create an instance of OrderRefund given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of ApiError
-   * @throws IOException if the JSON string is invalid with respect to ApiError
+   * @return An instance of OrderRefund
+   * @throws IOException if the JSON string is invalid with respect to OrderRefund
    */
-  public static ApiError fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ApiError.class);
+  public static OrderRefund fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, OrderRefund.class);
   }
 
   /**
-   * Convert an instance of ApiError to an JSON string
+   * Convert an instance of OrderRefund to an JSON string
    *
    * @return JSON string
    */
