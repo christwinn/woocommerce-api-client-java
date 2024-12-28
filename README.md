@@ -13,12 +13,11 @@ The client supports the WooCommerce REST API in the latest v3 version.
 
 
 ## Setup
-1. Download this project and build it to create a new artifact in the local Maven repository - use simple command:
+1. Download this project and build it to create a new artifact in the local Maven repository using the following command:
 ```
 mvn clean install
 ```
-2. After a successful build, you can use the following artifact as a dependency in your Java project:
-wc-api-java is available on maven central:
+2. After a successful build, you can use the newly created `woocommerce-api-client` artifact as a dependency in your Java project.:
 ```xml
 <dependency>
     <groupId>wtx.woocommerce</groupId>
