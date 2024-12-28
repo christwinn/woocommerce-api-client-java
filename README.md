@@ -1,7 +1,7 @@
 # The WooCommerce REST API Client for Java
 
 The WooCommerce REST API client library for Java provides easy access to the features of the e-commerce platform's API.
-The client supports the WooCommerce REST API in th latest v3 version.
+The client supports the WooCommerce REST API in the latest v3 version.
 
 ---
 
