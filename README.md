@@ -32,8 +32,8 @@ The only requirement is to preserve the original author attribution in the sourc
 Clone this repository and build the library using Maven:
 
 ```sh
-git clone https://github.com/your-org/woocommerce-java-client.git
-cd woocommerce-java-client
+git clone https://github.com/wtx-labs/woocommerce-api-client-java.git
+cd woocommerce-api-client-java
 mvn clean install
 ```
 
