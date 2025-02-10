@@ -43,7 +43,7 @@ After a successful build, add the generated artifact as a dependency in your Jav
 <dependency>
     <groupId>wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.1.1-alpha-20250207</version>
+    <version>0.1.2-alpha-20250210</version>
 </dependency>
 ```
 
