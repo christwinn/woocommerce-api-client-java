@@ -13,7 +13,7 @@ This library provides an intuitive and developer-friendly way to interact with t
 
 ## 📦 Version Information
 
-- **Current Version**: `0.1.1-alpha-20250207`
+- **Current Version**: `0.1.2-alpha-20250210`
 - **Supported WooCommerce API Version**: `v3`
 - **Java Compatibility**: Java 8+
 
