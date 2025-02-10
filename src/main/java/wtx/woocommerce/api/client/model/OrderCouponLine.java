@@ -51,7 +51,7 @@ import wtx.woocommerce.api.client.invoker.JSON;
 /**
  * OrderCouponLine
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-07T13:35:20.422255800+01:00[Europe/Warsaw]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class OrderCouponLine {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

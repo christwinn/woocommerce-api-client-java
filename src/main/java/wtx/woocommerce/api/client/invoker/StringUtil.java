@@ -16,7 +16,7 @@ package wtx.woocommerce.api.client.invoker;
 import java.util.Collection;
 import java.util.Iterator;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-07T13:35:20.422255800+01:00[Europe/Warsaw]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class StringUtil {
   /**
    * Check if the given array contains the given value (with case-insensitive comparison).
