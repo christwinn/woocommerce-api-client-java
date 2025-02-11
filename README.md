@@ -52,36 +52,51 @@ After a successful build, add the generated artifact as a dependency in your Jav
 Easily fetch WooCommerce customer data:
 
 ```java
+package wtx.woocommerce;
+
 import java.util.List;
-import wtx.woocommerce.api.client.*;
+
+import wtx.woocommerce.api.client.CustomersApi;
 import wtx.woocommerce.api.client.invoker.ApiException;
 import wtx.woocommerce.api.client.model.Customer;
 
-public class WooCommerceClientDemo {
-    public static void main(String[] args) {
-        System.out.println(">>> Starting WooCommerceClientDemo...");
+public class WooCommerceApiClientUsageDemo {
 
+    // TODO: Set your WooCommerce API base path!
+    private static final String API_BASE_PATH = "https://your-woocommerce-shop.com/wp-json/wc/v3";
+    private static final String API_USERNAME = "TODO_SET_API_USERNAME";
+    private static final String API_PASSWORD = "TODO_SET_API_PASSWORD";
+
+    public static void main(String[] args) {
+
+        System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
+
+        // Use WooCommerceApiClient(true) if you need to log API communication messages.
         WooCommerceApiClient apiClient = new WooCommerceApiClient();
-        apiClient.setBasePath("https://your-woocommerce-shop.com/wp-json/wc/v3");
-        apiClient.setUsername("YOUR_API_USERNAME");
-        apiClient.setPassword("YOUR_API_PASSWORD");
+
+        apiClient.setBasePath(API_BASE_PATH);
+        apiClient.setUsername(API_USERNAME);
+        apiClient.setPassword(API_PASSWORD);
 
         CustomersApi customersApi = new CustomersApi(apiClient);
 
         try {
+
             List<Customer> customers = customersApi.listAllCustomers(
-                null, null, null, null, null, 
-                null, null, null, null, null, null
+                null, null, null, null, null, null, null, null, null, null, null
             );
-            customers.forEach(customer -> 
-                System.out.println("Customer: " + customer.getEmail())
-            );
+
+            // Example list of customer's emails:
+            customers.forEach(customer -> System.out.println("Customer: " + customer.getEmail()));
+
         } catch (ApiException e) {
-            System.err.println("API Error: " + e.getMessage());
+            System.err.println("Error occurred during API call: " + e);
         }
 
-        System.out.println("<<< WooCommerceClientDemo finished.");
+        System.out.println("<<< The WooCommerceApiClientUsageDemo has been finished.");
+
     }
+
 }
 ```
 
