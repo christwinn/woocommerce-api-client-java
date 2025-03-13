@@ -26,6 +26,11 @@ import java.util.Arrays;
 import java.util.List;
 import wtx.woocommerce.api.client.model.MetaData;
 import wtx.woocommerce.api.client.model.ProductAttribute;
+import wtx.woocommerce.api.client.model.ProductCategory;
+import wtx.woocommerce.api.client.model.ProductDimension;
+import wtx.woocommerce.api.client.model.ProductDownload;
+import wtx.woocommerce.api.client.model.ProductImage;
+import wtx.woocommerce.api.client.model.ProductTag;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -60,25 +65,40 @@ public class Product {
   @javax.annotation.Nullable
   private Integer id;
 
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
+  private String name;
+
+  public static final String SERIALIZED_NAME_SLUG = "slug";
+  @SerializedName(SERIALIZED_NAME_SLUG)
+  @javax.annotation.Nullable
+  private String slug;
+
+  public static final String SERIALIZED_NAME_PERMALINK = "permalink";
+  @SerializedName(SERIALIZED_NAME_PERMALINK)
+  @javax.annotation.Nullable
+  private String permalink;
+
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED)
   @javax.annotation.Nullable
   private OffsetDateTime dateCreated;
+
+  public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
+  @SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
+  @javax.annotation.Nullable
+  private OffsetDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
   @SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
   @javax.annotation.Nullable
   private OffsetDateTime dateModified;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
+  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
   @javax.annotation.Nullable
-  private String name;
-
-  public static final String SERIALIZED_NAME_SKU = "sku";
-  @SerializedName(SERIALIZED_NAME_SKU)
-  @javax.annotation.Nullable
-  private String sku;
+  private OffsetDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -90,6 +110,16 @@ public class Product {
   @javax.annotation.Nullable
   private String status;
 
+  public static final String SERIALIZED_NAME_FEATURED = "featured";
+  @SerializedName(SERIALIZED_NAME_FEATURED)
+  @javax.annotation.Nullable
+  private Boolean featured;
+
+  public static final String SERIALIZED_NAME_CATALOG_VISIBILITY = "catalog_visibility";
+  @SerializedName(SERIALIZED_NAME_CATALOG_VISIBILITY)
+  @javax.annotation.Nullable
+  private String catalogVisibility;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   @javax.annotation.Nullable
@@ -100,10 +130,115 @@ public class Product {
   @javax.annotation.Nullable
   private String shortDescription;
 
+  public static final String SERIALIZED_NAME_SKU = "sku";
+  @SerializedName(SERIALIZED_NAME_SKU)
+  @javax.annotation.Nullable
+  private String sku;
+
   public static final String SERIALIZED_NAME_PRICE = "price";
   @SerializedName(SERIALIZED_NAME_PRICE)
   @javax.annotation.Nullable
   private String price;
+
+  public static final String SERIALIZED_NAME_REGULAR_PRICE = "regular_price";
+  @SerializedName(SERIALIZED_NAME_REGULAR_PRICE)
+  @javax.annotation.Nullable
+  private String regularPrice;
+
+  public static final String SERIALIZED_NAME_SALE_PRICE = "sale_price";
+  @SerializedName(SERIALIZED_NAME_SALE_PRICE)
+  @javax.annotation.Nullable
+  private String salePrice;
+
+  public static final String SERIALIZED_NAME_DATE_ON_SALE_FROM = "date_on_sale_from";
+  @SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM)
+  @javax.annotation.Nullable
+  private OffsetDateTime dateOnSaleFrom;
+
+  public static final String SERIALIZED_NAME_DATE_ON_SALE_FROM_GMT = "date_on_sale_from_gmt";
+  @SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM_GMT)
+  @javax.annotation.Nullable
+  private OffsetDateTime dateOnSaleFromGmt;
+
+  public static final String SERIALIZED_NAME_DATE_ON_SALE_TO = "date_on_sale_to";
+  @SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO)
+  @javax.annotation.Nullable
+  private OffsetDateTime dateOnSaleTo;
+
+  public static final String SERIALIZED_NAME_DATE_ON_SALE_TO_GMT = "date_on_sale_to_gmt";
+  @SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO_GMT)
+  @javax.annotation.Nullable
+  private OffsetDateTime dateOnSaleToGmt;
+
+  public static final String SERIALIZED_NAME_PRICE_HTML = "price_html";
+  @SerializedName(SERIALIZED_NAME_PRICE_HTML)
+  @javax.annotation.Nullable
+  private String priceHtml;
+
+  public static final String SERIALIZED_NAME_ON_SALE = "on_sale";
+  @SerializedName(SERIALIZED_NAME_ON_SALE)
+  @javax.annotation.Nullable
+  private Boolean onSale;
+
+  public static final String SERIALIZED_NAME_PURCHASABLE = "purchasable";
+  @SerializedName(SERIALIZED_NAME_PURCHASABLE)
+  @javax.annotation.Nullable
+  private Boolean purchasable;
+
+  public static final String SERIALIZED_NAME_TOTAL_SALES = "total_sales";
+  @SerializedName(SERIALIZED_NAME_TOTAL_SALES)
+  @javax.annotation.Nullable
+  private Integer totalSales;
+
+  public static final String SERIALIZED_NAME_VIRTUAL = "virtual";
+  @SerializedName(SERIALIZED_NAME_VIRTUAL)
+  @javax.annotation.Nullable
+  private Boolean virtual;
+
+  public static final String SERIALIZED_NAME_DOWNLOADABLE = "downloadable";
+  @SerializedName(SERIALIZED_NAME_DOWNLOADABLE)
+  @javax.annotation.Nullable
+  private Boolean downloadable;
+
+  public static final String SERIALIZED_NAME_DOWNLOADS = "downloads";
+  @SerializedName(SERIALIZED_NAME_DOWNLOADS)
+  @javax.annotation.Nullable
+  private List<ProductDownload> downloads = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_DOWNLOAD_LIMIT = "download_limit";
+  @SerializedName(SERIALIZED_NAME_DOWNLOAD_LIMIT)
+  @javax.annotation.Nullable
+  private Integer downloadLimit;
+
+  public static final String SERIALIZED_NAME_DOWNLOAD_EXPIRY = "download_expiry";
+  @SerializedName(SERIALIZED_NAME_DOWNLOAD_EXPIRY)
+  @javax.annotation.Nullable
+  private Integer downloadExpiry;
+
+  public static final String SERIALIZED_NAME_EXTERNAL_URL = "external_url";
+  @SerializedName(SERIALIZED_NAME_EXTERNAL_URL)
+  @javax.annotation.Nullable
+  private String externalUrl;
+
+  public static final String SERIALIZED_NAME_BUTTON_TEXT = "button_text";
+  @SerializedName(SERIALIZED_NAME_BUTTON_TEXT)
+  @javax.annotation.Nullable
+  private String buttonText;
+
+  public static final String SERIALIZED_NAME_TAX_STATUS = "tax_status";
+  @SerializedName(SERIALIZED_NAME_TAX_STATUS)
+  @javax.annotation.Nullable
+  private String taxStatus;
+
+  public static final String SERIALIZED_NAME_TAX_CLASS = "tax_class";
+  @SerializedName(SERIALIZED_NAME_TAX_CLASS)
+  @javax.annotation.Nullable
+  private String taxClass;
+
+  public static final String SERIALIZED_NAME_MANAGE_STOCK = "manage_stock";
+  @SerializedName(SERIALIZED_NAME_MANAGE_STOCK)
+  @javax.annotation.Nullable
+  private Boolean manageStock;
 
   public static final String SERIALIZED_NAME_STOCK_QUANTITY = "stock_quantity";
   @SerializedName(SERIALIZED_NAME_STOCK_QUANTITY)
@@ -115,20 +250,135 @@ public class Product {
   @javax.annotation.Nullable
   private String stockStatus;
 
+  public static final String SERIALIZED_NAME_BACKORDERS = "backorders";
+  @SerializedName(SERIALIZED_NAME_BACKORDERS)
+  @javax.annotation.Nullable
+  private String backorders;
+
+  public static final String SERIALIZED_NAME_BACKORDERS_ALLOWED = "backorders_allowed";
+  @SerializedName(SERIALIZED_NAME_BACKORDERS_ALLOWED)
+  @javax.annotation.Nullable
+  private Boolean backordersAllowed;
+
+  public static final String SERIALIZED_NAME_BACKORDERED = "backordered";
+  @SerializedName(SERIALIZED_NAME_BACKORDERED)
+  @javax.annotation.Nullable
+  private Boolean backordered;
+
+  public static final String SERIALIZED_NAME_SOLD_INDIVIDUALLY = "sold_individually";
+  @SerializedName(SERIALIZED_NAME_SOLD_INDIVIDUALLY)
+  @javax.annotation.Nullable
+  private Boolean soldIndividually;
+
+  public static final String SERIALIZED_NAME_WEIGHT = "weight";
+  @SerializedName(SERIALIZED_NAME_WEIGHT)
+  @javax.annotation.Nullable
+  private String weight;
+
+  public static final String SERIALIZED_NAME_DIMENSIONS = "dimensions";
+  @SerializedName(SERIALIZED_NAME_DIMENSIONS)
+  @javax.annotation.Nullable
+  private ProductDimension dimensions;
+
+  public static final String SERIALIZED_NAME_SHIPPING_REQUIRED = "shipping_required";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_REQUIRED)
+  @javax.annotation.Nullable
+  private Boolean shippingRequired;
+
+  public static final String SERIALIZED_NAME_SHIPPING_TAXABLE = "shipping_taxable";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_TAXABLE)
+  @javax.annotation.Nullable
+  private Boolean shippingTaxable;
+
+  public static final String SERIALIZED_NAME_SHIPPING_CLASS = "shipping_class";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_CLASS)
+  @javax.annotation.Nullable
+  private String shippingClass;
+
+  public static final String SERIALIZED_NAME_SHIPPING_CLASS_ID = "shipping_class_id";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_CLASS_ID)
+  @javax.annotation.Nullable
+  private Integer shippingClassId;
+
+  public static final String SERIALIZED_NAME_REVIEWS_ALLOWED = "reviews_allowed";
+  @SerializedName(SERIALIZED_NAME_REVIEWS_ALLOWED)
+  @javax.annotation.Nullable
+  private Boolean reviewsAllowed;
+
+  public static final String SERIALIZED_NAME_AVERAGE_RATING = "average_rating";
+  @SerializedName(SERIALIZED_NAME_AVERAGE_RATING)
+  @javax.annotation.Nullable
+  private String averageRating;
+
+  public static final String SERIALIZED_NAME_RATING_COUNT = "rating_count";
+  @SerializedName(SERIALIZED_NAME_RATING_COUNT)
+  @javax.annotation.Nullable
+  private Integer ratingCount;
+
+  public static final String SERIALIZED_NAME_RELATED_IDS = "related_ids";
+  @SerializedName(SERIALIZED_NAME_RELATED_IDS)
+  @javax.annotation.Nullable
+  private List<Integer> relatedIds = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_UPSELL_IDS = "upsell_ids";
+  @SerializedName(SERIALIZED_NAME_UPSELL_IDS)
+  @javax.annotation.Nullable
+  private List<Integer> upsellIds = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_CROSS_SELL_IDS = "cross_sell_ids";
+  @SerializedName(SERIALIZED_NAME_CROSS_SELL_IDS)
+  @javax.annotation.Nullable
+  private List<Integer> crossSellIds = new ArrayList<>();
+
   public static final String SERIALIZED_NAME_PARENT_ID = "parent_id";
   @SerializedName(SERIALIZED_NAME_PARENT_ID)
   @javax.annotation.Nullable
   private Integer parentId;
+
+  public static final String SERIALIZED_NAME_PURCHASE_NOTE = "purchase_note";
+  @SerializedName(SERIALIZED_NAME_PURCHASE_NOTE)
+  @javax.annotation.Nullable
+  private String purchaseNote;
+
+  public static final String SERIALIZED_NAME_CATEGORIES = "categories";
+  @SerializedName(SERIALIZED_NAME_CATEGORIES)
+  @javax.annotation.Nullable
+  private List<ProductCategory> categories = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_TAGS = "tags";
+  @SerializedName(SERIALIZED_NAME_TAGS)
+  @javax.annotation.Nullable
+  private List<ProductTag> tags = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_IMAGES = "images";
+  @SerializedName(SERIALIZED_NAME_IMAGES)
+  @javax.annotation.Nullable
+  private List<ProductImage> images = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
+  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  @javax.annotation.Nullable
+  private List<ProductAttribute> attributes = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_DEFAULT_ATTRIBUTES = "default_attributes";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_ATTRIBUTES)
+  @javax.annotation.Nullable
+  private List<ProductAttribute> defaultAttributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_VARIATIONS = "variations";
   @SerializedName(SERIALIZED_NAME_VARIATIONS)
   @javax.annotation.Nullable
   private List<Integer> variations = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  public static final String SERIALIZED_NAME_GROUPED_PRODUCTS = "grouped_products";
+  @SerializedName(SERIALIZED_NAME_GROUPED_PRODUCTS)
   @javax.annotation.Nullable
-  private List<ProductAttribute> attributes = new ArrayList<>();
+  private List<Integer> groupedProducts = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
+  @SerializedName(SERIALIZED_NAME_MENU_ORDER)
+  @javax.annotation.Nullable
+  private Integer menuOrder;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
   @SerializedName(SERIALIZED_NAME_META_DATA)
@@ -144,7 +394,7 @@ public class Product {
   }
 
   /**
-   * Unique identifier for the resource.
+   * Unique identifier for the resource. read-only
    * @return id
    */
   @javax.annotation.Nullable
@@ -154,44 +404,6 @@ public class Product {
 
   public void setId(@javax.annotation.Nullable Integer id) {
     this.id = id;
-  }
-
-
-  public Product dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
-    this.dateCreated = dateCreated;
-    return this;
-  }
-
-  /**
-   * The date the product was created, in the site&#39;s timezone.
-   * @return dateCreated
-   */
-  @javax.annotation.Nullable
-  public OffsetDateTime getDateCreated() {
-    return dateCreated;
-  }
-
-  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
-    this.dateCreated = dateCreated;
-  }
-
-
-  public Product dateModified(@javax.annotation.Nullable OffsetDateTime dateModified) {
-    this.dateModified = dateModified;
-    return this;
-  }
-
-  /**
-   * The date the product was last modified, in the site&#39;s timezone.
-   * @return dateModified
-   */
-  @javax.annotation.Nullable
-  public OffsetDateTime getDateModified() {
-    return dateModified;
-  }
-
-  public void setDateModified(@javax.annotation.Nullable OffsetDateTime dateModified) {
-    this.dateModified = dateModified;
   }
 
 
@@ -214,22 +426,117 @@ public class Product {
   }
 
 
-  public Product sku(@javax.annotation.Nullable String sku) {
-    this.sku = sku;
+  public Product slug(@javax.annotation.Nullable String slug) {
+    this.slug = slug;
     return this;
   }
 
   /**
-   * Unique identifier.
-   * @return sku
+   * Product slug.
+   * @return slug
    */
   @javax.annotation.Nullable
-  public String getSku() {
-    return sku;
+  public String getSlug() {
+    return slug;
   }
 
-  public void setSku(@javax.annotation.Nullable String sku) {
-    this.sku = sku;
+  public void setSlug(@javax.annotation.Nullable String slug) {
+    this.slug = slug;
+  }
+
+
+  public Product permalink(@javax.annotation.Nullable String permalink) {
+    this.permalink = permalink;
+    return this;
+  }
+
+  /**
+   * Product URL. read-only
+   * @return permalink
+   */
+  @javax.annotation.Nullable
+  public String getPermalink() {
+    return permalink;
+  }
+
+  public void setPermalink(@javax.annotation.Nullable String permalink) {
+    this.permalink = permalink;
+  }
+
+
+  public Product dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
+    this.dateCreated = dateCreated;
+    return this;
+  }
+
+  /**
+   * The date the product was created, in the site&#39;s timezone. read-only
+   * @return dateCreated
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateCreated() {
+    return dateCreated;
+  }
+
+  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
+    this.dateCreated = dateCreated;
+  }
+
+
+  public Product dateCreatedGmt(@javax.annotation.Nullable OffsetDateTime dateCreatedGmt) {
+    this.dateCreatedGmt = dateCreatedGmt;
+    return this;
+  }
+
+  /**
+   * The date the product was created, as GMT. read-only
+   * @return dateCreatedGmt
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateCreatedGmt() {
+    return dateCreatedGmt;
+  }
+
+  public void setDateCreatedGmt(@javax.annotation.Nullable OffsetDateTime dateCreatedGmt) {
+    this.dateCreatedGmt = dateCreatedGmt;
+  }
+
+
+  public Product dateModified(@javax.annotation.Nullable OffsetDateTime dateModified) {
+    this.dateModified = dateModified;
+    return this;
+  }
+
+  /**
+   * The date the product was last modified, in the site&#39;s timezone. read-only
+   * @return dateModified
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateModified() {
+    return dateModified;
+  }
+
+  public void setDateModified(@javax.annotation.Nullable OffsetDateTime dateModified) {
+    this.dateModified = dateModified;
+  }
+
+
+  public Product dateModifiedGmt(@javax.annotation.Nullable OffsetDateTime dateModifiedGmt) {
+    this.dateModifiedGmt = dateModifiedGmt;
+    return this;
+  }
+
+  /**
+   * The date the product was last modified, as GMT. read-only
+   * @return dateModifiedGmt
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateModifiedGmt() {
+    return dateModifiedGmt;
+  }
+
+  public void setDateModifiedGmt(@javax.annotation.Nullable OffsetDateTime dateModifiedGmt) {
+    this.dateModifiedGmt = dateModifiedGmt;
   }
 
 
@@ -271,6 +578,44 @@ public class Product {
   }
 
 
+  public Product featured(@javax.annotation.Nullable Boolean featured) {
+    this.featured = featured;
+    return this;
+  }
+
+  /**
+   * Featured product. Default is false.
+   * @return featured
+   */
+  @javax.annotation.Nullable
+  public Boolean getFeatured() {
+    return featured;
+  }
+
+  public void setFeatured(@javax.annotation.Nullable Boolean featured) {
+    this.featured = featured;
+  }
+
+
+  public Product catalogVisibility(@javax.annotation.Nullable String catalogVisibility) {
+    this.catalogVisibility = catalogVisibility;
+    return this;
+  }
+
+  /**
+   * Catalog visibility. Options: visible, catalog, search and hidden. Default is visible.
+   * @return catalogVisibility
+   */
+  @javax.annotation.Nullable
+  public String getCatalogVisibility() {
+    return catalogVisibility;
+  }
+
+  public void setCatalogVisibility(@javax.annotation.Nullable String catalogVisibility) {
+    this.catalogVisibility = catalogVisibility;
+  }
+
+
   public Product description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
@@ -309,13 +654,32 @@ public class Product {
   }
 
 
+  public Product sku(@javax.annotation.Nullable String sku) {
+    this.sku = sku;
+    return this;
+  }
+
+  /**
+   * Unique identifier.
+   * @return sku
+   */
+  @javax.annotation.Nullable
+  public String getSku() {
+    return sku;
+  }
+
+  public void setSku(@javax.annotation.Nullable String sku) {
+    this.sku = sku;
+  }
+
+
   public Product price(@javax.annotation.Nullable String price) {
     this.price = price;
     return this;
   }
 
   /**
-   * Current product price.
+   * Current product price. read-only
    * @return price
    */
   @javax.annotation.Nullable
@@ -325,6 +689,394 @@ public class Product {
 
   public void setPrice(@javax.annotation.Nullable String price) {
     this.price = price;
+  }
+
+
+  public Product regularPrice(@javax.annotation.Nullable String regularPrice) {
+    this.regularPrice = regularPrice;
+    return this;
+  }
+
+  /**
+   * Regular product price.
+   * @return regularPrice
+   */
+  @javax.annotation.Nullable
+  public String getRegularPrice() {
+    return regularPrice;
+  }
+
+  public void setRegularPrice(@javax.annotation.Nullable String regularPrice) {
+    this.regularPrice = regularPrice;
+  }
+
+
+  public Product salePrice(@javax.annotation.Nullable String salePrice) {
+    this.salePrice = salePrice;
+    return this;
+  }
+
+  /**
+   * Product sale price.
+   * @return salePrice
+   */
+  @javax.annotation.Nullable
+  public String getSalePrice() {
+    return salePrice;
+  }
+
+  public void setSalePrice(@javax.annotation.Nullable String salePrice) {
+    this.salePrice = salePrice;
+  }
+
+
+  public Product dateOnSaleFrom(@javax.annotation.Nullable OffsetDateTime dateOnSaleFrom) {
+    this.dateOnSaleFrom = dateOnSaleFrom;
+    return this;
+  }
+
+  /**
+   * Start date of sale price, in the site&#39;s timezone.
+   * @return dateOnSaleFrom
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateOnSaleFrom() {
+    return dateOnSaleFrom;
+  }
+
+  public void setDateOnSaleFrom(@javax.annotation.Nullable OffsetDateTime dateOnSaleFrom) {
+    this.dateOnSaleFrom = dateOnSaleFrom;
+  }
+
+
+  public Product dateOnSaleFromGmt(@javax.annotation.Nullable OffsetDateTime dateOnSaleFromGmt) {
+    this.dateOnSaleFromGmt = dateOnSaleFromGmt;
+    return this;
+  }
+
+  /**
+   * Start date of sale price, as GMT.
+   * @return dateOnSaleFromGmt
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateOnSaleFromGmt() {
+    return dateOnSaleFromGmt;
+  }
+
+  public void setDateOnSaleFromGmt(@javax.annotation.Nullable OffsetDateTime dateOnSaleFromGmt) {
+    this.dateOnSaleFromGmt = dateOnSaleFromGmt;
+  }
+
+
+  public Product dateOnSaleTo(@javax.annotation.Nullable OffsetDateTime dateOnSaleTo) {
+    this.dateOnSaleTo = dateOnSaleTo;
+    return this;
+  }
+
+  /**
+   * End date of sale price, in the site&#39;s timezone.
+   * @return dateOnSaleTo
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateOnSaleTo() {
+    return dateOnSaleTo;
+  }
+
+  public void setDateOnSaleTo(@javax.annotation.Nullable OffsetDateTime dateOnSaleTo) {
+    this.dateOnSaleTo = dateOnSaleTo;
+  }
+
+
+  public Product dateOnSaleToGmt(@javax.annotation.Nullable OffsetDateTime dateOnSaleToGmt) {
+    this.dateOnSaleToGmt = dateOnSaleToGmt;
+    return this;
+  }
+
+  /**
+   * End date of sale price, as GMT.
+   * @return dateOnSaleToGmt
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateOnSaleToGmt() {
+    return dateOnSaleToGmt;
+  }
+
+  public void setDateOnSaleToGmt(@javax.annotation.Nullable OffsetDateTime dateOnSaleToGmt) {
+    this.dateOnSaleToGmt = dateOnSaleToGmt;
+  }
+
+
+  public Product priceHtml(@javax.annotation.Nullable String priceHtml) {
+    this.priceHtml = priceHtml;
+    return this;
+  }
+
+  /**
+   * Price formatted in HTML. read-only
+   * @return priceHtml
+   */
+  @javax.annotation.Nullable
+  public String getPriceHtml() {
+    return priceHtml;
+  }
+
+  public void setPriceHtml(@javax.annotation.Nullable String priceHtml) {
+    this.priceHtml = priceHtml;
+  }
+
+
+  public Product onSale(@javax.annotation.Nullable Boolean onSale) {
+    this.onSale = onSale;
+    return this;
+  }
+
+  /**
+   * Shows if the product is on sale. read-only
+   * @return onSale
+   */
+  @javax.annotation.Nullable
+  public Boolean getOnSale() {
+    return onSale;
+  }
+
+  public void setOnSale(@javax.annotation.Nullable Boolean onSale) {
+    this.onSale = onSale;
+  }
+
+
+  public Product purchasable(@javax.annotation.Nullable Boolean purchasable) {
+    this.purchasable = purchasable;
+    return this;
+  }
+
+  /**
+   * Shows if the product can be bought. read-only
+   * @return purchasable
+   */
+  @javax.annotation.Nullable
+  public Boolean getPurchasable() {
+    return purchasable;
+  }
+
+  public void setPurchasable(@javax.annotation.Nullable Boolean purchasable) {
+    this.purchasable = purchasable;
+  }
+
+
+  public Product totalSales(@javax.annotation.Nullable Integer totalSales) {
+    this.totalSales = totalSales;
+    return this;
+  }
+
+  /**
+   * Amount of sales. read-only
+   * @return totalSales
+   */
+  @javax.annotation.Nullable
+  public Integer getTotalSales() {
+    return totalSales;
+  }
+
+  public void setTotalSales(@javax.annotation.Nullable Integer totalSales) {
+    this.totalSales = totalSales;
+  }
+
+
+  public Product virtual(@javax.annotation.Nullable Boolean virtual) {
+    this.virtual = virtual;
+    return this;
+  }
+
+  /**
+   * If the product is virtual. Default is false.
+   * @return virtual
+   */
+  @javax.annotation.Nullable
+  public Boolean getVirtual() {
+    return virtual;
+  }
+
+  public void setVirtual(@javax.annotation.Nullable Boolean virtual) {
+    this.virtual = virtual;
+  }
+
+
+  public Product downloadable(@javax.annotation.Nullable Boolean downloadable) {
+    this.downloadable = downloadable;
+    return this;
+  }
+
+  /**
+   * If the product is downloadable. Default is false.
+   * @return downloadable
+   */
+  @javax.annotation.Nullable
+  public Boolean getDownloadable() {
+    return downloadable;
+  }
+
+  public void setDownloadable(@javax.annotation.Nullable Boolean downloadable) {
+    this.downloadable = downloadable;
+  }
+
+
+  public Product downloads(@javax.annotation.Nullable List<ProductDownload> downloads) {
+    this.downloads = downloads;
+    return this;
+  }
+
+  public Product addDownloadsItem(ProductDownload downloadsItem) {
+    if (this.downloads == null) {
+      this.downloads = new ArrayList<>();
+    }
+    this.downloads.add(downloadsItem);
+    return this;
+  }
+
+  /**
+   * List of downloadable files.
+   * @return downloads
+   */
+  @javax.annotation.Nullable
+  public List<ProductDownload> getDownloads() {
+    return downloads;
+  }
+
+  public void setDownloads(@javax.annotation.Nullable List<ProductDownload> downloads) {
+    this.downloads = downloads;
+  }
+
+
+  public Product downloadLimit(@javax.annotation.Nullable Integer downloadLimit) {
+    this.downloadLimit = downloadLimit;
+    return this;
+  }
+
+  /**
+   * Number of times downloadable files can be downloaded after purchase. Default is -1.
+   * @return downloadLimit
+   */
+  @javax.annotation.Nullable
+  public Integer getDownloadLimit() {
+    return downloadLimit;
+  }
+
+  public void setDownloadLimit(@javax.annotation.Nullable Integer downloadLimit) {
+    this.downloadLimit = downloadLimit;
+  }
+
+
+  public Product downloadExpiry(@javax.annotation.Nullable Integer downloadExpiry) {
+    this.downloadExpiry = downloadExpiry;
+    return this;
+  }
+
+  /**
+   * Number of days until access to downloadable files expires. Default is -1.
+   * @return downloadExpiry
+   */
+  @javax.annotation.Nullable
+  public Integer getDownloadExpiry() {
+    return downloadExpiry;
+  }
+
+  public void setDownloadExpiry(@javax.annotation.Nullable Integer downloadExpiry) {
+    this.downloadExpiry = downloadExpiry;
+  }
+
+
+  public Product externalUrl(@javax.annotation.Nullable String externalUrl) {
+    this.externalUrl = externalUrl;
+    return this;
+  }
+
+  /**
+   * Product external URL. Only for external products.
+   * @return externalUrl
+   */
+  @javax.annotation.Nullable
+  public String getExternalUrl() {
+    return externalUrl;
+  }
+
+  public void setExternalUrl(@javax.annotation.Nullable String externalUrl) {
+    this.externalUrl = externalUrl;
+  }
+
+
+  public Product buttonText(@javax.annotation.Nullable String buttonText) {
+    this.buttonText = buttonText;
+    return this;
+  }
+
+  /**
+   * Product external button text. Only for external products.
+   * @return buttonText
+   */
+  @javax.annotation.Nullable
+  public String getButtonText() {
+    return buttonText;
+  }
+
+  public void setButtonText(@javax.annotation.Nullable String buttonText) {
+    this.buttonText = buttonText;
+  }
+
+
+  public Product taxStatus(@javax.annotation.Nullable String taxStatus) {
+    this.taxStatus = taxStatus;
+    return this;
+  }
+
+  /**
+   * Tax status. Options: taxable, shipping and none. Default is taxable.
+   * @return taxStatus
+   */
+  @javax.annotation.Nullable
+  public String getTaxStatus() {
+    return taxStatus;
+  }
+
+  public void setTaxStatus(@javax.annotation.Nullable String taxStatus) {
+    this.taxStatus = taxStatus;
+  }
+
+
+  public Product taxClass(@javax.annotation.Nullable String taxClass) {
+    this.taxClass = taxClass;
+    return this;
+  }
+
+  /**
+   * Tax class.
+   * @return taxClass
+   */
+  @javax.annotation.Nullable
+  public String getTaxClass() {
+    return taxClass;
+  }
+
+  public void setTaxClass(@javax.annotation.Nullable String taxClass) {
+    this.taxClass = taxClass;
+  }
+
+
+  public Product manageStock(@javax.annotation.Nullable Boolean manageStock) {
+    this.manageStock = manageStock;
+    return this;
+  }
+
+  /**
+   * Stock management at product level. Default is false.
+   * @return manageStock
+   */
+  @javax.annotation.Nullable
+  public Boolean getManageStock() {
+    return manageStock;
+  }
+
+  public void setManageStock(@javax.annotation.Nullable Boolean manageStock) {
+    this.manageStock = manageStock;
   }
 
 
@@ -366,6 +1118,334 @@ public class Product {
   }
 
 
+  public Product backorders(@javax.annotation.Nullable String backorders) {
+    this.backorders = backorders;
+    return this;
+  }
+
+  /**
+   * If managing stock, this controls if backorders are allowed. Options: no, notify and yes. Default is no.
+   * @return backorders
+   */
+  @javax.annotation.Nullable
+  public String getBackorders() {
+    return backorders;
+  }
+
+  public void setBackorders(@javax.annotation.Nullable String backorders) {
+    this.backorders = backorders;
+  }
+
+
+  public Product backordersAllowed(@javax.annotation.Nullable Boolean backordersAllowed) {
+    this.backordersAllowed = backordersAllowed;
+    return this;
+  }
+
+  /**
+   * Shows if backorders are allowed. read-only
+   * @return backordersAllowed
+   */
+  @javax.annotation.Nullable
+  public Boolean getBackordersAllowed() {
+    return backordersAllowed;
+  }
+
+  public void setBackordersAllowed(@javax.annotation.Nullable Boolean backordersAllowed) {
+    this.backordersAllowed = backordersAllowed;
+  }
+
+
+  public Product backordered(@javax.annotation.Nullable Boolean backordered) {
+    this.backordered = backordered;
+    return this;
+  }
+
+  /**
+   * Shows if the product is on backordered. read-only
+   * @return backordered
+   */
+  @javax.annotation.Nullable
+  public Boolean getBackordered() {
+    return backordered;
+  }
+
+  public void setBackordered(@javax.annotation.Nullable Boolean backordered) {
+    this.backordered = backordered;
+  }
+
+
+  public Product soldIndividually(@javax.annotation.Nullable Boolean soldIndividually) {
+    this.soldIndividually = soldIndividually;
+    return this;
+  }
+
+  /**
+   * Allow one item to be bought in a single order. Default is false.
+   * @return soldIndividually
+   */
+  @javax.annotation.Nullable
+  public Boolean getSoldIndividually() {
+    return soldIndividually;
+  }
+
+  public void setSoldIndividually(@javax.annotation.Nullable Boolean soldIndividually) {
+    this.soldIndividually = soldIndividually;
+  }
+
+
+  public Product weight(@javax.annotation.Nullable String weight) {
+    this.weight = weight;
+    return this;
+  }
+
+  /**
+   * Product weight.
+   * @return weight
+   */
+  @javax.annotation.Nullable
+  public String getWeight() {
+    return weight;
+  }
+
+  public void setWeight(@javax.annotation.Nullable String weight) {
+    this.weight = weight;
+  }
+
+
+  public Product dimensions(@javax.annotation.Nullable ProductDimension dimensions) {
+    this.dimensions = dimensions;
+    return this;
+  }
+
+  /**
+   * Get dimensions
+   * @return dimensions
+   */
+  @javax.annotation.Nullable
+  public ProductDimension getDimensions() {
+    return dimensions;
+  }
+
+  public void setDimensions(@javax.annotation.Nullable ProductDimension dimensions) {
+    this.dimensions = dimensions;
+  }
+
+
+  public Product shippingRequired(@javax.annotation.Nullable Boolean shippingRequired) {
+    this.shippingRequired = shippingRequired;
+    return this;
+  }
+
+  /**
+   * Shows if the product need to be shipped. read-only
+   * @return shippingRequired
+   */
+  @javax.annotation.Nullable
+  public Boolean getShippingRequired() {
+    return shippingRequired;
+  }
+
+  public void setShippingRequired(@javax.annotation.Nullable Boolean shippingRequired) {
+    this.shippingRequired = shippingRequired;
+  }
+
+
+  public Product shippingTaxable(@javax.annotation.Nullable Boolean shippingTaxable) {
+    this.shippingTaxable = shippingTaxable;
+    return this;
+  }
+
+  /**
+   * Shows whether or not the product shipping is taxable. read-only
+   * @return shippingTaxable
+   */
+  @javax.annotation.Nullable
+  public Boolean getShippingTaxable() {
+    return shippingTaxable;
+  }
+
+  public void setShippingTaxable(@javax.annotation.Nullable Boolean shippingTaxable) {
+    this.shippingTaxable = shippingTaxable;
+  }
+
+
+  public Product shippingClass(@javax.annotation.Nullable String shippingClass) {
+    this.shippingClass = shippingClass;
+    return this;
+  }
+
+  /**
+   * Shipping class slug.
+   * @return shippingClass
+   */
+  @javax.annotation.Nullable
+  public String getShippingClass() {
+    return shippingClass;
+  }
+
+  public void setShippingClass(@javax.annotation.Nullable String shippingClass) {
+    this.shippingClass = shippingClass;
+  }
+
+
+  public Product shippingClassId(@javax.annotation.Nullable Integer shippingClassId) {
+    this.shippingClassId = shippingClassId;
+    return this;
+  }
+
+  /**
+   * Shipping class ID.
+   * @return shippingClassId
+   */
+  @javax.annotation.Nullable
+  public Integer getShippingClassId() {
+    return shippingClassId;
+  }
+
+  public void setShippingClassId(@javax.annotation.Nullable Integer shippingClassId) {
+    this.shippingClassId = shippingClassId;
+  }
+
+
+  public Product reviewsAllowed(@javax.annotation.Nullable Boolean reviewsAllowed) {
+    this.reviewsAllowed = reviewsAllowed;
+    return this;
+  }
+
+  /**
+   * Allow reviews. Default is true.
+   * @return reviewsAllowed
+   */
+  @javax.annotation.Nullable
+  public Boolean getReviewsAllowed() {
+    return reviewsAllowed;
+  }
+
+  public void setReviewsAllowed(@javax.annotation.Nullable Boolean reviewsAllowed) {
+    this.reviewsAllowed = reviewsAllowed;
+  }
+
+
+  public Product averageRating(@javax.annotation.Nullable String averageRating) {
+    this.averageRating = averageRating;
+    return this;
+  }
+
+  /**
+   * Reviews average rating. read-only
+   * @return averageRating
+   */
+  @javax.annotation.Nullable
+  public String getAverageRating() {
+    return averageRating;
+  }
+
+  public void setAverageRating(@javax.annotation.Nullable String averageRating) {
+    this.averageRating = averageRating;
+  }
+
+
+  public Product ratingCount(@javax.annotation.Nullable Integer ratingCount) {
+    this.ratingCount = ratingCount;
+    return this;
+  }
+
+  /**
+   * Amount of reviews that the product have. read-only
+   * @return ratingCount
+   */
+  @javax.annotation.Nullable
+  public Integer getRatingCount() {
+    return ratingCount;
+  }
+
+  public void setRatingCount(@javax.annotation.Nullable Integer ratingCount) {
+    this.ratingCount = ratingCount;
+  }
+
+
+  public Product relatedIds(@javax.annotation.Nullable List<Integer> relatedIds) {
+    this.relatedIds = relatedIds;
+    return this;
+  }
+
+  public Product addRelatedIdsItem(Integer relatedIdsItem) {
+    if (this.relatedIds == null) {
+      this.relatedIds = new ArrayList<>();
+    }
+    this.relatedIds.add(relatedIdsItem);
+    return this;
+  }
+
+  /**
+   * List of related products IDs. read-only
+   * @return relatedIds
+   */
+  @javax.annotation.Nullable
+  public List<Integer> getRelatedIds() {
+    return relatedIds;
+  }
+
+  public void setRelatedIds(@javax.annotation.Nullable List<Integer> relatedIds) {
+    this.relatedIds = relatedIds;
+  }
+
+
+  public Product upsellIds(@javax.annotation.Nullable List<Integer> upsellIds) {
+    this.upsellIds = upsellIds;
+    return this;
+  }
+
+  public Product addUpsellIdsItem(Integer upsellIdsItem) {
+    if (this.upsellIds == null) {
+      this.upsellIds = new ArrayList<>();
+    }
+    this.upsellIds.add(upsellIdsItem);
+    return this;
+  }
+
+  /**
+   * List of up-sell products IDs.
+   * @return upsellIds
+   */
+  @javax.annotation.Nullable
+  public List<Integer> getUpsellIds() {
+    return upsellIds;
+  }
+
+  public void setUpsellIds(@javax.annotation.Nullable List<Integer> upsellIds) {
+    this.upsellIds = upsellIds;
+  }
+
+
+  public Product crossSellIds(@javax.annotation.Nullable List<Integer> crossSellIds) {
+    this.crossSellIds = crossSellIds;
+    return this;
+  }
+
+  public Product addCrossSellIdsItem(Integer crossSellIdsItem) {
+    if (this.crossSellIds == null) {
+      this.crossSellIds = new ArrayList<>();
+    }
+    this.crossSellIds.add(crossSellIdsItem);
+    return this;
+  }
+
+  /**
+   * List of cross-sell products IDs.
+   * @return crossSellIds
+   */
+  @javax.annotation.Nullable
+  public List<Integer> getCrossSellIds() {
+    return crossSellIds;
+  }
+
+  public void setCrossSellIds(@javax.annotation.Nullable List<Integer> crossSellIds) {
+    this.crossSellIds = crossSellIds;
+  }
+
+
   public Product parentId(@javax.annotation.Nullable Integer parentId) {
     this.parentId = parentId;
     return this;
@@ -385,30 +1465,103 @@ public class Product {
   }
 
 
-  public Product variations(@javax.annotation.Nullable List<Integer> variations) {
-    this.variations = variations;
-    return this;
-  }
-
-  public Product addVariationsItem(Integer variationsItem) {
-    if (this.variations == null) {
-      this.variations = new ArrayList<>();
-    }
-    this.variations.add(variationsItem);
+  public Product purchaseNote(@javax.annotation.Nullable String purchaseNote) {
+    this.purchaseNote = purchaseNote;
     return this;
   }
 
   /**
-   * List of variations IDs.
-   * @return variations
+   * Optional note to send the customer after purchase.
+   * @return purchaseNote
    */
   @javax.annotation.Nullable
-  public List<Integer> getVariations() {
-    return variations;
+  public String getPurchaseNote() {
+    return purchaseNote;
   }
 
-  public void setVariations(@javax.annotation.Nullable List<Integer> variations) {
-    this.variations = variations;
+  public void setPurchaseNote(@javax.annotation.Nullable String purchaseNote) {
+    this.purchaseNote = purchaseNote;
+  }
+
+
+  public Product categories(@javax.annotation.Nullable List<ProductCategory> categories) {
+    this.categories = categories;
+    return this;
+  }
+
+  public Product addCategoriesItem(ProductCategory categoriesItem) {
+    if (this.categories == null) {
+      this.categories = new ArrayList<>();
+    }
+    this.categories.add(categoriesItem);
+    return this;
+  }
+
+  /**
+   * List of categories.
+   * @return categories
+   */
+  @javax.annotation.Nullable
+  public List<ProductCategory> getCategories() {
+    return categories;
+  }
+
+  public void setCategories(@javax.annotation.Nullable List<ProductCategory> categories) {
+    this.categories = categories;
+  }
+
+
+  public Product tags(@javax.annotation.Nullable List<ProductTag> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public Product addTagsItem(ProductTag tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * List of tags.
+   * @return tags
+   */
+  @javax.annotation.Nullable
+  public List<ProductTag> getTags() {
+    return tags;
+  }
+
+  public void setTags(@javax.annotation.Nullable List<ProductTag> tags) {
+    this.tags = tags;
+  }
+
+
+  public Product images(@javax.annotation.Nullable List<ProductImage> images) {
+    this.images = images;
+    return this;
+  }
+
+  public Product addImagesItem(ProductImage imagesItem) {
+    if (this.images == null) {
+      this.images = new ArrayList<>();
+    }
+    this.images.add(imagesItem);
+    return this;
+  }
+
+  /**
+   * List of product images.
+   * @return images
+   */
+  @javax.annotation.Nullable
+  public List<ProductImage> getImages() {
+    return images;
+  }
+
+  public void setImages(@javax.annotation.Nullable List<ProductImage> images) {
+    this.images = images;
   }
 
 
@@ -436,6 +1589,106 @@ public class Product {
 
   public void setAttributes(@javax.annotation.Nullable List<ProductAttribute> attributes) {
     this.attributes = attributes;
+  }
+
+
+  public Product defaultAttributes(@javax.annotation.Nullable List<ProductAttribute> defaultAttributes) {
+    this.defaultAttributes = defaultAttributes;
+    return this;
+  }
+
+  public Product addDefaultAttributesItem(ProductAttribute defaultAttributesItem) {
+    if (this.defaultAttributes == null) {
+      this.defaultAttributes = new ArrayList<>();
+    }
+    this.defaultAttributes.add(defaultAttributesItem);
+    return this;
+  }
+
+  /**
+   * List of default attributes.
+   * @return defaultAttributes
+   */
+  @javax.annotation.Nullable
+  public List<ProductAttribute> getDefaultAttributes() {
+    return defaultAttributes;
+  }
+
+  public void setDefaultAttributes(@javax.annotation.Nullable List<ProductAttribute> defaultAttributes) {
+    this.defaultAttributes = defaultAttributes;
+  }
+
+
+  public Product variations(@javax.annotation.Nullable List<Integer> variations) {
+    this.variations = variations;
+    return this;
+  }
+
+  public Product addVariationsItem(Integer variationsItem) {
+    if (this.variations == null) {
+      this.variations = new ArrayList<>();
+    }
+    this.variations.add(variationsItem);
+    return this;
+  }
+
+  /**
+   * List of variations IDs. read-only
+   * @return variations
+   */
+  @javax.annotation.Nullable
+  public List<Integer> getVariations() {
+    return variations;
+  }
+
+  public void setVariations(@javax.annotation.Nullable List<Integer> variations) {
+    this.variations = variations;
+  }
+
+
+  public Product groupedProducts(@javax.annotation.Nullable List<Integer> groupedProducts) {
+    this.groupedProducts = groupedProducts;
+    return this;
+  }
+
+  public Product addGroupedProductsItem(Integer groupedProductsItem) {
+    if (this.groupedProducts == null) {
+      this.groupedProducts = new ArrayList<>();
+    }
+    this.groupedProducts.add(groupedProductsItem);
+    return this;
+  }
+
+  /**
+   * List of grouped products ID.
+   * @return groupedProducts
+   */
+  @javax.annotation.Nullable
+  public List<Integer> getGroupedProducts() {
+    return groupedProducts;
+  }
+
+  public void setGroupedProducts(@javax.annotation.Nullable List<Integer> groupedProducts) {
+    this.groupedProducts = groupedProducts;
+  }
+
+
+  public Product menuOrder(@javax.annotation.Nullable Integer menuOrder) {
+    this.menuOrder = menuOrder;
+    return this;
+  }
+
+  /**
+   * Menu order, used to custom sort products.
+   * @return menuOrder
+   */
+  @javax.annotation.Nullable
+  public Integer getMenuOrder() {
+    return menuOrder;
+  }
+
+  public void setMenuOrder(@javax.annotation.Nullable Integer menuOrder) {
+    this.menuOrder = menuOrder;
   }
 
 
@@ -477,26 +1730,75 @@ public class Product {
     }
     Product product = (Product) o;
     return Objects.equals(this.id, product.id) &&
-        Objects.equals(this.dateCreated, product.dateCreated) &&
-        Objects.equals(this.dateModified, product.dateModified) &&
         Objects.equals(this.name, product.name) &&
-        Objects.equals(this.sku, product.sku) &&
+        Objects.equals(this.slug, product.slug) &&
+        Objects.equals(this.permalink, product.permalink) &&
+        Objects.equals(this.dateCreated, product.dateCreated) &&
+        Objects.equals(this.dateCreatedGmt, product.dateCreatedGmt) &&
+        Objects.equals(this.dateModified, product.dateModified) &&
+        Objects.equals(this.dateModifiedGmt, product.dateModifiedGmt) &&
         Objects.equals(this.type, product.type) &&
         Objects.equals(this.status, product.status) &&
+        Objects.equals(this.featured, product.featured) &&
+        Objects.equals(this.catalogVisibility, product.catalogVisibility) &&
         Objects.equals(this.description, product.description) &&
         Objects.equals(this.shortDescription, product.shortDescription) &&
+        Objects.equals(this.sku, product.sku) &&
         Objects.equals(this.price, product.price) &&
+        Objects.equals(this.regularPrice, product.regularPrice) &&
+        Objects.equals(this.salePrice, product.salePrice) &&
+        Objects.equals(this.dateOnSaleFrom, product.dateOnSaleFrom) &&
+        Objects.equals(this.dateOnSaleFromGmt, product.dateOnSaleFromGmt) &&
+        Objects.equals(this.dateOnSaleTo, product.dateOnSaleTo) &&
+        Objects.equals(this.dateOnSaleToGmt, product.dateOnSaleToGmt) &&
+        Objects.equals(this.priceHtml, product.priceHtml) &&
+        Objects.equals(this.onSale, product.onSale) &&
+        Objects.equals(this.purchasable, product.purchasable) &&
+        Objects.equals(this.totalSales, product.totalSales) &&
+        Objects.equals(this.virtual, product.virtual) &&
+        Objects.equals(this.downloadable, product.downloadable) &&
+        Objects.equals(this.downloads, product.downloads) &&
+        Objects.equals(this.downloadLimit, product.downloadLimit) &&
+        Objects.equals(this.downloadExpiry, product.downloadExpiry) &&
+        Objects.equals(this.externalUrl, product.externalUrl) &&
+        Objects.equals(this.buttonText, product.buttonText) &&
+        Objects.equals(this.taxStatus, product.taxStatus) &&
+        Objects.equals(this.taxClass, product.taxClass) &&
+        Objects.equals(this.manageStock, product.manageStock) &&
         Objects.equals(this.stockQuantity, product.stockQuantity) &&
         Objects.equals(this.stockStatus, product.stockStatus) &&
+        Objects.equals(this.backorders, product.backorders) &&
+        Objects.equals(this.backordersAllowed, product.backordersAllowed) &&
+        Objects.equals(this.backordered, product.backordered) &&
+        Objects.equals(this.soldIndividually, product.soldIndividually) &&
+        Objects.equals(this.weight, product.weight) &&
+        Objects.equals(this.dimensions, product.dimensions) &&
+        Objects.equals(this.shippingRequired, product.shippingRequired) &&
+        Objects.equals(this.shippingTaxable, product.shippingTaxable) &&
+        Objects.equals(this.shippingClass, product.shippingClass) &&
+        Objects.equals(this.shippingClassId, product.shippingClassId) &&
+        Objects.equals(this.reviewsAllowed, product.reviewsAllowed) &&
+        Objects.equals(this.averageRating, product.averageRating) &&
+        Objects.equals(this.ratingCount, product.ratingCount) &&
+        Objects.equals(this.relatedIds, product.relatedIds) &&
+        Objects.equals(this.upsellIds, product.upsellIds) &&
+        Objects.equals(this.crossSellIds, product.crossSellIds) &&
         Objects.equals(this.parentId, product.parentId) &&
-        Objects.equals(this.variations, product.variations) &&
+        Objects.equals(this.purchaseNote, product.purchaseNote) &&
+        Objects.equals(this.categories, product.categories) &&
+        Objects.equals(this.tags, product.tags) &&
+        Objects.equals(this.images, product.images) &&
         Objects.equals(this.attributes, product.attributes) &&
+        Objects.equals(this.defaultAttributes, product.defaultAttributes) &&
+        Objects.equals(this.variations, product.variations) &&
+        Objects.equals(this.groupedProducts, product.groupedProducts) &&
+        Objects.equals(this.menuOrder, product.menuOrder) &&
         Objects.equals(this.metaData, product.metaData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, dateCreated, dateModified, name, sku, type, status, description, shortDescription, price, stockQuantity, stockStatus, parentId, variations, attributes, metaData);
+    return Objects.hash(id, name, slug, permalink, dateCreated, dateCreatedGmt, dateModified, dateModifiedGmt, type, status, featured, catalogVisibility, description, shortDescription, sku, price, regularPrice, salePrice, dateOnSaleFrom, dateOnSaleFromGmt, dateOnSaleTo, dateOnSaleToGmt, priceHtml, onSale, purchasable, totalSales, virtual, downloadable, downloads, downloadLimit, downloadExpiry, externalUrl, buttonText, taxStatus, taxClass, manageStock, stockQuantity, stockStatus, backorders, backordersAllowed, backordered, soldIndividually, weight, dimensions, shippingRequired, shippingTaxable, shippingClass, shippingClassId, reviewsAllowed, averageRating, ratingCount, relatedIds, upsellIds, crossSellIds, parentId, purchaseNote, categories, tags, images, attributes, defaultAttributes, variations, groupedProducts, menuOrder, metaData);
   }
 
   @Override
@@ -504,20 +1806,69 @@ public class Product {
     StringBuilder sb = new StringBuilder();
     sb.append("class Product {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    dateCreated: ").append(toIndentedString(dateCreated)).append("\n");
-    sb.append("    dateModified: ").append(toIndentedString(dateModified)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
+    sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
+    sb.append("    permalink: ").append(toIndentedString(permalink)).append("\n");
+    sb.append("    dateCreated: ").append(toIndentedString(dateCreated)).append("\n");
+    sb.append("    dateCreatedGmt: ").append(toIndentedString(dateCreatedGmt)).append("\n");
+    sb.append("    dateModified: ").append(toIndentedString(dateModified)).append("\n");
+    sb.append("    dateModifiedGmt: ").append(toIndentedString(dateModifiedGmt)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    featured: ").append(toIndentedString(featured)).append("\n");
+    sb.append("    catalogVisibility: ").append(toIndentedString(catalogVisibility)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    shortDescription: ").append(toIndentedString(shortDescription)).append("\n");
+    sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
     sb.append("    price: ").append(toIndentedString(price)).append("\n");
+    sb.append("    regularPrice: ").append(toIndentedString(regularPrice)).append("\n");
+    sb.append("    salePrice: ").append(toIndentedString(salePrice)).append("\n");
+    sb.append("    dateOnSaleFrom: ").append(toIndentedString(dateOnSaleFrom)).append("\n");
+    sb.append("    dateOnSaleFromGmt: ").append(toIndentedString(dateOnSaleFromGmt)).append("\n");
+    sb.append("    dateOnSaleTo: ").append(toIndentedString(dateOnSaleTo)).append("\n");
+    sb.append("    dateOnSaleToGmt: ").append(toIndentedString(dateOnSaleToGmt)).append("\n");
+    sb.append("    priceHtml: ").append(toIndentedString(priceHtml)).append("\n");
+    sb.append("    onSale: ").append(toIndentedString(onSale)).append("\n");
+    sb.append("    purchasable: ").append(toIndentedString(purchasable)).append("\n");
+    sb.append("    totalSales: ").append(toIndentedString(totalSales)).append("\n");
+    sb.append("    virtual: ").append(toIndentedString(virtual)).append("\n");
+    sb.append("    downloadable: ").append(toIndentedString(downloadable)).append("\n");
+    sb.append("    downloads: ").append(toIndentedString(downloads)).append("\n");
+    sb.append("    downloadLimit: ").append(toIndentedString(downloadLimit)).append("\n");
+    sb.append("    downloadExpiry: ").append(toIndentedString(downloadExpiry)).append("\n");
+    sb.append("    externalUrl: ").append(toIndentedString(externalUrl)).append("\n");
+    sb.append("    buttonText: ").append(toIndentedString(buttonText)).append("\n");
+    sb.append("    taxStatus: ").append(toIndentedString(taxStatus)).append("\n");
+    sb.append("    taxClass: ").append(toIndentedString(taxClass)).append("\n");
+    sb.append("    manageStock: ").append(toIndentedString(manageStock)).append("\n");
     sb.append("    stockQuantity: ").append(toIndentedString(stockQuantity)).append("\n");
     sb.append("    stockStatus: ").append(toIndentedString(stockStatus)).append("\n");
+    sb.append("    backorders: ").append(toIndentedString(backorders)).append("\n");
+    sb.append("    backordersAllowed: ").append(toIndentedString(backordersAllowed)).append("\n");
+    sb.append("    backordered: ").append(toIndentedString(backordered)).append("\n");
+    sb.append("    soldIndividually: ").append(toIndentedString(soldIndividually)).append("\n");
+    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("    dimensions: ").append(toIndentedString(dimensions)).append("\n");
+    sb.append("    shippingRequired: ").append(toIndentedString(shippingRequired)).append("\n");
+    sb.append("    shippingTaxable: ").append(toIndentedString(shippingTaxable)).append("\n");
+    sb.append("    shippingClass: ").append(toIndentedString(shippingClass)).append("\n");
+    sb.append("    shippingClassId: ").append(toIndentedString(shippingClassId)).append("\n");
+    sb.append("    reviewsAllowed: ").append(toIndentedString(reviewsAllowed)).append("\n");
+    sb.append("    averageRating: ").append(toIndentedString(averageRating)).append("\n");
+    sb.append("    ratingCount: ").append(toIndentedString(ratingCount)).append("\n");
+    sb.append("    relatedIds: ").append(toIndentedString(relatedIds)).append("\n");
+    sb.append("    upsellIds: ").append(toIndentedString(upsellIds)).append("\n");
+    sb.append("    crossSellIds: ").append(toIndentedString(crossSellIds)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
-    sb.append("    variations: ").append(toIndentedString(variations)).append("\n");
+    sb.append("    purchaseNote: ").append(toIndentedString(purchaseNote)).append("\n");
+    sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    attributes: ").append(toIndentedString(attributes)).append("\n");
+    sb.append("    defaultAttributes: ").append(toIndentedString(defaultAttributes)).append("\n");
+    sb.append("    variations: ").append(toIndentedString(variations)).append("\n");
+    sb.append("    groupedProducts: ").append(toIndentedString(groupedProducts)).append("\n");
+    sb.append("    menuOrder: ").append(toIndentedString(menuOrder)).append("\n");
     sb.append("    metaData: ").append(toIndentedString(metaData)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -542,20 +1893,69 @@ public class Product {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
-    openapiFields.add("date_created");
-    openapiFields.add("date_modified");
     openapiFields.add("name");
-    openapiFields.add("sku");
+    openapiFields.add("slug");
+    openapiFields.add("permalink");
+    openapiFields.add("date_created");
+    openapiFields.add("date_created_gmt");
+    openapiFields.add("date_modified");
+    openapiFields.add("date_modified_gmt");
     openapiFields.add("type");
     openapiFields.add("status");
+    openapiFields.add("featured");
+    openapiFields.add("catalog_visibility");
     openapiFields.add("description");
     openapiFields.add("short_description");
+    openapiFields.add("sku");
     openapiFields.add("price");
+    openapiFields.add("regular_price");
+    openapiFields.add("sale_price");
+    openapiFields.add("date_on_sale_from");
+    openapiFields.add("date_on_sale_from_gmt");
+    openapiFields.add("date_on_sale_to");
+    openapiFields.add("date_on_sale_to_gmt");
+    openapiFields.add("price_html");
+    openapiFields.add("on_sale");
+    openapiFields.add("purchasable");
+    openapiFields.add("total_sales");
+    openapiFields.add("virtual");
+    openapiFields.add("downloadable");
+    openapiFields.add("downloads");
+    openapiFields.add("download_limit");
+    openapiFields.add("download_expiry");
+    openapiFields.add("external_url");
+    openapiFields.add("button_text");
+    openapiFields.add("tax_status");
+    openapiFields.add("tax_class");
+    openapiFields.add("manage_stock");
     openapiFields.add("stock_quantity");
     openapiFields.add("stock_status");
+    openapiFields.add("backorders");
+    openapiFields.add("backorders_allowed");
+    openapiFields.add("backordered");
+    openapiFields.add("sold_individually");
+    openapiFields.add("weight");
+    openapiFields.add("dimensions");
+    openapiFields.add("shipping_required");
+    openapiFields.add("shipping_taxable");
+    openapiFields.add("shipping_class");
+    openapiFields.add("shipping_class_id");
+    openapiFields.add("reviews_allowed");
+    openapiFields.add("average_rating");
+    openapiFields.add("rating_count");
+    openapiFields.add("related_ids");
+    openapiFields.add("upsell_ids");
+    openapiFields.add("cross_sell_ids");
     openapiFields.add("parent_id");
-    openapiFields.add("variations");
+    openapiFields.add("purchase_note");
+    openapiFields.add("categories");
+    openapiFields.add("tags");
+    openapiFields.add("images");
     openapiFields.add("attributes");
+    openapiFields.add("default_attributes");
+    openapiFields.add("variations");
+    openapiFields.add("grouped_products");
+    openapiFields.add("menu_order");
     openapiFields.add("meta_data");
 
     // a set of required properties/fields (JSON key names)
@@ -586,8 +1986,11 @@ public class Product {
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if ((jsonObj.get("sku") != null && !jsonObj.get("sku").isJsonNull()) && !jsonObj.get("sku").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `sku` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sku").toString()));
+      if ((jsonObj.get("slug") != null && !jsonObj.get("slug").isJsonNull()) && !jsonObj.get("slug").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `slug` to be a primitive type in the JSON string but got `%s`", jsonObj.get("slug").toString()));
+      }
+      if ((jsonObj.get("permalink") != null && !jsonObj.get("permalink").isJsonNull()) && !jsonObj.get("permalink").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `permalink` to be a primitive type in the JSON string but got `%s`", jsonObj.get("permalink").toString()));
       }
       if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
@@ -595,21 +1998,131 @@ public class Product {
       if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
+      if ((jsonObj.get("catalog_visibility") != null && !jsonObj.get("catalog_visibility").isJsonNull()) && !jsonObj.get("catalog_visibility").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `catalog_visibility` to be a primitive type in the JSON string but got `%s`", jsonObj.get("catalog_visibility").toString()));
+      }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
       if ((jsonObj.get("short_description") != null && !jsonObj.get("short_description").isJsonNull()) && !jsonObj.get("short_description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `short_description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("short_description").toString()));
       }
+      if ((jsonObj.get("sku") != null && !jsonObj.get("sku").isJsonNull()) && !jsonObj.get("sku").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `sku` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sku").toString()));
+      }
       if ((jsonObj.get("price") != null && !jsonObj.get("price").isJsonNull()) && !jsonObj.get("price").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("price").toString()));
+      }
+      if ((jsonObj.get("regular_price") != null && !jsonObj.get("regular_price").isJsonNull()) && !jsonObj.get("regular_price").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `regular_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("regular_price").toString()));
+      }
+      if ((jsonObj.get("sale_price") != null && !jsonObj.get("sale_price").isJsonNull()) && !jsonObj.get("sale_price").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `sale_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sale_price").toString()));
+      }
+      if ((jsonObj.get("price_html") != null && !jsonObj.get("price_html").isJsonNull()) && !jsonObj.get("price_html").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `price_html` to be a primitive type in the JSON string but got `%s`", jsonObj.get("price_html").toString()));
+      }
+      if (jsonObj.get("downloads") != null && !jsonObj.get("downloads").isJsonNull()) {
+        JsonArray jsonArraydownloads = jsonObj.getAsJsonArray("downloads");
+        if (jsonArraydownloads != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("downloads").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `downloads` to be an array in the JSON string but got `%s`", jsonObj.get("downloads").toString()));
+          }
+
+          // validate the optional field `downloads` (array)
+          for (int i = 0; i < jsonArraydownloads.size(); i++) {
+            ProductDownload.validateJsonElement(jsonArraydownloads.get(i));
+          };
+        }
+      }
+      if ((jsonObj.get("external_url") != null && !jsonObj.get("external_url").isJsonNull()) && !jsonObj.get("external_url").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `external_url` to be a primitive type in the JSON string but got `%s`", jsonObj.get("external_url").toString()));
+      }
+      if ((jsonObj.get("button_text") != null && !jsonObj.get("button_text").isJsonNull()) && !jsonObj.get("button_text").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `button_text` to be a primitive type in the JSON string but got `%s`", jsonObj.get("button_text").toString()));
+      }
+      if ((jsonObj.get("tax_status") != null && !jsonObj.get("tax_status").isJsonNull()) && !jsonObj.get("tax_status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tax_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tax_status").toString()));
+      }
+      if ((jsonObj.get("tax_class") != null && !jsonObj.get("tax_class").isJsonNull()) && !jsonObj.get("tax_class").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tax_class` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tax_class").toString()));
       }
       if ((jsonObj.get("stock_status") != null && !jsonObj.get("stock_status").isJsonNull()) && !jsonObj.get("stock_status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `stock_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("stock_status").toString()));
       }
+      if ((jsonObj.get("backorders") != null && !jsonObj.get("backorders").isJsonNull()) && !jsonObj.get("backorders").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `backorders` to be a primitive type in the JSON string but got `%s`", jsonObj.get("backorders").toString()));
+      }
+      if ((jsonObj.get("weight") != null && !jsonObj.get("weight").isJsonNull()) && !jsonObj.get("weight").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `weight` to be a primitive type in the JSON string but got `%s`", jsonObj.get("weight").toString()));
+      }
+      // validate the optional field `dimensions`
+      if (jsonObj.get("dimensions") != null && !jsonObj.get("dimensions").isJsonNull()) {
+        ProductDimension.validateJsonElement(jsonObj.get("dimensions"));
+      }
+      if ((jsonObj.get("shipping_class") != null && !jsonObj.get("shipping_class").isJsonNull()) && !jsonObj.get("shipping_class").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `shipping_class` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shipping_class").toString()));
+      }
+      if ((jsonObj.get("average_rating") != null && !jsonObj.get("average_rating").isJsonNull()) && !jsonObj.get("average_rating").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `average_rating` to be a primitive type in the JSON string but got `%s`", jsonObj.get("average_rating").toString()));
+      }
       // ensure the optional json data is an array if present
-      if (jsonObj.get("variations") != null && !jsonObj.get("variations").isJsonNull() && !jsonObj.get("variations").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `variations` to be an array in the JSON string but got `%s`", jsonObj.get("variations").toString()));
+      if (jsonObj.get("related_ids") != null && !jsonObj.get("related_ids").isJsonNull() && !jsonObj.get("related_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `related_ids` to be an array in the JSON string but got `%s`", jsonObj.get("related_ids").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("upsell_ids") != null && !jsonObj.get("upsell_ids").isJsonNull() && !jsonObj.get("upsell_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `upsell_ids` to be an array in the JSON string but got `%s`", jsonObj.get("upsell_ids").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("cross_sell_ids") != null && !jsonObj.get("cross_sell_ids").isJsonNull() && !jsonObj.get("cross_sell_ids").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cross_sell_ids` to be an array in the JSON string but got `%s`", jsonObj.get("cross_sell_ids").toString()));
+      }
+      if ((jsonObj.get("purchase_note") != null && !jsonObj.get("purchase_note").isJsonNull()) && !jsonObj.get("purchase_note").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `purchase_note` to be a primitive type in the JSON string but got `%s`", jsonObj.get("purchase_note").toString()));
+      }
+      if (jsonObj.get("categories") != null && !jsonObj.get("categories").isJsonNull()) {
+        JsonArray jsonArraycategories = jsonObj.getAsJsonArray("categories");
+        if (jsonArraycategories != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("categories").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `categories` to be an array in the JSON string but got `%s`", jsonObj.get("categories").toString()));
+          }
+
+          // validate the optional field `categories` (array)
+          for (int i = 0; i < jsonArraycategories.size(); i++) {
+            ProductCategory.validateJsonElement(jsonArraycategories.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("tags") != null && !jsonObj.get("tags").isJsonNull()) {
+        JsonArray jsonArraytags = jsonObj.getAsJsonArray("tags");
+        if (jsonArraytags != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("tags").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `tags` to be an array in the JSON string but got `%s`", jsonObj.get("tags").toString()));
+          }
+
+          // validate the optional field `tags` (array)
+          for (int i = 0; i < jsonArraytags.size(); i++) {
+            ProductTag.validateJsonElement(jsonArraytags.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("images") != null && !jsonObj.get("images").isJsonNull()) {
+        JsonArray jsonArrayimages = jsonObj.getAsJsonArray("images");
+        if (jsonArrayimages != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("images").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `images` to be an array in the JSON string but got `%s`", jsonObj.get("images").toString()));
+          }
+
+          // validate the optional field `images` (array)
+          for (int i = 0; i < jsonArrayimages.size(); i++) {
+            ProductImage.validateJsonElement(jsonArrayimages.get(i));
+          };
+        }
       }
       if (jsonObj.get("attributes") != null && !jsonObj.get("attributes").isJsonNull()) {
         JsonArray jsonArrayattributes = jsonObj.getAsJsonArray("attributes");
@@ -624,6 +2137,28 @@ public class Product {
             ProductAttribute.validateJsonElement(jsonArrayattributes.get(i));
           };
         }
+      }
+      if (jsonObj.get("default_attributes") != null && !jsonObj.get("default_attributes").isJsonNull()) {
+        JsonArray jsonArraydefaultAttributes = jsonObj.getAsJsonArray("default_attributes");
+        if (jsonArraydefaultAttributes != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("default_attributes").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `default_attributes` to be an array in the JSON string but got `%s`", jsonObj.get("default_attributes").toString()));
+          }
+
+          // validate the optional field `default_attributes` (array)
+          for (int i = 0; i < jsonArraydefaultAttributes.size(); i++) {
+            ProductAttribute.validateJsonElement(jsonArraydefaultAttributes.get(i));
+          };
+        }
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("variations") != null && !jsonObj.get("variations").isJsonNull() && !jsonObj.get("variations").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `variations` to be an array in the JSON string but got `%s`", jsonObj.get("variations").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("grouped_products") != null && !jsonObj.get("grouped_products").isJsonNull() && !jsonObj.get("grouped_products").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `grouped_products` to be an array in the JSON string but got `%s`", jsonObj.get("grouped_products").toString()));
       }
       if (jsonObj.get("meta_data") != null && !jsonObj.get("meta_data").isJsonNull()) {
         JsonArray jsonArraymetaData = jsonObj.getAsJsonArray("meta_data");
