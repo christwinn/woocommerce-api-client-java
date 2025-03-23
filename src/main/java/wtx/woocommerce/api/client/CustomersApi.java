@@ -209,6 +209,162 @@ public class CustomersApi {
         return localVarCall;
     }
     /**
+     * Build call for deleteCustomerById
+     * @param customerId ID of customer to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @param reassign User ID to reassign posts to. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteCustomerByIdCall(Integer customerId, String force, Integer reassign, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/customers/{customerId}"
+            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (force != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
+        }
+
+        if (reassign != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("reassign", reassign));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteCustomerByIdValidateBeforeCall(Integer customerId, String force, Integer reassign, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'customerId' is set
+        if (customerId == null) {
+            throw new ApiException("Missing the required parameter 'customerId' when calling deleteCustomerById(Async)");
+        }
+
+        // verify the required parameter 'force' is set
+        if (force == null) {
+            throw new ApiException("Missing the required parameter 'force' when calling deleteCustomerById(Async)");
+        }
+
+        return deleteCustomerByIdCall(customerId, force, reassign, _callback);
+
+    }
+
+    /**
+     * This API helps you delete a customer.
+     * 
+     * @param customerId ID of customer to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @param reassign User ID to reassign posts to. (optional)
+     * @return Customer
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public Customer deleteCustomerById(Integer customerId, String force, Integer reassign) throws ApiException {
+        ApiResponse<Customer> localVarResp = deleteCustomerByIdWithHttpInfo(customerId, force, reassign);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API helps you delete a customer.
+     * 
+     * @param customerId ID of customer to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @param reassign User ID to reassign posts to. (optional)
+     * @return ApiResponse&lt;Customer&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Customer> deleteCustomerByIdWithHttpInfo(Integer customerId, String force, Integer reassign) throws ApiException {
+        okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, null);
+        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API helps you delete a customer. (asynchronously)
+     * 
+     * @param customerId ID of customer to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @param reassign User ID to reassign posts to. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteCustomerByIdAsync(Integer customerId, String force, Integer reassign, final ApiCallback<Customer> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, _callback);
+        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for listAllCustomers
      * @param context Scope under which the request is made; determines fields present in response. (optional)
      * @param page Current page of the collection. (optional, default to 1)
@@ -552,6 +708,151 @@ public class CustomersApi {
     public okhttp3.Call retrieveCustomerByIdAsync(Integer customerId, final ApiCallback<Customer> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = retrieveCustomerByIdValidateBeforeCall(customerId, _callback);
+        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateCustomerById
+     * @param customerId ID of customer to update (required)
+     * @param customer Customer object with data to update. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateCustomerByIdCall(Integer customerId, Customer customer, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = customer;
+
+        // create path and map variables
+        String localVarPath = "/customers/{customerId}"
+            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateCustomerByIdValidateBeforeCall(Integer customerId, Customer customer, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'customerId' is set
+        if (customerId == null) {
+            throw new ApiException("Missing the required parameter 'customerId' when calling updateCustomerById(Async)");
+        }
+
+        // verify the required parameter 'customer' is set
+        if (customer == null) {
+            throw new ApiException("Missing the required parameter 'customer' when calling updateCustomerById(Async)");
+        }
+
+        return updateCustomerByIdCall(customerId, customer, _callback);
+
+    }
+
+    /**
+     * This API lets you make changes to a customer.
+     * 
+     * @param customerId ID of customer to update (required)
+     * @param customer Customer object with data to update. (required)
+     * @return Customer
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public Customer updateCustomerById(Integer customerId, Customer customer) throws ApiException {
+        ApiResponse<Customer> localVarResp = updateCustomerByIdWithHttpInfo(customerId, customer);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API lets you make changes to a customer.
+     * 
+     * @param customerId ID of customer to update (required)
+     * @param customer Customer object with data to update. (required)
+     * @return ApiResponse&lt;Customer&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Customer> updateCustomerByIdWithHttpInfo(Integer customerId, Customer customer) throws ApiException {
+        okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, null);
+        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API lets you make changes to a customer. (asynchronously)
+     * 
+     * @param customerId ID of customer to update (required)
+     * @param customer Customer object with data to update. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateCustomerByIdAsync(Integer customerId, Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, _callback);
         Type localVarReturnType = new TypeToken<Customer>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
