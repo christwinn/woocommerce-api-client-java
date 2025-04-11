@@ -74,6 +74,151 @@ public class ProductVariationsApi {
     }
 
     /**
+     * Build call for createProductVariation
+     * @param productId ID of parent product for variation to create (required)
+     * @param productVariation Product variation object with data to create. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns created product variation. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createProductVariationCall(Integer productId, ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = productVariation;
+
+        // create path and map variables
+        String localVarPath = "/products/{productId}/variations"
+            .replace("{" + "productId" + "}", localVarApiClient.escapeString(productId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createProductVariationValidateBeforeCall(Integer productId, ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'productId' is set
+        if (productId == null) {
+            throw new ApiException("Missing the required parameter 'productId' when calling createProductVariation(Async)");
+        }
+
+        // verify the required parameter 'productVariation' is set
+        if (productVariation == null) {
+            throw new ApiException("Missing the required parameter 'productVariation' when calling createProductVariation(Async)");
+        }
+
+        return createProductVariationCall(productId, productVariation, _callback);
+
+    }
+
+    /**
+     * This API helps you to create a new product variation.
+     * 
+     * @param productId ID of parent product for variation to create (required)
+     * @param productVariation Product variation object with data to create. (required)
+     * @return ProductVariation
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns created product variation. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ProductVariation createProductVariation(Integer productId, ProductVariation productVariation) throws ApiException {
+        ApiResponse<ProductVariation> localVarResp = createProductVariationWithHttpInfo(productId, productVariation);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API helps you to create a new product variation.
+     * 
+     * @param productId ID of parent product for variation to create (required)
+     * @param productVariation Product variation object with data to create. (required)
+     * @return ApiResponse&lt;ProductVariation&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns created product variation. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ProductVariation> createProductVariationWithHttpInfo(Integer productId, ProductVariation productVariation) throws ApiException {
+        okhttp3.Call localVarCall = createProductVariationValidateBeforeCall(productId, productVariation, null);
+        Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API helps you to create a new product variation. (asynchronously)
+     * 
+     * @param productId ID of parent product for variation to create (required)
+     * @param productVariation Product variation object with data to create. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns created product variation. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createProductVariationAsync(Integer productId, ProductVariation productVariation, final ApiCallback<ProductVariation> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = createProductVariationValidateBeforeCall(productId, productVariation, _callback);
+        Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for listAllProductVariations
      * @param productId ID of parent product for variations to return (required)
      * @param _callback Callback for upload/download progress

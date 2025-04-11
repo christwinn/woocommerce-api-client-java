@@ -13,7 +13,7 @@ This library provides an intuitive and developer-friendly way to interact with t
 
 ## 📦 Version Information
 
-- **Current Version**: `0.1.5-alpha-20250323`
+- **Current Version**: `0.1.5-alpha-20250412`
 - **Supported WooCommerce API Version**: `v3`
 - **Java Compatibility**: Java 8+
 
@@ -43,7 +43,7 @@ After a successful build, add the generated artifact as a dependency in your Jav
 <dependency>
     <groupId>wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.1.5-alpha-20250323</version>
+    <version>0.1.5-alpha-20250412</version>
 </dependency>
 ```
 
