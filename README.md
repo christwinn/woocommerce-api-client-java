@@ -1,21 +1,55 @@
-# The WooCommerce REST API Client for Java
+# WooCommerce Java REST API Client
 
-Effortlessly integrate your Java applications with WooCommerce using our REST API client! 🚀
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Java Version](https://img.shields.io/badge/Java-8%2B-blue)](https://www.java.com)
 
-This library provides an intuitive and developer-friendly way to interact with the latest **WooCommerce REST API (v3)**, allowing seamless access to store data and operations.
+A lightweight Java client library for WooCommerce REST API integration. Built for Java developers who need to integrate their applications with WooCommerce e-commerce platform. 🚀
+
+This API client provides a type-safe Java interface for WooCommerce REST API v3, enabling seamless management of:
+- WooCommerce products and inventory
+- Customer data and orders
+- E-commerce operations via REST API
+
+## ✨ Why Choose This Client?
+
+- 💡 **Type-Safe Java API** - fully typed interfaces for WooCommerce REST endpoints
+- 🛡️ **Basic Authentication** - secure WooCommerce API access
+- 📚 **Clear Documentation** - comprehensive examples for Java integration
+- 🚀 **Wide Java Support** - compatible with Java 8 and newer
+- ⚡ **OpenAPI Generated** - based on our [OpenAPI specification](https://github.com/wtx-labs/woocommerce-api-openapi-specification) developed from official WooCommerce documentation
+
+## 🎯 Currently Implemented Features
+
+- ✅ Products API
+  - List/search WooCommerce products
+  - Create/Read/Update/Delete products
+  - Filter products by status, date, stock status
+  - Manage product inventory
+- ✅ Customers API
+  - List/search WooCommerce customers
+  - Create/Read/Update/Delete customers
+  - Search and filter customer data
+  - Manage customer accounts
+- ✅ Orders API
+  - List/search WooCommerce orders
+  - Create/Read/Update/Delete orders
+  - Filter orders by status and date
+  - Process order management
 
 ## 🚨 Project Status
 
 > ⚠️ **Note: This is an early development version!**
 > 
-> We are actively expanding the API coverage to support more WooCommerce features.
-> Contributions and feedback are welcome!
+> We are actively implementing more WooCommerce API features.
+> Contributions and feedback are welcome on GitHub!
 
 ## 📦 Version Information
 
 - **Current Version**: `0.1.5-alpha-20250412`
 - **Supported WooCommerce API Version**: `v3`
 - **Java Compatibility**: Java 8+
+
+
 
 ## 🔓 License
 
@@ -25,11 +59,11 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The only requirement is to preserve the original author attribution in the source code and documentation.
 
-## 🚀 Quick Start
+## 🚀 Quick Start Guide
 
 ### 1️⃣ Installation
 
-Clone this repository and build the library using Maven:
+Clone and build the library from source:
 
 ```sh
 git clone https://github.com/wtx-labs/woocommerce-api-client-java.git
@@ -37,7 +71,7 @@ cd woocommerce-api-client-java
 mvn clean install
 ```
 
-After a successful build, add the generated artifact as a dependency in your Java project:
+Then add the locally built artifact to your project:
 
 ```xml
 <dependency>
@@ -47,9 +81,9 @@ After a successful build, add the generated artifact as a dependency in your Jav
 </dependency>
 ```
 
-### 2️⃣ Usage Example
+### 2️⃣ Java Integration Example
 
-Easily fetch WooCommerce customer data:
+Here's how to fetch WooCommerce customer data using the client:
 
 ```java
 package wtx.woocommerce;
@@ -100,10 +134,21 @@ public class WooCommerceApiClientUsageDemo {
 }
 ```
 
-## 🔗 Stay Connected
+## 🔗 Get Involved
 
-- ✨ We're constantly improving this client with new features!
-- 💡 Have suggestions or need help? Open an issue or contribute!
+- ✨ Check our [GitHub Issues](https://github.com/wtx-labs/woocommerce-api-client-java/issues) for latest updates
+- 💡 Have suggestions? Open an Issue or contribute to the project
+- 🌟 Star this repository if you find it helpful!
+
+## 📊 Project Statistics
+
+- ⭐ 2 GitHub stars
+- 🔄 Regular updates and improvements
+- 👥 Open for community contributions
+
+## 🔍 Keywords
+
+woocommerce java client, woocommerce rest api java, java woocommerce integration, woocommerce api v3 java, e-commerce java integration, woocommerce java library, java rest api client woocommerce
 
 🚀 Happy coding! 😊
 
