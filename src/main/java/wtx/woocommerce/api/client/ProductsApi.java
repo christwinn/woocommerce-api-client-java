@@ -358,16 +358,43 @@ public class ProductsApi {
     }
     /**
      * Build call for listAllProducts
-     * @param sku Limit result set to products with a specific SKU. (optional)
-     * @param attribute Limit result set to products with a specific attribute. (optional)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional)
-     * @param page Current page of the collection. Default is 1. (optional)
-     * @param after Limit response to resources published after a given ISO8601 compliant date (eg. 2023-05-07T10:00:00). (optional)
-     * @param before Limit response to resources published before a given ISO8601 compliant date (eg. 2023-10-07T12:10:16). (optional)
-     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (eg. 2023-05-07T10:00:00). (optional)
-     * @param status Limit result set to products assigned a specific status. Options: any, draft, pending, private and publish. Default is any. (optional)
-     * @param stockStatus Limit result set to products with specified stock status. Options: instock, outofstock and onbackorder. (optional)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to resources published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to resources published before a given ISO8601 compliant date. (optional)
+     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (optional)
+     * @param modifiedBefore Limit response to resources modified before a given ISO8601 compliant date. (optional)
+     * @param datesAreGmt Whether to consider GMT post dates when limiting response by published or modified date. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @param include Limit result set to specific ids. (optional)
+     * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by object attribute. Options: date, modified, id, include, title, slug, price, popularity, rating, and menu_order. Default is date. (optional, default to date)
+     * @param parent Limit result set to those of particular parent IDs. (optional)
+     * @param parentExclude Limit result set to all items except those of a particular parent ID. (optional)
+     * @param slug Limit result set to products with a specific slug. (optional)
+     * @param status Limit result set to products assigned a specific status. Options: any, draft, pending, private and publish. Default is any. (optional)
+     * @param includeStatus Limit result set to products with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the status parameter. Options: any, future, trash, draft, pending, private, and publish. (optional)
+     * @param excludeStatus Exclude products from result set with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the include_status parameter. Options: future, trash, draft, pending, private, and publish. (optional)
+     * @param type Limit result set to products assigned a specific type. Options: simple, grouped, external and variable. (optional)
+     * @param includeTypes Limit result set to products with any of the types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the type parameter. Options: simple, grouped, external and variable. (optional)
+     * @param excludeTypes Exclude products from result set with any of the specified types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the include_types parameter. Options: simple, grouped, external and variable. (optional)
+     * @param sku Limit result set to products with a specific SKU. (optional)
+     * @param featured Limit result set to featured products. (optional)
+     * @param category Limit result set to products assigned a specific category ID. (optional)
+     * @param tag Limit result set to products assigned a specific tag ID. (optional)
+     * @param shippingClass Limit result set to products assigned a specific shipping class ID. (optional)
+     * @param attribute Limit result set to products with a specific attribute. (optional)
+     * @param attributeTerm Limit result set to products with a specific attribute term ID (required an assigned attribute). (optional)
+     * @param taxClass Limit result set to products with a specific tax class. Default options: standard, reduced-rate and zero-rate. (optional)
+     * @param onSale Limit result set to products on sale. (optional)
+     * @param minPrice Limit result set to products based on a minimum price. (optional)
+     * @param maxPrice Limit result set to products based on a maximum price. (optional)
+     * @param stockStatus Limit result set to products with specified stock status. Options: instock, outofstock and onbackorder. (optional)
+     * @param virtual Limit result set to virtual products. (optional)
+     * @param downloadable Limit result set to downloadable products. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -380,7 +407,7 @@ public class ProductsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllProductsCall(String sku, String attribute, Integer perPage, Integer page, String after, String before, String modifiedAfter, List<String> status, String stockStatus, String order, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllProductsCall(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -405,20 +432,20 @@ public class ProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (sku != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sku", sku));
+        if (context != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("context", context));
         }
 
-        if (attribute != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("attribute", attribute));
+        if (page != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
         }
 
         if (perPage != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("per_page", perPage));
         }
 
-        if (page != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        if (search != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("search", search));
         }
 
         if (after != null) {
@@ -433,16 +460,124 @@ public class ProductsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("modified_after", modifiedAfter));
         }
 
+        if (modifiedBefore != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("modified_before", modifiedBefore));
+        }
+
+        if (datesAreGmt != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dates_are_gmt", datesAreGmt));
+        }
+
+        if (exclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
+        }
+
+        if (include != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "include", include));
+        }
+
+        if (offset != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
+        }
+
+        if (order != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("order", order));
+        }
+
+        if (orderby != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderby", orderby));
+        }
+
+        if (parent != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "parent", parent));
+        }
+
+        if (parentExclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "parent_exclude", parentExclude));
+        }
+
+        if (slug != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("slug", slug));
+        }
+
         if (status != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "status", status));
+        }
+
+        if (includeStatus != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "include_status", includeStatus));
+        }
+
+        if (excludeStatus != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude_status", excludeStatus));
+        }
+
+        if (type != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("type", type));
+        }
+
+        if (includeTypes != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "include_types", includeTypes));
+        }
+
+        if (excludeTypes != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude_types", excludeTypes));
+        }
+
+        if (sku != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sku", sku));
+        }
+
+        if (featured != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("featured", featured));
+        }
+
+        if (category != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("category", category));
+        }
+
+        if (tag != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tag", tag));
+        }
+
+        if (shippingClass != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("shipping_class", shippingClass));
+        }
+
+        if (attribute != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("attribute", attribute));
+        }
+
+        if (attributeTerm != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("attribute_term", attributeTerm));
+        }
+
+        if (taxClass != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tax_class", taxClass));
+        }
+
+        if (onSale != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("on_sale", onSale));
+        }
+
+        if (minPrice != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("min_price", minPrice));
+        }
+
+        if (maxPrice != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("max_price", maxPrice));
         }
 
         if (stockStatus != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("stock_status", stockStatus));
         }
 
-        if (order != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("order", order));
+        if (virtual != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("virtual", virtual));
+        }
+
+        if (downloadable != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("downloadable", downloadable));
         }
 
         final String[] localVarAccepts = {
@@ -465,24 +600,51 @@ public class ProductsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllProductsValidateBeforeCall(String sku, String attribute, Integer perPage, Integer page, String after, String before, String modifiedAfter, List<String> status, String stockStatus, String order, final ApiCallback _callback) throws ApiException {
-        return listAllProductsCall(sku, attribute, perPage, page, after, before, modifiedAfter, status, stockStatus, order, _callback);
+    private okhttp3.Call listAllProductsValidateBeforeCall(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable, final ApiCallback _callback) throws ApiException {
+        return listAllProductsCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, type, includeTypes, excludeTypes, sku, featured, category, tag, shippingClass, attribute, attributeTerm, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable, _callback);
 
     }
 
     /**
      * This API helps you to view all the products.
      * 
-     * @param sku Limit result set to products with a specific SKU. (optional)
-     * @param attribute Limit result set to products with a specific attribute. (optional)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional)
-     * @param page Current page of the collection. Default is 1. (optional)
-     * @param after Limit response to resources published after a given ISO8601 compliant date (eg. 2023-05-07T10:00:00). (optional)
-     * @param before Limit response to resources published before a given ISO8601 compliant date (eg. 2023-10-07T12:10:16). (optional)
-     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (eg. 2023-05-07T10:00:00). (optional)
-     * @param status Limit result set to products assigned a specific status. Options: any, draft, pending, private and publish. Default is any. (optional)
-     * @param stockStatus Limit result set to products with specified stock status. Options: instock, outofstock and onbackorder. (optional)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to resources published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to resources published before a given ISO8601 compliant date. (optional)
+     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (optional)
+     * @param modifiedBefore Limit response to resources modified before a given ISO8601 compliant date. (optional)
+     * @param datesAreGmt Whether to consider GMT post dates when limiting response by published or modified date. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @param include Limit result set to specific ids. (optional)
+     * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by object attribute. Options: date, modified, id, include, title, slug, price, popularity, rating, and menu_order. Default is date. (optional, default to date)
+     * @param parent Limit result set to those of particular parent IDs. (optional)
+     * @param parentExclude Limit result set to all items except those of a particular parent ID. (optional)
+     * @param slug Limit result set to products with a specific slug. (optional)
+     * @param status Limit result set to products assigned a specific status. Options: any, draft, pending, private and publish. Default is any. (optional)
+     * @param includeStatus Limit result set to products with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the status parameter. Options: any, future, trash, draft, pending, private, and publish. (optional)
+     * @param excludeStatus Exclude products from result set with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the include_status parameter. Options: future, trash, draft, pending, private, and publish. (optional)
+     * @param type Limit result set to products assigned a specific type. Options: simple, grouped, external and variable. (optional)
+     * @param includeTypes Limit result set to products with any of the types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the type parameter. Options: simple, grouped, external and variable. (optional)
+     * @param excludeTypes Exclude products from result set with any of the specified types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the include_types parameter. Options: simple, grouped, external and variable. (optional)
+     * @param sku Limit result set to products with a specific SKU. (optional)
+     * @param featured Limit result set to featured products. (optional)
+     * @param category Limit result set to products assigned a specific category ID. (optional)
+     * @param tag Limit result set to products assigned a specific tag ID. (optional)
+     * @param shippingClass Limit result set to products assigned a specific shipping class ID. (optional)
+     * @param attribute Limit result set to products with a specific attribute. (optional)
+     * @param attributeTerm Limit result set to products with a specific attribute term ID (required an assigned attribute). (optional)
+     * @param taxClass Limit result set to products with a specific tax class. Default options: standard, reduced-rate and zero-rate. (optional)
+     * @param onSale Limit result set to products on sale. (optional)
+     * @param minPrice Limit result set to products based on a minimum price. (optional)
+     * @param maxPrice Limit result set to products based on a maximum price. (optional)
+     * @param stockStatus Limit result set to products with specified stock status. Options: instock, outofstock and onbackorder. (optional)
+     * @param virtual Limit result set to virtual products. (optional)
+     * @param downloadable Limit result set to downloadable products. (optional)
      * @return List&lt;Product&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -494,24 +656,51 @@ public class ProductsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public List<Product> listAllProducts(String sku, String attribute, Integer perPage, Integer page, String after, String before, String modifiedAfter, List<String> status, String stockStatus, String order) throws ApiException {
-        ApiResponse<List<Product>> localVarResp = listAllProductsWithHttpInfo(sku, attribute, perPage, page, after, before, modifiedAfter, status, stockStatus, order);
+    public List<Product> listAllProducts(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable) throws ApiException {
+        ApiResponse<List<Product>> localVarResp = listAllProductsWithHttpInfo(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, type, includeTypes, excludeTypes, sku, featured, category, tag, shippingClass, attribute, attributeTerm, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable);
         return localVarResp.getData();
     }
 
     /**
      * This API helps you to view all the products.
      * 
-     * @param sku Limit result set to products with a specific SKU. (optional)
-     * @param attribute Limit result set to products with a specific attribute. (optional)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional)
-     * @param page Current page of the collection. Default is 1. (optional)
-     * @param after Limit response to resources published after a given ISO8601 compliant date (eg. 2023-05-07T10:00:00). (optional)
-     * @param before Limit response to resources published before a given ISO8601 compliant date (eg. 2023-10-07T12:10:16). (optional)
-     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (eg. 2023-05-07T10:00:00). (optional)
-     * @param status Limit result set to products assigned a specific status. Options: any, draft, pending, private and publish. Default is any. (optional)
-     * @param stockStatus Limit result set to products with specified stock status. Options: instock, outofstock and onbackorder. (optional)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to resources published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to resources published before a given ISO8601 compliant date. (optional)
+     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (optional)
+     * @param modifiedBefore Limit response to resources modified before a given ISO8601 compliant date. (optional)
+     * @param datesAreGmt Whether to consider GMT post dates when limiting response by published or modified date. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @param include Limit result set to specific ids. (optional)
+     * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by object attribute. Options: date, modified, id, include, title, slug, price, popularity, rating, and menu_order. Default is date. (optional, default to date)
+     * @param parent Limit result set to those of particular parent IDs. (optional)
+     * @param parentExclude Limit result set to all items except those of a particular parent ID. (optional)
+     * @param slug Limit result set to products with a specific slug. (optional)
+     * @param status Limit result set to products assigned a specific status. Options: any, draft, pending, private and publish. Default is any. (optional)
+     * @param includeStatus Limit result set to products with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the status parameter. Options: any, future, trash, draft, pending, private, and publish. (optional)
+     * @param excludeStatus Exclude products from result set with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the include_status parameter. Options: future, trash, draft, pending, private, and publish. (optional)
+     * @param type Limit result set to products assigned a specific type. Options: simple, grouped, external and variable. (optional)
+     * @param includeTypes Limit result set to products with any of the types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the type parameter. Options: simple, grouped, external and variable. (optional)
+     * @param excludeTypes Exclude products from result set with any of the specified types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the include_types parameter. Options: simple, grouped, external and variable. (optional)
+     * @param sku Limit result set to products with a specific SKU. (optional)
+     * @param featured Limit result set to featured products. (optional)
+     * @param category Limit result set to products assigned a specific category ID. (optional)
+     * @param tag Limit result set to products assigned a specific tag ID. (optional)
+     * @param shippingClass Limit result set to products assigned a specific shipping class ID. (optional)
+     * @param attribute Limit result set to products with a specific attribute. (optional)
+     * @param attributeTerm Limit result set to products with a specific attribute term ID (required an assigned attribute). (optional)
+     * @param taxClass Limit result set to products with a specific tax class. Default options: standard, reduced-rate and zero-rate. (optional)
+     * @param onSale Limit result set to products on sale. (optional)
+     * @param minPrice Limit result set to products based on a minimum price. (optional)
+     * @param maxPrice Limit result set to products based on a maximum price. (optional)
+     * @param stockStatus Limit result set to products with specified stock status. Options: instock, outofstock and onbackorder. (optional)
+     * @param virtual Limit result set to virtual products. (optional)
+     * @param downloadable Limit result set to downloadable products. (optional)
      * @return ApiResponse&lt;List&lt;Product&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -523,8 +712,8 @@ public class ProductsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Product>> listAllProductsWithHttpInfo(String sku, String attribute, Integer perPage, Integer page, String after, String before, String modifiedAfter, List<String> status, String stockStatus, String order) throws ApiException {
-        okhttp3.Call localVarCall = listAllProductsValidateBeforeCall(sku, attribute, perPage, page, after, before, modifiedAfter, status, stockStatus, order, null);
+    public ApiResponse<List<Product>> listAllProductsWithHttpInfo(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable) throws ApiException {
+        okhttp3.Call localVarCall = listAllProductsValidateBeforeCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, type, includeTypes, excludeTypes, sku, featured, category, tag, shippingClass, attribute, attributeTerm, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable, null);
         Type localVarReturnType = new TypeToken<List<Product>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -532,16 +721,43 @@ public class ProductsApi {
     /**
      * This API helps you to view all the products. (asynchronously)
      * 
-     * @param sku Limit result set to products with a specific SKU. (optional)
-     * @param attribute Limit result set to products with a specific attribute. (optional)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional)
-     * @param page Current page of the collection. Default is 1. (optional)
-     * @param after Limit response to resources published after a given ISO8601 compliant date (eg. 2023-05-07T10:00:00). (optional)
-     * @param before Limit response to resources published before a given ISO8601 compliant date (eg. 2023-10-07T12:10:16). (optional)
-     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (eg. 2023-05-07T10:00:00). (optional)
-     * @param status Limit result set to products assigned a specific status. Options: any, draft, pending, private and publish. Default is any. (optional)
-     * @param stockStatus Limit result set to products with specified stock status. Options: instock, outofstock and onbackorder. (optional)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to resources published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to resources published before a given ISO8601 compliant date. (optional)
+     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (optional)
+     * @param modifiedBefore Limit response to resources modified before a given ISO8601 compliant date. (optional)
+     * @param datesAreGmt Whether to consider GMT post dates when limiting response by published or modified date. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @param include Limit result set to specific ids. (optional)
+     * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by object attribute. Options: date, modified, id, include, title, slug, price, popularity, rating, and menu_order. Default is date. (optional, default to date)
+     * @param parent Limit result set to those of particular parent IDs. (optional)
+     * @param parentExclude Limit result set to all items except those of a particular parent ID. (optional)
+     * @param slug Limit result set to products with a specific slug. (optional)
+     * @param status Limit result set to products assigned a specific status. Options: any, draft, pending, private and publish. Default is any. (optional)
+     * @param includeStatus Limit result set to products with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the status parameter. Options: any, future, trash, draft, pending, private, and publish. (optional)
+     * @param excludeStatus Exclude products from result set with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the include_status parameter. Options: future, trash, draft, pending, private, and publish. (optional)
+     * @param type Limit result set to products assigned a specific type. Options: simple, grouped, external and variable. (optional)
+     * @param includeTypes Limit result set to products with any of the types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the type parameter. Options: simple, grouped, external and variable. (optional)
+     * @param excludeTypes Exclude products from result set with any of the specified types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the include_types parameter. Options: simple, grouped, external and variable. (optional)
+     * @param sku Limit result set to products with a specific SKU. (optional)
+     * @param featured Limit result set to featured products. (optional)
+     * @param category Limit result set to products assigned a specific category ID. (optional)
+     * @param tag Limit result set to products assigned a specific tag ID. (optional)
+     * @param shippingClass Limit result set to products assigned a specific shipping class ID. (optional)
+     * @param attribute Limit result set to products with a specific attribute. (optional)
+     * @param attributeTerm Limit result set to products with a specific attribute term ID (required an assigned attribute). (optional)
+     * @param taxClass Limit result set to products with a specific tax class. Default options: standard, reduced-rate and zero-rate. (optional)
+     * @param onSale Limit result set to products on sale. (optional)
+     * @param minPrice Limit result set to products based on a minimum price. (optional)
+     * @param maxPrice Limit result set to products based on a maximum price. (optional)
+     * @param stockStatus Limit result set to products with specified stock status. Options: instock, outofstock and onbackorder. (optional)
+     * @param virtual Limit result set to virtual products. (optional)
+     * @param downloadable Limit result set to downloadable products. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -554,9 +770,9 @@ public class ProductsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllProductsAsync(String sku, String attribute, Integer perPage, Integer page, String after, String before, String modifiedAfter, List<String> status, String stockStatus, String order, final ApiCallback<List<Product>> _callback) throws ApiException {
+    public okhttp3.Call listAllProductsAsync(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable, final ApiCallback<List<Product>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listAllProductsValidateBeforeCall(sku, attribute, perPage, page, after, before, modifiedAfter, status, stockStatus, order, _callback);
+        okhttp3.Call localVarCall = listAllProductsValidateBeforeCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, type, includeTypes, excludeTypes, sku, featured, category, tag, shippingClass, attribute, attributeTerm, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable, _callback);
         Type localVarReturnType = new TypeToken<List<Product>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import wtx.woocommerce.api.client.model.ApiError;
+import java.time.OffsetDateTime;
 import wtx.woocommerce.api.client.model.Order;
 
 import java.lang.reflect.Type;
@@ -358,13 +359,26 @@ public class OrdersApi {
     }
     /**
      * Build call for listAllOrders
-     * @param page Current page of the collection. Default is 1. (optional)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional)
-     * @param after Limit response to resources published after a given ISO8601 compliant date (eg. 2023-05-07T10:00:00). (optional)
-     * @param before Limit response to resources published before a given ISO8601 compliant date (eg. 2023-10-07T12:10:16). (optional)
-     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (eg. 2023-05-07T10:00:00). (optional)
-     * @param status Limit result set to orders assigned a specific status. Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any. (optional)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to resources published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to resources published before a given ISO8601 compliant date. (optional)
+     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (optional)
+     * @param modifiedBefore Limit response to resources modified before a given ISO8601 compliant date. (optional)
+     * @param datesAreGmt Whether to consider GMT post dates when limiting response by published or modified date. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @param include Limit result set to specific ids. (optional)
+     * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by object attribute. Options: date, modified, id, include, title and slug. Default is date. (optional, default to date)
+     * @param parent Limit result set to those of particular parent IDs. (optional)
+     * @param parentExclude Limit result set to all items except those of a particular parent ID. (optional)
+     * @param status Limit result set to orders assigned a specific status. Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any. (optional)
+     * @param customer Limit result set to orders assigned a specific customer. (optional)
+     * @param product Limit result set to orders assigned a specific product. (optional)
+     * @param dp Number of decimal points to use in each resource. Default is 2. (optional, default to 2)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -377,7 +391,7 @@ public class OrdersApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllOrdersCall(Integer page, Integer perPage, String after, String before, String modifiedAfter, List<String> status, String order, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllOrdersCall(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -402,12 +416,20 @@ public class OrdersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (context != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("context", context));
+        }
+
         if (page != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
         }
 
         if (perPage != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("per_page", perPage));
+        }
+
+        if (search != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("search", search));
         }
 
         if (after != null) {
@@ -422,12 +444,56 @@ public class OrdersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("modified_after", modifiedAfter));
         }
 
-        if (status != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "status", status));
+        if (modifiedBefore != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("modified_before", modifiedBefore));
+        }
+
+        if (datesAreGmt != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dates_are_gmt", datesAreGmt));
+        }
+
+        if (exclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
+        }
+
+        if (include != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "include", include));
+        }
+
+        if (offset != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
         }
 
         if (order != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("order", order));
+        }
+
+        if (orderby != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderby", orderby));
+        }
+
+        if (parent != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "parent", parent));
+        }
+
+        if (parentExclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "parent_exclude", parentExclude));
+        }
+
+        if (status != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "status", status));
+        }
+
+        if (customer != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("customer", customer));
+        }
+
+        if (product != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("product", product));
+        }
+
+        if (dp != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dp", dp));
         }
 
         final String[] localVarAccepts = {
@@ -450,21 +516,34 @@ public class OrdersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllOrdersValidateBeforeCall(Integer page, Integer perPage, String after, String before, String modifiedAfter, List<String> status, String order, final ApiCallback _callback) throws ApiException {
-        return listAllOrdersCall(page, perPage, after, before, modifiedAfter, status, order, _callback);
+    private okhttp3.Call listAllOrdersValidateBeforeCall(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp, final ApiCallback _callback) throws ApiException {
+        return listAllOrdersCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, status, customer, product, dp, _callback);
 
     }
 
     /**
      * This API helps you to view all the orders.
      * 
-     * @param page Current page of the collection. Default is 1. (optional)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional)
-     * @param after Limit response to resources published after a given ISO8601 compliant date (eg. 2023-05-07T10:00:00). (optional)
-     * @param before Limit response to resources published before a given ISO8601 compliant date (eg. 2023-10-07T12:10:16). (optional)
-     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (eg. 2023-05-07T10:00:00). (optional)
-     * @param status Limit result set to orders assigned a specific status. Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any. (optional)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to resources published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to resources published before a given ISO8601 compliant date. (optional)
+     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (optional)
+     * @param modifiedBefore Limit response to resources modified before a given ISO8601 compliant date. (optional)
+     * @param datesAreGmt Whether to consider GMT post dates when limiting response by published or modified date. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @param include Limit result set to specific ids. (optional)
+     * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by object attribute. Options: date, modified, id, include, title and slug. Default is date. (optional, default to date)
+     * @param parent Limit result set to those of particular parent IDs. (optional)
+     * @param parentExclude Limit result set to all items except those of a particular parent ID. (optional)
+     * @param status Limit result set to orders assigned a specific status. Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any. (optional)
+     * @param customer Limit result set to orders assigned a specific customer. (optional)
+     * @param product Limit result set to orders assigned a specific product. (optional)
+     * @param dp Number of decimal points to use in each resource. Default is 2. (optional, default to 2)
      * @return List&lt;Order&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -476,21 +555,34 @@ public class OrdersApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public List<Order> listAllOrders(Integer page, Integer perPage, String after, String before, String modifiedAfter, List<String> status, String order) throws ApiException {
-        ApiResponse<List<Order>> localVarResp = listAllOrdersWithHttpInfo(page, perPage, after, before, modifiedAfter, status, order);
+    public List<Order> listAllOrders(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp) throws ApiException {
+        ApiResponse<List<Order>> localVarResp = listAllOrdersWithHttpInfo(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, status, customer, product, dp);
         return localVarResp.getData();
     }
 
     /**
      * This API helps you to view all the orders.
      * 
-     * @param page Current page of the collection. Default is 1. (optional)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional)
-     * @param after Limit response to resources published after a given ISO8601 compliant date (eg. 2023-05-07T10:00:00). (optional)
-     * @param before Limit response to resources published before a given ISO8601 compliant date (eg. 2023-10-07T12:10:16). (optional)
-     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (eg. 2023-05-07T10:00:00). (optional)
-     * @param status Limit result set to orders assigned a specific status. Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any. (optional)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to resources published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to resources published before a given ISO8601 compliant date. (optional)
+     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (optional)
+     * @param modifiedBefore Limit response to resources modified before a given ISO8601 compliant date. (optional)
+     * @param datesAreGmt Whether to consider GMT post dates when limiting response by published or modified date. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @param include Limit result set to specific ids. (optional)
+     * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by object attribute. Options: date, modified, id, include, title and slug. Default is date. (optional, default to date)
+     * @param parent Limit result set to those of particular parent IDs. (optional)
+     * @param parentExclude Limit result set to all items except those of a particular parent ID. (optional)
+     * @param status Limit result set to orders assigned a specific status. Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any. (optional)
+     * @param customer Limit result set to orders assigned a specific customer. (optional)
+     * @param product Limit result set to orders assigned a specific product. (optional)
+     * @param dp Number of decimal points to use in each resource. Default is 2. (optional, default to 2)
      * @return ApiResponse&lt;List&lt;Order&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -502,8 +594,8 @@ public class OrdersApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Order>> listAllOrdersWithHttpInfo(Integer page, Integer perPage, String after, String before, String modifiedAfter, List<String> status, String order) throws ApiException {
-        okhttp3.Call localVarCall = listAllOrdersValidateBeforeCall(page, perPage, after, before, modifiedAfter, status, order, null);
+    public ApiResponse<List<Order>> listAllOrdersWithHttpInfo(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp) throws ApiException {
+        okhttp3.Call localVarCall = listAllOrdersValidateBeforeCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, status, customer, product, dp, null);
         Type localVarReturnType = new TypeToken<List<Order>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -511,13 +603,26 @@ public class OrdersApi {
     /**
      * This API helps you to view all the orders. (asynchronously)
      * 
-     * @param page Current page of the collection. Default is 1. (optional)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional)
-     * @param after Limit response to resources published after a given ISO8601 compliant date (eg. 2023-05-07T10:00:00). (optional)
-     * @param before Limit response to resources published before a given ISO8601 compliant date (eg. 2023-10-07T12:10:16). (optional)
-     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (eg. 2023-05-07T10:00:00). (optional)
-     * @param status Limit result set to orders assigned a specific status. Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any. (optional)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to resources published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to resources published before a given ISO8601 compliant date. (optional)
+     * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date. (optional)
+     * @param modifiedBefore Limit response to resources modified before a given ISO8601 compliant date. (optional)
+     * @param datesAreGmt Whether to consider GMT post dates when limiting response by published or modified date. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @param include Limit result set to specific ids. (optional)
+     * @param offset Offset the result set by a specific number of items. (optional)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by object attribute. Options: date, modified, id, include, title and slug. Default is date. (optional, default to date)
+     * @param parent Limit result set to those of particular parent IDs. (optional)
+     * @param parentExclude Limit result set to all items except those of a particular parent ID. (optional)
+     * @param status Limit result set to orders assigned a specific status. Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any. (optional)
+     * @param customer Limit result set to orders assigned a specific customer. (optional)
+     * @param product Limit result set to orders assigned a specific product. (optional)
+     * @param dp Number of decimal points to use in each resource. Default is 2. (optional, default to 2)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -530,9 +635,9 @@ public class OrdersApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllOrdersAsync(Integer page, Integer perPage, String after, String before, String modifiedAfter, List<String> status, String order, final ApiCallback<List<Order>> _callback) throws ApiException {
+    public okhttp3.Call listAllOrdersAsync(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp, final ApiCallback<List<Order>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listAllOrdersValidateBeforeCall(page, perPage, after, before, modifiedAfter, status, order, _callback);
+        okhttp3.Call localVarCall = listAllOrdersValidateBeforeCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, status, customer, product, dp, _callback);
         Type localVarReturnType = new TypeToken<List<Order>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -668,6 +773,151 @@ public class OrdersApi {
     public okhttp3.Call retrieveOrderByIdAsync(Integer orderId, final ApiCallback<Order> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = retrieveOrderByIdValidateBeforeCall(orderId, _callback);
+        Type localVarReturnType = new TypeToken<Order>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for updateOrderById
+     * @param orderId ID of order to update (required)
+     * @param order Order object with data to update. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns updated order. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateOrderByIdCall(Integer orderId, Order order, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = order;
+
+        // create path and map variables
+        String localVarPath = "/orders/{orderId}"
+            .replace("{" + "orderId" + "}", localVarApiClient.escapeString(orderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call updateOrderByIdValidateBeforeCall(Integer orderId, Order order, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling updateOrderById(Async)");
+        }
+
+        // verify the required parameter 'order' is set
+        if (order == null) {
+            throw new ApiException("Missing the required parameter 'order' when calling updateOrderById(Async)");
+        }
+
+        return updateOrderByIdCall(orderId, order, _callback);
+
+    }
+
+    /**
+     * This API lets you make changes to an order.
+     * 
+     * @param orderId ID of order to update (required)
+     * @param order Order object with data to update. (required)
+     * @return Order
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns updated order. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public Order updateOrderById(Integer orderId, Order order) throws ApiException {
+        ApiResponse<Order> localVarResp = updateOrderByIdWithHttpInfo(orderId, order);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API lets you make changes to an order.
+     * 
+     * @param orderId ID of order to update (required)
+     * @param order Order object with data to update. (required)
+     * @return ApiResponse&lt;Order&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns updated order. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Order> updateOrderByIdWithHttpInfo(Integer orderId, Order order) throws ApiException {
+        okhttp3.Call localVarCall = updateOrderByIdValidateBeforeCall(orderId, order, null);
+        Type localVarReturnType = new TypeToken<Order>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API lets you make changes to an order. (asynchronously)
+     * 
+     * @param orderId ID of order to update (required)
+     * @param order Order object with data to update. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns updated order. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call updateOrderByIdAsync(Integer orderId, Order order, final ApiCallback<Order> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateOrderByIdValidateBeforeCall(orderId, order, _callback);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -366,17 +366,17 @@ public class CustomersApi {
     }
     /**
      * Build call for listAllCustomers
-     * @param context Scope under which the request is made; determines fields present in response. (optional)
-     * @param page Current page of the collection. (optional, default to 1)
-     * @param perPage Maximum number of items to be returned in result set. (optional, default to 10)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending (asc as default). (optional)
-     * @param orderby Sort collection by object attribute. (optional)
-     * @param email Limit result set to resources with a specific email address. (optional)
-     * @param role Limit result set to resources with a specific role. Default is customer. (optional)
+     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
+     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
+     * @param email Limit result set to resources with a specific email. (optional)
+     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -431,11 +431,11 @@ public class CustomersApi {
         }
 
         if (exclude != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "exclude", exclude));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
         }
 
         if (include != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "include", include));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "include", include));
         }
 
         if (offset != null) {
@@ -486,17 +486,17 @@ public class CustomersApi {
     /**
      * This API helps you to view all the customers.
      * 
-     * @param context Scope under which the request is made; determines fields present in response. (optional)
-     * @param page Current page of the collection. (optional, default to 1)
-     * @param perPage Maximum number of items to be returned in result set. (optional, default to 10)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending (asc as default). (optional)
-     * @param orderby Sort collection by object attribute. (optional)
-     * @param email Limit result set to resources with a specific email address. (optional)
-     * @param role Limit result set to resources with a specific role. Default is customer. (optional)
+     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
+     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
+     * @param email Limit result set to resources with a specific email. (optional)
+     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
      * @return List&lt;Customer&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -516,17 +516,17 @@ public class CustomersApi {
     /**
      * This API helps you to view all the customers.
      * 
-     * @param context Scope under which the request is made; determines fields present in response. (optional)
-     * @param page Current page of the collection. (optional, default to 1)
-     * @param perPage Maximum number of items to be returned in result set. (optional, default to 10)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending (asc as default). (optional)
-     * @param orderby Sort collection by object attribute. (optional)
-     * @param email Limit result set to resources with a specific email address. (optional)
-     * @param role Limit result set to resources with a specific role. Default is customer. (optional)
+     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
+     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
+     * @param email Limit result set to resources with a specific email. (optional)
+     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
      * @return ApiResponse&lt;List&lt;Customer&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -547,17 +547,17 @@ public class CustomersApi {
     /**
      * This API helps you to view all the customers. (asynchronously)
      * 
-     * @param context Scope under which the request is made; determines fields present in response. (optional)
-     * @param page Current page of the collection. (optional, default to 1)
-     * @param perPage Maximum number of items to be returned in result set. (optional, default to 10)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending (asc as default). (optional)
-     * @param orderby Sort collection by object attribute. (optional)
-     * @param email Limit result set to resources with a specific email address. (optional)
-     * @param role Limit result set to resources with a specific role. Default is customer. (optional)
+     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
+     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
+     * @param email Limit result set to resources with a specific email. (optional)
+     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
