@@ -423,7 +423,7 @@ public class OrdersApi {
         }
 
         if (status != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "status", status));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "status", status));
         }
 
         if (order != null) {

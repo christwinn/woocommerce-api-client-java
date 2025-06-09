@@ -434,7 +434,7 @@ public class ProductsApi {
         }
 
         if (status != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "status", status));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "status", status));
         }
 
         if (stockStatus != null) {
