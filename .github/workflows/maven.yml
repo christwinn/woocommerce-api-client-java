@@ -26,4 +26,6 @@ jobs:
       run: mvn deploy -Dmaven.javadoc.skip=true -s .github/settings.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_ACTOR: ${{ github.actor }} 
+        GITHUB_ACTOR: ${{ github.actor }}
+        MAVEN_USERNAME: ${{ github.actor }}
+        MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }} 
