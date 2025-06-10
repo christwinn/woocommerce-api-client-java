@@ -201,4 +201,17 @@
         </developer>
     </developers>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/wtx-labs/woocommerce-api-client-java</url>
+        </repository>
+        <snapshotRepository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/wtx-labs/woocommerce-api-client-java</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
