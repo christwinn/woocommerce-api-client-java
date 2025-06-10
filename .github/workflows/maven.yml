@@ -17,4 +17,4 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
     - name: Build
-      run: mvn clean verify 
+      run: mvn clean verify -Dmaven.javadoc.skip=true 
