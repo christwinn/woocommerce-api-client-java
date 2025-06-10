@@ -1,4 +1,4 @@
-name: Build
+name: Build and Publish
 
 on:
   push:
@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 8
@@ -17,4 +20,10 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
     - name: Build
-      run: mvn clean verify -Dmaven.javadoc.skip=true 
+      run: mvn clean verify -Dmaven.javadoc.skip=true
+    - name: Publish Package
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: mvn deploy -Dmaven.javadoc.skip=true -s .github/settings.xml
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_ACTOR: ${{ github.actor }} 
