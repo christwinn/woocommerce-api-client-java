@@ -24,19 +24,12 @@ jobs:
         run: mvn -B clean package --file pom.xml
 
       - name: Create Release
-        id: create_release
         uses: softprops/action-gh-release@v1
         with:
           name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
           generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Release Asset
-        uses: softprops/action-gh-release@v1
-        with:
           files: |
             target/woocommerce-api-client-0.9.0.jar
             target/woocommerce-api-client-0.9.0-sources.jar
