@@ -6,6 +6,12 @@ import wtx.woocommerce.api.client.CustomersApi;
 import wtx.woocommerce.api.client.invoker.ApiException;
 import wtx.woocommerce.api.client.model.Customer;
 
+/**
+ * WooCommerce API Client - Usage Demo
+ * @author WTX Labs
+ * @see https://github.com/wtx-labs/woocommerce-api-client-java
+ * @license MIT
+ */
 public class WooCommerceApiClientUsageDemo {
 
     // TODO: Set your WooCommerce API base path!
@@ -14,7 +20,6 @@ public class WooCommerceApiClientUsageDemo {
     private static final String API_PASSWORD = "TODO_SET_API_PASSWORD";
 
     public static void main(String[] args) {
-
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
 
         // Use WooCommerceApiClient(true) if you need to log API communication messages.
@@ -27,7 +32,6 @@ public class WooCommerceApiClientUsageDemo {
         CustomersApi customersApi = new CustomersApi(apiClient);
 
         try {
-
             List<Customer> customers = customersApi.listAllCustomers(null, null, null, null, null, null, null, null, null, null, null);
 
             // Example list of customer's emails:
@@ -38,7 +42,5 @@ public class WooCommerceApiClientUsageDemo {
         }
 
         System.out.println("<<< The WooCommerceApiClientUsageDemo has been finished.");
-
     }
-
 }
