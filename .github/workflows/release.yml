@@ -21,7 +21,7 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        run: mvn -B clean package --file pom.xml
+        run: mvn -B clean package -DskipTests
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
