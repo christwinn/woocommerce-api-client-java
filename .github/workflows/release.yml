@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,7 +23,10 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        run: mvn -B clean package -DskipTests
+        run: |
+          mvn -B clean package -DskipTests
+          mvn -B javadoc:javadoc
+          mvn -B source:jar
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
@@ -34,5 +39,6 @@ jobs:
             target/woocommerce-api-client-0.9.0.jar
             target/woocommerce-api-client-0.9.0-sources.jar
             target/woocommerce-api-client-0.9.0-javadoc.jar
+            target/site/apidocs/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
