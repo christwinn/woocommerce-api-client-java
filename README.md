@@ -20,8 +20,6 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 
 ## 🎯 Currently Implemented Features
 
-## 🎯 Currently Implemented Features
-
 - ✅ Customers API
   - List all customers
   - Create a new customer
