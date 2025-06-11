@@ -13,6 +13,16 @@
 
 package pl.wtx.woocommerce.api.client.invoker;
 
+import okhttp3.*;
+import okhttp3.internal.http.HttpMethod;
+import okhttp3.internal.tls.OkHostnameVerifier;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor.Level;
+import okio.Buffer;
+import okio.BufferedSink;
+import okio.Okio;
+
+import javax.net.ssl.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,52 +37,24 @@ import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.Interceptor;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.internal.http.HttpMethod;
-import okhttp3.internal.tls.OkHostnameVerifier;
-import okhttp3.logging.HttpLoggingInterceptor;
-import okhttp3.logging.HttpLoggingInterceptor.Level;
-import okio.Buffer;
-import okio.BufferedSink;
-import okio.Okio;
-import pl.wtx.woocommerce.api.client.invoker.auth.ApiKeyAuth;
 import pl.wtx.woocommerce.api.client.invoker.auth.Authentication;
 import pl.wtx.woocommerce.api.client.invoker.auth.HttpBasicAuth;
+import pl.wtx.woocommerce.api.client.invoker.auth.HttpBearerAuth;
+import pl.wtx.woocommerce.api.client.invoker.auth.ApiKeyAuth;
 
 /**
  * <p>ApiClient class.</p>
@@ -97,6 +79,9 @@ public class ApiClient {
     private Map<String, Authentication> authentications;
 
     private DateFormat dateFormat;
+    private DateFormat datetimeFormat;
+    private boolean lenientDatetimeFormat;
+    private int dateLength;
 
     private InputStream sslCaCert;
     private boolean verifyingSsl;
@@ -906,7 +891,7 @@ public class ApiClient {
      * @param response HTTP response
      * @param returnType The type of the Java object
      * @return The deserialized Java object
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If fail to deserialize response body, i.e. cannot read response body
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If fail to deserialize response body, i.e. cannot read response body
      *   or the Content-Type of the response is not supported.
      */
     @SuppressWarnings("unchecked")
@@ -967,7 +952,7 @@ public class ApiClient {
      * @param obj The Java object
      * @param contentType The request Content-Type
      * @return The serialized request body
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If fail to serialize the given object
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If fail to serialize the given object
      */
     public RequestBody serialize(Object obj, String contentType) throws ApiException {
         if (obj instanceof byte[]) {
@@ -997,7 +982,7 @@ public class ApiClient {
      * Download file from the given response.
      *
      * @param response An instance of the Response object
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If fail to read file content from response and write to disk
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If fail to read file content from response and write to disk
      * @return Downloaded file
      */
     public File downloadFileFromResponse(Response response) throws ApiException {
@@ -1061,7 +1046,7 @@ public class ApiClient {
      * @param <T> Type
      * @param call An instance of the Call object
      * @return ApiResponse&lt;T&gt;
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If fail to execute the call
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If fail to execute the call
      */
     public <T> ApiResponse<T> execute(Call call) throws ApiException {
         return execute(call, null);
@@ -1076,7 +1061,7 @@ public class ApiClient {
      * @return ApiResponse object containing response status, headers and
      *   data, which is a Java object deserialized from response body and would be null
      *   when returnType is null.
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If fail to execute the call
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If fail to execute the call
      */
     public <T> ApiResponse<T> execute(Call call, Type returnType) throws ApiException {
         try {
@@ -1140,7 +1125,7 @@ public class ApiClient {
      * @param response Response
      * @param returnType Return type
      * @return Type
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If the response has an unsuccessful status code or
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If the response has an unsuccessful status code or
      *                      fail to deserialize the response body
      */
     public <T> T handleResponse(Response response, Type returnType) throws ApiException {
@@ -1187,7 +1172,7 @@ public class ApiClient {
      * @param authNames The authentications to apply
      * @param callback Callback for upload/download progress
      * @return The HTTP call
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If fail to serialize the request body object
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If fail to serialize the request body object
      */
     public Call buildCall(String baseUrl, String path, String method, List<Pair> queryParams, List<Pair> collectionQueryParams, Object body, Map<String, String> headerParams, Map<String, String> cookieParams, Map<String, Object> formParams, String[] authNames, ApiCallback callback) throws ApiException {
         Request request = buildRequest(baseUrl, path, method, queryParams, collectionQueryParams, body, headerParams, cookieParams, formParams, authNames, callback);
@@ -1210,7 +1195,7 @@ public class ApiClient {
      * @param authNames The authentications to apply
      * @param callback Callback for upload/download progress
      * @return The HTTP request
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If fail to serialize the request body object
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If fail to serialize the request body object
      */
     public Request buildRequest(String baseUrl, String path, String method, List<Pair> queryParams, List<Pair> collectionQueryParams, Object body, Map<String, String> headerParams, Map<String, String> cookieParams, Map<String, Object> formParams, String[] authNames, ApiCallback callback) throws ApiException {
         final String url = buildUrl(baseUrl, path, queryParams, collectionQueryParams);
@@ -1374,7 +1359,7 @@ public class ApiClient {
      * @param payload HTTP request body
      * @param method HTTP method
      * @param uri URI
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If fails to update the parameters
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If fails to update the parameters
      */
     public void updateParamsForAuth(String[] authNames, List<Pair> queryParams, Map<String, String> headerParams,
                                     Map<String, String> cookieParams, String payload, String method, URI uri) throws ApiException {
@@ -1567,7 +1552,7 @@ public class ApiClient {
      *
      * @param requestBody The HTTP request object
      * @return The string representation of the HTTP request body
-     * @throws wtx.woocommerce.api.client.invoker.ApiException If fail to serialize the request body object into a string
+     * @throws pl.wtx.woocommerce.api.client.invoker.ApiException If fail to serialize the request body object into a string
      */
     private String requestBodyToString(RequestBody requestBody) throws ApiException {
         if (requestBody != null) {

@@ -429,3 +429,4 @@ public class OrderTaxLine {
     return JSON.getGson().toJson(this);
   }
 }
+

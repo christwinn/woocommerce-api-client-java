@@ -50,8 +50,6 @@ import java.util.Map;
 import java.util.Set;
 
 import pl.wtx.woocommerce.api.client.invoker.JSON;
-import pl.wtx.woocommerce.api.client.model.*;
-import pl.wtx.woocommerce.api.client.invoker.*;
 
 /**
  * Customer

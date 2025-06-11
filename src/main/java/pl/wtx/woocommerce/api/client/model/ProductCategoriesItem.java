@@ -21,7 +21,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import pl.wtx.woocommerce.api.client.model.ApiErrorData;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,82 +46,82 @@ import java.util.Set;
 import pl.wtx.woocommerce.api.client.invoker.JSON;
 
 /**
- * ApiError
+ * ProductCategoriesItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
-public class ApiError {
-  public static final String SERIALIZED_NAME_CODE = "code";
-  @SerializedName(SERIALIZED_NAME_CODE)
+public class ProductCategoriesItem {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
-  private String code;
+  private Integer id;
 
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nullable
-  private String message;
+  private String name;
 
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
+  public static final String SERIALIZED_NAME_SLUG = "slug";
+  @SerializedName(SERIALIZED_NAME_SLUG)
   @javax.annotation.Nullable
-  private ApiErrorData data;
+  private String slug;
 
-  public ApiError() {
+  public ProductCategoriesItem() {
   }
 
-  public ApiError code(@javax.annotation.Nullable String code) {
-    this.code = code;
+  public ProductCategoriesItem id(@javax.annotation.Nullable Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get code
-   * @return code
+   * Category ID.
+   * @return id
    */
   @javax.annotation.Nullable
-  public String getCode() {
-    return code;
+  public Integer getId() {
+    return id;
   }
 
-  public void setCode(@javax.annotation.Nullable String code) {
-    this.code = code;
+  public void setId(@javax.annotation.Nullable Integer id) {
+    this.id = id;
   }
 
 
-  public ApiError message(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public ProductCategoriesItem name(@javax.annotation.Nullable String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get message
-   * @return message
+   * Category name. read-only
+   * @return name
    */
   @javax.annotation.Nullable
-  public String getMessage() {
-    return message;
+  public String getName() {
+    return name;
   }
 
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
   }
 
 
-  public ApiError data(@javax.annotation.Nullable ApiErrorData data) {
-    this.data = data;
+  public ProductCategoriesItem slug(@javax.annotation.Nullable String slug) {
+    this.slug = slug;
     return this;
   }
 
   /**
-   * Get data
-   * @return data
+   * Category slug. read-only
+   * @return slug
    */
   @javax.annotation.Nullable
-  public ApiErrorData getData() {
-    return data;
+  public String getSlug() {
+    return slug;
   }
 
-  public void setData(@javax.annotation.Nullable ApiErrorData data) {
-    this.data = data;
+  public void setSlug(@javax.annotation.Nullable String slug) {
+    this.slug = slug;
   }
 
 
@@ -135,24 +134,24 @@ public class ApiError {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ApiError apiError = (ApiError) o;
-    return Objects.equals(this.code, apiError.code) &&
-        Objects.equals(this.message, apiError.message) &&
-        Objects.equals(this.data, apiError.data);
+    ProductCategoriesItem productCategoriesItem = (ProductCategoriesItem) o;
+    return Objects.equals(this.id, productCategoriesItem.id) &&
+        Objects.equals(this.name, productCategoriesItem.name) &&
+        Objects.equals(this.slug, productCategoriesItem.slug);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, message, data);
+    return Objects.hash(id, name, slug);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ApiError {\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("class ProductCategoriesItem {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -175,9 +174,9 @@ public class ApiError {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("code");
-    openapiFields.add("message");
-    openapiFields.add("data");
+    openapiFields.add("id");
+    openapiFields.add("name");
+    openapiFields.add("slug");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -187,32 +186,28 @@ public class ApiError {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ApiError
+   * @throws IOException if the JSON Element is invalid with respect to ProductCategoriesItem
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!ApiError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ApiError is not found in the empty JSON string", ApiError.openapiRequiredFields.toString()));
+        if (!ProductCategoriesItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ProductCategoriesItem is not found in the empty JSON string", ProductCategoriesItem.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ApiError.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ApiError` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!ProductCategoriesItem.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductCategoriesItem` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("code") != null && !jsonObj.get("code").isJsonNull()) && !jsonObj.get("code").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("code").toString()));
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
-      }
-      // validate the optional field `data`
-      if (jsonObj.get("data") != null && !jsonObj.get("data").isJsonNull()) {
-        ApiErrorData.validateJsonElement(jsonObj.get("data"));
+      if ((jsonObj.get("slug") != null && !jsonObj.get("slug").isJsonNull()) && !jsonObj.get("slug").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `slug` to be a primitive type in the JSON string but got `%s`", jsonObj.get("slug").toString()));
       }
   }
 
@@ -220,22 +215,22 @@ public class ApiError {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ApiError.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ApiError' and its subtypes
+       if (!ProductCategoriesItem.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ProductCategoriesItem' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ApiError> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ApiError.class));
+       final TypeAdapter<ProductCategoriesItem> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ProductCategoriesItem.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ApiError>() {
+       return (TypeAdapter<T>) new TypeAdapter<ProductCategoriesItem>() {
            @Override
-           public void write(JsonWriter out, ApiError value) throws IOException {
+           public void write(JsonWriter out, ProductCategoriesItem value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ApiError read(JsonReader in) throws IOException {
+           public ProductCategoriesItem read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -246,18 +241,18 @@ public class ApiError {
   }
 
   /**
-   * Create an instance of ApiError given an JSON string
+   * Create an instance of ProductCategoriesItem given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of ApiError
-   * @throws IOException if the JSON string is invalid with respect to ApiError
+   * @return An instance of ProductCategoriesItem
+   * @throws IOException if the JSON string is invalid with respect to ProductCategoriesItem
    */
-  public static ApiError fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ApiError.class);
+  public static ProductCategoriesItem fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ProductCategoriesItem.class);
   }
 
   /**
-   * Convert an instance of ApiError to an JSON string
+   * Convert an instance of ProductCategoriesItem to an JSON string
    *
    * @return JSON string
    */

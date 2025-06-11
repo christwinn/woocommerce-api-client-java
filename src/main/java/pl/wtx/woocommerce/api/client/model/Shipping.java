@@ -65,13 +65,13 @@ public class Shipping {
   @javax.annotation.Nullable
   private String company;
 
-  public static final String SERIALIZED_NAME_ADDRESS_1 = "address_1";
-  @SerializedName(SERIALIZED_NAME_ADDRESS_1)
+  public static final String SERIALIZED_NAME_ADDRESS1 = "address_1";
+  @SerializedName(SERIALIZED_NAME_ADDRESS1)
   @javax.annotation.Nullable
   private String address1;
 
-  public static final String SERIALIZED_NAME_ADDRESS_2 = "address_2";
-  @SerializedName(SERIALIZED_NAME_ADDRESS_2)
+  public static final String SERIALIZED_NAME_ADDRESS2 = "address_2";
+  @SerializedName(SERIALIZED_NAME_ADDRESS2)
   @javax.annotation.Nullable
   private String address2;
 
@@ -380,39 +380,67 @@ public class Shipping {
       if ((jsonObj.get("address_2") != null && !jsonObj.get("address_2").isJsonNull()) && !jsonObj.get("address_2").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `address_2` to be a primitive type in the JSON string but got `%s`", jsonObj.get("address_2").toString()));
       }
+      if ((jsonObj.get("city") != null && !jsonObj.get("city").isJsonNull()) && !jsonObj.get("city").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("city").toString()));
+      }
+      if ((jsonObj.get("state") != null && !jsonObj.get("state").isJsonNull()) && !jsonObj.get("state").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
+      }
+      if ((jsonObj.get("postcode") != null && !jsonObj.get("postcode").isJsonNull()) && !jsonObj.get("postcode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `postcode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postcode").toString()));
+      }
+      if ((jsonObj.get("country") != null && !jsonObj.get("country").isJsonNull()) && !jsonObj.get("country").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `country` to be a primitive type in the JSON string but got `%s`", jsonObj.get("country").toString()));
+      }
   }
 
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Shipping.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Shipping' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Shipping> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Shipping.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Shipping>() {
+           @Override
+           public void write(JsonWriter out, Shipping value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Shipping read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+  /**
+   * Create an instance of Shipping given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Shipping
+   * @throws IOException if the JSON string is invalid with respect to Shipping
+   */
   public static Shipping fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Shipping.class);
   }
 
+  /**
+   * Convert an instance of Shipping to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
-
-  public static class CustomTypeAdapterFactory implements com.google.gson.TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> com.google.gson.TypeAdapter<T> create(com.google.gson.Gson gson, com.google.gson.reflect.TypeToken<T> type) {
-      if (!Shipping.class.isAssignableFrom(type.getRawType())) {
-        return null; // this class only serializes 'Shipping' and its subtypes
-      }
-      final com.google.gson.TypeAdapter<com.google.gson.JsonElement> elementAdapter = gson.getAdapter(com.google.gson.JsonElement.class);
-      final com.google.gson.TypeAdapter<Shipping> thisAdapter = gson.getDelegateAdapter(this, com.google.gson.reflect.TypeToken.get(Shipping.class));
-
-      return (com.google.gson.TypeAdapter<T>) new com.google.gson.TypeAdapter<Shipping>() {
-        @Override
-        public void write(com.google.gson.stream.JsonWriter out, Shipping value) throws java.io.IOException {
-          com.google.gson.JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-          elementAdapter.write(out, obj);
-        }
-
-        @Override
-        public Shipping read(com.google.gson.stream.JsonReader in) throws java.io.IOException {
-          com.google.gson.JsonElement jsonElement = elementAdapter.read(in);
-          return thisAdapter.fromJsonTree(jsonElement);
-        }
-      }.nullSafe();
-    }
-  }
 }
+

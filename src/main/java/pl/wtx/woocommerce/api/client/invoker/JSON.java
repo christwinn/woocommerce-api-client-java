@@ -40,31 +40,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
 
-import pl.wtx.woocommerce.api.client.model.ApiError;
-import pl.wtx.woocommerce.api.client.model.ApiErrorData;
-import pl.wtx.woocommerce.api.client.model.Billing;
-import pl.wtx.woocommerce.api.client.model.Customer;
-import pl.wtx.woocommerce.api.client.model.MetaData;
-import pl.wtx.woocommerce.api.client.model.Order;
-import pl.wtx.woocommerce.api.client.model.OrderCouponLine;
-import pl.wtx.woocommerce.api.client.model.OrderFeeLine;
-import pl.wtx.woocommerce.api.client.model.OrderLineItem;
-import pl.wtx.woocommerce.api.client.model.OrderRefund;
-import pl.wtx.woocommerce.api.client.model.OrderShippingLine;
-import pl.wtx.woocommerce.api.client.model.OrderTaxLine;
-import pl.wtx.woocommerce.api.client.model.Product;
-import pl.wtx.woocommerce.api.client.model.ProductAttribute;
-import pl.wtx.woocommerce.api.client.model.ProductCategory;
-import pl.wtx.woocommerce.api.client.model.ProductDimension;
-import pl.wtx.woocommerce.api.client.model.ProductDownload;
-import pl.wtx.woocommerce.api.client.model.ProductImage;
-import pl.wtx.woocommerce.api.client.model.ProductTag;
-import pl.wtx.woocommerce.api.client.model.ProductVariation;
-import pl.wtx.woocommerce.api.client.model.ReportOrderTotalSummary;
-import pl.wtx.woocommerce.api.client.model.ReportSalesSummary;
-import pl.wtx.woocommerce.api.client.model.ReportSalesSummaryItem;
-import pl.wtx.woocommerce.api.client.model.Shipping;
-
 /*
  * A JSON utility class
  *
@@ -132,6 +107,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderTaxLine.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Product.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ProductAttribute.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ProductCategoriesItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ProductCategory.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ProductDimension.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ProductDownload.CustomTypeAdapterFactory());

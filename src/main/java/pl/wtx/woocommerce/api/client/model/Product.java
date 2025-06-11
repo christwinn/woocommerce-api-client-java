@@ -26,7 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 import pl.wtx.woocommerce.api.client.model.MetaData;
 import pl.wtx.woocommerce.api.client.model.ProductAttribute;
-import pl.wtx.woocommerce.api.client.model.ProductCategory;
+import pl.wtx.woocommerce.api.client.model.ProductCategoriesItem;
 import pl.wtx.woocommerce.api.client.model.ProductDimension;
 import pl.wtx.woocommerce.api.client.model.ProductDownload;
 import pl.wtx.woocommerce.api.client.model.ProductImage;
@@ -343,7 +343,7 @@ public class Product {
   public static final String SERIALIZED_NAME_CATEGORIES = "categories";
   @SerializedName(SERIALIZED_NAME_CATEGORIES)
   @javax.annotation.Nullable
-  private List<ProductCategory> categories = new ArrayList<>();
+  private List<ProductCategoriesItem> categories = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -1484,12 +1484,12 @@ public class Product {
   }
 
 
-  public Product categories(@javax.annotation.Nullable List<ProductCategory> categories) {
+  public Product categories(@javax.annotation.Nullable List<ProductCategoriesItem> categories) {
     this.categories = categories;
     return this;
   }
 
-  public Product addCategoriesItem(ProductCategory categoriesItem) {
+  public Product addCategoriesItem(ProductCategoriesItem categoriesItem) {
     if (this.categories == null) {
       this.categories = new ArrayList<>();
     }
@@ -1502,11 +1502,11 @@ public class Product {
    * @return categories
    */
   @javax.annotation.Nullable
-  public List<ProductCategory> getCategories() {
+  public List<ProductCategoriesItem> getCategories() {
     return categories;
   }
 
-  public void setCategories(@javax.annotation.Nullable List<ProductCategory> categories) {
+  public void setCategories(@javax.annotation.Nullable List<ProductCategoriesItem> categories) {
     this.categories = categories;
   }
 
@@ -2092,7 +2092,7 @@ public class Product {
 
           // validate the optional field `categories` (array)
           for (int i = 0; i < jsonArraycategories.size(); i++) {
-            ProductCategory.validateJsonElement(jsonArraycategories.get(i));
+            ProductCategoriesItem.validateJsonElement(jsonArraycategories.get(i));
           };
         }
       }

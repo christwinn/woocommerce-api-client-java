@@ -23,7 +23,6 @@ public class WooCommerceApiClient extends ApiClient {
     public WooCommerceApiClient(boolean enableLoggingApiMessages) {
         JSON.setGson(GsonConfig.createGson());
         setUserAgent("WooCommerceApiClient (by wtx-labs)");
-
         if (enableLoggingApiMessages) {
             setHttpClient(OkHttpClientConfig.configureClient(getHttpClient()));
         }

@@ -20,6 +20,7 @@ public class WooCommerceApiClientUsageDemo {
     private static final String API_PASSWORD = "TODO_SET_API_PASSWORD";
 
     public static void main(String[] args) {
+
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
 
         // Use WooCommerceApiClient(true) if you need to log API communication messages.
@@ -42,5 +43,7 @@ public class WooCommerceApiClientUsageDemo {
         }
 
         System.out.println("<<< The WooCommerceApiClientUsageDemo has been finished.");
+
     }
+
 }

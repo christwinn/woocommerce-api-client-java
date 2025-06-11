@@ -38,6 +38,12 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
   - Get a specific product variation
   - Update a product variation
   - Delete a product variation
+- ✅ Product Categories API
+  - List all product categories
+  - Create a new product category
+  - Get a specific product category
+  - Update a product category
+  - Delete a product category
 - ✅ Orders API
   - List all orders
   - Create a new order
@@ -57,7 +63,7 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 
 ## 📦 Version Information
 
-- **Current Version**: `0.9.3`
+- **Current Version**: `0.9.4`
 - **Supported WooCommerce API Version**: `v3`
 - **Java Compatibility**: Java 8+
 
@@ -87,7 +93,7 @@ Then add the locally built artifact to your project:
 <dependency>
     <groupId>pl.wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.3</version>
+    <version>0.9.4</version>
 </dependency>
 ```
 
@@ -152,7 +158,7 @@ public class WooCommerceApiClientUsageDemo {
 
 ## 📊 Project Statistics
 
-- ⭐ 3 GitHub stars
+- ⭐ 5 GitHub stars
 - 🔄 Regular updates and improvements
 - 👥 Open for community contributions
 

@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import pl.wtx.woocommerce.api.client.model.ProductImage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,7 +58,7 @@ public class ProductCategory {
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
@@ -65,16 +66,106 @@ public class ProductCategory {
   @javax.annotation.Nullable
   private String slug;
 
+  public static final String SERIALIZED_NAME_PARENT = "parent";
+  @SerializedName(SERIALIZED_NAME_PARENT)
+  @javax.annotation.Nullable
+  private Integer parent;
+
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
+  private String description;
+
+  /**
+   * Category archive display type.
+   */
+  @JsonAdapter(DisplayEnum.Adapter.class)
+  public enum DisplayEnum {
+    DEFAULT("default"),
+    
+    PRODUCTS("products"),
+    
+    SUBCATEGORIES("subcategories"),
+    
+    BOTH("both");
+
+    private String value;
+
+    DisplayEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DisplayEnum fromValue(String value) {
+      for (DisplayEnum b : DisplayEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<DisplayEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DisplayEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DisplayEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return DisplayEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      DisplayEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_DISPLAY = "display";
+  @SerializedName(SERIALIZED_NAME_DISPLAY)
+  @javax.annotation.Nullable
+  private DisplayEnum display = DisplayEnum.DEFAULT;
+
+  public static final String SERIALIZED_NAME_IMAGE = "image";
+  @SerializedName(SERIALIZED_NAME_IMAGE)
+  @javax.annotation.Nullable
+  private ProductImage image;
+
+  public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
+  @SerializedName(SERIALIZED_NAME_MENU_ORDER)
+  @javax.annotation.Nullable
+  private Integer menuOrder;
+
+  public static final String SERIALIZED_NAME_COUNT = "count";
+  @SerializedName(SERIALIZED_NAME_COUNT)
+  @javax.annotation.Nullable
+  private Integer count;
+
   public ProductCategory() {
   }
 
-  public ProductCategory id(@javax.annotation.Nullable Integer id) {
+  public ProductCategory(
+     Integer id, 
+     Integer count
+  ) {
+    this();
     this.id = id;
-    return this;
+    this.count = count;
   }
 
   /**
-   * Category ID.
+   * Unique identifier for the resource.
    * @return id
    */
   @javax.annotation.Nullable
@@ -82,26 +173,23 @@ public class ProductCategory {
     return id;
   }
 
-  public void setId(@javax.annotation.Nullable Integer id) {
-    this.id = id;
-  }
 
 
-  public ProductCategory name(@javax.annotation.Nullable String name) {
+  public ProductCategory name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * Category name. read-only
+   * Category name.
    * @return name
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getName() {
     return name;
   }
 
-  public void setName(@javax.annotation.Nullable String name) {
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
@@ -112,7 +200,7 @@ public class ProductCategory {
   }
 
   /**
-   * Category slug. read-only
+   * An alphanumeric identifier for the resource unique to its type.
    * @return slug
    */
   @javax.annotation.Nullable
@@ -123,6 +211,112 @@ public class ProductCategory {
   public void setSlug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
   }
+
+
+  public ProductCategory parent(@javax.annotation.Nullable Integer parent) {
+    this.parent = parent;
+    return this;
+  }
+
+  /**
+   * The ID for the parent of the resource.
+   * @return parent
+   */
+  @javax.annotation.Nullable
+  public Integer getParent() {
+    return parent;
+  }
+
+  public void setParent(@javax.annotation.Nullable Integer parent) {
+    this.parent = parent;
+  }
+
+
+  public ProductCategory description(@javax.annotation.Nullable String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * HTML description of the resource.
+   * @return description
+   */
+  @javax.annotation.Nullable
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = description;
+  }
+
+
+  public ProductCategory display(@javax.annotation.Nullable DisplayEnum display) {
+    this.display = display;
+    return this;
+  }
+
+  /**
+   * Category archive display type.
+   * @return display
+   */
+  @javax.annotation.Nullable
+  public DisplayEnum getDisplay() {
+    return display;
+  }
+
+  public void setDisplay(@javax.annotation.Nullable DisplayEnum display) {
+    this.display = display;
+  }
+
+
+  public ProductCategory image(@javax.annotation.Nullable ProductImage image) {
+    this.image = image;
+    return this;
+  }
+
+  /**
+   * Get image
+   * @return image
+   */
+  @javax.annotation.Nullable
+  public ProductImage getImage() {
+    return image;
+  }
+
+  public void setImage(@javax.annotation.Nullable ProductImage image) {
+    this.image = image;
+  }
+
+
+  public ProductCategory menuOrder(@javax.annotation.Nullable Integer menuOrder) {
+    this.menuOrder = menuOrder;
+    return this;
+  }
+
+  /**
+   * Menu order, used to custom sort the resource.
+   * @return menuOrder
+   */
+  @javax.annotation.Nullable
+  public Integer getMenuOrder() {
+    return menuOrder;
+  }
+
+  public void setMenuOrder(@javax.annotation.Nullable Integer menuOrder) {
+    this.menuOrder = menuOrder;
+  }
+
+
+  /**
+   * Number of published products for the resource.
+   * @return count
+   */
+  @javax.annotation.Nullable
+  public Integer getCount() {
+    return count;
+  }
+
 
 
 
@@ -137,12 +331,18 @@ public class ProductCategory {
     ProductCategory productCategory = (ProductCategory) o;
     return Objects.equals(this.id, productCategory.id) &&
         Objects.equals(this.name, productCategory.name) &&
-        Objects.equals(this.slug, productCategory.slug);
+        Objects.equals(this.slug, productCategory.slug) &&
+        Objects.equals(this.parent, productCategory.parent) &&
+        Objects.equals(this.description, productCategory.description) &&
+        Objects.equals(this.display, productCategory.display) &&
+        Objects.equals(this.image, productCategory.image) &&
+        Objects.equals(this.menuOrder, productCategory.menuOrder) &&
+        Objects.equals(this.count, productCategory.count);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, slug);
+    return Objects.hash(id, name, slug, parent, description, display, image, menuOrder, count);
   }
 
   @Override
@@ -152,6 +352,12 @@ public class ProductCategory {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
+    sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    display: ").append(toIndentedString(display)).append("\n");
+    sb.append("    image: ").append(toIndentedString(image)).append("\n");
+    sb.append("    menuOrder: ").append(toIndentedString(menuOrder)).append("\n");
+    sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -177,9 +383,16 @@ public class ProductCategory {
     openapiFields.add("id");
     openapiFields.add("name");
     openapiFields.add("slug");
+    openapiFields.add("parent");
+    openapiFields.add("description");
+    openapiFields.add("display");
+    openapiFields.add("image");
+    openapiFields.add("menu_order");
+    openapiFields.add("count");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("name");
   }
 
   /**
@@ -202,12 +415,33 @@ public class ProductCategory {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductCategory` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ProductCategory.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+      if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
       if ((jsonObj.get("slug") != null && !jsonObj.get("slug").isJsonNull()) && !jsonObj.get("slug").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `slug` to be a primitive type in the JSON string but got `%s`", jsonObj.get("slug").toString()));
+      }
+      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if ((jsonObj.get("display") != null && !jsonObj.get("display").isJsonNull()) && !jsonObj.get("display").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `display` to be a primitive type in the JSON string but got `%s`", jsonObj.get("display").toString()));
+      }
+      // validate the optional field `display`
+      if (jsonObj.get("display") != null && !jsonObj.get("display").isJsonNull()) {
+        DisplayEnum.validateJsonElement(jsonObj.get("display"));
+      }
+      // validate the optional field `image`
+      if (jsonObj.get("image") != null && !jsonObj.get("image").isJsonNull()) {
+        ProductImage.validateJsonElement(jsonObj.get("image"));
       }
   }
 
