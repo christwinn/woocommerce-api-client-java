@@ -20,21 +20,35 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 
 ## 🎯 Currently Implemented Features
 
-- ✅ Products API
-  - List/search WooCommerce products
-  - Create/Read/Update/Delete products
-  - Filter products by status, date, stock status
-  - Manage product inventory
+## 🎯 Currently Implemented Features
+
 - ✅ Customers API
-  - List/search WooCommerce customers
-  - Create/Read/Update/Delete customers
-  - Search and filter customer data
-  - Manage customer accounts
+  - List all customers
+  - Create a new customer
+  - Get a specific customer
+  - Update a customer
+  - Delete a customer
+- ✅ Products API
+  - List all products
+  - Create a new product
+  - Get a specific product
+  - Update a product
+  - Delete a product
+- ✅ Product Variations API
+  - List all variations of a product
+  - Create a new product variation
+  - Get a specific product variation
+  - Update a product variation
+  - Delete a product variation
 - ✅ Orders API
-  - List/search WooCommerce orders
-  - Create/Read/Update/Delete orders
-  - Filter orders by status and date
-  - Process order management
+  - List all orders
+  - Create a new order
+  - Get a specific order
+  - Update an order
+  - Delete an order
+- ✅ Reports
+  - Retrieve and view orders totals report
+  - Retrieve and view sales report
 
 ## 🚨 Project Status
 
