@@ -45,7 +45,7 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 
 ## 📦 Version Information
 
-- **Current Version**: `0.9.2`
+- **Current Version**: `0.9.3`
 - **Supported WooCommerce API Version**: `v3`
 - **Java Compatibility**: Java 8+
 
@@ -73,9 +73,9 @@ Then add the locally built artifact to your project:
 
 ```xml
 <dependency>
-    <groupId>wtx.woocommerce</groupId>
+    <groupId>pl.wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.2</version>
+    <version>0.9.3</version>
 </dependency>
 ```
 
@@ -84,13 +84,13 @@ Then add the locally built artifact to your project:
 Here's how to fetch WooCommerce customer data using the client:
 
 ```java
-package wtx.woocommerce;
+package pl.wtx.woocommerce;
 
 import java.util.List;
 
-import wtx.woocommerce.api.client.CustomersApi;
-import wtx.woocommerce.api.client.invoker.ApiException;
-import wtx.woocommerce.api.client.model.Customer;
+import pl.wtx.woocommerce.api.client.CustomersApi;
+import pl.wtx.woocommerce.api.client.invoker.ApiException;
+import pl.wtx.woocommerce.api.client.model.Customer;
 
 public class WooCommerceApiClientUsageDemo {
 
@@ -140,7 +140,7 @@ public class WooCommerceApiClientUsageDemo {
 
 ## 📊 Project Statistics
 
-- ⭐ 2 GitHub stars
+- ⭐ 3 GitHub stars
 - 🔄 Regular updates and improvements
 - 👥 Open for community contributions
 
