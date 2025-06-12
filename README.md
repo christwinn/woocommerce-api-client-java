@@ -1,4 +1,4 @@
-# WooCommerce Java REST API Client
+# WooCommerce API Client for Java
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java Version](https://img.shields.io/badge/Java-8%2B-blue)](https://www.java.com)
