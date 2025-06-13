@@ -23,17 +23,21 @@ jobs:
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          git_user_signingkey: true
       
       - name: Build and Publish
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME_TOKEN }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD_TOKEN }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
           echo "Starting Maven build and deploy..."
           mvn clean deploy -P release \
             -Dmaven.javadoc.skip=false \
             -Dmaven.deploy.skip=false \
             -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} \
+            -Dgpg.executable=gpg \
+            -Dgpg.keyname=${{ secrets.GPG_KEYNAME }} \
             -Dmaven.test.failure.ignore=false
           
           echo "Checking deployment status..."
