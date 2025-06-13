@@ -10,15 +10,15 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 - Customer data and orders
 - E-commerce operations via REST API
 
-## ✨ Why Choose This Client?
+## ✨ Why choose this client?
 
 - 💡 **Type-Safe Java API** - fully typed interfaces for WooCommerce REST endpoints
-- 🛡️ **Basic Authentication** - secure WooCommerce API access
-- 📚 **Clear Documentation** - comprehensive examples for Java integration
-- 🚀 **Wide Java Support** - compatible with Java 8 and newer
+- 🛡️ **Basic authentication** - secure WooCommerce API access
+- 📚 **Clear documentation** - comprehensive examples for Java integration
+- 🚀 **Wide Java support** - compatible with Java 8 and newer
 - ⚡ **OpenAPI Generated** - based on our [OpenAPI specification](https://github.com/wtx-labs/woocommerce-api-openapi-specification) developed from official WooCommerce documentation
 
-## 🎯 Currently Implemented Features
+## 🎯 Currently implemented features
 
 - ✅ Customers API
   - List all customers
@@ -54,18 +54,18 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
   - Retrieve and view orders totals report
   - Retrieve and view sales report
 
-## 🚨 Project Status
+## 🚨 Project status
 
 > ⚠️ **Note: This is an early development version!**
 > 
 > We are actively implementing more WooCommerce API features.
 > Contributions and feedback are welcome on GitHub!
 
-## 📦 Version Information
+## 📦 Version information
 
-- **Current Version**: `0.9.4`
-- **Supported WooCommerce API Version**: `v3`
-- **Java Compatibility**: Java 8+
+- **Current version**: `0.9.4`
+- **Supported WooCommerce API version**: `v3`
+- **Java compatibility**: Java 8+
 
 ## 🔓 License
 
@@ -75,7 +75,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The only requirement is to preserve the original author attribution in the source code and documentation.
 
-## 🚀 Quick Start Guide
+## 🚀 Quick start guide
 
 ### 1️⃣ Installation
 
@@ -97,7 +97,7 @@ Then add the locally built artifact to your project:
 </dependency>
 ```
 
-### 2️⃣ Java Integration Example
+### 2️⃣ Java integration example
 
 Here's how to fetch WooCommerce customer data using the client:
 
@@ -150,13 +150,13 @@ public class WooCommerceApiClientUsageDemo {
 }
 ```
 
-## 🔗 Get Involved
+## 🔗 Get involved
 
 - ✨ Check our [GitHub Issues](https://github.com/wtx-labs/woocommerce-api-client-java/issues) for latest updates
 - 💡 Have suggestions? Open an Issue or contribute to the project
 - 🌟 Star this repository if you find it helpful!
 
-## 📊 Project Statistics
+## 📊 Project statistics
 
 - ⭐ 5 GitHub stars
 - 🔄 Regular updates and improvements
