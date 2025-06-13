@@ -18,15 +18,11 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       
-      - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
-          git_user_signingkey: true
-      
-      - name: List GPG keys
+      - name: Setup GPG
         run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
+          gpg --batch --import private.key
+          rm private.key
           echo "Listing GPG keys..."
           gpg --list-secret-keys --keyid-format LONG
           gpg --list-keys --keyid-format LONG
