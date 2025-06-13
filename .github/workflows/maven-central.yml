@@ -41,7 +41,8 @@ jobs:
             -Dgpg.executable=gpg \
             -Dgpg.keyname=${{ secrets.GPG_KEYNAME }} \
             -Dgpg.useagent=false \
-            -Dmaven.test.failure.ignore=false
+            -Dmaven.test.failure.ignore=false \
+            -X
           
           echo "Checking deployment status..."
           mvn nexus-staging:rc-list
