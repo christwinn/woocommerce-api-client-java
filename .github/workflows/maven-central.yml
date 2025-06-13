@@ -20,12 +20,21 @@ jobs:
       
       - name: Setup GPG
         run: |
+          echo "Setting up GPG..."
+          mkdir -p ~/.gnupg
+          chmod 700 ~/.gnupg
           echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
+          echo "Importing GPG key..."
           gpg --batch --import private.key
-          rm private.key
+          echo "Trusting GPG key..."
+          echo -e "5\ny\n" | gpg --command-fd 0 --edit-key ${{ secrets.GPG_KEYNAME }} trust
           echo "Listing GPG keys..."
           gpg --list-secret-keys --keyid-format LONG
           gpg --list-keys --keyid-format LONG
+          echo "GPG configuration:"
+          gpg --version
+          gpgconf --list-dirs
+          rm private.key
       
       - name: Build and Publish
         env:
