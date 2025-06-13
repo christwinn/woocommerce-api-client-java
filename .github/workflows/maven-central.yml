@@ -1,0 +1,46 @@
+name: Publish to Maven Central
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: 'maven'
+      
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      
+      - name: Build and Publish
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME_TOKEN }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD_TOKEN }}
+        run: |
+          echo "Starting Maven build and deploy..."
+          mvn clean deploy -P release \
+            -Dmaven.javadoc.skip=false \
+            -Dmaven.deploy.skip=false \
+            -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} \
+            -Dmaven.test.failure.ignore=false
+          
+          echo "Checking deployment status..."
+          mvn nexus-staging:rc-list
+          
+          echo "Closing staging repository..."
+          mvn nexus-staging:rc-close
+          
+          echo "Releasing to Maven Central..."
+          mvn nexus-staging:rc-release 
