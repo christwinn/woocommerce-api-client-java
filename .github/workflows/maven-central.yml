@@ -25,6 +25,12 @@ jobs:
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
           git_user_signingkey: true
       
+      - name: List GPG keys
+        run: |
+          echo "Listing GPG keys..."
+          gpg --list-secret-keys --keyid-format LONG
+          gpg --list-keys --keyid-format LONG
+      
       - name: Build and Publish
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME_TOKEN }}
@@ -38,6 +44,7 @@ jobs:
             -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} \
             -Dgpg.executable=gpg \
             -Dgpg.keyname=${{ secrets.GPG_KEYNAME }} \
+            -Dgpg.useagent=false \
             -Dmaven.test.failure.ignore=false
           
           echo "Checking deployment status..."
