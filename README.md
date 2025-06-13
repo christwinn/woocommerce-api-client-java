@@ -164,7 +164,7 @@ public class WooCommerceApiClientUsageDemo {
 
 ## 🔍 Keywords
 
-woocommerce java client, woocommerce rest api java, java woocommerce integration, woocommerce api v3 java, e-commerce java integration, woocommerce java library, java rest api client woocommerce
+woocommerce java client, woocommerce rest api java, java woocommerce integration, woocommerce api v3 java, e-commerce java integration, woocommerce java library, java rest api client woocommerce, woocommerce api client library for java
 
 🚀 Happy coding! 😊
 
