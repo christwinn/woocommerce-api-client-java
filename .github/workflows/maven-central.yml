@@ -1,0 +1,94 @@
+name: Publish to Maven Central
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - 'feature/release-*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Setup GPG
+        run: |
+          echo "Setting up GPG..."
+          mkdir -p ~/.gnupg
+          chmod 700 ~/.gnupg
+          
+          # Import private key
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
+          echo "Importing GPG key..."
+          gpg --batch --import private.key
+          rm private.key
+          
+          # Configure GPG
+          echo "Configuring GPG..."
+          cat > ~/.gnupg/gpg.conf << EOF
+          default-key ${{ secrets.GPG_KEYNAME }}
+          use-agent
+          pinentry-mode loopback
+          EOF
+          
+          # Debug information
+          echo "=== GPG Keys ==="
+          gpg --list-secret-keys --keyid-format LONG
+          gpg --list-keys --keyid-format LONG
+      
+      - name: Configure Maven
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml << EOF
+          <settings>
+            <servers>
+              <server>
+                <id>central</id>
+                <username>${{ secrets.OSSRH_USERNAME_TOKEN }}</username>
+                <password>${{ secrets.OSSRH_PASSWORD_TOKEN }}</password>
+              </server>
+            </servers>
+            <profiles>
+              <profile>
+                <id>central</id>
+                <activation>
+                  <activeByDefault>true</activeByDefault>
+                </activation>
+                <properties>
+                  <gpg.executable>gpg</gpg.executable>
+                  <gpg.passphrase>${{ secrets.GPG_PASSPHRASE }}</gpg.passphrase>
+                </properties>
+              </profile>
+            </profiles>
+          </settings>
+          EOF
+      
+      - name: Build and Publish
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME_TOKEN }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD_TOKEN }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          echo "Starting Maven build and deploy..."
+          mvn clean deploy -P release \
+            -Dmaven.javadoc.skip=false \
+            -Dmaven.deploy.skip=false \
+            -Dgpg.keyname=${{ secrets.GPG_KEYNAME }} \
+            -Dgpg.useagent=true \
+            -Dmaven.test.failure.ignore=false \
+            -DaltDeploymentRepository=ossrh::default::https://central.sonatype.com/api/v1/publisher/upload \
+            -DrepositoryId=ossrh \
+            -Dusername=${{ secrets.OSSRH_USERNAME_TOKEN }} \
+            -Dpassword=${{ secrets.OSSRH_PASSWORD_TOKEN }} 
