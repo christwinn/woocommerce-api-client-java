@@ -45,6 +45,33 @@ jobs:
           gpg --list-secret-keys --keyid-format LONG
           gpg --list-keys --keyid-format LONG
       
+      - name: Configure Maven
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml << EOF
+          <settings>
+            <servers>
+              <server>
+                <id>ossrh</id>
+                <username>\${env.OSSRH_USERNAME}</username>
+                <password>\${env.OSSRH_PASSWORD}</password>
+              </server>
+            </servers>
+            <profiles>
+              <profile>
+                <id>ossrh</id>
+                <activation>
+                  <activeByDefault>true</activeByDefault>
+                </activation>
+                <properties>
+                  <gpg.executable>gpg</gpg.executable>
+                  <gpg.passphrase>\${env.GPG_PASSPHRASE}</gpg.passphrase>
+                </properties>
+              </profile>
+            </profiles>
+          </settings>
+          EOF
+      
       - name: Build and Publish
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME_TOKEN }}
@@ -55,8 +82,6 @@ jobs:
           mvn clean deploy -P release \
             -Dmaven.javadoc.skip=false \
             -Dmaven.deploy.skip=false \
-            -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} \
-            -Dgpg.executable=gpg \
             -Dgpg.keyname=${{ secrets.GPG_KEYNAME }} \
             -Dgpg.useagent=true \
             -Dmaven.test.failure.ignore=false \
