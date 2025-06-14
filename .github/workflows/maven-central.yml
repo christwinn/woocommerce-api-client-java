@@ -25,26 +25,44 @@ jobs:
           echo "Setting up GPG..."
           mkdir -p ~/.gnupg
           chmod 700 ~/.gnupg
+          
+          # Import private key
           echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
-          echo "Importing GPG key..."
           gpg --batch --import private.key
-          echo "Trusting GPG key..."
-          echo -e "5\ny\n" | gpg --command-fd 0 --edit-key ${{ secrets.GPG_KEYNAME }} trust
-          echo "Setting default key..."
-          echo "default-key ${{ secrets.GPG_KEYNAME }}" >> ~/.gnupg/gpg.conf
-          echo "Setting GPG agent..."
-          echo "use-agent" >> ~/.gnupg/gpg.conf
-          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
-          echo "GPG configuration:"
+          rm private.key
+          
+          # Configure GPG
+          cat > ~/.gnupg/gpg.conf << EOF
+          default-key ${{ secrets.GPG_KEYNAME }}
+          use-agent
+          pinentry-mode loopback
+          EOF
+          
+          cat > ~/.gnupg/gpg-agent.conf << EOF
+          allow-loopback-pinentry
+          default-cache-ttl 600
+          max-cache-ttl 7200
+          EOF
+          
+          # Trust the key
+          echo -e "trust\n5\ny\nquit\n" | gpg --command-fd 0 --edit-key ${{ secrets.GPG_KEYNAME }}
+          
+          # Restart GPG agent
+          gpgconf --kill gpg-agent
+          gpg-agent --daemon
+          
+          # Debug information
+          echo "=== GPG Configuration ==="
           cat ~/.gnupg/gpg.conf
-          echo "Listing GPG keys..."
+          echo "=== GPG Agent Configuration ==="
+          cat ~/.gnupg/gpg-agent.conf
+          echo "=== GPG Keys ==="
           gpg --list-secret-keys --keyid-format LONG
           gpg --list-keys --keyid-format LONG
-          echo "GPG configuration:"
+          echo "=== GPG Version ==="
           gpg --version
+          echo "=== GPG Directories ==="
           gpgconf --list-dirs
-          rm private.key
       
       - name: Build and Publish
         env:
@@ -61,7 +79,11 @@ jobs:
             -Dgpg.keyname=${{ secrets.GPG_KEYNAME }} \
             -Dgpg.useagent=true \
             -Dmaven.test.failure.ignore=false \
-            -X
+            -X \
+            -e \
+            --debug \
+            -Dgpg.verbose=true \
+            -Dgpg.debug=true
           
           echo "Checking deployment status..."
           mvn nexus-staging:rc-list
