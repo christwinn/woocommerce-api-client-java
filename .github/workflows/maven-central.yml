@@ -72,6 +72,20 @@ jobs:
           </settings>
           EOF
       
+      - name: Verify Sonatype Credentials
+        run: |
+          echo "Verifying Sonatype credentials..."
+          echo "Username: ${{ secrets.OSSRH_USERNAME_TOKEN }}"
+          echo "Password length: ${#OSSRH_PASSWORD_TOKEN}"
+          
+          # Test connection to Sonatype
+          curl -v -u "${{ secrets.OSSRH_USERNAME_TOKEN }}:${{ secrets.OSSRH_PASSWORD_TOKEN }}" \
+            https://s01.oss.sonatype.org/service/local/user/profile
+          
+          # Test Maven connection
+          mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout
+          mvn help:evaluate -Dexpression=settings.servers -q -DforceStdout
+      
       - name: Build and Publish
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME_TOKEN }}
