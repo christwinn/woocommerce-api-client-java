@@ -28,27 +28,35 @@ jobs:
           
           # Import private key
           echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
+          echo "Importing GPG key..."
           gpg --batch --import private.key
           rm private.key
           
           # Configure GPG
+          echo "Configuring GPG..."
           cat > ~/.gnupg/gpg.conf << EOF
           default-key ${{ secrets.GPG_KEYNAME }}
           use-agent
           pinentry-mode loopback
           trust-model always
+          debug-level guru
+          verbose
           EOF
           
           cat > ~/.gnupg/gpg-agent.conf << EOF
           allow-loopback-pinentry
           default-cache-ttl 600
           max-cache-ttl 7200
+          debug-level guru
+          verbose
           EOF
           
-          # Set trust level
-          echo -e "5\ny\n" | gpg --command-fd 0 --edit-key ${{ secrets.GPG_KEYNAME }} trust
+          # Set trust level directly
+          echo "Setting trust level..."
+          gpg --batch --yes --trust-model always --import-ownertrust < <(echo "${{ secrets.GPG_KEYNAME }}:6:")
           
           # Restart GPG agent
+          echo "Restarting GPG agent..."
           gpgconf --kill gpg-agent
           gpg-agent --daemon
           
@@ -64,6 +72,11 @@ jobs:
           gpg --version
           echo "=== GPG Directories ==="
           gpgconf --list-dirs
+          echo "=== GPG Trust ==="
+          gpg --list-ownertrust
+          echo "=== GPG Agent Status ==="
+          gpgconf --list-dirs agent-socket
+          gpg-agent --version
       
       - name: Build and Publish
         env:
