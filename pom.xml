@@ -207,7 +207,7 @@
                 <version>0.7.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>ossrh</serverId>
+                    <serverId>central</serverId>
                     <centralBaseUrl>https://central.sonatype.com</centralBaseUrl>
                     <deploymentName>WooCommerce API Client - ${project.version}</deploymentName>
                     <checksums>required</checksums>
