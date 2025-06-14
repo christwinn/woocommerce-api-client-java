@@ -203,12 +203,22 @@
 
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.13</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <altDeploymentRepository>ossrh::default::https://central.sonatype.com/api/v1/publisher/upload</altDeploymentRepository>
                 </configuration>
             </plugin>
 
