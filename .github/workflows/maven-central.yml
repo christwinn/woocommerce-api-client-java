@@ -75,16 +75,6 @@ jobs:
           </settings>
           EOF
       
-      - name: Verify Sonatype Credentials
-        run: |
-          echo "Verifying Sonatype credentials..."
-          echo "Username: ${{ secrets.OSSRH_USERNAME_TOKEN }}"
-          echo "Password length: ${#OSSRH_PASSWORD_TOKEN}"
-          
-          # Test connection to Sonatype
-          curl -v -u "${{ secrets.OSSRH_USERNAME_TOKEN }}:${{ secrets.OSSRH_PASSWORD_TOKEN }}" \
-            https://central.sonatype.com/api/internal/repository/status
-      
       - name: Build and Publish
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME_TOKEN }}
@@ -98,7 +88,7 @@ jobs:
             -Dgpg.keyname=${{ secrets.GPG_KEYNAME }} \
             -Dgpg.useagent=true \
             -Dmaven.test.failure.ignore=false \
-            -DaltDeploymentRepository=ossrh::default::https://central.sonatype.com/api/internal/repository/maven-central/ \
+            -DaltDeploymentRepository=ossrh::default::https://central.sonatype.com/api/v1/publisher/upload \
             -DrepositoryId=ossrh \
             -Dusername=${{ secrets.OSSRH_USERNAME_TOKEN }} \
             -Dpassword=${{ secrets.OSSRH_PASSWORD_TOKEN }} \
