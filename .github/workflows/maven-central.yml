@@ -36,6 +36,7 @@ jobs:
           default-key ${{ secrets.GPG_KEYNAME }}
           use-agent
           pinentry-mode loopback
+          trust-model always
           EOF
           
           cat > ~/.gnupg/gpg-agent.conf << EOF
@@ -44,8 +45,8 @@ jobs:
           max-cache-ttl 7200
           EOF
           
-          # Trust the key (non-interactive)
-          gpg --batch --yes --trust-model always --edit-key ${{ secrets.GPG_KEYNAME }} trust quit
+          # Set trust level
+          echo -e "5\ny\n" | gpg --command-fd 0 --edit-key ${{ secrets.GPG_KEYNAME }} trust
           
           # Restart GPG agent
           gpgconf --kill gpg-agent
