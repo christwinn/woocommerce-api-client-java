@@ -87,6 +87,10 @@ jobs:
             -Dmaven.test.failure.ignore=false \
             -DnexusUrl=https://s01.oss.sonatype.org/ \
             -DserverId=ossrh \
+            -DaltDeploymentRepository=ossrh::default::https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/ \
+            -DrepositoryId=ossrh \
+            -Dusername=${{ secrets.OSSRH_USERNAME_TOKEN }} \
+            -Dpassword=${{ secrets.OSSRH_PASSWORD_TOKEN }} \
             -X \
             -e \
             --debug \
@@ -94,10 +98,19 @@ jobs:
             -Dgpg.debug=true
           
           echo "Checking deployment status..."
-          mvn nexus-staging:rc-list
+          mvn nexus-staging:rc-list \
+            -DserverId=ossrh \
+            -Dusername=${{ secrets.OSSRH_USERNAME_TOKEN }} \
+            -Dpassword=${{ secrets.OSSRH_PASSWORD_TOKEN }}
           
           echo "Closing staging repository..."
-          mvn nexus-staging:rc-close
+          mvn nexus-staging:rc-close \
+            -DserverId=ossrh \
+            -Dusername=${{ secrets.OSSRH_USERNAME_TOKEN }} \
+            -Dpassword=${{ secrets.OSSRH_PASSWORD_TOKEN }}
           
           echo "Releasing to Maven Central..."
-          mvn nexus-staging:rc-release 
+          mvn nexus-staging:rc-release \
+            -DserverId=ossrh \
+            -Dusername=${{ secrets.OSSRH_USERNAME_TOKEN }} \
+            -Dpassword=${{ secrets.OSSRH_PASSWORD_TOKEN }} 
