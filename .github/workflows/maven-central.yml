@@ -28,6 +28,14 @@ jobs:
           gpg --batch --import private.key
           echo "Trusting GPG key..."
           echo -e "5\ny\n" | gpg --command-fd 0 --edit-key ${{ secrets.GPG_KEYNAME }} trust
+          echo "Setting default key..."
+          echo "default-key ${{ secrets.GPG_KEYNAME }}" >> ~/.gnupg/gpg.conf
+          echo "Setting GPG agent..."
+          echo "use-agent" >> ~/.gnupg/gpg.conf
+          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          echo "GPG configuration:"
+          cat ~/.gnupg/gpg.conf
           echo "Listing GPG keys..."
           gpg --list-secret-keys --keyid-format LONG
           gpg --list-keys --keyid-format LONG
@@ -49,7 +57,7 @@ jobs:
             -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} \
             -Dgpg.executable=gpg \
             -Dgpg.keyname=${{ secrets.GPG_KEYNAME }} \
-            -Dgpg.useagent=false \
+            -Dgpg.useagent=true \
             -Dmaven.test.failure.ignore=false \
             -X
           
