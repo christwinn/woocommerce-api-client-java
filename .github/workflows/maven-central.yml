@@ -44,8 +44,8 @@ jobs:
           max-cache-ttl 7200
           EOF
           
-          # Trust the key
-          echo -e "trust\n5\ny\nquit\n" | gpg --command-fd 0 --edit-key ${{ secrets.GPG_KEYNAME }}
+          # Trust the key (non-interactive)
+          gpg --batch --yes --trust-model always --edit-key ${{ secrets.GPG_KEYNAME }} trust quit
           
           # Restart GPG agent
           gpgconf --kill gpg-agent
