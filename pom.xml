@@ -9,7 +9,7 @@
     <version>0.9.5</version>
     <packaging>jar</packaging>
 
-    <name>WooCommerce REST API Client</name>
+    <name>WooCommerce API Client for Java</name>
     <description>The WooCommerce REST API Client for Java provides easy access to the features of the e-commerce platform's API.</description>
     <url>https://github.com/wtx-labs/woocommerce-api-client-java</url>
 
