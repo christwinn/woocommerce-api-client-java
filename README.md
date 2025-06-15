@@ -2,6 +2,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java Version](https://img.shields.io/badge/Java-8%2B-blue)](https://www.java.com)
+[![Maven Central](https://img.shields.io/maven-central/v/pl.wtx.woocommerce/woocommerce-api-client?label=Maven%20Central&logo=apache-maven&color=blue)](https://search.maven.org/artifact/pl.wtx.woocommerce/woocommerce-api-client)
+
 
 A lightweight Java client library for WooCommerce REST API integration. Built for Java developers who need to integrate their applications with WooCommerce e-commerce platform. 🚀
 
@@ -79,7 +81,18 @@ The only requirement is to preserve the original author attribution in the sourc
 
 ### 1️⃣ Installation
 
-Clone and build the library from source:
+You can add the library to your project by including the dependency from Maven Central:
+
+```xml
+<!-- https://mvnrepository.com/artifact/pl.wtx.woocommerce/woocommerce-api-client -->
+<dependency>
+    <groupId>pl.wtx.woocommerce</groupId>
+    <artifactId>woocommerce-api-client</artifactId>
+    <version>0.9.5</version>
+</dependency>
+```
+
+Alternatively, clone and build the library from source:
 
 ```sh
 git clone https://github.com/wtx-labs/woocommerce-api-client-java.git
