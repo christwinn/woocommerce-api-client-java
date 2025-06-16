@@ -4,7 +4,6 @@
 [![Java Version](https://img.shields.io/badge/Java-8%2B-blue)](https://www.java.com)
 [![Maven Central](https://img.shields.io/maven-central/v/pl.wtx.woocommerce/woocommerce-api-client?label=Maven%20Central&logo=apache-maven&color=blue)](https://mvnrepository.com/artifact/pl.wtx.woocommerce/woocommerce-api-client)
 
-
 A lightweight Java client library for WooCommerce REST API integration. Built for Java developers who need to integrate their applications with WooCommerce e-commerce platform. 🚀
 
 This API client provides a type-safe Java interface for WooCommerce REST API v3, enabling seamless management of:
@@ -88,7 +87,7 @@ You can add the library to your project by including the dependency from Maven C
 <dependency>
     <groupId>pl.wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.5</version>
+    <version>0.9.6</version>
 </dependency>
 ```
 

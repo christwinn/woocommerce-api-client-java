@@ -188,7 +188,7 @@ public class Product {
   public static final String SERIALIZED_NAME_TOTAL_SALES = "total_sales";
   @SerializedName(SERIALIZED_NAME_TOTAL_SALES)
   @javax.annotation.Nullable
-  private Integer totalSales;
+  private Long totalSales;
 
   public static final String SERIALIZED_NAME_VIRTUAL = "virtual";
   @SerializedName(SERIALIZED_NAME_VIRTUAL)
@@ -863,7 +863,7 @@ public class Product {
   }
 
 
-  public Product totalSales(@javax.annotation.Nullable Integer totalSales) {
+  public Product totalSales(@javax.annotation.Nullable Long totalSales) {
     this.totalSales = totalSales;
     return this;
   }
@@ -873,11 +873,11 @@ public class Product {
    * @return totalSales
    */
   @javax.annotation.Nullable
-  public Integer getTotalSales() {
+  public Long getTotalSales() {
     return totalSales;
   }
 
-  public void setTotalSales(@javax.annotation.Nullable Integer totalSales) {
+  public void setTotalSales(@javax.annotation.Nullable Long totalSales) {
     this.totalSales = totalSales;
   }
 
