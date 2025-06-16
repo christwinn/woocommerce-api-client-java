@@ -1,9 +1,11 @@
 package pl.wtx.woocommerce.api.client.config;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
@@ -22,6 +24,7 @@ public class OffsetDateTimeAdapter extends TypeAdapter<OffsetDateTime> {
         } else {
             out.nullValue();
         }
+
     }
 
     @Override
@@ -33,8 +36,14 @@ public class OffsetDateTimeAdapter extends TypeAdapter<OffsetDateTime> {
         }
 
         String date = in.nextString();
+
         if (date != null && !date.isEmpty()) {
-            return OffsetDateTime.parse(date, FORMATTER.withZone(ZoneOffset.UTC));
+            try {
+                return OffsetDateTime.parse(date);
+            } catch (DateTimeParseException e) {
+                LocalDateTime ldt = LocalDateTime.parse(date);
+                return ldt.atOffset(ZoneOffset.UTC);
+            }
         }
 
         return null;

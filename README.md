@@ -65,7 +65,7 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 
 ## 📦 Version information
 
-- **Current version**: `0.9.5`
+- **Current version**: `0.9.6`
 - **Supported WooCommerce API version**: `v3`
 - **Java compatibility**: Java 8+
 
@@ -106,7 +106,7 @@ Then add the locally built artifact to your project:
 <dependency>
     <groupId>pl.wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.5</version>
+    <version>0.9.6</version>
 </dependency>
 ```
 

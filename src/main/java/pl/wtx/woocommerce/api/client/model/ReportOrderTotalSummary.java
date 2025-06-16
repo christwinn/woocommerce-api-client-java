@@ -48,7 +48,7 @@ import pl.wtx.woocommerce.api.client.invoker.JSON;
 /**
  * ReportOrderTotalSummary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ReportOrderTotalSummary {
   public static final String SERIALIZED_NAME_SLUG = "slug";
   @SerializedName(SERIALIZED_NAME_SLUG)

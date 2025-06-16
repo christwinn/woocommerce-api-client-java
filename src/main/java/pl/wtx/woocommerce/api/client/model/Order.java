@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +60,7 @@ import pl.wtx.woocommerce.api.client.invoker.JSON;
 /**
  * Order
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class Order {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -91,72 +92,10 @@ public class Order {
   @javax.annotation.Nullable
   private String version;
 
-  /**
-   * Order status.
-   */
-  @JsonAdapter(StatusEnum.Adapter.class)
-  public enum StatusEnum {
-    PENDING("pending"),
-    
-    PROCESSING("processing"),
-    
-    ON_HOLD("on-hold"),
-    
-    COMPLETED("completed"),
-    
-    CANCELLED("cancelled"),
-    
-    REFUNDED("refunded"),
-    
-    FAILED("failed");
-
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<StatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return StatusEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      StatusEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   @javax.annotation.Nullable
-  private StatusEnum status;
+  private String status;
 
   /**
    * Currency the order was created with, in ISO format.
@@ -540,22 +479,22 @@ public class Order {
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED)
   @javax.annotation.Nullable
-  private String dateCreated;
+  private OffsetDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
   @javax.annotation.Nullable
-  private String dateCreatedGmt;
+  private OffsetDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
   @SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
   @javax.annotation.Nullable
-  private String dateModified;
+  private OffsetDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
   @SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
   @javax.annotation.Nullable
-  private String dateModifiedGmt;
+  private OffsetDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_DISCOUNT_TOTAL = "discount_total";
   @SerializedName(SERIALIZED_NAME_DISCOUNT_TOTAL)
@@ -645,22 +584,22 @@ public class Order {
   public static final String SERIALIZED_NAME_DATE_PAID = "date_paid";
   @SerializedName(SERIALIZED_NAME_DATE_PAID)
   @javax.annotation.Nullable
-  private String datePaid;
+  private OffsetDateTime datePaid;
 
   public static final String SERIALIZED_NAME_DATE_PAID_GMT = "date_paid_gmt";
   @SerializedName(SERIALIZED_NAME_DATE_PAID_GMT)
   @javax.annotation.Nullable
-  private String datePaidGmt;
+  private OffsetDateTime datePaidGmt;
 
   public static final String SERIALIZED_NAME_DATE_COMPLETED = "date_completed";
   @SerializedName(SERIALIZED_NAME_DATE_COMPLETED)
   @javax.annotation.Nullable
-  private String dateCompleted;
+  private OffsetDateTime dateCompleted;
 
   public static final String SERIALIZED_NAME_DATE_COMPLETED_GMT = "date_completed_gmt";
   @SerializedName(SERIALIZED_NAME_DATE_COMPLETED_GMT)
   @javax.annotation.Nullable
-  private String dateCompletedGmt;
+  private OffsetDateTime dateCompletedGmt;
 
   public static final String SERIALIZED_NAME_CART_HASH = "cart_hash";
   @SerializedName(SERIALIZED_NAME_CART_HASH)
@@ -824,21 +763,21 @@ public class Order {
   }
 
 
-  public Order status(@javax.annotation.Nullable StatusEnum status) {
+  public Order status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
   /**
-   * Order status.
+   * Order status. Options - pending, processing, on-hold, completed, cancelled, refunded, failed, trash and checkout-draft. Default is pending.
    * @return status
    */
   @javax.annotation.Nullable
-  public StatusEnum getStatus() {
+  public String getStatus() {
     return status;
   }
 
-  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
@@ -862,7 +801,7 @@ public class Order {
   }
 
 
-  public Order dateCreated(@javax.annotation.Nullable String dateCreated) {
+  public Order dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
@@ -872,16 +811,16 @@ public class Order {
    * @return dateCreated
    */
   @javax.annotation.Nullable
-  public String getDateCreated() {
+  public OffsetDateTime getDateCreated() {
     return dateCreated;
   }
 
-  public void setDateCreated(@javax.annotation.Nullable String dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public Order dateCreatedGmt(@javax.annotation.Nullable String dateCreatedGmt) {
+  public Order dateCreatedGmt(@javax.annotation.Nullable OffsetDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
     return this;
   }
@@ -891,16 +830,16 @@ public class Order {
    * @return dateCreatedGmt
    */
   @javax.annotation.Nullable
-  public String getDateCreatedGmt() {
+  public OffsetDateTime getDateCreatedGmt() {
     return dateCreatedGmt;
   }
 
-  public void setDateCreatedGmt(@javax.annotation.Nullable String dateCreatedGmt) {
+  public void setDateCreatedGmt(@javax.annotation.Nullable OffsetDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
   }
 
 
-  public Order dateModified(@javax.annotation.Nullable String dateModified) {
+  public Order dateModified(@javax.annotation.Nullable OffsetDateTime dateModified) {
     this.dateModified = dateModified;
     return this;
   }
@@ -910,16 +849,16 @@ public class Order {
    * @return dateModified
    */
   @javax.annotation.Nullable
-  public String getDateModified() {
+  public OffsetDateTime getDateModified() {
     return dateModified;
   }
 
-  public void setDateModified(@javax.annotation.Nullable String dateModified) {
+  public void setDateModified(@javax.annotation.Nullable OffsetDateTime dateModified) {
     this.dateModified = dateModified;
   }
 
 
-  public Order dateModifiedGmt(@javax.annotation.Nullable String dateModifiedGmt) {
+  public Order dateModifiedGmt(@javax.annotation.Nullable OffsetDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
     return this;
   }
@@ -929,11 +868,11 @@ public class Order {
    * @return dateModifiedGmt
    */
   @javax.annotation.Nullable
-  public String getDateModifiedGmt() {
+  public OffsetDateTime getDateModifiedGmt() {
     return dateModifiedGmt;
   }
 
-  public void setDateModifiedGmt(@javax.annotation.Nullable String dateModifiedGmt) {
+  public void setDateModifiedGmt(@javax.annotation.Nullable OffsetDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
   }
 
@@ -1261,7 +1200,7 @@ public class Order {
   }
 
 
-  public Order datePaid(@javax.annotation.Nullable String datePaid) {
+  public Order datePaid(@javax.annotation.Nullable OffsetDateTime datePaid) {
     this.datePaid = datePaid;
     return this;
   }
@@ -1271,16 +1210,16 @@ public class Order {
    * @return datePaid
    */
   @javax.annotation.Nullable
-  public String getDatePaid() {
+  public OffsetDateTime getDatePaid() {
     return datePaid;
   }
 
-  public void setDatePaid(@javax.annotation.Nullable String datePaid) {
+  public void setDatePaid(@javax.annotation.Nullable OffsetDateTime datePaid) {
     this.datePaid = datePaid;
   }
 
 
-  public Order datePaidGmt(@javax.annotation.Nullable String datePaidGmt) {
+  public Order datePaidGmt(@javax.annotation.Nullable OffsetDateTime datePaidGmt) {
     this.datePaidGmt = datePaidGmt;
     return this;
   }
@@ -1290,16 +1229,16 @@ public class Order {
    * @return datePaidGmt
    */
   @javax.annotation.Nullable
-  public String getDatePaidGmt() {
+  public OffsetDateTime getDatePaidGmt() {
     return datePaidGmt;
   }
 
-  public void setDatePaidGmt(@javax.annotation.Nullable String datePaidGmt) {
+  public void setDatePaidGmt(@javax.annotation.Nullable OffsetDateTime datePaidGmt) {
     this.datePaidGmt = datePaidGmt;
   }
 
 
-  public Order dateCompleted(@javax.annotation.Nullable String dateCompleted) {
+  public Order dateCompleted(@javax.annotation.Nullable OffsetDateTime dateCompleted) {
     this.dateCompleted = dateCompleted;
     return this;
   }
@@ -1309,16 +1248,16 @@ public class Order {
    * @return dateCompleted
    */
   @javax.annotation.Nullable
-  public String getDateCompleted() {
+  public OffsetDateTime getDateCompleted() {
     return dateCompleted;
   }
 
-  public void setDateCompleted(@javax.annotation.Nullable String dateCompleted) {
+  public void setDateCompleted(@javax.annotation.Nullable OffsetDateTime dateCompleted) {
     this.dateCompleted = dateCompleted;
   }
 
 
-  public Order dateCompletedGmt(@javax.annotation.Nullable String dateCompletedGmt) {
+  public Order dateCompletedGmt(@javax.annotation.Nullable OffsetDateTime dateCompletedGmt) {
     this.dateCompletedGmt = dateCompletedGmt;
     return this;
   }
@@ -1328,11 +1267,11 @@ public class Order {
    * @return dateCompletedGmt
    */
   @javax.annotation.Nullable
-  public String getDateCompletedGmt() {
+  public OffsetDateTime getDateCompletedGmt() {
     return dateCompletedGmt;
   }
 
-  public void setDateCompletedGmt(@javax.annotation.Nullable String dateCompletedGmt) {
+  public void setDateCompletedGmt(@javax.annotation.Nullable OffsetDateTime dateCompletedGmt) {
     this.dateCompletedGmt = dateCompletedGmt;
   }
 
@@ -1774,28 +1713,12 @@ public class Order {
       if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
-      // validate the optional field `status`
-      if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
-        StatusEnum.validateJsonElement(jsonObj.get("status"));
-      }
       if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
       // validate the optional field `currency`
       if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) {
         CurrencyEnum.validateJsonElement(jsonObj.get("currency"));
-      }
-      if ((jsonObj.get("date_created") != null && !jsonObj.get("date_created").isJsonNull()) && !jsonObj.get("date_created").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `date_created` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_created").toString()));
-      }
-      if ((jsonObj.get("date_created_gmt") != null && !jsonObj.get("date_created_gmt").isJsonNull()) && !jsonObj.get("date_created_gmt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `date_created_gmt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_created_gmt").toString()));
-      }
-      if ((jsonObj.get("date_modified") != null && !jsonObj.get("date_modified").isJsonNull()) && !jsonObj.get("date_modified").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `date_modified` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_modified").toString()));
-      }
-      if ((jsonObj.get("date_modified_gmt") != null && !jsonObj.get("date_modified_gmt").isJsonNull()) && !jsonObj.get("date_modified_gmt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `date_modified_gmt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_modified_gmt").toString()));
       }
       if ((jsonObj.get("discount_total") != null && !jsonObj.get("discount_total").isJsonNull()) && !jsonObj.get("discount_total").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `discount_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("discount_total").toString()));
@@ -1843,18 +1766,6 @@ public class Order {
       }
       if ((jsonObj.get("transaction_id") != null && !jsonObj.get("transaction_id").isJsonNull()) && !jsonObj.get("transaction_id").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `transaction_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("transaction_id").toString()));
-      }
-      if ((jsonObj.get("date_paid") != null && !jsonObj.get("date_paid").isJsonNull()) && !jsonObj.get("date_paid").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `date_paid` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_paid").toString()));
-      }
-      if ((jsonObj.get("date_paid_gmt") != null && !jsonObj.get("date_paid_gmt").isJsonNull()) && !jsonObj.get("date_paid_gmt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `date_paid_gmt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_paid_gmt").toString()));
-      }
-      if ((jsonObj.get("date_completed") != null && !jsonObj.get("date_completed").isJsonNull()) && !jsonObj.get("date_completed").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `date_completed` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_completed").toString()));
-      }
-      if ((jsonObj.get("date_completed_gmt") != null && !jsonObj.get("date_completed_gmt").isJsonNull()) && !jsonObj.get("date_completed_gmt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `date_completed_gmt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("date_completed_gmt").toString()));
       }
       if ((jsonObj.get("cart_hash") != null && !jsonObj.get("cart_hash").isJsonNull()) && !jsonObj.get("cart_hash").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cart_hash` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cart_hash").toString()));

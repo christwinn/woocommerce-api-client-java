@@ -89,7 +89,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createOrderCall(Order order, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createOrderCall(@javax.annotation.Nonnull Order order, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -135,7 +135,7 @@ public class OrdersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createOrderValidateBeforeCall(Order order, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createOrderValidateBeforeCall(@javax.annotation.Nonnull Order order, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'order' is set
         if (order == null) {
             throw new ApiException("Missing the required parameter 'order' when calling createOrder(Async)");
@@ -160,7 +160,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Order createOrder(Order order) throws ApiException {
+    public Order createOrder(@javax.annotation.Nonnull Order order) throws ApiException {
         ApiResponse<Order> localVarResp = createOrderWithHttpInfo(order);
         return localVarResp.getData();
     }
@@ -180,7 +180,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Order> createOrderWithHttpInfo(Order order) throws ApiException {
+    public ApiResponse<Order> createOrderWithHttpInfo(@javax.annotation.Nonnull Order order) throws ApiException {
         okhttp3.Call localVarCall = createOrderValidateBeforeCall(order, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -202,7 +202,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createOrderAsync(Order order, final ApiCallback<Order> _callback) throws ApiException {
+    public okhttp3.Call createOrderAsync(@javax.annotation.Nonnull Order order, final ApiCallback<Order> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createOrderValidateBeforeCall(order, _callback);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
@@ -225,7 +225,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteOrderByIdCall(Integer orderId, Boolean force, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteOrderByIdCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -275,7 +275,7 @@ public class OrdersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteOrderByIdValidateBeforeCall(Integer orderId, Boolean force, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteOrderByIdValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling deleteOrderById(Async)");
@@ -306,7 +306,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Order deleteOrderById(Integer orderId, Boolean force) throws ApiException {
+    public Order deleteOrderById(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Boolean force) throws ApiException {
         ApiResponse<Order> localVarResp = deleteOrderByIdWithHttpInfo(orderId, force);
         return localVarResp.getData();
     }
@@ -327,7 +327,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Order> deleteOrderByIdWithHttpInfo(Integer orderId, Boolean force) throws ApiException {
+    public ApiResponse<Order> deleteOrderByIdWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Boolean force) throws ApiException {
         okhttp3.Call localVarCall = deleteOrderByIdValidateBeforeCall(orderId, force, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -350,7 +350,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteOrderByIdAsync(Integer orderId, Boolean force, final ApiCallback<Order> _callback) throws ApiException {
+    public okhttp3.Call deleteOrderByIdAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Boolean force, final ApiCallback<Order> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteOrderByIdValidateBeforeCall(orderId, force, _callback);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
@@ -391,7 +391,7 @@ public class OrdersApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllOrdersCall(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllOrdersCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable OffsetDateTime modifiedAfter, @javax.annotation.Nullable OffsetDateTime modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable Integer customer, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable Integer dp, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -516,7 +516,7 @@ public class OrdersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllOrdersValidateBeforeCall(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listAllOrdersValidateBeforeCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable OffsetDateTime modifiedAfter, @javax.annotation.Nullable OffsetDateTime modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable Integer customer, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable Integer dp, final ApiCallback _callback) throws ApiException {
         return listAllOrdersCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, status, customer, product, dp, _callback);
 
     }
@@ -555,7 +555,7 @@ public class OrdersApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public List<Order> listAllOrders(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp) throws ApiException {
+    public List<Order> listAllOrders(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable OffsetDateTime modifiedAfter, @javax.annotation.Nullable OffsetDateTime modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable Integer customer, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable Integer dp) throws ApiException {
         ApiResponse<List<Order>> localVarResp = listAllOrdersWithHttpInfo(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, status, customer, product, dp);
         return localVarResp.getData();
     }
@@ -594,7 +594,7 @@ public class OrdersApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Order>> listAllOrdersWithHttpInfo(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp) throws ApiException {
+    public ApiResponse<List<Order>> listAllOrdersWithHttpInfo(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable OffsetDateTime modifiedAfter, @javax.annotation.Nullable OffsetDateTime modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable Integer customer, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable Integer dp) throws ApiException {
         okhttp3.Call localVarCall = listAllOrdersValidateBeforeCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, status, customer, product, dp, null);
         Type localVarReturnType = new TypeToken<List<Order>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -635,7 +635,7 @@ public class OrdersApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllOrdersAsync(String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, OffsetDateTime modifiedAfter, OffsetDateTime modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, List<String> status, Integer customer, Integer product, Integer dp, final ApiCallback<List<Order>> _callback) throws ApiException {
+    public okhttp3.Call listAllOrdersAsync(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable OffsetDateTime modifiedAfter, @javax.annotation.Nullable OffsetDateTime modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable Integer customer, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable Integer dp, final ApiCallback<List<Order>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listAllOrdersValidateBeforeCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, status, customer, product, dp, _callback);
         Type localVarReturnType = new TypeToken<List<Order>>(){}.getType();
@@ -657,7 +657,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveOrderByIdCall(Integer orderId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call retrieveOrderByIdCall(@javax.annotation.Nonnull Integer orderId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -703,7 +703,7 @@ public class OrdersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call retrieveOrderByIdValidateBeforeCall(Integer orderId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call retrieveOrderByIdValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling retrieveOrderById(Async)");
@@ -728,7 +728,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Order retrieveOrderById(Integer orderId) throws ApiException {
+    public Order retrieveOrderById(@javax.annotation.Nonnull Integer orderId) throws ApiException {
         ApiResponse<Order> localVarResp = retrieveOrderByIdWithHttpInfo(orderId);
         return localVarResp.getData();
     }
@@ -748,7 +748,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Order> retrieveOrderByIdWithHttpInfo(Integer orderId) throws ApiException {
+    public ApiResponse<Order> retrieveOrderByIdWithHttpInfo(@javax.annotation.Nonnull Integer orderId) throws ApiException {
         okhttp3.Call localVarCall = retrieveOrderByIdValidateBeforeCall(orderId, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -770,7 +770,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveOrderByIdAsync(Integer orderId, final ApiCallback<Order> _callback) throws ApiException {
+    public okhttp3.Call retrieveOrderByIdAsync(@javax.annotation.Nonnull Integer orderId, final ApiCallback<Order> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = retrieveOrderByIdValidateBeforeCall(orderId, _callback);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
@@ -793,7 +793,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateOrderByIdCall(Integer orderId, Order order, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateOrderByIdCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Order order, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -840,7 +840,7 @@ public class OrdersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateOrderByIdValidateBeforeCall(Integer orderId, Order order, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateOrderByIdValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Order order, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling updateOrderById(Async)");
@@ -871,7 +871,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Order updateOrderById(Integer orderId, Order order) throws ApiException {
+    public Order updateOrderById(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Order order) throws ApiException {
         ApiResponse<Order> localVarResp = updateOrderByIdWithHttpInfo(orderId, order);
         return localVarResp.getData();
     }
@@ -892,7 +892,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Order> updateOrderByIdWithHttpInfo(Integer orderId, Order order) throws ApiException {
+    public ApiResponse<Order> updateOrderByIdWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Order order) throws ApiException {
         okhttp3.Call localVarCall = updateOrderByIdValidateBeforeCall(orderId, order, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -915,7 +915,7 @@ public class OrdersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateOrderByIdAsync(Integer orderId, Order order, final ApiCallback<Order> _callback) throws ApiException {
+    public okhttp3.Call updateOrderByIdAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Order order, final ApiCallback<Order> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateOrderByIdValidateBeforeCall(orderId, order, _callback);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();

@@ -212,7 +212,7 @@ public class ReportsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call reportSalesSummaryCall(String period, String dateMin, String dateMax, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call reportSalesSummaryCall(@javax.annotation.Nullable String period, @javax.annotation.Nullable String dateMin, @javax.annotation.Nullable String dateMax, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -269,7 +269,7 @@ public class ReportsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call reportSalesSummaryValidateBeforeCall(String period, String dateMin, String dateMax, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call reportSalesSummaryValidateBeforeCall(@javax.annotation.Nullable String period, @javax.annotation.Nullable String dateMin, @javax.annotation.Nullable String dateMax, final ApiCallback _callback) throws ApiException {
         return reportSalesSummaryCall(period, dateMin, dateMax, _callback);
 
     }
@@ -291,7 +291,7 @@ public class ReportsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public List<ReportSalesSummary> reportSalesSummary(String period, String dateMin, String dateMax) throws ApiException {
+    public List<ReportSalesSummary> reportSalesSummary(@javax.annotation.Nullable String period, @javax.annotation.Nullable String dateMin, @javax.annotation.Nullable String dateMax) throws ApiException {
         ApiResponse<List<ReportSalesSummary>> localVarResp = reportSalesSummaryWithHttpInfo(period, dateMin, dateMax);
         return localVarResp.getData();
     }
@@ -313,7 +313,7 @@ public class ReportsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ReportSalesSummary>> reportSalesSummaryWithHttpInfo(String period, String dateMin, String dateMax) throws ApiException {
+    public ApiResponse<List<ReportSalesSummary>> reportSalesSummaryWithHttpInfo(@javax.annotation.Nullable String period, @javax.annotation.Nullable String dateMin, @javax.annotation.Nullable String dateMax) throws ApiException {
         okhttp3.Call localVarCall = reportSalesSummaryValidateBeforeCall(period, dateMin, dateMax, null);
         Type localVarReturnType = new TypeToken<List<ReportSalesSummary>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -337,7 +337,7 @@ public class ReportsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call reportSalesSummaryAsync(String period, String dateMin, String dateMax, final ApiCallback<List<ReportSalesSummary>> _callback) throws ApiException {
+    public okhttp3.Call reportSalesSummaryAsync(@javax.annotation.Nullable String period, @javax.annotation.Nullable String dateMin, @javax.annotation.Nullable String dateMax, final ApiCallback<List<ReportSalesSummary>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = reportSalesSummaryValidateBeforeCall(period, dateMin, dateMax, _callback);
         Type localVarReturnType = new TypeToken<List<ReportSalesSummary>>(){}.getType();

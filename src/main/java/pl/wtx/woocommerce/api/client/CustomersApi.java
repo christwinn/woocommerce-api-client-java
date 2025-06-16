@@ -88,7 +88,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createCustomerCall(Customer customer, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createCustomerCall(@javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -134,7 +134,7 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createCustomerValidateBeforeCall(Customer customer, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createCustomerValidateBeforeCall(@javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'customer' is set
         if (customer == null) {
             throw new ApiException("Missing the required parameter 'customer' when calling createCustomer(Async)");
@@ -159,7 +159,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Customer createCustomer(Customer customer) throws ApiException {
+    public Customer createCustomer(@javax.annotation.Nonnull Customer customer) throws ApiException {
         ApiResponse<Customer> localVarResp = createCustomerWithHttpInfo(customer);
         return localVarResp.getData();
     }
@@ -179,7 +179,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> createCustomerWithHttpInfo(Customer customer) throws ApiException {
+    public ApiResponse<Customer> createCustomerWithHttpInfo(@javax.annotation.Nonnull Customer customer) throws ApiException {
         okhttp3.Call localVarCall = createCustomerValidateBeforeCall(customer, null);
         Type localVarReturnType = new TypeToken<Customer>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -201,7 +201,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createCustomerAsync(Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call createCustomerAsync(@javax.annotation.Nonnull Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createCustomerValidateBeforeCall(customer, _callback);
         Type localVarReturnType = new TypeToken<Customer>(){}.getType();
@@ -225,7 +225,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCustomerByIdCall(Integer customerId, String force, Integer reassign, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -279,7 +279,7 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteCustomerByIdValidateBeforeCall(Integer customerId, String force, Integer reassign, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'customerId' is set
         if (customerId == null) {
             throw new ApiException("Missing the required parameter 'customerId' when calling deleteCustomerById(Async)");
@@ -311,7 +311,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Customer deleteCustomerById(Integer customerId, String force, Integer reassign) throws ApiException {
+    public Customer deleteCustomerById(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign) throws ApiException {
         ApiResponse<Customer> localVarResp = deleteCustomerByIdWithHttpInfo(customerId, force, reassign);
         return localVarResp.getData();
     }
@@ -333,7 +333,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> deleteCustomerByIdWithHttpInfo(Integer customerId, String force, Integer reassign) throws ApiException {
+    public ApiResponse<Customer> deleteCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign) throws ApiException {
         okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, null);
         Type localVarReturnType = new TypeToken<Customer>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -357,7 +357,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCustomerByIdAsync(Integer customerId, String force, Integer reassign, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call deleteCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback<Customer> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, _callback);
         Type localVarReturnType = new TypeToken<Customer>(){}.getType();
@@ -389,7 +389,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersCall(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllCustomersCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -478,7 +478,7 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllCustomersValidateBeforeCall(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listAllCustomersValidateBeforeCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback _callback) throws ApiException {
         return listAllCustomersCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
 
     }
@@ -508,7 +508,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public List<Customer> listAllCustomers(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role) throws ApiException {
+    public List<Customer> listAllCustomers(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role) throws ApiException {
         ApiResponse<List<Customer>> localVarResp = listAllCustomersWithHttpInfo(context, page, perPage, search, exclude, include, offset, order, orderby, email, role);
         return localVarResp.getData();
     }
@@ -538,7 +538,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Customer>> listAllCustomersWithHttpInfo(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role) throws ApiException {
+    public ApiResponse<List<Customer>> listAllCustomersWithHttpInfo(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role) throws ApiException {
         okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, null);
         Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -570,7 +570,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersAsync(String context, Integer page, Integer perPage, String search, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, String email, String role, final ApiCallback<List<Customer>> _callback) throws ApiException {
+    public okhttp3.Call listAllCustomersAsync(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback<List<Customer>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
         Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
@@ -592,7 +592,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveCustomerByIdCall(Integer customerId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call retrieveCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -638,7 +638,7 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call retrieveCustomerByIdValidateBeforeCall(Integer customerId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call retrieveCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'customerId' is set
         if (customerId == null) {
             throw new ApiException("Missing the required parameter 'customerId' when calling retrieveCustomerById(Async)");
@@ -663,7 +663,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Customer retrieveCustomerById(Integer customerId) throws ApiException {
+    public Customer retrieveCustomerById(@javax.annotation.Nonnull Integer customerId) throws ApiException {
         ApiResponse<Customer> localVarResp = retrieveCustomerByIdWithHttpInfo(customerId);
         return localVarResp.getData();
     }
@@ -683,7 +683,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> retrieveCustomerByIdWithHttpInfo(Integer customerId) throws ApiException {
+    public ApiResponse<Customer> retrieveCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId) throws ApiException {
         okhttp3.Call localVarCall = retrieveCustomerByIdValidateBeforeCall(customerId, null);
         Type localVarReturnType = new TypeToken<Customer>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -705,7 +705,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveCustomerByIdAsync(Integer customerId, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call retrieveCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, final ApiCallback<Customer> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = retrieveCustomerByIdValidateBeforeCall(customerId, _callback);
         Type localVarReturnType = new TypeToken<Customer>(){}.getType();
@@ -728,7 +728,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCustomerByIdCall(Integer customerId, Customer customer, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -775,7 +775,7 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateCustomerByIdValidateBeforeCall(Integer customerId, Customer customer, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'customerId' is set
         if (customerId == null) {
             throw new ApiException("Missing the required parameter 'customerId' when calling updateCustomerById(Async)");
@@ -806,7 +806,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Customer updateCustomerById(Integer customerId, Customer customer) throws ApiException {
+    public Customer updateCustomerById(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer) throws ApiException {
         ApiResponse<Customer> localVarResp = updateCustomerByIdWithHttpInfo(customerId, customer);
         return localVarResp.getData();
     }
@@ -827,7 +827,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> updateCustomerByIdWithHttpInfo(Integer customerId, Customer customer) throws ApiException {
+    public ApiResponse<Customer> updateCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer) throws ApiException {
         okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, null);
         Type localVarReturnType = new TypeToken<Customer>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -850,7 +850,7 @@ public class CustomersApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCustomerByIdAsync(Integer customerId, Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call updateCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, _callback);
         Type localVarReturnType = new TypeToken<Customer>(){}.getType();

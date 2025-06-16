@@ -110,11 +110,9 @@ public class OrdersApiTest {
         assertFalse(orders.isEmpty(), "Order list should not be empty");
         
         // Verify we have orders in both statuses
-        boolean hasOnHoldOrders = orders.stream()
-            .anyMatch(order -> Order.StatusEnum.ON_HOLD.equals(order.getStatus()));
-        boolean hasCompletedOrders = orders.stream()
-            .anyMatch(order -> Order.StatusEnum.COMPLETED.equals(order.getStatus()));
-        
+        boolean hasOnHoldOrders = orders.stream().anyMatch(order -> "on-hold".equals(order.getStatus()));
+        boolean hasCompletedOrders = orders.stream().anyMatch(order -> "completed".equals(order.getStatus()));
+
         assertTrue(hasOnHoldOrders, "Should have orders with 'on-hold' status");
         assertTrue(hasCompletedOrders, "Should have orders with 'completed' status");
         
@@ -173,10 +171,8 @@ public class OrdersApiTest {
         assertFalse(orders.isEmpty(), "Order list should not be empty");
         
         // Verify we have orders in both statuses
-        boolean hasOnHoldOrders = orders.stream()
-            .anyMatch(order -> Order.StatusEnum.ON_HOLD.equals(order.getStatus()));
-        boolean hasCompletedOrders = orders.stream()
-            .anyMatch(order -> Order.StatusEnum.COMPLETED.equals(order.getStatus()));
+        boolean hasOnHoldOrders = orders.stream().anyMatch(order -> "on-hold".equals(order.getStatus()));
+        boolean hasCompletedOrders = orders.stream().anyMatch(order -> "completed".equals(order.getStatus()));
         
         assertTrue(hasOnHoldOrders, "Should have orders with 'on-hold' status");
         assertTrue(hasCompletedOrders, "Should have orders with 'completed' status");

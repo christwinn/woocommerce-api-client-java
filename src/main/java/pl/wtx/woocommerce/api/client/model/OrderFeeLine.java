@@ -52,7 +52,7 @@ import pl.wtx.woocommerce.api.client.invoker.JSON;
 /**
  * OrderFeeLine
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class OrderFeeLine {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -69,62 +69,10 @@ public class OrderFeeLine {
   @javax.annotation.Nullable
   private String taxClass;
 
-  /**
-   * Tax status of fee.
-   */
-  @JsonAdapter(TaxStatusEnum.Adapter.class)
-  public enum TaxStatusEnum {
-    TAXABLE("taxable"),
-    
-    NONE("none");
-
-    private String value;
-
-    TaxStatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static TaxStatusEnum fromValue(String value) {
-      for (TaxStatusEnum b : TaxStatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<TaxStatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final TaxStatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public TaxStatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return TaxStatusEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      TaxStatusEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_TAX_STATUS = "tax_status";
   @SerializedName(SERIALIZED_NAME_TAX_STATUS)
   @javax.annotation.Nullable
-  private TaxStatusEnum taxStatus;
+  private String taxStatus;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
@@ -206,21 +154,21 @@ public class OrderFeeLine {
   }
 
 
-  public OrderFeeLine taxStatus(@javax.annotation.Nullable TaxStatusEnum taxStatus) {
+  public OrderFeeLine taxStatus(@javax.annotation.Nullable String taxStatus) {
     this.taxStatus = taxStatus;
     return this;
   }
 
   /**
-   * Tax status of fee.
+   * Tax status of fee. Options taxable and none.
    * @return taxStatus
    */
   @javax.annotation.Nullable
-  public TaxStatusEnum getTaxStatus() {
+  public String getTaxStatus() {
     return taxStatus;
   }
 
-  public void setTaxStatus(@javax.annotation.Nullable TaxStatusEnum taxStatus) {
+  public void setTaxStatus(@javax.annotation.Nullable String taxStatus) {
     this.taxStatus = taxStatus;
   }
 
@@ -418,10 +366,6 @@ public class OrderFeeLine {
       }
       if ((jsonObj.get("tax_status") != null && !jsonObj.get("tax_status").isJsonNull()) && !jsonObj.get("tax_status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `tax_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tax_status").toString()));
-      }
-      // validate the optional field `tax_status`
-      if (jsonObj.get("tax_status") != null && !jsonObj.get("tax_status").isJsonNull()) {
-        TaxStatusEnum.validateJsonElement(jsonObj.get("tax_status"));
       }
       if ((jsonObj.get("total") != null && !jsonObj.get("total").isJsonNull()) && !jsonObj.get("total").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total").toString()));

@@ -90,7 +90,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createProductVariationCall(Integer productId, ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createProductVariationCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -137,7 +137,7 @@ public class ProductVariationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createProductVariationValidateBeforeCall(Integer productId, ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createProductVariationValidateBeforeCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling createProductVariation(Async)");
@@ -168,7 +168,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ProductVariation createProductVariation(Integer productId, ProductVariation productVariation) throws ApiException {
+    public ProductVariation createProductVariation(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull ProductVariation productVariation) throws ApiException {
         ApiResponse<ProductVariation> localVarResp = createProductVariationWithHttpInfo(productId, productVariation);
         return localVarResp.getData();
     }
@@ -189,7 +189,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductVariation> createProductVariationWithHttpInfo(Integer productId, ProductVariation productVariation) throws ApiException {
+    public ApiResponse<ProductVariation> createProductVariationWithHttpInfo(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull ProductVariation productVariation) throws ApiException {
         okhttp3.Call localVarCall = createProductVariationValidateBeforeCall(productId, productVariation, null);
         Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -212,7 +212,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createProductVariationAsync(Integer productId, ProductVariation productVariation, final ApiCallback<ProductVariation> _callback) throws ApiException {
+    public okhttp3.Call createProductVariationAsync(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull ProductVariation productVariation, final ApiCallback<ProductVariation> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createProductVariationValidateBeforeCall(productId, productVariation, _callback);
         Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();
@@ -236,7 +236,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteProductVariationByIdCall(Integer productId, Integer variationId, Boolean force, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteProductVariationByIdCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -287,7 +287,7 @@ public class ProductVariationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteProductVariationByIdValidateBeforeCall(Integer productId, Integer variationId, Boolean force, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteProductVariationByIdValidateBeforeCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling deleteProductVariationById(Async)");
@@ -324,7 +324,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ProductVariation deleteProductVariationById(Integer productId, Integer variationId, Boolean force) throws ApiException {
+    public ProductVariation deleteProductVariationById(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull Boolean force) throws ApiException {
         ApiResponse<ProductVariation> localVarResp = deleteProductVariationByIdWithHttpInfo(productId, variationId, force);
         return localVarResp.getData();
     }
@@ -346,7 +346,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductVariation> deleteProductVariationByIdWithHttpInfo(Integer productId, Integer variationId, Boolean force) throws ApiException {
+    public ApiResponse<ProductVariation> deleteProductVariationByIdWithHttpInfo(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull Boolean force) throws ApiException {
         okhttp3.Call localVarCall = deleteProductVariationByIdValidateBeforeCall(productId, variationId, force, null);
         Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -370,7 +370,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteProductVariationByIdAsync(Integer productId, Integer variationId, Boolean force, final ApiCallback<ProductVariation> _callback) throws ApiException {
+    public okhttp3.Call deleteProductVariationByIdAsync(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull Boolean force, final ApiCallback<ProductVariation> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteProductVariationByIdValidateBeforeCall(productId, variationId, force, _callback);
         Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();
@@ -417,7 +417,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllProductVariationsCall(Integer productId, String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String sku, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllProductVariationsCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String sku, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -563,7 +563,7 @@ public class ProductVariationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllProductVariationsValidateBeforeCall(Integer productId, String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String sku, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listAllProductVariationsValidateBeforeCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String sku, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling listAllProductVariations(Async)");
@@ -613,7 +613,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public List<ProductVariation> listAllProductVariations(Integer productId, String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String sku, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable) throws ApiException {
+    public List<ProductVariation> listAllProductVariations(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String sku, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable) throws ApiException {
         ApiResponse<List<ProductVariation>> localVarResp = listAllProductVariationsWithHttpInfo(productId, context, page, perPage, search, after, before, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, sku, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable);
         return localVarResp.getData();
     }
@@ -658,7 +658,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<ProductVariation>> listAllProductVariationsWithHttpInfo(Integer productId, String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String sku, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable) throws ApiException {
+    public ApiResponse<List<ProductVariation>> listAllProductVariationsWithHttpInfo(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String sku, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable) throws ApiException {
         okhttp3.Call localVarCall = listAllProductVariationsValidateBeforeCall(productId, context, page, perPage, search, after, before, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, sku, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable, null);
         Type localVarReturnType = new TypeToken<List<ProductVariation>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -705,7 +705,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllProductVariationsAsync(Integer productId, String context, Integer page, Integer perPage, String search, OffsetDateTime after, OffsetDateTime before, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String sku, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable, final ApiCallback<List<ProductVariation>> _callback) throws ApiException {
+    public okhttp3.Call listAllProductVariationsAsync(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String sku, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable, final ApiCallback<List<ProductVariation>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listAllProductVariationsValidateBeforeCall(productId, context, page, perPage, search, after, before, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, sku, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable, _callback);
         Type localVarReturnType = new TypeToken<List<ProductVariation>>(){}.getType();
@@ -728,7 +728,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveProductVariationByIdCall(Integer productId, Integer variationId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call retrieveProductVariationByIdCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -775,7 +775,7 @@ public class ProductVariationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call retrieveProductVariationByIdValidateBeforeCall(Integer productId, Integer variationId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call retrieveProductVariationByIdValidateBeforeCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling retrieveProductVariationById(Async)");
@@ -806,7 +806,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ProductVariation retrieveProductVariationById(Integer productId, Integer variationId) throws ApiException {
+    public ProductVariation retrieveProductVariationById(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId) throws ApiException {
         ApiResponse<ProductVariation> localVarResp = retrieveProductVariationByIdWithHttpInfo(productId, variationId);
         return localVarResp.getData();
     }
@@ -827,7 +827,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductVariation> retrieveProductVariationByIdWithHttpInfo(Integer productId, Integer variationId) throws ApiException {
+    public ApiResponse<ProductVariation> retrieveProductVariationByIdWithHttpInfo(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId) throws ApiException {
         okhttp3.Call localVarCall = retrieveProductVariationByIdValidateBeforeCall(productId, variationId, null);
         Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -850,7 +850,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveProductVariationByIdAsync(Integer productId, Integer variationId, final ApiCallback<ProductVariation> _callback) throws ApiException {
+    public okhttp3.Call retrieveProductVariationByIdAsync(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, final ApiCallback<ProductVariation> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = retrieveProductVariationByIdValidateBeforeCall(productId, variationId, _callback);
         Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();
@@ -874,7 +874,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductVariationByIdCall(Integer productId, Integer variationId, ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateProductVariationByIdCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -922,7 +922,7 @@ public class ProductVariationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateProductVariationByIdValidateBeforeCall(Integer productId, Integer variationId, ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateProductVariationByIdValidateBeforeCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull ProductVariation productVariation, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling updateProductVariationById(Async)");
@@ -959,7 +959,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ProductVariation updateProductVariationById(Integer productId, Integer variationId, ProductVariation productVariation) throws ApiException {
+    public ProductVariation updateProductVariationById(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull ProductVariation productVariation) throws ApiException {
         ApiResponse<ProductVariation> localVarResp = updateProductVariationByIdWithHttpInfo(productId, variationId, productVariation);
         return localVarResp.getData();
     }
@@ -981,7 +981,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductVariation> updateProductVariationByIdWithHttpInfo(Integer productId, Integer variationId, ProductVariation productVariation) throws ApiException {
+    public ApiResponse<ProductVariation> updateProductVariationByIdWithHttpInfo(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull ProductVariation productVariation) throws ApiException {
         okhttp3.Call localVarCall = updateProductVariationByIdValidateBeforeCall(productId, variationId, productVariation, null);
         Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1005,7 +1005,7 @@ public class ProductVariationsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductVariationByIdAsync(Integer productId, Integer variationId, ProductVariation productVariation, final ApiCallback<ProductVariation> _callback) throws ApiException {
+    public okhttp3.Call updateProductVariationByIdAsync(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Integer variationId, @javax.annotation.Nonnull ProductVariation productVariation, final ApiCallback<ProductVariation> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateProductVariationByIdValidateBeforeCall(productId, variationId, productVariation, _callback);
         Type localVarReturnType = new TypeToken<ProductVariation>(){}.getType();

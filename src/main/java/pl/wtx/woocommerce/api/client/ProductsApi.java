@@ -88,7 +88,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createProductCall(Product product, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createProductCall(@javax.annotation.Nonnull Product product, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -134,7 +134,7 @@ public class ProductsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createProductValidateBeforeCall(Product product, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createProductValidateBeforeCall(@javax.annotation.Nonnull Product product, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'product' is set
         if (product == null) {
             throw new ApiException("Missing the required parameter 'product' when calling createProduct(Async)");
@@ -159,7 +159,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Product createProduct(Product product) throws ApiException {
+    public Product createProduct(@javax.annotation.Nonnull Product product) throws ApiException {
         ApiResponse<Product> localVarResp = createProductWithHttpInfo(product);
         return localVarResp.getData();
     }
@@ -179,7 +179,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Product> createProductWithHttpInfo(Product product) throws ApiException {
+    public ApiResponse<Product> createProductWithHttpInfo(@javax.annotation.Nonnull Product product) throws ApiException {
         okhttp3.Call localVarCall = createProductValidateBeforeCall(product, null);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -201,7 +201,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createProductAsync(Product product, final ApiCallback<Product> _callback) throws ApiException {
+    public okhttp3.Call createProductAsync(@javax.annotation.Nonnull Product product, final ApiCallback<Product> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createProductValidateBeforeCall(product, _callback);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();
@@ -224,7 +224,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteProductByIdCall(Integer productId, Boolean force, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteProductByIdCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -274,7 +274,7 @@ public class ProductsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteProductByIdValidateBeforeCall(Integer productId, Boolean force, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteProductByIdValidateBeforeCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling deleteProductById(Async)");
@@ -305,7 +305,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Product deleteProductById(Integer productId, Boolean force) throws ApiException {
+    public Product deleteProductById(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Boolean force) throws ApiException {
         ApiResponse<Product> localVarResp = deleteProductByIdWithHttpInfo(productId, force);
         return localVarResp.getData();
     }
@@ -326,7 +326,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Product> deleteProductByIdWithHttpInfo(Integer productId, Boolean force) throws ApiException {
+    public ApiResponse<Product> deleteProductByIdWithHttpInfo(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Boolean force) throws ApiException {
         okhttp3.Call localVarCall = deleteProductByIdValidateBeforeCall(productId, force, null);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -349,7 +349,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteProductByIdAsync(Integer productId, Boolean force, final ApiCallback<Product> _callback) throws ApiException {
+    public okhttp3.Call deleteProductByIdAsync(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Boolean force, final ApiCallback<Product> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteProductByIdValidateBeforeCall(productId, force, _callback);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();
@@ -371,7 +371,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call duplicateProductCall(Integer productId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call duplicateProductCall(@javax.annotation.Nonnull Integer productId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -417,7 +417,7 @@ public class ProductsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call duplicateProductValidateBeforeCall(Integer productId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call duplicateProductValidateBeforeCall(@javax.annotation.Nonnull Integer productId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling duplicateProduct(Async)");
@@ -442,7 +442,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Product duplicateProduct(Integer productId) throws ApiException {
+    public Product duplicateProduct(@javax.annotation.Nonnull Integer productId) throws ApiException {
         ApiResponse<Product> localVarResp = duplicateProductWithHttpInfo(productId);
         return localVarResp.getData();
     }
@@ -462,7 +462,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Product> duplicateProductWithHttpInfo(Integer productId) throws ApiException {
+    public ApiResponse<Product> duplicateProductWithHttpInfo(@javax.annotation.Nonnull Integer productId) throws ApiException {
         okhttp3.Call localVarCall = duplicateProductValidateBeforeCall(productId, null);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -484,7 +484,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call duplicateProductAsync(Integer productId, final ApiCallback<Product> _callback) throws ApiException {
+    public okhttp3.Call duplicateProductAsync(@javax.annotation.Nonnull Integer productId, final ApiCallback<Product> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = duplicateProductValidateBeforeCall(productId, _callback);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();
@@ -542,7 +542,7 @@ public class ProductsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllProductsCall(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllProductsCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String after, @javax.annotation.Nullable String before, @javax.annotation.Nullable String modifiedAfter, @javax.annotation.Nullable String modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String type, @javax.annotation.Nullable List<String> includeTypes, @javax.annotation.Nullable List<String> excludeTypes, @javax.annotation.Nullable String sku, @javax.annotation.Nullable Boolean featured, @javax.annotation.Nullable String category, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String shippingClass, @javax.annotation.Nullable String attribute, @javax.annotation.Nullable String attributeTerm, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -735,7 +735,7 @@ public class ProductsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllProductsValidateBeforeCall(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listAllProductsValidateBeforeCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String after, @javax.annotation.Nullable String before, @javax.annotation.Nullable String modifiedAfter, @javax.annotation.Nullable String modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String type, @javax.annotation.Nullable List<String> includeTypes, @javax.annotation.Nullable List<String> excludeTypes, @javax.annotation.Nullable String sku, @javax.annotation.Nullable Boolean featured, @javax.annotation.Nullable String category, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String shippingClass, @javax.annotation.Nullable String attribute, @javax.annotation.Nullable String attributeTerm, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable, final ApiCallback _callback) throws ApiException {
         return listAllProductsCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, type, includeTypes, excludeTypes, sku, featured, category, tag, shippingClass, attribute, attributeTerm, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable, _callback);
 
     }
@@ -791,7 +791,7 @@ public class ProductsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public List<Product> listAllProducts(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable) throws ApiException {
+    public List<Product> listAllProducts(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String after, @javax.annotation.Nullable String before, @javax.annotation.Nullable String modifiedAfter, @javax.annotation.Nullable String modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String type, @javax.annotation.Nullable List<String> includeTypes, @javax.annotation.Nullable List<String> excludeTypes, @javax.annotation.Nullable String sku, @javax.annotation.Nullable Boolean featured, @javax.annotation.Nullable String category, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String shippingClass, @javax.annotation.Nullable String attribute, @javax.annotation.Nullable String attributeTerm, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable) throws ApiException {
         ApiResponse<List<Product>> localVarResp = listAllProductsWithHttpInfo(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, type, includeTypes, excludeTypes, sku, featured, category, tag, shippingClass, attribute, attributeTerm, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable);
         return localVarResp.getData();
     }
@@ -847,7 +847,7 @@ public class ProductsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Product>> listAllProductsWithHttpInfo(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable) throws ApiException {
+    public ApiResponse<List<Product>> listAllProductsWithHttpInfo(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String after, @javax.annotation.Nullable String before, @javax.annotation.Nullable String modifiedAfter, @javax.annotation.Nullable String modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String type, @javax.annotation.Nullable List<String> includeTypes, @javax.annotation.Nullable List<String> excludeTypes, @javax.annotation.Nullable String sku, @javax.annotation.Nullable Boolean featured, @javax.annotation.Nullable String category, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String shippingClass, @javax.annotation.Nullable String attribute, @javax.annotation.Nullable String attributeTerm, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable) throws ApiException {
         okhttp3.Call localVarCall = listAllProductsValidateBeforeCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, type, includeTypes, excludeTypes, sku, featured, category, tag, shippingClass, attribute, attributeTerm, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable, null);
         Type localVarReturnType = new TypeToken<List<Product>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -905,7 +905,7 @@ public class ProductsApi {
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllProductsAsync(String context, Integer page, Integer perPage, String search, String after, String before, String modifiedAfter, String modifiedBefore, Boolean datesAreGmt, List<Integer> exclude, List<Integer> include, Integer offset, String order, String orderby, List<Integer> parent, List<Integer> parentExclude, String slug, List<String> status, List<String> includeStatus, List<String> excludeStatus, String type, List<String> includeTypes, List<String> excludeTypes, String sku, Boolean featured, String category, String tag, String shippingClass, String attribute, String attributeTerm, String taxClass, Boolean onSale, String minPrice, String maxPrice, String stockStatus, Boolean virtual, Boolean downloadable, final ApiCallback<List<Product>> _callback) throws ApiException {
+    public okhttp3.Call listAllProductsAsync(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String after, @javax.annotation.Nullable String before, @javax.annotation.Nullable String modifiedAfter, @javax.annotation.Nullable String modifiedBefore, @javax.annotation.Nullable Boolean datesAreGmt, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> parent, @javax.annotation.Nullable List<Integer> parentExclude, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<String> status, @javax.annotation.Nullable List<String> includeStatus, @javax.annotation.Nullable List<String> excludeStatus, @javax.annotation.Nullable String type, @javax.annotation.Nullable List<String> includeTypes, @javax.annotation.Nullable List<String> excludeTypes, @javax.annotation.Nullable String sku, @javax.annotation.Nullable Boolean featured, @javax.annotation.Nullable String category, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String shippingClass, @javax.annotation.Nullable String attribute, @javax.annotation.Nullable String attributeTerm, @javax.annotation.Nullable String taxClass, @javax.annotation.Nullable Boolean onSale, @javax.annotation.Nullable String minPrice, @javax.annotation.Nullable String maxPrice, @javax.annotation.Nullable String stockStatus, @javax.annotation.Nullable Boolean virtual, @javax.annotation.Nullable Boolean downloadable, final ApiCallback<List<Product>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = listAllProductsValidateBeforeCall(context, page, perPage, search, after, before, modifiedAfter, modifiedBefore, datesAreGmt, exclude, include, offset, order, orderby, parent, parentExclude, slug, status, includeStatus, excludeStatus, type, includeTypes, excludeTypes, sku, featured, category, tag, shippingClass, attribute, attributeTerm, taxClass, onSale, minPrice, maxPrice, stockStatus, virtual, downloadable, _callback);
         Type localVarReturnType = new TypeToken<List<Product>>(){}.getType();
@@ -927,7 +927,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveProductByIdCall(Integer productId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call retrieveProductByIdCall(@javax.annotation.Nonnull Integer productId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -973,7 +973,7 @@ public class ProductsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call retrieveProductByIdValidateBeforeCall(Integer productId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call retrieveProductByIdValidateBeforeCall(@javax.annotation.Nonnull Integer productId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling retrieveProductById(Async)");
@@ -998,7 +998,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Product retrieveProductById(Integer productId) throws ApiException {
+    public Product retrieveProductById(@javax.annotation.Nonnull Integer productId) throws ApiException {
         ApiResponse<Product> localVarResp = retrieveProductByIdWithHttpInfo(productId);
         return localVarResp.getData();
     }
@@ -1018,7 +1018,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Product> retrieveProductByIdWithHttpInfo(Integer productId) throws ApiException {
+    public ApiResponse<Product> retrieveProductByIdWithHttpInfo(@javax.annotation.Nonnull Integer productId) throws ApiException {
         okhttp3.Call localVarCall = retrieveProductByIdValidateBeforeCall(productId, null);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1040,7 +1040,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveProductByIdAsync(Integer productId, final ApiCallback<Product> _callback) throws ApiException {
+    public okhttp3.Call retrieveProductByIdAsync(@javax.annotation.Nonnull Integer productId, final ApiCallback<Product> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = retrieveProductByIdValidateBeforeCall(productId, _callback);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();
@@ -1063,7 +1063,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductByIdCall(Integer productId, Product product, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateProductByIdCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Product product, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1110,7 +1110,7 @@ public class ProductsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateProductByIdValidateBeforeCall(Integer productId, Product product, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateProductByIdValidateBeforeCall(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Product product, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling updateProductById(Async)");
@@ -1141,7 +1141,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Product updateProductById(Integer productId, Product product) throws ApiException {
+    public Product updateProductById(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Product product) throws ApiException {
         ApiResponse<Product> localVarResp = updateProductByIdWithHttpInfo(productId, product);
         return localVarResp.getData();
     }
@@ -1162,7 +1162,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Product> updateProductByIdWithHttpInfo(Integer productId, Product product) throws ApiException {
+    public ApiResponse<Product> updateProductByIdWithHttpInfo(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Product product) throws ApiException {
         okhttp3.Call localVarCall = updateProductByIdValidateBeforeCall(productId, product, null);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1185,7 +1185,7 @@ public class ProductsApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateProductByIdAsync(Integer productId, Product product, final ApiCallback<Product> _callback) throws ApiException {
+    public okhttp3.Call updateProductByIdAsync(@javax.annotation.Nonnull Integer productId, @javax.annotation.Nonnull Product product, final ApiCallback<Product> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateProductByIdValidateBeforeCall(productId, product, _callback);
         Type localVarReturnType = new TypeToken<Product>(){}.getType();

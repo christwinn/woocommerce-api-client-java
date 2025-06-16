@@ -48,7 +48,7 @@ import pl.wtx.woocommerce.api.client.invoker.JSON;
 /**
  * Shipping
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class Shipping {
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
@@ -94,6 +94,11 @@ public class Shipping {
   @SerializedName(SERIALIZED_NAME_COUNTRY)
   @javax.annotation.Nullable
   private String country;
+
+  public static final String SERIALIZED_NAME_PHONE = "phone";
+  @SerializedName(SERIALIZED_NAME_PHONE)
+  @javax.annotation.Nullable
+  private String phone;
 
   public Shipping() {
   }
@@ -269,6 +274,25 @@ public class Shipping {
   }
 
 
+  public Shipping phone(@javax.annotation.Nullable String phone) {
+    this.phone = phone;
+    return this;
+  }
+
+  /**
+   * Phone number.
+   * @return phone
+   */
+  @javax.annotation.Nullable
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(@javax.annotation.Nullable String phone) {
+    this.phone = phone;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -287,12 +311,13 @@ public class Shipping {
         Objects.equals(this.city, shipping.city) &&
         Objects.equals(this.state, shipping.state) &&
         Objects.equals(this.postcode, shipping.postcode) &&
-        Objects.equals(this.country, shipping.country);
+        Objects.equals(this.country, shipping.country) &&
+        Objects.equals(this.phone, shipping.phone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName, company, address1, address2, city, state, postcode, country);
+    return Objects.hash(firstName, lastName, company, address1, address2, city, state, postcode, country, phone);
   }
 
   @Override
@@ -308,6 +333,7 @@ public class Shipping {
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    postcode: ").append(toIndentedString(postcode)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -339,6 +365,7 @@ public class Shipping {
     openapiFields.add("state");
     openapiFields.add("postcode");
     openapiFields.add("country");
+    openapiFields.add("phone");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -391,6 +418,9 @@ public class Shipping {
       }
       if ((jsonObj.get("country") != null && !jsonObj.get("country").isJsonNull()) && !jsonObj.get("country").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `country` to be a primitive type in the JSON string but got `%s`", jsonObj.get("country").toString()));
+      }
+      if ((jsonObj.get("phone") != null && !jsonObj.get("phone").isJsonNull()) && !jsonObj.get("phone").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `phone` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phone").toString()));
       }
   }
 

@@ -53,7 +53,7 @@ import pl.wtx.woocommerce.api.client.invoker.JSON;
 /**
  * OrderLineItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class OrderLineItem {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -73,7 +73,7 @@ public class OrderLineItem {
   public static final String SERIALIZED_NAME_PRODUCT_ID = "product_id";
   @SerializedName(SERIALIZED_NAME_PRODUCT_ID)
   @javax.annotation.Nullable
-  private String productId;
+  private Integer productId;
 
   public static final String SERIALIZED_NAME_VARIATION_ID = "variation_id";
   @SerializedName(SERIALIZED_NAME_VARIATION_ID)
@@ -190,7 +190,7 @@ public class OrderLineItem {
   }
 
 
-  public OrderLineItem productId(@javax.annotation.Nullable String productId) {
+  public OrderLineItem productId(@javax.annotation.Nullable Integer productId) {
     this.productId = productId;
     return this;
   }
@@ -200,11 +200,11 @@ public class OrderLineItem {
    * @return productId
    */
   @javax.annotation.Nullable
-  public String getProductId() {
+  public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(@javax.annotation.Nullable String productId) {
+  public void setProductId(@javax.annotation.Nullable Integer productId) {
     this.productId = productId;
   }
 
@@ -553,9 +553,6 @@ public class OrderLineItem {
       }
       if ((jsonObj.get("parent_name") != null && !jsonObj.get("parent_name").isJsonNull()) && !jsonObj.get("parent_name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `parent_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("parent_name").toString()));
-      }
-      if ((jsonObj.get("product_id") != null && !jsonObj.get("product_id").isJsonNull()) && !jsonObj.get("product_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `product_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("product_id").toString()));
       }
       if ((jsonObj.get("tax_class") != null && !jsonObj.get("tax_class").isJsonNull()) && !jsonObj.get("tax_class").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `tax_class` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tax_class").toString()));

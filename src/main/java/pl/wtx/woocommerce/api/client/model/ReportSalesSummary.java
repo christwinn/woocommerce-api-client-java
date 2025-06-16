@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +52,7 @@ import pl.wtx.woocommerce.api.client.invoker.JSON;
 /**
  * ReportSalesSummary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ReportSalesSummary {
   public static final String SERIALIZED_NAME_TOTAL_SALES = "total_sales";
   @SerializedName(SERIALIZED_NAME_TOTAL_SALES)
@@ -91,7 +92,7 @@ public class ReportSalesSummary {
   public static final String SERIALIZED_NAME_TOTAL_REFUNDS = "total_refunds";
   @SerializedName(SERIALIZED_NAME_TOTAL_REFUNDS)
   @javax.annotation.Nullable
-  private Integer totalRefunds;
+  private BigDecimal totalRefunds;
 
   public static final String SERIALIZED_NAME_TOTAL_DISCOUNT = "total_discount";
   @SerializedName(SERIALIZED_NAME_TOTAL_DISCOUNT)
@@ -249,7 +250,7 @@ public class ReportSalesSummary {
   }
 
 
-  public ReportSalesSummary totalRefunds(@javax.annotation.Nullable Integer totalRefunds) {
+  public ReportSalesSummary totalRefunds(@javax.annotation.Nullable BigDecimal totalRefunds) {
     this.totalRefunds = totalRefunds;
     return this;
   }
@@ -259,11 +260,11 @@ public class ReportSalesSummary {
    * @return totalRefunds
    */
   @javax.annotation.Nullable
-  public Integer getTotalRefunds() {
+  public BigDecimal getTotalRefunds() {
     return totalRefunds;
   }
 
-  public void setTotalRefunds(@javax.annotation.Nullable Integer totalRefunds) {
+  public void setTotalRefunds(@javax.annotation.Nullable BigDecimal totalRefunds) {
     this.totalRefunds = totalRefunds;
   }
 
