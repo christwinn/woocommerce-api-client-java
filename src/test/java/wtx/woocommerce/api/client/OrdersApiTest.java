@@ -7,6 +7,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.ArgumentCaptor;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.api.client.invoker.*;
+import pl.wtx.woocommerce.WooCommerceApiClient;
 import pl.wtx.woocommerce.api.client.OrdersApi;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.MockResponse;
