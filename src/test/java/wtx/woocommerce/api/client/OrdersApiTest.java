@@ -26,7 +26,7 @@ public class OrdersApiTest {
     
     private static final String SEPARATOR = "-------------------------------------------------------------------------------";
     private MockWebServer mockWebServer;
-    private ApiClient apiClient;
+    private WooCommerceApiClient apiClient;
     private OrdersApi ordersApi;
     private JSON json;
     
@@ -52,7 +52,7 @@ public class OrdersApiTest {
         mockWebServer.start();
         
         // Create and configure ApiClient with logging enabled
-        apiClient = new ApiClient();
+        apiClient = new WooCommerceApiClient(true);
         apiClient.setDebugging(true);
         apiClient.setBasePath(mockWebServer.url("/").toString());
         
