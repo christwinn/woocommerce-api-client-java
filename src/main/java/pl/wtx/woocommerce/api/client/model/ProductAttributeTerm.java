@@ -46,10 +46,10 @@ import java.util.Set;
 import pl.wtx.woocommerce.api.client.invoker.JSON;
 
 /**
- * ProductAttribute
+ * ProductAttributeTerm
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
-public class ProductAttribute {
+public class ProductAttributeTerm {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
@@ -60,41 +60,36 @@ public class ProductAttribute {
   @javax.annotation.Nullable
   private String name;
 
-  public static final String SERIALIZED_NAME_OPTION = "option";
-  @SerializedName(SERIALIZED_NAME_OPTION)
-  @javax.annotation.Nullable
-  private String option;
-
   public static final String SERIALIZED_NAME_SLUG = "slug";
   @SerializedName(SERIALIZED_NAME_SLUG)
   @javax.annotation.Nullable
   private String slug;
 
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   @javax.annotation.Nullable
-  private String type;
+  private String description;
 
-  public static final String SERIALIZED_NAME_ORDER_BY = "order_by";
-  @SerializedName(SERIALIZED_NAME_ORDER_BY)
+  public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
+  @SerializedName(SERIALIZED_NAME_MENU_ORDER)
   @javax.annotation.Nullable
-  private String orderBy;
+  private Integer menuOrder;
 
-  public static final String SERIALIZED_NAME_HAS_ARCHIVES = "has_archives";
-  @SerializedName(SERIALIZED_NAME_HAS_ARCHIVES)
+  public static final String SERIALIZED_NAME_COUNT = "count";
+  @SerializedName(SERIALIZED_NAME_COUNT)
   @javax.annotation.Nullable
-  private Boolean hasArchives;
+  private Integer count;
 
-  public ProductAttribute() {
+  public ProductAttributeTerm() {
   }
 
-  public ProductAttribute id(@javax.annotation.Nullable Integer id) {
+  public ProductAttributeTerm id(@javax.annotation.Nullable Integer id) {
     this.id = id;
     return this;
   }
 
   /**
-   * Attribute ID.
+   * Term ID.
    * @return id
    */
   @javax.annotation.Nullable
@@ -107,13 +102,13 @@ public class ProductAttribute {
   }
 
 
-  public ProductAttribute name(@javax.annotation.Nullable String name) {
+  public ProductAttributeTerm name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * Attribute name.
+   * Term name.
    * @return name
    */
   @javax.annotation.Nullable
@@ -126,32 +121,13 @@ public class ProductAttribute {
   }
 
 
-  public ProductAttribute option(@javax.annotation.Nullable String option) {
-    this.option = option;
-    return this;
-  }
-
-  /**
-   * Selected attribute term name. Applicable only for Product represents SKU (variation)
-   * @return option
-   */
-  @javax.annotation.Nullable
-  public String getOption() {
-    return option;
-  }
-
-  public void setOption(@javax.annotation.Nullable String option) {
-    this.option = option;
-  }
-
-
-  public ProductAttribute slug(@javax.annotation.Nullable String slug) {
+  public ProductAttributeTerm slug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
     return this;
   }
 
   /**
-   * Attribute slug.
+   * Term slug.
    * @return slug
    */
   @javax.annotation.Nullable
@@ -164,60 +140,60 @@ public class ProductAttribute {
   }
 
 
-  public ProductAttribute type(@javax.annotation.Nullable String type) {
-    this.type = type;
+  public ProductAttributeTerm description(@javax.annotation.Nullable String description) {
+    this.description = description;
     return this;
   }
 
   /**
-   * Attribute type.
-   * @return type
+   * Term description.
+   * @return description
    */
   @javax.annotation.Nullable
-  public String getType() {
-    return type;
+  public String getDescription() {
+    return description;
   }
 
-  public void setType(@javax.annotation.Nullable String type) {
-    this.type = type;
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = description;
   }
 
 
-  public ProductAttribute orderBy(@javax.annotation.Nullable String orderBy) {
-    this.orderBy = orderBy;
+  public ProductAttributeTerm menuOrder(@javax.annotation.Nullable Integer menuOrder) {
+    this.menuOrder = menuOrder;
     return this;
   }
 
   /**
-   * Sort order.
-   * @return orderBy
+   * Menu order.
+   * @return menuOrder
    */
   @javax.annotation.Nullable
-  public String getOrderBy() {
-    return orderBy;
+  public Integer getMenuOrder() {
+    return menuOrder;
   }
 
-  public void setOrderBy(@javax.annotation.Nullable String orderBy) {
-    this.orderBy = orderBy;
+  public void setMenuOrder(@javax.annotation.Nullable Integer menuOrder) {
+    this.menuOrder = menuOrder;
   }
 
 
-  public ProductAttribute hasArchives(@javax.annotation.Nullable Boolean hasArchives) {
-    this.hasArchives = hasArchives;
+  public ProductAttributeTerm count(@javax.annotation.Nullable Integer count) {
+    this.count = count;
     return this;
   }
 
   /**
-   * Enable/Disable attribute archives.
-   * @return hasArchives
+   * Number of products in term.
+   * @return count
    */
   @javax.annotation.Nullable
-  public Boolean getHasArchives() {
-    return hasArchives;
+  public Integer getCount() {
+    return count;
   }
 
-  public void setHasArchives(@javax.annotation.Nullable Boolean hasArchives) {
-    this.hasArchives = hasArchives;
+  public void setCount(@javax.annotation.Nullable Integer count) {
+    this.count = count;
   }
 
 
@@ -230,32 +206,30 @@ public class ProductAttribute {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProductAttribute productAttribute = (ProductAttribute) o;
-    return Objects.equals(this.id, productAttribute.id) &&
-        Objects.equals(this.name, productAttribute.name) &&
-        Objects.equals(this.option, productAttribute.option) &&
-        Objects.equals(this.slug, productAttribute.slug) &&
-        Objects.equals(this.type, productAttribute.type) &&
-        Objects.equals(this.orderBy, productAttribute.orderBy) &&
-        Objects.equals(this.hasArchives, productAttribute.hasArchives);
+    ProductAttributeTerm productAttributeTerm = (ProductAttributeTerm) o;
+    return Objects.equals(this.id, productAttributeTerm.id) &&
+        Objects.equals(this.name, productAttributeTerm.name) &&
+        Objects.equals(this.slug, productAttributeTerm.slug) &&
+        Objects.equals(this.description, productAttributeTerm.description) &&
+        Objects.equals(this.menuOrder, productAttributeTerm.menuOrder) &&
+        Objects.equals(this.count, productAttributeTerm.count);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, option, slug, type, orderBy, hasArchives);
+    return Objects.hash(id, name, slug, description, menuOrder, count);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProductAttribute {\n");
+    sb.append("class ProductAttributeTerm {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    option: ").append(toIndentedString(option)).append("\n");
     sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");
-    sb.append("    hasArchives: ").append(toIndentedString(hasArchives)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    menuOrder: ").append(toIndentedString(menuOrder)).append("\n");
+    sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -280,11 +254,10 @@ public class ProductAttribute {
     openapiFields = new HashSet<String>();
     openapiFields.add("id");
     openapiFields.add("name");
-    openapiFields.add("option");
     openapiFields.add("slug");
-    openapiFields.add("type");
-    openapiFields.add("order_by");
-    openapiFields.add("has_archives");
+    openapiFields.add("description");
+    openapiFields.add("menu_order");
+    openapiFields.add("count");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -294,37 +267,31 @@ public class ProductAttribute {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ProductAttribute
+   * @throws IOException if the JSON Element is invalid with respect to ProductAttributeTerm
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!ProductAttribute.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ProductAttribute is not found in the empty JSON string", ProductAttribute.openapiRequiredFields.toString()));
+        if (!ProductAttributeTerm.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ProductAttributeTerm is not found in the empty JSON string", ProductAttributeTerm.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ProductAttribute.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductAttribute` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!ProductAttributeTerm.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductAttributeTerm` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
-      if ((jsonObj.get("option") != null && !jsonObj.get("option").isJsonNull()) && !jsonObj.get("option").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `option` to be a primitive type in the JSON string but got `%s`", jsonObj.get("option").toString()));
-      }
       if ((jsonObj.get("slug") != null && !jsonObj.get("slug").isJsonNull()) && !jsonObj.get("slug").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `slug` to be a primitive type in the JSON string but got `%s`", jsonObj.get("slug").toString()));
       }
-      if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
-      }
-      if ((jsonObj.get("order_by") != null && !jsonObj.get("order_by").isJsonNull()) && !jsonObj.get("order_by").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `order_by` to be a primitive type in the JSON string but got `%s`", jsonObj.get("order_by").toString()));
+      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
   }
 
@@ -332,22 +299,22 @@ public class ProductAttribute {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ProductAttribute.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ProductAttribute' and its subtypes
+       if (!ProductAttributeTerm.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ProductAttributeTerm' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ProductAttribute> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ProductAttribute.class));
+       final TypeAdapter<ProductAttributeTerm> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ProductAttributeTerm.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ProductAttribute>() {
+       return (TypeAdapter<T>) new TypeAdapter<ProductAttributeTerm>() {
            @Override
-           public void write(JsonWriter out, ProductAttribute value) throws IOException {
+           public void write(JsonWriter out, ProductAttributeTerm value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ProductAttribute read(JsonReader in) throws IOException {
+           public ProductAttributeTerm read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -358,18 +325,18 @@ public class ProductAttribute {
   }
 
   /**
-   * Create an instance of ProductAttribute given an JSON string
+   * Create an instance of ProductAttributeTerm given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of ProductAttribute
-   * @throws IOException if the JSON string is invalid with respect to ProductAttribute
+   * @return An instance of ProductAttributeTerm
+   * @throws IOException if the JSON string is invalid with respect to ProductAttributeTerm
    */
-  public static ProductAttribute fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ProductAttribute.class);
+  public static ProductAttributeTerm fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ProductAttributeTerm.class);
   }
 
   /**
-   * Convert an instance of ProductAttribute to an JSON string
+   * Convert an instance of ProductAttributeTerm to an JSON string
    *
    * @return JSON string
    */

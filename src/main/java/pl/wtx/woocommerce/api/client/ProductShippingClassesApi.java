@@ -28,9 +28,8 @@ import java.io.IOException;
 
 
 import pl.wtx.woocommerce.api.client.model.ApiError;
-import pl.wtx.woocommerce.api.client.model.BatchCustomers200Response;
-import pl.wtx.woocommerce.api.client.model.BatchCustomersRequest;
-import pl.wtx.woocommerce.api.client.model.Customer;
+import pl.wtx.woocommerce.api.client.model.BatchUpdateShippingClassesRequest;
+import pl.wtx.woocommerce.api.client.model.ProductShippingClass;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -38,16 +37,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CustomersApi {
+public class ProductShippingClassesApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public CustomersApi() {
+    public ProductShippingClassesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public CustomersApi(ApiClient apiClient) {
+    public ProductShippingClassesApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -76,8 +75,8 @@ public class CustomersApi {
     }
 
     /**
-     * Build call for batchCustomers
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
+     * Build call for batchUpdateShippingClasses
+     * @param batchUpdateShippingClassesRequest Batch create, update, delete shipping classes (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -85,10 +84,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns batch operation result </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchCustomersCall(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call batchUpdateShippingClassesCall(@javax.annotation.Nullable BatchUpdateShippingClassesRequest batchUpdateShippingClassesRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -102,10 +101,10 @@ public class CustomersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = batchCustomersRequest;
+        Object localVarPostBody = batchUpdateShippingClassesRequest;
 
         // create path and map variables
-        String localVarPath = "/customers/batch";
+        String localVarPath = "/products/shipping-classes/batch";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -134,52 +133,52 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call batchCustomersValidateBeforeCall(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest, final ApiCallback _callback) throws ApiException {
-        return batchCustomersCall(batchCustomersRequest, _callback);
+    private okhttp3.Call batchUpdateShippingClassesValidateBeforeCall(@javax.annotation.Nullable BatchUpdateShippingClassesRequest batchUpdateShippingClassesRequest, final ApiCallback _callback) throws ApiException {
+        return batchUpdateShippingClassesCall(batchUpdateShippingClassesRequest, _callback);
 
     }
 
     /**
-     * Batch create, update, and delete customers
+     * Batch update shipping classes
      * 
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
-     * @return BatchCustomers200Response
+     * @param batchUpdateShippingClassesRequest Batch create, update, delete shipping classes (optional)
+     * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns batch operation result </td><td>  -  </td></tr>
      </table>
      */
-    public BatchCustomers200Response batchCustomers(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest) throws ApiException {
-        ApiResponse<BatchCustomers200Response> localVarResp = batchCustomersWithHttpInfo(batchCustomersRequest);
+    public Object batchUpdateShippingClasses(@javax.annotation.Nullable BatchUpdateShippingClassesRequest batchUpdateShippingClassesRequest) throws ApiException {
+        ApiResponse<Object> localVarResp = batchUpdateShippingClassesWithHttpInfo(batchUpdateShippingClassesRequest);
         return localVarResp.getData();
     }
 
     /**
-     * Batch create, update, and delete customers
+     * Batch update shipping classes
      * 
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
-     * @return ApiResponse&lt;BatchCustomers200Response&gt;
+     * @param batchUpdateShippingClassesRequest Batch create, update, delete shipping classes (optional)
+     * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns batch operation result </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<BatchCustomers200Response> batchCustomersWithHttpInfo(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest) throws ApiException {
-        okhttp3.Call localVarCall = batchCustomersValidateBeforeCall(batchCustomersRequest, null);
-        Type localVarReturnType = new TypeToken<BatchCustomers200Response>(){}.getType();
+    public ApiResponse<Object> batchUpdateShippingClassesWithHttpInfo(@javax.annotation.Nullable BatchUpdateShippingClassesRequest batchUpdateShippingClassesRequest) throws ApiException {
+        okhttp3.Call localVarCall = batchUpdateShippingClassesValidateBeforeCall(batchUpdateShippingClassesRequest, null);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Batch create, update, and delete customers (asynchronously)
+     * Batch update shipping classes (asynchronously)
      * 
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
+     * @param batchUpdateShippingClassesRequest Batch create, update, delete shipping classes (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -187,19 +186,19 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns batch operation result </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchCustomersAsync(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest, final ApiCallback<BatchCustomers200Response> _callback) throws ApiException {
+    public okhttp3.Call batchUpdateShippingClassesAsync(@javax.annotation.Nullable BatchUpdateShippingClassesRequest batchUpdateShippingClassesRequest, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = batchCustomersValidateBeforeCall(batchCustomersRequest, _callback);
-        Type localVarReturnType = new TypeToken<BatchCustomers200Response>(){}.getType();
+        okhttp3.Call localVarCall = batchUpdateShippingClassesValidateBeforeCall(batchUpdateShippingClassesRequest, _callback);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for createCustomer
-     * @param customer Customer object with data to create. (required)
+     * Build call for createShippingClass
+     * @param productShippingClass Shipping class object with data to create (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -207,12 +206,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createCustomerCall(@javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createShippingClassCall(@javax.annotation.Nonnull ProductShippingClass productShippingClass, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -226,10 +223,10 @@ public class CustomersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = customer;
+        Object localVarPostBody = productShippingClass;
 
         // create path and map variables
-        String localVarPath = "/customers";
+        String localVarPath = "/products/shipping-classes";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -258,61 +255,57 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createCustomerValidateBeforeCall(@javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customer' is set
-        if (customer == null) {
-            throw new ApiException("Missing the required parameter 'customer' when calling createCustomer(Async)");
+    private okhttp3.Call createShippingClassValidateBeforeCall(@javax.annotation.Nonnull ProductShippingClass productShippingClass, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'productShippingClass' is set
+        if (productShippingClass == null) {
+            throw new ApiException("Missing the required parameter 'productShippingClass' when calling createShippingClass(Async)");
         }
 
-        return createCustomerCall(customer, _callback);
+        return createShippingClassCall(productShippingClass, _callback);
 
     }
 
     /**
-     * This API helps you to create a new customer.
+     * Create a shipping class
      * 
-     * @param customer Customer object with data to create. (required)
-     * @return Customer
+     * @param productShippingClass Shipping class object with data to create (required)
+     * @return ProductShippingClass
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public Customer createCustomer(@javax.annotation.Nonnull Customer customer) throws ApiException {
-        ApiResponse<Customer> localVarResp = createCustomerWithHttpInfo(customer);
+    public ProductShippingClass createShippingClass(@javax.annotation.Nonnull ProductShippingClass productShippingClass) throws ApiException {
+        ApiResponse<ProductShippingClass> localVarResp = createShippingClassWithHttpInfo(productShippingClass);
         return localVarResp.getData();
     }
 
     /**
-     * This API helps you to create a new customer.
+     * Create a shipping class
      * 
-     * @param customer Customer object with data to create. (required)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param productShippingClass Shipping class object with data to create (required)
+     * @return ApiResponse&lt;ProductShippingClass&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> createCustomerWithHttpInfo(@javax.annotation.Nonnull Customer customer) throws ApiException {
-        okhttp3.Call localVarCall = createCustomerValidateBeforeCall(customer, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductShippingClass> createShippingClassWithHttpInfo(@javax.annotation.Nonnull ProductShippingClass productShippingClass) throws ApiException {
+        okhttp3.Call localVarCall = createShippingClassValidateBeforeCall(productShippingClass, null);
+        Type localVarReturnType = new TypeToken<ProductShippingClass>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API helps you to create a new customer. (asynchronously)
+     * Create a shipping class (asynchronously)
      * 
-     * @param customer Customer object with data to create. (required)
+     * @param productShippingClass Shipping class object with data to create (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -320,23 +313,20 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createCustomerAsync(@javax.annotation.Nonnull Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call createShippingClassAsync(@javax.annotation.Nonnull ProductShippingClass productShippingClass, final ApiCallback<ProductShippingClass> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createCustomerValidateBeforeCall(customer, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = createShippingClassValidateBeforeCall(productShippingClass, _callback);
+        Type localVarReturnType = new TypeToken<ProductShippingClass>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for deleteCustomerById
-     * @param customerId ID of customer to delete (required)
+     * Build call for deleteShippingClass
+     * @param classId  (required)
      * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -344,12 +334,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Shipping class deleted </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteShippingClassCall(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -366,8 +354,8 @@ public class CustomersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers/{customerId}"
-            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/products/shipping-classes/{classId}"
+            .replace("{" + "classId" + "}", localVarApiClient.escapeString(classId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -377,10 +365,6 @@ public class CustomersApi {
 
         if (force != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
-        }
-
-        if (reassign != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("reassign", reassign));
         }
 
         final String[] localVarAccepts = {
@@ -403,72 +387,65 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling deleteCustomerById(Async)");
+    private okhttp3.Call deleteShippingClassValidateBeforeCall(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'classId' is set
+        if (classId == null) {
+            throw new ApiException("Missing the required parameter 'classId' when calling deleteShippingClass(Async)");
         }
 
         // verify the required parameter 'force' is set
         if (force == null) {
-            throw new ApiException("Missing the required parameter 'force' when calling deleteCustomerById(Async)");
+            throw new ApiException("Missing the required parameter 'force' when calling deleteShippingClass(Async)");
         }
 
-        return deleteCustomerByIdCall(customerId, force, reassign, _callback);
+        return deleteShippingClassCall(classId, force, _callback);
 
     }
 
     /**
-     * This API helps you delete a customer.
+     * Delete a shipping class
      * 
-     * @param customerId ID of customer to delete (required)
+     * @param classId  (required)
      * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
-     * @return Customer
+     * @return ProductShippingClass
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Shipping class deleted </td><td>  -  </td></tr>
      </table>
      */
-    public Customer deleteCustomerById(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign) throws ApiException {
-        ApiResponse<Customer> localVarResp = deleteCustomerByIdWithHttpInfo(customerId, force, reassign);
+    public ProductShippingClass deleteShippingClass(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        ApiResponse<ProductShippingClass> localVarResp = deleteShippingClassWithHttpInfo(classId, force);
         return localVarResp.getData();
     }
 
     /**
-     * This API helps you delete a customer.
+     * Delete a shipping class
      * 
-     * @param customerId ID of customer to delete (required)
+     * @param classId  (required)
      * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
-     * @return ApiResponse&lt;Customer&gt;
+     * @return ApiResponse&lt;ProductShippingClass&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Shipping class deleted </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> deleteCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign) throws ApiException {
-        okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductShippingClass> deleteShippingClassWithHttpInfo(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        okhttp3.Call localVarCall = deleteShippingClassValidateBeforeCall(classId, force, null);
+        Type localVarReturnType = new TypeToken<ProductShippingClass>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API helps you delete a customer. (asynchronously)
+     * Delete a shipping class (asynchronously)
      * 
-     * @param customerId ID of customer to delete (required)
+     * @param classId  (required)
      * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -476,31 +453,30 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Shipping class deleted </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call deleteShippingClassAsync(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull Boolean force, final ApiCallback<ProductShippingClass> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = deleteShippingClassValidateBeforeCall(classId, force, _callback);
+        Type localVarReturnType = new TypeToken<ProductShippingClass>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for listAllCustomers
+     * Build call for listAllShippingClasses
      * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
      * @param page Current page of the collection. Default is 1. (optional, default to 1)
      * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
-     * @param exclude Ensure result set excludes specific IDs. (optional)
-     * @param include Limit result set to specific IDs. (optional)
-     * @param offset Offset the result set by a specific number of items. (optional)
+     * @param orderby Sort collection by resource attribute. Options: id, include, name, slug, term_group, description, count. Default is name. (optional, default to name)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
+     * @param hideEmpty Whether to hide resources not assigned to any products. Default is false. (optional, default to false)
+     * @param parent Limit result set to resources assigned to a specific parent. (optional)
+     * @param product Limit result set to resources assigned to a specific product. (optional)
+     * @param slug Limit result set to resources with a specific slug. (optional)
+     * @param include Limit result set to specific IDs. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -508,12 +484,13 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of shipping classes </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllShippingClassesCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String order, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer parent, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable List<Integer> exclude, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -530,7 +507,7 @@ public class CustomersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers";
+        String localVarPath = "/products/shipping-classes";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -554,32 +531,36 @@ public class CustomersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("search", search));
         }
 
-        if (exclude != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
-        }
-
-        if (include != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "include", include));
-        }
-
-        if (offset != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
+        if (orderby != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderby", orderby));
         }
 
         if (order != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("order", order));
         }
 
-        if (orderby != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderby", orderby));
+        if (hideEmpty != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("hide_empty", hideEmpty));
         }
 
-        if (email != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("email", email));
+        if (parent != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("parent", parent));
         }
 
-        if (role != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("role", role));
+        if (product != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("product", product));
+        }
+
+        if (slug != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("slug", slug));
+        }
+
+        if (include != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "include", include));
+        }
+
+        if (exclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "exclude", exclude));
         }
 
         final String[] localVarAccepts = {
@@ -602,86 +583,91 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllCustomersValidateBeforeCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback _callback) throws ApiException {
-        return listAllCustomersCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
+    private okhttp3.Call listAllShippingClassesValidateBeforeCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String order, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer parent, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable List<Integer> exclude, final ApiCallback _callback) throws ApiException {
+        return listAllShippingClassesCall(context, page, perPage, search, orderby, order, hideEmpty, parent, product, slug, include, exclude, _callback);
 
     }
 
     /**
-     * This API helps you to view all the customers.
+     * List all shipping classes
      * 
      * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
      * @param page Current page of the collection. Default is 1. (optional, default to 1)
      * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
-     * @param exclude Ensure result set excludes specific IDs. (optional)
-     * @param include Limit result set to specific IDs. (optional)
-     * @param offset Offset the result set by a specific number of items. (optional)
+     * @param orderby Sort collection by resource attribute. Options: id, include, name, slug, term_group, description, count. Default is name. (optional, default to name)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
-     * @return List&lt;Customer&gt;
+     * @param hideEmpty Whether to hide resources not assigned to any products. Default is false. (optional, default to false)
+     * @param parent Limit result set to resources assigned to a specific parent. (optional)
+     * @param product Limit result set to resources assigned to a specific product. (optional)
+     * @param slug Limit result set to resources with a specific slug. (optional)
+     * @param include Limit result set to specific IDs. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @return List&lt;ProductShippingClass&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of shipping classes </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public List<Customer> listAllCustomers(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role) throws ApiException {
-        ApiResponse<List<Customer>> localVarResp = listAllCustomersWithHttpInfo(context, page, perPage, search, exclude, include, offset, order, orderby, email, role);
+    public List<ProductShippingClass> listAllShippingClasses(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String order, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer parent, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable List<Integer> exclude) throws ApiException {
+        ApiResponse<List<ProductShippingClass>> localVarResp = listAllShippingClassesWithHttpInfo(context, page, perPage, search, orderby, order, hideEmpty, parent, product, slug, include, exclude);
         return localVarResp.getData();
     }
 
     /**
-     * This API helps you to view all the customers.
+     * List all shipping classes
      * 
      * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
      * @param page Current page of the collection. Default is 1. (optional, default to 1)
      * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
-     * @param exclude Ensure result set excludes specific IDs. (optional)
-     * @param include Limit result set to specific IDs. (optional)
-     * @param offset Offset the result set by a specific number of items. (optional)
+     * @param orderby Sort collection by resource attribute. Options: id, include, name, slug, term_group, description, count. Default is name. (optional, default to name)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
-     * @return ApiResponse&lt;List&lt;Customer&gt;&gt;
+     * @param hideEmpty Whether to hide resources not assigned to any products. Default is false. (optional, default to false)
+     * @param parent Limit result set to resources assigned to a specific parent. (optional)
+     * @param product Limit result set to resources assigned to a specific product. (optional)
+     * @param slug Limit result set to resources with a specific slug. (optional)
+     * @param include Limit result set to specific IDs. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
+     * @return ApiResponse&lt;List&lt;ProductShippingClass&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of shipping classes </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Customer>> listAllCustomersWithHttpInfo(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role) throws ApiException {
-        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, null);
-        Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
+    public ApiResponse<List<ProductShippingClass>> listAllShippingClassesWithHttpInfo(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String order, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer parent, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable List<Integer> exclude) throws ApiException {
+        okhttp3.Call localVarCall = listAllShippingClassesValidateBeforeCall(context, page, perPage, search, orderby, order, hideEmpty, parent, product, slug, include, exclude, null);
+        Type localVarReturnType = new TypeToken<List<ProductShippingClass>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API helps you to view all the customers. (asynchronously)
+     * List all shipping classes (asynchronously)
      * 
      * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
      * @param page Current page of the collection. Default is 1. (optional, default to 1)
      * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
-     * @param exclude Ensure result set excludes specific IDs. (optional)
-     * @param include Limit result set to specific IDs. (optional)
-     * @param offset Offset the result set by a specific number of items. (optional)
+     * @param orderby Sort collection by resource attribute. Options: id, include, name, slug, term_group, description, count. Default is name. (optional, default to name)
      * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
+     * @param hideEmpty Whether to hide resources not assigned to any products. Default is false. (optional, default to false)
+     * @param parent Limit result set to resources assigned to a specific parent. (optional)
+     * @param product Limit result set to resources assigned to a specific product. (optional)
+     * @param slug Limit result set to resources with a specific slug. (optional)
+     * @param include Limit result set to specific IDs. (optional)
+     * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -689,21 +675,22 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of shipping classes </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersAsync(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback<List<Customer>> _callback) throws ApiException {
+    public okhttp3.Call listAllShippingClassesAsync(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String order, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer parent, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable List<Integer> exclude, final ApiCallback<List<ProductShippingClass>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
-        Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
+        okhttp3.Call localVarCall = listAllShippingClassesValidateBeforeCall(context, page, perPage, search, orderby, order, hideEmpty, parent, product, slug, include, exclude, _callback);
+        Type localVarReturnType = new TypeToken<List<ProductShippingClass>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for retrieveCustomerById
-     * @param customerId ID of customer to return (required)
+     * Build call for retrieveShippingClass
+     * @param classId  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -711,12 +698,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call retrieveShippingClassCall(@javax.annotation.Nonnull Integer classId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -733,8 +718,8 @@ public class CustomersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers/{customerId}"
-            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/products/shipping-classes/{classId}"
+            .replace("{" + "classId" + "}", localVarApiClient.escapeString(classId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -762,61 +747,57 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call retrieveCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling retrieveCustomerById(Async)");
+    private okhttp3.Call retrieveShippingClassValidateBeforeCall(@javax.annotation.Nonnull Integer classId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'classId' is set
+        if (classId == null) {
+            throw new ApiException("Missing the required parameter 'classId' when calling retrieveShippingClass(Async)");
         }
 
-        return retrieveCustomerByIdCall(customerId, _callback);
+        return retrieveShippingClassCall(classId, _callback);
 
     }
 
     /**
-     * This API lets you retrieve and view a specific customer by ID.
+     * Retrieve a shipping class
      * 
-     * @param customerId ID of customer to return (required)
-     * @return Customer
+     * @param classId  (required)
+     * @return ProductShippingClass
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public Customer retrieveCustomerById(@javax.annotation.Nonnull Integer customerId) throws ApiException {
-        ApiResponse<Customer> localVarResp = retrieveCustomerByIdWithHttpInfo(customerId);
+    public ProductShippingClass retrieveShippingClass(@javax.annotation.Nonnull Integer classId) throws ApiException {
+        ApiResponse<ProductShippingClass> localVarResp = retrieveShippingClassWithHttpInfo(classId);
         return localVarResp.getData();
     }
 
     /**
-     * This API lets you retrieve and view a specific customer by ID.
+     * Retrieve a shipping class
      * 
-     * @param customerId ID of customer to return (required)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param classId  (required)
+     * @return ApiResponse&lt;ProductShippingClass&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> retrieveCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId) throws ApiException {
-        okhttp3.Call localVarCall = retrieveCustomerByIdValidateBeforeCall(customerId, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductShippingClass> retrieveShippingClassWithHttpInfo(@javax.annotation.Nonnull Integer classId) throws ApiException {
+        okhttp3.Call localVarCall = retrieveShippingClassValidateBeforeCall(classId, null);
+        Type localVarReturnType = new TypeToken<ProductShippingClass>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API lets you retrieve and view a specific customer by ID. (asynchronously)
+     * Retrieve a shipping class (asynchronously)
      * 
-     * @param customerId ID of customer to return (required)
+     * @param classId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -824,22 +805,20 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call retrieveShippingClassAsync(@javax.annotation.Nonnull Integer classId, final ApiCallback<ProductShippingClass> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = retrieveCustomerByIdValidateBeforeCall(customerId, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = retrieveShippingClassValidateBeforeCall(classId, _callback);
+        Type localVarReturnType = new TypeToken<ProductShippingClass>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for updateCustomerById
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
+     * Build call for updateShippingClass
+     * @param classId  (required)
+     * @param productShippingClass Shipping class object with data to update (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -847,12 +826,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateShippingClassCall(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull ProductShippingClass productShippingClass, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -866,11 +843,11 @@ public class CustomersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = customer;
+        Object localVarPostBody = productShippingClass;
 
         // create path and map variables
-        String localVarPath = "/customers/{customerId}"
-            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/products/shipping-classes/{classId}"
+            .replace("{" + "classId" + "}", localVarApiClient.escapeString(classId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -899,69 +876,65 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling updateCustomerById(Async)");
+    private okhttp3.Call updateShippingClassValidateBeforeCall(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull ProductShippingClass productShippingClass, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'classId' is set
+        if (classId == null) {
+            throw new ApiException("Missing the required parameter 'classId' when calling updateShippingClass(Async)");
         }
 
-        // verify the required parameter 'customer' is set
-        if (customer == null) {
-            throw new ApiException("Missing the required parameter 'customer' when calling updateCustomerById(Async)");
+        // verify the required parameter 'productShippingClass' is set
+        if (productShippingClass == null) {
+            throw new ApiException("Missing the required parameter 'productShippingClass' when calling updateShippingClass(Async)");
         }
 
-        return updateCustomerByIdCall(customerId, customer, _callback);
+        return updateShippingClassCall(classId, productShippingClass, _callback);
 
     }
 
     /**
-     * This API lets you make changes to a customer.
+     * Update a shipping class
      * 
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
-     * @return Customer
+     * @param classId  (required)
+     * @param productShippingClass Shipping class object with data to update (required)
+     * @return ProductShippingClass
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public Customer updateCustomerById(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer) throws ApiException {
-        ApiResponse<Customer> localVarResp = updateCustomerByIdWithHttpInfo(customerId, customer);
+    public ProductShippingClass updateShippingClass(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull ProductShippingClass productShippingClass) throws ApiException {
+        ApiResponse<ProductShippingClass> localVarResp = updateShippingClassWithHttpInfo(classId, productShippingClass);
         return localVarResp.getData();
     }
 
     /**
-     * This API lets you make changes to a customer.
+     * Update a shipping class
      * 
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param classId  (required)
+     * @param productShippingClass Shipping class object with data to update (required)
+     * @return ApiResponse&lt;ProductShippingClass&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> updateCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer) throws ApiException {
-        okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductShippingClass> updateShippingClassWithHttpInfo(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull ProductShippingClass productShippingClass) throws ApiException {
+        okhttp3.Call localVarCall = updateShippingClassValidateBeforeCall(classId, productShippingClass, null);
+        Type localVarReturnType = new TypeToken<ProductShippingClass>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API lets you make changes to a customer. (asynchronously)
+     * Update a shipping class (asynchronously)
      * 
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
+     * @param classId  (required)
+     * @param productShippingClass Shipping class object with data to update (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -969,15 +942,13 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated shipping class </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call updateShippingClassAsync(@javax.annotation.Nonnull Integer classId, @javax.annotation.Nonnull ProductShippingClass productShippingClass, final ApiCallback<ProductShippingClass> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = updateShippingClassValidateBeforeCall(classId, productShippingClass, _callback);
+        Type localVarReturnType = new TypeToken<ProductShippingClass>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -28,9 +28,9 @@ import java.io.IOException;
 
 
 import pl.wtx.woocommerce.api.client.model.ApiError;
-import pl.wtx.woocommerce.api.client.model.BatchCustomers200Response;
-import pl.wtx.woocommerce.api.client.model.BatchCustomersRequest;
-import pl.wtx.woocommerce.api.client.model.Customer;
+import pl.wtx.woocommerce.api.client.model.BatchUpdateProductReviewsRequest;
+import java.time.OffsetDateTime;
+import pl.wtx.woocommerce.api.client.model.ProductReview;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -38,16 +38,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CustomersApi {
+public class ProductReviewsApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public CustomersApi() {
+    public ProductReviewsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public CustomersApi(ApiClient apiClient) {
+    public ProductReviewsApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -76,8 +76,8 @@ public class CustomersApi {
     }
 
     /**
-     * Build call for batchCustomers
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
+     * Build call for batchUpdateProductReviews
+     * @param batchUpdateProductReviewsRequest Batch create, update, delete product reviews (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -85,10 +85,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns batch operation result </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchCustomersCall(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call batchUpdateProductReviewsCall(@javax.annotation.Nullable BatchUpdateProductReviewsRequest batchUpdateProductReviewsRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -102,10 +102,10 @@ public class CustomersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = batchCustomersRequest;
+        Object localVarPostBody = batchUpdateProductReviewsRequest;
 
         // create path and map variables
-        String localVarPath = "/customers/batch";
+        String localVarPath = "/products/reviews/batch";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -134,52 +134,52 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call batchCustomersValidateBeforeCall(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest, final ApiCallback _callback) throws ApiException {
-        return batchCustomersCall(batchCustomersRequest, _callback);
+    private okhttp3.Call batchUpdateProductReviewsValidateBeforeCall(@javax.annotation.Nullable BatchUpdateProductReviewsRequest batchUpdateProductReviewsRequest, final ApiCallback _callback) throws ApiException {
+        return batchUpdateProductReviewsCall(batchUpdateProductReviewsRequest, _callback);
 
     }
 
     /**
-     * Batch create, update, and delete customers
+     * Batch update product reviews
      * 
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
-     * @return BatchCustomers200Response
+     * @param batchUpdateProductReviewsRequest Batch create, update, delete product reviews (optional)
+     * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns batch operation result </td><td>  -  </td></tr>
      </table>
      */
-    public BatchCustomers200Response batchCustomers(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest) throws ApiException {
-        ApiResponse<BatchCustomers200Response> localVarResp = batchCustomersWithHttpInfo(batchCustomersRequest);
+    public Object batchUpdateProductReviews(@javax.annotation.Nullable BatchUpdateProductReviewsRequest batchUpdateProductReviewsRequest) throws ApiException {
+        ApiResponse<Object> localVarResp = batchUpdateProductReviewsWithHttpInfo(batchUpdateProductReviewsRequest);
         return localVarResp.getData();
     }
 
     /**
-     * Batch create, update, and delete customers
+     * Batch update product reviews
      * 
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
-     * @return ApiResponse&lt;BatchCustomers200Response&gt;
+     * @param batchUpdateProductReviewsRequest Batch create, update, delete product reviews (optional)
+     * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns batch operation result </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<BatchCustomers200Response> batchCustomersWithHttpInfo(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest) throws ApiException {
-        okhttp3.Call localVarCall = batchCustomersValidateBeforeCall(batchCustomersRequest, null);
-        Type localVarReturnType = new TypeToken<BatchCustomers200Response>(){}.getType();
+    public ApiResponse<Object> batchUpdateProductReviewsWithHttpInfo(@javax.annotation.Nullable BatchUpdateProductReviewsRequest batchUpdateProductReviewsRequest) throws ApiException {
+        okhttp3.Call localVarCall = batchUpdateProductReviewsValidateBeforeCall(batchUpdateProductReviewsRequest, null);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Batch create, update, and delete customers (asynchronously)
+     * Batch update product reviews (asynchronously)
      * 
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
+     * @param batchUpdateProductReviewsRequest Batch create, update, delete product reviews (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -187,19 +187,19 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns batch operation result </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchCustomersAsync(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest, final ApiCallback<BatchCustomers200Response> _callback) throws ApiException {
+    public okhttp3.Call batchUpdateProductReviewsAsync(@javax.annotation.Nullable BatchUpdateProductReviewsRequest batchUpdateProductReviewsRequest, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = batchCustomersValidateBeforeCall(batchCustomersRequest, _callback);
-        Type localVarReturnType = new TypeToken<BatchCustomers200Response>(){}.getType();
+        okhttp3.Call localVarCall = batchUpdateProductReviewsValidateBeforeCall(batchUpdateProductReviewsRequest, _callback);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for createCustomer
-     * @param customer Customer object with data to create. (required)
+     * Build call for createProductReview
+     * @param productReview Product review object with data to create (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -207,12 +207,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created product review </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createCustomerCall(@javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createProductReviewCall(@javax.annotation.Nonnull ProductReview productReview, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -226,10 +224,10 @@ public class CustomersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = customer;
+        Object localVarPostBody = productReview;
 
         // create path and map variables
-        String localVarPath = "/customers";
+        String localVarPath = "/products/reviews";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -258,61 +256,57 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createCustomerValidateBeforeCall(@javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customer' is set
-        if (customer == null) {
-            throw new ApiException("Missing the required parameter 'customer' when calling createCustomer(Async)");
+    private okhttp3.Call createProductReviewValidateBeforeCall(@javax.annotation.Nonnull ProductReview productReview, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'productReview' is set
+        if (productReview == null) {
+            throw new ApiException("Missing the required parameter 'productReview' when calling createProductReview(Async)");
         }
 
-        return createCustomerCall(customer, _callback);
+        return createProductReviewCall(productReview, _callback);
 
     }
 
     /**
-     * This API helps you to create a new customer.
+     * Create a product review
      * 
-     * @param customer Customer object with data to create. (required)
-     * @return Customer
+     * @param productReview Product review object with data to create (required)
+     * @return ProductReview
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created product review </td><td>  -  </td></tr>
      </table>
      */
-    public Customer createCustomer(@javax.annotation.Nonnull Customer customer) throws ApiException {
-        ApiResponse<Customer> localVarResp = createCustomerWithHttpInfo(customer);
+    public ProductReview createProductReview(@javax.annotation.Nonnull ProductReview productReview) throws ApiException {
+        ApiResponse<ProductReview> localVarResp = createProductReviewWithHttpInfo(productReview);
         return localVarResp.getData();
     }
 
     /**
-     * This API helps you to create a new customer.
+     * Create a product review
      * 
-     * @param customer Customer object with data to create. (required)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param productReview Product review object with data to create (required)
+     * @return ApiResponse&lt;ProductReview&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created product review </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> createCustomerWithHttpInfo(@javax.annotation.Nonnull Customer customer) throws ApiException {
-        okhttp3.Call localVarCall = createCustomerValidateBeforeCall(customer, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductReview> createProductReviewWithHttpInfo(@javax.annotation.Nonnull ProductReview productReview) throws ApiException {
+        okhttp3.Call localVarCall = createProductReviewValidateBeforeCall(productReview, null);
+        Type localVarReturnType = new TypeToken<ProductReview>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API helps you to create a new customer. (asynchronously)
+     * Create a product review (asynchronously)
      * 
-     * @param customer Customer object with data to create. (required)
+     * @param productReview Product review object with data to create (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -320,23 +314,20 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created product review </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createCustomerAsync(@javax.annotation.Nonnull Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call createProductReviewAsync(@javax.annotation.Nonnull ProductReview productReview, final ApiCallback<ProductReview> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createCustomerValidateBeforeCall(customer, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = createProductReviewValidateBeforeCall(productReview, _callback);
+        Type localVarReturnType = new TypeToken<ProductReview>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for deleteCustomerById
-     * @param customerId ID of customer to delete (required)
+     * Build call for deleteProductReview
+     * @param reviewId  (required)
      * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -344,12 +335,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Product review deleted </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteProductReviewCall(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -366,8 +355,8 @@ public class CustomersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers/{customerId}"
-            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/products/reviews/{reviewId}"
+            .replace("{" + "reviewId" + "}", localVarApiClient.escapeString(reviewId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -377,10 +366,6 @@ public class CustomersApi {
 
         if (force != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
-        }
-
-        if (reassign != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("reassign", reassign));
         }
 
         final String[] localVarAccepts = {
@@ -403,72 +388,65 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling deleteCustomerById(Async)");
+    private okhttp3.Call deleteProductReviewValidateBeforeCall(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'reviewId' is set
+        if (reviewId == null) {
+            throw new ApiException("Missing the required parameter 'reviewId' when calling deleteProductReview(Async)");
         }
 
         // verify the required parameter 'force' is set
         if (force == null) {
-            throw new ApiException("Missing the required parameter 'force' when calling deleteCustomerById(Async)");
+            throw new ApiException("Missing the required parameter 'force' when calling deleteProductReview(Async)");
         }
 
-        return deleteCustomerByIdCall(customerId, force, reassign, _callback);
+        return deleteProductReviewCall(reviewId, force, _callback);
 
     }
 
     /**
-     * This API helps you delete a customer.
+     * Delete a product review
      * 
-     * @param customerId ID of customer to delete (required)
+     * @param reviewId  (required)
      * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
-     * @return Customer
+     * @return ProductReview
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Product review deleted </td><td>  -  </td></tr>
      </table>
      */
-    public Customer deleteCustomerById(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign) throws ApiException {
-        ApiResponse<Customer> localVarResp = deleteCustomerByIdWithHttpInfo(customerId, force, reassign);
+    public ProductReview deleteProductReview(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        ApiResponse<ProductReview> localVarResp = deleteProductReviewWithHttpInfo(reviewId, force);
         return localVarResp.getData();
     }
 
     /**
-     * This API helps you delete a customer.
+     * Delete a product review
      * 
-     * @param customerId ID of customer to delete (required)
+     * @param reviewId  (required)
      * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
-     * @return ApiResponse&lt;Customer&gt;
+     * @return ApiResponse&lt;ProductReview&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Product review deleted </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> deleteCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign) throws ApiException {
-        okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductReview> deleteProductReviewWithHttpInfo(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        okhttp3.Call localVarCall = deleteProductReviewValidateBeforeCall(reviewId, force, null);
+        Type localVarReturnType = new TypeToken<ProductReview>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API helps you delete a customer. (asynchronously)
+     * Delete a product review (asynchronously)
      * 
-     * @param customerId ID of customer to delete (required)
+     * @param reviewId  (required)
      * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -476,31 +454,34 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Product review deleted </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call deleteProductReviewAsync(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull Boolean force, final ApiCallback<ProductReview> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = deleteProductReviewValidateBeforeCall(reviewId, force, _callback);
+        Type localVarReturnType = new TypeToken<ProductReview>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for listAllCustomers
+     * Build call for listAllProductReviews
      * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
      * @param page Current page of the collection. Default is 1. (optional, default to 1)
      * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to reviews published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to reviews published before a given ISO8601 compliant date. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
+     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by resource attribute. Options: date, date_gmt, id, slug, include and product. Default is date_gmt. (optional, default to date_gmt)
+     * @param reviewer Ensure result set excludes specific IDs. (optional)
+     * @param reviewerExclude Limit result set to specific IDs. (optional)
+     * @param reviewerEmail Limit result set to that from a specific author email. (optional)
+     * @param product Limit result set to reviews assigned to specific product IDs (optional)
+     * @param status Limit result set to reviews assigned a specific status. Options: all, hold, approved, spam and trash. Default is approved. (optional, default to approved)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -508,12 +489,13 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of product reviews </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllProductReviewsCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> reviewer, @javax.annotation.Nullable List<Integer> reviewerExclude, @javax.annotation.Nullable List<Integer> reviewerEmail, @javax.annotation.Nullable List<Integer> product, @javax.annotation.Nullable String status, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -530,7 +512,7 @@ public class CustomersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers";
+        String localVarPath = "/products/reviews";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -554,6 +536,14 @@ public class CustomersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("search", search));
         }
 
+        if (after != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("after", after));
+        }
+
+        if (before != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("before", before));
+        }
+
         if (exclude != null) {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
         }
@@ -574,12 +564,24 @@ public class CustomersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderby", orderby));
         }
 
-        if (email != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("email", email));
+        if (reviewer != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "reviewer", reviewer));
         }
 
-        if (role != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("role", role));
+        if (reviewerExclude != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "reviewer_exclude", reviewerExclude));
+        }
+
+        if (reviewerEmail != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "reviewer_email", reviewerEmail));
+        }
+
+        if (product != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "product", product));
+        }
+
+        if (status != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
         }
 
         final String[] localVarAccepts = {
@@ -602,86 +604,103 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllCustomersValidateBeforeCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback _callback) throws ApiException {
-        return listAllCustomersCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
+    private okhttp3.Call listAllProductReviewsValidateBeforeCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> reviewer, @javax.annotation.Nullable List<Integer> reviewerExclude, @javax.annotation.Nullable List<Integer> reviewerEmail, @javax.annotation.Nullable List<Integer> product, @javax.annotation.Nullable String status, final ApiCallback _callback) throws ApiException {
+        return listAllProductReviewsCall(context, page, perPage, search, after, before, exclude, include, offset, order, orderby, reviewer, reviewerExclude, reviewerEmail, product, status, _callback);
 
     }
 
     /**
-     * This API helps you to view all the customers.
+     * List all product reviews
      * 
      * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
      * @param page Current page of the collection. Default is 1. (optional, default to 1)
      * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to reviews published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to reviews published before a given ISO8601 compliant date. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
-     * @return List&lt;Customer&gt;
+     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by resource attribute. Options: date, date_gmt, id, slug, include and product. Default is date_gmt. (optional, default to date_gmt)
+     * @param reviewer Ensure result set excludes specific IDs. (optional)
+     * @param reviewerExclude Limit result set to specific IDs. (optional)
+     * @param reviewerEmail Limit result set to that from a specific author email. (optional)
+     * @param product Limit result set to reviews assigned to specific product IDs (optional)
+     * @param status Limit result set to reviews assigned a specific status. Options: all, hold, approved, spam and trash. Default is approved. (optional, default to approved)
+     * @return List&lt;ProductReview&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of product reviews </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public List<Customer> listAllCustomers(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role) throws ApiException {
-        ApiResponse<List<Customer>> localVarResp = listAllCustomersWithHttpInfo(context, page, perPage, search, exclude, include, offset, order, orderby, email, role);
+    public List<ProductReview> listAllProductReviews(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> reviewer, @javax.annotation.Nullable List<Integer> reviewerExclude, @javax.annotation.Nullable List<Integer> reviewerEmail, @javax.annotation.Nullable List<Integer> product, @javax.annotation.Nullable String status) throws ApiException {
+        ApiResponse<List<ProductReview>> localVarResp = listAllProductReviewsWithHttpInfo(context, page, perPage, search, after, before, exclude, include, offset, order, orderby, reviewer, reviewerExclude, reviewerEmail, product, status);
         return localVarResp.getData();
     }
 
     /**
-     * This API helps you to view all the customers.
+     * List all product reviews
      * 
      * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
      * @param page Current page of the collection. Default is 1. (optional, default to 1)
      * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to reviews published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to reviews published before a given ISO8601 compliant date. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
-     * @return ApiResponse&lt;List&lt;Customer&gt;&gt;
+     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by resource attribute. Options: date, date_gmt, id, slug, include and product. Default is date_gmt. (optional, default to date_gmt)
+     * @param reviewer Ensure result set excludes specific IDs. (optional)
+     * @param reviewerExclude Limit result set to specific IDs. (optional)
+     * @param reviewerEmail Limit result set to that from a specific author email. (optional)
+     * @param product Limit result set to reviews assigned to specific product IDs (optional)
+     * @param status Limit result set to reviews assigned a specific status. Options: all, hold, approved, spam and trash. Default is approved. (optional, default to approved)
+     * @return ApiResponse&lt;List&lt;ProductReview&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of product reviews </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Customer>> listAllCustomersWithHttpInfo(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role) throws ApiException {
-        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, null);
-        Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
+    public ApiResponse<List<ProductReview>> listAllProductReviewsWithHttpInfo(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> reviewer, @javax.annotation.Nullable List<Integer> reviewerExclude, @javax.annotation.Nullable List<Integer> reviewerEmail, @javax.annotation.Nullable List<Integer> product, @javax.annotation.Nullable String status) throws ApiException {
+        okhttp3.Call localVarCall = listAllProductReviewsValidateBeforeCall(context, page, perPage, search, after, before, exclude, include, offset, order, orderby, reviewer, reviewerExclude, reviewerEmail, product, status, null);
+        Type localVarReturnType = new TypeToken<List<ProductReview>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API helps you to view all the customers. (asynchronously)
+     * List all product reviews (asynchronously)
      * 
      * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
      * @param page Current page of the collection. Default is 1. (optional, default to 1)
      * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
      * @param search Limit results to those matching a string. (optional)
+     * @param after Limit response to reviews published after a given ISO8601 compliant date. (optional)
+     * @param before Limit response to reviews published before a given ISO8601 compliant date. (optional)
      * @param exclude Ensure result set excludes specific IDs. (optional)
      * @param include Limit result set to specific IDs. (optional)
      * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
+     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is desc. (optional, default to desc)
+     * @param orderby Sort collection by resource attribute. Options: date, date_gmt, id, slug, include and product. Default is date_gmt. (optional, default to date_gmt)
+     * @param reviewer Ensure result set excludes specific IDs. (optional)
+     * @param reviewerExclude Limit result set to specific IDs. (optional)
+     * @param reviewerEmail Limit result set to that from a specific author email. (optional)
+     * @param product Limit result set to reviews assigned to specific product IDs (optional)
+     * @param status Limit result set to reviews assigned a specific status. Options: all, hold, approved, spam and trash. Default is approved. (optional, default to approved)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -689,21 +708,22 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of product reviews </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersAsync(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback<List<Customer>> _callback) throws ApiException {
+    public okhttp3.Call listAllProductReviewsAsync(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable OffsetDateTime after, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable List<Integer> reviewer, @javax.annotation.Nullable List<Integer> reviewerExclude, @javax.annotation.Nullable List<Integer> reviewerEmail, @javax.annotation.Nullable List<Integer> product, @javax.annotation.Nullable String status, final ApiCallback<List<ProductReview>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
-        Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
+        okhttp3.Call localVarCall = listAllProductReviewsValidateBeforeCall(context, page, perPage, search, after, before, exclude, include, offset, order, orderby, reviewer, reviewerExclude, reviewerEmail, product, status, _callback);
+        Type localVarReturnType = new TypeToken<List<ProductReview>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for retrieveCustomerById
-     * @param customerId ID of customer to return (required)
+     * Build call for retrieveProductReview
+     * @param reviewId  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -711,12 +731,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified product review </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call retrieveProductReviewCall(@javax.annotation.Nonnull Integer reviewId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -733,8 +751,8 @@ public class CustomersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers/{customerId}"
-            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/products/reviews/{reviewId}"
+            .replace("{" + "reviewId" + "}", localVarApiClient.escapeString(reviewId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -762,61 +780,57 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call retrieveCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling retrieveCustomerById(Async)");
+    private okhttp3.Call retrieveProductReviewValidateBeforeCall(@javax.annotation.Nonnull Integer reviewId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'reviewId' is set
+        if (reviewId == null) {
+            throw new ApiException("Missing the required parameter 'reviewId' when calling retrieveProductReview(Async)");
         }
 
-        return retrieveCustomerByIdCall(customerId, _callback);
+        return retrieveProductReviewCall(reviewId, _callback);
 
     }
 
     /**
-     * This API lets you retrieve and view a specific customer by ID.
+     * Retrieve a product review
      * 
-     * @param customerId ID of customer to return (required)
-     * @return Customer
+     * @param reviewId  (required)
+     * @return ProductReview
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified product review </td><td>  -  </td></tr>
      </table>
      */
-    public Customer retrieveCustomerById(@javax.annotation.Nonnull Integer customerId) throws ApiException {
-        ApiResponse<Customer> localVarResp = retrieveCustomerByIdWithHttpInfo(customerId);
+    public ProductReview retrieveProductReview(@javax.annotation.Nonnull Integer reviewId) throws ApiException {
+        ApiResponse<ProductReview> localVarResp = retrieveProductReviewWithHttpInfo(reviewId);
         return localVarResp.getData();
     }
 
     /**
-     * This API lets you retrieve and view a specific customer by ID.
+     * Retrieve a product review
      * 
-     * @param customerId ID of customer to return (required)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param reviewId  (required)
+     * @return ApiResponse&lt;ProductReview&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified product review </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> retrieveCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId) throws ApiException {
-        okhttp3.Call localVarCall = retrieveCustomerByIdValidateBeforeCall(customerId, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductReview> retrieveProductReviewWithHttpInfo(@javax.annotation.Nonnull Integer reviewId) throws ApiException {
+        okhttp3.Call localVarCall = retrieveProductReviewValidateBeforeCall(reviewId, null);
+        Type localVarReturnType = new TypeToken<ProductReview>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API lets you retrieve and view a specific customer by ID. (asynchronously)
+     * Retrieve a product review (asynchronously)
      * 
-     * @param customerId ID of customer to return (required)
+     * @param reviewId  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -824,22 +838,20 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified product review </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call retrieveProductReviewAsync(@javax.annotation.Nonnull Integer reviewId, final ApiCallback<ProductReview> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = retrieveCustomerByIdValidateBeforeCall(customerId, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = retrieveProductReviewValidateBeforeCall(reviewId, _callback);
+        Type localVarReturnType = new TypeToken<ProductReview>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for updateCustomerById
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
+     * Build call for updateProductReview
+     * @param reviewId  (required)
+     * @param productReview Product review object with data to update (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -847,12 +859,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated product review </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateProductReviewCall(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull ProductReview productReview, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -866,11 +876,11 @@ public class CustomersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = customer;
+        Object localVarPostBody = productReview;
 
         // create path and map variables
-        String localVarPath = "/customers/{customerId}"
-            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/products/reviews/{reviewId}"
+            .replace("{" + "reviewId" + "}", localVarApiClient.escapeString(reviewId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -899,69 +909,65 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling updateCustomerById(Async)");
+    private okhttp3.Call updateProductReviewValidateBeforeCall(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull ProductReview productReview, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'reviewId' is set
+        if (reviewId == null) {
+            throw new ApiException("Missing the required parameter 'reviewId' when calling updateProductReview(Async)");
         }
 
-        // verify the required parameter 'customer' is set
-        if (customer == null) {
-            throw new ApiException("Missing the required parameter 'customer' when calling updateCustomerById(Async)");
+        // verify the required parameter 'productReview' is set
+        if (productReview == null) {
+            throw new ApiException("Missing the required parameter 'productReview' when calling updateProductReview(Async)");
         }
 
-        return updateCustomerByIdCall(customerId, customer, _callback);
+        return updateProductReviewCall(reviewId, productReview, _callback);
 
     }
 
     /**
-     * This API lets you make changes to a customer.
+     * Update a product review
      * 
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
-     * @return Customer
+     * @param reviewId  (required)
+     * @param productReview Product review object with data to update (required)
+     * @return ProductReview
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated product review </td><td>  -  </td></tr>
      </table>
      */
-    public Customer updateCustomerById(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer) throws ApiException {
-        ApiResponse<Customer> localVarResp = updateCustomerByIdWithHttpInfo(customerId, customer);
+    public ProductReview updateProductReview(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull ProductReview productReview) throws ApiException {
+        ApiResponse<ProductReview> localVarResp = updateProductReviewWithHttpInfo(reviewId, productReview);
         return localVarResp.getData();
     }
 
     /**
-     * This API lets you make changes to a customer.
+     * Update a product review
      * 
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param reviewId  (required)
+     * @param productReview Product review object with data to update (required)
+     * @return ApiResponse&lt;ProductReview&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated product review </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> updateCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer) throws ApiException {
-        okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductReview> updateProductReviewWithHttpInfo(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull ProductReview productReview) throws ApiException {
+        okhttp3.Call localVarCall = updateProductReviewValidateBeforeCall(reviewId, productReview, null);
+        Type localVarReturnType = new TypeToken<ProductReview>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API lets you make changes to a customer. (asynchronously)
+     * Update a product review (asynchronously)
      * 
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
+     * @param reviewId  (required)
+     * @param productReview Product review object with data to update (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -969,15 +975,13 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated product review </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call updateProductReviewAsync(@javax.annotation.Nonnull Integer reviewId, @javax.annotation.Nonnull ProductReview productReview, final ApiCallback<ProductReview> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = updateProductReviewValidateBeforeCall(reviewId, productReview, _callback);
+        Type localVarReturnType = new TypeToken<ProductReview>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -54,6 +54,36 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 - ✅ Reports
   - Retrieve and view orders totals report
   - Retrieve and view sales report
+- ✅ Product Attributes API
+  - List all product attributes
+  - Create a new product attribute
+  - Get a specific product attribute
+  - Update a product attribute
+  - Delete a product attribute
+- ✅ Product Attribute Terms API
+  - List all terms of a product attribute
+  - Create a new product attribute term
+  - Get a specific product attribute term
+  - Update a product attribute term
+  - Delete a product attribute term
+- ✅ Product Shipping Classes API
+  - List all product shipping classes
+  - Create a new product shipping class
+  - Get a specific product shipping class
+  - Update a product shipping class
+  - Delete a product shipping class
+- ✅ Product Tags API
+  - List all product tags
+  - Create a new product tag
+  - Get a specific product tag
+  - Update a product tag
+  - Delete a product tag
+- ✅ Product Reviews API
+  - List all product reviews
+  - Create a new product review
+  - Get a specific product review
+  - Update a product review
+  - Delete a product review
 
 ## 🚨 Project status
 
@@ -64,7 +94,7 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 
 ## 📦 Version information
 
-- **Current version**: `0.9.6`
+- **Current version**: `0.9.7`
 - **Supported WooCommerce API version**: `v3`
 - **Java compatibility**: Java 8+
 
@@ -81,13 +111,12 @@ The only requirement is to preserve the original author attribution in the sourc
 ### 1️⃣ Installation
 
 You can add the library to your project by including the dependency from Maven Central:
-
 ```xml
 <!-- https://mvnrepository.com/artifact/pl.wtx.woocommerce/woocommerce-api-client -->
 <dependency>
     <groupId>pl.wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.7</version>
 </dependency>
 ```
 
@@ -105,7 +134,7 @@ Then add the locally built artifact to your project:
 <dependency>
     <groupId>pl.wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.7</version>
 </dependency>
 ```
 

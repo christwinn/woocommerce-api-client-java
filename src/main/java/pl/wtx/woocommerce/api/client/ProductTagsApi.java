@@ -27,10 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import pl.wtx.woocommerce.api.client.model.ApiError;
-import pl.wtx.woocommerce.api.client.model.BatchCustomers200Response;
-import pl.wtx.woocommerce.api.client.model.BatchCustomersRequest;
-import pl.wtx.woocommerce.api.client.model.Customer;
+import pl.wtx.woocommerce.api.client.model.BatchProductTags200Response;
+import pl.wtx.woocommerce.api.client.model.BatchProductTagsRequest;
+import pl.wtx.woocommerce.api.client.model.ProductTag;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -38,16 +37,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CustomersApi {
+public class ProductTagsApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public CustomersApi() {
+    public ProductTagsApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public CustomersApi(ApiClient apiClient) {
+    public ProductTagsApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -76,8 +75,8 @@ public class CustomersApi {
     }
 
     /**
-     * Build call for batchCustomers
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
+     * Build call for batchProductTags
+     * @param batchProductTagsRequest Batch create, update, and delete product tags (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -88,7 +87,7 @@ public class CustomersApi {
         <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchCustomersCall(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call batchProductTagsCall(@javax.annotation.Nullable BatchProductTagsRequest batchProductTagsRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -102,10 +101,10 @@ public class CustomersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = batchCustomersRequest;
+        Object localVarPostBody = batchProductTagsRequest;
 
         // create path and map variables
-        String localVarPath = "/customers/batch";
+        String localVarPath = "/products/tags/batch";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -134,16 +133,16 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call batchCustomersValidateBeforeCall(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest, final ApiCallback _callback) throws ApiException {
-        return batchCustomersCall(batchCustomersRequest, _callback);
+    private okhttp3.Call batchProductTagsValidateBeforeCall(@javax.annotation.Nullable BatchProductTagsRequest batchProductTagsRequest, final ApiCallback _callback) throws ApiException {
+        return batchProductTagsCall(batchProductTagsRequest, _callback);
 
     }
 
     /**
-     * Batch create, update, and delete customers
+     * Batch create, update, and delete product tags
      * 
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
-     * @return BatchCustomers200Response
+     * @param batchProductTagsRequest Batch create, update, and delete product tags (optional)
+     * @return BatchProductTags200Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -152,16 +151,16 @@ public class CustomersApi {
         <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
      </table>
      */
-    public BatchCustomers200Response batchCustomers(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest) throws ApiException {
-        ApiResponse<BatchCustomers200Response> localVarResp = batchCustomersWithHttpInfo(batchCustomersRequest);
+    public BatchProductTags200Response batchProductTags(@javax.annotation.Nullable BatchProductTagsRequest batchProductTagsRequest) throws ApiException {
+        ApiResponse<BatchProductTags200Response> localVarResp = batchProductTagsWithHttpInfo(batchProductTagsRequest);
         return localVarResp.getData();
     }
 
     /**
-     * Batch create, update, and delete customers
+     * Batch create, update, and delete product tags
      * 
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
-     * @return ApiResponse&lt;BatchCustomers200Response&gt;
+     * @param batchProductTagsRequest Batch create, update, and delete product tags (optional)
+     * @return ApiResponse&lt;BatchProductTags200Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -170,16 +169,16 @@ public class CustomersApi {
         <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<BatchCustomers200Response> batchCustomersWithHttpInfo(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest) throws ApiException {
-        okhttp3.Call localVarCall = batchCustomersValidateBeforeCall(batchCustomersRequest, null);
-        Type localVarReturnType = new TypeToken<BatchCustomers200Response>(){}.getType();
+    public ApiResponse<BatchProductTags200Response> batchProductTagsWithHttpInfo(@javax.annotation.Nullable BatchProductTagsRequest batchProductTagsRequest) throws ApiException {
+        okhttp3.Call localVarCall = batchProductTagsValidateBeforeCall(batchProductTagsRequest, null);
+        Type localVarReturnType = new TypeToken<BatchProductTags200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Batch create, update, and delete customers (asynchronously)
+     * Batch create, update, and delete product tags (asynchronously)
      * 
-     * @param batchCustomersRequest Batch create, update, and delete customers (optional)
+     * @param batchProductTagsRequest Batch create, update, and delete product tags (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -190,16 +189,16 @@ public class CustomersApi {
         <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call batchCustomersAsync(@javax.annotation.Nullable BatchCustomersRequest batchCustomersRequest, final ApiCallback<BatchCustomers200Response> _callback) throws ApiException {
+    public okhttp3.Call batchProductTagsAsync(@javax.annotation.Nullable BatchProductTagsRequest batchProductTagsRequest, final ApiCallback<BatchProductTags200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = batchCustomersValidateBeforeCall(batchCustomersRequest, _callback);
-        Type localVarReturnType = new TypeToken<BatchCustomers200Response>(){}.getType();
+        okhttp3.Call localVarCall = batchProductTagsValidateBeforeCall(batchProductTagsRequest, _callback);
+        Type localVarReturnType = new TypeToken<BatchProductTags200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for createCustomer
-     * @param customer Customer object with data to create. (required)
+     * Build call for createProductTag
+     * @param productTag Product tag object with data to create (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -207,12 +206,12 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createCustomerCall(@javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createProductTagCall(@javax.annotation.Nonnull ProductTag productTag, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -226,10 +225,10 @@ public class CustomersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = customer;
+        Object localVarPostBody = productTag;
 
         // create path and map variables
-        String localVarPath = "/customers";
+        String localVarPath = "/products/tags";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -258,61 +257,61 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call createCustomerValidateBeforeCall(@javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customer' is set
-        if (customer == null) {
-            throw new ApiException("Missing the required parameter 'customer' when calling createCustomer(Async)");
+    private okhttp3.Call createProductTagValidateBeforeCall(@javax.annotation.Nonnull ProductTag productTag, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'productTag' is set
+        if (productTag == null) {
+            throw new ApiException("Missing the required parameter 'productTag' when calling createProductTag(Async)");
         }
 
-        return createCustomerCall(customer, _callback);
+        return createProductTagCall(productTag, _callback);
 
     }
 
     /**
-     * This API helps you to create a new customer.
+     * This API helps you to create a new product tag.
      * 
-     * @param customer Customer object with data to create. (required)
-     * @return Customer
+     * @param productTag Product tag object with data to create (required)
+     * @return ProductTag
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Customer createCustomer(@javax.annotation.Nonnull Customer customer) throws ApiException {
-        ApiResponse<Customer> localVarResp = createCustomerWithHttpInfo(customer);
+    public ProductTag createProductTag(@javax.annotation.Nonnull ProductTag productTag) throws ApiException {
+        ApiResponse<ProductTag> localVarResp = createProductTagWithHttpInfo(productTag);
         return localVarResp.getData();
     }
 
     /**
-     * This API helps you to create a new customer.
+     * This API helps you to create a new product tag.
      * 
-     * @param customer Customer object with data to create. (required)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param productTag Product tag object with data to create (required)
+     * @return ApiResponse&lt;ProductTag&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> createCustomerWithHttpInfo(@javax.annotation.Nonnull Customer customer) throws ApiException {
-        okhttp3.Call localVarCall = createCustomerValidateBeforeCall(customer, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductTag> createProductTagWithHttpInfo(@javax.annotation.Nonnull ProductTag productTag) throws ApiException {
+        okhttp3.Call localVarCall = createProductTagValidateBeforeCall(productTag, null);
+        Type localVarReturnType = new TypeToken<ProductTag>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API helps you to create a new customer. (asynchronously)
+     * This API helps you to create a new product tag. (asynchronously)
      * 
-     * @param customer Customer object with data to create. (required)
+     * @param productTag Product tag object with data to create (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -320,23 +319,22 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Returns created product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createCustomerAsync(@javax.annotation.Nonnull Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call createProductTagAsync(@javax.annotation.Nonnull ProductTag productTag, final ApiCallback<ProductTag> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = createCustomerValidateBeforeCall(customer, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = createProductTagValidateBeforeCall(productTag, _callback);
+        Type localVarReturnType = new TypeToken<ProductTag>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for deleteCustomerById
-     * @param customerId ID of customer to delete (required)
-     * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
+     * Build call for deleteProductTag
+     * @param tagId ID of product tag to delete (required)
+     * @param force Required to be true, as resource does not support trashing (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -344,12 +342,10 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Product tag deleted </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteProductTagCall(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -366,8 +362,8 @@ public class CustomersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers/{customerId}"
-            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/products/tags/{tagId}"
+            .replace("{" + "tagId" + "}", localVarApiClient.escapeString(tagId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -377,10 +373,6 @@ public class CustomersApi {
 
         if (force != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
-        }
-
-        if (reassign != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("reassign", reassign));
         }
 
         final String[] localVarAccepts = {
@@ -403,72 +395,65 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling deleteCustomerById(Async)");
+    private okhttp3.Call deleteProductTagValidateBeforeCall(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'tagId' is set
+        if (tagId == null) {
+            throw new ApiException("Missing the required parameter 'tagId' when calling deleteProductTag(Async)");
         }
 
         // verify the required parameter 'force' is set
         if (force == null) {
-            throw new ApiException("Missing the required parameter 'force' when calling deleteCustomerById(Async)");
+            throw new ApiException("Missing the required parameter 'force' when calling deleteProductTag(Async)");
         }
 
-        return deleteCustomerByIdCall(customerId, force, reassign, _callback);
+        return deleteProductTagCall(tagId, force, _callback);
 
     }
 
     /**
-     * This API helps you delete a customer.
+     * This API helps you delete a product tag.
      * 
-     * @param customerId ID of customer to delete (required)
-     * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
-     * @return Customer
+     * @param tagId ID of product tag to delete (required)
+     * @param force Required to be true, as resource does not support trashing (required)
+     * @return ProductTag
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Product tag deleted </td><td>  -  </td></tr>
      </table>
      */
-    public Customer deleteCustomerById(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign) throws ApiException {
-        ApiResponse<Customer> localVarResp = deleteCustomerByIdWithHttpInfo(customerId, force, reassign);
+    public ProductTag deleteProductTag(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        ApiResponse<ProductTag> localVarResp = deleteProductTagWithHttpInfo(tagId, force);
         return localVarResp.getData();
     }
 
     /**
-     * This API helps you delete a customer.
+     * This API helps you delete a product tag.
      * 
-     * @param customerId ID of customer to delete (required)
-     * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param tagId ID of product tag to delete (required)
+     * @param force Required to be true, as resource does not support trashing (required)
+     * @return ApiResponse&lt;ProductTag&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Product tag deleted </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> deleteCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign) throws ApiException {
-        okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductTag> deleteProductTagWithHttpInfo(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        okhttp3.Call localVarCall = deleteProductTagValidateBeforeCall(tagId, force, null);
+        Type localVarReturnType = new TypeToken<ProductTag>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API helps you delete a customer. (asynchronously)
+     * This API helps you delete a product tag. (asynchronously)
      * 
-     * @param customerId ID of customer to delete (required)
-     * @param force Required to be true, as resource does not support trashing. (required)
-     * @param reassign User ID to reassign posts to. (optional)
+     * @param tagId ID of product tag to delete (required)
+     * @param force Required to be true, as resource does not support trashing (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -476,31 +461,30 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns deleted customer. </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Product tag deleted </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull String force, @javax.annotation.Nullable Integer reassign, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call deleteProductTagAsync(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull Boolean force, final ApiCallback<ProductTag> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deleteCustomerByIdValidateBeforeCall(customerId, force, reassign, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = deleteProductTagValidateBeforeCall(tagId, force, _callback);
+        Type localVarReturnType = new TypeToken<ProductTag>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for listAllCustomers
-     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
-     * @param page Current page of the collection. Default is 1. (optional, default to 1)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
-     * @param search Limit results to those matching a string. (optional)
-     * @param exclude Ensure result set excludes specific IDs. (optional)
-     * @param include Limit result set to specific IDs. (optional)
-     * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
+     * Build call for listAllProductTags
+     * @param context Scope under which the request is made; determines fields present in response (optional, default to view)
+     * @param page Current page of the collection (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set (optional, default to 10)
+     * @param search Limit results to those matching a string (optional)
+     * @param exclude Ensure result set excludes specific ids (optional)
+     * @param include Limit result set to specific ids (optional)
+     * @param offset Offset the result set by a specific number of items (optional)
+     * @param order Order sort attribute ascending or descending (optional, default to asc)
+     * @param orderby Sort collection by resource attribute (optional, default to name)
+     * @param hideEmpty Whether to hide resources not assigned to any products (optional, default to false)
+     * @param product Limit result set to resources assigned to a specific product (optional)
+     * @param slug Limit result set to resources with a specific slug (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -508,12 +492,12 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of product tags </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call listAllProductTagsCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -530,7 +514,7 @@ public class CustomersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers";
+        String localVarPath = "/products/tags";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -555,11 +539,11 @@ public class CustomersApi {
         }
 
         if (exclude != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "exclude", exclude));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "exclude", exclude));
         }
 
         if (include != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "include", include));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "include", include));
         }
 
         if (offset != null) {
@@ -574,12 +558,16 @@ public class CustomersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("orderby", orderby));
         }
 
-        if (email != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("email", email));
+        if (hideEmpty != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("hide_empty", hideEmpty));
         }
 
-        if (role != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("role", role));
+        if (product != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("product", product));
+        }
+
+        if (slug != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("slug", slug));
         }
 
         final String[] localVarAccepts = {
@@ -602,86 +590,89 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listAllCustomersValidateBeforeCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback _callback) throws ApiException {
-        return listAllCustomersCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
+    private okhttp3.Call listAllProductTagsValidateBeforeCall(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug, final ApiCallback _callback) throws ApiException {
+        return listAllProductTagsCall(context, page, perPage, search, exclude, include, offset, order, orderby, hideEmpty, product, slug, _callback);
 
     }
 
     /**
-     * This API helps you to view all the customers.
+     * This API lets you retrieve all product tags.
      * 
-     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
-     * @param page Current page of the collection. Default is 1. (optional, default to 1)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
-     * @param search Limit results to those matching a string. (optional)
-     * @param exclude Ensure result set excludes specific IDs. (optional)
-     * @param include Limit result set to specific IDs. (optional)
-     * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
-     * @return List&lt;Customer&gt;
+     * @param context Scope under which the request is made; determines fields present in response (optional, default to view)
+     * @param page Current page of the collection (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set (optional, default to 10)
+     * @param search Limit results to those matching a string (optional)
+     * @param exclude Ensure result set excludes specific ids (optional)
+     * @param include Limit result set to specific ids (optional)
+     * @param offset Offset the result set by a specific number of items (optional)
+     * @param order Order sort attribute ascending or descending (optional, default to asc)
+     * @param orderby Sort collection by resource attribute (optional, default to name)
+     * @param hideEmpty Whether to hide resources not assigned to any products (optional, default to false)
+     * @param product Limit result set to resources assigned to a specific product (optional)
+     * @param slug Limit result set to resources with a specific slug (optional)
+     * @return List&lt;ProductTag&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of product tags </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public List<Customer> listAllCustomers(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role) throws ApiException {
-        ApiResponse<List<Customer>> localVarResp = listAllCustomersWithHttpInfo(context, page, perPage, search, exclude, include, offset, order, orderby, email, role);
+    public List<ProductTag> listAllProductTags(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug) throws ApiException {
+        ApiResponse<List<ProductTag>> localVarResp = listAllProductTagsWithHttpInfo(context, page, perPage, search, exclude, include, offset, order, orderby, hideEmpty, product, slug);
         return localVarResp.getData();
     }
 
     /**
-     * This API helps you to view all the customers.
+     * This API lets you retrieve all product tags.
      * 
-     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
-     * @param page Current page of the collection. Default is 1. (optional, default to 1)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
-     * @param search Limit results to those matching a string. (optional)
-     * @param exclude Ensure result set excludes specific IDs. (optional)
-     * @param include Limit result set to specific IDs. (optional)
-     * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
-     * @return ApiResponse&lt;List&lt;Customer&gt;&gt;
+     * @param context Scope under which the request is made; determines fields present in response (optional, default to view)
+     * @param page Current page of the collection (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set (optional, default to 10)
+     * @param search Limit results to those matching a string (optional)
+     * @param exclude Ensure result set excludes specific ids (optional)
+     * @param include Limit result set to specific ids (optional)
+     * @param offset Offset the result set by a specific number of items (optional)
+     * @param order Order sort attribute ascending or descending (optional, default to asc)
+     * @param orderby Sort collection by resource attribute (optional, default to name)
+     * @param hideEmpty Whether to hide resources not assigned to any products (optional, default to false)
+     * @param product Limit result set to resources assigned to a specific product (optional)
+     * @param slug Limit result set to resources with a specific slug (optional)
+     * @return ApiResponse&lt;List&lt;ProductTag&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of product tags </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<Customer>> listAllCustomersWithHttpInfo(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role) throws ApiException {
-        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, null);
-        Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
+    public ApiResponse<List<ProductTag>> listAllProductTagsWithHttpInfo(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug) throws ApiException {
+        okhttp3.Call localVarCall = listAllProductTagsValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, hideEmpty, product, slug, null);
+        Type localVarReturnType = new TypeToken<List<ProductTag>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API helps you to view all the customers. (asynchronously)
+     * This API lets you retrieve all product tags. (asynchronously)
      * 
-     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
-     * @param page Current page of the collection. Default is 1. (optional, default to 1)
-     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
-     * @param search Limit results to those matching a string. (optional)
-     * @param exclude Ensure result set excludes specific IDs. (optional)
-     * @param include Limit result set to specific IDs. (optional)
-     * @param offset Offset the result set by a specific number of items. (optional)
-     * @param order Order sort attribute ascending or descending. Options: asc and desc. Default is asc. (optional, default to asc)
-     * @param orderby Sort collection by object attribute. Options: id, include, name and registered_date. Default is name. (optional, default to name)
-     * @param email Limit result set to resources with a specific email. (optional)
-     * @param role Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer. (optional, default to customer)
+     * @param context Scope under which the request is made; determines fields present in response (optional, default to view)
+     * @param page Current page of the collection (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set (optional, default to 10)
+     * @param search Limit results to those matching a string (optional)
+     * @param exclude Ensure result set excludes specific ids (optional)
+     * @param include Limit result set to specific ids (optional)
+     * @param offset Offset the result set by a specific number of items (optional)
+     * @param order Order sort attribute ascending or descending (optional, default to asc)
+     * @param orderby Sort collection by resource attribute (optional, default to name)
+     * @param hideEmpty Whether to hide resources not assigned to any products (optional, default to false)
+     * @param product Limit result set to resources assigned to a specific product (optional)
+     * @param slug Limit result set to resources with a specific slug (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -689,21 +680,21 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns list of customers. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns list of product tags </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call listAllCustomersAsync(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable String email, @javax.annotation.Nullable String role, final ApiCallback<List<Customer>> _callback) throws ApiException {
+    public okhttp3.Call listAllProductTagsAsync(@javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, @javax.annotation.Nullable String search, @javax.annotation.Nullable List<Integer> exclude, @javax.annotation.Nullable List<Integer> include, @javax.annotation.Nullable Integer offset, @javax.annotation.Nullable String order, @javax.annotation.Nullable String orderby, @javax.annotation.Nullable Boolean hideEmpty, @javax.annotation.Nullable Integer product, @javax.annotation.Nullable String slug, final ApiCallback<List<ProductTag>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listAllCustomersValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, email, role, _callback);
-        Type localVarReturnType = new TypeToken<List<Customer>>(){}.getType();
+        okhttp3.Call localVarCall = listAllProductTagsValidateBeforeCall(context, page, perPage, search, exclude, include, offset, order, orderby, hideEmpty, product, slug, _callback);
+        Type localVarReturnType = new TypeToken<List<ProductTag>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for retrieveCustomerById
-     * @param customerId ID of customer to return (required)
+     * Build call for retrieveProductTag
+     * @param tagId ID of product tag to return (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -711,12 +702,12 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call retrieveProductTagCall(@javax.annotation.Nonnull Integer tagId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -733,8 +724,8 @@ public class CustomersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/customers/{customerId}"
-            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/products/tags/{tagId}"
+            .replace("{" + "tagId" + "}", localVarApiClient.escapeString(tagId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -762,61 +753,61 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call retrieveCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling retrieveCustomerById(Async)");
+    private okhttp3.Call retrieveProductTagValidateBeforeCall(@javax.annotation.Nonnull Integer tagId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'tagId' is set
+        if (tagId == null) {
+            throw new ApiException("Missing the required parameter 'tagId' when calling retrieveProductTag(Async)");
         }
 
-        return retrieveCustomerByIdCall(customerId, _callback);
+        return retrieveProductTagCall(tagId, _callback);
 
     }
 
     /**
-     * This API lets you retrieve and view a specific customer by ID.
+     * This API lets you retrieve a product tag by ID.
      * 
-     * @param customerId ID of customer to return (required)
-     * @return Customer
+     * @param tagId ID of product tag to return (required)
+     * @return ProductTag
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Customer retrieveCustomerById(@javax.annotation.Nonnull Integer customerId) throws ApiException {
-        ApiResponse<Customer> localVarResp = retrieveCustomerByIdWithHttpInfo(customerId);
+    public ProductTag retrieveProductTag(@javax.annotation.Nonnull Integer tagId) throws ApiException {
+        ApiResponse<ProductTag> localVarResp = retrieveProductTagWithHttpInfo(tagId);
         return localVarResp.getData();
     }
 
     /**
-     * This API lets you retrieve and view a specific customer by ID.
+     * This API lets you retrieve a product tag by ID.
      * 
-     * @param customerId ID of customer to return (required)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param tagId ID of product tag to return (required)
+     * @return ApiResponse&lt;ProductTag&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> retrieveCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId) throws ApiException {
-        okhttp3.Call localVarCall = retrieveCustomerByIdValidateBeforeCall(customerId, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductTag> retrieveProductTagWithHttpInfo(@javax.annotation.Nonnull Integer tagId) throws ApiException {
+        okhttp3.Call localVarCall = retrieveProductTagValidateBeforeCall(tagId, null);
+        Type localVarReturnType = new TypeToken<ProductTag>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API lets you retrieve and view a specific customer by ID. (asynchronously)
+     * This API lets you retrieve a product tag by ID. (asynchronously)
      * 
-     * @param customerId ID of customer to return (required)
+     * @param tagId ID of product tag to return (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -824,22 +815,22 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns specified customer. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns specified product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call retrieveCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call retrieveProductTagAsync(@javax.annotation.Nonnull Integer tagId, final ApiCallback<ProductTag> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = retrieveCustomerByIdValidateBeforeCall(customerId, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = retrieveProductTagValidateBeforeCall(tagId, _callback);
+        Type localVarReturnType = new TypeToken<ProductTag>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for updateCustomerById
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
+     * Build call for updateProductTag
+     * @param tagId ID of product tag to update (required)
+     * @param productTag Product tag object with data to update (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -847,12 +838,12 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCustomerByIdCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call updateProductTagCall(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull ProductTag productTag, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -866,11 +857,11 @@ public class CustomersApi {
             basePath = null;
         }
 
-        Object localVarPostBody = customer;
+        Object localVarPostBody = productTag;
 
         // create path and map variables
-        String localVarPath = "/customers/{customerId}"
-            .replace("{" + "customerId" + "}", localVarApiClient.escapeString(customerId.toString()));
+        String localVarPath = "/products/tags/{tagId}"
+            .replace("{" + "tagId" + "}", localVarApiClient.escapeString(tagId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -899,69 +890,69 @@ public class CustomersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateCustomerByIdValidateBeforeCall(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'customerId' is set
-        if (customerId == null) {
-            throw new ApiException("Missing the required parameter 'customerId' when calling updateCustomerById(Async)");
+    private okhttp3.Call updateProductTagValidateBeforeCall(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull ProductTag productTag, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'tagId' is set
+        if (tagId == null) {
+            throw new ApiException("Missing the required parameter 'tagId' when calling updateProductTag(Async)");
         }
 
-        // verify the required parameter 'customer' is set
-        if (customer == null) {
-            throw new ApiException("Missing the required parameter 'customer' when calling updateCustomerById(Async)");
+        // verify the required parameter 'productTag' is set
+        if (productTag == null) {
+            throw new ApiException("Missing the required parameter 'productTag' when calling updateProductTag(Async)");
         }
 
-        return updateCustomerByIdCall(customerId, customer, _callback);
+        return updateProductTagCall(tagId, productTag, _callback);
 
     }
 
     /**
-     * This API lets you make changes to a customer.
+     * This API lets you make changes to a product tag.
      * 
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
-     * @return Customer
+     * @param tagId ID of product tag to update (required)
+     * @param productTag Product tag object with data to update (required)
+     * @return ProductTag
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public Customer updateCustomerById(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer) throws ApiException {
-        ApiResponse<Customer> localVarResp = updateCustomerByIdWithHttpInfo(customerId, customer);
+    public ProductTag updateProductTag(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull ProductTag productTag) throws ApiException {
+        ApiResponse<ProductTag> localVarResp = updateProductTagWithHttpInfo(tagId, productTag);
         return localVarResp.getData();
     }
 
     /**
-     * This API lets you make changes to a customer.
+     * This API lets you make changes to a product tag.
      * 
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
-     * @return ApiResponse&lt;Customer&gt;
+     * @param tagId ID of product tag to update (required)
+     * @param productTag Product tag object with data to update (required)
+     * @return ApiResponse&lt;ProductTag&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Customer> updateCustomerByIdWithHttpInfo(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer) throws ApiException {
-        okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, null);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+    public ApiResponse<ProductTag> updateProductTagWithHttpInfo(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull ProductTag productTag) throws ApiException {
+        okhttp3.Call localVarCall = updateProductTagValidateBeforeCall(tagId, productTag, null);
+        Type localVarReturnType = new TypeToken<ProductTag>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * This API lets you make changes to a customer. (asynchronously)
+     * This API lets you make changes to a product tag. (asynchronously)
      * 
-     * @param customerId ID of customer to update (required)
-     * @param customer Customer object with data to update. (required)
+     * @param tagId ID of product tag to update (required)
+     * @param productTag Product tag object with data to update (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -969,15 +960,15 @@ public class CustomersApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Returns updated customer. </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> Returns updated product tag </td><td>  -  </td></tr>
         <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCustomerByIdAsync(@javax.annotation.Nonnull Integer customerId, @javax.annotation.Nonnull Customer customer, final ApiCallback<Customer> _callback) throws ApiException {
+    public okhttp3.Call updateProductTagAsync(@javax.annotation.Nonnull Integer tagId, @javax.annotation.Nonnull ProductTag productTag, final ApiCallback<ProductTag> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = updateCustomerByIdValidateBeforeCall(customerId, customer, _callback);
-        Type localVarReturnType = new TypeToken<Customer>(){}.getType();
+        okhttp3.Call localVarCall = updateProductTagValidateBeforeCall(tagId, productTag, _callback);
+        Type localVarReturnType = new TypeToken<ProductTag>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

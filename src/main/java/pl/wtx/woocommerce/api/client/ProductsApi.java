@@ -28,6 +28,8 @@ import java.io.IOException;
 
 
 import pl.wtx.woocommerce.api.client.model.ApiError;
+import pl.wtx.woocommerce.api.client.model.BatchProducts200Response;
+import pl.wtx.woocommerce.api.client.model.BatchProductsRequest;
 import pl.wtx.woocommerce.api.client.model.Product;
 
 import java.lang.reflect.Type;
@@ -73,6 +75,128 @@ public class ProductsApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
+    /**
+     * Build call for batchProducts
+     * @param batchProductsRequest Batch create, update, and delete products (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call batchProductsCall(@javax.annotation.Nullable BatchProductsRequest batchProductsRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = batchProductsRequest;
+
+        // create path and map variables
+        String localVarPath = "/products/batch";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call batchProductsValidateBeforeCall(@javax.annotation.Nullable BatchProductsRequest batchProductsRequest, final ApiCallback _callback) throws ApiException {
+        return batchProductsCall(batchProductsRequest, _callback);
+
+    }
+
+    /**
+     * Batch create, update, and delete products
+     * 
+     * @param batchProductsRequest Batch create, update, and delete products (optional)
+     * @return BatchProducts200Response
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+     </table>
+     */
+    public BatchProducts200Response batchProducts(@javax.annotation.Nullable BatchProductsRequest batchProductsRequest) throws ApiException {
+        ApiResponse<BatchProducts200Response> localVarResp = batchProductsWithHttpInfo(batchProductsRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Batch create, update, and delete products
+     * 
+     * @param batchProductsRequest Batch create, update, and delete products (optional)
+     * @return ApiResponse&lt;BatchProducts200Response&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BatchProducts200Response> batchProductsWithHttpInfo(@javax.annotation.Nullable BatchProductsRequest batchProductsRequest) throws ApiException {
+        okhttp3.Call localVarCall = batchProductsValidateBeforeCall(batchProductsRequest, null);
+        Type localVarReturnType = new TypeToken<BatchProducts200Response>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Batch create, update, and delete products (asynchronously)
+     * 
+     * @param batchProductsRequest Batch create, update, and delete products (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Batch operation results </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call batchProductsAsync(@javax.annotation.Nullable BatchProductsRequest batchProductsRequest, final ApiCallback<BatchProducts200Response> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = batchProductsValidateBeforeCall(batchProductsRequest, _callback);
+        Type localVarReturnType = new TypeToken<BatchProducts200Response>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for createProduct
      * @param product Product object with data to create. (required)

@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import pl.wtx.woocommerce.api.client.model.ReportListItemLinks;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -46,20 +47,10 @@ import java.util.Set;
 import pl.wtx.woocommerce.api.client.invoker.JSON;
 
 /**
- * ProductTag
+ * ReportListItem
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
-public class ProductTag {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
-  private Integer id;
-
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nonnull
-  private String name;
-
+public class ReportListItem {
   public static final String SERIALIZED_NAME_SLUG = "slug";
   @SerializedName(SERIALIZED_NAME_SLUG)
   @javax.annotation.Nullable
@@ -70,59 +61,21 @@ public class ProductTag {
   @javax.annotation.Nullable
   private String description;
 
-  public static final String SERIALIZED_NAME_COUNT = "count";
-  @SerializedName(SERIALIZED_NAME_COUNT)
+  public static final String SERIALIZED_NAME_LINKS = "_links";
+  @SerializedName(SERIALIZED_NAME_LINKS)
   @javax.annotation.Nullable
-  private Integer count;
+  private ReportListItemLinks links;
 
-  public ProductTag() {
+  public ReportListItem() {
   }
 
-  public ProductTag id(@javax.annotation.Nullable Integer id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Tag ID.
-   * @return id
-   */
-  @javax.annotation.Nullable
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(@javax.annotation.Nullable Integer id) {
-    this.id = id;
-  }
-
-
-  public ProductTag name(@javax.annotation.Nonnull String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Tag name. read-only
-   * @return name
-   */
-  @javax.annotation.Nonnull
-  public String getName() {
-    return name;
-  }
-
-  public void setName(@javax.annotation.Nonnull String name) {
-    this.name = name;
-  }
-
-
-  public ProductTag slug(@javax.annotation.Nullable String slug) {
+  public ReportListItem slug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
     return this;
   }
 
   /**
-   * Tag slug. read-only
+   * Get slug
    * @return slug
    */
   @javax.annotation.Nullable
@@ -135,13 +88,13 @@ public class ProductTag {
   }
 
 
-  public ProductTag description(@javax.annotation.Nullable String description) {
+  public ReportListItem description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
   /**
-   * HTML description of the resource
+   * Get description
    * @return description
    */
   @javax.annotation.Nullable
@@ -154,22 +107,22 @@ public class ProductTag {
   }
 
 
-  public ProductTag count(@javax.annotation.Nullable Integer count) {
-    this.count = count;
+  public ReportListItem links(@javax.annotation.Nullable ReportListItemLinks links) {
+    this.links = links;
     return this;
   }
 
   /**
-   * Number of published products for the resource
-   * @return count
+   * Get links
+   * @return links
    */
   @javax.annotation.Nullable
-  public Integer getCount() {
-    return count;
+  public ReportListItemLinks getLinks() {
+    return links;
   }
 
-  public void setCount(@javax.annotation.Nullable Integer count) {
-    this.count = count;
+  public void setLinks(@javax.annotation.Nullable ReportListItemLinks links) {
+    this.links = links;
   }
 
 
@@ -182,28 +135,24 @@ public class ProductTag {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProductTag productTag = (ProductTag) o;
-    return Objects.equals(this.id, productTag.id) &&
-        Objects.equals(this.name, productTag.name) &&
-        Objects.equals(this.slug, productTag.slug) &&
-        Objects.equals(this.description, productTag.description) &&
-        Objects.equals(this.count, productTag.count);
+    ReportListItem reportListItem = (ReportListItem) o;
+    return Objects.equals(this.slug, reportListItem.slug) &&
+        Objects.equals(this.description, reportListItem.description) &&
+        Objects.equals(this.links, reportListItem.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, slug, description, count);
+    return Objects.hash(slug, description, links);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProductTag {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class ReportListItem {\n");
     sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -226,53 +175,44 @@ public class ProductTag {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("name");
     openapiFields.add("slug");
     openapiFields.add("description");
-    openapiFields.add("count");
+    openapiFields.add("_links");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("name");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ProductTag
+   * @throws IOException if the JSON Element is invalid with respect to ReportListItem
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!ProductTag.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ProductTag is not found in the empty JSON string", ProductTag.openapiRequiredFields.toString()));
+        if (!ReportListItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ReportListItem is not found in the empty JSON string", ReportListItem.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ProductTag.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductTag` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ProductTag.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        if (!ReportListItem.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ReportListItem` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
       if ((jsonObj.get("slug") != null && !jsonObj.get("slug").isJsonNull()) && !jsonObj.get("slug").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `slug` to be a primitive type in the JSON string but got `%s`", jsonObj.get("slug").toString()));
       }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      // validate the optional field `_links`
+      if (jsonObj.get("_links") != null && !jsonObj.get("_links").isJsonNull()) {
+        ReportListItemLinks.validateJsonElement(jsonObj.get("_links"));
       }
   }
 
@@ -280,22 +220,22 @@ public class ProductTag {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ProductTag.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ProductTag' and its subtypes
+       if (!ReportListItem.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ReportListItem' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ProductTag> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ProductTag.class));
+       final TypeAdapter<ReportListItem> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ReportListItem.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ProductTag>() {
+       return (TypeAdapter<T>) new TypeAdapter<ReportListItem>() {
            @Override
-           public void write(JsonWriter out, ProductTag value) throws IOException {
+           public void write(JsonWriter out, ReportListItem value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ProductTag read(JsonReader in) throws IOException {
+           public ReportListItem read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -306,18 +246,18 @@ public class ProductTag {
   }
 
   /**
-   * Create an instance of ProductTag given an JSON string
+   * Create an instance of ReportListItem given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of ProductTag
-   * @throws IOException if the JSON string is invalid with respect to ProductTag
+   * @return An instance of ReportListItem
+   * @throws IOException if the JSON string is invalid with respect to ReportListItem
    */
-  public static ProductTag fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ProductTag.class);
+  public static ReportListItem fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ReportListItem.class);
   }
 
   /**
-   * Convert an instance of ProductTag to an JSON string
+   * Convert an instance of ReportListItem to an JSON string
    *
    * @return JSON string
    */
