@@ -27,63 +27,89 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
   - Get a specific customer
   - Update a customer
   - Delete a customer
+  - Batch create, update and delete multiple customers
+
 - ✅ Products API
   - List all products
   - Create a new product
   - Get a specific product
   - Update a product
   - Delete a product
+  - Batch create, update and delete multiple products
+
 - ✅ Product Variations API
   - List all variations of a product
   - Create a new product variation
   - Get a specific product variation
   - Update a product variation
   - Delete a product variation
+  - Batch create, update and delete multiple product variations
+
 - ✅ Product Categories API
   - List all product categories
   - Create a new product category
   - Get a specific product category
   - Update a product category
   - Delete a product category
+  - Batch create, update and delete multiple product categories
+
 - ✅ Orders API
   - List all orders
   - Create a new order
   - Get a specific order
   - Update an order
   - Delete an order
-- ✅ Reports
-  - Retrieve and view orders totals report
-  - Retrieve and view sales report
+  - Batch create, update and delete multiple orders
+
 - ✅ Product Attributes API
   - List all product attributes
   - Create a new product attribute
   - Get a specific product attribute
   - Update a product attribute
   - Delete a product attribute
+  - Batch create, update and delete multiple product attributes
+
 - ✅ Product Attribute Terms API
   - List all terms of a product attribute
   - Create a new product attribute term
   - Get a specific product attribute term
   - Update a product attribute term
   - Delete a product attribute term
+  - Batch create, update and delete attribute terms
+
 - ✅ Product Shipping Classes API
   - List all product shipping classes
   - Create a new product shipping class
   - Get a specific product shipping class
   - Update a product shipping class
   - Delete a product shipping class
+  - Batch create, update and delete multiple shipping classes
+
 - ✅ Product Tags API
   - List all product tags
   - Create a new product tag
   - Get a specific product tag
   - Update a product tag
   - Delete a product tag
+  - Batch create, update and delete multiple product tags
+
 - ✅ Product Reviews API
   - List all product reviews
   - Create a new product review
   - Get a specific product review
   - Update a product review
   - Delete a product review
+  - Batch create, update and delete multiple product reviews
+
+- ✅ Reports
+  - List all reports
+  - Retrieve and view sales report
+  - Retrieve and view top sellers report
+  - Retrieve and view coupons totals report
+  - Retrieve and view customers totals report
+  - Retrieve and view orders totals report
+  - Retrieve and view products totals report
+  - Retrieve and view reviews totals report
 
 ## 🚨 Project status
 
