@@ -13,6 +13,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,11 +25,11 @@ import static java.util.stream.Collectors.joining;
 public class ParameterCollector {
 
     //includeExclude is a list! while most parameters are single values
-    HashMap<String, List<String>> urlParameters = new HashMap<>();
+    private final HashMap<String, List<String>> urlParameters = new HashMap<>();
 
     protected void addNameValuePair(String key, String value){
-        if (value != null && !value.equals("")){
-            urlParameters.put(key, Arrays.asList(encodeValue(value)));
+        if (value != null && !value.isEmpty()){
+            urlParameters.put(key, Collections.singletonList(encodeValue(value)));
         }
     }
 

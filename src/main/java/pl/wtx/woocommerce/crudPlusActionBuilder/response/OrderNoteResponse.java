@@ -32,7 +32,7 @@ public class OrderNoteResponse extends ApiResponse {
                     if (result.getData() instanceof OrderNote) {
                         this.orderNote = (OrderNote) result.getData();
                     }else{
-                        this.orderNotes = (List<OrderNote>) result.getData();
+                        setOrderNotes(result);
                     }
                     break;
                 default:
@@ -42,6 +42,11 @@ public class OrderNoteResponse extends ApiResponse {
             }
         }
 
+    }
+
+    @SuppressWarnings("unchecked")
+    private void setOrderNotes(ApiResponseResult result){
+        this.orderNotes = (List<OrderNote>) result.getData();
     }
 
     public boolean hasOrderNotes(){
@@ -57,7 +62,7 @@ public class OrderNoteResponse extends ApiResponse {
         return orderNotes;
     }
 
-    /*If the Id IS set then we get a singleton product*/
+    /*If the id IS set then we get a singleton product*/
     public OrderNote getOrderNote() throws NullPointerException{
         if (orderNote != null) {
             return orderNote;

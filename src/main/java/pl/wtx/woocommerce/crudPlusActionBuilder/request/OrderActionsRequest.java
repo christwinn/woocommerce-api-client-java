@@ -51,12 +51,8 @@ public class OrderActionsRequest extends ApiRequest {
             return self();
         }
 
-        /*protected OrderActionsRequest build(){
-            return new OrderActionsRequest(this);
-        }*/
-
         private String getEndPoint(){
-            return ORDERS + Integer.toString(orderId) + "/actions/send_order_details";
+            return ORDERS + "/" + orderId + "/actions/send_order_details";
         }
         /**
         *

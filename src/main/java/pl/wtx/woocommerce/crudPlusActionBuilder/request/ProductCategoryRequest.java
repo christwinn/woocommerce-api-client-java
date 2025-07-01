@@ -11,7 +11,6 @@ package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.MetaData;
-import pl.wtx.woocommerce.api.client.model.Product;
 import pl.wtx.woocommerce.api.client.model.ProductCategory;
 import pl.wtx.woocommerce.api.client.model.ProductImage;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
@@ -43,7 +42,7 @@ public class ProductCategoryRequest extends ApiRequest {
         category.setDescription(creator.description);
         category.setDisplay(creator.display);
 
-        if (creator.image != null && !creator.image.equals("")){
+        if (creator.image != null && !creator.image.isEmpty()){
             ProductImage img = new ProductImage();
             img.setSrc(creator.image);
             category.setImage(img);
@@ -130,7 +129,6 @@ public class ProductCategoryRequest extends ApiRequest {
         private Integer parent;
 
         private String slug;
-        private List<MetaData> meta;
 
         private ProductCategory.DisplayEnum display;
         private String image;
@@ -155,11 +153,6 @@ public class ProductCategoryRequest extends ApiRequest {
 
         public T setSlug(String slug){
             this.slug = slug;
-            return self();
-        }
-
-        public T setMeta(List<MetaData> meta){
-            this.meta = meta;
             return self();
         }
 
@@ -360,6 +353,7 @@ public class ProductCategoryRequest extends ApiRequest {
             return new ProductCategoryRequest(this);
         }
 
+        /** Returns list of amended ProductCategories **/
         public ProductCategoryResponse getResponse(){
 
             if (batch.isEmpty()){
@@ -379,7 +373,6 @@ public class ProductCategoryRequest extends ApiRequest {
 
             }else{
 
-                /** Returns list of amended ProductCategories **/
                 return new WooCommerce().create(build());
 
             }
@@ -403,9 +396,8 @@ public class ProductCategoryRequest extends ApiRequest {
         }
 
         /**
-         * Whether to hide resources not assigned to any products. Default is false.
-         * @param hideEmpty
-         * @return
+         * @param hideEmpty Whether to hide resources not assigned to any products. Default is false.
+         * @return T
          */
         public T setHideEmpty(boolean hideEmpty) {
             addNameValuePair("hide_empty", hideEmpty);
@@ -413,9 +405,8 @@ public class ProductCategoryRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to resources assigned to a specific parent.
-         * @param parentId
-         * @return
+         * @param parentId Limit result set to resources assigned to a specific parent.
+         * @return T
          */
         public T setParentId(int parentId) {
             addNameValuePair("parent", parentId);
@@ -423,9 +414,8 @@ public class ProductCategoryRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to resources assigned to a specific product.
-         * @param productId
-         * @return
+         * @param productId Limit result set to resources assigned to a specific product.
+         * @return T
          */
         public T setProductId(int productId) {
             addNameValuePair("product", productId);
@@ -433,9 +423,8 @@ public class ProductCategoryRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to resources with a specific slug.
-         * @param slug
-         * @return
+         * @param slug Limit result set to resources with a specific slug.
+         * @return T
          */
         public T setSlug(String slug) {
             addNameValuePair("slug", slug);

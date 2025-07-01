@@ -386,6 +386,7 @@ public class CustomerRequest extends ApiRequest {
             return new CustomerRequest(this);
         }
 
+        /** Returns list of amended ProductCategories **/
         public CustomerResponse getResponse(){
 
             if (batch.isEmpty()){
@@ -405,7 +406,7 @@ public class CustomerRequest extends ApiRequest {
 
             }else{
 
-                /** Returns list of amended ProductCategories **/
+
                 return new WooCommerce().create(build());
 
             }
@@ -428,9 +429,9 @@ public class CustomerRequest extends ApiRequest {
         }
 
         /**
-         * Offset the result set by a specific number of items.
-         * @param offset
-         * @return
+         *
+         * @param offset Offset the result set by a specific number of items.
+         * @return T
          */
         public T setOffset(int offset) {
             addNameValuePair("offset", offset);
@@ -438,9 +439,9 @@ public class CustomerRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to resources with a specific email.
-         * @param email
-         * @return
+         *
+         * @param email Limit result set to resources with a specific email.
+         * @return T
          */
         public T setEmail(String email) {
             addNameValuePair("email", email);
@@ -448,9 +449,12 @@ public class CustomerRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to resources with a specific role. Options: all, administrator, editor, author, contributor, subscriber, customer and shop_manager. Default is customer.
-         * @param role
-         * @return
+         *
+         * @param role Limit result set to resources with a specific role.
+         *             Options: all, administrator, editor, author, contributor,
+         *                  subscriber, customer and shop_manager.
+         *             Default is customer.
+         * @return T
          */
         public T setRole(String role) {
             addNameValuePair("role", role);

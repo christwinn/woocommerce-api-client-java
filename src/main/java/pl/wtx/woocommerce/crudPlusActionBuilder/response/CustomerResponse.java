@@ -32,7 +32,7 @@ public class CustomerResponse extends ApiResponse {
                     if (result.getData() instanceof Customer) {
                         this.customer = (Customer) result.getData();
                     }else{
-                        this.customers = (List<Customer>) result.getData();
+                        setCustomers(result);
                     }
                     break;
                 default:
@@ -44,6 +44,11 @@ public class CustomerResponse extends ApiResponse {
 
     }
 
+    @SuppressWarnings("unchecked")
+    private void setCustomers(ApiResponseResult result){
+        this.customers = (List<Customer>) result.getData();
+    }
+
     public boolean hasCustomers(){
         return !customers.isEmpty();
     }
@@ -52,12 +57,12 @@ public class CustomerResponse extends ApiResponse {
         return customer != null;
     }
 
-    /*If the Id is NOT set then we get an array of product*/
+    /*If the id is NOT set then we get an array of product*/
     public List<Customer> getCustomers(){
         return customers;
     }
 
-    /*If the Id IS set then we get a singleton product*/
+    /*If the id IS set then we get a singleton product*/
     public Customer getCustomer() throws NullPointerException{
         if (customer != null) {
             return customer;

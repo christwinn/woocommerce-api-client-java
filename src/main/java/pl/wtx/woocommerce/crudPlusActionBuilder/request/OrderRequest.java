@@ -346,6 +346,7 @@ public class OrderRequest extends ApiRequest {
             return new OrderRequest(this);
         }
 
+        /** Returns list of amended ProductCategories **/
         public OrderResponse getResponse(){
 
             if (batch.isEmpty()){
@@ -365,7 +366,7 @@ public class OrderRequest extends ApiRequest {
 
             }else{
 
-                /** Returns list of amended ProductCategories **/
+
                 return new WooCommerce().create(build());
 
             }
@@ -388,18 +389,18 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Limit response to resources published after a given ISO8601 compliant date.
-         * @param after
-         * @return
+         *
+         * @param after Limit response to resources published after a given ISO8601 compliant date.
+         * @return T
          */
         public T setAfter(LocalDate after) {
             addNameValuePair("after", after);
             return self();
         }
         /**
-         * Limit response to resources published before a given ISO8601 compliant date.
-         * @param before
-         * @return
+         *
+         * @param before Limit response to resources published before a given ISO8601 compliant date.
+         * @return T
          */
         public T setBefore(LocalDate before) {
             addNameValuePair("before", before);
@@ -407,18 +408,18 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Limit response to resources modified after a given ISO8601 compliant date.
-         * @param modifiedAfter
-         * @return
+         *
+         * @param modifiedAfter Limit response to resources modified after a given ISO8601 compliant date.
+         * @return T
          */
         public T setModifiedAfter(LocalDate modifiedAfter) {
             addNameValuePair("modified_after", modifiedAfter);
             return self();
         }
         /**
-         * Limit response to resources modified before a given ISO8601 compliant date.
-         * @param modifiedBefore
-         * @return
+         *
+         * @param modifiedBefore Limit response to resources modified before a given ISO8601 compliant date.
+         * @return T
          */
         public T setModifiedBefore(LocalDate modifiedBefore) {
             addNameValuePair("modified_before", modifiedBefore);
@@ -426,9 +427,9 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * 	Whether to consider GMT post dates when limiting response by published or modified date.
-         * @param datesAreGMT
-         * @return
+         *
+         * @param datesAreGMT 	Whether to consider GMT post dates when limiting response by published or modified date.
+         * @return T
          */
         public T setDatesAreGMT(boolean datesAreGMT) {
             addNameValuePair("dates_are_gmt", datesAreGMT);
@@ -436,9 +437,9 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Offset the result set by a specific number of items.
-         * @param offset
-         * @return
+         *
+         * @param offset Offset the result set by a specific number of items.
+         * @return T
          */
         public T setOffset(int offset) {
             addNameValuePair("offset", offset);
@@ -446,9 +447,9 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to those of particular parent IDs.
-         * @param parents
-         * @return
+         *
+         * @param parents Limit result set to those of particular parent IDs.
+         * @return T
          */
         public T setParents(List<Integer> parents) {
             addNameValueIntegers("parent", parents);
@@ -456,9 +457,9 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to all items except those of a particular parent ID..
-         * @param parents_exclude
-         * @return
+         *
+         * @param parents_exclude Limit result set to all items except those of a particular parent ID
+         * @return T
          */
         public T setParentsExclude(List<Integer> parents_exclude) {
             addNameValueIntegers("parent_exclude", parents_exclude);
@@ -466,9 +467,12 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to orders assigned a specific status. Options: any, pending, processing, on-hold, completed, cancelled, refunded, failed and trash. Default is any.
-         * @param status
-         * @return
+         *
+         * @param statuses Limit result set to orders assigned a specific status.
+         *                 Options: any, pending, processing, on-hold, completed,
+         *                      cancelled, refunded, failed and trash.
+         *                      Default is any.
+         * @return T
          */
         public T setStatus(List<String> statuses) {
             addNameValueStrings("status", statuses);
@@ -476,9 +480,9 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to orders assigned a specific customer.
-         * @param customerId
-         * @return
+         *
+         * @param customerId  Limit result set to orders assigned a specific customer.
+         * @return T
          */
         public T setCustomer(int customerId) {
             addNameValuePair("customer", customerId);
@@ -486,9 +490,9 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to orders assigned a specific product.
-         * @param productId
-         * @return
+         *
+         * @param productId Limit result set to orders assigned a specific product.
+         * @return T
          */
         public T setProduct(int productId) {
             addNameValuePair("product", productId);
@@ -496,9 +500,9 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Number of decimal points to use in each resource. Default is 2.
-         * @param decimalPlaces
-         * @return
+         *
+         * @param decimalPlaces Number of decimal points to use in each resource. Default is 2.
+         * @return T
          */
         public T setDecimalPlaces(int decimalPlaces) {
             addNameValuePair("dp", decimalPlaces);
@@ -506,10 +510,10 @@ public class OrderRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to orders created via specific sources (e.g. checkout, store-api).
-         * Multiple options can be provided as a comma-separated list.
-         * @param created_via
-         * @return
+         *
+         * @param created_via Limit result set to orders created via specific sources (e.g. checkout, store-api).
+         *          Multiple options can be provided as a comma-separated list.
+         * @return T
          */
         public T setCreatedVia(String created_via) {
             addNameValuePair("created_via", created_via);

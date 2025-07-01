@@ -21,10 +21,6 @@ public class ProductCategoryResponse extends ApiResponse {
     private ProductCategory category;
     private List<ProductCategory> categories = new ArrayList<>();
 
-    /**
-     * Error Reporting
-     * @param result
-     */
     public ProductCategoryResponse(ApiResponseResult result){
 
         super(result);
@@ -36,7 +32,7 @@ public class ProductCategoryResponse extends ApiResponse {
                     if (result.getData() instanceof ProductCategory) {
                         this.category = (ProductCategory) result.getData();
                     }else{
-                        this.categories = (List<ProductCategory>) result.getData();
+                        setCategories(result);
                     }
                     break;
                 default:
@@ -46,6 +42,11 @@ public class ProductCategoryResponse extends ApiResponse {
             }
         }
 
+    }
+
+    @SuppressWarnings("unchecked")
+    private void setCategories(ApiResponseResult result){
+        this.categories = (List<ProductCategory>) result.getData();
     }
 
     public boolean hasCategories(){
@@ -61,7 +62,7 @@ public class ProductCategoryResponse extends ApiResponse {
         return categories;
     }
 
-    /*If the Id IS set then we get a singleton product*/
+    /*If the id IS set then we get a singleton product*/
     public ProductCategory getCategory() throws NullPointerException{
         if (category != null) {
             return category;
@@ -70,7 +71,7 @@ public class ProductCategoryResponse extends ApiResponse {
         }
     }
 
-    /*muddies the watres
+    /*muddies the waters
     Alias of getProduct. Create, Update, Delete return a single Product, added for naming convention
     public ProductCategory getCreated(){
         return getCategory();

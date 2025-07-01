@@ -9,7 +9,6 @@
 
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
-import pl.wtx.woocommerce.api.client.model.Order;
 import pl.wtx.woocommerce.api.client.model.OrderRefund;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
@@ -34,7 +33,7 @@ public class OrderRefundResponse extends ApiResponse {
                     if (result.getData() instanceof OrderRefund) {
                         this.orderRefund = (OrderRefund) result.getData();
                     }else{
-                        this.orderRefunds = (List<OrderRefund>) result.getData();
+                        setOrderRefunds(result);
                     }
                     break;
                 default:
@@ -46,6 +45,10 @@ public class OrderRefundResponse extends ApiResponse {
 
     }
 
+    @SuppressWarnings("unchecked")
+    private void setOrderRefunds(ApiResponseResult result){
+        this.orderRefunds = (List<OrderRefund>) result.getData();
+    }
     public boolean hasOrderRefunds(){
         return !orderRefunds.isEmpty();
     }
@@ -54,12 +57,12 @@ public class OrderRefundResponse extends ApiResponse {
         return orderRefund != null;
     }
 
-    /*If the Id is NOT set then we get an array of product*/
+    /*If the id is NOT set then we get an array of product*/
     public List<OrderRefund> getOrderRefunds(){
         return orderRefunds;
     }
 
-    /*If the Id IS set then we get a singleton product*/
+    /*If the id IS set then we get a singleton product*/
     public OrderRefund getOrderRefund() throws NullPointerException{
         if (orderRefund != null) {
             return orderRefund;

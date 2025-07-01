@@ -18,7 +18,7 @@ import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.CUSTOME
 public class CustomerDownloadsRequest {
 
     //not utilising a customer object to store the id!
-    private Integer customerId;
+    private final Integer customerId;
 
     public CustomerDownloadsRequest(Reader reader){
         this.customerId = reader.customerId;

@@ -115,7 +115,6 @@ public class ProductRequest extends ApiRequest {
         force = false;
         duplicate = true;
 
-
     }
 
     public ProductRequest(Batcher batcher){
@@ -131,9 +130,10 @@ public class ProductRequest extends ApiRequest {
         return product;
     }
 
-    public Batch getBatch(){
+    /*public Batch getBatch(){
         return batch;
-    }
+    }*/
+
     public String toJson(){
 
         try {
@@ -177,11 +177,7 @@ public class ProductRequest extends ApiRequest {
         //private int id;             //integer	Unique identifier for the resource.read-only
         private String name;        //string	Product name.
         private String slug;        //string	Product slug.
-        //private String permalink;   //string	Product URL.read-only
-        //private String date_created;//date-time	The date the product was created, in the site's timezone.read-only
-        //private String date_created_gmt;    //date-time	The date the product was created, as GMT.read-only
-        //private String date_modified;   //date-time	The date the product was last modified, in the site's timezone.read-only
-        //private String date_modified_gmt;   //date-time	The date the product was last modified, as GMT.read-only
+
         private String type;    //string	Product type. Options: simple, grouped, external and variable. Default is simple.
         private String status;    //string	Product status (post status). Options: draft, pending, private and publish. Default is publish.
         private Boolean featured;    //boolean	Featured product. Default is false.
@@ -189,17 +185,12 @@ public class ProductRequest extends ApiRequest {
         private String description;    //string	Product description.
         private String short_description;    //string	Product short description.
         private String sku;    //string	Unique identifier.
-        //private String price;    //string	Current product price.read-only
         private String regular_price;    //string	Product regular price.
         private String sale_price;    //string	Product sale price.
         private LocalDateTime date_on_sale_from;    //date-time	Start date of sale price, in the site's timezone.
         private LocalDateTime date_on_sale_from_gmt;    //date-time	Start date of sale price, as GMT.
         private LocalDateTime date_on_sale_to;    //date-time	End date of sale price, in the site's timezone.
         private LocalDateTime date_on_sale_to_gmt;    //date-time	End date of sale price, as GMT.
-        //private String price_html;    //string	Price formatted in HTML.read-only
-        //private boolean on_sale;    //boolean	Shows if the product is on sale.read-only
-        //private boolean purchasable;    //boolean	Shows if the product can be bought.read-only
-        //private int total_sales;    //integer	Amount of sales.read-only
         private Boolean virtual;    //boolean	If the product is virtual. Default is false.
         private Boolean downloadable;    //boolean	If the product is downloadable. Default is false.
         private List<ProductDownload> downloads;    //array	List of downloadable files. See Product - Downloads properties
@@ -213,19 +204,11 @@ public class ProductRequest extends ApiRequest {
         private Integer stock_quantity;    //integer	Stock quantity.
         private String stock_status;    //string	Controls the stock status of the product. Options: instock, outofstock, onbackorder. Default is instock.
         private String backorders;    //string	If managing stock, this controls if backorders are allowed. Options: no, notify and yes. Default is no.
-        //private boolean backorders_allowed;    //boolean	Shows if backorders are allowed.read-only
-        //private boolean backordered;    //boolean	Shows if the product is on backordered.read-only
         private Boolean sold_individually;    //boolean	Allow one item to be bought in a single order. Default is false.
         private String weight;    //string	Product weight.
         private ProductDimension dimensions;    //object	Product dimensions. See Product - Dimensions properties
-        //private boolean shipping_required;    //boolean	Shows if the product need to be shipped.read-only
-        //private boolean shipping_taxable;    //boolean	Shows whether or not the product shipping is taxable.read-only
         private String shipping_class;    //string	Shipping class slug.
-        //private int shipping_class_id;    //integer	Shipping class ID.read-only
         private Boolean reviews_allowed;    //boolean	Allow reviews. Default is true.
-        //private String average_rating;    //string	Reviews average rating.read-only
-        //private int rating_count;    //integer	Amount of reviews that the product have.read-only
-        //private int[] related_ids;    //array	List of related products IDs.read-only
         private List<Integer> upsell_ids;    //array	List of up-sell products IDs.
         private List<Integer> cross_sell_ids;    //array	List of cross-sell products IDs.
         private Integer parent_id;    //integer	Product parent ID.
@@ -239,11 +222,6 @@ public class ProductRequest extends ApiRequest {
         private List<Integer> grouped_products;    //array	List of grouped products ID.
         private Integer menu_order;    //integer	Menu order, used to custom sort products.
         private List<MetaData> meta_data;    //array	Meta data. See Product - Meta data properties
-
-        /*public Builder id(int id) {
-            this.id = id;
-            return this;
-        }*/
 
         public T setName(String name) {
             this.name = name;
@@ -492,18 +470,18 @@ public class ProductRequest extends ApiRequest {
             https://woocommerce.github.io/woocommerce-rest-api-docs/?shell#product-properties
         */
 
-        private int id;             //integer	Unique identifier for the resource.read-only
+        protected int id;             //integer	Unique identifier for the resource.read-only
 
         T self() {
             return (T) this;
         }
 
         /**
-         * This API lets you retrieve and view a specific product by ID.
-         * Set id to 0 to view all the products.
          *
-         * @param id
-         * @return
+         *
+         * @param id This API lets you retrieve and view a specific product by ID.
+         *           Set id to 0 to view all the products.
+         * @return T
          */
         public T withId(int id) {
             this.id = id;
@@ -577,8 +555,6 @@ public class ProductRequest extends ApiRequest {
 
     public static class Duplicator<T extends Duplicator<T>> extends Reader<T>{
 
-        private boolean duplicate;
-
         private ProductRequest build(){
             return new ProductRequest(this);
         }
@@ -586,8 +562,7 @@ public class ProductRequest extends ApiRequest {
         @Override
         public ProductResponse getResponse(){
 
-            if (super.id != 0){
-                duplicate = true;
+            if (id != 0){
                 return new WooCommerce().create(build());
             }else{
                 return new ProductResponse(new ApiResponseResult(false, 0, "Invalid Identifier"));
@@ -715,9 +690,9 @@ public class ProductRequest extends ApiRequest {
         }
 
         /**
-         * Limit response to resources published after a given ISO8601 compliant date.
-         * @param after
-         * @return
+         *
+         * @param after Limit response to resources published after a given ISO8601 compliant date.
+         * @return T
          */
         public T setAfter(LocalDate after) {
             addNameValuePair("after", after);
@@ -725,9 +700,9 @@ public class ProductRequest extends ApiRequest {
         }
 
         /**
-         * Limit response to resources published before a given ISO8601 compliant date.
-         * @param before
-         * @return
+         *
+         * @param before Limit response to resources published before a given ISO8601 compliant date.
+         * @return T
          */
         public T setBefore(LocalDate before) {
             addNameValuePair("before", before);
@@ -735,26 +710,26 @@ public class ProductRequest extends ApiRequest {
         }
         /**
          *
-         * @param modified_after
-         * @return
+         * @param modified_after Limit response to resources modified after a given ISO8601 compliant date.
+         * @return T
          */
         public T setModifiedAfter(LocalDate modified_after) {
             addNameValuePair("modified_after", modified_after);
             return self();
         }
         /**
-         * Limit response to resources modified after a given ISO8601 compliant date.
-         * @param modified_before
-         * @return
+         *
+         * @param modified_before Limit response to resources modified after a given ISO8601 compliant date.
+         * @return T
          */
         public T setModifiedBefore(LocalDate modified_before) {
             addNameValuePair("modified_before", modified_before);
             return self();
         }
         /**
-         * Whether to consider GMT post dates when limiting response by published or modified date.
-         * @param dates_are_gmt
-         * @return
+         *
+         * @param dates_are_gmt Whether to consider GMT post dates when limiting response by published or modified date.
+         * @return T
          */
         public T setDatesAreGmt(boolean dates_are_gmt) {
             addNameValuePair("dates_are_gmt", dates_are_gmt);
@@ -762,9 +737,9 @@ public class ProductRequest extends ApiRequest {
         }
 
         /**
-         * Offset the result set by a specific number of items.
-         * @param offset
-         * @return
+         *
+         * @param offset Offset the result set by a specific number of items.
+         * @return T
          */
         public T setOffset(int offset) {
             addNameValuePair("offset", offset);
@@ -773,9 +748,9 @@ public class ProductRequest extends ApiRequest {
 
 
         /**
-         * Limit result set to those of particular parent IDs.
-         * @param parent
-         * @return
+         *
+         * @param parent Limit result set to those of particular parent IDs.
+         * @return T
          */
         public T setParent(List<Integer> parent) {
             addNameValueIntegers("parent", parent);
@@ -783,28 +758,28 @@ public class ProductRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to all items except those of a particular parent ID.
-         * @param parent_exclude
-         * @return
+         *
+         * @param parent_exclude Limit result set to all items except those of a particular parent ID.
+         * @return T
          */
         public T setParentExclude(List<Integer> parent_exclude) {
             addNameValueIntegers("parent_exclude", parent_exclude);
             return self();
         }
         /**
-         * Limit result set to products with a specific slug.
-         * @param slug
-         * @return
+         *
+         * @param slug Limit result set to products with a specific slug.
+         * @return T
          */
         public T setSlug(String slug) {
             addNameValuePair("slug", slug);
             return self();
         }
         /**
-         * Limit result set to products assigned a specific status.
-         * Options: any, draft, pending, private and publish. Default is any.
-         * @param status
-         * @return
+         *
+         * @param status Limit result set to products assigned a specific status.
+         *           Options: any, draft, pending, private and publish. Default is any.
+         * @return T
          */
         public T setStatus(String status) {
             addNameValuePair("status", status);
@@ -812,46 +787,46 @@ public class ProductRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to products with any of the specified statuses.
-         * Multiple statuses can be provided as a comma-separated list.
-         * Takes precedence over the status parameter.
-         * Options: any, future, trash, draft, pending, private, and publish.
-         * @param include_status
-         * @return
+         *
+         * @param include_status Limit result set to products with any of the specified statuses.
+         *           Multiple statuses can be provided as a comma-separated list.
+         *           Takes precedence over the status parameter.
+         *           Options: any, future, trash, draft, pending, private, and publish.
+         * @return T
          */
         public T setIncludeStatus(String include_status) {
             addNameValuePair("include_status", include_status);
             return self();
         }
         /**
-         * Exclude products from result set with any of the specified statuses.
-         * Multiple statuses can be provided as a comma-separated list.
-         * Takes precedence over the include_status parameter.
-         * Options: future, trash, draft, pending, private, and publish.
-         * @param exclude_status
-         * @return
+         *
+         * @param exclude_status Exclude products from result set with any of the specified statuses.
+         *           Multiple statuses can be provided as a comma-separated list.
+         *           Takes precedence over the include_status parameter.
+         *           Options: future, trash, draft, pending, private, and publish.
+         * @return T
          */
         public T setExcludeStatus(String exclude_status) {
             addNameValuePair("exclude_status", exclude_status);
             return self();
         }
         /**
-         * Limit result set to products assigned a specific type.
-         * Options: simple, grouped, external and variable.
-         * @param type
-         * @return
+         *
+         * @param type Limit result set to products assigned a specific type.
+         *           Options: simple, grouped, external and variable.
+         * @return T
          */
         public T setType(String type) {
             addNameValuePair("type", type);
             return self();
         }
         /**
-         * Limit result set to products with any of the types.
-         * Multiple statuses can be provided as a comma-separated list.
-         * Takes precedence over the type parameter.
-         * Options: simple, grouped, external and variable.
-         * @param include_types
-         * @return
+         *
+         * @param include_types Limit result set to products with any of the types.
+         *          Multiple statuses can be provided as a comma-separated list.
+         *          Takes precedence over the type parameter.
+         *          Options: simple, grouped, external and variable.
+         * @return T
          */
         public T setIncludeTypes(String include_types) {
             addNameValuePair("include_types", include_types);
@@ -859,30 +834,30 @@ public class ProductRequest extends ApiRequest {
         }
 
         /**
-         * Exclude products from result set with any of the specified types.
-         * Multiple statuses can be provided as a comma-separated list.
-         * Takes precedence over the include_types parameter.
-         * Options: simple, grouped, external and variable.
-         * @param exclude_types
-         * @return
+         *
+         * @param exclude_types Exclude products from result set with any of the specified types.
+         *          Multiple statuses can be provided as a comma-separated list.
+         *          Takes precedence over the include_types parameter.
+         *          Options: simple, grouped, external and variable.
+         * @return T
          */
         public T setExcludeTypes(String exclude_types) {
             addNameValuePair("exclude_types", exclude_types);
             return self();
         }
         /**
-         * Limit result set to products with a specific SKU.
-         * @param sku
-         * @return
+         *
+         * @param sku Limit result set to products with a specific SKU.
+         * @return T
          */
         public T setSku(String sku) {
             addNameValuePair("sku", sku);
             return self();
         }
         /**
-         * Limit result set to featured products.
-         * @param featured
-         * @return
+         *
+         * @param featured Limit result set to featured products.
+         * @return T
          */
         public T setFeatured(boolean featured) {
             addNameValuePair("featured", featured);
@@ -890,111 +865,111 @@ public class ProductRequest extends ApiRequest {
         }
 
         /**
-         * Limit result set to products assigned a specific category ID.
-         * @param category
-         * @return
+         *
+         * @param category Limit result set to products assigned a specific category ID.
+         * @return T
          */
         public T setCategory(String category) {
             addNameValuePair("category", category);
             return self();
         }
         /**
-         * Limit result set to products assigned a specific tag ID.
-         * @param tag
-         * @return
+         *
+         * @param tag Limit result set to products assigned a specific tag ID.
+         * @return T
          */
         public T setTag(String tag) {
             addNameValuePair("tag", tag);
             return self();
         }
         /**
-         * Limit result set to products assigned a specific shipping class ID.
-         * @param shipping_class
-         * @return
+         *
+         * @param shipping_class Limit result set to products assigned a specific shipping class ID.
+         * @return T
          */
         public T setShippingClass(String shipping_class) {
             addNameValuePair("shipping_class", shipping_class);
             return self();
         }
         /**
-         * Limit result set to products with a specific attribute.
-         * @param attribute
-         * @return
+         *
+         * @param attribute Limit result set to products with a specific attribute.
+         * @return T
          */
         public T setAttribute(String attribute) {
             addNameValuePair("attribute", attribute);
             return self();
         }
         /**
-         * Limit result set to products with a specific attribute term ID
-         * (required an assigned attribute).
-         * @param attribute_term
-         * @return
+         *
+         * @param attribute_term Limit result set to products with a specific attribute term ID
+         *           (required an assigned attribute).
+         * @return T
          */
         public T setAttributeTerm(String attribute_term) {
             addNameValuePair("attribute_term", attribute_term);
             return self();
         }
         /**
-         * Limit result set to products with a specific tax class.
-         * Default options: standard, reduced-rate and zero-rate.
-         * @param tax_class
-         * @return
+         *
+         * @param tax_class Limit result set to products with a specific tax class.
+         *          Default options: standard, reduced-rate and zero-rate.
+         * @return T
          */
         public T setTaxClass(String tax_class) {
             addNameValuePair("tax_class", tax_class);
             return self();
         }
         /**
-         * Limit result set to products on sale.
-         * @param on_sale
-         * @return
+         *
+         * @param on_sale Limit result set to products on sale.
+         * @return T
          */
         public T setOnSale(boolean on_sale) {
             addNameValuePair("on_sale", on_sale);
             return self();
         }
         /**
-         * Limit result set to products based on a minimum price.
-         * @param min_price
-         * @return
+         *
+         * @param min_price Limit result set to products based on a minimum price.
+         * @return T
          */
         public T setMinPrice(BigDecimal min_price) {
             addNameValuePair("min_price", min_price.toString());
             return self();
         }
         /**
-         * Limit result set to products based on a maximum price.
-         * @param max_price
-         * @return
+         *
+         * @param max_price Limit result set to products based on a maximum price.
+         * @return T
          */
         public T setMaxPrice(BigDecimal max_price) {
             addNameValuePair("max_price", max_price.toString());
             return self();
         }
         /**
-         * Limit result set to products with specified stock status.
-         * Options: instock, outofstock and onbackorder.
-         * @param stock_status
-         * @return
+         *
+         * @param stock_status Limit result set to products with specified stock status.
+         *           Options: instock, outofstock and onbackorder.
+         * @return T
          */
         public T setStockStatus(String stock_status) {
             addNameValuePair("stock_status", stock_status);
             return self();
         }
         /**
-         * Limit result set to virtual products.
-         * @param virtual
-         * @return
+         *
+         * @param virtual Limit result set to virtual products.
+         * @return T
          */
         public T setVirtual(boolean virtual) {
             addNameValuePair("virtual", virtual);
             return self();
         }
         /**
-         * Limit result set to downloadable products.
-         * @param downloadable
-         * @return
+         *
+         * @param downloadable Limit result set to downloadable products.
+         * @return T
          */
         public T setDownloadable(boolean downloadable) {
             addNameValuePair("downloadable", downloadable);

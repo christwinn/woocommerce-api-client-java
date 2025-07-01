@@ -40,4 +40,7 @@ public class OrderActionsResponse extends ApiResponse {
 
     }
 
+    public Message getMessage() {
+        return message;
+    }
 }

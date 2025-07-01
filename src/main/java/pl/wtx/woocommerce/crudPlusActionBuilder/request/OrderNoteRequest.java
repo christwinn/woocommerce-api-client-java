@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderNoteResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
@@ -26,7 +25,7 @@ public class OrderNoteRequest extends ApiRequest {
 
     private boolean force;
 
-    public OrderNoteRequest(Creator creator){
+    public OrderNoteRequest(@SuppressWarnings("rawtypes") Creator creator){
 
         this((ListAll)creator);
         orderNote.setNote(creator.note);
@@ -105,9 +104,9 @@ public class OrderNoteRequest extends ApiRequest {
         }
 
         /**
-         * Order note content.
-         * @param note
-         * @return
+         *
+         * @param note Order note content.
+         * @return T
          */
         public T setNote(String note) {
             this.note = note;
@@ -115,11 +114,11 @@ public class OrderNoteRequest extends ApiRequest {
         }
 
         /**
-         * If true, the note will be shown to customers and they will be notified.
-         * If false, the note will be for admin reference only.
-         * Default is false.
-         * @param customerNote
-         * @return
+         *
+         * @param customerNote  If true, the note will be shown to customers and they will be notified.
+         *           If false, the note will be for admin reference only.
+         *           Default is false.
+         * @return T
          */
         public T setCustomerNote(Boolean customerNote) {
             this.customerNote = customerNote;
@@ -127,11 +126,11 @@ public class OrderNoteRequest extends ApiRequest {
         }
 
         /**
-         * If true, this note will be attributed to the current user.
-         * If false, the note will be attributed to the system.
-         * Default is false.
-         * @param addedByUser
-         * @return
+         *
+         * @param addedByUser If true, this note will be attributed to the current user.
+         *           If false, the note will be attributed to the system.
+         *           Default is false.
+         * @return T
          */
         public T setAddedByUser(Boolean addedByUser) {
             this.addedByUser = addedByUser;
@@ -240,9 +239,9 @@ public class OrderNoteRequest extends ApiRequest {
         }
 
         /**
-         * Order note(s) must be tied to an Order.
-         * @param orderId
-         * @return
+         *
+         * @param orderId Order note(s) must be tied to an Order.
+         * @return  T
          */
         public T setOrderId(int orderId){
             this.orderId = orderId;

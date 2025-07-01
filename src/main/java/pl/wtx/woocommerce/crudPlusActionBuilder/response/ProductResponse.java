@@ -8,6 +8,7 @@
  */
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
+import pl.wtx.woocommerce.api.client.model.Order;
 import pl.wtx.woocommerce.api.client.model.Product;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
@@ -32,7 +33,7 @@ public class ProductResponse extends ApiResponse {
                     if (result.getData() instanceof Product) {
                         this.product = (Product) result.getData();
                     }else{
-                        this.products = (List<Product>) result.getData();
+                        setProducts(result);
                     }
                     break;
                 default:
@@ -43,6 +44,12 @@ public class ProductResponse extends ApiResponse {
         }
 
     }
+
+    @SuppressWarnings("unchecked")
+    private void setProducts(ApiResponseResult result){
+        this.products = (List<Product>) result.getData();
+    }
+
 
     public boolean hasProducts(){
         return !products.isEmpty();

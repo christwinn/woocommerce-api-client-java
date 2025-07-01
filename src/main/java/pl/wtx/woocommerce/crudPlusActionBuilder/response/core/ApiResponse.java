@@ -28,7 +28,7 @@ public class ApiResponse {
 
         if (!result.getSuccess()){
 
-            //html no access to respource? httpd disallow PUT DELETE, outside our scope but return the result to the user
+            //html no access to resource? apache disallowed PUT DELETE, outside our scope but return the result to the user
             switch (result.getStatusCode()){
                 case 0:
                 case 400: case 401: case 402: case 403: case 404: //not going to be json
@@ -76,10 +76,6 @@ public class ApiResponse {
     public void setError(ErrorObject error) {
         this.error = error;
     }
-
-    /*protected ObjectMapper getObjectMapper(){
-        return objectMapper();
-    }*/
 
     private ObjectMapper objectMapper(){
 

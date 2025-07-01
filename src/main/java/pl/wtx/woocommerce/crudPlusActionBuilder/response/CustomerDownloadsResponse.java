@@ -8,7 +8,6 @@
  */
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
-import pl.wtx.woocommerce.api.client.model.Customer;
 import pl.wtx.woocommerce.api.client.model.Download;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
@@ -35,7 +34,7 @@ public class CustomerDownloadsResponse extends ApiResponse {
                         Download download = (Download) result.getData();
                         downloads.add(download);
                     }else{
-                        this.downloads = (List<Download>) result.getData();
+                        setDownloads(result);
                     }
                     break;
                 default:
@@ -45,6 +44,11 @@ public class CustomerDownloadsResponse extends ApiResponse {
             }
         }
 
+    }
+
+    @SuppressWarnings("unchecked")
+    private void setDownloads(ApiResponseResult result){
+        this.downloads = (List<Download>) result.getData();
     }
 
     public boolean hasDownloads(){

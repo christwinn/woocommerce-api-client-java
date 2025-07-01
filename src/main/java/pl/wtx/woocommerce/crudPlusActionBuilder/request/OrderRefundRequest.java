@@ -10,20 +10,13 @@
 package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderNoteResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderRefundResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.ORDERS;
@@ -44,6 +37,8 @@ public class OrderRefundRequest  extends ApiRequest {
         orderRefund.setLineItems(creator.lineItems);
         orderRefund.setShippingLines(creator.shippingLines);
         orderRefund.setFeeLines(creator.feeLines);
+        orderRefund.setApiRefund(creator.apiRefund);
+        orderRefund.setApiRestock(creator.apiRestock);
 
     }
 
@@ -276,9 +271,9 @@ public class OrderRefundRequest  extends ApiRequest {
         }
 
         /**
-         * Order note(s) must be tied to an Order.
-         * @param orderId
-         * @return
+         *
+         * @param orderId Order note(s) must be tied to an Order.
+         * @return T
          */
         public T setOrderId(int orderId){
             this.orderId = orderId;
