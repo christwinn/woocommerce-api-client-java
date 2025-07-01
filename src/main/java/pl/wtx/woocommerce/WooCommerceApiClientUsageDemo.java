@@ -53,12 +53,18 @@ public class WooCommerceApiClientUsageDemo {
             System.out.println(customer.toString());
         }
 
+        CustomerResponse batched = customerDemo.batchUpdateCustomers();
+        if (batched.isSuccess()){
+            System.out.println("All Updated");
+        }else{
+            System.out.println(batched.getError().getMessage());
+        }
 
         pleaseExplain();
 
         CustomerResponse customerResponse =
             new CustomerRequest.Searcher<>()
-                .setEmail("johndoe@nowhere.com")
+                .setEmail("john.doe@example.com")
                 .getResponse();
 
         if (customerResponse.isSuccess()) {
