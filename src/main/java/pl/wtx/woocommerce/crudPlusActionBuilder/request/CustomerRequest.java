@@ -14,6 +14,7 @@ import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderActionsResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
@@ -38,6 +39,7 @@ public class CustomerRequest extends ApiRequest {
         customer.setFirstName(creator.firstName);
         customer.setLastName(creator.lastName);
         customer.setUsername(creator.username);
+        customer.setPassword(creator.password);
         customer.setBilling(creator.billing);
         customer.setShipping(creator.shipping);
 
@@ -119,6 +121,8 @@ public class CustomerRequest extends ApiRequest {
         private String firstName;
         private String lastName;
         private String username;
+        private String password;
+
         private Billing billing;
         private Shipping shipping;
 
@@ -146,6 +150,11 @@ public class CustomerRequest extends ApiRequest {
             return self();
         }
 
+        public T setPassword(String password) {
+            this.password = password;
+            return self();
+        }
+
         public T setBilling(Billing billing) {
             this.billing = billing;
             return self();
@@ -160,11 +169,20 @@ public class CustomerRequest extends ApiRequest {
             return new CustomerRequest(this);
         }
 
-
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
         public CustomerResponse getResponse(){
-            WooCommerce woo = new WooCommerce();
-            return woo.create(build());
+
+            if (username != null && password != null) {
+                WooCommerce woo = new WooCommerce();
+                return woo.create(build());
+            }else{
+                return new CustomerResponse(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Username and Password are required.")
+                );
+            }
         }
 
 
@@ -289,6 +307,24 @@ public class CustomerRequest extends ApiRequest {
             this.delete.add(delete.build().customer);
         }
 
+        public void addCreator(List<Creator> create) {
+            for (Creator creator : create){
+                this.create.add(creator.build().customer);
+            }
+        }
+
+        public void addUpdater(List<Updater> updates) {
+            for (Updater updater : updates){
+                this.update.add(updater.build().customer);
+            }
+        }
+
+        public void addDeleter(List <Deleter> deletes){
+            for (Deleter deleter : deletes){
+                this.delete.add(deleter.build().customer);
+            }
+        }
+
         public List<Customer> getCreate(){
             return create;
         }
@@ -313,8 +349,18 @@ public class CustomerRequest extends ApiRequest {
             return (T) this;
         }
 
+        public T addCreators(List<Creator> creators){
+            batch.addCreator(creators);
+            return self();
+        }
+
         public T addCreator(Creator create){
             batch.addCreator(create);
+            return self();
+        }
+
+        public T addUpdaters(List<Updater> updates){
+            batch.addUpdater(updates);
             return self();
         }
 
@@ -323,6 +369,10 @@ public class CustomerRequest extends ApiRequest {
             return self();
         }
 
+        public T addDeleters(List<Deleter> deletes){
+            batch.addDeleter(deletes);
+            return self();
+        }
         public T addDeleter(Deleter delete){
             batch.addDeleter(delete);
             return self();

@@ -13,6 +13,7 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ParameterCollector;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductCategoryResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductResponse;
+import pl.wtx.woocommerce.demo.CustomerDemo;
 
 /**
  * WooCommerce API Client - Usage Demo
@@ -32,6 +33,29 @@ public class WooCommerceApiClientUsageDemo {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
 
+        CustomerDemo customerDemo = new CustomerDemo();
+        Customer customer = customerDemo.createACustomer();
+        //example. Create a customer, if success then use the id to retrieve said customer.(I know we already have the customer but it is for demomstration!)
+        // otherwise we will search based on the email.
+        int id;
+        if (customer != null) {
+            id = customer.getId();
+            customer = customerDemo.retrieveACustomer(id);
+        }else {
+            List<Customer> customers = customerDemo.retrieveCustomers("john.doe@example.com");
+            if (!customers.isEmpty()) {
+                id = customers.get(0).getId();
+                customer = customerDemo.retrieveACustomer(id);
+            }
+        }
+
+        if (customer != null) {
+            System.out.println(customer.toString());
+        }
+
+
+        pleaseExplain();
+
         CustomerResponse customerResponse =
             new CustomerRequest.Searcher<>()
                 .setEmail("johndoe@nowhere.com")
@@ -39,8 +63,8 @@ public class WooCommerceApiClientUsageDemo {
 
         if (customerResponse.isSuccess()) {
             if (!customerResponse.getCustomers().isEmpty()) {
-                for (Customer customer : customerResponse.getCustomers()) {
-                    System.out.println(customer.getFirstName() + " " + customer.getLastName() + " " + customer.getEmail());
+                for (Customer cust : customerResponse.getCustomers()) {
+                    System.out.println(cust.getFirstName() + " " + cust.getLastName() + " " + cust.getEmail());
                 }
             }else{
                 System.out.println("Sorry, but no customers were found");
@@ -50,8 +74,6 @@ public class WooCommerceApiClientUsageDemo {
         }
 
         readProductCategory(0);
-
-        pleaseExplain();
 
         createAndReadProductCategories();
 
