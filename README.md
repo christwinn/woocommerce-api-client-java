@@ -188,6 +188,38 @@ public class WooCommerceApiClientUsageDemo {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
 
+        /**
+        *  Using CrudPlusActionBuilders
+        *  Preferably place a file at ~/.woocommerce-api/config.json containing your secrets
+        *  {
+        *    "website" : "myexamplewordpresssite.com",
+        *    "api" : "/wp-json/wc/v3/" +
+        *    "key" : "ky_1234567890ABCDEF1234567890ABCDEF123456789",
+        *    "secret": "sh_1234567890ABCDEF1234567890ABCDEF123456789"
+        *  }
+        *  or quickstart (below)
+        **/
+
+        //quickstart
+        new Configuration(API_BASE_PATH, API_USERNAME, API_PASSWORD);
+
+        CustomerResponse customerResponse = 
+            new CustomerRequest.Searcher<>()
+                .setEmail("johndoe@nowhere.com")
+                .getResponse();
+
+        if (customerResponse.isSuccess()) {
+            if (!customerResponse.getCustomers().isEmpty()) {
+                for (Customer customer : customerResponse.getCustomers()) {
+                    System.out.println(customer.getFirstName() + " " + customer.getLastName() + " " + customer.getEmail());
+                }
+            }else{
+                System.out.println("Sorry, but no customers were found");
+            }
+        }else{
+            System.out.println(customerResponse.getError().getMessage());
+        }
+
         // Use WooCommerceApiClient(true) if you need to log API communication messages.
         WooCommerceApiClient apiClient = new WooCommerceApiClient();
 
