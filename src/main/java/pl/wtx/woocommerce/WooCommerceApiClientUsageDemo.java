@@ -2,12 +2,15 @@ package pl.wtx.woocommerce;
 
 import java.util.*;
 
+import pl.wtx.woocommerce.api.client.model.Customer;
 import pl.wtx.woocommerce.api.client.model.MetaData;
 import pl.wtx.woocommerce.api.client.model.Product;
 import pl.wtx.woocommerce.api.client.model.ProductCategory;
+import pl.wtx.woocommerce.crudPlusActionBuilder.request.CustomerRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.ProductCategoryRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.ProductRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ParameterCollector;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductCategoryResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductResponse;
 
@@ -29,13 +32,22 @@ public class WooCommerceApiClientUsageDemo {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
 
-        List<String> list = new ArrayList<String>();
+        CustomerResponse customerResponse =
+            new CustomerRequest.Searcher<>()
+                .setEmail("johndoe@nowhere.com")
+                .getResponse();
 
-        list.add("New Spaced Out string");
-        list.add("Whoops, whoopdy, woo");
-
-        ParameterCollector p  = new ParameterCollector();
-        p.addNameValueStrings("test", list);
+        if (customerResponse.isSuccess()) {
+            if (!customerResponse.getCustomers().isEmpty()) {
+                for (Customer customer : customerResponse.getCustomers()) {
+                    System.out.println(customer.getFirstName() + " " + customer.getLastName() + " " + customer.getEmail());
+                }
+            }else{
+                System.out.println("Sorry, but no customers were found");
+            }
+        }else{
+            System.out.println(customerResponse.getError().getMessage());
+        }
 
         readProductCategory(0);
 

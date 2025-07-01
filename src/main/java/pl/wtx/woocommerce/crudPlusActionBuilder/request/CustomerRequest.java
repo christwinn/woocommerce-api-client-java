@@ -389,11 +389,11 @@ public class CustomerRequest extends ApiRequest {
 
         /**
          * Limit result set to resources with a specific email.
-         * @param offset
+         * @param email
          * @return
          */
-        public T setEmail(int offset) {
-            addNameValuePair("offset", offset);
+        public T setEmail(String email) {
+            addNameValuePair("email", email);
             return self();
         }
 
