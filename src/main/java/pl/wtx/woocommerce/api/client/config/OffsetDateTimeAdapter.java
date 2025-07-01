@@ -6,11 +6,14 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
+import pl.wtx.woocommerce.api.client.invoker.JSON;
 
 public class OffsetDateTimeAdapter extends TypeAdapter<OffsetDateTime> {
 
@@ -38,11 +41,21 @@ public class OffsetDateTimeAdapter extends TypeAdapter<OffsetDateTime> {
         String date = in.nextString();
 
         if (date != null && !date.isEmpty()) {
-            try {
-                return OffsetDateTime.parse(date);
-            } catch (DateTimeParseException e) {
-                LocalDateTime ldt = LocalDateTime.parse(date);
-                return ldt.atOffset(ZoneOffset.UTC);
+            //see note is invoker.JSON
+            if (date.length() == 19){
+                try {
+                    return LocalDateTime.parse(date).atOffset(ZoneOffset.UTC);
+                } catch (DateTimeParseException e) {
+                    Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, "Invalid DateTime", e);
+                    return null;
+                }
+            }else {
+                try {
+                    return OffsetDateTime.parse(date);
+                } catch (DateTimeParseException e) {
+                    LocalDateTime ldt = LocalDateTime.parse(date);
+                    return ldt.atOffset(ZoneOffset.UTC);
+                }
             }
         }
 

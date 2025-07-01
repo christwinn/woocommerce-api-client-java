@@ -1,0 +1,276 @@
+/*
+ * Copyright (c) 2025.
+ *
+ * Crud+ ActionBuilder
+ * Author: Chris Twinn
+ * Licence: MIT Licence see LICENCE file
+ * All Rights Reserved
+ */
+
+package pl.wtx.woocommerce.crudPlusActionBuilder.request;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import pl.wtx.woocommerce.api.client.model.*;
+import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderNoteResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
+import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
+
+import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.NOTES;
+import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.ORDERS;
+
+public class OrderNoteRequest extends ApiRequest {
+
+    private final OrderNote orderNote = new OrderNote();
+
+    private boolean force;
+
+    public OrderNoteRequest(Creator creator){
+
+        this((ListAll)creator);
+        orderNote.setNote(creator.note);
+        orderNote.setCustomerNote(creator.customerNote);
+        orderNote.setAddedByUser(creator.addedByUser);
+
+    }
+
+    public OrderNoteRequest(Reader reader){
+
+        this((ListAll)reader);
+        orderNote.setId(reader.noteId);
+    }
+
+    public OrderNoteRequest(Deleter deleter){
+
+        this((Reader)deleter);
+        force = deleter.force;
+
+    }
+
+    public OrderNoteRequest(ListAll listAller){
+
+        orderNote.setOrderId(listAller.orderId);
+
+    }
+
+    public String endPoint(){
+
+        return
+            getEndPoint() +
+            (orderNote.getOrderId() != null && orderNote.getOrderId() != 0
+                ? ("/" + orderNote.getOrderId())
+                : ""
+            ) +
+
+            "/" + NOTES +
+
+            (orderNote.getId() != null && orderNote.getId() != 0
+                ? ("/" + orderNote.getId())
+                : ""
+            ) +
+            (force
+                ? "?force=true"
+                : ""
+            );
+
+    }
+
+    private static String getEndPoint(){
+        //we are a subcall of orders, build in endPoint
+        return ORDERS;
+
+    }
+
+    public String toJson(){
+
+        try {
+                // covert Java object to JSON strings
+            return getObjectMapper().writeValueAsString(orderNote);
+
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static class Creator<T extends Creator<T>> extends ListAll{
+
+        private String note;
+        private Boolean customerNote;
+        private Boolean addedByUser;
+
+        T self() {
+            return (T) this;
+        }
+
+        /**
+         * Order note content.
+         * @param note
+         * @return
+         */
+        public T setNote(String note) {
+            this.note = note;
+            return self();
+        }
+
+        /**
+         * If true, the note will be shown to customers and they will be notified.
+         * If false, the note will be for admin reference only.
+         * Default is false.
+         * @param customerNote
+         * @return
+         */
+        public T setCustomerNote(Boolean customerNote) {
+            this.customerNote = customerNote;
+            return self();
+        }
+
+        /**
+         * If true, this note will be attributed to the current user.
+         * If false, the note will be attributed to the system.
+         * Default is false.
+         * @param addedByUser
+         * @return
+         */
+        public T setAddedByUser(Boolean addedByUser) {
+            this.addedByUser = addedByUser;
+            return self();
+        }
+
+        protected OrderNoteRequest build(){
+            return new OrderNoteRequest(this);
+        }
+
+
+        /** Returns single Created ProductCategory, unless it is a duplicate! **/
+        public OrderNoteResponse getResponse(){
+            if (orderId == 0) {
+                return new OrderNoteResponse(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Order Id MANDATORY!\nUse Lister to ListAll")
+                );
+            }else {
+                WooCommerce woo = new WooCommerce();
+                return woo.create(build());
+            }
+        }
+
+
+
+    }
+
+    public static class Reader<T extends Reader<T>> extends ListAll{
+
+        protected int noteId;
+
+        T self() {
+            return (T) this;
+        }
+
+        public T setNoteId(int noteId){
+            this.noteId = noteId;
+            return self();
+        }
+
+        protected OrderNoteRequest build(){
+            return new OrderNoteRequest(this);
+        }
+
+        /**
+         *  If the id is set returns a single productCategory
+         *  otherwise returns list of productCategory
+         */
+        public OrderNoteResponse getResponse(){
+            if (orderId == 0 || noteId == 0) {
+                return new OrderNoteResponse(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Order Id AND Note Id is MANDATORY!\nUse Lister to ListAll")
+                );
+            }else {
+                WooCommerce woo = new WooCommerce();
+                return woo.read(build());
+            }
+        }
+
+    }
+
+    public static class Deleter<T extends Deleter<T>> extends Reader<T> {
+
+        private boolean force;
+
+        public T force(boolean force){
+            this.force = force;
+            return self();
+        }
+
+        @Override
+        protected OrderNoteRequest build(){
+            return new OrderNoteRequest(this);
+        }
+
+        /** Returns single Deleted ProductCategory**/
+        @Override
+        public OrderNoteResponse getResponse(){
+            if (orderId == 0 || noteId == 0) {
+                return new OrderNoteResponse(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Order Id AND Note Id is MANDATORY!")
+                );
+            }else {
+                WooCommerce woo = new WooCommerce();
+                return woo.delete(build());
+            }
+        }
+
+    }
+
+    public static class ListAll<T extends ListAll<T>>{
+
+        protected int orderId;
+
+        T self() {
+            return (T) this;
+        }
+
+        /**
+         * Order note(s) must be tied to an Order.
+         * @param orderId
+         * @return
+         */
+        public T setOrderId(int orderId){
+            this.orderId = orderId;
+            return self();
+        }
+
+        protected OrderNoteRequest build(){
+            return new OrderNoteRequest(this);
+        }
+
+        /**
+         *  If the id is set returns a single productCategory
+         *  otherwise returns list of productCategory
+         */
+        public OrderNoteResponse getResponse(){
+            if (orderId == 0) {
+                return new OrderNoteResponse(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Order Id is MANDATORY!")
+                );
+            }else {
+                WooCommerce woo = new WooCommerce();
+                return woo.read(build());
+            }
+        }
+
+    }
+
+}
