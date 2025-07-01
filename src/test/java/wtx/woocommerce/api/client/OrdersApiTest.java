@@ -24,19 +24,19 @@ import static org.mockito.Mockito.*;
  * These tests verify the correct handling of multiple order statuses in listAllOrders method.
  */
 public class OrdersApiTest {
-    
+
     private static final String SEPARATOR = "-------------------------------------------------------------------------------";
     private MockWebServer mockWebServer;
     private WooCommerceApiClient apiClient;
     private OrdersApi ordersApi;
     private JSON json;
-    
+
     private void logTestStart(String testName) {
         System.out.println("\n" + SEPARATOR);
         System.out.println("Starting test: " + testName);
         System.out.println(SEPARATOR + "\n");
     }
-    
+
     private void logTestSummary(String testName, int orderCount, List<String> statuses) {
         System.out.println("\n" + SEPARATOR);
         System.out.println("Test completed: " + testName);
@@ -45,43 +45,43 @@ public class OrdersApiTest {
         System.out.println("- Statuses checked: " + String.join(", ", statuses));
         System.out.println(SEPARATOR + "\n");
     }
-    
+
     @BeforeEach
     void setUp() throws IOException {
         // Initialize mock web server
         mockWebServer = new MockWebServer();
         mockWebServer.start();
-        
+
         // Create and configure ApiClient with logging enabled
         apiClient = new WooCommerceApiClient(true);
         apiClient.setDebugging(true);
         apiClient.setBasePath(mockWebServer.url("/").toString());
-        
+
         // Create OrdersApi instance with the configured client
         ordersApi = new OrdersApi(apiClient);
-        
+
         // Initialize JSON serializer
         json = new JSON();
     }
-    
+
     @Test
     void testListAllOrdersWithMultipleStatuses() throws IOException, ApiException, InterruptedException {
         logTestStart("testListAllOrdersWithMultipleStatuses");
-        
+
         // Given
         List<String> statuses = Arrays.asList("on-hold", "completed");
-        
+
         // Load mock response from file
         String mockResponse = new String(Files.readAllBytes(
             Paths.get("src/test/resources/wtx/woocommerce/api/client/mockedResponse-orders-multiple-statuses.json")
         ));
-        
+
         // Set up mock response
         mockWebServer.enqueue(new MockResponse()
             .setResponseCode(200)
             .setHeader("Content-Type", "application/json")
             .setBody(mockResponse));
-        
+
         // When
         List<Order> orders = ordersApi.listAllOrders(
             null, // context
@@ -105,44 +105,49 @@ public class OrdersApiTest {
             null, // product
             null  // dp
         );
-        
+
+        System.out.println("Processing TESTS");
+
+        for (Order order : orders){
+            System.out.println(order.toString());
+        }
         // Then
         assertNotNull(orders, "Order list should not be null");
         assertFalse(orders.isEmpty(), "Order list should not be empty");
-        
+
         // Verify we have orders in both statuses
         boolean hasOnHoldOrders = orders.stream().anyMatch(order -> "on-hold".equals(order.getStatus()));
         boolean hasCompletedOrders = orders.stream().anyMatch(order -> "completed".equals(order.getStatus()));
 
         assertTrue(hasOnHoldOrders, "Should have orders with 'on-hold' status");
         assertTrue(hasCompletedOrders, "Should have orders with 'completed' status");
-        
+
         // Verify request URL contains correct status parameters
         String requestUrl = mockWebServer.takeRequest().getRequestUrl().toString();
-        assertTrue(requestUrl.contains("status=on-hold,completed"), 
+        assertTrue(requestUrl.contains("status=on-hold,completed"),
             "Request URL should contain correct status parameters");
-            
+
         logTestSummary("testListAllOrdersWithMultipleStatuses", orders.size(), statuses);
     }
 
     @Test
     void testListAllOrdersWithReversedStatuses() throws IOException, ApiException, InterruptedException {
         logTestStart("testListAllOrdersWithReversedStatuses");
-        
+
         // Given
         List<String> statuses = Arrays.asList("completed", "on-hold");
-        
+
         // Load mock response from file
         String mockResponse = new String(Files.readAllBytes(
             Paths.get("src/test/resources/wtx/woocommerce/api/client/mockedResponse-orders-reversed-statuses.json")
         ));
-        
+
         // Set up mock response
         mockWebServer.enqueue(new MockResponse()
             .setResponseCode(200)
             .setHeader("Content-Type", "application/json")
             .setBody(mockResponse));
-        
+
         // When
         List<Order> orders = ordersApi.listAllOrders(
             null, // context
@@ -166,23 +171,24 @@ public class OrdersApiTest {
             null, // product
             null  // dp
         );
-        
+
         // Then
         assertNotNull(orders, "Order list should not be null");
         assertFalse(orders.isEmpty(), "Order list should not be empty");
-        
+
         // Verify we have orders in both statuses
         boolean hasOnHoldOrders = orders.stream().anyMatch(order -> "on-hold".equals(order.getStatus()));
         boolean hasCompletedOrders = orders.stream().anyMatch(order -> "completed".equals(order.getStatus()));
-        
+
         assertTrue(hasOnHoldOrders, "Should have orders with 'on-hold' status");
         assertTrue(hasCompletedOrders, "Should have orders with 'completed' status");
-        
+
         // Verify request URL contains correct status parameters
         String requestUrl = mockWebServer.takeRequest().getRequestUrl().toString();
-        assertTrue(requestUrl.contains("status=completed,on-hold"), 
+        assertTrue(requestUrl.contains("status=completed,on-hold"),
             "Request URL should contain correct status parameters");
-            
+
         logTestSummary("testListAllOrdersWithReversedStatuses", orders.size(), statuses);
     }
-} 
+
+}
