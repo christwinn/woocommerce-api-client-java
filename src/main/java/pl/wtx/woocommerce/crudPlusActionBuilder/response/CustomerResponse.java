@@ -72,12 +72,8 @@ public class CustomerResponse extends ApiResponse {
     }
 
     /*If the id IS set then we get a singleton product*/
-    public Customer getCustomer() throws NullPointerException{
-        if (customer != null) {
-            return customer;
-        }else{
-            throw new NullPointerException("Object is not initiated");
-        }
+    public Customer getCustomer(){
+        return customer;
     }
 
     public String toJson(){

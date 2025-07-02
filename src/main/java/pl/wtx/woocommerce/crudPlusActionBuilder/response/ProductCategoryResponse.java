@@ -72,12 +72,10 @@ public class ProductCategoryResponse extends ApiResponse {
     }
 
     /*If the id IS set then we get a singleton product*/
-    public ProductCategory getCategory() throws NullPointerException{
-        if (category != null) {
-            return category;
-        }else{
-            throw new NullPointerException("Object is not initiated");
-        }
+    public ProductCategory getCategory(){
+
+        return category;
+
     }
 
     public String toJson(){

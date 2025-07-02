@@ -72,12 +72,10 @@ public class OrderRefundResponse extends ApiResponse {
     }
 
     /*If the id IS set then we get a singleton product*/
-    public OrderRefund getOrderRefund() throws NullPointerException{
-        if (orderRefund != null) {
-            return orderRefund;
-        }else{
-            throw new NullPointerException("Object is not initiated");
-        }
+    public OrderRefund getOrderRefund(){
+
+        return orderRefund;
+
     }
 
     public String toJson(){

@@ -66,18 +66,16 @@ public class OrderResponse extends ApiResponse {
         return order != null;
     }
 
-    /*If the Id is NOT set then we get an array of product*/
+    /*If the id is NOT set then we get an array of product*/
     public List<Order> getOrders(){
         return orders;
     }
 
-    /*If the Id IS set then we get a singleton product*/
-    public Order getOrder() throws NullPointerException{
-        if (order != null) {
-            return order;
-        }else{
-            throw new NullPointerException("Object is not initiated");
-        }
+    /*If the id IS set then we get a singleton product*/
+    public Order getOrder(){
+
+        return order;
+
     }
 
     public String toJson(){

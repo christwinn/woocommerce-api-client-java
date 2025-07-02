@@ -73,12 +73,10 @@ public class CouponResponse extends ApiResponse {
     }
 
     /*If the id IS set then we get a singleton product*/
-    public Coupon getCoupon() throws NullPointerException{
-        if (coupon != null) {
-            return coupon;
-        }else{
-            throw new NullPointerException("Object is not initiated");
-        }
+    public Coupon getCoupon(){
+
+        return coupon;
+
     }
 
     public String toJson(){

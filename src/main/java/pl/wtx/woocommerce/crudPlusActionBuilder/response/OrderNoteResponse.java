@@ -71,12 +71,10 @@ public class OrderNoteResponse extends ApiResponse {
     }
 
     /*If the id IS set then we get a singleton product*/
-    public OrderNote getOrderNote() throws NullPointerException{
-        if (orderNote != null) {
-            return orderNote;
-        }else{
-            throw new NullPointerException("Object is not initiated");
-        }
+    public OrderNote getOrderNote(){
+
+        return orderNote;
+
     }
 
 }

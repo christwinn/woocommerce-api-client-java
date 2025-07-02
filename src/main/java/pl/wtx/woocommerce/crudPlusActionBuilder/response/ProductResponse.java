@@ -66,30 +66,15 @@ public class ProductResponse extends ApiResponse {
         return product != null;
     }
 
-    /*If the Id is NOT set then we get an array of product*/
+    /*If the id is NOT set then we get an array of product*/
     public List<Product> getProducts(){
         return products;
     }
 
-    /*If the Id IS set then we get a singleton product*/
-    public Product getProduct() throws NullPointerException{
-        if (product != null) {
-            return product;
-        }else{
-            throw new NullPointerException("Object is not initiated");
-        }
+    /*If the id IS set then we get a singleton product*/
+    public Product getProduct(){
+        return product;
     }
-
-    /* muddies the waters
-    public Product getCreated(){
-        return getProduct();
-    }
-    public Product getUpdated(){
-        return getCreated();
-    }
-    public Product getDeleted(){
-        return getCreated();
-    }*/
 
     public String toJson(){
 
