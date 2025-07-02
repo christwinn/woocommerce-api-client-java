@@ -48,7 +48,7 @@ So far we have:
   <li>Authentication
      <ul>
         <li>HTTPS only</li>
-     </ul>ul>
+     </ul>
   </li>
   <li>Coupon</li>
   <li>Order</li>
