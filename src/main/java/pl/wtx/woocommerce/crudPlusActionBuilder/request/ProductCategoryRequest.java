@@ -14,6 +14,7 @@ import pl.wtx.woocommerce.api.client.model.ProductCategory;
 import pl.wtx.woocommerce.api.client.model.ProductImage;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductCategoryResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
@@ -392,6 +393,14 @@ public class ProductCategoryRequest extends ApiRequest {
 
     }
 
+    public static class ListAll<T extends ListAll>{
+
+        public ProductCategoryResponse getResponse() {
+
+            return new ProductCategoryRequest.Searcher<>().getResponse();
+
+        }
+    }
 
     /**
      *
