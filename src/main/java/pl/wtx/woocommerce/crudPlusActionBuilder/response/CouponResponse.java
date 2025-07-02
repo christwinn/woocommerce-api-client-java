@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class CouponResponse extends ApiResponse {
 
     private List<Coupon> coupons = new ArrayList<>();
-    private Coupon coupon;
+    private Coupon coupon = null;
 
     public CouponResponse(ApiResponseResult result){
 

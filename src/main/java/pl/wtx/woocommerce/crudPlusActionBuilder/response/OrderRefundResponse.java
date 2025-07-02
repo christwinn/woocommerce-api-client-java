@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class OrderRefundResponse extends ApiResponse {
 
     private List<OrderRefund> orderRefunds = new ArrayList<>();
-    private OrderRefund orderRefund;
+    private OrderRefund orderRefund = null;
 
     public OrderRefundResponse(ApiResponseResult result){
 

@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 public class ProductCategoryResponse extends ApiResponse {
 
-    private ProductCategory category;
+    private ProductCategory category = null;
     private List<ProductCategory> categories = new ArrayList<>();
 
     public ProductCategoryResponse(ApiResponseResult result){

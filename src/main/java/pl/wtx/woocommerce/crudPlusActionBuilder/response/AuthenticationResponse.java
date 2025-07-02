@@ -17,7 +17,7 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.Message;
 
 public class AuthenticationResponse  extends ApiResponse {
 
-    private Message message;
+    private Message message = null;
 
     public AuthenticationResponse(ApiResponseResult result){
 

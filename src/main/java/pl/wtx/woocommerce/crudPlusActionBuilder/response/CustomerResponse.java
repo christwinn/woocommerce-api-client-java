@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class CustomerResponse extends ApiResponse {
 
     private List<Customer> customers = new ArrayList<>();
-    private Customer customer;
+    private Customer customer = null;
 
     public CustomerResponse(ApiResponseResult result){
 

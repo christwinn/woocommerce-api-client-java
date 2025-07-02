@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class ProductResponse extends ApiResponse {
 
     private List<Product> products = new ArrayList<>();
-    private Product product;
+    private Product product = null;
 
     public ProductResponse(ApiResponseResult result){
 

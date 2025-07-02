@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class OrderNoteResponse extends ApiResponse {
 
     private List<OrderNote> orderNotes = new ArrayList<>();
-    private OrderNote orderNote;
+    private OrderNote orderNote = null;
 
     public OrderNoteResponse(ApiResponseResult result){
 

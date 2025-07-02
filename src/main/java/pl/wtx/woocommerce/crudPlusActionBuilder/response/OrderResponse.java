@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class OrderResponse extends ApiResponse {
 
     private List<Order> orders = new ArrayList<>();
-    private Order order;
+    private Order order = null;
 
     public OrderResponse(ApiResponseResult result){
 
