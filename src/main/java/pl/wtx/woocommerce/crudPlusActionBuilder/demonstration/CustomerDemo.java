@@ -7,7 +7,7 @@
  * All Rights Reserved
  */
 
-package pl.wtx.woocommerce.crudPlusActionBuilder.demo;
+package pl.wtx.woocommerce.crudPlusActionBuilder.demonstration;
 
 import pl.wtx.woocommerce.api.client.model.Billing;
 import pl.wtx.woocommerce.api.client.model.Customer;

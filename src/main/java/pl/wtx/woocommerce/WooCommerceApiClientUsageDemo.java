@@ -14,7 +14,7 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.response.CouponResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductCategoryResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.demo.CustomerDemo;
+import pl.wtx.woocommerce.crudPlusActionBuilder.demonstration.CustomerDemo;
 
 /**
  * WooCommerce API Client - Usage Demo
