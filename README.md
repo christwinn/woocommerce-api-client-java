@@ -25,7 +25,9 @@ In it's simplicity:
      <ul>
         <li>OrderRequest.Creator<>()</li>  
         <li>OrderRequest.Reader<>()</li>  
-        <li>OrderRequest.ListAll<>()</li>  
+        <li>OrderRequest.ListAll<>()
+           <ul><li>Documentation shows List all orders which in turn specifies a parameter list this is implemented under: OrderRequest.Searcher<>()</li></ul>
+         </li>
         <li>OrderRequest.Updater<>()</li>  
         <li>OrderRequest.Deleter<>()</li>  
         <li>OrderRequest.Batcher<>()</li>  
