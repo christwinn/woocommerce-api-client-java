@@ -15,6 +15,7 @@ import pl.wtx.woocommerce.api.client.model.ProductCategory;
 import pl.wtx.woocommerce.api.client.model.ProductImage;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductCategoryResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
@@ -22,7 +23,7 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 import java.util.ArrayList;
 import java.util.List;
 
-import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.PRODUCTCATEGORIES;
+import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.PRODUCT_CATEGORIES;
 
 public class ProductCategoryRequest extends ApiRequest {
 
@@ -101,7 +102,7 @@ public class ProductCategoryRequest extends ApiRequest {
 
     private static String getEndPoint(){
 
-        return PRODUCTCATEGORIES;
+        return PRODUCT_CATEGORIES;
 
     }
 
@@ -189,7 +190,7 @@ public class ProductCategoryRequest extends ApiRequest {
 
     public static class Reader<T extends Reader<T>>{
 
-        private int id;
+        protected int id;
 
         T self() {
             return (T) this;
@@ -209,7 +210,9 @@ public class ProductCategoryRequest extends ApiRequest {
          *  otherwise returns list of productCategory
          */
         public ProductCategoryResponse getResponse(){
-            if (id == 0) {
+            if (id > 0) {
+                return new WooCommerce().read(build());
+            }else{
                 return new ProductCategoryResponse(
                     new ApiResponseResult(
                         false,
@@ -218,9 +221,6 @@ public class ProductCategoryRequest extends ApiRequest {
                             "Please set requested id\n" +
                             "Use the Searcher with no parameters to get a full list")
                 );
-            }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.read(build());
             }
         }
 
@@ -243,8 +243,17 @@ public class ProductCategoryRequest extends ApiRequest {
         /** Returns single Updated ProductCategory**/
         @Override
         public ProductCategoryResponse getResponse(){
-            WooCommerce woo = new WooCommerce();
-            return woo.update(build());
+            if (id > 0) {
+                return new WooCommerce().update(build());
+            }else {
+                return new ProductCategoryResponse(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Category Id is MANDATORY!")
+                );
+            }
+
         }
 
     }
@@ -266,8 +275,18 @@ public class ProductCategoryRequest extends ApiRequest {
         /** Returns single Deleted ProductCategory**/
         @Override
         public ProductCategoryResponse getResponse(){
-            WooCommerce woo = new WooCommerce();
-            return woo.delete(build());
+            if (id > 0 && force) {
+                WooCommerce woo = new WooCommerce();
+                return woo.delete(build());
+            }else {
+                return new ProductCategoryResponse(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Category Id AND force is MANDATORY!")
+                );
+            }
+
         }
 
     }

@@ -10,12 +10,15 @@ package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
 import pl.wtx.woocommerce.api.client.model.Order;
 import pl.wtx.woocommerce.api.client.model.Product;
+import pl.wtx.woocommerce.api.client.model.ProductCategory;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductResponse extends ApiResponse {
 
@@ -47,9 +50,14 @@ public class ProductResponse extends ApiResponse {
 
     @SuppressWarnings("unchecked")
     private void setProducts(ApiResponseResult result){
-        this.products = (List<Product>) result.getData();
+        try {
+            this.products = (List<Product>) result.getData();
+        }catch (Exception e){
+            Logger.getLogger(ProductResponse.class.getName())
+                .log(Level.SEVERE, "Failed to parse list", e);
+            setError(new ErrorObject("Parse list failure"));
+        }
     }
-
 
     public boolean hasProducts(){
         return !products.isEmpty();

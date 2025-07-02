@@ -169,12 +169,6 @@ public class ProductRequest extends ApiRequest {
 
     public static class Creator<T extends Creator>{
 
-        /*
-            commented out are read-only therefore, we can not build
-            https://woocommerce.github.io/woocommerce-rest-api-docs/?shell#product-properties
-        */
-
-        //private int id;             //integer	Unique identifier for the resource.read-only
         private String name;        //string	Product name.
         private String slug;        //string	Product slug.
 
@@ -493,7 +487,9 @@ public class ProductRequest extends ApiRequest {
         }
 
         public ProductResponse getResponse(){
-            if (id == 0) {
+            if (id > 0) {
+                return new WooCommerce().read(build());
+            }else {
                 return new ProductResponse(
                     new ApiResponseResult(
                         false,
@@ -502,8 +498,6 @@ public class ProductRequest extends ApiRequest {
                             "Please set requested id\n" +
                             "Use the Searcher with no parameters to get a full list")
                 );
-            }else {
-                return new WooCommerce().read(build());
             }
         }
 
@@ -524,7 +518,7 @@ public class ProductRequest extends ApiRequest {
 
         @Override
         public ProductResponse getResponse(){
-            if (id != 0){
+            if (id > 0){
                 return new WooCommerce().update(build());
             }else{
                 return new ProductResponse(new ApiResponseResult(false, 0, "Invalid Identifier"));
@@ -562,7 +556,7 @@ public class ProductRequest extends ApiRequest {
         @Override
         public ProductResponse getResponse(){
 
-            if (id != 0){
+            if (id > 0){
                 return new WooCommerce().create(build());
             }else{
                 return new ProductResponse(new ApiResponseResult(false, 0, "Invalid Identifier"));

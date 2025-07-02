@@ -2,18 +2,19 @@ package pl.wtx.woocommerce;
 
 import java.util.*;
 
+import pl.wtx.woocommerce.api.client.model.Coupon;
 import pl.wtx.woocommerce.api.client.model.Customer;
-import pl.wtx.woocommerce.api.client.model.MetaData;
 import pl.wtx.woocommerce.api.client.model.Product;
 import pl.wtx.woocommerce.api.client.model.ProductCategory;
+import pl.wtx.woocommerce.crudPlusActionBuilder.request.CouponRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.CustomerRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.ProductCategoryRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.ProductRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ParameterCollector;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.CouponResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductCategoryResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductResponse;
-import pl.wtx.woocommerce.demo.CustomerDemo;
+import pl.wtx.woocommerce.crudPlusActionBuilder.demo.CustomerDemo;
 
 /**
  * WooCommerce API Client - Usage Demo
@@ -29,9 +30,24 @@ public class WooCommerceApiClientUsageDemo {
     private static final String API_USERNAME = "ck_1234567890ABCDEF01234567890ABCDEF0123456";
     private static final String API_PASSWORD = "cs_1234567890ABCDEF01234567890ABCDEF0123456";*/
 
+    /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
+
+        System.out.println("---Coupons");
+        CouponResponse coupons = new CouponRequest.ListAll<>().getResponse();
+
+        if (!coupons.getCoupons().isEmpty()){
+
+            for (Coupon coupon : coupons.getCoupons()){
+                System.out.println(coupon.getCode());
+            }
+
+        }else{
+            System.out.println("No coupons found");
+        }
+
 
         CustomerDemo customerDemo = new CustomerDemo();
         Customer customer = customerDemo.createACustomer();

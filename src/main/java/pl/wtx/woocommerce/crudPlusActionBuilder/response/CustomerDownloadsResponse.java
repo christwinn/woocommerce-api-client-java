@@ -8,17 +8,20 @@
  */
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
-import pl.wtx.woocommerce.api.client.model.Download;
+import pl.wtx.woocommerce.api.client.model.Coupon;
+import pl.wtx.woocommerce.api.client.model.CustomerDownload;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CustomerDownloadsResponse extends ApiResponse {
 
-    private List<Download> downloads = new ArrayList<>();
+    private List<CustomerDownload> downloads = new ArrayList<>();
 
     public CustomerDownloadsResponse(ApiResponseResult result){
 
@@ -29,9 +32,9 @@ public class CustomerDownloadsResponse extends ApiResponse {
                 case 200: case 201:
                     setSuccess(true);
                     //pretty sure we always get an array
-                    if (result.getData() instanceof Download) {
+                    if (result.getData() instanceof CustomerDownload) {
                         downloads.clear();
-                        Download download = (Download) result.getData();
+                        CustomerDownload download = (CustomerDownload) result.getData();
                         downloads.add(download);
                     }else{
                         setDownloads(result);
@@ -48,14 +51,21 @@ public class CustomerDownloadsResponse extends ApiResponse {
 
     @SuppressWarnings("unchecked")
     private void setDownloads(ApiResponseResult result){
-        this.downloads = (List<Download>) result.getData();
+        try {
+            this.downloads = (List<CustomerDownload>) result.getData();
+        }catch (Exception e){
+            Logger.getLogger(CustomerDownloadsResponse.class.getName())
+                .log(Level.SEVERE, "Failed to parse list", e);
+            setError(new ErrorObject("Parse list failure"));
+        }
+
     }
 
     public boolean hasDownloads(){
         return !downloads.isEmpty();
     }
 
-    public List<Download> getDownloads(){
+    public List<CustomerDownload> getDownloads(){
         return downloads;
     }
 

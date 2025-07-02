@@ -9,6 +9,7 @@
 
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
+import pl.wtx.woocommerce.api.client.model.OrderNote;
 import pl.wtx.woocommerce.api.client.model.OrderRefund;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
@@ -16,6 +17,8 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OrderRefundResponse extends ApiResponse {
 
@@ -47,7 +50,13 @@ public class OrderRefundResponse extends ApiResponse {
 
     @SuppressWarnings("unchecked")
     private void setOrderRefunds(ApiResponseResult result){
-        this.orderRefunds = (List<OrderRefund>) result.getData();
+        try {
+            this.orderRefunds = (List<OrderRefund>) result.getData();
+        }catch (Exception e){
+            Logger.getLogger(OrderRefundResponse.class.getName())
+                .log(Level.SEVERE, "Failed to parse list", e);
+            setError(new ErrorObject("Parse list failure"));
+        }
     }
     public boolean hasOrderRefunds(){
         return !orderRefunds.isEmpty();

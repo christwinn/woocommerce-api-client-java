@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.CouponResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
@@ -236,8 +237,16 @@ public class OrderRequest extends ApiRequest {
         /** Returns single Updated ProductCategory**/
         @Override
         public OrderResponse getResponse(){
-            WooCommerce woo = new WooCommerce();
-            return woo.update(build());
+            if (id > 0) {
+                return new WooCommerce().update(build());
+            }else{
+                return new OrderResponse(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Order Id is MANDATORY!")
+                );
+            }
         }
 
     }

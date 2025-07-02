@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 /**
  * This class is read-only
  */
-public class Download {
+public class CustomerDownload {
 
     private String downloadId; //	string	Download ID (MD5).read-only
     private String downloadUrl; //	string	Download file URL.read-only
@@ -28,9 +28,9 @@ public class Download {
     private String downloadsRemaining; //	string	Number of downloads remaining.read-only
     private LocalDateTime accessExpires; //	string	The date when download access expires, in the site's timezone.read-only
     private LocalDateTime accessExpiresGMT; //	string	The date when download access expires, as GMT.read-only
-    private DownloadFile file; //	object	File details. read-onlySee Customers downloads - File properties
+    private CustomerDownloadFile file; //	object	File details. read-onlySee Customers downloads - File properties
 
-    public Download(){}
+    public CustomerDownload(){}
 
     public String getDownloadId() {
         return downloadId;
@@ -122,11 +122,11 @@ public class Download {
         this.accessExpiresGMT = accessExpiresGMT;
     }
 
-    public DownloadFile getFile() {
+    public CustomerDownloadFile getFile() {
         return file;
     }
 
-    public void setFile(DownloadFile file) {
+    public void setFile(CustomerDownloadFile file) {
         this.file = file;
     }
 

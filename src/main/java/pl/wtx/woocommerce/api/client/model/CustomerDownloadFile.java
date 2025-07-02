@@ -9,12 +9,12 @@
 
 package pl.wtx.woocommerce.api.client.model;
 
-public class DownloadFile {
+public class CustomerDownloadFile {
 
     private String name;
     private String file;
 
-    public DownloadFile(){}
+    public CustomerDownloadFile(){}
 
     public String getName() {
         return name;

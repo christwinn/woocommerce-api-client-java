@@ -9,12 +9,15 @@
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
 import pl.wtx.woocommerce.api.client.model.Customer;
+import pl.wtx.woocommerce.api.client.model.CustomerDownload;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CustomerResponse extends ApiResponse {
 
@@ -46,7 +49,13 @@ public class CustomerResponse extends ApiResponse {
 
     @SuppressWarnings("unchecked")
     private void setCustomers(ApiResponseResult result){
-        this.customers = (List<Customer>) result.getData();
+        try {
+            this.customers = (List<Customer>) result.getData();
+        }catch (Exception e){
+            Logger.getLogger(CustomerResponse.class.getName())
+                .log(Level.SEVERE, "Failed to parse list", e);
+            setError(new ErrorObject("Parse list failure"));
+        }
     }
 
     public boolean hasCustomers(){

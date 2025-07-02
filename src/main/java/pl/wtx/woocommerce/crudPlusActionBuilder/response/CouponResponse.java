@@ -6,25 +6,27 @@
  * Licence: MIT Licence see LICENCE file
  * All Rights Reserved
  */
+
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
+import pl.wtx.woocommerce.api.client.model.Coupon;
 import pl.wtx.woocommerce.api.client.model.Customer;
-import pl.wtx.woocommerce.api.client.model.OrderNote;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
+import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class OrderNoteResponse extends ApiResponse {
+public class CouponResponse extends ApiResponse {
 
-    private List<OrderNote> orderNotes = new ArrayList<>();
-    private OrderNote orderNote;
+    private List<Coupon> coupons = new ArrayList<>();
+    private Coupon coupon;
 
-    public OrderNoteResponse(ApiResponseResult result){
+    public CouponResponse(ApiResponseResult result){
 
         super(result);
 
@@ -32,10 +34,10 @@ public class OrderNoteResponse extends ApiResponse {
             switch (result.getStatusCode()){
                 case 200: case 201:
                     setSuccess(true);
-                    if (result.getData() instanceof OrderNote) {
-                        this.orderNote = (OrderNote) result.getData();
+                    if (result.getData() instanceof Coupon) {
+                        this.coupon = (Coupon) result.getData();
                     }else{
-                        setOrderNotes(result);
+                        setCoupons(result);
                     }
                     break;
                 default:
@@ -48,33 +50,33 @@ public class OrderNoteResponse extends ApiResponse {
     }
 
     @SuppressWarnings("unchecked")
-    private void setOrderNotes(ApiResponseResult result){
+    private void setCoupons(ApiResponseResult result){
         try {
-            this.orderNotes = (List<OrderNote>) result.getData();
+            this.coupons = (List<Coupon>) result.getData();
         }catch (Exception e){
-            Logger.getLogger(OrderNoteResponse.class.getName())
+            Logger.getLogger(CouponResponse.class.getName())
                 .log(Level.SEVERE, "Failed to parse list", e);
             setError(new ErrorObject("Parse list failure"));
         }
     }
 
-    public boolean hasOrderNotes(){
-        return !orderNotes.isEmpty();
+    public boolean hasCoupons(){
+        return !coupons.isEmpty();
     }
 
-    public boolean hasOrderNote(){
-        return orderNote != null;
+    public boolean hasCoupon(){
+        return coupon != null;
     }
 
-
-    public List<OrderNote> getOrderNotes(){
-        return orderNotes;
+    /*If the id is NOT set then we get an array of product*/
+    public List<Coupon> getCoupons(){
+        return coupons;
     }
 
     /*If the id IS set then we get a singleton product*/
-    public OrderNote getOrderNote() throws NullPointerException{
-        if (orderNote != null) {
-            return orderNote;
+    public Coupon getCoupon() throws NullPointerException{
+        if (coupon != null) {
+            return coupon;
         }else{
             throw new NullPointerException("Object is not initiated");
         }

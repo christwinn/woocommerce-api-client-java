@@ -165,6 +165,42 @@ public class WooCommerce {
 
     }
 
+    //<editor-fold desc="Coupon">
+    public CouponResponse create(CouponRequest request) {
+        return new CouponResponse(
+            create(request.endPoint(), request.toJson(), new TypeReference<Coupon>(){})
+        );
+    }
+
+    public CouponResponse read(CouponRequest request){
+
+        return new CouponResponse(
+            read(request.endPoint(), new TypeReference<Coupon>(){})
+        );
+
+    }
+    public CouponResponse update(CouponRequest request){
+        return new CouponResponse(
+            update(request.endPoint(), request.toJson(), new TypeReference<Coupon>(){})
+        );
+
+    }
+    public CouponResponse delete(CouponRequest request){
+        return new CouponResponse(
+            delete(request.endPoint(), new TypeReference<Coupon>(){})
+        );
+
+    }
+
+    public CouponResponse batch(CouponRequest batch){
+
+        return new CouponResponse(
+            create(batch.endPoint(), batch.toJson(), new TypeReference<List<Coupon>>(){})
+        );
+
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Customer">
     public CustomerResponse create(CustomerRequest request) {
         return new CustomerResponse(
@@ -205,7 +241,7 @@ public class WooCommerce {
     public CustomerDownloadsResponse read(CustomerDownloadsRequest request){
 
         return new CustomerDownloadsResponse(
-            read(request.endPoint(), new TypeReference<List<Download>>(){})
+            read(request.endPoint(), new TypeReference<List<CustomerDownload>>(){})
         );
 
     }
