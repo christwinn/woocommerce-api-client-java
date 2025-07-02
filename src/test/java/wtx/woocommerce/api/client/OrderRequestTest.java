@@ -58,11 +58,14 @@ public class OrderRequestTest {
 
     @Test
     void testListAllOrdersStatuses() throws IOException, ApiException, InterruptedException {
-
         List<String> statuses = Arrays.asList( "on-hold", "completed");
         testListStatuses(statuses, "mockedResponse-orders-multiple-statuses.json");
-        testListStatuses(statuses, "mockedResponse-orders-reversed-statuses.json");
+    }
 
+    @Test
+    void testListReversed() throws IOException, ApiException, InterruptedException {
+        List<String> statuses = Arrays.asList( "on-hold", "completed");
+        testListStatuses(statuses, "mockedResponse-orders-reversed-statuses.json");
     }
 
     void testListStatuses(List<String> statuses, String mockSource) throws IOException, ApiException, InterruptedException {
