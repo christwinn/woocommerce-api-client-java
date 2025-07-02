@@ -106,8 +106,8 @@ public class Link {
 
         System.out.println(jsonElement.getAsJsonArray());
 
-       // jsonElement.getAsJsonArray().getAsJsonObject()
-        /*Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonArray().getAsJsonObject().entrySet();
+        // jsonElement.getAsJsonArray().getAsJsonObject()
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonArray().getAsJsonObject().entrySet();
         // check to see if the JSON string contains additional fields
         for (Map.Entry<String, JsonElement> entry : entries) {
             if (!Brand.openapiFields.contains(entry.getKey())) {
@@ -122,7 +122,7 @@ public class Link {
                 throw new IllegalArgumentException(
                     String.format("Expected the field `%s` to be a primitive type in the JSON string but got `%s`", key, jsonObj.get(key).toString()));
             }
-        }*/
+        }
 
     }
 

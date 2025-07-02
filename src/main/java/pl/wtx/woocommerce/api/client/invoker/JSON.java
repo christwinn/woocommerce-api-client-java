@@ -180,7 +180,6 @@ public class JSON {
      */
     public static String serialize(Object obj) {
 
-        /*Nulls are being returned in the json*/
         return gson.toJson(obj); // <- error ("Java heap space")
 
     }

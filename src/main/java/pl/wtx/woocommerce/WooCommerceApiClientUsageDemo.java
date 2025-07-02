@@ -19,7 +19,7 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.demo.CustomerDemo;
 /**
  * WooCommerce API Client - Usage Demo
  * @author WTX Labs
- * @see https://github.com/wtx-labs/woocommerce-api-client-java
+ * @see "https://github.com/wtx-labs/woocommerce-api-client-java"
  * @license MIT
  */
 public class WooCommerceApiClientUsageDemo {
@@ -336,7 +336,7 @@ public class WooCommerceApiClientUsageDemo {
     private static void printProduct(Product product){
 
         System.out.println(
-            Integer.toString(product.getId()) + " " + product.getSku() + " "+ product.getDescription()
+            product.getId() + " " + product.getSku() + " "+ product.getDescription()
         );
 
         /*
