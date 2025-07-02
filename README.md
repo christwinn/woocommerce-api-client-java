@@ -38,7 +38,7 @@ In it's simplicity:
   <li>An OrderRequest has a correlating OrderResponse, the idea is to contain properly the server reponse and action result</li>
 </ul>
 
-[Object]Response response = [Object]Request.Creator<>().set..("").getReponse();
+[Object]Response response = new [Object]Request.Creator<>().set..("").getReponse();
 
 The response contains whether it was a success, trying not to throw errors but cleanly returning them to the user.
 
