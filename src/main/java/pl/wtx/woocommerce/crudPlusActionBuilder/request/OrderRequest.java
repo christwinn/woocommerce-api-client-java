@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.CouponResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
@@ -77,7 +76,7 @@ public class OrderRequest extends ApiRequest {
 
     public String endPoint(){
 
-        return getEndPoint() +
+        return ORDERS +
             (order.getId() != null && order.getId() != 0
                 ? ("/" + order.getId())
                 : ""
@@ -90,12 +89,6 @@ public class OrderRequest extends ApiRequest {
                 ? "?force=true"
                 : ""
             );
-
-    }
-
-    private static String getEndPoint(){
-
-        return ORDERS;
 
     }
 
@@ -376,7 +369,7 @@ public class OrderRequest extends ApiRequest {
             }else{
 
 
-                return new WooCommerce().create(build());
+                return new WooCommerce().batch(build());
 
             }
 
@@ -387,7 +380,8 @@ public class OrderRequest extends ApiRequest {
     /**
      *
      * Searches the Orders
-     * https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-products
+     * <a href="https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-products">
+     *     https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-products</a>
      *
      * @param <T>
      */
@@ -533,7 +527,7 @@ public class OrderRequest extends ApiRequest {
 
             return new OrderResponse(
                 new WooCommerce().search(
-                    getEndPoint(),
+                    ORDERS,
                     build(),
                     new TypeReference<List<Order>>(){}
                 )

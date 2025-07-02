@@ -8,7 +8,6 @@
  */
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
-import pl.wtx.woocommerce.api.client.model.Order;
 import pl.wtx.woocommerce.api.client.model.ProductCategory;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
@@ -79,32 +78,5 @@ public class ProductCategoryResponse extends ApiResponse {
             throw new NullPointerException("Object is not initiated");
         }
     }
-
-    /*muddies the waters
-    Alias of getProduct. Create, Update, Delete return a single Product, added for naming convention
-    public ProductCategory getCreated(){
-        return getCategory();
-    }
-    Alias of getProduct. Create, Update, Delete return a single Product, added for naming convention
-    public ProductCategory getUpdated(){
-        return getCreated();
-    }
-    Alias of getProduct. Create, Update, Delete return a single Product, added for naming convention
-    public ProductCategory getDeleted(){
-        return getCreated();
-    }*/
-
-    /*public String toJson(){
-
-        try {
-
-            // covert Java object to JSON strings
-            return getObjectMapper().writeValueAsString(categories != null ? categories : category);
-
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-
-    }*/
 
 }

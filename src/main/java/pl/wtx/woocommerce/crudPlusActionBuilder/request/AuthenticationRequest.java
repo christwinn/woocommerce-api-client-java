@@ -48,7 +48,7 @@ public class AuthenticationRequest {
      *
      * REST API keys
      *         Pre-generated keys can be used to authenticate use of the REST API endpoints.<br/>
-     *         New keys can be generated either through the WordPress admin interface
+     *         New keys can be generated through the WordPress admin interface
      *
      */
     public static class Https<T extends Https<T>>{

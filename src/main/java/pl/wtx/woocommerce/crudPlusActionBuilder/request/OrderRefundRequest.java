@@ -64,7 +64,7 @@ public class OrderRefundRequest  extends ApiRequest {
 
     public String endPoint(){
 
-        return getEndPoint() +
+        return ORDERS +
             (orderRefund.getOrderId() != null && orderRefund.getOrderId() != 0
                 ? ("/" + orderRefund.getOrderId())
                 : ""
@@ -78,12 +78,6 @@ public class OrderRefundRequest  extends ApiRequest {
                 ? "?force=true"
                 : ""
             );
-
-    }
-
-    private static String getEndPoint(){
-
-        return ORDERS;
 
     }
 

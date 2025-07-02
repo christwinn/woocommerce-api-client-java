@@ -23,8 +23,8 @@ import java.util.logging.Logger;
 
 public class Configuration {
 
-    public static String DEFAULT_LOCATION = "/.woocommerce-api/config.json";
-    private static String DEFAULT_API = "/wp-json/wc/v3/";
+    public static final String DEFAULT_LOCATION = "/.woocommerce-api/config.json";
+    private static final String DEFAULT_API = "/wp-json/wc/v3/";
     private static String website;
     private static String api;
     private static String key;
@@ -34,36 +34,37 @@ public class Configuration {
 
 
     /**
+     * <p>
      * Static values
      * so, we set the configuration once, or not at all!
-     *
-     * RIOT ACT NOTICE
-     * with the key and secret great damage can be visited upon your site
-     * ALWAYS, ALWAYS ensure it is kept private!
-     * NEVER, NEVER share it
-     *
-     * if we do none it is akin to new Configuration() below, the first call reads the file
-     *
-     * -rely upon a file being in the userhome under ~/.woocommerce-api/config.json
+     * </p><p>
+     * <h2>RIOT ACT NOTICE</h2>
+     * <p>with the key and secret great damage can be visited upon your site<br/>
+     * ALWAYS, ALWAYS ensure it is kept private!<br/>
+     * NEVER, NEVER share it<br/>
+     * </p><hr><p>
+     * If the Configuration is never called it is the same as new Configuration() below.<br>
+     * </p><p>
+     * <i>-rely upon a file being in the userhome under ~/.woocommerce-api/config.json</i><br>
      * new Configuration();
-     *
-     * -set the values by literal strings
+     * </p><p>
+     * <i>-set the values by literal strings</i><br>
      * new Configuration("myWebsite", "apiPath", "mykey", "mysecret");
-     *
-     * -as above but use the preset api of /wp-json/wc/v3/ but then this could change in future releases
+     * </p><p>
+     * <i>-as above but use the preset api of /wp-json/wc/v3/ but then this could change in future releases</i><br>
      * new Configuration("myWebsite", "mykey", "mysecret");
-     *
-     * -read a file somewhere else
+     * </p><p>
+     * <i>-read a file somewhere else</i><br>
      * new Configuration("/literal/path/to/a/file/named/config.json");
-     *
-     * -use a builder to set the values
-     * new Configuration().Builder()
-     *  .website("myWebsite")
-     *  .api("apiPath")
-     *  .key("key")
-     *  .secret("secret")
-     *  .build();
-     *
+     * </p><p>
+     * <i>-use a builder to set the values</i><br>
+     * new Configuration().Builder()<br>
+     *  .website("myWebsite")<br>
+     *  .api("apiPath")<br>
+     *  .key("key")<br>
+     *  .secret("secret")<br>
+     *  .build();<br>
+     *  </p>
      */
     public Configuration(){
 
@@ -100,10 +101,8 @@ public class Configuration {
         Configuration.secret = secret;
         Configuration.debug = debug;
     }
-    public Configuration(Builder builder){
-
+    private Configuration(Builder builder){
         this(builder.website, builder.api, builder.key, builder.secret, builder.debug);
-
     }
 
     public static String getWebsite() {
@@ -265,8 +264,8 @@ public class Configuration {
             return this;
         }
 
-        public Configuration build(){
-            return new Configuration(this);
+        public void build(){
+            new Configuration(this);
         }
 
     }

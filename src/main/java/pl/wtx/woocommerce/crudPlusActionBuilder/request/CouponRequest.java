@@ -13,11 +13,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.Coupon;
 import pl.wtx.woocommerce.api.client.model.MetaData;
-import pl.wtx.woocommerce.api.client.model.Order;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.CouponResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
@@ -55,6 +53,7 @@ public class CouponRequest extends ApiRequest {
         coupon.setExcludedProductCategories(creator.excludedProductCategories);
         coupon.setExcludeSaleItems(creator.excludeSaleItems);
         coupon.setMinimumAmount(creator.minimumAmount);
+        coupon.setMaximumAmount(creator.maximumAmount);
         coupon.setEmailRestrictions(creator.emailRestrictions);
         coupon.setMetaData(creator.metaData);
 
@@ -90,7 +89,7 @@ public class CouponRequest extends ApiRequest {
     public String endPoint(){
 
         return
-            getEndPoint() +
+            COUPONS +
                 (coupon.getId() != null && coupon.getId() != 0
                     ? ("/" + coupon.getId())
                     : ""
@@ -103,12 +102,6 @@ public class CouponRequest extends ApiRequest {
                     ? "?force=true"
                     : ""
                 );
-
-    }
-
-    private static String getEndPoint(){
-
-        return COUPONS;
 
     }
 
@@ -546,7 +539,7 @@ public class CouponRequest extends ApiRequest {
 
             return new CouponResponse(
                 new WooCommerce().search(
-                    getEndPoint(),
+                    COUPONS,
                     build(),
                     new TypeReference<List<Coupon>>(){}
                 )
@@ -657,7 +650,7 @@ public class CouponRequest extends ApiRequest {
 
             }else{
 
-                return new WooCommerce().create(build());
+                return new WooCommerce().batch(build());
 
             }
 

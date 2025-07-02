@@ -18,7 +18,8 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.ORDERS;
 
 /*
-* Experimental class. Referencing the API I think! I send a request with empty content
+* Experimental class. Referencing the API
+* I think! I send a request with empty content
 * we do not receive an object back, just a message
 * refinement most likely
 *

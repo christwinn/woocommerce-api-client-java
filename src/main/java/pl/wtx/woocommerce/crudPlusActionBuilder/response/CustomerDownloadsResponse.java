@@ -8,7 +8,6 @@
  */
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
-import pl.wtx.woocommerce.api.client.model.Coupon;
 import pl.wtx.woocommerce.api.client.model.CustomerDownload;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;

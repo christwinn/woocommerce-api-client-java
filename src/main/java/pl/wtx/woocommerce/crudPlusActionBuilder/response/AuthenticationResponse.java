@@ -9,14 +9,11 @@
 
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
-import pl.wtx.woocommerce.api.client.model.Customer;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.Message;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class AuthenticationResponse  extends ApiResponse {
 

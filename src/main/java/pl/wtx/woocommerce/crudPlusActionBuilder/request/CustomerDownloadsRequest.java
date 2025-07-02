@@ -26,13 +26,7 @@ public class CustomerDownloadsRequest {
 
     public String endPoint(){
 
-        return getEndPoint() + "/" + Integer.toString(customerId) + "/downloads";
-
-    }
-
-    private static String getEndPoint(){
-
-        return CUSTOMERS;
+        return CUSTOMERS + "/" + customerId + "/downloads";
 
     }
 

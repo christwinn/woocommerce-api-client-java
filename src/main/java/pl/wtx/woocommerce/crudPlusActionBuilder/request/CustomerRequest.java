@@ -14,7 +14,6 @@ import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderActionsResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
@@ -76,7 +75,7 @@ public class CustomerRequest extends ApiRequest {
 
     public String endPoint(){
 
-        return getEndPoint() +
+        return CUSTOMERS +
             (customer.getId() != null && customer.getId() != 0
                 ? ("/" + customer.getId())
                 : ""
@@ -89,12 +88,6 @@ public class CustomerRequest extends ApiRequest {
                 ? "?force=true"
                 : ""
             );
-
-    }
-
-    private static String getEndPoint(){
-
-        return CUSTOMERS;
 
     }
 
@@ -407,7 +400,7 @@ public class CustomerRequest extends ApiRequest {
             }else{
 
 
-                return new WooCommerce().create(build());
+                return new WooCommerce().batch(build());
 
             }
 
@@ -418,7 +411,8 @@ public class CustomerRequest extends ApiRequest {
     /**
      *
      * Searches the Customers
-     * https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-products
+     * <a href="https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-customers">
+     * https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-customers</a>
      *
      * @param <T>
      */
@@ -465,7 +459,7 @@ public class CustomerRequest extends ApiRequest {
 
             return new CustomerResponse(
                 new WooCommerce().search(
-                    getEndPoint(),
+                    CUSTOMERS,
                     build(),
                     new TypeReference<List<Customer>>(){}
                 )

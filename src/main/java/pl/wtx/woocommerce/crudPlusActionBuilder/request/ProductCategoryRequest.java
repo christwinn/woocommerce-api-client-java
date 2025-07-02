@@ -10,12 +10,10 @@ package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import pl.wtx.woocommerce.api.client.model.MetaData;
 import pl.wtx.woocommerce.api.client.model.ProductCategory;
 import pl.wtx.woocommerce.api.client.model.ProductImage;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductCategoryResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
@@ -84,7 +82,7 @@ public class ProductCategoryRequest extends ApiRequest {
 
     public String endPoint(){
 
-        return getEndPoint() +
+        return PRODUCT_CATEGORIES +
             (category.getId() != null && category.getId() != 0
                 ? ("/" + category.getId())
                 : ""
@@ -97,12 +95,6 @@ public class ProductCategoryRequest extends ApiRequest {
                 ? "?force=true"
                 : ""
             );
-
-    }
-
-    private static String getEndPoint(){
-
-        return PRODUCT_CATEGORIES;
 
     }
 
@@ -392,7 +384,7 @@ public class ProductCategoryRequest extends ApiRequest {
 
             }else{
 
-                return new WooCommerce().create(build());
+                return new WooCommerce().batch(build());
 
             }
 
@@ -403,8 +395,8 @@ public class ProductCategoryRequest extends ApiRequest {
 
     /**
      *
-     * Searches the ProductCategories
-     * https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-products
+     *
+     * <a href="https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-products">Searches the ProductCategories</a>
      *
      * @param <T>
      */
@@ -454,7 +446,7 @@ public class ProductCategoryRequest extends ApiRequest {
 
             return new ProductCategoryResponse(
                 new WooCommerce().search(
-                    getEndPoint(),
+                    PRODUCT_CATEGORIES,
                     build(),
                     new TypeReference<List<ProductCategory>>(){}
                 )

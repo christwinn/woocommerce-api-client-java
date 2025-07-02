@@ -26,8 +26,6 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.transportation.Http;
 public class WooCommerce {
 
     public WooCommerce() {
-        /*apiClient.setUsername(Configuration.getKey());
-        apiClient.setPassword(Configuration.getSecret());*/
     }
 
    private final Http http = new Http();
@@ -68,16 +66,6 @@ public class WooCommerce {
 
     }
 
-    private String getTarget(){
-        return (!Configuration.getWebsite().startsWith("http") ? "https://" : "") +
-            Configuration.getWebsite();
-    }
-
-    private String getEndPoint(String endPoint){
-        return Configuration.getApi() +
-            endPoint;
-    }
-
     /*ET PHONE HOME, Making a call to the mothership*/
     private ApiResponseResult create(String endPoint, String content, TypeReference<?> type){
 
@@ -103,11 +91,11 @@ public class WooCommerce {
     private ApiResponseResult read(String endPoint, String parameters, TypeReference<?> type){
 
         return http.read(
-            getUri(endPoint)
-                + (!parameters.equals("")
+        getUri(endPoint)
+            + (!parameters.isEmpty()
                 ? "?" + parameters
-                : "")
-            ,
+                : ""
+            ),
             getHeaders(),
             type
         );
@@ -125,9 +113,9 @@ public class WooCommerce {
 
     }
 
-    private <T> ApiResponseResult delete(String endPoint, TypeReference<?> type){
+    private ApiResponseResult delete(String endPoint, TypeReference<?> type){
 
-        return delete(endPoint, type);
+        return http.delete(endPoint, getHeaders(), type);
 
     }
     /*ET PHONED HOME, Call finished*/
@@ -152,10 +140,10 @@ public class WooCommerce {
      *
      * Searchers go through here
      *
-     * @param endPoint
-     * @param parameters
-     * @param type
-     * @return
+     * @param endPoint where is the target
+     * @param parameters the parameters for the search
+     * @param type return list type
+     * @return ApiResponseResult
      */
     public ApiResponseResult search(String endPoint, String parameters, TypeReference<?> type){
 
@@ -193,11 +181,9 @@ public class WooCommerce {
     }
 
     public CouponResponse batch(CouponRequest batch){
-
         return new CouponResponse(
             create(batch.endPoint(), batch.toJson(), new TypeReference<List<Coupon>>(){})
         );
-
     }
     //</editor-fold>
 
@@ -229,11 +215,9 @@ public class WooCommerce {
     }
 
     public CustomerResponse batch(CustomerRequest batch){
-
         return new CustomerResponse(
             create(batch.endPoint(), batch.toJson(), new TypeReference<List<Customer>>(){})
         );
-
     }
     //</editor-fold>
 
@@ -275,11 +259,9 @@ public class WooCommerce {
     }
 
     public OrderResponse batch(OrderRequest batch){
-
         return new OrderResponse(
             create(batch.endPoint(), batch.toJson(), new TypeReference<List<Order>>(){})
         );
-
     }
     //</editor-fold>
 
@@ -301,14 +283,6 @@ public class WooCommerce {
     public OrderNoteResponse delete(OrderNoteRequest request){
         return new OrderNoteResponse(
             delete(request.endPoint(), new TypeReference<OrderNote>(){})
-        );
-
-    }
-
-    public OrderNoteResponse listAll(OrderNoteRequest listAll){
-
-        return new OrderNoteResponse(
-            read(listAll.endPoint(), new TypeReference<List<OrderNote>>(){})
         );
 
     }
@@ -336,13 +310,6 @@ public class WooCommerce {
 
     }
 
-    public OrderRefundResponse listAll(OrderRefundRequest listall){
-
-        return new OrderRefundResponse(
-            read(listall.endPoint(), new TypeReference<List<OrderRefund>>(){})
-        );
-
-    }
     //</editor-fold>
 
     //<editor-fold desc="ProductCategory">
@@ -351,26 +318,6 @@ public class WooCommerce {
         return new ProductCategoryResponse(
             create(request.endPoint(), request.toJson(),new TypeReference<ProductCategory>(){})
         );
-
-        /*try{
-
-            return new ProductCategoryResponse(
-                apiClient.execute(
-                    create(
-                        getEndPoint(request.endPoint()),
-                        request.toJson()
-                    ),
-                    new TypeToken<ProductCategory>(){}.getType()
-                )
-            );
-
-        }catch(ApiException e) {
-
-            return new ProductCategoryResponse(
-                new ApiResponseResult(false, 0, e.getMessage())
-            );
-
-        }*/
 
     }
 
@@ -396,6 +343,12 @@ public class WooCommerce {
             delete(request.endPoint(), new TypeReference<ProductCategory>(){})
         );
 
+    }
+
+    public ProductCategoryResponse batch(ProductCategoryRequest batch){
+        return new ProductCategoryResponse(
+            create(batch.endPoint(), batch.toJson(),new TypeReference<List<ProductCategory>>(){})
+        );
     }
     //</editor-fold>
 

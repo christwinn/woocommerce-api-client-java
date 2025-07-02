@@ -130,10 +130,6 @@ public class ProductRequest extends ApiRequest {
         return product;
     }
 
-    /*public Batch getBatch(){
-        return batch;
-    }*/
-
     public String toJson(){
 
         try {
@@ -153,7 +149,7 @@ public class ProductRequest extends ApiRequest {
 
     public String endPoint(){
 
-        return getEndPoint() +
+        return PRODUCTS +
             (product.getId() != null && product.getId() != 0
                 ? ("/" + product.getId())
                 : ""
@@ -162,9 +158,6 @@ public class ProductRequest extends ApiRequest {
             (isBatch ? "/batch" : "") +
             (force ? "?force=true" : "");
 
-    }
-    private static String getEndPoint(){
-        return PRODUCTS;
     }
 
     public static class Creator<T extends Creator>{
@@ -662,7 +655,7 @@ public class ProductRequest extends ApiRequest {
 
             }else{
 
-                return new WooCommerce().create(build());
+                return new WooCommerce().batch(build());
 
             }
 
@@ -673,7 +666,7 @@ public class ProductRequest extends ApiRequest {
     /**
      *
      * Searches the Products
-     * https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-products
+     * <a href="https://woocommerce.github.io/woocommerce-rest-api-docs/?php#list-all-products">...</a>
      *
      * @param <T>
      */
@@ -974,7 +967,7 @@ public class ProductRequest extends ApiRequest {
 
             return new ProductResponse(
                 new WooCommerce().search(
-                    getEndPoint(),
+                    PRODUCTS,
                     build(),
                     new TypeReference<List<Product>>(){}
                 )
