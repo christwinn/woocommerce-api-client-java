@@ -2,10 +2,10 @@ package wtx.woocommerce.api.client;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+/*import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.ArgumentCaptor;
-import pl.wtx.woocommerce.api.client.model.*;
+import pl.wtx.woocommerce.api.client.model.*;*/
 import pl.wtx.woocommerce.api.client.invoker.*;
 import pl.wtx.woocommerce.WooCommerceApiClient;
 import pl.wtx.woocommerce.api.client.OrdersApi;
@@ -16,8 +16,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+/*import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;*/
 
 /**
  * Unit tests for the OrdersApi class.
