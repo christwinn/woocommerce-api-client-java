@@ -18,6 +18,7 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/*moved out of top tier!*/
 public class CustomerDemo {
 
     public CustomerDemo(){}
