@@ -9,9 +9,10 @@ Here I have concisely tied the objects to the CRUD+ actions.
 In it's simplicity: 
 
 <ul>
-  <li>we can go to https://woocommerce.github.io/woocommerce-rest-api-docs</li>
-  <li>We are presented with:
-      <ul>
+  <li>We can go to [https://woocommerce.github.io/woocommerce-rest-api-docs](https://woocommerce.github.io/woocommerce-rest-api-docs/#orders)</li>
+  <li>
+     Here we are presented with the following options:
+     <ul>
         <li>Create an Order</li>  
         <li>Retrieve an Order</li>  
         <li>List all orders</li>  
@@ -21,7 +22,7 @@ In it's simplicity:
       </ul>
   </li>
   <li>
-    These directly correlate with: 
+     These directly correlate with: 
      <ul>
         <li>OrderRequest.Creator<>()</li>  
         <li>OrderRequest.Reader<>()</li>  
@@ -37,15 +38,15 @@ In it's simplicity:
   <li>An OrderRequest has a correlating OrderResponse, the idea is to contain properly the server reponse and action result</li>
 </ul>
 
-[Object]Response response = [Object]Request.Creator<>();
+[Object]Response response = [Object]Request.Creator<>().set..("").getReponse();
 
-The response contains whether it was a success trying not to throw errors but cleanly returning them to the user.
+The response contains whether it was a success, trying not to throw errors but cleanly returning them to the user.
 
 The response will then contain: 
   if a Creator,Reader,Updater or a Deleter a single object. 
   otherwise a List<Object>
 
-So far we have:
+So far we have implemented:
 <ul>
   <li>Authentication
      <ul>
