@@ -43,16 +43,22 @@ The response will then contain:
   if a Creator,Reader,Updater or a Deleter a single object. 
   otherwise a List<Object>
 
-So far we have 
-  Authentication
-  Coupon
-  Order
-  OrderAction
-  OrderNote
-  OrderRefund
-  Product
-  ProductCategory
-  
+So far we have:
+<ul>
+  <li>Authentication
+     <ul>
+        <li>HTTPS only</li>
+     </ul>ul>
+  </li>
+  <li>Coupon</li>
+  <li>Order</li>
+  <li>OrderAction</li>
+  <li>OrderNote</li>
+  <li>OrderRefund</li>
+  <li>Product</li>
+  <li>ProductCategory</li>
+</ul>
+
 # WooCommerce API Client for Java
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
