@@ -1,3 +1,67 @@
+# Why the Fork?
+
+Simpicity! 
+
+Server API's mainly seem appear to the Object->CRUD+ philosophy once you boil them all down. 
+   
+Here I have concisely tied the objects to the CRUD+ actions.
+
+In it's simplicity: 
+
+<ul>
+  <li>We can go to [https://woocommerce.github.io/woocommerce-rest-api-docs](https://woocommerce.github.io/woocommerce-rest-api-docs/#orders)</li>
+  <li>
+     Here we are presented with the following options:
+     <ul>
+        <li>Create an Order</li>  
+        <li>Retrieve an Order</li>  
+        <li>List all orders</li>  
+        <li>Update an Order</li>  
+        <li>Delete an Order</li>  
+        <li>Batch update order</li>  
+      </ul>
+  </li>
+  <li>
+     These directly correlate with: 
+     <ul>
+        <li>OrderRequest.Creator<>()</li>  
+        <li>OrderRequest.Reader<>()</li>  
+        <li>OrderRequest.ListAll<>()
+           <ul><li>Documentation shows List all orders which in turn specifies a parameter list this is implemented under: OrderRequest.Searcher<>()</li></ul>
+         </li>
+        <li>OrderRequest.Updater<>()</li>  
+        <li>OrderRequest.Deleter<>()</li>  
+        <li>OrderRequest.Batcher<>()</li>  
+      </ul>
+  </li>
+  <li>Only the options that are available for the action are available, i.e. you can not set the Id in Creator, but you MUST in updater</li>
+  <li>An OrderRequest has a correlating OrderResponse, the idea is to contain properly the server reponse and action result</li>
+</ul>
+
+[Object]Response response = new [Object]Request.Creator<>().set..("").getReponse();
+
+The response contains whether it was a success, trying not to throw errors but cleanly returning them to the user.
+
+The response will then contain: 
+  if a Creator,Reader,Updater or a Deleter a single object. 
+  otherwise a List<Object>
+
+So far we have implemented:
+<ul>
+  <li>Authentication
+     <ul>
+        <li>HTTPS only</li>
+     </ul>
+  </li>
+  <li>Coupon</li>
+  <li>Order</li>
+  <li>OrderAction</li>
+  <li>OrderNote</li>
+  <li>OrderRefund</li>
+  <li>Product</li>
+  <li>ProductCategory</li>
+</ul>
+
 # WooCommerce API Client for Java
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
