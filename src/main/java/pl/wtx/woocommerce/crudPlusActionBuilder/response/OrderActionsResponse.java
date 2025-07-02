@@ -8,6 +8,7 @@
  */
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 
 public class OrderActionsResponse extends AuthenticationResponse {
@@ -15,7 +16,6 @@ public class OrderActionsResponse extends AuthenticationResponse {
     public OrderActionsResponse(ApiResponseResult result){
 
         super(result);
-
 
     }
 

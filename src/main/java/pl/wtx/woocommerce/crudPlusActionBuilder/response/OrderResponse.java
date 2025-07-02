@@ -8,6 +8,7 @@
  */
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import pl.wtx.woocommerce.api.client.model.Order;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
@@ -77,6 +78,18 @@ public class OrderResponse extends ApiResponse {
         }else{
             throw new NullPointerException("Object is not initiated");
         }
+    }
+
+    public String toJson(){
+
+        try {
+            // covert Java object to JSON strings
+            return getObjectMapper().writeValueAsString(this);
+
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }

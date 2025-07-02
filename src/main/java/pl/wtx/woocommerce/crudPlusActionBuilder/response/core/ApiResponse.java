@@ -77,6 +77,10 @@ public class ApiResponse {
         this.error = error;
     }
 
+    public ObjectMapper getObjectMapper(){
+        return objectMapper();
+    }
+
     private ObjectMapper objectMapper(){
 
         ObjectMapper objectMapper = new ObjectMapper()

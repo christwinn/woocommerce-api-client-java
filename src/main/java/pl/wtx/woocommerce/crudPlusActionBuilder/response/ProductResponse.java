@@ -8,6 +8,7 @@
  */
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import pl.wtx.woocommerce.api.client.model.Product;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
@@ -90,17 +91,17 @@ public class ProductResponse extends ApiResponse {
         return getCreated();
     }*/
 
-    /*public String toJson(){
-        GSON, LocalDateTime no to 8
-        try {
+    public String toJson(){
 
+        try {
             // covert Java object to JSON strings
-            return getObjectMapper().writeValueAsString(products != null ? products : product);
+            return getObjectMapper().writeValueAsString(this);
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
 
-    }*/
+    }
+
 
 }
