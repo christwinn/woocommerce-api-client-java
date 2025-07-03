@@ -9,7 +9,7 @@ Here I have concisely tied the objects to the CRUD+ actions.
 In it's simplicity: 
 
 <ul>
-  <li>We can go to [https://woocommerce.github.io/woocommerce-rest-api-docs](https://woocommerce.github.io/woocommerce-rest-api-docs/#orders)</li>
+  <li>We can go to https://woocommerce.github.io/woocommerce-rest-api-docs/#orders</li>
   <li>
      Here we are presented with the following options:
      <ul>
@@ -39,7 +39,7 @@ In it's simplicity:
 
 and ... 
 <ul>
-  <li>We can go to [https://woocommerce.github.io/woocommerce-rest-api-docs](https://woocommerce.github.io/woocommerce-rest-api-docs/#products)</li>
+  <li>We can go to https://woocommerce.github.io/woocommerce-rest-api-docs/#products</li>
   <li>
      Here we are presented with the following options:
      <ul>
