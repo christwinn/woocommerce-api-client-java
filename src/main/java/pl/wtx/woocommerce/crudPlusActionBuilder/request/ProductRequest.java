@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
@@ -25,7 +25,7 @@ import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.PRODUCTS;
 
-public class ProductRequest extends ApiRequest {
+public class ProductRequest extends ApiRequest implements ISkeleton {
 
     protected final Product product = new Product();
 
@@ -35,8 +35,10 @@ public class ProductRequest extends ApiRequest {
     private boolean force;
     private boolean duplicate;
 
+    public ProductRequest(){}
+
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
-    public ProductRequest(Creator creator){
+    private ProductRequest(Creator<?> creator){
 
         product.setName(creator.name);
         product.setSlug(creator.slug);
@@ -86,38 +88,38 @@ public class ProductRequest extends ApiRequest {
 
     }
 
-    public ProductRequest(Reader reader){
+    private ProductRequest(Reader<?> reader){
 
         product.setId(reader.id);
 
     }
 
-    public ProductRequest(Updater updater){
+    private ProductRequest(Updater<?> updater){
 
-        this((Creator)updater);
+        this((Creator<?>)updater);
         product.setId(updater.id);
 
     }
 
-    public ProductRequest(Deleter deleter){
+    private ProductRequest(Deleter<?> deleter){
 
-        this((Reader)deleter);
+        this((Reader<?>)deleter);
         isBatch = false;
         duplicate = false;
         force = deleter.force;
 
     }
 
-    public ProductRequest(Duplicator duplicator){
+    private ProductRequest(Duplicator<?> duplicator){
 
-        this((Reader)duplicator);
+        product.setId(duplicator.id);
         isBatch = false;
         force = false;
         duplicate = true;
 
     }
 
-    public ProductRequest(Batcher batcher){
+    private ProductRequest(Batcher<?> batcher){
 
         batch = batcher.getBatch();
         force = false;
@@ -160,7 +162,7 @@ public class ProductRequest extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator>{
+    public static class Creator<T extends Creator<?>>{
 
         private String name;        //string	Product name.
         private String slug;        //string	Product slug.
@@ -443,14 +445,14 @@ public class ProductRequest extends ApiRequest {
             return new ProductRequest(this);
         }
 
-        public ProductResponse getResponse(){
+        public Created<Product> getResponse(){
             return new WooCommerce().create(build());
         }
 
     }
 
     /*Extend self to enforce Diamond RequestType standard call, If some have diamond and some do not then the consumer could be easily confused*/
-    public static class Reader<T extends Reader>{
+    public static class Reader<T extends Reader<?>>{
 
         /*
             https://www.baeldung.com/java-builder-pattern-inheritance
@@ -479,11 +481,11 @@ public class ProductRequest extends ApiRequest {
             return new ProductRequest(this);
         }
 
-        public ProductResponse getResponse(){
+        public Read<Product> getResponse(){
             if (id > 0) {
                 return new WooCommerce().read(build());
             }else {
-                return new ProductResponse(
+                return new Read<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -496,7 +498,7 @@ public class ProductRequest extends ApiRequest {
 
     }
 
-    public static class Updater<T extends Updater<T>> extends ProductRequest.Creator<T>{
+    public static class Updater<T extends Updater<T>> extends Creator<T>{
 
         private int id;
 
@@ -510,11 +512,11 @@ public class ProductRequest extends ApiRequest {
         }
 
         @Override
-        public ProductResponse getResponse(){
+        public Updated<Product> getResponse(){
             if (id > 0){
                 return new WooCommerce().update(build());
             }else{
-                return new ProductResponse(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
             }
 
         }
@@ -534,79 +536,50 @@ public class ProductRequest extends ApiRequest {
         }
 
         @Override
-        public ProductResponse getResponse(){
-            return new WooCommerce().delete(build());
-        }
+        public Deleted<Product> getResponse(){
 
-    }
-
-    public static class Duplicator<T extends Duplicator<T>> extends Reader<T>{
-
-        private ProductRequest build(){
-            return new ProductRequest(this);
-        }
-
-        @Override
-        public ProductResponse getResponse(){
-
-            if (id > 0){
-                return new WooCommerce().create(build());
+            if (id > 0 && force){
+                return new WooCommerce().delete(build());
             }else{
-                return new ProductResponse(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Deleted<>(
+                    new ApiResponseResult(false, 0,
+                    "Invalid Identifier, id and force is required"));
             }
         }
 
     }
 
-    private static class Batch{
+    public static class Duplicator<T extends Duplicator<T>>{
 
-        private final List<Product> create;
-        private final List<Product> update;
-        private final List<Product> delete;
+        private int id;
 
-        public Batch(){
-
-            create = new ArrayList<>();
-            update = new ArrayList<>();
-            delete = new ArrayList<>();
-
+        T self() {
+            return (T) this;
         }
 
-        public int getRecordCount(){
-            return create.size() + update.size() + delete.size();
+        public T setId(int id) {
+            this.id = id;
+            return self();
         }
 
-        public boolean isEmpty(){
-            return create.isEmpty() && update.isEmpty() && delete.isEmpty();
+        private ProductRequest build(){
+            return new ProductRequest(this);
         }
 
-        public void addCreator(Creator create){
-            this.create.add(create.build().product);
-        }
+        public Duplicated<Product> getResponse(){
 
-        public void addUpdater(Updater update){
-            this.update.add(update.build().product);
-        }
-
-        public void addDeleter(Deleter delete){
-            this.delete.add(delete.build().product);
-        }
-
-        public List<Product> getCreate(){
-            return create;
-        }
-        public List<Product> getUpdate(){
-            return update;
-        }
-        public List<Product> getDelete(){
-            return delete;
+            if (id > 0){
+                return new WooCommerce().duplicate(build());
+            }else{
+                return new Duplicated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+            }
         }
 
     }
 
-    public static class Batcher<T extends Batcher>{
+    public static class Batcher<T extends Batcher<?>>{
 
-        private static Batch batch;
+        private Batch batch;
 
         public Batcher(){
             batch = new Batch();
@@ -616,18 +589,18 @@ public class ProductRequest extends ApiRequest {
             return (T) this;
         }
 
-        public T addCreator(Creator create){
-            batch.addCreator(create);
+        public T addCreator(Creator<?> create){
+            batch.addCreate(create.build().product);
             return self();
         }
 
-        public T addUpdater(Updater update){
-            batch.addUpdater(update);
+        public T addUpdater(Updater<?> update){
+            batch.addUpdate(update.build().product);
             return self();
         }
 
-        public T addDeleter(Deleter delete){
-            batch.addDeleter(delete);
+        public T addDeleter(Deleter<?> delete){
+            batch.addDelete(delete.build().product);
             return self();
         }
 
@@ -639,15 +612,15 @@ public class ProductRequest extends ApiRequest {
             return new ProductRequest(this);
         }
 
-        public ProductResponse getResponse(){
+        public Batched<Product> getResponse(){
 
             if (batch.isEmpty()){
 
-                return new ProductResponse(new ApiResponseResult(false, 0, "Nothing to do"));
+                return new Batched<Product>(new ApiResponseResult(false, 0, "Nothing to do"));
 
             }else if (batch.getRecordCount() > 100){
 
-                return new ProductResponse(new ApiResponseResult(false, 0,
+                return new Batched<Product>(new ApiResponseResult(false, 0,
                     "https://woocommerce.github.io/woocommerce-rest-api-docs/?shell#delete-a-product\n" +
                         "This API helps you to batch create, update and delete multiple products.\n\n" +
                         "Note: By default it's limited to up to 100 objects to be created, updated or deleted.")
@@ -663,6 +636,20 @@ public class ProductRequest extends ApiRequest {
 
     }
 
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
+
+        public Listed<Product> getResponse(){
+
+            return new Listed<Product>(
+                new WooCommerce().listAll(
+                    PRODUCTS,
+                    build(),
+                    new TypeReference<List<Product>>(){}
+                )
+            );
+
+        }
+    }
     /**
      *
      * Searches the Products
@@ -670,7 +657,7 @@ public class ProductRequest extends ApiRequest {
      *
      * @param <T>
      */
-    public static class Searcher<T extends Searcher> extends Seek.Searcher<T> {
+    public static class Searcher<T extends Searcher<T>> extends Seek.Searcher<T> {
 
         T self() {
             return (T) this;
@@ -963,9 +950,9 @@ public class ProductRequest extends ApiRequest {
             return self();
         }
 
-        public ProductResponse getResponse(){
+        public Searched<Product> getResponse(){
 
-            return new ProductResponse(
+            return new Searched<Product>(
                 new WooCommerce().search(
                     PRODUCTS,
                     build(),

@@ -55,6 +55,7 @@ public class JSON {
     private static DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
     private static SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
     private static OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
+    private static LocalDateTimeTypeAdapter localDateTimeTypeAdapter = new LocalDateTimeTypeAdapter();
     private static LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
     private static ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
 
@@ -95,6 +96,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(Date.class, dateTypeAdapter);
         gsonBuilder.registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter);
+        gsonBuilder.registerTypeAdapter(LocalDateTime.class, localDateTimeTypeAdapter);
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ApiError.CustomTypeAdapterFactory());
@@ -328,6 +330,60 @@ public class JSON {
         }
     }
 
+    public static class LocalDateTimeTypeAdapter extends TypeAdapter<LocalDateTime> {
+
+        private DateTimeFormatter formatter;
+
+        public LocalDateTimeTypeAdapter() {
+            this(DateTimeFormatter.ISO_DATE_TIME);
+        }
+
+        public LocalDateTimeTypeAdapter(DateTimeFormatter formatter) {
+            this.formatter = formatter;
+        }
+
+        public void setFormat(DateTimeFormatter dateFormat) {
+            this.formatter = dateFormat;
+        }
+
+        @Override
+        public void write(JsonWriter out, LocalDateTime date) throws IOException {
+            if (date == null) {
+                out.nullValue();
+            } else {
+                out.value(formatter.format(date));
+            }
+        }
+
+        @Override
+        public LocalDateTime read(JsonReader in) throws IOException {
+            switch (in.peek()) {
+                case NULL:
+                    in.nextNull();
+                    return null;
+                default:
+                    String date = in.nextString();
+                    if (date.length() > 19){
+                        date = date.substring(0, 19);
+                    }
+
+                    //return OffsetDateTime.parse(date, formatter);
+                    //Orders uses config.OffsetDateTimeAdapter Product uses this and FAILS with line above
+                    //"2025-06-25T15:47:35"
+                    //no timezone, does it need to be more complicated?
+
+                    try {
+                        return LocalDateTime.parse(date);
+                    } catch (DateTimeParseException e) {
+                        Logger.getLogger(JSON.class.getName()).log(Level.SEVERE, "Invalid DateTime", e);
+                        return null;
+                    }
+
+
+            }
+        }
+    }
+
     /**
      * Gson TypeAdapter for JSR310 LocalDate type
      */
@@ -371,6 +427,10 @@ public class JSON {
 
     public static void setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
         offsetDateTimeTypeAdapter.setFormat(dateFormat);
+    }
+
+    public static void setLocalDateTimeFormat(DateTimeFormatter dateFormat) {
+        localDateTimeTypeAdapter.setFormat(dateFormat);
     }
 
     public static void setLocalDateFormat(DateTimeFormatter dateFormat) {

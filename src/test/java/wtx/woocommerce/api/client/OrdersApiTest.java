@@ -11,11 +11,15 @@ import pl.wtx.woocommerce.WooCommerceApiClient;
 import pl.wtx.woocommerce.api.client.OrdersApi;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.MockResponse;
+import pl.wtx.woocommerce.api.client.model.Order;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 /*import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;*/
 
@@ -83,7 +87,7 @@ public class OrdersApiTest {
             .setBody(mockResponse));
 
         // When
-        /*List<Order> orders = ordersApi.listAllOrders(
+        List<Order> orders = ordersApi.listAllOrders(
             null, // context
             null, // page
             100, // per_page
@@ -127,7 +131,7 @@ public class OrdersApiTest {
         assertTrue(requestUrl.contains("status=on-hold,completed"),
             "Request URL should contain correct status parameters");
 
-        logTestSummary("testListAllOrdersWithMultipleStatuses", orders.size(), statuses);*/
+        logTestSummary("testListAllOrdersWithMultipleStatuses", orders.size(), statuses);
 
     }
 

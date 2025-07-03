@@ -9,9 +9,13 @@
 
 package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerDownloadsResponse;
+import com.fasterxml.jackson.core.type.TypeReference;
+import pl.wtx.woocommerce.api.client.model.CustomerDownload;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.Listed;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
+
+import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.CUSTOMERS;
 
@@ -22,12 +26,6 @@ public class CustomerDownloadsRequest {
 
     public CustomerDownloadsRequest(Reader reader){
         this.customerId = reader.customerId;
-    }
-
-    public String endPoint(){
-
-        return CUSTOMERS + "/" + customerId + "/downloads";
-
     }
 
     public static class Reader<T extends Reader<T>>{
@@ -51,9 +49,9 @@ public class CustomerDownloadsRequest {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        public CustomerDownloadsResponse getResponse(){
+        public Listed<CustomerDownload> getResponse(){
             if (customerId == 0) {
-                return new CustomerDownloadsResponse(
+                return new Listed<CustomerDownload>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -61,8 +59,13 @@ public class CustomerDownloadsRequest {
                             "This API lets you retrieve customer downloads permissions.")
                 );
             }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.read(build());
+                return new Listed<CustomerDownload>(
+                    new WooCommerce().listAll(
+                        CUSTOMERS + "/" + customerId + "/downloads",
+                        "",
+                        new TypeReference<List<CustomerDownload>>(){}
+                    )
+                );
             }
         }
 

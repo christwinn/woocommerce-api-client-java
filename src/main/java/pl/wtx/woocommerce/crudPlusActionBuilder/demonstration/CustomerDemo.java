@@ -13,7 +13,7 @@ import pl.wtx.woocommerce.api.client.model.Billing;
 import pl.wtx.woocommerce.api.client.model.Customer;
 import pl.wtx.woocommerce.api.client.model.Shipping;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.CustomerRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class CustomerDemo {
             .postcode("94103")
             .country("US");
 
-        CustomerResponse response = new CustomerRequest.Creator<>()
+        Created<Customer> response = new CustomerRequest.Creator<>()
             .setEmail("john.doe@example.com")
             .setFirstName("John")
             .setLastName("Doe")
@@ -60,7 +60,7 @@ public class CustomerDemo {
 
         if (response.isSuccess()){
 
-            return response.getCustomer();
+            return response.getCreated();
 
 
         }else{
@@ -78,7 +78,7 @@ public class CustomerDemo {
         return new CustomerRequest.Reader<>()
             .setId(customerId)
             .getResponse()
-            .getCustomer();
+            .getRead();
 
     }
 
@@ -87,43 +87,43 @@ public class CustomerDemo {
         return new CustomerRequest.Searcher<>()
             .setEmail(customerEmail)
             .getResponse()
-            .getCustomers();
+            .getSearched();
 
     }
 
     public List<Customer> listAllCustomers(){
 
-        CustomerResponse response = new CustomerRequest.Searcher<>()
+        Listed<Customer> response = new CustomerRequest.ListAll<>()
             .getResponse();
 
-        return response.getCustomers();
+        return response.getListed();
 
     }
 
     public Customer updateACustomer(int customerId){
 
-        CustomerResponse response = new CustomerRequest.Updater<>()
+        Updated<Customer> response = new CustomerRequest.Updater<>()
             .setId(customerId)
             .setFirstName("James")
             .setShipping(new Shipping().firstName("James"))
             .getResponse();
 
-        return response.getCustomer();
+        return response.getUpdated();
 
     }
 
     public Customer deleteACustomer(int customerId){
 
-        CustomerResponse response = new CustomerRequest.Deleter<>()
+        Deleted<Customer> response = new CustomerRequest.Deleter<>()
             .setId(customerId)
             .force(true)
             .getResponse();
 
-        return response.getCustomer();
+        return response.getDeleted();
 
     }
 
-    public CustomerResponse batchUpdateCustomers(
+    public Batched<Customer> batchUpdateCustomers(
         List<CustomerRequest.Creator> createThese,
         List<CustomerRequest.Updater> modifyThese,
         List<CustomerRequest.Deleter> deleteThese
@@ -137,7 +137,7 @@ public class CustomerDemo {
 
     }
 
-    public CustomerResponse batchUpdateCustomers(){
+    public Batched<Customer> batchUpdateCustomers(){
 
         return new CustomerRequest.Batcher<>()
             .addCreators(getBatchCreate())

@@ -10,25 +10,26 @@
 package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderRefundResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.ORDERS;
-import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.REFUNDS;
+import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.*;
 
-public class OrderRefundRequest  extends ApiRequest {
+public class OrderRefundRequest extends ApiRequest implements ISkeleton {
 
     protected final OrderRefund orderRefund = new OrderRefund();
 
     private boolean force;
 
-    public OrderRefundRequest(Creator creator){
+    public OrderRefundRequest(Creator<?> creator){
 
         orderRefund.setAmount(creator.amount);
         orderRefund.setReason(creator.reason);
@@ -42,21 +43,21 @@ public class OrderRefundRequest  extends ApiRequest {
 
     }
 
-    public OrderRefundRequest(Reader reader){
+    public OrderRefundRequest(Reader<?> reader){
 
-        this((ListAll)reader);
+        orderRefund.setOrderId(reader.orderId);
         orderRefund.setId(reader.refundId);
 
     }
 
-    public OrderRefundRequest(Deleter deleter){
+    public OrderRefundRequest(Deleter<?> deleter){
 
-        this((Reader)deleter);
+        this((Reader<?>)deleter);
         force = deleter.force;
 
     }
 
-    public OrderRefundRequest(ListAll listAller){
+    public OrderRefundRequest(ListAll<?> listAller){
 
         orderRefund.setOrderId(listAller.orderId);
 
@@ -95,7 +96,9 @@ public class OrderRefundRequest  extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends ListAll{
+    public static class Creator<T extends Creator<T>>{
+
+        private int orderId;
 
         private BigDecimal amount;
         //string	Total refund amount.
@@ -113,6 +116,16 @@ public class OrderRefundRequest  extends ApiRequest {
 
         T self() {
             return (T) this;
+        }
+
+        /**
+         *
+         * @param orderId Order note(s) must be tied to an Order.
+         * @return T
+         */
+        public T setOrderId(int orderId){
+            this.orderId = orderId;
+            return self();
         }
 
         public T setAmount(BigDecimal amount) {
@@ -167,17 +180,16 @@ public class OrderRefundRequest  extends ApiRequest {
 
 
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
-        public OrderRefundResponse getResponse(){
+        public Created<OrderRefund> getResponse(){
             if (orderId == 0) {
-                return new OrderRefundResponse(
+                return new Created<OrderRefund>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Order Id is MANDATORY!")
                 );
             }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.create(build());
+                return new WooCommerce().create(build());
             }
         }
 
@@ -185,12 +197,23 @@ public class OrderRefundRequest  extends ApiRequest {
 
     }
 
-    public static class Reader<T extends Reader<T>> extends ListAll{
+    public static class Reader<T extends Reader<T>>{
 
+        protected int orderId;
         protected int refundId;
 
         T self() {
             return (T) this;
+        }
+
+        /**
+         *
+         * @param orderId Order note(s) must be tied to an Order.
+         * @return T
+         */
+        public T setOrderId(int orderId){
+            this.orderId = orderId;
+            return self();
         }
 
         public T setRefundId(int refundId){
@@ -206,9 +229,9 @@ public class OrderRefundRequest  extends ApiRequest {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        public OrderRefundResponse getResponse(){
-            if (orderId == 0 || refundId == 0) {
-                return new OrderRefundResponse(
+        public Read<OrderRefund> getResponse(){
+            if (orderId <= 0 || refundId <= 0) {
+                return new Read<OrderRefund>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -217,8 +240,7 @@ public class OrderRefundRequest  extends ApiRequest {
                             "Use the ListAll with orderId to get lst of refunds for an order")
                 );
             }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.read(build());
+                return new WooCommerce().read(build());
             }
         }
 
@@ -240,17 +262,16 @@ public class OrderRefundRequest  extends ApiRequest {
 
         /** Returns single Deleted ProductCategory**/
         @Override
-        public OrderRefundResponse getResponse() {
+        public Deleted<OrderRefund> getResponse() {
             if (orderId == 0 || refundId == 0) {
-                return new OrderRefundResponse(
+                return new Deleted<OrderRefund>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Order Id And refund Id are MANDATORY!")
                 );
             }else{
-                WooCommerce woo = new WooCommerce();
-                return woo.delete(build());
+                return new WooCommerce().delete(build());
             }
         }
 
@@ -282,17 +303,73 @@ public class OrderRefundRequest  extends ApiRequest {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        public OrderRefundResponse getResponse(){
+        public Listed<OrderRefund> getResponse(){
             if (orderId == 0) {
-                return new OrderRefundResponse(
+                return new Listed<OrderRefund>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Order Id is MANDATORY!")
                 );
             }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.read(build());
+
+                String endPoint = ORDERS + "/" + orderId + "/refunds";
+
+                return new Listed<OrderRefund>(
+                    new WooCommerce().listAll(
+                        endPoint,
+                        "",
+                        new TypeReference<List<OrderRefund>>(){}
+                    )
+                );
+
+            }
+        }
+
+    }
+
+    public static class Searcher<T extends Searcher<T>> extends Seek.Searcher<T>{
+
+        protected int orderId;
+
+        T self() {
+            return (T) this;
+        }
+
+        /**
+         *
+         * @param orderId Order note(s) must be tied to an Order.
+         * @return T
+         */
+        public T setOrderId(int orderId){
+            this.orderId = orderId;
+            return self();
+        }
+
+        /**
+         *  If the id is set returns a single productCategory
+         *  otherwise returns list of productCategory
+         */
+        public Searched<OrderRefund> getResponse(){
+            if (orderId == 0) {
+                return new Searched<OrderRefund>(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Order Id is MANDATORY!")
+                );
+            }else {
+
+                String endPoint = ORDERS + "/" + orderId + "/refunds";
+
+                return new Searched<OrderRefund>(
+                    new WooCommerce().listAll(
+                        endPoint,
+                        build(),
+                        new TypeReference<List<OrderRefund>>(){}
+                    )
+                );
+
             }
         }
 

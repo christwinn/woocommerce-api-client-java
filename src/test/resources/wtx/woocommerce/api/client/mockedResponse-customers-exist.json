@@ -1,0 +1,9 @@
+{"create":[{"id":0,
+  "error":{"code":"registration-error-email-exists",
+    "message":"An account is already registered with john.doe@example.com. Please log in or use a different email address.",
+    "data":{"status":400}}},
+  {"id":0,
+    "error":{"code":"registration-error-email-exists",
+      "message":"An account is already registered with joao.silva2@example.com. Please log in or use a different email address.",
+      "data":{"status":400}}}]
+}

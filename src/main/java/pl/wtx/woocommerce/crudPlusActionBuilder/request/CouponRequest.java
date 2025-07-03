@@ -15,7 +15,7 @@ import pl.wtx.woocommerce.api.client.model.Coupon;
 import pl.wtx.woocommerce.api.client.model.MetaData;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.CouponResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
@@ -27,14 +27,14 @@ import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.*;
 
-public class CouponRequest extends ApiRequest {
+public class CouponRequest extends ApiRequest implements ISkeleton {
 
     private final Coupon coupon = new Coupon();
 
     private Batch batch;
     private boolean force;
 
-    private CouponRequest(@SuppressWarnings("rawtypes") Creator creator){
+    private CouponRequest(Creator<?> creator){
 
         coupon.setCode(creator.code);
         coupon.setAmount(creator.amount);
@@ -59,27 +59,27 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    private CouponRequest(Reader reader){
+    private CouponRequest(Reader<?> reader){
 
         coupon.setId(reader.couponId);
 
     }
 
-    private CouponRequest(Updater updater){
+    private CouponRequest(Updater<?> updater){
 
         this((Creator)updater);
         coupon.setId(updater.id);
 
     }
 
-    private CouponRequest(Deleter deleter){
+    private CouponRequest(Deleter<?> deleter){
 
         this((Reader)deleter);
         force = deleter.force;
 
     }
 
-    private CouponRequest(Batcher batcher){
+    private CouponRequest(Batcher<?> batcher){
 
         batch = batcher.getBatch();
         force = false;
@@ -117,7 +117,7 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<?>>{
 
         private String code; //	string	Coupon code.mandatory
         private BigDecimal amount; //	string	The amount of discount. Should always be numeric, even if setting a percentage.
@@ -337,9 +337,9 @@ public class CouponRequest extends ApiRequest {
         }
 
         /** Returns single Created Coupon, unless it is a duplicate! **/
-        public CouponResponse getResponse(){
+        public Created<Coupon> getResponse(){
             if (code == null || code.isEmpty()) {
-                return new CouponResponse(
+                return new Created<Coupon>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -352,7 +352,7 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    public static class Reader<T extends Reader<T>>{
+    public static class Reader<T extends Reader<?>>{
 
         protected int couponId;
 
@@ -373,12 +373,12 @@ public class CouponRequest extends ApiRequest {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        public CouponResponse getResponse(){
+        public Read<Coupon> getResponse(){
 
             if (couponId > 0) {
                 return new WooCommerce().read(build());
             }else{
-                return new CouponResponse(
+                return new Read<Coupon>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -406,11 +406,11 @@ public class CouponRequest extends ApiRequest {
 
         /** Returns single Updated ProductCategory**/
         @Override
-        public CouponResponse getResponse(){
+        public Updated<Coupon> getResponse(){
             if (id > 0) {
                 return new WooCommerce().update(build());
             }else{
-                return new CouponResponse(
+                return new Updated<Coupon>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -437,9 +437,9 @@ public class CouponRequest extends ApiRequest {
 
         /** Returns single Deleted ProductCategory**/
         @Override
-        public CouponResponse getResponse(){
+        public Deleted<Coupon> getResponse(){
             if (couponId == 0 || !force) {
-                return new CouponResponse(
+                return new Deleted<Coupon>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -452,17 +452,23 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    public static class ListAll<T extends ListAll<T>>{
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T>{
 
-        public CouponResponse getResponse(){
+        public Listed<Coupon> getResponse(){
 
-            return new Searcher<>().getResponse();
+            return new Listed<Coupon>(
+                new WooCommerce().search(
+                    COUPONS,
+                    build(),
+                    new TypeReference<List<Coupon>>(){}
+                )
+            );
 
         }
 
     }
 
-    public static class Searcher<T extends Searcher> extends Seek.Searcher<T> {
+    public static class Searcher<T extends Searcher<T>> extends Seek.Searcher<T> {
 
         T self() {
             return (T) this;
@@ -535,9 +541,9 @@ public class CouponRequest extends ApiRequest {
             return self();
         }
 
-        public CouponResponse getResponse(){
+        public Searched<Coupon> getResponse(){
 
-            return new CouponResponse(
+            return new Searched<Coupon>(
                 new WooCommerce().search(
                     COUPONS,
                     build(),
@@ -545,52 +551,6 @@ public class CouponRequest extends ApiRequest {
                 )
             );
 
-        }
-
-    }
-
-    private static class Batch{
-
-        private final List<Coupon> create;
-        private final List<Coupon> update;
-        private final List<Coupon> delete;
-
-        public Batch(){
-
-            create = new ArrayList<>();
-            update = new ArrayList<>();
-            delete = new ArrayList<>();
-
-        }
-
-        public int getRecordCount(){
-            return create.size() + update.size() + delete.size();
-        }
-
-        public boolean isEmpty(){
-            return create.isEmpty() && update.isEmpty() && delete.isEmpty();
-        }
-
-        public void addCreator(Creator create){
-            this.create.add(create.build().coupon);
-        }
-
-        public void addUpdater(Updater update){
-            this.update.add(update.build().coupon);
-        }
-
-        public void addDeleter(Deleter delete){
-            this.delete.add(delete.build().coupon);
-        }
-
-        public List<Coupon> getCreate(){
-            return create;
-        }
-        public List<Coupon> getUpdate(){
-            return update;
-        }
-        public List<Coupon> getDelete(){
-            return delete;
         }
 
     }
@@ -608,17 +568,17 @@ public class CouponRequest extends ApiRequest {
         }
 
         public T addCreator(Creator create){
-            batch.addCreator(create);
+            batch.addCreate(create);
             return self();
         }
 
         public T addUpdater(Updater update){
-            batch.addUpdater(update);
+            batch.addUpdate(update);
             return self();
         }
 
         public T addDeleter(Deleter delete){
-            batch.addDeleter(delete);
+            batch.addDelete(delete);
             return self();
         }
 
@@ -631,15 +591,15 @@ public class CouponRequest extends ApiRequest {
         }
 
         /** Returns list of amended Coupons **/
-        public CouponResponse getResponse(){
+        public Batched<Coupon> getResponse(){
 
             if (batch.isEmpty()){
 
-                return new CouponResponse(new ApiResponseResult(false, 0, "Nothing to do"));
+                return new Batched<Coupon>(new ApiResponseResult(false, 0, "Nothing to do"));
 
             }else if (batch.getRecordCount() > 100){
 
-                return new CouponResponse(
+                return new Batched<Coupon>(
                     new ApiResponseResult(
                         false,
                         0,

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
@@ -22,7 +22,7 @@ import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.CUSTOMERS;
 
-public class CustomerRequest extends ApiRequest {
+public class CustomerRequest extends ApiRequest implements ISkeleton {
 
     protected final Customer customer = new Customer();
 
@@ -32,7 +32,7 @@ public class CustomerRequest extends ApiRequest {
     //private boolean duplicate;
     private boolean isBatch;
 
-    public CustomerRequest(Creator creator){
+    public CustomerRequest(Creator<?> creator){
 
         customer.setEmail(creator.email);
         customer.setFirstName(creator.firstName);
@@ -44,20 +44,20 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
-    public CustomerRequest(Reader reader){
+    public CustomerRequest(Reader<?> reader){
 
         customer.setId(reader.id);
 
     }
 
-    public CustomerRequest(Updater updater){
+    public CustomerRequest(Updater<?> updater){
 
         this((Creator)updater);
         customer.setId(updater.id);
 
     }
 
-    public CustomerRequest(Deleter deleter){
+    public CustomerRequest(Deleter<?> deleter){
 
         this((Reader)deleter);
         isBatch = false;
@@ -65,7 +65,7 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
-    public CustomerRequest(Batcher batcher){
+    public CustomerRequest(Batcher<?> batcher){
 
         batch = batcher.getBatch();
         force = false;
@@ -163,13 +163,13 @@ public class CustomerRequest extends ApiRequest {
         }
 
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
-        public CustomerResponse getResponse(){
+        public Created<Customer> getResponse(){
 
             if (username != null && password != null) {
                 WooCommerce woo = new WooCommerce();
                 return woo.create(build());
             }else{
-                return new CustomerResponse(
+                return new Created<Customer>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -181,9 +181,9 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
-    public static class Reader<T extends Reader<T>>{
+    public static class Reader<T extends Reader<?>>{
 
-        private int id;
+        protected int id;
 
         T self() {
             return (T) this;
@@ -202,9 +202,12 @@ public class CustomerRequest extends ApiRequest {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        public CustomerResponse getResponse(){
-            if (id == 0) {
-                return new CustomerResponse(
+        public Read<Customer> getResponse(){
+
+            if (id > 0) {
+                return new WooCommerce().read(build());
+            }else {
+                return new Read<Customer>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -212,10 +215,8 @@ public class CustomerRequest extends ApiRequest {
                             "Please set requested id\n" +
                             "Use the Searcher with no parameters to get a full list")
                 );
-            }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.read(build());
             }
+
         }
 
     }
@@ -236,9 +237,12 @@ public class CustomerRequest extends ApiRequest {
 
         /** Returns single Updated ProductCategory**/
         @Override
-        public CustomerResponse getResponse(){
-            WooCommerce woo = new WooCommerce();
-            return woo.update(build());
+        public Updated<Customer> getResponse(){
+            if (id > 0){
+                return new WooCommerce().update(build());
+            }else {
+                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+            }
         }
 
     }
@@ -259,80 +263,21 @@ public class CustomerRequest extends ApiRequest {
 
         /** Returns single Deleted ProductCategory**/
         @Override
-        public CustomerResponse getResponse(){
-            WooCommerce woo = new WooCommerce();
-            return woo.delete(build());
-        }
-
-    }
-
-    private static class Batch{
-
-        private final List<Customer> create;
-        private final List<Customer> update;
-        private final List<Customer> delete;
-
-        public Batch(){
-
-            create = new ArrayList<>();
-            update = new ArrayList<>();
-            delete = new ArrayList<>();
-
-        }
-
-        public int getRecordCount(){
-            return create.size() + update.size() + delete.size();
-        }
-
-        public boolean isEmpty(){
-            return create.isEmpty() && update.isEmpty() && delete.isEmpty();
-        }
-
-        public void addCreator(Creator create){
-            this.create.add(create.build().customer);
-        }
-
-        public void addUpdater(Updater update){
-            this.update.add(update.build().customer);
-        }
-
-        public void addDeleter(Deleter delete){
-            this.delete.add(delete.build().customer);
-        }
-
-        public void addCreator(List<Creator> create) {
-            for (Creator creator : create){
-                this.create.add(creator.build().customer);
+        public Deleted<Customer> getResponse(){
+            if (id > 0 && force){
+                return new WooCommerce().delete(build());
+            }else {
+                return new Deleted<>(
+                    new ApiResponseResult(false, 0,
+                        "Invalid Identifier, id and force is required"));
             }
-        }
-
-        public void addUpdater(List<Updater> updates) {
-            for (Updater updater : updates){
-                this.update.add(updater.build().customer);
-            }
-        }
-
-        public void addDeleter(List <Deleter> deletes){
-            for (Deleter deleter : deletes){
-                this.delete.add(deleter.build().customer);
-            }
-        }
-
-        public List<Customer> getCreate(){
-            return create;
-        }
-        public List<Customer> getUpdate(){
-            return update;
-        }
-        public List<Customer> getDelete(){
-            return delete;
         }
 
     }
 
     public static class Batcher<T extends Batcher>{
 
-        private static Batch batch;
+        private Batch batch;
 
         public Batcher(){
             batch = new Batch();
@@ -342,32 +287,45 @@ public class CustomerRequest extends ApiRequest {
             return (T) this;
         }
 
+        public T setBatch(Batch batch){
+            this.batch = batch;
+            return self();
+        }
         public T addCreators(List<Creator> creators){
-            batch.addCreator(creators);
+            //we need to extract the create
+            for(Creator create : creators){
+                addCreator(create);
+            }
             return self();
         }
 
         public T addCreator(Creator create){
-            batch.addCreator(create);
+            batch.addCreate(create.build().customer);
             return self();
         }
 
         public T addUpdaters(List<Updater> updates){
-            batch.addUpdater(updates);
+            //we need to extract the update
+            for(Updater update : updates){
+                addUpdater(update);
+            }
             return self();
         }
 
         public T addUpdater(Updater update){
-            batch.addUpdater(update);
+            batch.addUpdate(update.build().customer);
             return self();
         }
 
         public T addDeleters(List<Deleter> deletes){
-            batch.addDeleter(deletes);
+            //we need to extract the delete
+            for(Deleter delete : deletes){
+                addDeleter(delete);
+            }
             return self();
         }
         public T addDeleter(Deleter delete){
-            batch.addDeleter(delete);
+            batch.addDelete(delete.build().customer);
             return self();
         }
 
@@ -380,15 +338,15 @@ public class CustomerRequest extends ApiRequest {
         }
 
         /** Returns list of amended ProductCategories **/
-        public CustomerResponse getResponse(){
+        public Batched<Customer> getResponse(){
 
             if (batch.isEmpty()){
 
-                return new CustomerResponse(new ApiResponseResult(false, 0, "Nothing to do"));
+                return new Batched<Customer>(new ApiResponseResult(false, 0, "Nothing to do"));
 
             }else if (batch.getRecordCount() > 100){
 
-                return new CustomerResponse(
+                return new Batched<Customer>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -408,6 +366,21 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
+
+        public Listed<Customer> getResponse(){
+
+            return new Listed<Customer>(
+                new WooCommerce().listAll(
+                    CUSTOMERS,
+                    build(),
+                    new TypeReference<List<Customer>>(){}
+                )
+            );
+
+        }
+
+    }
     /**
      *
      * Searches the Customers
@@ -416,7 +389,7 @@ public class CustomerRequest extends ApiRequest {
      *
      * @param <T>
      */
-    public static class Searcher<T extends Searcher> extends Seek.Searcher<T> {
+    public static class Searcher<T extends Searcher<T>> extends Seek.Searcher<T> {
 
         T self() {
             return (T) this;
@@ -455,9 +428,9 @@ public class CustomerRequest extends ApiRequest {
             return self();
         }
 
-        public CustomerResponse getResponse(){
+        public Searched<Customer> getResponse(){
 
-            return new CustomerResponse(
+            return new Searched<Customer>(
                 new WooCommerce().search(
                     CUSTOMERS,
                     build(),

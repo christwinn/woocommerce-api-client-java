@@ -52,6 +52,7 @@ import java.util.Map;
 import java.util.Set;
 
 import pl.wtx.woocommerce.api.client.invoker.JSON;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
 
 /**
  * Customer
@@ -142,6 +143,8 @@ public class Customer {
    @SerializedName(SERIALIZED_NAME_LINKS)
    @javax.annotation.Nullable
    private Links links;
+
+   private ErrorObject error;
 
   public Customer() {
   }
@@ -453,6 +456,25 @@ public class Customer {
   }
 
   /**
+   * When we batch the customers we retrieve a list of customers that have been created, updated, deleted
+   * Within this list we may have record A as success and so no error
+   * BUT record B may fail with exists, or something else.
+   * Only way to catch the error and pass back is by adding the error message into here.
+   */
+    @javax.annotation.Nullable
+    public ErrorObject getError() {
+        return error;
+    }
+
+    @JsonProperty("error")
+    public void setError(@javax.annotation.Nullable ErrorObject error) {
+        this.error = error;
+    }
+
+    public boolean hasError() {
+        return error != null;
+    }
+    /**
    * Meta data.
    * @return metaData
    */
@@ -536,6 +558,7 @@ public class Customer {
     sb.append("    isPayingCustomer: ").append(toIndentedString(isPayingCustomer)).append("\n");
     sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
     sb.append("    metaData: ").append(toIndentedString(metaData)).append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }

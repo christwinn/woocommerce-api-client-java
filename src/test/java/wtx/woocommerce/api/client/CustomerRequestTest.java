@@ -1,0 +1,157 @@
+/*
+ * Copyright (c) 2025.
+ *
+ * Crud+ ActionBuilder
+ * Author: Chris Twinn
+ * Licence: MIT Licence see LICENCE file
+ * All Rights Reserved
+ */
+
+package wtx.woocommerce.api.client;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
+
+import pl.wtx.woocommerce.api.client.model.Customer;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pl.wtx.woocommerce.api.client.invoker.ApiException;
+import pl.wtx.woocommerce.api.client.model.Order;
+import pl.wtx.woocommerce.crudPlusActionBuilder.request.CustomerRequest;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.Batch;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.Batched;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
+import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.Configuration;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class CustomerRequestTest {
+
+
+    private static final String SEPARATOR = "-------------------------------------------------------------------------------";
+
+    private MockWebServer mockWebServer;
+
+    private void logTestStart(String testName) {
+        System.out.println("\n" + SEPARATOR);
+        System.out.println("Starting test: " + testName);
+        System.out.println(SEPARATOR + "\n");
+    }
+
+    private void logTestSummary(String testName, int orderCount) {
+        System.out.println("\n" + SEPARATOR);
+        System.out.println("Test completed: " + testName);
+        System.out.println("Summary:");
+        System.out.println("- Total orders: " + orderCount);
+        System.out.println(SEPARATOR + "\n");
+    }
+
+
+    @BeforeEach
+    void setUp() throws IOException {
+
+        // Initialize mock web server
+        mockWebServer = new MockWebServer();
+        mockWebServer.start();
+
+        // Create and configure ApiClient with logging enabled
+        //reads our config file but the overrides the website
+        new Configuration(
+            mockWebServer.url("").toString(),
+            Configuration.getKey(),
+            Configuration.getSecret()
+        );
+
+    }
+
+    private ObjectMapper objectMapper(){
+
+        ObjectMapper objectMapper = new ObjectMapper()
+            .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+            //.setDateFormat(new RFC3339DateFormat())
+            .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+
+        objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
+
+        return objectMapper;
+
+    }
+
+    @Test
+    void testListAllOrdersStatuses() throws IOException, ApiException, InterruptedException {
+        testBatch("mockedRequest-customers-batch.json", "mockedResponse-customers-batch.json");
+    }
+
+    @Test
+    void testListReversed() throws IOException, ApiException, InterruptedException {
+        testBatch("mockedRequest-customers-batch.json","mockedResponse-customers-exist.json");
+    }
+
+
+
+    void testBatch(String frequest, String fresponse) throws IOException, ApiException, InterruptedException {
+
+        logTestStart("testBatch");
+
+        // Load mock response from file
+        String mockResponse = new String(Files.readAllBytes(
+            Paths.get("src/test/resources/wtx/woocommerce/api/client/" + fresponse)
+        ));
+
+        //System.out.println(mockResponse);
+
+        // Set up mock response
+        mockWebServer.enqueue(new MockResponse()
+            .setResponseCode(200)
+            .setHeader("Content-Type", "application/json")
+            .setBody(mockResponse));
+
+        String mockRequest = new String(Files.readAllBytes(
+            Paths.get("src/test/resources/wtx/woocommerce/api/client/" + frequest)
+        ));
+
+        Batch batch = objectMapper().readValue(mockRequest, new TypeReference<Batch>(){});
+
+        System.out.println(batch.getRecordCount());
+
+        Batched<Customer> response = new CustomerRequest.Batcher<>()
+            .setBatch(batch)
+            .getResponse();
+
+        System.out.println("Processing TESTS");
+
+        if (response.isSuccess()) {
+            for (Customer customer : response.getBatch().getCreated()) {
+                System.out.println(customer.toString());
+            }
+        }else{
+
+        }
+
+        // Then
+        assertNotNull(response.getBatch().getCreated(), "Created list should not be null");
+        assertFalse(response.getBatch().getCreated().isEmpty(), "Created list should not be empty");
+
+
+        // Verify request URL contains correct status parameters
+        String requestUrl = mockWebServer.takeRequest().getRequestUrl().toString();
+
+        System.out.println(requestUrl);
+
+        logTestSummary("testBatchCustomers", response.getBatch().getRecordCount());
+    }
+
+}

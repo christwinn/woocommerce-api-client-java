@@ -8,14 +8,19 @@
  */
 package pl.wtx.woocommerce.crudPlusActionBuilder.response.core;
 
-public class Message extends ErrorObject {
+public class Msg extends ErrorObject {
 
-    public Message(){
+    public Msg(){
         super();
     }
 
-    public Message(String message){
+    public Msg(String message){
         super( message );
     }
 
+    public void setMessage(String message){
+
+        super.setMessage(message);
+
+    }
 }

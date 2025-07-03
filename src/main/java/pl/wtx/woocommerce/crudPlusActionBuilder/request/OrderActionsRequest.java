@@ -10,9 +10,10 @@ package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderActionsResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.Created;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.Message;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.Message;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.Msg;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.ORDERS;
@@ -58,9 +59,9 @@ public class OrderActionsRequest extends ApiRequest {
         /**
         *
          */
-        public OrderActionsResponse getResponse(){
+        public Created<Message> getResponse(){
             if (orderId == 0) {
-                return new OrderActionsResponse(
+                return new Created<Message>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -70,8 +71,9 @@ public class OrderActionsRequest extends ApiRequest {
 
                 WooCommerce woo = new WooCommerce();
 
-                return new OrderActionsResponse(
-                    woo.create(getEndPoint(), new TypeReference<Message>(){})
+                return new Created<Message>(
+                    woo.create(getEndPoint(), new TypeReference<Msg>(){})
+
                 );
 
             }

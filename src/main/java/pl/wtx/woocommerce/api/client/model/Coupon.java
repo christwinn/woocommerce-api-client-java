@@ -10,6 +10,7 @@
 package pl.wtx.woocommerce.api.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -44,6 +45,8 @@ public class Coupon {
     private List<String> emailRestrictions; //	array	List of email addresses that can use this coupon.
     private List<Integer> usedBy; //	array	List of user IDs (or guest email addresses) that have used the coupon.read-only
     private List<MetaData> metaData; //	array	Meta data. See Coupon - Meta data properties
+
+    private ErrorObject error; //batch notifier
 
     public Coupon(){}
 
@@ -285,5 +288,25 @@ public class Coupon {
     @JsonProperty("meta_data")
     public void setMetaData(List<MetaData> metaData) {
         this.metaData = metaData;
+    }
+
+    /**
+     * When we batch the customers we retrieve a list of customers that have been created, updated, deleted
+     * Within this list we may have record A as success and so no error
+     * BUT record B may fail with exists, or something else.
+     * Only way to catch the error and pass back is by adding the error message into here.
+     */
+    @javax.annotation.Nullable
+    public ErrorObject getError() {
+        return error;
+    }
+
+    @JsonProperty("error")
+    public void setError(@javax.annotation.Nullable ErrorObject error) {
+        this.error = error;
+    }
+
+    public boolean hasError() {
+        return error != null;
     }
 }

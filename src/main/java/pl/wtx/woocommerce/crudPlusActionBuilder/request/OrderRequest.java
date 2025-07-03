@@ -13,8 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.CouponResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
@@ -24,7 +23,7 @@ import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.ORDERS;
 
-public class OrderRequest extends ApiRequest {
+public class OrderRequest extends ApiRequest implements ISkeleton {
 
     protected final Order order = new Order();
 
@@ -34,7 +33,7 @@ public class OrderRequest extends ApiRequest {
     //private boolean duplicate;
     private boolean isBatch;
 
-    public OrderRequest(Creator creator){
+    public OrderRequest(Creator<?> creator){
 
         order.setPaymentMethod(creator.paymentMethod);
         order.setPaymentMethodTitle(creator.paymentMethodTitle);
@@ -46,20 +45,20 @@ public class OrderRequest extends ApiRequest {
 
     }
 
-    public OrderRequest(Reader reader){
+    public OrderRequest(Reader<?> reader){
 
         order.setId(reader.id);
 
     }
 
-    public OrderRequest(Updater updater){
+    public OrderRequest(Updater<?> updater){
 
         this((Creator)updater);
         order.setId(updater.id);
 
     }
 
-    public OrderRequest(Deleter deleter){
+    public OrderRequest(Deleter<?> deleter){
 
         this((Reader)deleter);
         isBatch = false;
@@ -67,7 +66,7 @@ public class OrderRequest extends ApiRequest {
 
     }
 
-    public OrderRequest(Batcher batcher){
+    public OrderRequest(Batcher<?> batcher){
 
         batch = batcher.getBatch();
         force = false;
@@ -166,12 +165,9 @@ public class OrderRequest extends ApiRequest {
 
 
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
-        public OrderResponse getResponse(){
-            WooCommerce woo = new WooCommerce();
-            return woo.create(build());
+        public Created<Order> getResponse(){
+            return new WooCommerce().create(build());
         }
-
-
 
     }
 
@@ -196,9 +192,9 @@ public class OrderRequest extends ApiRequest {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        public OrderResponse getResponse(){
+        public Read<Order> getResponse(){
             if (id == 0) {
-                return new OrderResponse(
+                return new Read<Order>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -207,8 +203,7 @@ public class OrderRequest extends ApiRequest {
                             "Use the Searcher with no parameters to get a full list")
                 );
             }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.read(build());
+                return new WooCommerce().read(build());
             }
         }
 
@@ -230,11 +225,11 @@ public class OrderRequest extends ApiRequest {
 
         /** Returns single Updated ProductCategory**/
         @Override
-        public OrderResponse getResponse(){
+        public Updated<Order> getResponse(){
             if (id > 0) {
                 return new WooCommerce().update(build());
             }else{
-                return new OrderResponse(
+                return new Updated<Order>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -261,55 +256,8 @@ public class OrderRequest extends ApiRequest {
 
         /** Returns single Deleted ProductCategory**/
         @Override
-        public OrderResponse getResponse(){
-            WooCommerce woo = new WooCommerce();
-            return woo.delete(build());
-        }
-
-    }
-
-    private static class Batch{
-
-        private final List<Order> create;
-        private final List<Order> update;
-        private final List<Order> delete;
-
-        public Batch(){
-
-            create = new ArrayList<>();
-            update = new ArrayList<>();
-            delete = new ArrayList<>();
-
-        }
-
-        public int getRecordCount(){
-            return create.size() + update.size() + delete.size();
-        }
-
-        public boolean isEmpty(){
-            return create.isEmpty() && update.isEmpty() && delete.isEmpty();
-        }
-
-        public void addCreator(Creator create){
-            this.create.add(create.build().order);
-        }
-
-        public void addUpdater(Updater update){
-            this.update.add(update.build().order);
-        }
-
-        public void addDeleter(Deleter delete){
-            this.delete.add(delete.build().order);
-        }
-
-        public List<Order> getCreate(){
-            return create;
-        }
-        public List<Order> getUpdate(){
-            return update;
-        }
-        public List<Order> getDelete(){
-            return delete;
+        public Deleted<Order> getResponse(){
+            return new WooCommerce().delete(build());
         }
 
     }
@@ -327,17 +275,17 @@ public class OrderRequest extends ApiRequest {
         }
 
         public T addCreator(Creator create){
-            batch.addCreator(create);
+            batch.addCreate(create.build().order);
             return self();
         }
 
         public T addUpdater(Updater update){
-            batch.addUpdater(update);
+            batch.addUpdate(update.build().order);
             return self();
         }
 
         public T addDeleter(Deleter delete){
-            batch.addDeleter(delete);
+            batch.addDelete(delete.build().order);
             return self();
         }
 
@@ -350,15 +298,15 @@ public class OrderRequest extends ApiRequest {
         }
 
         /** Returns list of amended ProductCategories **/
-        public OrderResponse getResponse(){
+        public Batched<Order> getResponse(){
 
             if (batch.isEmpty()){
 
-                return new OrderResponse(new ApiResponseResult(false, 0, "Nothing to do"));
+                return new Batched<Order>(new ApiResponseResult(false, 0, "Nothing to do"));
 
             }else if (batch.getRecordCount() > 100){
 
-                return new OrderResponse(
+                return new Batched<Order>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -380,9 +328,15 @@ public class OrderRequest extends ApiRequest {
 
     public static class ListAll<T extends ListAll> {
 
-        public OrderResponse getResponse() {
+        public Listed<Order> getResponse(){
 
-            return new OrderRequest.Searcher<>().getResponse();
+            return new Listed<Order>(
+                new WooCommerce().search(
+                    ORDERS,
+                    "",
+                    new TypeReference<List<Order>>(){}
+                )
+            );
 
         }
 
@@ -395,7 +349,7 @@ public class OrderRequest extends ApiRequest {
      *
      * @param <T>
      */
-    public static class Searcher<T extends Searcher> extends Seek.Searcher<T> {
+    public static class Searcher<T extends Searcher<T>> extends Seek.Searcher<T> {
 
         T self() {
             return (T) this;
@@ -533,9 +487,9 @@ public class OrderRequest extends ApiRequest {
             return self();
         }
 
-        public OrderResponse getResponse(){
+        public Searched<Order> getResponse(){
 
-            return new OrderResponse(
+            return new Searched<Order>(
                 new WooCommerce().search(
                     ORDERS,
                     build(),

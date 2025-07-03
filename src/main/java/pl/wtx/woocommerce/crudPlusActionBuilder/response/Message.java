@@ -12,14 +12,14 @@ package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.Message;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.Msg;
 
 
-public class AuthenticationResponse  extends ApiResponse {
+public class Message extends ApiResponse {
 
-    private Message message = null;
+    private Msg message = null;
 
-    public AuthenticationResponse(ApiResponseResult result){
+    public Message(ApiResponseResult result){
 
         super(result);
 
@@ -27,10 +27,10 @@ public class AuthenticationResponse  extends ApiResponse {
             switch (result.getStatusCode()){
                 case 200: case 201:
                     setSuccess(true);
-                    if (result.getData() instanceof Message) {
-                        this.message = (Message) result.getData();
+                    if (result.getData() instanceof Msg) {
+                        this.message = (Msg) result.getData();
                     }else{
-                        this.message = new Message("Success but failed to decipher the Message, incorrect object type");
+                        this.message = new Msg("Success but failed to decipher the Message, incorrect object type");
                     }
                     break;
                 default:
@@ -42,7 +42,7 @@ public class AuthenticationResponse  extends ApiResponse {
 
     }
 
-    public Message getMessage() {
+    public Msg getMessage() {
         return message;
     }
 

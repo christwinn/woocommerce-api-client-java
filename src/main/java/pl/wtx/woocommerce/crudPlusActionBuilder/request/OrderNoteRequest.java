@@ -10,44 +10,46 @@
 package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderNoteResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
-import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.NOTES;
-import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.ORDERS;
+import java.util.List;
 
-public class OrderNoteRequest extends ApiRequest {
+import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.*;
+
+public class OrderNoteRequest extends ApiRequest implements ISkeleton {
 
     private final OrderNote orderNote = new OrderNote();
 
     private boolean force;
 
-    public OrderNoteRequest(@SuppressWarnings("rawtypes") Creator creator){
+    public OrderNoteRequest(Creator<?> creator){
 
-        this((ListAll)creator);
+        orderNote.setOrderId(creator.orderId);
         orderNote.setNote(creator.note);
         orderNote.setCustomerNote(creator.customerNote);
         orderNote.setAddedByUser(creator.addedByUser);
 
     }
 
-    public OrderNoteRequest(Reader reader){
-
-        this((ListAll)reader);
+    public OrderNoteRequest(Reader<?> reader){
+        orderNote.setOrderId(reader.orderId);
         orderNote.setId(reader.noteId);
     }
 
-    public OrderNoteRequest(Deleter deleter){
+    public OrderNoteRequest(Deleter<?> deleter){
 
-        this((Reader)deleter);
+        this((Reader<?>)deleter);
         force = deleter.force;
 
     }
 
-    public OrderNoteRequest(ListAll listAller){
+    public OrderNoteRequest(ListAll<?> listAller){
 
         orderNote.setOrderId(listAller.orderId);
 
@@ -93,14 +95,21 @@ public class OrderNoteRequest extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends ListAll{
+    public static class Creator<T extends Creator<T>>{
 
         private String note;
         private Boolean customerNote;
         private Boolean addedByUser;
 
+        protected int orderId;
+
         T self() {
             return (T) this;
+        }
+
+        public T setOrderId(int orderId){
+            this.orderId = orderId;
+            return self();
         }
 
         /**
@@ -143,17 +152,16 @@ public class OrderNoteRequest extends ApiRequest {
 
 
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
-        public OrderNoteResponse getResponse(){
+        public Created<OrderNote> getResponse(){
             if (orderId == 0) {
-                return new OrderNoteResponse(
+                return new Created<OrderNote>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Order Id MANDATORY!\nUse Lister to ListAll")
                 );
             }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.create(build());
+                return new WooCommerce().create(build());
             }
         }
 
@@ -161,12 +169,19 @@ public class OrderNoteRequest extends ApiRequest {
 
     }
 
-    public static class Reader<T extends Reader<T>> extends ListAll{
+    public static class Reader<T extends Reader<T>>{
 
         protected int noteId;
 
+        protected int orderId;
+
         T self() {
             return (T) this;
+        }
+
+        public T setOrderId(int orderId){
+            this.orderId = orderId;
+            return self();
         }
 
         public T setNoteId(int noteId){
@@ -182,17 +197,16 @@ public class OrderNoteRequest extends ApiRequest {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        public OrderNoteResponse getResponse(){
+        public Read<OrderNote> getResponse(){
             if (orderId == 0 || noteId == 0) {
-                return new OrderNoteResponse(
+                return new Read<OrderNote>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Order Id AND Note Id is MANDATORY!\nUse Lister to ListAll")
                 );
             }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.read(build());
+                return new WooCommerce().read(build());
             }
         }
 
@@ -214,23 +228,22 @@ public class OrderNoteRequest extends ApiRequest {
 
         /** Returns single Deleted ProductCategory**/
         @Override
-        public OrderNoteResponse getResponse(){
+        public Deleted<OrderNote> getResponse(){
             if (orderId == 0 || noteId == 0) {
-                return new OrderNoteResponse(
+                return new Deleted<OrderNote>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Order Id AND Note Id is MANDATORY!")
                 );
             }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.delete(build());
+                return new WooCommerce().delete(build());
             }
         }
 
     }
 
-    public static class ListAll<T extends ListAll<T>>{
+    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCore<T>{
 
         protected int orderId;
 
@@ -248,25 +261,85 @@ public class OrderNoteRequest extends ApiRequest {
             return self();
         }
 
-        protected OrderNoteRequest build(){
-            return new OrderNoteRequest(this);
-        }
-
         /**
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        public OrderNoteResponse getResponse(){
+        public Listed<OrderNote> getResponse(){
             if (orderId == 0) {
-                return new OrderNoteResponse(
+                return new Listed<OrderNote>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Order Id is MANDATORY!")
                 );
             }else {
-                WooCommerce woo = new WooCommerce();
-                return woo.read(build());
+                return new Listed<OrderNote>(
+                    new WooCommerce().search(
+                        getEndPoint(),
+                        build(),
+                        new TypeReference<List<Customer>>(){}
+                    )
+                );
+            }
+        }
+
+    }
+
+    public static class Searcher<T extends Searcher<T>> extends ListAll<T>{
+
+        T self() {
+            return (T) this;
+        }
+
+        public T setContext(String context) {
+            addNameValuePair("context", context);
+            return self();
+        }
+
+        /**
+         *
+         * @param type Limit result to customers or internal notes.
+         *             Options: any, customer and internal.
+         *             Default is any.
+         * @return T
+         */
+        public T setType(String type) {
+            addNameValuePair("type", type);
+            return self();
+        }
+
+        /**
+         *
+         * @param orderId Order note(s) must be tied to an Order.
+         * @return  T
+         */
+        public T setOrderId(int orderId){
+            this.orderId = orderId;
+            return self();
+        }
+
+        /**
+         *  If the id is set returns a single productCategory
+         *  otherwise returns list of productCategory
+         */
+        @Override
+        public Searched<OrderNote> getResponse(){
+            if (orderId == 0) {
+                return new Searched<OrderNote>(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Order Id is MANDATORY!")
+                );
+            }else {
+                return new Searched<OrderNote>(
+                    new WooCommerce().search(
+                        getEndPoint(),
+                        build(),
+                        new TypeReference<List<Customer>>(){}
+                    )
+                );
             }
         }
 

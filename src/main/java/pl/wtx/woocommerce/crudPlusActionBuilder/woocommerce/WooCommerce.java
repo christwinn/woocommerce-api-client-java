@@ -51,7 +51,7 @@ public class WooCommerce {
         Logger.getLogger(
             WooCommerce.class.getName()).log(
                 Level.INFO,
-                Configuration.isDebug() ? "http:" : "https://" +
+                "https://" +
                 Configuration.getWebsite() +
                 Configuration.getApi() +
                 endPoint
@@ -136,9 +136,11 @@ public class WooCommerce {
 
     }
 
+
+
     /**
      *
-     * Searchers go through here
+     * Searchers and ListAll go through here
      *
      * @param endPoint where is the target
      * @param parameters the parameters for the search
@@ -152,136 +154,131 @@ public class WooCommerce {
         return read(endPoint, parameters, type);
 
     }
+    public ApiResponseResult listAll(String endPoint, String parameters, TypeReference<?> type){
+        return search(endPoint, parameters, type);
+    }
+
 
     //<editor-fold desc="Coupon">
-    public CouponResponse create(CouponRequest request) {
-        return new CouponResponse(
+    public Created<Coupon> create(CouponRequest request) {
+        return new Created<Coupon>(
             create(request.endPoint(), request.toJson(), new TypeReference<Coupon>(){})
         );
     }
 
-    public CouponResponse read(CouponRequest request){
+    public Read<Coupon> read(CouponRequest request){
 
-        return new CouponResponse(
+        return new Read<Coupon>(
             read(request.endPoint(), new TypeReference<Coupon>(){})
         );
 
     }
-    public CouponResponse update(CouponRequest request){
-        return new CouponResponse(
+    public Updated<Coupon> update(CouponRequest request){
+        return new Updated<Coupon>(
             update(request.endPoint(), request.toJson(), new TypeReference<Coupon>(){})
         );
 
     }
-    public CouponResponse delete(CouponRequest request){
-        return new CouponResponse(
+    public Deleted<Coupon> delete(CouponRequest request){
+        return new Deleted<Coupon>(
             delete(request.endPoint(), new TypeReference<Coupon>(){})
         );
 
     }
 
-    public CouponResponse batch(CouponRequest batch){
-        return new CouponResponse(
-            create(batch.endPoint(), batch.toJson(), new TypeReference<List<Coupon>>(){})
+    public Batched<Coupon> batch(CouponRequest batch){
+        return new Batched<Coupon>(
+            create(batch.endPoint(), batch.toJson(), new TypeReference<Batch<Coupon>>(){})
         );
     }
     //</editor-fold>
 
     //<editor-fold desc="Customer">
-    public CustomerResponse create(CustomerRequest request) {
-        return new CustomerResponse(
+    public Created<Customer> create(CustomerRequest request) {
+        return new Created<Customer>(
             create(request.endPoint(), request.toJson(), new TypeReference<Customer>(){})
         );
     }
 
-    public CustomerResponse read(CustomerRequest request){
-
-        return new CustomerResponse(
+    public Read<Customer> read(CustomerRequest request){
+        return new Read<Customer>(
             read(request.endPoint(), new TypeReference<Customer>(){})
         );
-
     }
-    public CustomerResponse update(CustomerRequest request){
-        return new CustomerResponse(
+    public Updated<Customer> update(CustomerRequest request){
+        return new Updated<Customer>(
             update(request.endPoint(), request.toJson(), new TypeReference<Customer>(){})
         );
 
     }
-    public CustomerResponse delete(CustomerRequest request){
-        return new CustomerResponse(
+    public Deleted<Customer> delete(CustomerRequest request){
+        return new Deleted<Customer>(
             delete(request.endPoint(), new TypeReference<Customer>(){})
         );
 
     }
 
-    public CustomerResponse batch(CustomerRequest batch){
-        return new CustomerResponse(
-            create(batch.endPoint(), batch.toJson(), new TypeReference<List<Customer>>(){})
-        );
-    }
-    //</editor-fold>
+    public Batched<Customer> batch(CustomerRequest batch){
 
-    //<editor-fold desc="Customer Downloads">
-    public CustomerDownloadsResponse read(CustomerDownloadsRequest request){
+        return new Batched<Customer>(
+            create(batch.endPoint(), batch.toJson(), new TypeReference<Batch<Customer>>(){})
 
-        return new CustomerDownloadsResponse(
-            read(request.endPoint(), new TypeReference<List<CustomerDownload>>(){})
         );
 
     }
     //</editor-fold>
 
     //<editor-fold desc="Orders">
-    public OrderResponse create(OrderRequest request) {
-        return new OrderResponse(
+    public Created<Order> create(OrderRequest request) {
+        return new Created<Order>(
             create(request.endPoint(), request.toJson(), new TypeReference<Order>(){})
         );
     }
 
-    public OrderResponse read(OrderRequest request){
+    public Read<Order> read(OrderRequest request){
 
-        return new OrderResponse(
+        return new Read<Order>(
             read(request.endPoint(), new TypeReference<Order>(){})
         );
 
     }
-    public OrderResponse update(OrderRequest request){
-        return new OrderResponse(
+    public Updated<Order> update(OrderRequest request){
+        return new Updated<Order>(
             update(request.endPoint(), request.toJson(), new TypeReference<Order>(){})
         );
 
     }
-    public OrderResponse delete(OrderRequest request){
-        return new OrderResponse(
+    public Deleted<Order> delete(OrderRequest request){
+        return new Deleted<Order>(
             delete(request.endPoint(), new TypeReference<Order>(){})
         );
 
     }
 
-    public OrderResponse batch(OrderRequest batch){
-        return new OrderResponse(
+    public Batched<Order> batch(OrderRequest batch){
+        return new Batched<Order>(
             create(batch.endPoint(), batch.toJson(), new TypeReference<List<Order>>(){})
         );
     }
     //</editor-fold>
 
     //<editor-fold desc="OrderNotes">
-    public OrderNoteResponse create(OrderNoteRequest request) {
-        return new OrderNoteResponse(
+    public Created<OrderNote> create(OrderNoteRequest request) {
+        return new Created<OrderNote>(
             create(request.endPoint(), request.toJson(), new TypeReference<OrderNote>(){})
         );
     }
 
-    public OrderNoteResponse read(OrderNoteRequest request){
+    public Read<OrderNote> read(OrderNoteRequest request){
 
-        return new OrderNoteResponse(
+        return new Read<OrderNote>(
             read(request.endPoint(), new TypeReference<OrderNote>(){})
         );
 
     }
     //no update available
-    public OrderNoteResponse delete(OrderNoteRequest request){
-        return new OrderNoteResponse(
+    public Deleted<OrderNote> delete(OrderNoteRequest request){
+        return new Deleted<OrderNote>(
             delete(request.endPoint(), new TypeReference<OrderNote>(){})
         );
 
@@ -289,22 +286,22 @@ public class WooCommerce {
     //</editor-fold>
 
     //<editor-fold desc="OrderRefunds">
-    public OrderRefundResponse create(OrderRefundRequest request) {
-        return new OrderRefundResponse(
+    public Created<OrderRefund> create(OrderRefundRequest request) {
+        return new Created<OrderRefund>(
             create(request.endPoint(), request.toJson(), new TypeReference<OrderRefund>(){})
         );
     }
 
-    public OrderRefundResponse read(OrderRefundRequest request){
+    public Read<OrderRefund> read(OrderRefundRequest request){
 
-        return new OrderRefundResponse(
+        return new Read<OrderRefund>(
             read(request.endPoint(), new TypeReference<OrderRefund>(){})
         );
 
     }
     //no update available
-    public OrderRefundResponse delete(OrderRefundRequest request){
-        return new OrderRefundResponse(
+    public Deleted<OrderRefund> delete(OrderRefundRequest request){
+        return new Deleted<OrderRefund>(
             delete(request.endPoint(), new TypeReference<OrderRefund>(){})
         );
 
@@ -313,76 +310,100 @@ public class WooCommerce {
     //</editor-fold>
 
     //<editor-fold desc="ProductCategory">
-    public ProductCategoryResponse create(ProductCategoryRequest request){
+    public Created<ProductCategory> create(ProductCategoryRequest request){
 
-        return new ProductCategoryResponse(
+        return new Created<ProductCategory>(
             create(request.endPoint(), request.toJson(),new TypeReference<ProductCategory>(){})
         );
 
     }
 
-    public ProductCategoryResponse read(ProductCategoryRequest request){
+    public Read<ProductCategory> read(ProductCategoryRequest request){
 
-        return new ProductCategoryResponse(
+        return new Read<ProductCategory>(
             read(
                 request.endPoint(),
                 new TypeReference<ProductCategory>(){})
         );
 
     }
-    public ProductCategoryResponse update(ProductCategoryRequest request){
+    public Updated<ProductCategory> update(ProductCategoryRequest request){
 
-        return new ProductCategoryResponse(
+        return new Updated<ProductCategory>(
             update(request.endPoint(), request.toJson(), new TypeReference<ProductCategory>(){})
         );
 
     }
-    public ProductCategoryResponse delete(ProductCategoryRequest request){
+    public Deleted<ProductCategory> delete(ProductCategoryRequest request){
 
-        return new ProductCategoryResponse(
+        return new Deleted<ProductCategory>(
             delete(request.endPoint(), new TypeReference<ProductCategory>(){})
         );
 
     }
 
-    public ProductCategoryResponse batch(ProductCategoryRequest batch){
-        return new ProductCategoryResponse(
+    public Batched<ProductCategory> batch(ProductCategoryRequest batch){
+        return new Batched<ProductCategory>(
             create(batch.endPoint(), batch.toJson(),new TypeReference<List<ProductCategory>>(){})
         );
     }
     //</editor-fold>
 
     //<editor-fold desc="Product">
-    public ProductResponse create(ProductRequest request) {
+    public Created create(ProductRequest request){
+
+        return new Created<Product>(
+            create(request.endPoint(), request.toJson(), new TypeReference<Product>(){})
+        );
+
+    }
+    /*public ProductResponse create(ProductRequest request) {
         return new ProductResponse(
             create(request.endPoint(), request.toJson(), new TypeReference<Product>(){})
         );
+    }*/
+
+    public Read read(ProductRequest request){
+
+        return new Read<Product>(
+            read(request.endPoint(), new TypeReference<Product>(){})
+
+        );
+
     }
 
-    public ProductResponse read(ProductRequest request){
+    /*public ProductResponse read(ProductRequest request){
 
         return new ProductResponse(
             read(request.endPoint(), new TypeReference<Product>(){})
         );
 
-    }
-    public ProductResponse update(ProductRequest request){
-        return new ProductResponse(
+    }*/
+    public Updated update(ProductRequest request){
+        return new Updated<Product>(
             update(request.endPoint(), request.toJson(), new TypeReference<Product>(){})
         );
 
     }
-    public ProductResponse delete(ProductRequest request){
-        return new ProductResponse(
+    public Deleted delete(ProductRequest request){
+        return new Deleted<Product>(
             delete(request.endPoint(), new TypeReference<Product>(){})
         );
 
     }
 
-    public ProductResponse batch(ProductRequest batch){
+    public Duplicated duplicate(ProductRequest batch){
 
-        return new ProductResponse(
-            create(batch.endPoint(), batch.toJson(), new TypeReference<List<Product>>(){})
+        return new Duplicated<Product>(
+            create(batch.endPoint(), batch.toJson(), new TypeReference<Batch<Product>>(){})
+        );
+
+    }
+
+    public Batched batch(ProductRequest batch){
+
+        return new Batched<Product>(
+            create(batch.endPoint(), batch.toJson(), new TypeReference<Batch<Product>>(){})
         );
 
     }

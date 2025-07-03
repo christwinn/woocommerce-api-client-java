@@ -10,21 +10,22 @@ package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import pl.wtx.woocommerce.api.client.model.Customer;
 import pl.wtx.woocommerce.api.client.model.ProductCategory;
 import pl.wtx.woocommerce.api.client.model.ProductImage;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductCategoryResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.CUSTOMERS;
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.PRODUCT_CATEGORIES;
 
-public class ProductCategoryRequest extends ApiRequest {
+public class ProductCategoryRequest extends ApiRequest implements ISkeleton {
 
     protected final ProductCategory category = new ProductCategory();
 
@@ -34,7 +35,7 @@ public class ProductCategoryRequest extends ApiRequest {
     //private boolean duplicate;
     private boolean isBatch;
 
-    public ProductCategoryRequest(Creator creator){
+    public ProductCategoryRequest(Creator<?> creator){
 
         category.setName(creator.name);
         category.setSlug(creator.slug);
@@ -52,28 +53,28 @@ public class ProductCategoryRequest extends ApiRequest {
 
     }
 
-    public ProductCategoryRequest(Reader reader){
+    public ProductCategoryRequest(Reader<?> reader){
 
         category.setId(reader.id);
 
     }
 
-    public ProductCategoryRequest(Updater updater){
+    public ProductCategoryRequest(Updater<?> updater){
 
-        this((Creator)updater);
+        this((Creator<?>)updater);
         category.setId(updater.id);
 
     }
 
-    public ProductCategoryRequest(Deleter deleter){
+    public ProductCategoryRequest(Deleter<?> deleter){
 
-        this((Reader)deleter);
+        this((Reader<?>)deleter);
         isBatch = false;
         force = deleter.force;
 
     }
 
-    public ProductCategoryRequest(Batcher batcher){
+    public ProductCategoryRequest(Batcher<?> batcher){
 
         batch = batcher.getBatch();
         force = false;
@@ -175,9 +176,8 @@ public class ProductCategoryRequest extends ApiRequest {
 
 
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
-        public ProductCategoryResponse getResponse(){
-            WooCommerce woo = new WooCommerce();
-            return woo.create(build());
+        public Created<ProductCategory> getResponse(){
+            return new WooCommerce().create(build());
         }
     }
 
@@ -202,11 +202,11 @@ public class ProductCategoryRequest extends ApiRequest {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        public ProductCategoryResponse getResponse(){
+        public Read<ProductCategory> getResponse(){
             if (id > 0) {
                 return new WooCommerce().read(build());
             }else{
-                return new ProductCategoryResponse(
+                return new Read<ProductCategory>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -235,11 +235,11 @@ public class ProductCategoryRequest extends ApiRequest {
 
         /** Returns single Updated ProductCategory**/
         @Override
-        public ProductCategoryResponse getResponse(){
+        public Updated<ProductCategory> getResponse(){
             if (id > 0) {
                 return new WooCommerce().update(build());
             }else {
-                return new ProductCategoryResponse(
+                return new Updated<ProductCategory>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -267,12 +267,11 @@ public class ProductCategoryRequest extends ApiRequest {
 
         /** Returns single Deleted ProductCategory**/
         @Override
-        public ProductCategoryResponse getResponse(){
+        public Deleted<ProductCategory> getResponse(){
             if (id > 0 && force) {
-                WooCommerce woo = new WooCommerce();
-                return woo.delete(build());
+                return new WooCommerce().delete(build());
             }else {
-                return new ProductCategoryResponse(
+                return new Deleted<ProductCategory>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -280,52 +279,6 @@ public class ProductCategoryRequest extends ApiRequest {
                 );
             }
 
-        }
-
-    }
-
-    private static class Batch{
-
-        private final List<ProductCategory> create;
-        private final List<ProductCategory> update;
-        private final List<ProductCategory> delete;
-
-        public Batch(){
-
-            create = new ArrayList<>();
-            update = new ArrayList<>();
-            delete = new ArrayList<>();
-
-        }
-
-        public int getRecordCount(){
-            return create.size() + update.size() + delete.size();
-        }
-
-        public boolean isEmpty(){
-            return create.isEmpty() && update.isEmpty() && delete.isEmpty();
-        }
-
-        public void addCreator(Creator create){
-            this.create.add(create.build().category);
-        }
-
-        public void addUpdater(Updater update){
-            this.update.add(update.build().category);
-        }
-
-        public void addDeleter(Deleter delete){
-            this.delete.add(delete.build().category);
-        }
-
-        public List<ProductCategory> getCreate(){
-            return create;
-        }
-        public List<ProductCategory> getUpdate(){
-            return update;
-        }
-        public List<ProductCategory> getDelete(){
-            return delete;
         }
 
     }
@@ -343,17 +296,17 @@ public class ProductCategoryRequest extends ApiRequest {
         }
 
         public T addCreator(Creator create){
-            batch.addCreator(create);
+            batch.addCreate(create);
             return self();
         }
 
         public T addUpdater(Updater update){
-            batch.addUpdater(update);
+            batch.addUpdate(update);
             return self();
         }
 
         public T addDeleter(Deleter delete){
-            batch.addDeleter(delete);
+            batch.addDelete(delete);
             return self();
         }
 
@@ -366,15 +319,15 @@ public class ProductCategoryRequest extends ApiRequest {
         }
 
         /** Returns list of amended ProductCategories **/
-        public ProductCategoryResponse getResponse(){
+        public Batched<ProductCategory> getResponse(){
 
             if (batch.isEmpty()){
 
-                return new ProductCategoryResponse(new ApiResponseResult(false, 0, "Nothing to do"));
+                return new Batched<ProductCategory>(new ApiResponseResult(false, 0, "Nothing to do"));
 
             }else if (batch.getRecordCount() > 100){
 
-                return new ProductCategoryResponse(
+                return new Batched<ProductCategory>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -395,9 +348,15 @@ public class ProductCategoryRequest extends ApiRequest {
 
     public static class ListAll<T extends ListAll>{
 
-        public ProductCategoryResponse getResponse() {
+        public Listed<ProductCategory> getResponse() {
 
-            return new ProductCategoryRequest.Searcher<>().getResponse();
+            return new Listed<ProductCategory>(
+                new WooCommerce().search(
+                    PRODUCT_CATEGORIES,
+                    "",
+                    new TypeReference<List<ProductCategory>>(){}
+                )
+            );
 
         }
     }
@@ -409,7 +368,7 @@ public class ProductCategoryRequest extends ApiRequest {
      *
      * @param <T>
      */
-    public static class Searcher<T extends Searcher> extends Seek.Searcher<T> {
+    public static class Searcher<T extends Searcher<T>> extends Seek.Searcher<T> {
 
         T self() {
             return (T) this;
@@ -451,9 +410,9 @@ public class ProductCategoryRequest extends ApiRequest {
             return self();
         }
 
-        public ProductCategoryResponse getResponse(){
+        public Searched<ProductCategory> getResponse(){
 
-            return new ProductCategoryResponse(
+            return new Searched<ProductCategory>(
                 new WooCommerce().search(
                     PRODUCT_CATEGORIES,
                     build(),

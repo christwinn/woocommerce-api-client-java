@@ -6,10 +6,12 @@
  * Licence: MIT Licence see LICENCE file
  * All Rights Reserved
  */
+
 package pl.wtx.woocommerce.crudPlusActionBuilder.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import pl.wtx.woocommerce.api.client.model.Customer;
+import pl.wtx.woocommerce.api.client.model.Product;
+import pl.wtx.woocommerce.crudPlusActionBuilder.request.ProductRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
@@ -19,12 +21,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CustomerResponse extends ApiResponse {
+public class Batched<T> extends ApiResponse {
 
-    private List<Customer> customers = new ArrayList<>();
-    private Customer customer = null;
+    private Batch<T> batch = new Batch<>();
 
-    public CustomerResponse(ApiResponseResult result){
+    public Batched(ApiResponseResult result){
 
         super(result);
 
@@ -32,11 +33,7 @@ public class CustomerResponse extends ApiResponse {
             switch (result.getStatusCode()){
                 case 200: case 201:
                     setSuccess(true);
-                    if (result.getData() instanceof Customer) {
-                        this.customer = (Customer) result.getData();
-                    }else{
-                        setCustomers(result);
-                    }
+                    this.batch = (Batch<T>)result.getData();
                     break;
                 default:
                     setSuccess(false);
@@ -47,33 +44,9 @@ public class CustomerResponse extends ApiResponse {
 
     }
 
-    @SuppressWarnings("unchecked")
-    private void setCustomers(ApiResponseResult result){
-        try {
-            this.customers = (List<Customer>) result.getData();
-        }catch (Exception e){
-            Logger.getLogger(CustomerResponse.class.getName())
-                .log(Level.SEVERE, "Failed to parse list", e);
-            setError(new ErrorObject("Parse list failure"));
-        }
-    }
-
-    public boolean hasCustomers(){
-        return !customers.isEmpty();
-    }
-
-    public boolean hasCustomer(){
-        return customer != null;
-    }
-
     /*If the id is NOT set then we get an array of product*/
-    public List<Customer> getCustomers(){
-        return customers;
-    }
-
-    /*If the id IS set then we get a singleton product*/
-    public Customer getCustomer(){
-        return customer;
+    public Batch<T> getBatch(){
+        return batch;
     }
 
     public String toJson(){
@@ -87,6 +60,5 @@ public class CustomerResponse extends ApiResponse {
         }
 
     }
-
 
 }

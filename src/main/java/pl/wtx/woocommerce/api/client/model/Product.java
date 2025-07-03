@@ -39,6 +39,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import pl.wtx.woocommerce.api.client.invoker.JSON;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
 
 /**
  * Product
@@ -421,6 +422,8 @@ public class Product {
   @SerializedName(SERIALIZED_NAME_META_DATA)
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
+
+  private ErrorObject error; //batch notifier
 
   public Product() {
   }
@@ -1952,7 +1955,25 @@ public class Product {
     this.metaData = metaData;
   }
 
+    /**
+     * When we batch the customers we retrieve a list of customers that have been created, updated, deleted
+     * Within this list we may have record A as success and so no error
+     * BUT record B may fail with exists, or something else.
+     * Only way to catch the error and pass back is by adding the error message into here.
+     */
+    @javax.annotation.Nullable
+    public ErrorObject getError() {
+        return error;
+    }
 
+    @JsonProperty("error")
+    public void setError(@javax.annotation.Nullable ErrorObject error) {
+        this.error = error;
+    }
+
+    public boolean hasError() {
+        return error != null;
+    }
 
   @Override
   public boolean equals(Object o) {

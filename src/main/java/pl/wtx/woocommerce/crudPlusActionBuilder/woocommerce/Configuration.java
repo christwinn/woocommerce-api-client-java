@@ -30,7 +30,7 @@ public class Configuration {
     private static String key;
     private static String secret;
 
-    private static Boolean debug;
+    private static boolean debug;
 
 
     /**
@@ -132,9 +132,6 @@ public class Configuration {
         return secret;
     }
     public static boolean isDebug() {
-        if (debug == null){
-            debug = false;
-        }
         return debug;
     }
 
@@ -154,6 +151,10 @@ public class Configuration {
 
     public void setSecret(String secret) {
         Configuration.secret = secret;
+    }
+
+    public void setDebug(boolean debug) {
+        Configuration.debug = debug;
     }
 
     /* We will look in ~/.woocommerce/config.json */

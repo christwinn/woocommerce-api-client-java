@@ -66,6 +66,7 @@ public class Http {
         try {
 
             StatusLine sl = response.getStatusLine();
+
             switch (sl.getStatusCode()) {
                 case 200:
                 case 201:
@@ -83,7 +84,13 @@ public class Http {
                             getObjectMapper().readValue(EntityUtils.toString(response.getEntity()), typeReference));
                     }
                 default:
-                    return new ApiResponseResult(false, sl.getStatusCode(), EntityUtils.toString(response.getEntity()));
+                    if (Configuration.isDebug()){
+                        String r = EntityUtils.toString(response.getEntity());
+                        System.out.println(r.replace(",", ",\n"));
+                        return new ApiResponseResult(false, sl.getStatusCode(), r);
+                    }else {
+                        return new ApiResponseResult(false, sl.getStatusCode(), EntityUtils.toString(response.getEntity()));
+                    }
             }
 
         } catch (IOException e) {

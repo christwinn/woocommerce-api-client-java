@@ -38,6 +38,7 @@ import java.util.Map;
 import java.util.Set;
 
 import pl.wtx.woocommerce.api.client.invoker.JSON;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
 
 /**
  * Order
@@ -627,6 +628,8 @@ public class Order {
   @SerializedName(SERIALIZED_NAME_SET_PAID)
   @javax.annotation.Nullable
   private Boolean setPaid;
+
+  private ErrorObject error; //batch notifier
 
   public Order() {
   }
@@ -1519,7 +1522,25 @@ public class Order {
     this.setPaid = setPaid;
   }
 
+    /**
+     * When we batch the customers we retrieve a list of customers that have been created, updated, deleted
+     * Within this list we may have record A as success and so no error
+     * BUT record B may fail with exists, or something else.
+     * Only way to catch the error and pass back is by adding the error message into here.
+     */
+    @javax.annotation.Nullable
+    public ErrorObject getError() {
+        return error;
+    }
 
+    @JsonProperty("error")
+    public void setError(@javax.annotation.Nullable ErrorObject error) {
+        this.error = error;
+    }
+
+    public boolean hasError() {
+        return error != null;
+    }
 
   @Override
   public boolean equals(Object o) {

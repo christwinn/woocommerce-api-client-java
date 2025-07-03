@@ -9,7 +9,7 @@
 
 package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.AuthenticationResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.Message;
 import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.Configuration;
 
@@ -84,7 +84,7 @@ public class AuthenticationRequest {
          *  Stores the provided details for later use by the system
          *  This only needs to be done once in our application
          */
-        public AuthenticationResponse getResponse(){
+        public Message getResponse(){
 
             new Configuration.Builder()
                 .website(website)
@@ -93,7 +93,7 @@ public class AuthenticationRequest {
                 .api(apiPath)
                 .build();
 
-            return new AuthenticationResponse(
+            return new Message(
                 new ApiResponseResult(
                     true,
                     200,

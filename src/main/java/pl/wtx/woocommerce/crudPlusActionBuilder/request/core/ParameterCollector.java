@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
-public class ParameterCollector {
+public class ParameterCollector<T> {
 
     //includeExclude is a list! while most parameters are single values
     private final HashMap<String, List<String>> urlParameters = new HashMap<>();

@@ -2,18 +2,12 @@ package pl.wtx.woocommerce;
 
 import java.util.*;
 
-import pl.wtx.woocommerce.api.client.model.Coupon;
-import pl.wtx.woocommerce.api.client.model.Customer;
-import pl.wtx.woocommerce.api.client.model.Product;
-import pl.wtx.woocommerce.api.client.model.ProductCategory;
+import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.CouponRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.CustomerRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.ProductCategoryRequest;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.ProductRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.CouponResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.CustomerResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductCategoryResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.ProductResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
 import pl.wtx.woocommerce.crudPlusActionBuilder.demonstration.CustomerDemo;
 
 /**
@@ -35,17 +29,54 @@ public class WooCommerceApiClientUsageDemo {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
 
+        String date = "2025-07-03T11:12:55Z";
+        if (date.endsWith("+0000")) {
+            date = date.substring(0, date.length()-5) + "Z";
+        }
+        if (date.length() > 19){
+            date = date.substring(0, 19);
+        }
+
+        System.out.println(date);
+
+/*
+        Read<Product> read = new ProductRequest.Reader<>().withId(2).getResponse();
+
+        if (read.isSuccess()) {
+            Product p = read.getRead();
+        }
+
         System.out.println("---Coupons");
-        CouponResponse coupons = new CouponRequest.ListAll<>().getResponse();
+        Listed<Coupon> coupons = new CouponRequest.ListAll<>().getResponse();
 
-        if (!coupons.getCoupons().isEmpty()){
+        if (coupons.isSuccess()) {
+            if (!coupons.getListed().isEmpty()) {
 
-            for (Coupon coupon : coupons.getCoupons()){
-                System.out.println(coupon.getCode());
+                for (Coupon coupon : coupons.getListed()) {
+                    System.out.println(coupon.getCode());
+                }
+
+            } else {
+                System.out.println("No coupons found");
             }
-
         }else{
-            System.out.println("No coupons found");
+            System.out.println(coupons.getError().getMessage());
+        }
+
+        Searched<Coupon> coup = new CouponRequest.Searcher<>().setCode("ABC").getResponse();
+
+        if (coup.isSuccess()) {
+            if (!coup.getSearched().isEmpty()) {
+
+                for (Coupon coupon : coup.getSearched()) {
+                    System.out.println(coupon.getCode());
+                }
+
+            } else {
+                System.out.println("No coupons found");
+            }
+        }else{
+            System.out.println(coup.getError().getMessage());
         }
 
 
@@ -69,23 +100,46 @@ public class WooCommerceApiClientUsageDemo {
             System.out.println(customer.toString());
         }
 
-        CustomerResponse batched = customerDemo.batchUpdateCustomers();
+        Batched<Customer> batched = customerDemo.batchUpdateCustomers();
         if (batched.isSuccess()){
-            System.out.println("All Updated");
+            System.out.println("The request was a success BUT cycle the records to check that they are!");
+
+            for (Customer bc : batched.getBatch().getCreated()){
+                if (!bc.hasError()){
+                    System.out.println(bc.toString());
+                }else{
+                    System.out.println("CFAIL:" + bc.getError().getMessage());
+                }
+            }
+            for (Customer bc : batched.getBatch().getUpdated()){
+                if (!bc.hasError()){
+                    System.out.println(bc.toString());
+                }else{
+                    System.out.println("UFAIL:" + bc.getError().getMessage());
+                }
+
+            }
+            for (Customer bc : batched.getBatch().getDeleted()){
+                if (!bc.hasError()){
+                    System.out.println(bc.toString());
+                }else{
+                    System.out.println("DFAIL:" + bc.getError().getMessage());
+                }
+            }
         }else{
             System.out.println(batched.getError().getMessage());
         }
 
         pleaseExplain();
 
-        CustomerResponse customerResponse =
+        Searched<Customer> customerResponse =
             new CustomerRequest.Searcher<>()
                 .setEmail("john.doe@example.com")
                 .getResponse();
 
         if (customerResponse.isSuccess()) {
-            if (!customerResponse.getCustomers().isEmpty()) {
-                for (Customer cust : customerResponse.getCustomers()) {
+            if (!customerResponse.getSearched().isEmpty()) {
+                for (Customer cust : customerResponse.getSearched()) {
                     System.out.println(cust.getFirstName() + " " + cust.getLastName() + " " + cust.getEmail());
                 }
             }else{
@@ -98,7 +152,7 @@ public class WooCommerceApiClientUsageDemo {
         readProductCategory(0);
 
         createAndReadProductCategories();
-
+*/
         crudPlusProducts();
 
         readProduct(315);
@@ -130,7 +184,7 @@ public class WooCommerceApiClientUsageDemo {
 
     private static void createAndReadProductCategories() {
 
-        ProductCategoryResponse createResponse =
+        Created<ProductCategory> createResponse =
             new ProductCategoryRequest.Creator<>()
                 .setName("NEW Category Name 123")
                 .setDescription("Category Description")
@@ -142,7 +196,7 @@ public class WooCommerceApiClientUsageDemo {
             //System.out.println("Woo ;-) Hoo" + createResponse.toJson());
 
             System.out.println(">>> Reading back the category we just made");
-            readProductCategory(createResponse.getCategory().getId());
+            readProductCategory(createResponse.getCreated().getId());
 
             System.out.println(">>> Reading all categories...");
             readProductCategory(0);
@@ -164,9 +218,8 @@ public class WooCommerceApiClientUsageDemo {
         if (id == 0){
 
             List<ProductCategory> categories =
-                new ProductCategoryRequest.Reader<>()
-                    .setId(id)
-                    .getResponse().getCategories();
+                new ProductCategoryRequest.ListAll<>()
+                    .getResponse().getListed();
 
             for (ProductCategory productCategory : categories) {
                 System.out.println(productCategory.toString());
@@ -177,7 +230,7 @@ public class WooCommerceApiClientUsageDemo {
             ProductCategory category =
                 new ProductCategoryRequest.Reader<>()
                     .setId(id)
-                    .getResponse().getCategory();
+                    .getResponse().getRead();
 
                 System.out.println(category.toString());
 
@@ -188,7 +241,7 @@ public class WooCommerceApiClientUsageDemo {
     private static void crudPlusProducts(){
 
         String sku = "A1234567";
-        ProductResponse create = new ProductRequest.Creator<>()
+        Created<Product> create = new ProductRequest.Creator<>()
             .setSku(sku)
             .setName("My New Product")
             .setDescription("<b>This is a bold assertion</b><br/>Buy Five Get one Free!")
@@ -200,10 +253,10 @@ public class WooCommerceApiClientUsageDemo {
 
             System.out.println("+++ Created Product -> check we have a product, maybe there was a parseFailure");
 
-            if (create.hasProduct()) {
+            if (create.hasCreated()) {
 
-                id = create.getProduct().getId();
-                printProduct(create.getProduct());
+                id = create.getCreated().getId();
+                printProduct(create.getCreated());
 
             }
 
@@ -220,7 +273,7 @@ public class WooCommerceApiClientUsageDemo {
 
         seekProduct(sku);
 
-        readProduct(0);
+        readProduct(id);
 
     }
 
@@ -228,14 +281,14 @@ public class WooCommerceApiClientUsageDemo {
 
         if (id == 0) {
 
-            ProductResponse response = new ProductRequest.Searcher<>()
+            Searched<Product> response = new ProductRequest.Searcher<>()
                 .getResponse();
 
             if (response.isSuccess()) {
-                if (!response.getProducts().isEmpty()) {
-                    id = response.getProducts().get(0).getId();
+                if (!response.getSearched().isEmpty()) {
+                    id = response.getSearched().get(0).getId();
                     System.out.println("+++ Multiple Products Found - id == 0");
-                    for (Product product : response.getProducts()) {
+                    for (Product product : response.getSearched()) {
                         printProduct(product);
                     }
                 } else {
@@ -251,17 +304,17 @@ public class WooCommerceApiClientUsageDemo {
             Product product = new ProductRequest.Reader<>()
                 .withId(id)
                 .getResponse()
-                .getProduct();
+                .getRead();
 
             printProduct(product);
 
-            ProductResponse response = new ProductRequest.Updater<>()
+            Updated<Product> response = new ProductRequest.Updater<>()
                 .setId(product.getId())
                 .setSku("22221111")//.setMetaData(product.getMetaData())
                 .getResponse();
 
             if (response.isSuccess()) {
-                printProduct(response.getProduct());
+                printProduct(response.getUpdated());
                 System.out.println("SUCCESS");
             }else{
                 System.out.println(response.getError().getMessage());
@@ -275,7 +328,7 @@ public class WooCommerceApiClientUsageDemo {
 
     private static void updateProduct(int id, String description){
 
-        ProductResponse updater = new ProductRequest.Updater<>()
+        Updated<Product> updater = new ProductRequest.Updater<>()
             .setId(id)
             .setDescription(description)
             .getResponse();
@@ -291,17 +344,10 @@ public class WooCommerceApiClientUsageDemo {
                 System.out.println(updater.getError().getMessage());
             }
 
-            if (updater.hasProducts()) { //not to be expected for updates
-
-                System.out.println("+++ Multiple Products Found - id == 0");
-                for (Product product : updater.getProducts()) {
-                    printProduct(product);
-                }
-
-            } else if (updater.hasProduct()) {
+            if (updater.hasUpdated()) {
 
                 System.out.println("+++ Single Product Found");
-                printProduct(updater.getProduct());
+                printProduct(updater.getUpdated());
 
             } else {
 
@@ -316,7 +362,7 @@ public class WooCommerceApiClientUsageDemo {
 
     private static void seekProduct(String sku){
 
-        ProductResponse seeker = new ProductRequest.Searcher<>()
+        Searched<Product> seeker = new ProductRequest.Searcher<>()
             .setSku(sku)
             .getResponse();
 
@@ -324,7 +370,7 @@ public class WooCommerceApiClientUsageDemo {
 
             System.out.println("+++ Seeked Product");
 
-            for (Product p : seeker.getProducts()) {
+            for (Product p : seeker.getSearched()) {
                 printProduct(p);
             }
 

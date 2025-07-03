@@ -7,7 +7,7 @@ import pl.wtx.woocommerce.api.client.invoker.*;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.MockResponse;
 import pl.wtx.woocommerce.crudPlusActionBuilder.request.OrderRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.OrderResponse;
+import pl.wtx.woocommerce.crudPlusActionBuilder.response.Searched;
 import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.Configuration;
 
 import java.io.IOException;
@@ -85,26 +85,26 @@ public class OrderRequestTest {
             .setHeader("Content-Type", "application/json")
             .setBody(mockResponse));
 
-        OrderResponse response = new OrderRequest.Searcher<>()
+        Searched<Order> response = new OrderRequest.Searcher<>()
             .setStatus(statuses)
             .getResponse();
 
         System.out.println("Processing TESTS");
 
         if (response.isSuccess()) {
-            for (Order order : response.getOrders()) {
+            for (Order order : response.getSearched()) {
                 System.out.println(order.toString());
             }
         }
 
         // Then
-        assertNotNull(response.getOrders(), "Order list should not be null");
-        assertFalse(response.getOrders().isEmpty(), "Order list should not be empty");
+        assertNotNull(response.getSearched(), "Order list should not be null");
+        assertFalse(response.getSearched().isEmpty(), "Order list should not be empty");
 
         for (String status : statuses) {
 
             // Verify we have orders in both statuses
-            boolean verified = response.getOrders().stream().anyMatch(order -> status.equals(order.getStatus()));
+            boolean verified = response.getSearched().stream().anyMatch(order -> status.equals(order.getStatus()));
 
             assertTrue(verified, String.format("Should have orders with '%s' status", status));
 
@@ -117,7 +117,7 @@ public class OrderRequestTest {
         assertTrue(requestUrl.contains("status=on-hold,completed"),
             "Request URL should contain correct status parameters");
 
-        logTestSummary("testListAllOrdersWithMultipleStatuses", response.getOrders().size(), statuses);
+        logTestSummary("testListAllOrdersWithMultipleStatuses", response.getSearched().size(), statuses);
     }
 
 }

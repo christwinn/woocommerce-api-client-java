@@ -12,15 +12,13 @@ import java.util.List;
 
 public class Seek {
 
-    public static class Searcher<T extends Searcher> extends ParameterCollector {
+    public static class SearchCore<T extends SearchCore<?>> extends ParameterCollector {
 
         T self() {
             return (T) this;
         }
 
         /**
-         *
-         *
          * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.
          * @return T
          */
@@ -28,6 +26,10 @@ public class Seek {
             addNameValuePair("context", context);
             return self();
         }
+
+    }
+
+    public static class Searcher<T extends Searcher<T>> extends SearchCore<T> {
 
         /**
          *
