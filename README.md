@@ -24,20 +24,50 @@ In it's simplicity:
   <li>
      These directly correlate with: 
      <ul>
-        <li>OrderRequest.Creator<>()</li>  
-        <li>OrderRequest.Reader<>()</li>  
-        <li>OrderRequest.ListAll<>()
-           <ul><li>Documentation shows List all orders which in turn specifies a parameter list this is implemented under: OrderRequest.Searcher<>()</li></ul>
+        <li>OrderRequest.Creator<>() which returns Created&lt;Order&gt;</li>  
+        <li>OrderRequest.Reader<>() which returns Reader&lt;Order&gt;</li>  
+        <li>OrderRequest.ListAll<> which returns Listed&lt;Order&gt;()
+           <ul><li>Documentation shows List all orders which in turn specifies a parameter list this is implemented under: OrderRequest.Searcher<>() which returns Searched&lt;Order&gt;</li></ul>
          </li>
-        <li>OrderRequest.Updater<>()</li>  
-        <li>OrderRequest.Deleter<>()</li>  
-        <li>OrderRequest.Batcher<>()</li>  
+        <li>OrderRequest.Updater<>() which returns Updated&lt;Order&gt;</li>  
+        <li>OrderRequest.Deleter<>() which returns Deleted&lt;Order&gt;</li>  
+        <li>OrderRequest.Batcher<>() which returns Batched&lt;Order&gt;</li>  
       </ul>
   </li>
-  <li>Only the options that are available for the action are available, i.e. you can not set the Id in Creator, but you MUST in updater</li>
-  <li>An OrderRequest has a correlating OrderResponse, the idea is to contain properly the server reponse and action result</li>
+  <li>Only the options that are available for the action are available, i.e. you can not set the Id in Creator, but you MUST in Updater</li>
 </ul>
 
+and ... 
+<ul>
+  <li>We can go to [https://woocommerce.github.io/woocommerce-rest-api-docs](https://woocommerce.github.io/woocommerce-rest-api-docs/#products)</li>
+  <li>
+     Here we are presented with the following options:
+     <ul>
+        <li>Create a Product</li>  
+        <li>Retrieve an Product</li>  
+        <li>List all products</li>  
+        <li>Duplicate a Product</li>  
+        <li>Update a Product</li>  
+        <li>Delete an Product</li>  
+        <li>Batch update Products</li>  
+      </ul>
+  </li>
+  <li>
+     and these directly correlate with: 
+     <ul>
+        <li>ProductRequest.Creator<>() which returns Created&lt;Product&gt;</li>  
+        <li>ProductRequest.Reader<>() which returns Reader&lt;Product&gt;</li>  
+        <li>ProductRequest.ListAll<> which returns Listed&lt;Product&gt;()
+           <ul><li>Documentation shows List all Products which in turn specifies a parameter list this is implemented under: ProductRequest.Searcher<>() which returns Searched&lt;Product&gt;</li></ul>
+         </li>
+        <li>ProductRequest.Updater<>() which returns Updated&lt;Product&gt;</li>  
+        <li>ProductRequest.Deleter<>() which returns Deleted&lt;Product&gt;</li>  
+        <li>ProductRequest.Batcher<>() which returns Batched&lt;Product&gt;</li>  
+      </ul>
+  </li>
+  <li>Again, only the options that are available for the action are available, i.e. you can not set the Id in Creator, but you MUST in Updater</li>
+</ul>
+           
 [Object]Response response = new [Object]Request.Creator<>().set..("").getReponse();
 
 The response contains whether it was a success, trying not to throw errors but cleanly returning them to the user.
