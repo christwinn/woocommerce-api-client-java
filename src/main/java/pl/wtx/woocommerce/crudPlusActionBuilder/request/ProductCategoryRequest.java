@@ -25,7 +25,7 @@ import java.util.List;
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.CUSTOMERS;
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.PRODUCT_CATEGORIES;
 
-public class ProductCategoryRequest extends ApiRequest implements ISkeleton {
+public class ProductCategoryRequest extends ApiRequest {
 
     protected final ProductCategory category = new ProductCategory();
 

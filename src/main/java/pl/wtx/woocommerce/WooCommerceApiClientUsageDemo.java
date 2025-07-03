@@ -150,9 +150,9 @@ public class WooCommerceApiClientUsageDemo {
         }
 
         readProductCategory(0);
-
-        createAndReadProductCategories();
 */
+        createAndReadProductCategories();
+
         crudPlusProducts();
 
         readProduct(315);

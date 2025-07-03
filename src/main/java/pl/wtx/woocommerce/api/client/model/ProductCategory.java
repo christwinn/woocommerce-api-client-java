@@ -274,6 +274,11 @@ public class ProductCategory {
   public void setDisplay(@javax.annotation.Nullable DisplayEnum display) {
     this.display = display;
   }
+  public void setDisplay(@javax.annotation.Nullable String display) {
+
+      this.display = DisplayEnum.fromValue(display);
+
+    }
 
 
   public ProductCategory image(@javax.annotation.Nullable ProductImage image) {

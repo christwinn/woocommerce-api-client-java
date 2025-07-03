@@ -23,7 +23,7 @@ import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.ORDERS;
 
-public class OrderRequest extends ApiRequest implements ISkeleton {
+public class OrderRequest extends ApiRequest {
 
     protected final Order order = new Order();
 

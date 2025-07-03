@@ -27,7 +27,7 @@ import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.*;
 
-public class CouponRequest extends ApiRequest implements ISkeleton {
+public class CouponRequest extends ApiRequest {
 
     private final Coupon coupon = new Coupon();
 

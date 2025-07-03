@@ -20,12 +20,11 @@ import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.PRODUCTS;
 
-public class ProductRequest extends ApiRequest implements ISkeleton {
+public class ProductRequest extends ApiRequest {
 
     protected final Product product = new Product();
 

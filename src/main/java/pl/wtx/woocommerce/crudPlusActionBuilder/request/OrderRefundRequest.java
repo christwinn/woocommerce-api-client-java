@@ -23,7 +23,7 @@ import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.*;
 
-public class OrderRefundRequest extends ApiRequest implements ISkeleton {
+public class OrderRefundRequest extends ApiRequest {
 
     protected final OrderRefund orderRefund = new OrderRefund();
 

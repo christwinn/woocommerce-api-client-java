@@ -22,7 +22,7 @@ import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.CUSTOMERS;
 
-public class CustomerRequest extends ApiRequest implements ISkeleton {
+public class CustomerRequest extends ApiRequest {
 
     protected final Customer customer = new Customer();
 

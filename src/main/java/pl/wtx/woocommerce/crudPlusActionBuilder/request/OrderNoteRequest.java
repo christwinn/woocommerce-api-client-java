@@ -22,7 +22,7 @@ import java.util.List;
 
 import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.*;
 
-public class OrderNoteRequest extends ApiRequest implements ISkeleton {
+public class OrderNoteRequest extends ApiRequest {
 
     private final OrderNote orderNote = new OrderNote();
 
