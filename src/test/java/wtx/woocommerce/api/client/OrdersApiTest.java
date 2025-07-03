@@ -130,8 +130,8 @@ public class OrdersApiTest {
         String requestUrl = mockWebServer.takeRequest().getRequestUrl().toString();
         assertTrue(requestUrl.contains("status=on-hold,completed"),
             "Request URL should contain correct status parameters");
-*/
-        logTestSummary("testListAllOrdersWithMultipleStatuses", orders.size(), statuses);
+
+        logTestSummary("testListAllOrdersWithMultipleStatuses", orders.size(), statuses);*/
 
     }
 
