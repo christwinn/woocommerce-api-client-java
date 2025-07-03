@@ -9,21 +9,6 @@
 
 package pl.wtx.woocommerce.crudPlusActionBuilder.request;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import pl.wtx.woocommerce.api.client.model.Billing;
-import pl.wtx.woocommerce.api.client.model.Customer;
-import pl.wtx.woocommerce.api.client.model.Shipping;
-import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.ApiRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.request.core.Seek;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.*;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ApiResponseResult;
-import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.WooCommerce;
-
-import java.util.List;
-
-import static pl.wtx.woocommerce.crudPlusActionBuilder.defines.EndPoints.CUSTOMERS;
-
 public interface ISkeleton {
 
         public String endPoint();
