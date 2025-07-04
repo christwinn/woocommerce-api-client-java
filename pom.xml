@@ -240,7 +240,7 @@
                         <include>**/*</include>
                     </includes>
                     <merge>true</merge>
-                    <repositoryName>woocommerce-api-client-java </repositoryName>
+                    <repositoryName>woocommerce-api-client-java</repositoryName>
                     <repositoryOwner>christwinn</repositoryOwner>
                     <server>github</server>
                 </configuration>
@@ -267,19 +267,19 @@
     </reporting>
 
     <scm>
-        <connection>scm:git:git://github.com/wtx-labs/woocommerce-api-client-java.git</connection>
-        <developerConnection>scm:git:ssh://github.com/wtx-labs/woocommerce-api-client-java.git</developerConnection>
-        <url>https://github.com/wtx-labs/woocommerce-api-client-java</url>
+        <connection>scm:git:git://github.com/christwinn/woocommerce-api-client-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com/christwinn/woocommerce-api-client-java.git</developerConnection>
+        <url>https://github.com/christwinn/woocommerce-api-client-java</url>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/wtx-labs/woocommerce-api-client-java/issues</url>
+        <url>https://github.com/christwinn/woocommerce-api-client-java/issues</url>
     </issueManagement>
 
     <ciManagement>
         <system>GitHub Actions</system>
-        <url>https://github.com/wtx-labs/woocommerce-api-client-java/actions</url>
+        <url>https://github.com/christwinn/woocommerce-api-client-java/actions</url>
     </ciManagement>
 
     <developers>
@@ -290,7 +290,7 @@
         </developer>
         <developer>
             <name>Chris Twinn</name>
-            <organization></organization>
+            <organization>none</organization>
             <organizationUrl>https://www.twinn.co.uk</organizationUrl>
         </developer>
     </developers>
