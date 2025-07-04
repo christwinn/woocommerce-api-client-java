@@ -549,18 +549,18 @@ public class CouponRequest extends ApiRequest {
             return (T) this;
         }
 
-        public T addCreator(Creator create){
-            batch.addCreate(create);
+        public T addCreator(Creator<?> create){
+            batch.addCreate(create.build().coupon);
             return self();
         }
 
-        public T addUpdater(Updater update){
-            batch.addUpdate(update);
+        public T addUpdater(Updater<?> update){
+            batch.addUpdate(update.build().coupon);
             return self();
         }
 
-        public T addDeleter(Deleter delete){
-            batch.addDelete(delete);
+        public T addDeleter(Deleter<?> delete){
+            batch.addDelete(delete.build().coupon);
             return self();
         }
 

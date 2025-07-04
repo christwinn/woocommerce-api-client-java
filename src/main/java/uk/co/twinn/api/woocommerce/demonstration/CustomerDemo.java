@@ -124,9 +124,9 @@ public class CustomerDemo {
     }
 
     public Batched<Customer> batchUpdateCustomers(
-        List<CustomerRequest.Creator> createThese,
-        List<CustomerRequest.Updater> modifyThese,
-        List<CustomerRequest.Deleter> deleteThese
+        List<CustomerRequest.Creator<?>> createThese,
+        List<CustomerRequest.Updater<?>> modifyThese,
+        List<CustomerRequest.Deleter<?>> deleteThese
     ){
 
         return new CustomerRequest.Batcher<>()
@@ -145,16 +145,16 @@ public class CustomerDemo {
 
     }
 
-    private List<CustomerRequest.Creator> getBatchCreate() {
+    private List<CustomerRequest.Creator<?>> getBatchCreate() {
 
-        List<CustomerRequest.Creator> list = new ArrayList<>();
+        List<CustomerRequest.Creator<?>> list = new ArrayList<>();
         list.add(getJohnDoe());
         list.add(getJoaoSilva());
         return list;
 
     }
 
-    private CustomerRequest.Creator getJohnDoe(){
+    private CustomerRequest.Creator<?> getJohnDoe(){
 
         Billing billing = new Billing()
             .firstName("John")
@@ -189,7 +189,7 @@ public class CustomerDemo {
 
     }
 
-    private CustomerRequest.Creator getJoaoSilva(){
+    private CustomerRequest.Creator<?> getJoaoSilva(){
 
         Billing billing = new Billing()
             .firstName("Joao")

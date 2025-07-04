@@ -276,7 +276,7 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
-    public static class Batcher<T extends Batcher>{
+    public static class Batcher<T extends Batcher<T>>{
 
         private Batch batch;
 
@@ -292,7 +292,8 @@ public class CustomerRequest extends ApiRequest {
             this.batch = batch;
             return self();
         }
-        public T addCreators(List<Creator> creators){
+
+        public T addCreators(List<Creator<?>> creators){
             //we need to extract the create
             for(Creator create : creators){
                 addCreator(create);
@@ -300,12 +301,15 @@ public class CustomerRequest extends ApiRequest {
             return self();
         }
 
-        public T addCreator(Creator create){
-            batch.addCreate(create.build().customer);
+        public T addCreator(Creator<?> create){
+            Customer c = create.build().customer;
+            if (c instanceof Customer) {
+                batch.addCreate((Customer)c);
+            }
             return self();
         }
 
-        public T addUpdaters(List<Updater> updates){
+        public T addUpdaters(List<Updater<?>> updates){
             //we need to extract the update
             for(Updater update : updates){
                 addUpdater(update);
@@ -313,19 +317,19 @@ public class CustomerRequest extends ApiRequest {
             return self();
         }
 
-        public T addUpdater(Updater update){
+        public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().customer);
             return self();
         }
 
-        public T addDeleters(List<Deleter> deletes){
+        public T addDeleters(List<Deleter<?>> deletes){
             //we need to extract the delete
             for(Deleter delete : deletes){
                 addDeleter(delete);
             }
             return self();
         }
-        public T addDeleter(Deleter delete){
+        public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().customer);
             return self();
         }

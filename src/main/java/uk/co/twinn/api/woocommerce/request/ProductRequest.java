@@ -578,7 +578,7 @@ public class ProductRequest extends ApiRequest {
 
     public static class Batcher<T extends Batcher<?>>{
 
-        private Batch batch;
+        private final Batch batch;
 
         public Batcher(){
             batch = new Batch();

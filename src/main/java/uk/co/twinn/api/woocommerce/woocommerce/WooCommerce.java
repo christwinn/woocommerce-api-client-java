@@ -352,7 +352,7 @@ public class WooCommerce {
     //</editor-fold>
 
     //<editor-fold desc="Product">
-    public Created create(ProductRequest request){
+    public Created<Product> create(ProductRequest request){
 
         return new Created<Product>(
             create(request.endPoint(), request.toJson(), new TypeReference<Product>(){})
@@ -365,7 +365,7 @@ public class WooCommerce {
         );
     }*/
 
-    public Read read(ProductRequest request){
+    public Read<Product> read(ProductRequest request){
 
         return new Read<Product>(
             read(request.endPoint(), new TypeReference<Product>(){})
@@ -381,13 +381,13 @@ public class WooCommerce {
         );
 
     }*/
-    public Updated update(ProductRequest request){
+    public Updated<Product> update(ProductRequest request){
         return new Updated<Product>(
             update(request.endPoint(), request.toJson(), new TypeReference<Product>(){})
         );
 
     }
-    public Deleted delete(ProductRequest request){
+    public Deleted<Product> delete(ProductRequest request){
         return new Deleted<Product>(
             delete(request.endPoint(), new TypeReference<Product>(){})
         );

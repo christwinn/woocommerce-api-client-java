@@ -292,17 +292,17 @@ public class ProductCategoryRequest extends ApiRequest {
             return (T) this;
         }
 
-        public T addCreator(Creator create){
+        public T addCreator(Creator<?> create){
             batch.addCreate(create);
             return self();
         }
 
-        public T addUpdater(Updater update){
+        public T addUpdater(Updater<?> update){
             batch.addUpdate(update);
             return self();
         }
 
-        public T addDeleter(Deleter delete){
+        public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete);
             return self();
         }

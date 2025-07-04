@@ -21,13 +21,6 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 
 public class CustomerDownloadsRequest {
 
-    //not utilising a customer object to store the id!
-    private final Integer customerId;
-
-    public CustomerDownloadsRequest(Reader reader){
-        this.customerId = reader.customerId;
-    }
-
     public static class Reader<T extends Reader<T>>{
 
         private int customerId;
@@ -39,10 +32,6 @@ public class CustomerDownloadsRequest {
         public T setCustomerId(int customerId){
             this.customerId = customerId;
             return self();
-        }
-
-        protected CustomerDownloadsRequest build(){
-            return new CustomerDownloadsRequest(this);
         }
 
         /**

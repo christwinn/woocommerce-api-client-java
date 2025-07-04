@@ -11,18 +11,12 @@ package uk.co.twinn.api.woocommerce.request.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.request.ISkeleton;
-import uk.co.twinn.api.woocommerce.request.OrderRefundRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
-import java.math.BigDecimal;
 import java.util.List;
-
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.REFUNDS;
 
 /* A ModelRequest to utilise for other Requests*/
 public class ModelRequest extends ApiRequest {

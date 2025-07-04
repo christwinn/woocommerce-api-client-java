@@ -59,7 +59,6 @@ public class ParameterCollector<T> {
 
     protected void addNameValueIntegers(String key, List<Integer> value){
 
-
         urlParameters.put(
             key,
             value

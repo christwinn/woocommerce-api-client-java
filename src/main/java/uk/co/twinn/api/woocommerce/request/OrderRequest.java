@@ -273,17 +273,17 @@ public class OrderRequest extends ApiRequest {
             return (T) this;
         }
 
-        public T addCreator(Creator create){
+        public T addCreator(Creator<?> create){
             batch.addCreate(create.build().order);
             return self();
         }
 
-        public T addUpdater(Updater update){
+        public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().order);
             return self();
         }
 
-        public T addDeleter(Deleter delete){
+        public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().order);
             return self();
         }
