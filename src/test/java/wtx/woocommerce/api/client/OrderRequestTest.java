@@ -2,11 +2,10 @@ package wtx.woocommerce.api.client;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.wtx.woocommerce.api.client.model.*;
-import pl.wtx.woocommerce.api.client.invoker.*;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.MockResponse;
 import uk.co.twinn.api.woocommerce.request.OrderRequest;
+import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.woocommerce.Configuration;
 import uk.co.twinn.pl_wtx_woocommerce.model.Order;
 
@@ -57,18 +56,18 @@ public class OrderRequestTest {
     }
 
     @Test
-    void testListAllOrdersStatuses() throws IOException, ApiException, InterruptedException {
+    void testListAllOrdersStatuses() throws IOException, InterruptedException {
         List<String> statuses = Arrays.asList( "on-hold", "completed");
         testListStatuses(statuses, "mockedResponse-orders-multiple-statuses.json");
     }
 
     @Test
-    void testListReversed() throws IOException, ApiException, InterruptedException {
+    void testListReversed() throws IOException, InterruptedException {
         List<String> statuses = Arrays.asList( "on-hold", "completed");
         testListStatuses(statuses, "mockedResponse-orders-reversed-statuses.json");
     }
 
-    void testListStatuses(List<String> statuses, String mockSource) throws IOException, ApiException, InterruptedException {
+    void testListStatuses(List<String> statuses, String mockSource) throws IOException, InterruptedException {
 
         logTestStart("testListAllOrdersWithMultipleStatuses");
 
@@ -85,26 +84,26 @@ public class OrderRequestTest {
             .setHeader("Content-Type", "application/json")
             .setBody(mockResponse));
 
-        Searched<Order> response = new OrderRequest.Searcher<>()
+        Listed<Order> response = new OrderRequest.ListAll<>()
             .setStatus(statuses)
             .getResponse();
 
         System.out.println("Processing TESTS");
 
         if (response.isSuccess()) {
-            for (Order order : response.getSearched()) {
+            for (Order order : response.getListed()) {
                 System.out.println(order.toString());
             }
         }
 
         // Then
-        assertNotNull(response.getSearched(), "Order list should not be null");
-        assertFalse(response.getSearched().isEmpty(), "Order list should not be empty");
+        assertNotNull(response.getListed(), "Order list should not be null");
+        assertFalse(response.getListed().isEmpty(), "Order list should not be empty");
 
         for (String status : statuses) {
 
             // Verify we have orders in both statuses
-            boolean verified = response.getSearched().stream().anyMatch(order -> status.equals(order.getStatus()));
+            boolean verified = response.getListed().stream().anyMatch(order -> status.equals(order.getStatus()));
 
             assertTrue(verified, String.format("Should have orders with '%s' status", status));
 
@@ -117,7 +116,7 @@ public class OrderRequestTest {
         assertTrue(requestUrl.contains("status=on-hold,completed"),
             "Request URL should contain correct status parameters");
 
-        logTestSummary("testListAllOrdersWithMultipleStatuses", response.getSearched().size(), statuses);
+        logTestSummary("testListAllOrdersWithMultipleStatuses", response.getListed().size(), statuses);
     }
 
 }

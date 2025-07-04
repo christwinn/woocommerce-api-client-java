@@ -20,7 +20,6 @@ import okhttp3.mockwebserver.MockWebServer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.wtx.woocommerce.api.client.invoker.ApiException;
 import uk.co.twinn.api.woocommerce.request.CustomerRequest;
 import uk.co.twinn.api.woocommerce.response.Batch;
 import uk.co.twinn.api.woocommerce.response.Batched;
@@ -87,18 +86,18 @@ public class CustomerRequestTest {
     }
 
     @Test
-    void testListAllOrdersStatuses() throws IOException, ApiException, InterruptedException {
+    void testListAllOrdersStatuses() throws IOException, InterruptedException {
         testBatch("mockedRequest-customers-batch.json", "mockedResponse-customers-batch.json");
     }
 
     @Test
-    void testListReversed() throws IOException, ApiException, InterruptedException {
+    void testListReversed() throws IOException, InterruptedException {
         testBatch("mockedRequest-customers-batch.json","mockedResponse-customers-exist.json");
     }
 
 
 
-    void testBatch(String frequest, String fresponse) throws IOException, ApiException, InterruptedException {
+    void testBatch(String frequest, String fresponse) throws IOException, InterruptedException {
 
         logTestStart("testBatch");
 
