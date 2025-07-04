@@ -16,6 +16,7 @@ import uk.co.twinn.api.woocommerce.request.ProductRequest;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Updated;
+import uk.co.twinn.api.woocommerce.woocommerce.Configuration;
 import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
 
@@ -47,6 +48,9 @@ public class WooCommerceApiClientUsageDemo {
         }
 
         System.out.println(date);
+
+
+
 
 /*
         Read<Product> read = new ProductRequest.Reader<>().withId(2).getResponse();
@@ -157,9 +161,34 @@ public class WooCommerceApiClientUsageDemo {
         }else{
             System.out.println(customerResponse.getError().getMessage());
         }
-
-        readProductCategory(0);
 */
+
+       /* Updated<ProductCategory> category = new ProductCategoryRequest
+            .Updater<>()
+            .setId(17)
+            .setImage("https://img.mackay.co.uk/i.php?width=256&image=category/Angle.2.png")
+            .getResponse();
+
+        if (category.isSuccess()){
+            System.out.println(category.toJson());
+        }else{
+            System.out.println(category.getError().getMessage());
+        }*/
+
+        Updated<ProductCategory> category2 = new ProductCategoryRequest
+            .Updater<>()
+            .setId(17)
+            .setImage("https://wordpress.mackay.co.uk/wp-content/uploads/media/256/category/Angle.2.png")
+            .getResponse();
+
+        if (category2.isSuccess()){
+            System.out.println(category2.toJson());
+        }else{
+            System.out.println(category2.getError().getMessage());
+        }
+
+        //readProductCategory(17);
+/*
         createAndReadProductCategories();
 
         crudPlusProducts();

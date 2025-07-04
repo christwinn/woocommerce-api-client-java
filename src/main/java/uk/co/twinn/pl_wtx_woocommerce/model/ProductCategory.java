@@ -271,15 +271,22 @@ public class ProductCategory {
 
   @JsonProperty("display")
   public String getDisplayAsString() {
-        return display.getValue();
+        if (display != null){
+            return display.getValue();
+        }else{
+            return null;
+        }
     }
 
   public void setDisplay(@javax.annotation.Nullable DisplayEnum display) {
     this.display = display;
   }
+
   public void setDisplay(@javax.annotation.Nullable String display) {
 
-      this.display = DisplayEnum.fromValue(display);
+      if (this.display != null) {
+          this.display = DisplayEnum.fromValue(display);
+      }
 
     }
 

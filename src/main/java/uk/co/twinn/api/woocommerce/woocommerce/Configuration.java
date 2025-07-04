@@ -30,7 +30,7 @@ public class Configuration {
     private static String key;
     private static String secret;
 
-    private static boolean debug;
+    private static Boolean debug;
 
 
     /**
@@ -132,6 +132,9 @@ public class Configuration {
         return secret;
     }
     public static boolean isDebug() {
+        if (debug == null){
+            fromFile();
+        }
         return debug;
     }
 

@@ -324,6 +324,13 @@ public class WooCommerce {
     }
     public Updated<ProductCategory> update(ProductCategoryRequest request){
 
+        if (Configuration.isDebug()){
+            Logger.getLogger(
+                WooCommerce.class.getName()).log(
+                Level.INFO,
+                request.toJson()
+            );
+        }
         return new Updated<ProductCategory>(
             update(request.endPoint(), request.toJson(), new TypeReference<ProductCategory>(){})
         );
