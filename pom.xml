@@ -235,13 +235,13 @@
                     <message>Maven artifacts for ${project.version}</message>
                     <noJekyll>true</noJekyll>
                     <outputDirectory>${project.build.directory}</outputDirectory>
-                    <branch>refs/heads/${branch-name}</branch>
+                    <branch>refs/heads/main</branch>
                     <includes>
                         <include>**/*</include>
                     </includes>
                     <merge>true</merge>
-                    <repositoryName>${repository-name}</repositoryName>
-                    <repositoryOwner>${repository-owner}</repositoryOwner>
+                    <repositoryName>woocommerce-api-client-java </repositoryName>
+                    <repositoryOwner>christwinn</repositoryOwner>
                     <server>github</server>
                 </configuration>
                 <executions>
