@@ -26,8 +26,7 @@ In it's simplicity:
      <ul>
         <li>OrderRequest.Creator<>() which returns Created&lt;Order&gt;</li>  
         <li>OrderRequest.Reader<>() which returns Reader&lt;Order&gt;</li>  
-        <li>OrderRequest.ListAll<> which returns Listed&lt;Order&gt;()
-           <ul><li>Documentation shows List all orders which in turn specifies a parameter list this is implemented under: OrderRequest.Searcher<>() which returns Searched&lt;Order&gt;</li></ul>
+        <li>OrderRequest.ListAll<> which returns Listed&lt;Order&gt;() (This is really a search with no limited parameters, as such it can be used to search)
          </li>
         <li>OrderRequest.Updater<>() which returns Updated&lt;Order&gt;</li>  
         <li>OrderRequest.Deleter<>() which returns Deleted&lt;Order&gt;</li>  
@@ -57,10 +56,10 @@ and ...
      <ul>
         <li>ProductRequest.Creator<>() which returns Created&lt;Product&gt;</li>  
         <li>ProductRequest.Reader<>() which returns Reader&lt;Product&gt;</li>  
-        <li>ProductRequest.ListAll<> which returns Listed&lt;Product&gt;()
-           <ul><li>Documentation shows List all Products which in turn specifies a parameter list this is implemented under: ProductRequest.Searcher<>() which returns Searched&lt;Product&gt;</li></ul>
+        <li>ProductRequest.ListAll<> which returns Listed&lt;Product&gt;() (This is really a search with no limited parameters, as such it can be used to search)
          </li>
-        <li>ProductRequest.Updater<>() which returns Updated&lt;Product&gt;</li>  
+         <li>ProductRequest.Duplicator<>() which returns Duplicated&lt;Product&gt;</li>  
+        <li>ProductRequest.Updater<>() which returns Updated&lt;Product&gt;</li>             
         <li>ProductRequest.Deleter<>() which returns Deleted&lt;Product&gt;</li>  
         <li>ProductRequest.Batcher<>() which returns Batched&lt;Product&gt;</li>  
       </ul>
@@ -68,13 +67,13 @@ and ...
   <li>Again, only the options that are available for the action are available, i.e. you can not set the Id in Creator, but you MUST in Updater</li>
 </ul>
            
-[Object]Response response = new [Object]Request.Creator<>().set..("").getReponse();
+Created&lt;Product&gt; created = new ProductRequest.Creator&lt;&gt;().set..("").getReponse();
 
 The response contains whether it was a success, trying not to throw errors but cleanly returning them to the user.
 
-The response will then contain: 
-  if a Creator,Reader,Updater or a Deleter a single object. 
-  otherwise a List<Object>
+The response will then contain:<br/>
+  CRUDD Creator,Reader,Updater,Deleter or Duplicator return a single object. <br/>
+  otherwise a List<Object><br/>
 
 So far we have implemented:
 <ul>
