@@ -1,0 +1,36 @@
+/*
+ * Copyright (c) 2025.
+ *
+ * Crud+ ActionBuilder
+ * Author: Chris Twinn
+ * Licence: MIT Licence see LICENCE file
+ * All Rights Reserved
+ */
+
+package uk.co.twinn.api.woocommerce.response;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
+
+public class Updated<T> extends Created<T> {
+
+    public Updated(ApiResponseResult result){
+
+        super(result);
+
+    }
+
+    @Override
+    public String toJson(){
+
+        try {
+            // covert Java object to JSON strings
+            return getObjectMapper().writeValueAsString(this);
+
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+}

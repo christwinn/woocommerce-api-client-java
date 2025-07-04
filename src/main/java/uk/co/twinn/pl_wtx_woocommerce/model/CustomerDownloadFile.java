@@ -1,0 +1,34 @@
+/*
+ * Copyright (c) 2025.
+ *
+ * Crud+ ActionBuilder
+ * Author: Chris Twinn
+ * Licence: MIT Licence see LICENCE file
+ * All Rights Reserved
+ */
+
+package uk.co.twinn.pl_wtx_woocommerce.model;
+
+public class CustomerDownloadFile {
+
+    private String name;
+    private String file;
+
+    public CustomerDownloadFile(){}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+}
