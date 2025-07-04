@@ -269,7 +269,7 @@ import java.util.List;
 
 import pl.wtx.woocommerce.api.client.CustomersApi;
 import pl.wtx.woocommerce.api.client.invoker.ApiException;
-import pl.wtx.woocommerce.api.client.model.Customer;
+import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 
 public class WooCommerceApiClientUsageDemo {
 
@@ -283,38 +283,39 @@ public class WooCommerceApiClientUsageDemo {
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
 
         /**
-        *  Using CrudPlusActionBuilders
-        *  Preferably place a file at ~/.woocommerce-api/config.json containing your secrets
-        *  {
-        *    "website" : "myexamplewordpresssite.com",
-        *    "api" : "/wp-json/wc/v3/" +
-        *    "key" : "ky_1234567890ABCDEF1234567890ABCDEF123456789",
-        *    "secret": "sh_1234567890ABCDEF1234567890ABCDEF123456789"
-        *  }
-        *  or quickstart (below)
-        **/
+         *  Using CrudPlusActionBuilders
+         *  Preferably place a file at ~/.woocommerce-api/config.json containing your secrets
+         *  {
+         *    "website" : "myexamplewordpresssite.com",
+         *    "api" : "/wp-json/wc/v3/" +
+         *    "key" : "ky_1234567890ABCDEF1234567890ABCDEF123456789",
+         *    "secret": "sh_1234567890ABCDEF1234567890ABCDEF123456789"
+         *  }
+         *  or quickstart (below)
+         **/
 
         //quickstart
         new Configuration(API_BASE_PATH, API_USERNAME, API_PASSWORD);
 
-        CustomerResponse customerResponse = 
-            new CustomerRequest.Searcher<>()
-                .setEmail("johndoe@nowhere.com")
-                .getResponse();
+        CustomerResponse customerResponse =
+                new CustomerRequest.Searcher<>()
+                        .setEmail("johndoe@nowhere.com")
+                        .getResponse();
 
         if (customerResponse.isSuccess()) {
             if (!customerResponse.getCustomers().isEmpty()) {
                 for (Customer customer : customerResponse.getCustomers()) {
                     System.out.println(customer.getFirstName() + " " + customer.getLastName() + " " + customer.getEmail());
                 }
-            }else{
+            } else {
                 System.out.println("Sorry, but no customers were found");
             }
-        }else{
+        } else {
             System.out.println(customerResponse.getError().getMessage());
         }
 
         // Use WooCommerceApiClient(true) if you need to log API communication messages.
+        /* Keep for posterity        
         WooCommerceApiClient apiClient = new WooCommerceApiClient();
 
         apiClient.setBasePath(API_BASE_PATH);
@@ -326,7 +327,7 @@ public class WooCommerceApiClientUsageDemo {
         try {
 
             List<Customer> customers = customersApi.listAllCustomers(
-                null, null, null, null, null, null, null, null, null, null, null
+                    null, null, null, null, null, null, null, null, null, null, null
             );
 
             // Example list of customer's emails:
@@ -334,7 +335,7 @@ public class WooCommerceApiClientUsageDemo {
 
         } catch (ApiException e) {
             System.err.println("Error occurred during API call: " + e);
-        }
+        }*/
 
         System.out.println("<<< The WooCommerceApiClientUsageDemo has been finished.");
 

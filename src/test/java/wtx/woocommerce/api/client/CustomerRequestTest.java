@@ -17,22 +17,18 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
-import pl.wtx.woocommerce.api.client.model.Customer;
+import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.wtx.woocommerce.api.client.invoker.ApiException;
-import pl.wtx.woocommerce.api.client.model.Order;
-import pl.wtx.woocommerce.crudPlusActionBuilder.request.CustomerRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.Batch;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.Batched;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.core.ErrorObject;
-import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.Configuration;
+import uk.co.twinn.api.woocommerce.request.CustomerRequest;
+import uk.co.twinn.api.woocommerce.response.Batch;
+import uk.co.twinn.api.woocommerce.response.Batched;
+import uk.co.twinn.api.woocommerce.woocommerce.Configuration;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;

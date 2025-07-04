@@ -6,9 +6,9 @@ import pl.wtx.woocommerce.api.client.model.*;
 import pl.wtx.woocommerce.api.client.invoker.*;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.MockResponse;
-import pl.wtx.woocommerce.crudPlusActionBuilder.request.OrderRequest;
-import pl.wtx.woocommerce.crudPlusActionBuilder.response.Searched;
-import pl.wtx.woocommerce.crudPlusActionBuilder.woocommerce.Configuration;
+import uk.co.twinn.api.woocommerce.request.OrderRequest;
+import uk.co.twinn.api.woocommerce.woocommerce.Configuration;
+import uk.co.twinn.pl_wtx_woocommerce.model.Order;
 
 import java.io.IOException;
 import java.nio.file.Files;
