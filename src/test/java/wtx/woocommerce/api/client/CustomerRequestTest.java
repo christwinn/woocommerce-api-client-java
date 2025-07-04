@@ -132,13 +132,13 @@ public class CustomerRequestTest {
             for (Customer customer : response.getBatch().getCreated()) {
                 System.out.println(customer.toString());
             }
+
+            assertNotNull(response.getBatch().getCreated(), "Created list should not be null");
+            assertFalse(response.getBatch().getCreated().isEmpty(), "Created list should not be empty");
         }else{
-
+            System.out.println(response.getError().getMessage());
+            assertFalse(response.isSuccess(), "Created list should not be empty");
         }
-
-        // Then
-        assertNotNull(response.getBatch().getCreated(), "Created list should not be null");
-        assertFalse(response.getBatch().getCreated().isEmpty(), "Created list should not be empty");
 
 
         // Verify request URL contains correct status parameters
