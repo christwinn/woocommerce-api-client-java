@@ -24,7 +24,7 @@ public class Listed<T> extends ListResponse {
     }
 
     /*If the id is NOT set then we get an array of product*/
-    public List<T> getListed(){
+    public List<T> getResult(){
         return listed;
     }
 

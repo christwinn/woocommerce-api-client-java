@@ -38,7 +38,7 @@ public class Batched<T> extends ApiResponse {
     }
 
     /*If the id is NOT set then we get an array of product*/
-    public Batch<T> getBatch(){
+    public Batch<T> getResult(){
         return batch;
     }
 

@@ -5,6 +5,7 @@
  * Author: Chris Twinn
  * Licence: MIT Licence see LICENCE file
  * All Rights Reserved
+ *
  */
 
 package uk.co.twinn;
@@ -16,7 +17,6 @@ import uk.co.twinn.api.woocommerce.request.ProductRequest;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Updated;
-import uk.co.twinn.api.woocommerce.woocommerce.Configuration;
 import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
 
@@ -24,7 +24,7 @@ import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
  * WooCommerce API Client - Usage Demo
  * @author WTX Labs
  * @see "https://github.com/wtx-labs/woocommerce-api-client-java"
- * @license MIT
+ * license MIT
  */
 public class WooCommerceApiClientUsageDemo {
 
@@ -39,16 +39,15 @@ public class WooCommerceApiClientUsageDemo {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
 
-        String date = "2025-07-03T11:12:55Z";
+        /*String date = "2025-07-03T11:12:55Z";
         if (date.endsWith("+0000")) {
             date = date.substring(0, date.length()-5) + "Z";
         }
         if (date.length() > 19){
             date = date.substring(0, 19);
         }
-
         System.out.println(date);
-
+        */
 
 
 
@@ -233,8 +232,12 @@ public class WooCommerceApiClientUsageDemo {
         if (createResponse.isSuccess()) {
             //System.out.println("Woo ;-) Hoo" + createResponse.toJson());
 
-            System.out.println(">>> Reading back the category we just made");
-            readProductCategory(createResponse.getResult().getId());
+            try {
+                System.out.println(">>> Reading back the category we just made");
+                readProductCategory(createResponse.getResult().getId());
+            }catch (NullPointerException e){
+                e.printStackTrace();
+            }
 
             System.out.println(">>> Reading all categories...");
             readProductCategory(0);
@@ -257,7 +260,7 @@ public class WooCommerceApiClientUsageDemo {
 
             List<ProductCategory> categories =
                 new ProductCategoryRequest.ListAll<>()
-                    .getResponse().getListed();
+                    .getResponse().getResult();
 
             for (ProductCategory productCategory : categories) {
                 System.out.println(productCategory.toString());
@@ -293,8 +296,12 @@ public class WooCommerceApiClientUsageDemo {
 
             if (create.hasResult()) {
 
-                id = create.getResult().getId();
-                printProduct(create.getResult());
+                try {
+                    id = create.getResult().getId();
+                    printProduct(create.getResult());
+                }catch (NullPointerException e){
+                    e.printStackTrace();
+                }
 
             }
 
@@ -323,12 +330,18 @@ public class WooCommerceApiClientUsageDemo {
                 .getResponse();
 
             if (response.isSuccess()) {
-                if (!response.getListed().isEmpty()) {
-                    id = response.getListed().get(0).getId();
-                    System.out.println("+++ Multiple Products Found - id == 0");
-                    for (Product product : response.getListed()) {
-                        printProduct(product);
+                if (!response.getResult().isEmpty()) {
+                    try {
+                        id = response.getResult().get(0).getId();
+
+                        System.out.println("+++ Multiple Products Found - id == 0");
+                        for (Product product : response.getResult()) {
+                            printProduct(product);
+                        }
+                    }catch (NullPointerException e){
+                        e.printStackTrace();
                     }
+
                 } else {
                     System.out.println("+++ Noithing Found");
                 }
@@ -346,16 +359,20 @@ public class WooCommerceApiClientUsageDemo {
 
             printProduct(product);
 
-            Updated<Product> response = new ProductRequest.Updater<>()
-                .setId(product.getId())
-                .setSku("22221111")//.setMetaData(product.getMetaData())
-                .getResponse();
+            try {
+                Updated<Product> response = new ProductRequest.Updater<>()
+                    .setId(product.getId())
+                    .setSku("22221111")//.setMetaData(product.getMetaData())
+                    .getResponse();
 
-            if (response.isSuccess()) {
-                printProduct(response.getResult());
-                System.out.println("SUCCESS");
-            }else{
-                System.out.println(response.getError().getMessage());
+                if (response.isSuccess()) {
+                    printProduct(response.getResult());
+                    System.out.println("SUCCESS");
+                } else {
+                    System.out.println(response.getError().getMessage());
+                }
+            }catch (NullPointerException e){
+                e.printStackTrace();
             }
 
         }
@@ -408,7 +425,7 @@ public class WooCommerceApiClientUsageDemo {
 
             System.out.println("+++ Seeked Product");
 
-            for (Product p : seeker.getListed()) {
+            for (Product p : seeker.getResult()) {
                 printProduct(p);
             }
 
@@ -457,16 +474,17 @@ public class WooCommerceApiClientUsageDemo {
             "Here we introduce using the simple concept of CRUD+\n" +
             "Whats's that?\n\n" +
 
-            "OK so each server API has it's objects and operations, distilling down to OBJECT+CRUD+OTHERS, whichever way you chuck a ball at it.\n" +
+            "OK so each server API has it's objects and operations, distilling down to OBJECT+CRUDD+OTHERS, whichever way you chuck a ball at it.\n" +
             "So building upon Builder classes and using fluent programming ideas, and sticking to the set and get principles we have \n" +
             " [Object]Request\n" +
             "   [Basically Builders, we use inheritance therefore we need the <>, even those that are base are forced to <> for consistency]\n" +
             "   .Creator<>()\n" +
             "   .Reader<>()\n" +
             "   .Updater<>()\n" +
+            "   .Duplicator<>()\n" +
             "   .Deleter<>()\n" +
             "   [and now the plus]\n" +
-            "   .Seeker<>()\n" +
+            "   .ListAll<>()\n" +
             "   .Batcher<>()\n" +
             "   .WhateverIAmTryingToAcheive<>()\n\n" +
 
@@ -474,29 +492,36 @@ public class WooCommerceApiClientUsageDemo {
             " e.g. in Creator<>() you can not set the Id, therefore the option to setId is not available.\n" +
             "   but in Updater<>() we need to set the Id, therefore the option to setId is available. (Updater is an extension of Creator)\n\n" +
 
-            "For the final piece of the jigsaw we have a partner [Object]Response\n" +
+            "For simplicity, every response receives a correlating response object, \n" +
+            "\ta Creator receives a Created<Type>" +
+            "\ta Reader receives a Read<Type>" +
+            "\ta Updater receives a Updated<Type>" +
+            "\ta Deleter receives a Deleted<Type>" +
+            "\ta Duplicator receives a Duplicated<Type>" +
 
             "Core construction is \n" +
-            "getSuccess() -> simply have we succeeded\n" +
+            "isSuccess() -> simply have we succeeded\n" +
             "getStatus() -> integer response code from the remote server\n" +
 
-            "Rather than force a [Object] and [Object]s hierarchy we supply a\n" +
-            "has[Object] and has[Object]s inside the Response\n" +
-            "and of course: \n" +
-            "get[Object] and get[Object]s, " +
-            "usually whether you get one or multiples will be defined by the API but you could get either!\n\n" +
+            "For CRUD actions we contain\n" +
+            "hasResult() and getResult() inside the Response\n\n" +
+            "the Plus actions return:\n" +
+            "\tListAll (Search) receives a Listed<Type> " +
+            "\tBatcher receives a Batched<Type>" +
+            "these also contain hasResult() and getResult() but the result is a List\n\n" +
+            "\n\n" +
 
             "Example: create a product: \n" +
-            "ProductResponse result = new ProductRequest.Creator<>()\n" +
+            "Created<Product> result = new ProductRequest.Creator<>()\n" +
             "\t.setSku(\"12345678\")\n" +
             "\t.setName(\"My New Product Name\")\n" +
             "\t.setDescription(\"<b>This is a bold assertion</b><br/>Buy Five Get one Free!\")\n" +
             "\t.getResponse();\n" +
 
             "We can then check our result with: \n" +
-            "if (result.getSuccess()){\n" +
-            "\tif (result.hasProduct()){\n" +
-            "\t\tSystem.out.println(return result.getProduct().getId());\n" +
+            "if (result.isSuccess()){\n" +
+            "\tif (result.hasResult()){\n" +
+            "\t\tSystem.out.println(return result.getResult().getId());\n" +
             "\t}else\t" +
             "\t\tSystem.out.println(\"Send to server succeeded but we have failed to parse the result \" + result.getError().getMessage());\n" +
             "\t}\n" +
@@ -539,9 +564,7 @@ public class WooCommerceApiClientUsageDemo {
 
             "-------------------------------------------------------------------\n" +
             "Thank you for taking the time to read thus far\n" +
-            "What follows is the API in action.......\n\n" +
-
-            "";
+            "What follows is the API in action.......\n\n";
 
         System.out.println(ex);
 

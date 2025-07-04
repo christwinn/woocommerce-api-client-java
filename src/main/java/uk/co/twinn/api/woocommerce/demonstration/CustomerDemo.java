@@ -87,7 +87,7 @@ public class CustomerDemo {
         return new CustomerRequest.ListAll<>()
             .setEmail(customerEmail)
             .getResponse()
-            .getListed();
+            .getResult();
 
     }
 
@@ -96,7 +96,7 @@ public class CustomerDemo {
         Listed<Customer> response = new CustomerRequest.ListAll<>()
             .getResponse();
 
-        return response.getListed();
+        return response.getResult();
 
     }
 
