@@ -23,12 +23,16 @@ public class Batch<T> {
 
     @JsonIgnore
     public boolean isEmpty(){
+
         return create.isEmpty() && update.isEmpty() && delete.isEmpty();
+
     }
 
     @JsonIgnore
     public int getRecordCount(){
+
         return create.size() + update.size() + delete.size();
+
     }
 
     public Batch(){
@@ -36,13 +40,20 @@ public class Batch<T> {
     }
 
     public void setCreate(List<T> create){
+
         this.create = create;
+
     }
+
     public void setUpdate(List<T> update){
+
         this.update = update;
     }
-    public void setDelete(List<T> update){
+
+    public void setDelete(List<T> delete){
+
         this.delete = delete;
+
     }
 
     @JsonProperty("create")
