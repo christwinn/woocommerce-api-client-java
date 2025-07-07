@@ -91,19 +91,19 @@ public class OrderRequestTest {
         System.out.println("Processing TESTS");
 
         if (response.isSuccess()) {
-            for (Order order : response.getListed()) {
+            for (Order order : response.getResult()) {
                 System.out.println(order.toString());
             }
         }
 
         // Then
-        assertNotNull(response.getListed(), "Order list should not be null");
-        assertFalse(response.getListed().isEmpty(), "Order list should not be empty");
+        assertNotNull(response.getResult(), "Order list should not be null");
+        assertFalse(response.getResult().isEmpty(), "Order list should not be empty");
 
         for (String status : statuses) {
 
             // Verify we have orders in both statuses
-            boolean verified = response.getListed().stream().anyMatch(order -> status.equals(order.getStatus()));
+            boolean verified = response.getResult().stream().anyMatch(order -> status.equals(order.getStatus()));
 
             assertTrue(verified, String.format("Should have orders with '%s' status", status));
 
@@ -116,7 +116,7 @@ public class OrderRequestTest {
         assertTrue(requestUrl.contains("status=on-hold,completed"),
             "Request URL should contain correct status parameters");
 
-        logTestSummary("testListAllOrdersWithMultipleStatuses", response.getListed().size(), statuses);
+        logTestSummary("testListAllOrdersWithMultipleStatuses", response.getResult().size(), statuses);
     }
 
 }

@@ -222,32 +222,6 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
-    public static class Updater<T extends Updater<T>> extends Creator<T>{
-
-        private int id;
-
-        public T setId(int id){
-            this.id = id;
-            return self();
-        }
-
-        @Override
-        protected CustomerRequest build(){
-            return new CustomerRequest(this);
-        }
-
-        /** Returns single Updated ProductCategory**/
-        @Override
-        public Updated<Customer> getResponse(){
-            if (id > 0){
-                return new WooCommerce().update(build());
-            }else {
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
-            }
-        }
-
-    }
-
     public static class Deleter<T extends Deleter<T>> extends Reader<T>{
 
         private boolean force;
@@ -275,6 +249,60 @@ public class CustomerRequest extends ApiRequest {
         }
 
     }
+
+    public static class Updater<T extends Updater<T>> extends Creator<T>{
+
+        private int id;
+
+        public T setId(int id){
+            this.id = id;
+            return self();
+        }
+
+        @Override
+        protected CustomerRequest build(){
+            return new CustomerRequest(this);
+        }
+
+        /** Returns single Updated ProductCategory**/
+        @Override
+        public Updated<Customer> getResponse(){
+            if (id > 0){
+                return new WooCommerce().update(build());
+            }else {
+                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+            }
+        }
+
+    }
+
+    /*public static class Deleter<T extends Deleter<T>> extends Reader<T>{
+
+        private boolean force;
+
+        public T force(boolean force){
+            this.force = force;
+            return self();
+        }
+
+        @Override
+        protected CustomerRequest build(){
+            return new CustomerRequest(this);
+        }
+
+        //Returns single Deleted ProductCategory
+        @Override
+        public Deleted<Customer> getResponse(){
+            if (id > 0 && force){
+                return new WooCommerce().delete(build());
+            }else {
+                return new Deleted<>(
+                    new ApiResponseResult(false, 0,
+                        "Invalid Identifier, id and force is required"));
+            }
+        }
+
+    }*/
 
     public static class Batcher<T extends Batcher<T>>{
 

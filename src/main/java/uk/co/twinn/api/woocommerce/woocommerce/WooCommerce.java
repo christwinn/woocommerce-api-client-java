@@ -79,7 +79,7 @@ public class WooCommerce {
 
     }
 
-    private ApiResponseResult read(String endPoint, TypeReference<?> type){
+    public ApiResponseResult read(String endPoint, TypeReference<?> type){
 
         return http.read(
             getUri(endPoint),
@@ -114,7 +114,7 @@ public class WooCommerce {
 
     }
 
-    private ApiResponseResult delete(String endPoint, TypeReference<?> type){
+    public ApiResponseResult delete(String endPoint, TypeReference<?> type){
 
         return http.delete(endPoint, getHeaders(), type);
 

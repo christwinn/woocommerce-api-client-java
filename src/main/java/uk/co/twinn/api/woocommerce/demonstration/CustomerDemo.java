@@ -9,6 +9,7 @@
 
 package uk.co.twinn.api.woocommerce.demonstration;
 
+import uk.co.twinn.api.woocommerce.request.experimental.CustomerTestRequest;
 import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
@@ -74,6 +75,11 @@ public class CustomerDemo {
     }
 
     public Customer retrieveACustomer(int customerId){
+
+        /*Read<Customer> customer = new CustomerTestRequest.Reader<>()
+            .setId(customerId)
+            .getResponse() //returns object not Customer using full paths cast issues
+            .getResult();*/
 
         return new CustomerRequest.Reader<>()
             .setId(customerId)

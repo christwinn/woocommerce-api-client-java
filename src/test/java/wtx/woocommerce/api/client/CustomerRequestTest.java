@@ -129,12 +129,12 @@ public class CustomerRequestTest {
         System.out.println("Processing TESTS");
 
         if (response.isSuccess()) {
-            for (Customer customer : response.getBatch().getCreated()) {
+            for (Customer customer : response.getResult().getCreated()) {
                 System.out.println(customer.toString());
             }
 
-            assertNotNull(response.getBatch().getCreated(), "Created list should not be null");
-            assertFalse(response.getBatch().getCreated().isEmpty(), "Created list should not be empty");
+            assertNotNull(response.getResult().getCreated(), "Created list should not be null");
+            assertFalse(response.getResult().getCreated().isEmpty(), "Created list should not be empty");
         }else{
             System.out.println(response.getError().getMessage());
             assertFalse(response.isSuccess(), "Created list should not be empty");
@@ -146,7 +146,7 @@ public class CustomerRequestTest {
 
         System.out.println(requestUrl);
 
-        logTestSummary("testBatchCustomers", response.getBatch().getRecordCount());
+        logTestSummary("testBatchCustomers", response.getResult().getRecordCount());
     }
 
 }
