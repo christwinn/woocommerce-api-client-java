@@ -199,10 +199,17 @@ public class ProductImage {
     return src;
   }
 
+    /**
+     * WARNING:
+     *
+     * Wordpress moves the images to a wp-content/uploads/YYYY/MM/ folder,
+     * even if you upload to a wp-content/uploads/MYFOLDER/
+     *
+     * @param src url of the image
+     */
   public void setSrc(@javax.annotation.Nullable String src) {
     this.src = src;
   }
-
 
   public ProductImage name(@javax.annotation.Nullable String name) {
     this.name = name;

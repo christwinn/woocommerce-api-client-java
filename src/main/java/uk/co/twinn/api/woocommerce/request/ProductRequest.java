@@ -211,226 +211,527 @@ public class ProductRequest extends ApiRequest {
         private Integer menu_order;    //integer	Menu order, used to custom sort products.
         private List<MetaData> meta_data;    //array	Meta data. See Product - Meta data properties
 
+        /**
+         *
+         * @param name Product Name
+         * @return T
+         */
         public T setName(String name) {
             this.name = name;
             return self();
         }
 
+        /**
+         *
+         * @param slug Product slug.
+         * @return T
+         */
         public T setSlug(String slug) {
             this.slug = slug;
             return self();
         }
 
+        /**
+         *
+         * @param type Product type.
+         *             Options: simple, grouped, external and variable.
+         *             Default is simple.
+         * @return T
+         */
         public T setType(String type) {
             this.type = type;
             return self();
         }
+        /**
+         *
+         * @param type Product type.
+         *             Options: simple, grouped, external and variable.
+         *             Default is simple.
+         * @return T
+         */
+        public T setType(Product.TypeEnum type) {
+            this.type = type.getValue();
+            return self();
+        }
 
+        /**
+         *
+         * @param status Product status (post status).
+         *               Options: draft, pending, private and publish.
+         *               Default is publish.
+         * @return T
+         */
         public T setStatus(String status) {
             this.status = status;
             return self();
         }
 
+        /**
+         *
+         * @param status Product status (post status).
+         *               Options: draft, pending, private and publish.
+         *               Default is publish.
+         * @return T
+         */
+        public T setStatus(Product.StatusEnum status) {
+            this.status = status.getValue();
+            return self();
+        }
+
+        /**
+         *
+         * @param featured Featured product. Default is false.
+         * @return T
+         */
         public T setFeatured(boolean featured) {
             this.featured = featured;
             return self();
         }
 
+        /**
+         *
+         * @param catalog_visibility  Catalog visibility.
+         *                            Options: visible, catalog, search and hidden.
+         *                            Default is visible.
+         * @return T
+         */
         public T setCatalogVisibility(String catalog_visibility) {
             this.catalog_visibility = catalog_visibility;
             return self();
         }
 
+        /**
+         *
+         * @param catalog_visibility  Catalog visibility.
+         *                            Options: visible, catalog, search and hidden.
+         *                            Default is visible.
+         * @return T
+         */
+        public T setCatalogVisibility(Product.CatalogVisiblityEnum catalog_visibility) {
+            this.catalog_visibility = catalog_visibility.getValue();
+            return self();
+        }
+
+        /**
+         *
+         * @param description Product description.
+         * @return T
+         */
         public T setDescription(String description) {
             this.description = description;
             return self();
         }
 
+        /**
+         *
+         * @param short_description Product short description.
+         * @return T
+         */
         public T setShort_description(String short_description) {
             this.short_description = short_description;
             return self();
         }
 
+        /**
+         *
+         * @param sku  Unique identifier.
+         * @return T
+         */
         public T setSku(String sku) {
             this.sku = sku;
             return self();
         }
 
+        /**
+         *
+         * @param regular_price Product regular price.
+         * @return T
+         */
         public T setRegular_price(String regular_price) {
             this.regular_price = regular_price;
             return self();
         }
 
+        /**
+         *
+         * @param sale_price  Product sale price.
+         * @return T
+         */
         public T setSale_price(String sale_price) {
             this.sale_price = sale_price;
             return self();
         }
 
+        /**
+         *
+         * @param date_on_sale_from Start date of sale price, in the site's timezone.
+         * @return T
+         */
         public T setDateOnSaleFrom(LocalDateTime date_on_sale_from) {
             this.date_on_sale_from = date_on_sale_from;
             return self();
         }
 
+        /**
+         *
+         * @param date_on_sale_from_gmt Start date of sale price, as GMT.
+         * @return T
+         */
         public T setDateOnSaleFromGMT(LocalDateTime date_on_sale_from_gmt) {
             this.date_on_sale_from_gmt = date_on_sale_from_gmt;
             return self();
         }
 
+        /**
+         *
+         * @param date_on_sale_to End date of sale price, in the site's timezone.
+         * @return T
+         */
         public T setDateOnSaleTo(LocalDateTime date_on_sale_to) {
             this.date_on_sale_to = date_on_sale_to;
             return self();
         }
 
+        /**
+         *
+         * @param date_on_sale_to_gmt  End date of sale price, as GMT.
+         * @return T
+         */
         public T setDateOnSaleToGMT(LocalDateTime date_on_sale_to_gmt) {
             this.date_on_sale_to_gmt = date_on_sale_to_gmt;
             return self();
         }
 
+        /**
+         *
+         * @param virtual  	If the product is virtual. Default is false.
+         * @return T
+         */
         public T setVirtual(boolean virtual) {
             this.virtual = virtual;
             return self();
         }
 
+        /**
+         *
+         * @param downloadable If the product is downloadable. Default is false.
+         * @return  T
+         */
         public T setDownloadable(boolean downloadable) {
             this.downloadable = downloadable;
             return self();
         }
 
+        /**
+         *
+         * @param downloads List of downloadable files.
+         *                  See Product - Downloads properties
+         * @return T
+         */
         public T setDownloads(List<ProductDownload> downloads) {
             this.downloads = downloads;
             return self();
         }
 
+        /**
+         *
+         * @param download_limit  Number of times downloadable files can be downloaded after purchase.
+         *                        Default is -1.
+         * @return T
+         */
         public T setDownloadLimit(int download_limit) {
             this.download_limit = download_limit;
             return self();
         }
 
+        /**
+         *
+         * @param download_expiry Number of days until access to downloadable files expires.
+         *                        Default is -1.
+         * @return T
+         */
         public T setDownloadExpiry(int download_expiry) {
             this.download_expiry = download_expiry;
             return self();
         }
 
+        /**
+         *
+         * @param external_url Product external URL.
+         *                     Only for external products.
+         * @return T
+         */
         public T setExternal_url(String external_url) {
             this.external_url = external_url;
             return self();
         }
 
+        /**
+         *
+         * @param button_text Product external button text.
+         *                    Only for external products.
+         * @return T
+         */
         public T setButtonText(String button_text) {
             this.button_text = button_text;
             return self();
         }
 
+        /**
+         *
+         * @param tax_status Tax status.
+         *                   Options: taxable, shipping and none.
+         *                   Default is taxable.
+         * @return T
+         */
         public T setTaxStatus(String tax_status) {
             this.tax_status = tax_status;
             return self();
         }
 
+        /**
+         *
+         * @param tax_status Tax status.
+         *                   Options: taxable, shipping and none.
+         *                   Default is taxable.
+         * @return T
+         */
+        public T setTaxStatus(Product.TaxStatusEnum tax_status) {
+            this.tax_status = tax_status.getValue();
+            return self();
+        }
+
+        /**
+         *
+         * @param tax_class Tax class.
+         * @return T
+         */
         public T setTaxClass(String tax_class) {
             this.tax_class = tax_class;
             return self();
         }
 
+        /**
+         *
+         * @param manage_stock Stock management at product level. Default is false.
+         * @return T
+         */
         public T setManageStock(boolean manage_stock) {
             this.manage_stock = manage_stock;
             return self();
         }
 
+        /**
+         *
+         * @param stock_quantity Stock quantity.
+         * @return T
+         */
         public T setStockQuantity(int stock_quantity) {
             this.stock_quantity = stock_quantity;
             return self();
         }
 
-        public T setStock_status(String stock_status) {
+        /**
+         *
+         * @param stock_status Controls the stock status of the product.
+         *                     Options: instock, outofstock, onbackorder.
+         *                     Default is instock.
+         * @return T
+         */
+        public T setStockStatus(String stock_status) {
             this.stock_status = stock_status;
             return self();
         }
+        /**
+         *
+         * @param stock_status Controls the stock status of the product.
+         *                     Options: instock, outofstock, onbackorder.
+         *                     Default is instock.
+         * @return T
+         */
+        public T setStockStatus(Product.StockStatusEnum stock_status) {
+            this.stock_status = stock_status.getValue();
+            return self();
+        }
 
+        /**
+         *
+         * @param backorders If managing stock, this controls if backorders are allowed.
+         *                   Options: no, notify and yes.
+         *                   Default is no.
+         * @return T
+         */
         public T setBackorders(String backorders) {
             this.backorders = backorders;
             return self();
         }
 
+        /**
+         *
+         * @param sold_individually Allow one item to be bought in a single order.
+         *                          Default is false
+         * @return T
+         */
         public T setSoldIndividually(boolean sold_individually) {
             this.sold_individually = sold_individually;
             return self();
         }
 
+        /**
+         *
+         * @param weight Product weight.
+         * @return T
+         */
         public T setWeight(String weight) {
             this.weight = weight;
             return self();
         }
 
+        /**
+         *
+         * @param dimensions Product dimensions. See Product - Dimensions properties
+         * @return T
+         */
         public T setDimensions(ProductDimension dimensions) {
             this.dimensions = dimensions;
             return self();
         }
 
+        /**
+         *
+         * @param shipping_class Shipping class slug.
+         * @return T
+         */
         public T setShippingClass(String shipping_class) {
             this.shipping_class = shipping_class;
             return self();
         }
 
+        /**
+         *
+         * @param reviews_allowed Allow reviews. Default is true.
+         * @return T
+         */
         public T setReviewsAllowed(boolean reviews_allowed) {
             this.reviews_allowed = reviews_allowed;
             return self();
         }
 
+        /**
+         *
+         * @param upsell_ids List of up-sell products IDs.
+         * @return T
+         */
         public T setUpsellIds(List<Integer> upsell_ids) {
             this.upsell_ids = upsell_ids;
             return self();
         }
 
+        /**
+         *
+         * @param cross_sell_ids List of cross-sell products IDs.
+         * @return T
+         */
         public T setCrossSellIds(List<Integer> cross_sell_ids) {
             this.cross_sell_ids = cross_sell_ids;
             return self();
         }
 
+        /**
+         *
+         * @param parent_id  	Product parent ID.
+         * @return T
+         */
         public T setParentId(int parent_id) {
             this.parent_id = parent_id;
             return self();
         }
 
+        /**
+         *
+         * @param purchase_note Optional note to send the customer after purchase.
+         * @return T
+         */
         public T setPurchaseNote(String purchase_note) {
             this.purchase_note = purchase_note;
             return self();
         }
 
+        /**
+         *
+         * @param categories List of categories. See Product - Categories properties
+         * @return T
+         */
         public T setCategories(List<ProductCategoriesItem> categories) {
             this.categories = categories;
             return self();
         }
 
+        /**
+         *
+         * @param tags List of tags. See Product - Tags properties
+         * @return T
+         */
         public T setTags(List<ProductTag> tags) {
             this.tags = tags;
             return self();
         }
 
+        /**
+         *
+         * @param images List of images. See Product - Images properties
+         * @return T
+         */
         public T setImages(List<ProductImage> images) {
             this.images = images;
             return self();
         }
 
+        /**
+         *
+         * @param attributes  List of attributes. See Product - Attributes properties
+         * @return T
+         */
         public T setAttributes(List<ProductAttribute> attributes) {
             this.attributes = attributes;
             return self();
         }
 
+        /**
+         *
+         * @param default_attributes  Defaults variation attributes. See Product - Default attributes properties
+         * @return T
+         */
         public T setDefaultAttributes(List<ProductAttribute> default_attributes) {
             this.default_attributes = default_attributes;
             return self();
         }
 
+        /**
+         *
+         * @param grouped_products List of grouped products ID.
+         * @return T
+         */
         public T setGroupedProducts(List<Integer> grouped_products) {
             this.grouped_products = grouped_products;
             return self();
         }
 
+        /**
+         *
+         * @param menu_order Menu order, used to custom sort products.
+         * @return T
+         */
         public T setMenuOrder(int menu_order) {
             this.menu_order = menu_order;
             return self();
         }
 
+        /**
+         *
+         * @param meta_data  Meta data. See Product - Meta data properties
+         * @return T
+         */
         public T setMetaData(List<MetaData> meta_data) {
             this.meta_data = meta_data;
             return self();

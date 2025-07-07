@@ -24,8 +24,10 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
@@ -432,6 +434,166 @@ public class Product {
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
+  public enum TypeEnum {
+    DEFAULT("simple"),
+
+    GROUPED("grouped"),
+
+    EXTERNAL("external"),
+
+    VARIABLE("variable");
+
+    private String value;
+
+    TypeEnum(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static TypeEnum fromValue(String value) {
+        for (TypeEnum b : TypeEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+public enum StatusEnum {
+    DRAFT("draft"),
+    PENDING("pending"),
+    PRIVATE("private"),
+    PUBLISH("publish"),
+    DEFAULT("publish");
+
+    private String value;
+
+    StatusEnum(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+        for (StatusEnum b : StatusEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+public enum CatalogVisiblityEnum {
+    VISIBLE("visible"),
+
+    CATALOG("catalog"),
+
+    SEARCH("search"),
+
+    HIDDEN("hidden");
+
+    private String value;
+
+    CatalogVisiblityEnum(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static CatalogVisiblityEnum fromValue(String value) {
+        for (CatalogVisiblityEnum b : CatalogVisiblityEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
+public enum TaxStatusEnum {
+    TAXABLE("taxable"),
+
+    SHIPPING("shipping"),
+
+    NONE("none");
+
+    private String value;
+
+    TaxStatusEnum(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static TaxStatusEnum fromValue(String value) {
+        for (TaxStatusEnum b : TaxStatusEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+    public enum StockStatusEnum {
+        IN_STOCK("instock"),
+
+        OUT_OF_STOCK("outofstock"),
+
+        ON_BACK_ORDER("onbackorder");
+
+        private String value;
+        StockStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        public static StockStatusEnum fromValue(String value) {
+            for (StockStatusEnum b : StockStatusEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
   private ErrorObject error; //batch notifier
 
   public Product() {
@@ -611,6 +773,10 @@ public class Product {
     this.type = type;
   }
 
+  public void setType(TypeEnum type) {
+        this.type = type.getValue();
+    }
+
 
   public Product status(@javax.annotation.Nullable String status) {
     this.status = status;
@@ -629,6 +795,10 @@ public class Product {
   public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
+
+  public void setStatus(TypeEnum status) {
+        this.status = status.getValue();
+    }
 
 
   public Product featured(@javax.annotation.Nullable Boolean featured) {
@@ -668,6 +838,10 @@ public class Product {
   public void setCatalogVisibility(@javax.annotation.Nullable String catalogVisibility) {
     this.catalogVisibility = catalogVisibility;
   }
+
+    public void setCatalogVisibility(CatalogVisiblityEnum catalogVisibility) {
+        this.catalogVisibility = catalogVisibility.getValue();
+    }
 
 
   public Product description(@javax.annotation.Nullable String description) {
@@ -1186,7 +1360,6 @@ public class Product {
   public void setStockStatus(@javax.annotation.Nullable String stockStatus) {
     this.stockStatus = stockStatus;
   }
-
 
   public Product backorders(@javax.annotation.Nullable String backorders) {
     this.backorders = backorders;

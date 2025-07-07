@@ -249,6 +249,75 @@ public class ProductCategory {
     return description;
   }
 
+  /**
+   * WARNING:
+   * <a href="https://github.com/woocommerce/woocommerce/issues/41240#issuecomment-2075127598">https://github.com/woocommerce/woocommerce/issues/41240#issuecomment-2075127598</a>
+   *
+   * WordPress strips HTML except below:
+   *     [a] => Array
+   *         (
+   *             [href] => 1
+   *             [title] => 1
+   *         )
+   *
+   *     [abbr] => Array
+   *         (
+   *             [title] => 1
+   *         )
+   *
+   *     [acronym] => Array
+   *         (
+   *             [title] => 1
+   *         )
+   *
+   *     [b] => Array
+   *         (
+   *         )
+   *
+   *     [blockquote] => Array
+   *         (
+   *             [cite] => 1
+   *         )
+   *
+   *     [cite] => Array
+   *         (
+   *         )
+   *
+   *     [code] => Array
+   *         (
+   *         )
+   *
+   *     [del] => Array
+   *         (
+   *             [datetime] => 1
+   *         )
+   *
+   *     [em] => Array
+   *         (
+   *         )
+   *
+   *     [i] => Array
+   *         (
+   *         )
+   *
+   *     [q] => Array
+   *         (
+   *             [cite] => 1
+   *         )
+   *
+   *     [s] => Array
+   *         (
+   *         )
+   *
+   *     [strike] => Array
+   *         (
+   *         )
+   *
+   *     [strong] => Array
+   *         (
+   *         )
+   *
+   **/
   public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
