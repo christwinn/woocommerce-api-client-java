@@ -68,7 +68,7 @@ public class CouponRequest extends ApiRequest {
     private CouponRequest(Deleter<?> deleter){
 
         coupon.setId(deleter.id);
-        force = deleter.isForce();
+        force = deleter.force;
 
     }
 
