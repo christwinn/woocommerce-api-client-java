@@ -6,7 +6,7 @@
  * Licence: MIT Licence see LICENCE file
  * All Rights Reserved
  */
-package uk.co.twinn.api.woocommerce.woocommerce;
+package uk.co.twinn.api.woocommerce.rest;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;

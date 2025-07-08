@@ -10,29 +10,26 @@ package uk.co.twinn.api.woocommerce.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.pl_wtx_woocommerce.model.Order;
+import uk.co.twinn.api.woocommerce.core.Batch;
+import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductImage;
 import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.request.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import java.util.List;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
 
 public class ProductCategoryRequest extends ApiRequest {
 
     protected final ProductCategory category = new ProductCategory();
 
-    private Batch batch;
-
     private boolean force;
-    //private boolean duplicate;
-    private boolean isBatch;
 
     public ProductCategoryRequest(Creator<?> creator){
 
@@ -62,16 +59,7 @@ public class ProductCategoryRequest extends ApiRequest {
     public ProductCategoryRequest(Deleter<?> deleter){
 
         category.setId(deleter.id);
-        isBatch = false;
         force = deleter.force;
-
-    }
-
-    public ProductCategoryRequest(Batcher<?> batcher){
-
-        batch = batcher.getBatch();
-        force = false;
-        isBatch = true;
 
     }
 
@@ -81,14 +69,6 @@ public class ProductCategoryRequest extends ApiRequest {
             (category.getId() != null && category.getId() != 0
                 ? ("/" + category.getId())
                 : ""
-            ) +
-            (isBatch
-                ? "/batch"
-                : ""
-            ) +
-            (force
-                ? "?force=true"
-                : ""
             );
 
     }
@@ -97,12 +77,9 @@ public class ProductCategoryRequest extends ApiRequest {
 
         try {
 
-            if (isBatch){
-                return getObjectMapper().writeValueAsString(batch);
-            }else{
                 // covert Java object to JSON strings
-                return getObjectMapper().writeValueAsString(category);
-            }
+            return getObjectMapper().writeValueAsString(category);
+
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -170,7 +147,7 @@ public class ProductCategoryRequest extends ApiRequest {
 
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
         public Created<ProductCategory> getResponse(){
-            return new WooCommerce().create(build());
+            return new Rest().create(build());
         }
     }
 
@@ -192,7 +169,7 @@ public class ProductCategoryRequest extends ApiRequest {
         @Override
         public Updated<ProductCategory> getResponse(){
             if (id > 0) {
-                return new WooCommerce().update(build());
+                return new Rest().update(build());
             }else {
                 return new Updated<ProductCategory>(
                     new ApiResponseResult(
@@ -238,12 +215,10 @@ public class ProductCategoryRequest extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher>{
-
-        private static Batch batch;
+    public static class Batcher<T extends Batcher<T>> extends BatchRequest.BatchCore<T>{
 
         public Batcher(){
-            batch = new Batch();
+            super();
         }
 
         T self() {
@@ -251,51 +226,24 @@ public class ProductCategoryRequest extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            batch.addCreate(create);
+            batch.addCreate(create.build().category);
             return self();
         }
 
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update);
+            batch.addUpdate(update.build().category);
             return self();
         }
 
         public T addDeleter(Deleter<?> delete){
-            batch.addDelete(delete);
+            batch.addDelete(delete.build().category);
             return self();
-        }
-
-        private Batch getBatch(){
-            return batch;
-        }
-
-        private ProductCategoryRequest build(){
-            return new ProductCategoryRequest(this);
         }
 
         /** Returns list of amended ProductCategories **/
         public Batched<ProductCategory> getResponse(){
 
-            if (batch.isEmpty()){
-
-                return new Batched<ProductCategory>(new ApiResponseResult(false, 0, "Nothing to do"));
-
-            }else if (batch.getRecordCount() > 100){
-
-                return new Batched<ProductCategory>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "https://woocommerce.github.io/woocommerce-rest-api-docs/#batch-update-product-categories\n" +
-                            "This API helps you to batch create, update and delete multiple products.\n\n" +
-                            "Note: By default it's limited to up to 100 objects to be created, updated or deleted.")
-                );
-
-            }else{
-
-                return new WooCommerce().batch(build());
-
-            }
+            return (Batched<ProductCategory>) super.getResponse(PRODUCT_CATEGORIES, batch, new TypeReference<Batch<ProductCategory>>(){});
 
         }
 
@@ -353,7 +301,7 @@ public class ProductCategoryRequest extends ApiRequest {
         public Listed<ProductCategory> getResponse(){
 
             return new Listed<ProductCategory>(
-                new WooCommerce().listAll(
+                new Rest().listAll(
                     PRODUCT_CATEGORIES,
                     build(),
                     new TypeReference<List<ProductCategory>>(){}

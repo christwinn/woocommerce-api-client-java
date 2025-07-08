@@ -10,11 +10,12 @@ package uk.co.twinn.api.woocommerce.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.request.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
 import java.math.BigDecimal;
@@ -22,8 +23,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
 
 public class ProductRequest extends ApiRequest {
 
@@ -110,15 +111,6 @@ public class ProductRequest extends ApiRequest {
         isBatch = false;
         force = false;
         duplicate = true;
-
-    }
-
-    private ProductRequest(Batcher<?> batcher){
-
-        batch = batcher.getBatch();
-        force = false;
-        duplicate = false;
-        isBatch = true;
 
     }
 
@@ -741,7 +733,7 @@ public class ProductRequest extends ApiRequest {
         }
 
         public Created<Product> getResponse(){
-            return new WooCommerce().create(build());
+            return new Rest().create(build());
         }
 
     }
@@ -762,7 +754,7 @@ public class ProductRequest extends ApiRequest {
         @Override
         public Updated<Product> getResponse(){
             if (id > 0){
-                return new WooCommerce().update(build());
+                return new Rest().update(build());
             }else{
                 return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
             }
@@ -801,40 +793,24 @@ public class ProductRequest extends ApiRequest {
 
     }
     //</editor-fold>
-    public static class Duplicator<T extends Duplicator<T>>{
+    //<editor-fold name="Reader">
+    public static class Duplicator<T extends Duplicator<T>> extends DuplicatorRequest.DuplicatorCore<T>{
 
-        private int id;
-
-        T self() {
-            return (T) this;
-        }
-
-        public T setId(int id) {
-            this.id = id;
-            return self();
-        }
-
-        private ProductRequest build(){
-            return new ProductRequest(this);
-        }
+        @Override
+        public T self() {return (T) this;}
 
         public Duplicated<Product> getResponse(){
+            return (Duplicated<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
 
-            if (id > 0){
-                return new WooCommerce().duplicate(build());
-            }else{
-                return new Duplicated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
-            }
         }
 
     }
+    //</editor-fold>
 
-    public static class Batcher<T extends Batcher<?>>{
-
-        private final Batch batch;
+    public static class Batcher<T extends Batcher<T>> extends BatchRequest.BatchCore<T>{
 
         public Batcher(){
-            batch = new Batch();
+            super();
         }
 
         T self() {
@@ -856,33 +832,9 @@ public class ProductRequest extends ApiRequest {
             return self();
         }
 
-        private Batch getBatch(){
-            return batch;
-        }
-
-        private ProductRequest build(){
-            return new ProductRequest(this);
-        }
-
         public Batched<Product> getResponse(){
 
-            if (batch.isEmpty()){
-
-                return new Batched<Product>(new ApiResponseResult(false, 0, "Nothing to do"));
-
-            }else if (batch.getRecordCount() > 100){
-
-                return new Batched<Product>(new ApiResponseResult(false, 0,
-                    "https://woocommerce.github.io/woocommerce-rest-api-docs/?shell#delete-a-product\n" +
-                        "This API helps you to batch create, update and delete multiple products.\n\n" +
-                        "Note: By default it's limited to up to 100 objects to be created, updated or deleted.")
-                );
-
-            }else{
-
-                return new WooCommerce().batch(build());
-
-            }
+            return (Batched<Product>) super.getResponse(PRODUCTS, batch, new TypeReference<Batch<Product>>(){});
 
         }
 
@@ -1191,7 +1143,7 @@ public class ProductRequest extends ApiRequest {
         public Listed<Product> getResponse(){
 
             return new Listed<Product>(
-                new WooCommerce().listAll(
+                new Rest().listAll(
                     PRODUCTS,
                     build(),
                     new TypeReference<List<Product>>(){}

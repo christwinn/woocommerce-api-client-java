@@ -7,7 +7,7 @@
  * All Rights Reserved
  */
 
-package uk.co.twinn.api.woocommerce.response;
+package uk.co.twinn.api.woocommerce.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

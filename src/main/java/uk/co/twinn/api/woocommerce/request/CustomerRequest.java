@@ -10,30 +10,25 @@ package uk.co.twinn.api.woocommerce.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.request.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
-import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import java.util.List;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 
 public class CustomerRequest extends ApiRequest {
 
     protected final Customer customer = new Customer();
 
-    private Batch batch;
-
     private boolean force;
-    //private boolean duplicate;
-    private boolean isBatch;
 
     public CustomerRequest(Creator<?> creator){
 
@@ -47,12 +42,6 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
-    public CustomerRequest(Reader<?> reader){
-
-        customer.setId(reader.id);
-
-    }
-
     public CustomerRequest(Updater<?> updater){
 
         this((Creator)updater);
@@ -63,16 +52,7 @@ public class CustomerRequest extends ApiRequest {
     public CustomerRequest(Deleter<?> deleter){
 
         customer.setId(deleter.id);
-        isBatch = false;
         force = deleter.force;
-
-    }
-
-    public CustomerRequest(Batcher<?> batcher){
-
-        batch = batcher.getBatch();
-        force = false;
-        isBatch = true;
 
     }
 
@@ -82,14 +62,6 @@ public class CustomerRequest extends ApiRequest {
             (customer.getId() != null && customer.getId() != 0
                 ? ("/" + customer.getId())
                 : ""
-            ) +
-            (isBatch
-                ? "/batch"
-                : ""
-            ) +
-            (force
-                ? "?force=true"
-                : ""
             );
 
     }
@@ -97,13 +69,8 @@ public class CustomerRequest extends ApiRequest {
     public String toJson(){
 
         try {
-
-            if (isBatch){
-                return getObjectMapper().writeValueAsString(batch);
-            }else{
                 // covert Java object to JSON strings
-                return getObjectMapper().writeValueAsString(customer);
-            }
+            return getObjectMapper().writeValueAsString(customer);
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -169,7 +136,7 @@ public class CustomerRequest extends ApiRequest {
         public Created<Customer> getResponse(){
 
             if (username != null && password != null) {
-                WooCommerce woo = new WooCommerce();
+                Rest woo = new Rest();
                 return woo.create(build());
             }else{
                 return new Created<Customer>(
@@ -202,7 +169,7 @@ public class CustomerRequest extends ApiRequest {
         @Override
         public Updated<Customer> getResponse(){
             if (id > 0){
-                return new WooCommerce().update(build());
+                return new Rest().update(build());
             }else {
                 return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
             }
@@ -242,12 +209,10 @@ public class CustomerRequest extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher<T>>{
-
-        private Batch batch;
+    public static class Batcher<T extends Batcher<T>> extends BatchRequest.BatchCore<T>{
 
         public Batcher(){
-            batch = new Batch();
+            super();
         }
 
         T self() {
@@ -300,38 +265,10 @@ public class CustomerRequest extends ApiRequest {
             return self();
         }
 
-        private Batch getBatch(){
-            return batch;
-        }
-
-        private CustomerRequest build(){
-            return new CustomerRequest(this);
-        }
-
         /** Returns list of amended ProductCategories **/
         public Batched<Customer> getResponse(){
 
-            if (batch.isEmpty()){
-
-                return new Batched<Customer>(new ApiResponseResult(false, 0, "Nothing to do"));
-
-            }else if (batch.getRecordCount() > 100){
-
-                return new Batched<Customer>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "https://woocommerce.github.io/woocommerce-rest-api-docs/#batch-update-product-categories\n" +
-                            "This API helps you to batch create, update and delete multiple products.\n\n" +
-                            "Note: By default it's limited to up to 100 objects to be created, updated or deleted.")
-                );
-
-            }else{
-
-
-                return new WooCommerce().batch(build());
-
-            }
+            return (Batched<Customer>) super.getResponse(CUSTOMERS, batch, new TypeReference<Batch<Customer>>(){});
 
         }
 
@@ -388,7 +325,7 @@ public class CustomerRequest extends ApiRequest {
         public Listed<Customer> getResponse(){
 
             return new Listed<Customer>(
-                new WooCommerce().listAll(
+                new Rest().listAll(
                     CUSTOMERS,
                     build(),
                     new TypeReference<List<Customer>>(){}

@@ -18,7 +18,7 @@ import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.request.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.OrderNote;
 
@@ -153,7 +153,7 @@ public class OrderNoteRequest extends ApiRequest {
                         "Order Id MANDATORY!\nUse Lister to ListAll")
                 );
             }else {
-                return new WooCommerce().create(build());
+                return new Rest().create(build());
             }
         }
 
@@ -243,7 +243,7 @@ public class OrderNoteRequest extends ApiRequest {
                 );
             }else {
                 return new Listed<OrderNote>(
-                    new WooCommerce().listAll(
+                    new Rest().listAll(
                         getEndPoint(),
                         build(),
                         new TypeReference<List<Customer>>(){}

@@ -10,10 +10,9 @@
 package uk.co.twinn.api.woocommerce.request;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import org.jetbrains.annotations.NotNull;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 
 public class ReaderRequest {
 
@@ -57,7 +56,7 @@ public class ReaderRequest {
                 );
             }else{
                 return new Read<>(
-                    new WooCommerce().read(endPoint, type)
+                    new Rest().read(endPoint, type)
                 );
             }
         }

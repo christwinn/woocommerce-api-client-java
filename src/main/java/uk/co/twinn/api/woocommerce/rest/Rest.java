@@ -6,11 +6,12 @@
  * Licence: MIT Licence see LICENCE file
  * All Rights Reserved
  */
-package uk.co.twinn.api.woocommerce.woocommerce;
+package uk.co.twinn.api.woocommerce.rest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.request.*;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
@@ -24,9 +25,9 @@ import java.util.logging.Logger;
 import uk.co.twinn.api.woocommerce.transportation.Http;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
-public class WooCommerce {
+public class Rest {
 
-    public WooCommerce() {
+    public Rest() {
     }
 
    private final Http http = new Http();
@@ -50,7 +51,7 @@ public class WooCommerce {
     private String getUri(String endPoint){
 
         Logger.getLogger(
-            WooCommerce.class.getName()).log(
+            Rest.class.getName()).log(
                 Level.INFO,
                 "https://" +
                 Configuration.getWebsite() +
@@ -119,6 +120,18 @@ public class WooCommerce {
         return http.delete(endPoint, getHeaders(), type);
 
     }
+
+    public ApiResponseResult duplicate(String endPoint, TypeReference<?> type){
+
+        return create(endPoint, null, type);
+
+    }
+
+    public ApiResponseResult batch(String endPoint, String content, TypeReference<?> type){
+
+        return create(endPoint, content, type);
+
+    }
     /*ET PHONED HOME, Call finished*/
 
     /**
@@ -137,8 +150,6 @@ public class WooCommerce {
 
     }
 
-
-
     /**
      *
      * @param endPoint where is the target
@@ -148,7 +159,7 @@ public class WooCommerce {
      */
     public ApiResponseResult listAll(String endPoint, String parameters, TypeReference<?> type){
 
-        Logger.getLogger(WooCommerce.class.getName()).log(Level.INFO, parameters);
+        Logger.getLogger(Rest.class.getName()).log(Level.INFO, parameters);
 
         return read(endPoint, parameters, type);
 
@@ -161,31 +172,13 @@ public class WooCommerce {
         );
     }
 
-    public Read<Coupon> read(CouponRequest request){
-
-        return new Read<Coupon>(
-            read(request.endPoint(), new TypeReference<Coupon>(){})
-        );
-
-    }
     public Updated<Coupon> update(CouponRequest request){
         return new Updated<Coupon>(
             update(request.endPoint(), request.toJson(), new TypeReference<Coupon>(){})
         );
 
     }
-    public Deleted<Coupon> delete(CouponRequest request){
-        return new Deleted<Coupon>(
-            delete(request.endPoint(), new TypeReference<Coupon>(){})
-        );
 
-    }
-
-    public Batched<Coupon> batch(CouponRequest batch){
-        return new Batched<Coupon>(
-            create(batch.endPoint(), batch.toJson(), new TypeReference<Batch<Coupon>>(){})
-        );
-    }
     //</editor-fold>
 
     //<editor-fold desc="Customer">
@@ -195,32 +188,13 @@ public class WooCommerce {
         );
     }
 
-    public Read<Customer> read(CustomerRequest request){
-        return new Read<Customer>(
-            read(request.endPoint(), new TypeReference<Customer>(){})
-        );
-    }
     public Updated<Customer> update(CustomerRequest request){
         return new Updated<Customer>(
             update(request.endPoint(), request.toJson(), new TypeReference<Customer>(){})
         );
 
     }
-    public Deleted<Customer> delete(CustomerRequest request){
-        return new Deleted<Customer>(
-            delete(request.endPoint(), new TypeReference<Customer>(){})
-        );
 
-    }
-
-    public Batched<Customer> batch(CustomerRequest batch){
-
-        return new Batched<Customer>(
-            create(batch.endPoint(), batch.toJson(), new TypeReference<Batch<Customer>>(){})
-
-        );
-
-    }
     //</editor-fold>
 
     //<editor-fold desc="Orders">
@@ -230,31 +204,13 @@ public class WooCommerce {
         );
     }
 
-    public Read<Order> read(OrderRequest request){
-
-        return new Read<Order>(
-            read(request.endPoint(), new TypeReference<Order>(){})
-        );
-
-    }
     public Updated<Order> update(OrderRequest request){
         return new Updated<Order>(
             update(request.endPoint(), request.toJson(), new TypeReference<Order>(){})
         );
 
     }
-    public Deleted<Order> delete(OrderRequest request){
-        return new Deleted<Order>(
-            delete(request.endPoint(), new TypeReference<Order>(){})
-        );
 
-    }
-
-    public Batched<Order> batch(OrderRequest batch){
-        return new Batched<Order>(
-            create(batch.endPoint(), batch.toJson(), new TypeReference<List<Order>>(){})
-        );
-    }
     //</editor-fold>
 
     //<editor-fold desc="OrderNotes">
@@ -262,21 +218,6 @@ public class WooCommerce {
         return new Created<OrderNote>(
             create(request.endPoint(), request.toJson(), new TypeReference<OrderNote>(){})
         );
-    }
-
-    public Read<OrderNote> read(OrderNoteRequest request){
-
-        return new Read<OrderNote>(
-            read(request.endPoint(), new TypeReference<OrderNote>(){})
-        );
-
-    }
-    //no update available
-    public Deleted<OrderNote> delete(OrderNoteRequest request){
-        return new Deleted<OrderNote>(
-            delete(request.endPoint(), new TypeReference<OrderNote>(){})
-        );
-
     }
     //</editor-fold>
 
@@ -286,22 +227,6 @@ public class WooCommerce {
             create(request.endPoint(), request.toJson(), new TypeReference<OrderRefund>(){})
         );
     }
-
-    public Read<OrderRefund> read(OrderRefundRequest request){
-
-        return new Read<OrderRefund>(
-            read(request.endPoint(), new TypeReference<OrderRefund>(){})
-        );
-
-    }
-    //no update available
-    public Deleted<OrderRefund> delete(OrderRefundRequest request){
-        return new Deleted<OrderRefund>(
-            delete(request.endPoint(), new TypeReference<OrderRefund>(){})
-        );
-
-    }
-
     //</editor-fold>
 
     //<editor-fold desc="ProductCategory">
@@ -313,20 +238,11 @@ public class WooCommerce {
 
     }
 
-    public Read<ProductCategory> read(ProductCategoryRequest request){
-
-        return new Read<ProductCategory>(
-            read(
-                request.endPoint(),
-                new TypeReference<ProductCategory>(){})
-        );
-
-    }
     public Updated<ProductCategory> update(ProductCategoryRequest request){
 
         if (Configuration.isDebug()){
             Logger.getLogger(
-                WooCommerce.class.getName()).log(
+                Rest.class.getName()).log(
                 Level.INFO,
                 request.toJson()
             );
@@ -336,19 +252,7 @@ public class WooCommerce {
         );
 
     }
-    public Deleted<ProductCategory> delete(ProductCategoryRequest request){
 
-        return new Deleted<ProductCategory>(
-            delete(request.endPoint(), new TypeReference<ProductCategory>(){})
-        );
-
-    }
-
-    public Batched<ProductCategory> batch(ProductCategoryRequest batch){
-        return new Batched<ProductCategory>(
-            create(batch.endPoint(), batch.toJson(),new TypeReference<List<ProductCategory>>(){})
-        );
-    }
     //</editor-fold>
 
     //<editor-fold desc="Product">
@@ -359,56 +263,14 @@ public class WooCommerce {
         );
 
     }
-    /*public ProductResponse create(ProductRequest request) {
-        return new ProductResponse(
-            create(request.endPoint(), request.toJson(), new TypeReference<Product>(){})
-        );
-    }*/
 
-    public Read<Product> read(ProductRequest request){
-
-        return new Read<Product>(
-            read(request.endPoint(), new TypeReference<Product>(){})
-
-        );
-
-    }
-
-    /*public ProductResponse read(ProductRequest request){
-
-        return new ProductResponse(
-            read(request.endPoint(), new TypeReference<Product>(){})
-        );
-
-    }*/
     public Updated<Product> update(ProductRequest request){
         return new Updated<Product>(
             update(request.endPoint(), request.toJson(), new TypeReference<Product>(){})
         );
 
     }
-    public Deleted<Product> delete(ProductRequest request){
-        return new Deleted<Product>(
-            delete(request.endPoint(), new TypeReference<Product>(){})
-        );
 
-    }
-
-    public Duplicated duplicate(ProductRequest batch){
-
-        return new Duplicated<Product>(
-            create(batch.endPoint(), batch.toJson(), new TypeReference<Batch<Product>>(){})
-        );
-
-    }
-
-    public Batched batch(ProductRequest batch){
-
-        return new Batched<Product>(
-            create(batch.endPoint(), batch.toJson(), new TypeReference<Batch<Product>>(){})
-        );
-
-    }
     //</editor-fold>
 
 }

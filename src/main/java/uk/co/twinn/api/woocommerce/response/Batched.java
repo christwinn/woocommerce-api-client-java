@@ -10,6 +10,7 @@
 package uk.co.twinn.api.woocommerce.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponse;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.ErrorObject;

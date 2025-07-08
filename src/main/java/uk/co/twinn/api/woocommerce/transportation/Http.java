@@ -23,7 +23,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.jetbrains.annotations.NotNull;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.Configuration;
+import uk.co.twinn.api.woocommerce.rest.Configuration;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

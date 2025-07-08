@@ -11,9 +11,8 @@ package uk.co.twinn.api.woocommerce.request;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.response.Deleted;
-import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 
 /**
  * This is an Internal class, relying on package-private values to create the rest of the DeleterRequests
@@ -49,7 +48,7 @@ public class DeleterRequest {
         }
 
         Deleted<?> getResponse(String endPoint, TypeReference<?> type){
-            return getResponse(endPoint + "/" + id + "?force=" + force, type);
+            return readResponse(endPoint + "/" + id + "?force=" + force, type);
         }
 
         private Deleted<?> readResponse(String endPoint, TypeReference<?> type){
@@ -64,7 +63,7 @@ public class DeleterRequest {
                 );
             }else{
                 return new Deleted<>(
-                    new WooCommerce().delete(endPoint, type)
+                    new Rest().delete(endPoint, type)
                 );
             }
 

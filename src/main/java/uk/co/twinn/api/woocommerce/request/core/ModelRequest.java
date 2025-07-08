@@ -11,9 +11,10 @@ package uk.co.twinn.api.woocommerce.request.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
 import java.util.List;
@@ -299,7 +300,7 @@ public class ModelRequest extends ApiRequest {
                 //String endPoint = ORDERS + "/" + orderId + "/refunds";
 
                 return new Listed<Model>(
-                    new WooCommerce().listAll(
+                    new Rest().listAll(
                         "", //endPoint, SET endPoint
                         build(),
                         new TypeReference<List<Model>>(){}

@@ -14,7 +14,7 @@ import uk.co.twinn.api.woocommerce.response.core.Msg;
 import uk.co.twinn.api.woocommerce.request.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.Message;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
 
@@ -69,7 +69,7 @@ public class OrderActionsRequest extends ApiRequest {
                 );
             }else {
 
-                WooCommerce woo = new WooCommerce();
+                Rest woo = new Rest();
 
                 return new Created<Message>(
                     woo.create(getEndPoint(), new TypeReference<Msg>(){})

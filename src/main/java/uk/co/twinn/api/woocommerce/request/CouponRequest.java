@@ -11,13 +11,15 @@ package uk.co.twinn.api.woocommerce.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
 import uk.co.twinn.pl_wtx_woocommerce.model.MetaData;
 import uk.co.twinn.api.woocommerce.request.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
+import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -25,12 +27,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 
 public class CouponRequest extends ApiRequest {
 
     private final Coupon coupon = new Coupon();
 
-    private Batch batch;
     private boolean force;
 
     private CouponRequest(Creator<?> creator){
@@ -72,27 +74,12 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    private CouponRequest(Batcher<?> batcher){
-
-        batch = batcher.getBatch();
-        force = false;
-
-    }
-
     public String endPoint(){
 
         return
             COUPONS +
                 (coupon.getId() != null && coupon.getId() != 0
                     ? ("/" + coupon.getId())
-                    : ""
-                ) +
-                (batch != null
-                    ? "/batch"
-                    : ""
-                ) +
-                (force
-                    ? "?force=true"
                     : ""
                 );
 
@@ -339,7 +326,7 @@ public class CouponRequest extends ApiRequest {
                         "Code is MANDATORY!")
                 );
             }else {
-                return new WooCommerce().create(build());
+                return new Rest().create(build());
             }
         }
 
@@ -363,7 +350,7 @@ public class CouponRequest extends ApiRequest {
         @Override
         public Updated<Coupon> getResponse(){
             if (id > 0) {
-                return new WooCommerce().update(build());
+                return new Rest().update(build());
             }else{
                 return new Updated<Coupon>(
                     new ApiResponseResult(
@@ -484,7 +471,7 @@ public class CouponRequest extends ApiRequest {
         public Listed<Coupon> getResponse(){
 
             return new Listed<Coupon>(
-                new WooCommerce().listAll(
+                new Rest().listAll(
                     COUPONS,
                     build(),
                     new TypeReference<List<Coupon>>(){}
@@ -495,12 +482,10 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    public static class Batcher<T extends Batcher>{
-
-        private static Batch batch;
+    public static class Batcher<T extends Batcher<T>>  extends BatchRequest.BatchCore<T>{
 
         public Batcher(){
-            batch = new Batch();
+            super();
         }
 
         T self() {
@@ -522,37 +507,10 @@ public class CouponRequest extends ApiRequest {
             return self();
         }
 
-        private Batch getBatch(){
-            return batch;
-        }
-
-        private CouponRequest build(){
-            return new CouponRequest(this);
-        }
-
         /** Returns list of amended Coupons **/
         public Batched<Coupon> getResponse(){
 
-            if (batch.isEmpty()){
-
-                return new Batched<Coupon>(new ApiResponseResult(false, 0, "Nothing to do"));
-
-            }else if (batch.getRecordCount() > 100){
-
-                return new Batched<Coupon>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "https://woocommerce.github.io/woocommerce-rest-api-docs/#batch-update-coupons\n" +
-                            "This API helps you to batch create, update and delete multiple products.\n\n" +
-                            "Note: By default it's limited to up to 100 objects to be created, updated or deleted.")
-                );
-
-            }else{
-
-                return new WooCommerce().batch(build());
-
-            }
+            return (Batched<Coupon>) super.getResponse(COUPONS, batch, new TypeReference<Batch<Coupon>>(){});
 
         }
 

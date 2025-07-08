@@ -13,6 +13,7 @@ package uk.co.twinn;
 import java.util.*;
 
 import uk.co.twinn.api.woocommerce.request.*;
+import uk.co.twinn.api.woocommerce.response.Batched;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Updated;
@@ -20,6 +21,8 @@ import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
+
+import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
 
 /**
  * WooCommerce API Client - Usage Demo
@@ -112,19 +115,21 @@ public class WooCommerceApiClientUsageDemo {
         if (customer != null) {
             System.out.println(customer.toString());
         }
+*/
+        CustomerDemo customerDemo = new CustomerDemo();
 
         Batched<Customer> batched = customerDemo.batchUpdateCustomers();
         if (batched.isSuccess()){
             System.out.println("The request was a success BUT cycle the records to check that they are!");
 
-            for (Customer bc : batched.getBatch().getCreated()){
+            for (Customer bc : batched.getResult().getCreated()){
                 if (!bc.hasError()){
                     System.out.println(bc.toString());
                 }else{
                     System.out.println("CFAIL:" + bc.getError().getMessage());
                 }
             }
-            for (Customer bc : batched.getBatch().getUpdated()){
+            for (Customer bc : batched.getResult().getUpdated()){
                 if (!bc.hasError()){
                     System.out.println(bc.toString());
                 }else{
@@ -132,7 +137,7 @@ public class WooCommerceApiClientUsageDemo {
                 }
 
             }
-            for (Customer bc : batched.getBatch().getDeleted()){
+            for (Customer bc : batched.getResult().getDeleted()){
                 if (!bc.hasError()){
                     System.out.println(bc.toString());
                 }else{
@@ -142,7 +147,7 @@ public class WooCommerceApiClientUsageDemo {
         }else{
             System.out.println(batched.getError().getMessage());
         }
-
+/*
         pleaseExplain();
 
         Searched<Customer> customerResponse =

@@ -10,18 +10,19 @@ package uk.co.twinn.api.woocommerce.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.request.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 
 public class OrderRequest extends ApiRequest {
 
@@ -63,14 +64,6 @@ public class OrderRequest extends ApiRequest {
         order.setId(deleter.id);
         isBatch = false;
         force = deleter.force;
-
-    }
-
-    public OrderRequest(Batcher<?> batcher){
-
-        batch = batcher.getBatch();
-        force = false;
-        isBatch = true;
 
     }
 
@@ -166,7 +159,7 @@ public class OrderRequest extends ApiRequest {
 
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
         public Created<Order> getResponse(){
-            return new WooCommerce().create(build());
+            return new Rest().create(build());
         }
 
     }
@@ -189,7 +182,7 @@ public class OrderRequest extends ApiRequest {
         @Override
         public Updated<Order> getResponse(){
             if (id > 0) {
-                return new WooCommerce().update(build());
+                return new Rest().update(build());
             }else{
                 return new Updated<Order>(
                     new ApiResponseResult(
@@ -234,12 +227,10 @@ public class OrderRequest extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher>{
-
-        private static Batch batch;
+    public static class Batcher<T extends Batcher<T>>  extends BatchRequest.BatchCore<T>{
 
         public Batcher(){
-            batch = new Batch();
+            super();
         }
 
         T self() {
@@ -261,38 +252,10 @@ public class OrderRequest extends ApiRequest {
             return self();
         }
 
-        private Batch getBatch(){
-            return batch;
-        }
-
-        private OrderRequest build(){
-            return new OrderRequest(this);
-        }
-
-        /** Returns list of amended ProductCategories **/
+        /** Returns list of amended Orders **/
         public Batched<Order> getResponse(){
 
-            if (batch.isEmpty()){
-
-                return new Batched<Order>(new ApiResponseResult(false, 0, "Nothing to do"));
-
-            }else if (batch.getRecordCount() > 100){
-
-                return new Batched<Order>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "https://woocommerce.github.io/woocommerce-rest-api-docs/#batch-update-product-categories\n" +
-                            "This API helps you to batch create, update and delete multiple products.\n\n" +
-                            "Note: By default it's limited to up to 100 objects to be created, updated or deleted.")
-                );
-
-            }else{
-
-
-                return new WooCommerce().batch(build());
-
-            }
+            return (Batched<Order>) super.getResponse(ORDERS, batch, new TypeReference<Batch<Order>>(){});
 
         }
 
@@ -447,7 +410,7 @@ public class OrderRequest extends ApiRequest {
         public Listed<Order> getResponse(){
 
             return new Listed<Order>(
-                new WooCommerce().listAll(
+                new Rest().listAll(
                     ORDERS,
                     build(),
                     new TypeReference<List<Order>>(){}

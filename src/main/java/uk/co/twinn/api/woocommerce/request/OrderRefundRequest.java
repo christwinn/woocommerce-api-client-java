@@ -18,7 +18,7 @@ import uk.co.twinn.api.woocommerce.response.Deleted;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
 import java.math.BigDecimal;
@@ -178,7 +178,7 @@ public class OrderRefundRequest extends ApiRequest {
                         "Order Id is MANDATORY!")
                 );
             }else {
-                return new WooCommerce().create(build());
+                return new Rest().create(build());
             }
         }
 
@@ -249,7 +249,7 @@ public class OrderRefundRequest extends ApiRequest {
                 String endPoint = ORDERS + "/" + orderId + "/refunds";
 
                 return new Listed<OrderRefund>(
-                    new WooCommerce().listAll(
+                    new Rest().listAll(
                         endPoint,
                         build(),
                         new TypeReference<List<OrderRefund>>(){}

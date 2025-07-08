@@ -11,7 +11,7 @@ package uk.co.twinn.api.woocommerce.request;
 
 import uk.co.twinn.api.woocommerce.response.Message;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.woocommerce.Configuration;
+import uk.co.twinn.api.woocommerce.rest.Configuration;
 
 public class AuthenticationRequest {
 
