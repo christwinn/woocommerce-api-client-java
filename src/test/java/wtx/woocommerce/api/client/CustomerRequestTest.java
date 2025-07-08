@@ -21,9 +21,9 @@ import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.co.twinn.api.woocommerce.request.CustomerRequest;
-import uk.co.twinn.api.woocommerce.response.Batch;
+import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.response.Batched;
-import uk.co.twinn.api.woocommerce.woocommerce.Configuration;
+import uk.co.twinn.api.woocommerce.rest.Configuration;
 
 import java.io.IOException;
 import java.nio.file.Files;
