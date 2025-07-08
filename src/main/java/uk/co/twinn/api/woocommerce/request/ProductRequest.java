@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
 
 public class ProductRequest extends ApiRequest {
 
@@ -87,12 +88,6 @@ public class ProductRequest extends ApiRequest {
 
     }
 
-    private ProductRequest(Reader<?> reader){
-
-        product.setId(reader.id);
-
-    }
-
     private ProductRequest(Updater<?> updater){
 
         this((Creator<?>)updater);
@@ -102,7 +97,7 @@ public class ProductRequest extends ApiRequest {
 
     private ProductRequest(Deleter<?> deleter){
 
-        this((Reader<?>)deleter);
+        product.setId(deleter.id);
         isBatch = false;
         duplicate = false;
         force = deleter.force;
@@ -751,53 +746,6 @@ public class ProductRequest extends ApiRequest {
 
     }
 
-    /*Extend self to enforce Diamond RequestType standard call, If some have diamond and some do not then the consumer could be easily confused*/
-    public static class Reader<T extends Reader<?>>{
-
-        /*
-            https://www.baeldung.com/java-builder-pattern-inheritance
-            https://woocommerce.github.io/woocommerce-rest-api-docs/?shell#product-properties
-        */
-
-        protected int id;             //integer	Unique identifier for the resource.read-only
-
-        T self() {
-            return (T) this;
-        }
-
-        /**
-         *
-         *
-         * @param id This API lets you retrieve and view a specific product by ID.
-         *           Set id to 0 to view all the products.
-         * @return T
-         */
-        public T withId(int id) {
-            this.id = id;
-            return self();
-        }
-
-        private ProductRequest build(){
-            return new ProductRequest(this);
-        }
-
-        public Read<Product> getResponse(){
-            if (id > 0) {
-                return new WooCommerce().read(build());
-            }else {
-                return new Read<>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "CRUD is limited to a single object result\n" +
-                            "Please set requested id\n" +
-                            "Use the Searcher with no parameters to get a full list")
-                );
-            }
-        }
-
-    }
-
     public static class Updater<T extends Updater<T>> extends Creator<T>{
 
         private int id;
@@ -822,33 +770,37 @@ public class ProductRequest extends ApiRequest {
         }
     }
 
-    public static class Deleter<T extends Deleter<T>> extends Reader<T>{
-
-        private boolean force;
-
-        public T setForce(boolean force) {
-            this.force = force;
-            return self();
-        }
-
-        private ProductRequest build(){
-            return new ProductRequest(this);
-        }
+    //<editor-fold name="Reader">
+    public static class Reader<T extends Reader<T>> extends ReaderRequest.ReaderCore<T>{
 
         @Override
-        public Deleted<Product> getResponse(){
+        public T self() {return (T) this;}
 
-            if (id > 0 && force){
-                return new WooCommerce().delete(build());
-            }else{
-                return new Deleted<>(
-                    new ApiResponseResult(false, 0,
-                    "Invalid Identifier, id and force is required"));
-            }
+        public Read<Product> getResponse(){
+            return (Read<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
+
         }
 
     }
+    //</editor-fold>
 
+    //<editor-fold name="Deleter">
+    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.DeleterCore<T>{
+
+        @Override
+        public T self() {return (T) this;}
+
+        protected ProductRequest build(){
+            return new ProductRequest(this);
+        }
+
+        public Deleted<Product> getResponse(){
+            return (Deleted<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
+
+        }
+
+    }
+    //</editor-fold>
     public static class Duplicator<T extends Duplicator<T>>{
 
         private int id;

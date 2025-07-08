@@ -14,6 +14,7 @@ import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.request.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
+import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
@@ -21,6 +22,7 @@ import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
 
 import java.util.List;
 
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 
 public class CustomerRequest extends ApiRequest {
@@ -54,13 +56,13 @@ public class CustomerRequest extends ApiRequest {
     public CustomerRequest(Updater<?> updater){
 
         this((Creator)updater);
-        customer.setId(updater.id);
+
 
     }
 
     public CustomerRequest(Deleter<?> deleter){
 
-        this((Reader)deleter);
+        customer.setId(deleter.id);
         isBatch = false;
         force = deleter.force;
 
@@ -182,74 +184,6 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
-    public static class Reader<T extends Reader<?>>{
-
-        protected int id;
-
-        T self() {
-            return (T) this;
-        }
-
-        public T setId(int id){
-            this.id = id;
-            return self();
-        }
-
-        protected CustomerRequest build(){
-            return new CustomerRequest(this);
-        }
-
-        /**
-         *  If the id is set returns a single productCategory
-         *  otherwise returns list of productCategory
-         */
-        public Read<Customer> getResponse(){
-
-            if (id > 0) {
-                return new WooCommerce().read(build());
-            }else {
-                return new Read<Customer>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "CRUD is limited to a single object result\n" +
-                            "Please set requested id\n" +
-                            "Use the Searcher with no parameters to get a full list")
-                );
-            }
-
-        }
-
-    }
-
-    public static class Deleter<T extends Deleter<T>> extends Reader<T>{
-
-        private boolean force;
-
-        public T force(boolean force){
-            this.force = force;
-            return self();
-        }
-
-        @Override
-        protected CustomerRequest build(){
-            return new CustomerRequest(this);
-        }
-
-        /** Returns single Deleted ProductCategory**/
-        @Override
-        public Deleted<Customer> getResponse(){
-            if (id > 0 && force){
-                return new WooCommerce().delete(build());
-            }else {
-                return new Deleted<>(
-                    new ApiResponseResult(false, 0,
-                        "Invalid Identifier, id and force is required"));
-            }
-        }
-
-    }
-
     public static class Updater<T extends Updater<T>> extends Creator<T>{
 
         private int id;
@@ -276,33 +210,37 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
-    /*public static class Deleter<T extends Deleter<T>> extends Reader<T>{
-
-        private boolean force;
-
-        public T force(boolean force){
-            this.force = force;
-            return self();
-        }
+    //<editor-fold name="Reader">
+    public static class Reader<T extends Reader<T>> extends ReaderRequest.ReaderCore<T>{
 
         @Override
+        public T self() {return (T) this;}
+
+        public Read<Customer> getResponse(){
+            return (Read<Customer>)super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
+
+        }
+
+    }
+    //</editor-fold>
+
+    //<editor-fold name="Deleter">
+    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.DeleterCore<T>{
+
+        @Override
+        public T self() {return (T) this;}
+
         protected CustomerRequest build(){
             return new CustomerRequest(this);
         }
 
-        //Returns single Deleted ProductCategory
-        @Override
         public Deleted<Customer> getResponse(){
-            if (id > 0 && force){
-                return new WooCommerce().delete(build());
-            }else {
-                return new Deleted<>(
-                    new ApiResponseResult(false, 0,
-                        "Invalid Identifier, id and force is required"));
-            }
+            return (Deleted<Customer>)super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
+
         }
 
-    }*/
+    }
+    //</editor-fold>
 
     public static class Batcher<T extends Batcher<T>>{
 

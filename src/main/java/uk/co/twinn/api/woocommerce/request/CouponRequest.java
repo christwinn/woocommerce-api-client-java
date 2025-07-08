@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
 import uk.co.twinn.pl_wtx_woocommerce.model.MetaData;
-import uk.co.twinn.api.woocommerce.defines.EndPoints;
 import uk.co.twinn.api.woocommerce.request.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
@@ -24,6 +23,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
 
 public class CouponRequest extends ApiRequest {
 
@@ -57,12 +58,6 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    private CouponRequest(Reader<?> reader){
-
-        coupon.setId(reader.couponId);
-
-    }
-
     private CouponRequest(Updater<?> updater){
 
         this((Creator)updater);
@@ -72,8 +67,8 @@ public class CouponRequest extends ApiRequest {
 
     private CouponRequest(Deleter<?> deleter){
 
-        this((Reader)deleter);
-        force = deleter.force;
+        coupon.setId(deleter.id);
+        force = deleter.isForce();
 
     }
 
@@ -87,7 +82,7 @@ public class CouponRequest extends ApiRequest {
     public String endPoint(){
 
         return
-            EndPoints.COUPONS +
+            COUPONS +
                 (coupon.getId() != null && coupon.getId() != 0
                     ? ("/" + coupon.getId())
                     : ""
@@ -350,44 +345,6 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    public static class Reader<T extends Reader<?>>{
-
-        protected int couponId;
-
-        T self() {
-            return (T) this;
-        }
-
-        public T setCouponId(int couponId){
-            this.couponId = couponId;
-            return self();
-        }
-
-        protected CouponRequest build(){
-            return new CouponRequest(this);
-        }
-
-        /**
-         *  If the id is set returns a single productCategory
-         *  otherwise returns list of productCategory
-         */
-        public Read<Coupon> getResponse(){
-
-            if (couponId > 0) {
-                return new WooCommerce().read(build());
-            }else{
-                return new Read<Coupon>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "Coupon Id is MANDATORY!\nUse Lister to ListAll")
-                );
-            }
-
-        }
-
-    }
-
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
         private int id;
@@ -419,36 +376,37 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    public static class Deleter<T extends Deleter<T>> extends Reader<T> {
-
-        private boolean force;
-
-        public T force(boolean force){
-            this.force = force;
-            return self();
-        }
+    //<editor-fold name="Reader">
+    public static class Reader<T extends Reader<T>> extends ReaderRequest.ReaderCore<T>{
 
         @Override
+        public T self() {return (T) this;}
+
+        public Read<Coupon> getResponse(){
+            return (Read<Coupon>)super.getResponse(COUPONS, new TypeReference<Coupon>() {});
+
+        }
+
+    }
+    //</editor-fold>
+
+    //<editor-fold name="Deleter">
+    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.DeleterCore<T>{
+
+        @Override
+        public T self() {return (T) this;}
+
         protected CouponRequest build(){
             return new CouponRequest(this);
         }
 
-        /** Returns single Deleted ProductCategory**/
-        @Override
         public Deleted<Coupon> getResponse(){
-            if (couponId == 0 || !force) {
-                return new Deleted<Coupon>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "Coupon Id AND use of the Force is MANDATORY!")
-                );
-            }else {
-                return new WooCommerce().delete(build());
-            }
+            return (Deleted<Coupon>)super.getResponse(COUPONS, new TypeReference<Coupon>() {});
+
         }
 
     }
+    //</editor-fold>
 
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
 
@@ -527,7 +485,7 @@ public class CouponRequest extends ApiRequest {
 
             return new Listed<Coupon>(
                 new WooCommerce().listAll(
-                    EndPoints.COUPONS,
+                    COUPONS,
                     build(),
                     new TypeReference<List<Coupon>>(){}
                 )

@@ -10,6 +10,7 @@ package uk.co.twinn.api.woocommerce.request;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.pl_wtx_woocommerce.model.Order;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductImage;
 import uk.co.twinn.api.woocommerce.request.core.Seek;
@@ -20,6 +21,7 @@ import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
 
 import java.util.List;
 
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
 
 public class ProductCategoryRequest extends ApiRequest {
@@ -50,12 +52,6 @@ public class ProductCategoryRequest extends ApiRequest {
 
     }
 
-    public ProductCategoryRequest(Reader<?> reader){
-
-        category.setId(reader.id);
-
-    }
-
     public ProductCategoryRequest(Updater<?> updater){
 
         this((Creator<?>)updater);
@@ -65,7 +61,7 @@ public class ProductCategoryRequest extends ApiRequest {
 
     public ProductCategoryRequest(Deleter<?> deleter){
 
-        this((Reader<?>)deleter);
+        category.setId(deleter.id);
         isBatch = false;
         force = deleter.force;
 
@@ -178,44 +174,6 @@ public class ProductCategoryRequest extends ApiRequest {
         }
     }
 
-    public static class Reader<T extends Reader<T>>{
-
-        protected int id;
-
-        T self() {
-            return (T) this;
-        }
-
-        public T setId(int id){
-            this.id = id;
-            return self();
-        }
-
-        protected ProductCategoryRequest build(){
-            return new ProductCategoryRequest(this);
-        }
-
-        /**
-         *  If the id is set returns a single productCategory
-         *  otherwise returns list of productCategory
-         */
-        public Read<ProductCategory> getResponse(){
-            if (id > 0) {
-                return new WooCommerce().read(build());
-            }else{
-                return new Read<ProductCategory>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "CRUD is limited to a single object result\n" +
-                            "Please set requested id\n" +
-                            "Use the Searcher with no parameters to get a full list")
-                );
-            }
-        }
-
-    }
-
     public static class Updater<T extends Updater<T>> extends Creator<T>{
 
         private int id;
@@ -248,37 +206,37 @@ public class ProductCategoryRequest extends ApiRequest {
 
     }
 
-    public static class Deleter<T extends Deleter<T>> extends Reader<T>{
-
-        private boolean force;
-
-        public T force(boolean force){
-            this.force = force;
-            return self();
-        }
+    //<editor-fold name="Reader">
+    public static class Reader<T extends Reader<T>> extends ReaderRequest.ReaderCore<T>{
 
         @Override
-        protected ProductCategoryRequest build(){
-            return new ProductCategoryRequest(this);
-        }
+        public T self() {return (T) this;}
 
-        /** Returns single Deleted ProductCategory**/
-        @Override
-        public Deleted<ProductCategory> getResponse(){
-            if (id > 0 && force) {
-                return new WooCommerce().delete(build());
-            }else {
-                return new Deleted<ProductCategory>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "Category Id AND force is MANDATORY!")
-                );
-            }
+        public Read<ProductCategory> getResponse(){
+            return (Read<ProductCategory>)super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
 
         }
 
     }
+    //</editor-fold>
+
+    //<editor-fold name="Deleter">
+    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.DeleterCore<T>{
+
+        @Override
+        public T self() {return (T) this;}
+
+        protected ProductCategoryRequest build(){
+            return new ProductCategoryRequest(this);
+        }
+
+        public Deleted<ProductCategory> getResponse(){
+            return (Deleted<ProductCategory>)super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
+
+        }
+
+    }
+    //</editor-fold>
 
     public static class Batcher<T extends Batcher>{
 

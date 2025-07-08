@@ -12,11 +12,12 @@ package uk.co.twinn;
 
 import java.util.*;
 
-import uk.co.twinn.api.woocommerce.request.ProductCategoryRequest;
-import uk.co.twinn.api.woocommerce.request.ProductRequest;
+import uk.co.twinn.api.woocommerce.request.*;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Updated;
+
+import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
 
@@ -28,7 +29,7 @@ import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
  */
 public class WooCommerceApiClientUsageDemo {
 
-    // TODO: Set your WooCommerce API base path!
+    //
 
     /*private static final String API_BASE_PATH = "https://woocommerce/wp-json/wc/v3";
     private static final String API_USERNAME = "ck_1234567890ABCDEF01234567890ABCDEF0123456";
@@ -173,6 +174,14 @@ public class WooCommerceApiClientUsageDemo {
         }else{
             System.out.println(category.getError().getMessage());
         }*/
+
+        //Customer fred = new CustomerTestRequest.Reader<>().setId(1).getResponse().getResult();
+        new CouponRequest.Reader<>().setId(1).getResponse();
+        new CouponRequest.Deleter<>().setForce(true).setId(1).setForce(false).getResponse();
+
+        new CouponRequest.Deleter<>().setId(1).getResponse();
+
+        new OrderNoteRequest.Deleter<>().setNoteId(1).setId(2).setNoteId(1).getResponse();
 
         Updated<ProductCategory> category2 = new ProductCategoryRequest
             .Updater<>()
@@ -353,7 +362,7 @@ public class WooCommerceApiClientUsageDemo {
         }else{
 
             Product product = new ProductRequest.Reader<>()
-                .withId(id)
+                .setId(id)
                 .getResponse()
                 .getResult();
 

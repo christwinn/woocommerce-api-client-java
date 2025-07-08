@@ -20,6 +20,7 @@ import uk.co.twinn.api.woocommerce.woocommerce.WooCommerce;
 import java.time.LocalDate;
 import java.util.List;
 
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
 
 public class OrderRequest extends ApiRequest {
@@ -59,7 +60,7 @@ public class OrderRequest extends ApiRequest {
 
     public OrderRequest(Deleter<?> deleter){
 
-        this((Reader)deleter);
+        order.setId(deleter.id);
         isBatch = false;
         force = deleter.force;
 
@@ -170,44 +171,6 @@ public class OrderRequest extends ApiRequest {
 
     }
 
-    public static class Reader<T extends Reader<T>>{
-
-        private int id;
-
-        T self() {
-            return (T) this;
-        }
-
-        public T setId(int id){
-            this.id = id;
-            return self();
-        }
-
-        protected OrderRequest build(){
-            return new OrderRequest(this);
-        }
-
-        /**
-         *  If the id is set returns a single productCategory
-         *  otherwise returns list of productCategory
-         */
-        public Read<Order> getResponse(){
-            if (id == 0) {
-                return new Read<Order>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "CRUD is limited to a single object result\n" +
-                            "Please set requested id\n" +
-                            "Use the Searcher with no parameters to get a full list")
-                );
-            }else {
-                return new WooCommerce().read(build());
-            }
-        }
-
-    }
-
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
         private int id;
@@ -239,27 +202,37 @@ public class OrderRequest extends ApiRequest {
 
     }
 
-    public static class Deleter<T extends Deleter<T>> extends Reader<T> {
-
-        private boolean force;
-
-        public T force(boolean force){
-            this.force = force;
-            return self();
-        }
+    //<editor-fold name="Reader">
+    public static class Reader<T extends Reader<T>> extends ReaderRequest.ReaderCore<T>{
 
         @Override
+        public T self() {return (T) this;}
+
+        public Read<Order> getResponse(){
+            return (Read<Order>)super.getResponse(ORDERS, new TypeReference<Order>() {});
+
+        }
+
+    }
+    //</editor-fold>
+
+    //<editor-fold name="Deleter">
+    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.DeleterCore<T>{
+
+        @Override
+        public T self() {return (T) this;}
+
         protected OrderRequest build(){
             return new OrderRequest(this);
         }
 
-        /** Returns single Deleted ProductCategory**/
-        @Override
         public Deleted<Order> getResponse(){
-            return new WooCommerce().delete(build());
+            return (Deleted<Order>)super.getResponse(ORDERS, new TypeReference<Order>() {});
+
         }
 
     }
+    //</editor-fold>
 
     public static class Batcher<T extends Batcher>{
 

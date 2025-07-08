@@ -41,18 +41,6 @@ public class OrderNoteRequest extends ApiRequest {
 
     }
 
-    public OrderNoteRequest(Reader<?> reader){
-        orderNote.setOrderId(reader.orderId);
-        orderNote.setId(reader.noteId);
-    }
-
-    public OrderNoteRequest(Deleter<?> deleter){
-
-        this((Reader<?>)deleter);
-        force = deleter.force;
-
-    }
-
     public OrderNoteRequest(ListAll<?> listAller){
 
         orderNote.setOrderId(listAller.orderId);
@@ -169,83 +157,44 @@ public class OrderNoteRequest extends ApiRequest {
             }
         }
 
-
-
     }
 
-    public static class Reader<T extends Reader<T>>{
+    //<editor-fold name="Reader">
+    public static class Reader<T extends Reader<T>> extends ReaderRequest.ChildReaderCore<T>{
 
-        protected int noteId;
-
-        protected int orderId;
-
-        T self() {
-            return (T) this;
-        }
-
-        public T setOrderId(int orderId){
-            this.orderId = orderId;
-            return self();
-        }
+        @Override
+        public T self() {return (T) this;}
 
         public T setNoteId(int noteId){
-            this.noteId = noteId;
+            super.setChildId(noteId);
             return self();
         }
-
-        protected OrderNoteRequest build(){
-            return new OrderNoteRequest(this);
-        }
-
-        /**
-         *  If the id is set returns a single productCategory
-         *  otherwise returns list of productCategory
-         */
         public Read<OrderNote> getResponse(){
-            if (orderId == 0 || noteId == 0) {
-                return new Read<OrderNote>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "Order Id AND Note Id is MANDATORY!\nUse Lister to ListAll")
-                );
-            }else {
-                return new WooCommerce().read(build());
-            }
+            return (Read<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
+
         }
 
     }
+    //</editor-fold>
 
-    public static class Deleter<T extends Deleter<T>> extends Reader<T> {
+    //<editor-fold name="Deleter">
+    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.ChildDeleterCore<T>{
 
-        private boolean force;
+        @Override
+        public T self() {return (T) this;}
 
-        public T force(boolean force){
-            this.force = force;
+        public T setNoteId(int noteId){
+            super.setChildId(noteId);
             return self();
         }
 
-        @Override
-        protected OrderNoteRequest build(){
-            return new OrderNoteRequest(this);
-        }
-
-        /** Returns single Deleted ProductCategory**/
-        @Override
         public Deleted<OrderNote> getResponse(){
-            if (orderId == 0 || noteId == 0) {
-                return new Deleted<OrderNote>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "Order Id AND Note Id is MANDATORY!")
-                );
-            }else {
-                return new WooCommerce().delete(build());
-            }
+            return (Deleted<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
+
         }
 
     }
+    //</editor-fold>
 
 
 

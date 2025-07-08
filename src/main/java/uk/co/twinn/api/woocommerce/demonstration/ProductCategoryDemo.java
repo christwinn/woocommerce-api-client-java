@@ -196,7 +196,7 @@ public class ProductCategoryDemo {
 
             update.setImage(DESTINATION + image);
 
-        }else if (image != null && !image.equals("")){
+        }else if (image != null && !image.isEmpty()){
 
             //we appear as a .png, .jpg but we need to rename as a .webp
             //woo is moving into YYYY/DD folder

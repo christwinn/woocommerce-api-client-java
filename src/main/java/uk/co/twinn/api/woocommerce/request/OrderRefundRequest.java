@@ -46,20 +46,6 @@ public class OrderRefundRequest extends ApiRequest {
 
     }
 
-    public OrderRefundRequest(Reader<?> reader){
-
-        orderRefund.setOrderId(reader.orderId);
-        orderRefund.setId(reader.refundId);
-
-    }
-
-    public OrderRefundRequest(Deleter<?> deleter){
-
-        this((Reader<?>)deleter);
-        force = deleter.force;
-
-    }
-
     public OrderRefundRequest(ListAll<?> listAller){
 
         orderRefund.setOrderId(listAller.orderId);
@@ -200,85 +186,33 @@ public class OrderRefundRequest extends ApiRequest {
 
     }
 
-    public static class Reader<T extends Reader<T>>{
+    //<editor-fold name="Reader">
+    public static class Reader<T extends Reader<T>> extends ReaderRequest.ChildReaderCore<T>{
 
-        protected int orderId;
-        protected int refundId;
+        @Override
+        public T self() {return (T) this;}
 
-        T self() {
-            return (T) this;
-        }
-
-        /**
-         *
-         * @param orderId Order note(s) must be tied to an Order.
-         * @return T
-         */
-        public T setOrderId(int orderId){
-            this.orderId = orderId;
-            return self();
-        }
-
-        public T setRefundId(int refundId){
-            this.refundId = refundId;
-            return self();
-        }
-
-        protected OrderRefundRequest build(){
-            return new OrderRefundRequest(this);
-        }
-
-        /**
-         *  If the id is set returns a single productCategory
-         *  otherwise returns list of productCategory
-         */
         public Read<OrderRefund> getResponse(){
-            if (orderId <= 0 || refundId <= 0) {
-                return new Read<OrderRefund>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "CRUD is limited to a single object result\n" +
-                            "Please set requested id\n" +
-                            "Use the ListAll with orderId to get lst of refunds for an order")
-                );
-            }else {
-                return new WooCommerce().read(build());
-            }
+            return (Read<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
+
         }
 
     }
+    //</editor-fold>
 
-    public static class Deleter<T extends Deleter<T>> extends Reader<T> {
-
-        private boolean force;
-
-        public T force(boolean force){
-            this.force = force;
-            return self();
-        }
+    //<editor-fold name="Deleter">
+    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.ChildDeleterCore<T>{
 
         @Override
-        protected OrderRefundRequest build(){
-            return new OrderRefundRequest(this);
-        }
+        public T self() {return (T) this;}
 
-        /** Returns single Deleted ProductCategory**/
-        @Override
-        public Deleted<OrderRefund> getResponse() {
-            if (orderId == 0 || refundId == 0) {
-                return new Deleted<OrderRefund>(
-                    new ApiResponseResult(
-                        false,
-                        0,
-                        "Order Id And refund Id are MANDATORY!")
-                );
-            }else{
-                return new WooCommerce().delete(build());
-            }
+        public Deleted<OrderRefund> getResponse(){
+            return (Deleted<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
+
         }
 
     }
+    //</editor-fold>
 
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T>{
 

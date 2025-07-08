@@ -9,7 +9,6 @@
 
 package uk.co.twinn.api.woocommerce.demonstration;
 
-import uk.co.twinn.api.woocommerce.request.experimental.CustomerTestRequest;
 import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
@@ -122,7 +121,7 @@ public class CustomerDemo {
 
         Deleted<Customer> response = new CustomerRequest.Deleter<>()
             .setId(customerId)
-            .force(true)
+            .setForce(true)
             .getResponse();
 
         return response.getResult();
