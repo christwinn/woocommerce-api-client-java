@@ -9,22 +9,22 @@
 
 package uk.co.twinn.api.woocommerce.request;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.Batched;
-import uk.co.twinn.api.woocommerce.response.Duplicated;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 
 /**
- * This is an Internal class, relying on package-private values to create the rest of the DeleterRequests
+ *
+ * This is an Internal class, relying on package-private values to create the rest of the BatchRequests
+ * can not take down to core with exposing inner functions to end user
  *
  */
-public class BatchRequest {
+class CoreBatchRequest {
 
-    public static class BatchCore<T extends BatchCore>{
+    static class BatchCore<T extends BatchCore>{
 
         protected Batch batch;
 
@@ -38,6 +38,16 @@ public class BatchRequest {
 
         Batched<?> getResponse(String endPoint, Batch<?> batch, TypeReference<?> type){
             return readResponse(endPoint + "/batch", batch, type);
+        }
+
+        /*Product Variations, are there others? */
+        Batched<?> getResponse(String endPoint, int referenceId, String secondEndPoint, Batch<?> batch, TypeReference<?> type){
+
+            if (referenceId <= 0) {
+                return new Batched<>(new ApiResponseResult(false, 0, "Reference Id is required"));
+            }else {
+                return readResponse(endPoint + referenceId + "/" + secondEndPoint + "/batch", batch, type);
+            }
         }
 
         private Batched<?> readResponse(String endPoint, Batch<?> batch, TypeReference<?> type){
@@ -55,7 +65,7 @@ public class BatchRequest {
 
             }else{
 
-                System.out.println(toJson(batch));
+                //System.out.println(toJson(batch));
 
                 return new Batched<>(
                     new Rest().batch(endPoint, toJson(batch), type)

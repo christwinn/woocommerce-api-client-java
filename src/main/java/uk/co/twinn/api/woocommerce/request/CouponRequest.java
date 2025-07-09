@@ -19,7 +19,6 @@ import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
-import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -27,7 +26,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 
 public class CouponRequest extends ApiRequest {
 
@@ -326,7 +324,11 @@ public class CouponRequest extends ApiRequest {
                         "Code is MANDATORY!")
                 );
             }else {
-                return new Rest().create(build());
+                CouponRequest create = build();
+                //make the call
+                return new Created<>(
+                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
+                );
             }
         }
 
@@ -350,9 +352,14 @@ public class CouponRequest extends ApiRequest {
         @Override
         public Updated<Coupon> getResponse(){
             if (id > 0) {
-                return new Rest().update(build());
+                CouponRequest create = build();
+                //make the call
+                return new Updated<>(
+                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
+                );
+
             }else{
-                return new Updated<Coupon>(
+                return new Updated<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -364,10 +371,10 @@ public class CouponRequest extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends ReaderRequest.ReaderCore<T>{
+    public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         public Read<Coupon> getResponse(){
             return (Read<Coupon>)super.getResponse(COUPONS, new TypeReference<Coupon>() {});
@@ -378,10 +385,10 @@ public class CouponRequest extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.DeleterCore<T>{
+    public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         protected CouponRequest build(){
             return new CouponRequest(this);
@@ -482,7 +489,7 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    public static class Batcher<T extends Batcher<T>>  extends BatchRequest.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>>  extends CoreBatchRequest.BatchCore<T>{
 
         public Batcher(){
             super();

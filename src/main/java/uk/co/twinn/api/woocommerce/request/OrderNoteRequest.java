@@ -153,17 +153,26 @@ public class OrderNoteRequest extends ApiRequest {
                         "Order Id MANDATORY!\nUse Lister to ListAll")
                 );
             }else {
-                return new Rest().create(build());
+                OrderNoteRequest create = build();
+                //make the call
+                return new Created<>(
+                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<OrderNote>(){})
+                );
             }
         }
 
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends ReaderRequest.ChildReaderCore<T>{
+    public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ChildReaderCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
+
+        public T setOrderId(int orderId){
+            super.setId(orderId);
+            return self();
+        }
 
         public T setNoteId(int noteId){
             super.setChildId(noteId);
@@ -178,10 +187,15 @@ public class OrderNoteRequest extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.ChildDeleterCore<T>{
+    public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.ChildDeleterCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
+
+        public T setOrderId(int orderId){
+            super.setId(orderId);
+            return self();
+        }
 
         public T setNoteId(int noteId){
             super.setChildId(noteId);

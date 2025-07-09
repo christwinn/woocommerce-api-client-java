@@ -13,16 +13,14 @@ package uk.co.twinn;
 import java.util.*;
 
 import uk.co.twinn.api.woocommerce.request.*;
-import uk.co.twinn.api.woocommerce.response.Batched;
-import uk.co.twinn.api.woocommerce.response.Created;
-import uk.co.twinn.api.woocommerce.response.Listed;
-import uk.co.twinn.api.woocommerce.response.Updated;
+import uk.co.twinn.api.woocommerce.response.*;
 
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
 
 import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
+import uk.co.twinn.pl_wtx_woocommerce.model.ProductVariation;
 
 /**
  * WooCommerce API Client - Usage Demo
@@ -42,6 +40,34 @@ public class WooCommerceApiClientUsageDemo {
     public static void main(String[] args) {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
+        /*Updated<ProductCategory> update = new ProductCategoryRequest.Updater<>().setId(346).setParent(0).getResponse();
+
+        if (update.isSuccess()) {
+            System.out.println(update.toString());
+        }*/
+
+        /*Listed<ProductCategory> root = new ProductCategoryRequest.ListAll<>().setParentId(0).setPerPage(50).getResponse();
+
+        for (ProductCategory p : root.getResult()) {
+
+            System.out.println(p.getDisplayAsString());
+
+            Updated<ProductCategory> updte = new ProductCategoryRequest.Updater<>().setId(p.getId()).setDisplay(ProductCategory.DisplayEnum.SUBCATEGORIES).getResponse();
+
+            if (updte.isSuccess()) {
+                System.out.println(updte.toString());
+            }
+        }*/
+        Read<Product> product = new ProductRequest.Reader<>().setId(315).getResponse();
+
+        //System.out.println(product.toJson());
+
+        product = new ProductRequest.Reader<>().setId(668).getResponse();
+
+        System.out.println(product.toJson());
+
+       System.exit(0);
+
 
         /*String date = "2025-07-03T11:12:55Z";
         if (date.endsWith("+0000")) {

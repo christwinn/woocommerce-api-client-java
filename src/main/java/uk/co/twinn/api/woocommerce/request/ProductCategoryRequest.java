@@ -11,7 +11,6 @@ package uk.co.twinn.api.woocommerce.request;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.core.Batch;
-import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductImage;
 import uk.co.twinn.api.woocommerce.request.core.Seek;
@@ -22,7 +21,6 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import java.util.List;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
 
 public class ProductCategoryRequest extends ApiRequest {
@@ -144,10 +142,14 @@ public class ProductCategoryRequest extends ApiRequest {
             return new ProductCategoryRequest(this);
         }
 
-
-        /** Returns single Created ProductCategory, unless it is a duplicate! **/
         public Created<ProductCategory> getResponse(){
-            return new Rest().create(build());
+
+            ProductCategoryRequest create = build();
+            //make the call
+            return new Created<>(
+                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductCategory>(){})
+            );
+
         }
     }
 
@@ -169,7 +171,12 @@ public class ProductCategoryRequest extends ApiRequest {
         @Override
         public Updated<ProductCategory> getResponse(){
             if (id > 0) {
-                return new Rest().update(build());
+                ProductCategoryRequest create = build();
+                //make the call
+                return new Updated<>(
+                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductCategory>(){})
+                );
+
             }else {
                 return new Updated<ProductCategory>(
                     new ApiResponseResult(
@@ -184,10 +191,10 @@ public class ProductCategoryRequest extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends ReaderRequest.ReaderCore<T>{
+    public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         public Read<ProductCategory> getResponse(){
             return (Read<ProductCategory>)super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
@@ -198,10 +205,10 @@ public class ProductCategoryRequest extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.DeleterCore<T>{
+    public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         protected ProductCategoryRequest build(){
             return new ProductCategoryRequest(this);
@@ -215,7 +222,7 @@ public class ProductCategoryRequest extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher<T>> extends BatchRequest.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatchRequest.BatchCore<T>{
 
         public Batcher(){
             super();

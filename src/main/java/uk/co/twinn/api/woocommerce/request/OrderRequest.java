@@ -22,7 +22,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 
 public class OrderRequest extends ApiRequest {
 
@@ -156,10 +155,13 @@ public class OrderRequest extends ApiRequest {
             return new OrderRequest(this);
         }
 
-
-        /** Returns single Created ProductCategory, unless it is a duplicate! **/
         public Created<Order> getResponse(){
-            return new Rest().create(build());
+
+            OrderRequest create = build();
+            //make the call
+            return new Created<>(
+                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Order>(){})
+            );
         }
 
     }
@@ -182,9 +184,13 @@ public class OrderRequest extends ApiRequest {
         @Override
         public Updated<Order> getResponse(){
             if (id > 0) {
-                return new Rest().update(build());
+                OrderRequest create = build();
+                //make the call
+                return new Updated<>(
+                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Order>(){})
+                );
             }else{
-                return new Updated<Order>(
+                return new Updated<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -196,10 +202,10 @@ public class OrderRequest extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends ReaderRequest.ReaderCore<T>{
+    public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         public Read<Order> getResponse(){
             return (Read<Order>)super.getResponse(ORDERS, new TypeReference<Order>() {});
@@ -210,10 +216,10 @@ public class OrderRequest extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.DeleterCore<T>{
+    public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         protected OrderRequest build(){
             return new OrderRequest(this);
@@ -227,7 +233,8 @@ public class OrderRequest extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher<T>>  extends BatchRequest.BatchCore<T>{
+    //<editor-fold name="Batcher">
+    public static class Batcher<T extends Batcher<T>>  extends CoreBatchRequest.BatchCore<T>{
 
         public Batcher(){
             super();
@@ -260,6 +267,7 @@ public class OrderRequest extends ApiRequest {
         }
 
     }
+    //</editor-fold>
 
     /**
      *

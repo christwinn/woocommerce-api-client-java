@@ -136,8 +136,11 @@ public class CustomerRequest extends ApiRequest {
         public Created<Customer> getResponse(){
 
             if (username != null && password != null) {
-                Rest woo = new Rest();
-                return woo.create(build());
+                CustomerRequest create = build();
+                //make the call
+                return new Created<>(
+                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Customer>(){})
+                );
             }else{
                 return new Created<Customer>(
                     new ApiResponseResult(
@@ -169,7 +172,11 @@ public class CustomerRequest extends ApiRequest {
         @Override
         public Updated<Customer> getResponse(){
             if (id > 0){
-                return new Rest().update(build());
+                CustomerRequest create = build();
+                //make the call
+                return new Updated<>(
+                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Customer>(){})
+                );
             }else {
                 return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
             }
@@ -178,10 +185,10 @@ public class CustomerRequest extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends ReaderRequest.ReaderCore<T>{
+    public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         public Read<Customer> getResponse(){
             return (Read<Customer>)super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
@@ -192,10 +199,10 @@ public class CustomerRequest extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.DeleterCore<T>{
+    public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         protected CustomerRequest build(){
             return new CustomerRequest(this);
@@ -209,7 +216,7 @@ public class CustomerRequest extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher<T>> extends BatchRequest.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatchRequest.BatchCore<T>{
 
         public Batcher(){
             super();

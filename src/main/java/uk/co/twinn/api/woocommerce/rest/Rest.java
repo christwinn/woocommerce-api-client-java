@@ -69,7 +69,23 @@ public class Rest {
     }
 
     /*ET PHONE HOME, Making a call to the mothership*/
-    private ApiResponseResult create(String endPoint, String content, TypeReference<?> type){
+    /**
+     *
+     * Make a null content POST request, not usual oddball case
+     *
+     */
+    public ApiResponseResult create(String endPoint, TypeReference<?> type){
+
+        return http.create(
+            getUri(endPoint),
+            getHeaders(),
+            null,
+            type
+        );
+
+    }
+
+    public ApiResponseResult create(String endPoint, String content, TypeReference<?> type){
 
         return http.create(
             getUri(endPoint),
@@ -104,7 +120,7 @@ public class Rest {
 
     }
 
-    private ApiResponseResult update(String endPoint, String content, TypeReference<?> type){
+    public ApiResponseResult update(String endPoint, String content, TypeReference<?> type){
 
         return http.update(
             getUri(endPoint),
@@ -134,21 +150,7 @@ public class Rest {
     }
     /*ET PHONED HOME, Call finished*/
 
-    /**
-     *
-     * Make a null content POST request, not usual oddball case
-     *
-     */
-    public ApiResponseResult create(String endPoint, TypeReference<?> type){
 
-        return http.create(
-            getUri(endPoint),
-            getHeaders(),
-            null,
-            type
-        );
-
-    }
 
     /**
      *
@@ -159,118 +161,10 @@ public class Rest {
      */
     public ApiResponseResult listAll(String endPoint, String parameters, TypeReference<?> type){
 
-        Logger.getLogger(Rest.class.getName()).log(Level.INFO, parameters);
+        //Logger.getLogger(Rest.class.getName()).log(Level.INFO, parameters);
 
         return read(endPoint, parameters, type);
 
     }
-
-    //<editor-fold desc="Coupon">
-    public Created<Coupon> create(CouponRequest request) {
-        return new Created<Coupon>(
-            create(request.endPoint(), request.toJson(), new TypeReference<Coupon>(){})
-        );
-    }
-
-    public Updated<Coupon> update(CouponRequest request){
-        return new Updated<Coupon>(
-            update(request.endPoint(), request.toJson(), new TypeReference<Coupon>(){})
-        );
-
-    }
-
-    //</editor-fold>
-
-    //<editor-fold desc="Customer">
-    public Created<Customer> create(CustomerRequest request) {
-        return new Created<Customer>(
-            create(request.endPoint(), request.toJson(), new TypeReference<Customer>(){})
-        );
-    }
-
-    public Updated<Customer> update(CustomerRequest request){
-        return new Updated<Customer>(
-            update(request.endPoint(), request.toJson(), new TypeReference<Customer>(){})
-        );
-
-    }
-
-    //</editor-fold>
-
-    //<editor-fold desc="Orders">
-    public Created<Order> create(OrderRequest request) {
-        return new Created<Order>(
-            create(request.endPoint(), request.toJson(), new TypeReference<Order>(){})
-        );
-    }
-
-    public Updated<Order> update(OrderRequest request){
-        return new Updated<Order>(
-            update(request.endPoint(), request.toJson(), new TypeReference<Order>(){})
-        );
-
-    }
-
-    //</editor-fold>
-
-    //<editor-fold desc="OrderNotes">
-    public Created<OrderNote> create(OrderNoteRequest request) {
-        return new Created<OrderNote>(
-            create(request.endPoint(), request.toJson(), new TypeReference<OrderNote>(){})
-        );
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="OrderRefunds">
-    public Created<OrderRefund> create(OrderRefundRequest request) {
-        return new Created<OrderRefund>(
-            create(request.endPoint(), request.toJson(), new TypeReference<OrderRefund>(){})
-        );
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="ProductCategory">
-    public Created<ProductCategory> create(ProductCategoryRequest request){
-
-        return new Created<ProductCategory>(
-            create(request.endPoint(), request.toJson(),new TypeReference<ProductCategory>(){})
-        );
-
-    }
-
-    public Updated<ProductCategory> update(ProductCategoryRequest request){
-
-        if (Configuration.isDebug()){
-            Logger.getLogger(
-                Rest.class.getName()).log(
-                Level.INFO,
-                request.toJson()
-            );
-        }
-        return new Updated<ProductCategory>(
-            update(request.endPoint(), request.toJson(), new TypeReference<ProductCategory>(){})
-        );
-
-    }
-
-    //</editor-fold>
-
-    //<editor-fold desc="Product">
-    public Created<Product> create(ProductRequest request){
-
-        return new Created<Product>(
-            create(request.endPoint(), request.toJson(), new TypeReference<Product>(){})
-        );
-
-    }
-
-    public Updated<Product> update(ProductRequest request){
-        return new Updated<Product>(
-            update(request.endPoint(), request.toJson(), new TypeReference<Product>(){})
-        );
-
-    }
-
-    //</editor-fold>
 
 }

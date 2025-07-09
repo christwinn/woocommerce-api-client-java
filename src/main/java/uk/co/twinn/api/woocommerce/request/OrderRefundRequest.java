@@ -171,26 +171,28 @@ public class OrderRefundRequest extends ApiRequest {
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
         public Created<OrderRefund> getResponse(){
             if (orderId == 0) {
-                return new Created<OrderRefund>(
+                return new Created<>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Order Id is MANDATORY!")
                 );
             }else {
-                return new Rest().create(build());
+                OrderRefundRequest create = build();
+                //make the call
+                return new Created<>(
+                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<OrderRefund>(){})
+                );
             }
         }
-
-
 
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends ReaderRequest.ChildReaderCore<T>{
+    public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ChildReaderCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         public Read<OrderRefund> getResponse(){
             return (Read<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
@@ -201,10 +203,10 @@ public class OrderRefundRequest extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends DeleterRequest.ChildDeleterCore<T>{
+    public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.ChildDeleterCore<T>{
 
         @Override
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         public Deleted<OrderRefund> getResponse(){
             return (Deleted<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});

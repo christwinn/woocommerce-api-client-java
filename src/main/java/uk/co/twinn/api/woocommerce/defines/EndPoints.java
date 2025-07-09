@@ -14,7 +14,11 @@ public class EndPoints {
     public static final String ORDERS = "orders";
         public static final String NOTES = "notes";
         public static final String REFUNDS = "refunds";
+
     public static final String PRODUCTS = "products";
+        public static final String VARIATIONS = "variations";
+        public static final String ATTRIBUTES = "attributes";
+
     public static final String PRODUCT_CATEGORIES = "products/categories";
 
 

@@ -10,22 +10,23 @@
 package uk.co.twinn.api.woocommerce.request;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.response.Deleted;
 import uk.co.twinn.api.woocommerce.response.Duplicated;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 
 /**
- * This is an Internal class, relying on package-private values to create the rest of the DeleterRequests
+ *
+ * This is an Internal class, relying on package-private values to create the rest of the DuplicatorRequests
+ * can not take down to core with exposing inner functions to end user
  *
  */
-public class DuplicatorRequest {
+class CoreDuplicatorRequest {
 
-    public static class DuplicatorCore<T extends DuplicatorCore>{
+    static class DuplicatorCore<T extends DuplicatorCore>{
 
         protected int id;
 
-        public T self() {
+        T self() {
             return (T) this;
         }
 

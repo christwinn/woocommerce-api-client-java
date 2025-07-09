@@ -15,17 +15,19 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 
 /**
+ *
  * This is an Internal class, relying on package-private values to create the rest of the DeleterRequests
+ * can not take down to core with exposing inner functions to end user
  *
  */
-public class DeleterRequest {
+class CoreDeleterRequest {
 
-    public static class DeleterCore<T extends DeleterCore>{
+    static class DeleterCore<T extends DeleterCore>{
 
         protected int id;
         protected boolean force;
 
-        public T self() {
+        T self() {
             return (T) this;
         }
 
@@ -71,12 +73,12 @@ public class DeleterRequest {
 
     }
 
-    public static class ChildDeleterCore<T extends ChildDeleterCore> extends DeleterCore<T> {
+    static class ChildDeleterCore<T extends ChildDeleterCore> extends DeleterCore<T> {
 
         //set up the private variables
-        private int childId;
+        protected int childId;
 
-        public T self() {
+        T self() {
             return (T) this;
         }
         /**

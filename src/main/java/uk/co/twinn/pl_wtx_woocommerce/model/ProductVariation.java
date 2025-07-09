@@ -23,6 +23,9 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
@@ -52,8 +55,7 @@ import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
 public class ProductVariation {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
-  private Integer id;
+  private Integer variationId;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   @SerializedName(SERIALIZED_NAME_DATE_CREATED)
@@ -248,8 +250,8 @@ public class ProductVariation {
   public ProductVariation() {
   }
 
-  public ProductVariation id(@javax.annotation.Nullable Integer id) {
-    this.id = id;
+  public ProductVariation variationId(@javax.annotation.Nullable Integer variationId) {
+    this.variationId = variationId;
     return this;
   }
 
@@ -258,14 +260,15 @@ public class ProductVariation {
    * @return id
    */
   @javax.annotation.Nullable
-  public Integer getId() {
-    return id;
+  @JsonProperty("id")
+  public Integer getVariationId() {
+    return variationId;
   }
 
-  public void setId(@javax.annotation.Nullable Integer id) {
-    this.id = id;
+  @JsonProperty("id")
+  public void setVariationId(@javax.annotation.Nullable Integer variationId) {
+    this.variationId = variationId;
   }
-
 
   public ProductVariation dateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
@@ -1023,7 +1026,7 @@ public class ProductVariation {
       return false;
     }
     ProductVariation productVariation = (ProductVariation) o;
-    return Objects.equals(this.id, productVariation.id) &&
+    return Objects.equals(this.variationId, productVariation.variationId) &&
         Objects.equals(this.dateCreated, productVariation.dateCreated) &&
         Objects.equals(this.dateCreatedGmt, productVariation.dateCreatedGmt) &&
         Objects.equals(this.dateModified, productVariation.dateModified) &&
@@ -1066,14 +1069,14 @@ public class ProductVariation {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, dateCreated, dateCreatedGmt, dateModified, dateModifiedGmt, description, permalink, sku, price, regularPrice, salePrice, dateOnSaleFrom, dateOnSaleFromGmt, dateOnSaleTo, dateOnSaleToGmt, onSale, status, purchasable, virtual, downloadable, downloads, downloadLimit, downloadExpiry, taxStatus, taxClass, manageStock, stockQuantity, stockStatus, backorders, backordersAllowed, backordered, weight, dimensions, shippingClass, shippingClassId, image, attributes, menuOrder, metaData);
+    return Objects.hash(variationId, dateCreated, dateCreatedGmt, dateModified, dateModifiedGmt, description, permalink, sku, price, regularPrice, salePrice, dateOnSaleFrom, dateOnSaleFromGmt, dateOnSaleTo, dateOnSaleToGmt, onSale, status, purchasable, virtual, downloadable, downloads, downloadLimit, downloadExpiry, taxStatus, taxClass, manageStock, stockQuantity, stockStatus, backorders, backordersAllowed, backordered, weight, dimensions, shippingClass, shippingClassId, image, attributes, menuOrder, metaData);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductVariation {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    id: ").append(toIndentedString(variationId)).append("\n");
     sb.append("    dateCreated: ").append(toIndentedString(dateCreated)).append("\n");
     sb.append("    dateCreatedGmt: ").append(toIndentedString(dateCreatedGmt)).append("\n");
     sb.append("    dateModified: ").append(toIndentedString(dateModified)).append("\n");

@@ -98,7 +98,7 @@ public class ProductCategoryDemo {
         /*
             We create initially with SOURCE, this will fail as WooCommerce can not or refuses to see the remote image
             We use this failure, via a plugin, to get Woo to retrieve the image to DESTINATION
-            Therefore retry *SHOULD* then succeed BUT wordpress moves the image to YYYY/MM !GRRR!!!
+            Therefore retry *SHOULD* then succeed BUT wordpress moves the image to YYYY/MM
         */
         String imgUrl = (isRetry ? DESTINATION : SOURCE) + image;
 
@@ -165,7 +165,7 @@ public class ProductCategoryDemo {
         Check and Update ProductCategory, special consideration given to the woo image path
         We create initially with SOURCE, this will fail as WooCommerce can not or refuses to see the remote image
         We use this failure, via a plugin, to get Woo to retrieve the image to DESTINATION
-        Therefore retry *SHOULD* then succeed BUT wordpress moves the image to YYYY/MM !GRRR!!!
+        Therefore retry *SHOULD* then succeed BUT wordpress moves the image to YYYY/MM
     */
     private Updated<ProductCategory> checkAndUpdateProductCategory(
         int wooId,

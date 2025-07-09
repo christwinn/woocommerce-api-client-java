@@ -14,16 +14,22 @@ import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 
-public class ReaderRequest {
+/**
+ *
+ * This is an Internal class, relying on package-private values to create the rest of the ReaderRequests
+ * can not take down to core with exposing inner functions to end user
+ *
+ */
+class CoreReaderRequest {
 
-    public static class ReaderCore<T extends ReaderCore> {
+    static class ReaderCore<T extends ReaderCore> {
 
         //set up the private variables
         protected int id;
         /*package private*/
         String endPoint;
 
-        public T self() {return (T) this;}
+        T self() {return (T) this;}
 
         /**
          * @param id set the id for the record to read
@@ -63,12 +69,12 @@ public class ReaderRequest {
 
     }
 
-    public static class ChildReaderCore<T extends ChildReaderCore> extends ReaderCore<T>{
+    static class ChildReaderCore<T extends ChildReaderCore> extends ReaderCore<T>{
 
         //set up the private variables
         private int childId;
 
-        public T self() {
+        T self() {
             return (T) this;
         }
         /**
