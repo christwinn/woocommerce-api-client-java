@@ -25,9 +25,7 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 
 public class ProductRequest extends ApiRequest {
 
-    protected final uk.co.twinn.pl_wtx_woocommerce.model.Product product = new uk.co.twinn.pl_wtx_woocommerce.model.Product();
-
-    private Batch batch;
+    protected final Product product = new Product();
 
     private boolean isBatch;
     private boolean force;
@@ -102,16 +100,7 @@ public class ProductRequest extends ApiRequest {
 
     }
 
-    private ProductRequest(Duplicator<?> duplicator){
-
-        product.setId(duplicator.id);
-        isBatch = false;
-        force = false;
-        duplicate = true;
-
-    }
-
-    public uk.co.twinn.pl_wtx_woocommerce.model.Product getProduct(){
+    public Product getProduct(){
         return product;
     }
 
@@ -119,12 +108,7 @@ public class ProductRequest extends ApiRequest {
 
         try {
 
-            if (isBatch){
-                return getObjectMapper().writeValueAsString(batch);
-            }else{
-                // covert Java object to JSON strings
-                return getObjectMapper().writeValueAsString(product);
-            }
+            return getObjectMapper().writeValueAsString(product);
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -206,7 +190,7 @@ public class ProductRequest extends ApiRequest {
          *             Default is simple.
          * @return T
          */
-        public T setType(uk.co.twinn.pl_wtx_woocommerce.model.Product.TypeEnum type) {
+        public T setType(Product.TypeEnum type) {
             this.type = type.getValue();
             return self();
         }
@@ -220,7 +204,7 @@ public class ProductRequest extends ApiRequest {
          *               Default is publish.
          * @return T
          */
-        public T setStatus(uk.co.twinn.pl_wtx_woocommerce.model.Product.StatusEnum status) {
+        public T setStatus(Product.StatusEnum status) {
             this.status = status.getValue();
             return self();
         }
@@ -254,7 +238,7 @@ public class ProductRequest extends ApiRequest {
          *                            Default is visible.
          * @return T
          */
-        public T setCatalogVisibility(uk.co.twinn.pl_wtx_woocommerce.model.Product.CatalogVisiblityEnum catalog_visibility) {
+        public T setCatalogVisibility(Product.CatalogVisiblityEnum catalog_visibility) {
             this.catalog_visibility = catalog_visibility.getValue();
             return self();
         }
@@ -448,7 +432,7 @@ public class ProductRequest extends ApiRequest {
         }
 
         @Override
-        public Updated<uk.co.twinn.pl_wtx_woocommerce.model.Product> getResponse(){
+        public Updated<Product> getResponse(){
             if (id > 0){
 
                 ProductRequest create = build();
@@ -469,8 +453,8 @@ public class ProductRequest extends ApiRequest {
         @Override
         T self() {return (T) this;}
 
-        public Read<uk.co.twinn.pl_wtx_woocommerce.model.Product> getResponse(){
-            return (Read<uk.co.twinn.pl_wtx_woocommerce.model.Product>)super.getResponse(PRODUCTS, new TypeReference<uk.co.twinn.pl_wtx_woocommerce.model.Product>() {});
+        public Read<Product> getResponse(){
+            return (Read<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
 
         }
 
@@ -487,8 +471,8 @@ public class ProductRequest extends ApiRequest {
             return new ProductRequest(this);
         }
 
-        public Deleted<uk.co.twinn.pl_wtx_woocommerce.model.Product> getResponse(){
-            return (Deleted<uk.co.twinn.pl_wtx_woocommerce.model.Product>)super.getResponse(PRODUCTS, new TypeReference<uk.co.twinn.pl_wtx_woocommerce.model.Product>() {});
+        public Deleted<Product> getResponse(){
+            return (Deleted<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
 
         }
 
@@ -500,8 +484,8 @@ public class ProductRequest extends ApiRequest {
         @Override
         T self() {return (T) this;}
 
-        public Duplicated<uk.co.twinn.pl_wtx_woocommerce.model.Product> getResponse(){
-            return (Duplicated<uk.co.twinn.pl_wtx_woocommerce.model.Product>)super.getResponse(PRODUCTS, new TypeReference<uk.co.twinn.pl_wtx_woocommerce.model.Product>() {});
+        public Duplicated<Product> getResponse(){
+            return (Duplicated<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
 
         }
 
@@ -533,9 +517,9 @@ public class ProductRequest extends ApiRequest {
             return self();
         }
 
-        public Batched<uk.co.twinn.pl_wtx_woocommerce.model.Product> getResponse(){
+        public Batched<Product> getResponse(){
 
-            return (Batched<uk.co.twinn.pl_wtx_woocommerce.model.Product>) super.getResponse(PRODUCTS, batch, new TypeReference<Batch<uk.co.twinn.pl_wtx_woocommerce.model.Product>>(){});
+            return (Batched<Product>) super.getResponse(PRODUCTS, batch, new TypeReference<Batch<Product>>(){});
 
         }
 
@@ -676,13 +660,13 @@ public class ProductRequest extends ApiRequest {
         }
 
 
-        public Listed<uk.co.twinn.pl_wtx_woocommerce.model.Product> getResponse(){
+        public Listed<Product> getResponse(){
 
-            return new Listed<uk.co.twinn.pl_wtx_woocommerce.model.Product>(
+            return new Listed<Product>(
                 new Rest().listAll(
                     PRODUCTS,
                     build(),
-                    new TypeReference<List<uk.co.twinn.pl_wtx_woocommerce.model.Product>>(){}
+                    new TypeReference<List<Product>>(){}
                 )
             );
 
