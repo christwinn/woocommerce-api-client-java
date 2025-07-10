@@ -10,25 +10,56 @@
 package uk.co.twinn.api.woocommerce.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import uk.co.twinn.api.woocommerce.response.core.ListResponse;
+import uk.co.twinn.api.woocommerce.response.core.ApiResponse;
+import uk.co.twinn.api.woocommerce.response.core.ErrorObject;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Listed<T> extends ListResponse {
+public class Listed<T> extends ApiResponse {
+
+    protected List<T> listed = new ArrayList<>();
 
     public Listed(ApiResponseResult result){
 
         super(result);
 
+        if (result.getSuccess()){
+            switch (result.getStatusCode()){
+                case 200: case 201:
+                    setSuccess(true);
+                    setList(result);
+                    break;
+                default:
+                    setSuccess(false);
+                    setError(new ErrorObject("Invalid response code"));
+                    break;
+            }
+        }
+
     }
 
-    /*If the id is NOT set then we get an array of product*/
+    private void setList(ApiResponseResult result){
+        try {
+            this.listed = (List<T>) result.getData();
+        }catch (Exception e){
+            Logger.getLogger(Listed.class.getName())
+                .log(Level.SEVERE, "Failed to parse list", e);
+            setError(new ErrorObject("Parse list failure"));
+        }
+    }
+
+    public boolean isSuccess() {
+        return super.success && listed != null;
+    }
+
     public List<T> getResult(){
         return listed;
     }
 
-    @Override
     public String toJson(){
 
         try {
@@ -40,5 +71,6 @@ public class Listed<T> extends ListResponse {
         }
 
     }
+
 
 }

@@ -20,17 +20,5 @@ public class Duplicated<T> extends Created<T>{
 
     }
 
-    @Override
-    public String toJson(){
-
-        try {
-            // covert Java object to JSON strings
-            return getObjectMapper().writeValueAsString(this);
-
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 
 }
