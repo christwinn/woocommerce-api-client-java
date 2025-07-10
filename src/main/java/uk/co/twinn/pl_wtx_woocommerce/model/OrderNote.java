@@ -16,8 +16,6 @@ import java.time.LocalDateTime;
 
 public class OrderNote {
 
-    private Integer orderId; //write only
-
     private Integer id;//	integer	Unique identifier for the resource.read-only
     private String author;//	string	Order note author.read-only
     private LocalDateTime dateCreated;//	date-time	The date the order note was created, in the site's timezone.read-only
@@ -28,14 +26,6 @@ public class OrderNote {
 
     public OrderNote(){
 
-    }
-    @JsonIgnore
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
     }
 
     public Integer getId() {

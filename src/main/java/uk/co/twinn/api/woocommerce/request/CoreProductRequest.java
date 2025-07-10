@@ -11,6 +11,7 @@ package uk.co.twinn.api.woocommerce.request;
 
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,12 +33,12 @@ class CoreProductRequest {
      *
      * Sets and Gets only do NOT use.
     **/
-    static class Creator<T extends Creator> {
+    public static class Creator<T extends Creator> {
 
         protected String description;    //string	Product description.
         protected String sku;    //string	Unique identifier.
-        protected String regular_price;    //string	Product regular price.
-        protected String sale_price;    //string	Product sale price.
+        protected BigDecimal regularPrice;    //string	Product regular price.
+        protected BigDecimal salePrice;    //string	Product sale price.
         protected LocalDateTime date_on_sale_from;    //date-time	Start date of sale price, in the site's timezone.
         protected LocalDateTime date_on_sale_from_gmt;    //date-time	Start date of sale price, as GMT.
         protected LocalDateTime date_on_sale_to;    //date-time	End date of sale price, in the site's timezone.
@@ -86,12 +87,20 @@ class CoreProductRequest {
         }
 
         /**
-         *
+         * Pseudonym for RegularPrice
          * @param regular_price Product regular price.
          * @return T
          */
-        public T setRegular_price(String regular_price) {
-            this.regular_price = regular_price;
+        public T setPrice(BigDecimal regularPrice) {
+            return setRegularPrice(regularPrice);
+        }
+        /**
+         *
+         * @param regularPrice Product regular price.
+         * @return T
+         */
+        public T setRegularPrice(BigDecimal regularPrice) {
+            this.regularPrice = regularPrice;
             return self();
         }
 
@@ -100,8 +109,8 @@ class CoreProductRequest {
          * @param sale_price  Product sale price.
          * @return T
          */
-        public T setSale_price(String sale_price) {
-            this.sale_price = sale_price;
+        public T setSalePrice(BigDecimal salePrice) {
+            this.salePrice = salePrice;
             return self();
         }
 

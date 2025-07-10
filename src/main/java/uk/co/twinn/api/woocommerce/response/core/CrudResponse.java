@@ -33,6 +33,10 @@ public class CrudResponse<T> extends ApiResponse{
         }
 
     }
+    @Override
+    public boolean isSuccess() {
+        return super.success && object != null;
+    }
 
     public String toJson(){
 

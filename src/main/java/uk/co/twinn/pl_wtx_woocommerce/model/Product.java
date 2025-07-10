@@ -22,6 +22,7 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -939,6 +940,11 @@ public enum TaxStatusEnum {
     this.regularPrice = regularPrice;
   }
 
+  public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) {
+      if (regularPrice != null) {
+          setRegularPrice(regularPrice.toString());
+      }
+    }
 
   public Product salePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
@@ -958,6 +964,12 @@ public enum TaxStatusEnum {
   public void setSalePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
   }
+
+    public void setSalePrice(@javax.annotation.Nullable BigDecimal salePrice) {
+        if (salePrice != null) {
+            setSalePrice(salePrice.toString());
+        }
+    }
 
 
   public Product dateOnSaleFrom(@javax.annotation.Nullable LocalDateTime dateOnSaleFrom) {

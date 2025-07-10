@@ -66,13 +66,11 @@ public class ProductAttributesRequest  extends ApiRequest {
 
     }
 
-    private static String endPoint(int pId){
+    private static String endPoint(int id){
 
-        return PRODUCTS +
-            "/" +
-            ATTRIBUTES +
-            (pId > 0
-                ? ("/" + pId)
+        return PRODUCTS_ATTRIBUTES +
+            (id > 0
+                ? ("/" + id)
                 : ""
             );
 
@@ -208,7 +206,7 @@ public class ProductAttributesRequest  extends ApiRequest {
         T self() {return (T) this;}
 
         public Read<ProductAttribute> getResponse(){
-            return (Read<ProductAttribute>)super.getResponse(endPoint(0), new TypeReference<ProductAttribute>() {});
+            return (Read<ProductAttribute>)super.getResponse(PRODUCTS_ATTRIBUTES, new TypeReference<ProductAttribute>() {});
 
         }
 
@@ -226,7 +224,7 @@ public class ProductAttributesRequest  extends ApiRequest {
         }
 
         public Deleted<ProductAttribute> getResponse(){
-            return (Deleted<ProductAttribute>)super.getResponse(endPoint(0), new TypeReference<ProductAttribute>() {});
+            return (Deleted<ProductAttribute>)super.getResponse(PRODUCTS_ATTRIBUTES, new TypeReference<ProductAttribute>() {});
 
         }
 
@@ -262,7 +260,7 @@ public class ProductAttributesRequest  extends ApiRequest {
         /** Returns list of amended Orders **/
         public Batched<ProductAttribute> getResponse(){
 
-            return (Batched<ProductAttribute>) super.getResponse(endPoint(0), batch, new TypeReference<Batch<ProductAttribute>>(){});
+            return (Batched<ProductAttribute>) super.getResponse(PRODUCTS_ATTRIBUTES, batch, new TypeReference<Batch<ProductAttribute>>(){});
 
         }
 

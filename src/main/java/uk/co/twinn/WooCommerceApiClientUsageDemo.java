@@ -58,7 +58,7 @@ public class WooCommerceApiClientUsageDemo {
                 System.out.println(updte.toString());
             }
         }*/
-        Read<Product> product = new ProductRequest.Reader<>().setId(315).getResponse();
+        Read<Product> product ; //= new ProductRequest.Reader<>().setId(315).getResponse();
 
         //System.out.println(product.toJson());
 
@@ -66,8 +66,7 @@ public class WooCommerceApiClientUsageDemo {
 
         System.out.println(product.toJson());
 
-       System.exit(0);
-
+        System.exit(0);
 
         /*String date = "2025-07-03T11:12:55Z";
         if (date.endsWith("+0000")) {

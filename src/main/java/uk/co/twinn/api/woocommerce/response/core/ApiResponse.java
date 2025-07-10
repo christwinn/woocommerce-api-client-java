@@ -20,7 +20,7 @@ import java.io.IOException;
 
 public class ApiResponse {
 
-    private boolean success;
+    protected boolean success;
     private ErrorObject error = null;
 
     public ApiResponse(){}

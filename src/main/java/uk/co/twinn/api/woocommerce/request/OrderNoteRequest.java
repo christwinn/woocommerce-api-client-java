@@ -28,13 +28,15 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class OrderNoteRequest extends ApiRequest {
 
+    private Integer orderId; //write only
+
     private final OrderNote orderNote = new OrderNote();
 
     private boolean force;
 
     public OrderNoteRequest(Creator<?> creator){
 
-        orderNote.setOrderId(creator.orderId);
+        orderId = creator.orderId;
         orderNote.setNote(creator.note);
         orderNote.setCustomerNote(creator.customerNote);
         orderNote.setAddedByUser(creator.addedByUser);
@@ -43,35 +45,28 @@ public class OrderNoteRequest extends ApiRequest {
 
     public OrderNoteRequest(ListAll<?> listAller){
 
-        orderNote.setOrderId(listAller.orderId);
+        orderId = listAller.orderId;
 
     }
 
     public String endPoint(){
 
         return
-            getEndPoint() +
-            (orderNote.getOrderId() != null && orderNote.getOrderId() != 0
-                ? ("/" + orderNote.getOrderId())
-                : ""
-            ) +
-
-            "/" + NOTES +
-
-            (orderNote.getId() != null && orderNote.getId() != 0
-                ? ("/" + orderNote.getId())
-                : ""
-            ) +
-            (force
-                ? "?force=true"
-                : ""
-            );
+           endPoint((orderId != null ? orderId : 0), orderNote.getId());
 
     }
 
-    private static String getEndPoint(){
-        //we are a subcall of orders, build in endPoint
-        return ORDERS;
+    private static String endPoint(int orderId, int noteId){
+
+        return ORDERS +
+            "/" +
+            orderId
+            +
+            NOTES +
+            (noteId > 0
+                ? ("/" + noteId)
+                : ""
+            );
 
     }
 
@@ -258,7 +253,7 @@ public class OrderNoteRequest extends ApiRequest {
             }else {
                 return new Listed<OrderNote>(
                     new Rest().listAll(
-                        getEndPoint(),
+                        endPoint(orderId, 0),
                         build(),
                         new TypeReference<List<Customer>>(){}
                     )

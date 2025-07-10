@@ -50,6 +50,11 @@ public class ListResponse<T> extends ApiResponse {
         }
     }
 
+    @Override
+    public boolean isSuccess() {
+        return super.success && listed != null;
+    }
+
     public String toJson(){
 
         try {

@@ -57,14 +57,14 @@ public class ProductCategoryDemo {
     }
 
     public Updated<ProductCategory> updateProductCategory(
-        int wooId,
+        int productCategoryId,
         String name, String description,
         String wooCommerceImageUrl, int itemCount
     ){
 
         return
             new ProductCategoryRequest.Updater<>()
-                .setId(wooId)
+                .setId(productCategoryId)
                 .setName(name)
                 .setDescription(description)
                 .setImage(wooCommerceImageUrl)

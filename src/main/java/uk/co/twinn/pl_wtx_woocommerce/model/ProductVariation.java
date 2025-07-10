@@ -22,6 +22,7 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -440,6 +441,13 @@ public class ProductVariation {
     this.regularPrice = regularPrice;
   }
 
+public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) {
+
+    if (regularPrice != null) {
+        setRegularPrice(regularPrice.toString());
+    }
+
+}
 
   public ProductVariation salePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
@@ -458,6 +466,15 @@ public class ProductVariation {
   public void setSalePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
   }
+
+
+ public void setSalePrice(@javax.annotation.Nullable BigDecimal salePrice) {
+
+      if (salePrice != null) {
+          setSalePrice(salePrice.toString());
+      }
+
+}
 
 
   public ProductVariation dateOnSaleFrom(@javax.annotation.Nullable LocalDateTime dateOnSaleFrom) {

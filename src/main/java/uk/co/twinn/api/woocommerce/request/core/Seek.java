@@ -21,7 +21,9 @@ public class Seek {
         }
 
         /**
-         * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.
+         * @param context Scope under which the request is made; determines fields present in response.
+         *                Options: view and edit.
+         *                Default is view.
          * @return T
          */
         public T setContext(String context) {
@@ -31,11 +33,8 @@ public class Seek {
 
     }
 
-    public static class Searcher<T extends Searcher<T>> extends SearchCore<T> {
-
+    public static class SearchCorePaging<T extends SearchCorePaging<T>> extends SearchCore<T> {
         /**
-         *
-         *
          * @param page Current page of the collection. Default is 1.
          * @return T
          */
@@ -47,8 +46,6 @@ public class Seek {
         }
 
         /**
-         *
-         *
          * @param per_page Maximum number of items to be returned in result set. Default is 10.
          * @return T
          */
@@ -60,8 +57,6 @@ public class Seek {
         }
 
         /**
-         *
-         *
          * @param search Limit results to those matching a string.
          * @return T
          */
@@ -70,33 +65,7 @@ public class Seek {
             return self();
         }
 
-
         /**
-         *
-         *
-         * @param exclude Ensure result set excludes specific IDs.
-         * @return T
-         */
-        public T setExclude(List<Integer> exclude) {
-            addNameValueIntegers("exclude", exclude);
-            return self();
-        }
-
-        /**
-         *
-         *
-         * @param include Limit result set to specific ids.
-         * @return T
-         */
-        public T setInclude(List<Integer> include) {
-            addNameValueIntegers("include", include);
-            return self();
-        }
-
-
-        /**
-         *
-         *
          * @param order Order sort attribute ascending or descending. Options: asc and desc.
          *          Default is desc.
          * @return T
@@ -106,9 +75,29 @@ public class Seek {
             return self();
         }
 
+    }
+
+    public static class Searcher<T extends Searcher<T>> extends SearchCorePaging<T> {
+
         /**
-         *
-         *
+         * @param exclude Ensure result set excludes specific IDs.
+         * @return T
+         */
+        public T setExclude(List<Integer> exclude) {
+            addNameValueIntegers("exclude", exclude);
+            return self();
+        }
+
+        /**
+         * @param include Limit result set to specific ids.
+         * @return T
+         */
+        public T setInclude(List<Integer> include) {
+            addNameValueIntegers("include", include);
+            return self();
+        }
+
+        /**
          * @param orderby Sort collection by object attribute.
          *           Options: date, modified, id, include, title, slug, price, popularity, rating, and menu_order.
          *           Default is date.
@@ -124,7 +113,6 @@ public class Seek {
     public static class StockSearcher<T extends StockSearcher<T>> extends Searcher<T> {
 
         /**
-         *
          * @param offset Offset the result set by a specific number of items.
          * @return T
          */
@@ -134,7 +122,6 @@ public class Seek {
         }
 
         /**
-         *
          * @param after Limit response to resources published after a given ISO8601 compliant date.
          * @return T
          */
@@ -144,7 +131,6 @@ public class Seek {
         }
 
         /**
-         *
          * @param before Limit response to resources published before a given ISO8601 compliant date.
          * @return T
          */
@@ -154,7 +140,6 @@ public class Seek {
         }
 
         /**
-         *
          * @param parent Limit result set to those of particular parent IDs.
          * @return T
          */
@@ -164,7 +149,6 @@ public class Seek {
         }
 
         /**
-         *
          * @param parent_exclude Limit result set to all items except those of a particular parent ID.
          * @return T
          */

@@ -43,8 +43,8 @@ public class ProductVariationsRequest extends ApiRequest {
         productVariation.setStatus(creator.status);
         productVariation.setDescription(creator.description);
         productVariation.setSku(creator.sku);
-        productVariation.setRegularPrice(creator.regular_price);
-        productVariation.setSalePrice(creator.sale_price);
+        productVariation.setRegularPrice(creator.regularPrice);
+        productVariation.setSalePrice(creator.salePrice);
         productVariation.setDateOnSaleFrom(creator.date_on_sale_from);
         productVariation.setDateOnSaleFromGmt(creator.date_on_sale_from_gmt);
         productVariation.setDateOnSaleTo(creator.date_on_sale_to);

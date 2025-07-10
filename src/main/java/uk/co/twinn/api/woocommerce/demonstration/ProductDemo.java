@@ -17,6 +17,7 @@ import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategoriesItem;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 
 public class ProductDemo {
@@ -78,6 +79,8 @@ public class ProductDemo {
 
             update.setId(id);
 
+            update.setRegularPrice(new BigDecimal(9.99));
+
             if ((existing.getSku() == null) || !existing.getSku().equals(sku)){
                 update.setSku(sku);
             }
@@ -112,10 +115,6 @@ public class ProductDemo {
             if (isListed.getResult().isEmpty()){
 
                 System.out.println("Failure to find " + sku);
-
-            }else if (isListed.getResult().size() == 1){
-
-                System.out.println("Found a record with the id: "+ isListed.getResult().get(0).getId());
 
             }else{
 

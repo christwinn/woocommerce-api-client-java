@@ -47,8 +47,8 @@ public class ProductRequest extends ApiRequest {
         product.setDescription(creator.description);
         product.setShortDescription(creator.short_description);
         product.setSku(creator.sku);
-        product.setRegularPrice(creator.regular_price);
-        product.setSalePrice(creator.sale_price);
+        product.setRegularPrice(creator.regularPrice.toString());
+        product.setSalePrice(creator.salePrice.toString());
         product.setDateOnSaleFrom(creator.date_on_sale_from);
         product.setDateOnSaleFromGmt(creator.date_on_sale_from_gmt);
         product.setDateOnSaleTo(creator.date_on_sale_to);
