@@ -83,12 +83,19 @@ So far we have implemented:
      </ul>
   </li>
   <li>Coupon</li>
+  <li>CustomerDownloads</li>
+  <li>Customer</li>
   <li>Order</li>
   <li>OrderAction</li>
   <li>OrderNote</li>
   <li>OrderRefund</li>
   <li>Product</li>
+  <li>ProductAttributes</li>
+  <li>ProductAttributeTerms</li>
   <li>ProductCategory</li>
+  <li>ProductCustomFields</li>
+  <li>ProductVariations</li>
+   
 </ul>
 
 # WooCommerce API Client for Java
