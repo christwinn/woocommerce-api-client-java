@@ -410,7 +410,7 @@ public class ProductRequest extends ApiRequest {
             ProductRequest create = build();
 
             //make the call
-            return new Created<Product>(
+            return new Created<>(
                 new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>(){})
             );
 
@@ -662,7 +662,7 @@ public class ProductRequest extends ApiRequest {
 
         public Listed<Product> getResponse(){
 
-            return new Listed<Product>(
+            return new Listed<>(
                 new Rest().listAll(
                     PRODUCTS,
                     build(),
