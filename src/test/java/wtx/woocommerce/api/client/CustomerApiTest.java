@@ -20,7 +20,7 @@ import okhttp3.mockwebserver.MockWebServer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.co.twinn.api.woocommerce.request.CustomerRequest;
+import uk.co.twinn.api.woocommerce.request.CustomerApi;
 import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.response.Batched;
 import uk.co.twinn.api.woocommerce.rest.Configuration;
@@ -32,7 +32,7 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CustomerRequestTest {
+public class CustomerApiTest {
 
 
     private static final String SEPARATOR = "-------------------------------------------------------------------------------";
@@ -122,7 +122,7 @@ public class CustomerRequestTest {
 
         System.out.println(batch.getRecordCount());
 
-        Batched<Customer> response = new CustomerRequest.Batcher<>()
+        Batched<Customer> response = new CustomerApi.Batcher<>()
             .setBatch(batch)
             .getResponse();
 

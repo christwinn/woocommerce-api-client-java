@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.MockResponse;
-import uk.co.twinn.api.woocommerce.request.OrderRequest;
+import uk.co.twinn.api.woocommerce.request.OrderApi;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.rest.Configuration;
 import uk.co.twinn.pl_wtx_woocommerce.model.Order;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OrderRequestTest {
+public class OrderApiTest {
 
     private static final String SEPARATOR = "-------------------------------------------------------------------------------";
 
@@ -84,7 +84,7 @@ public class OrderRequestTest {
             .setHeader("Content-Type", "application/json")
             .setBody(mockResponse));
 
-        Listed<Order> response = new OrderRequest.ListAll<>()
+        Listed<Order> response = new OrderApi.ListAll<>()
             .setStatus(statuses)
             .getResponse();
 
