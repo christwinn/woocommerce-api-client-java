@@ -15,12 +15,9 @@ import java.util.*;
 import uk.co.twinn.api.woocommerce.request.*;
 import uk.co.twinn.api.woocommerce.response.*;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
-import uk.co.twinn.pl_wtx_woocommerce.model.Product;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
+import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
 import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductVariation;
 
 /**
  * WooCommerce API Client - Usage Demo
@@ -58,13 +55,27 @@ public class WooCommerceApiClientUsageDemo {
                 System.out.println(updte.toString());
             }
         }*/
-        Read<Product> product ; //= new ProductRequest.Reader<>().setId(315).getResponse();
+
+
+        //Read<Product> product ; //= new ProductRequest.Reader<>().setId(315).getResponse();
 
         //System.out.println(product.toJson());
 
-        product = new ProductRequest.Reader<>().setId(668).getResponse();
+        //product = new ProductRequest.Reader<>().setId(668).getResponse();
 
-        System.out.println(product.toJson());
+        //System.out.println(product.toJson());
+
+
+        Listed<ReportOrderTotalSummary> list = new ReportApi().getCustomersTotals();
+
+        System.out.println(list.toJson());
+
+        for (ReportOrderTotalSummary i : list.getResult()){
+
+            System.out.println(i.toString());
+
+        }
+
 
         System.exit(0);
 
@@ -211,9 +222,9 @@ public class WooCommerceApiClientUsageDemo {
 
         new CouponRequest.Deleter<>().setId(1).getResponse();
 
-        new OrderNoteRequest.Deleter<>().setNoteId(1).setId(2).setNoteId(1).getResponse();
+        new OrderNoteApi.Deleter<>().setNoteId(1).setId(2).setNoteId(1).getResponse();
 
-        Updated<ProductCategory> category2 = new ProductCategoryRequest
+        Updated<ProductCategory> category2 = new ProductCategoryApi
             .Updater<>()
             .setId(17)
             .setImage("https://wordpress.mackay.co.uk/wp-content/uploads/media/256/category/Angle.2.png")
@@ -261,7 +272,7 @@ public class WooCommerceApiClientUsageDemo {
     private static void createAndReadProductCategories() {
 
         Created<ProductCategory> createResponse =
-            new ProductCategoryRequest.Creator<>()
+            new ProductCategoryApi.Creator<>()
                 .setName("NEW Category Name 123")
                 .setDescription("Category Description")
                 .setParent(0)
@@ -298,7 +309,7 @@ public class WooCommerceApiClientUsageDemo {
         if (id == 0){
 
             List<ProductCategory> categories =
-                new ProductCategoryRequest.ListAll<>()
+                new ProductCategoryApi.ListAll<>()
                     .getResponse().getResult();
 
             for (ProductCategory productCategory : categories) {
@@ -308,7 +319,7 @@ public class WooCommerceApiClientUsageDemo {
         }else{
 
             ProductCategory category =
-                new ProductCategoryRequest.Reader<>()
+                new ProductCategoryApi.Reader<>()
                     .setId(id)
                     .getResponse().getResult();
 
@@ -321,7 +332,7 @@ public class WooCommerceApiClientUsageDemo {
     private static void crudPlusProducts(){
 
         String sku = "A1234567";
-        Created<Product> create = new ProductRequest.Creator<>()
+        Created<Product> create = new ProductApi.Creator<>()
             .setSku(sku)
             .setName("My New Product")
             .setDescription("<b>This is a bold assertion</b><br/>Buy Five Get one Free!")
@@ -365,7 +376,7 @@ public class WooCommerceApiClientUsageDemo {
 
         if (id == 0) {
 
-            Listed<Product> response = new ProductRequest.ListAll<>()
+            Listed<Product> response = new ProductApi.ListAll<>()
                 .getResponse();
 
             if (response.isSuccess()) {
@@ -391,7 +402,7 @@ public class WooCommerceApiClientUsageDemo {
 
         }else{
 
-            Product product = new ProductRequest.Reader<>()
+            Product product = new ProductApi.Reader<>()
                 .setId(id)
                 .getResponse()
                 .getResult();
@@ -399,7 +410,7 @@ public class WooCommerceApiClientUsageDemo {
             printProduct(product);
 
             try {
-                Updated<Product> response = new ProductRequest.Updater<>()
+                Updated<Product> response = new ProductApi.Updater<>()
                     .setId(product.getId())
                     .setSku("22221111")//.setMetaData(product.getMetaData())
                     .getResponse();
@@ -422,7 +433,7 @@ public class WooCommerceApiClientUsageDemo {
 
     private static void updateProduct(int id, String description){
 
-        Updated<Product> updater = new ProductRequest.Updater<>()
+        Updated<Product> updater = new ProductApi.Updater<>()
             .setId(id)
             .setDescription(description)
             .getResponse();
@@ -456,7 +467,7 @@ public class WooCommerceApiClientUsageDemo {
 
     private static void seekProduct(String sku){
 
-        Listed<Product> seeker = new ProductRequest.ListAll<>()
+        Listed<Product> seeker = new ProductApi.ListAll<>()
             .setSku(sku)
             .getResponse();
 

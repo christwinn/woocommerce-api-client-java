@@ -21,9 +21,22 @@ public class EndPoints {
         public static final String PRODUCTS_ATTRIBUTES = "products/attributes";
 
             public static final String TERMS = "terms";
+
         public static final String PRODUCTS_CUSTOM_FIELDS_NAMES = "products/custom-fields/names";
 
+        public static final String PRODUCTS_SHIPPING_CLASSES = "products/shipping_classes";
+        public static final String PRODUCTS_TAGS = "products/tags";
+        public static final String PRODUCTS_REVIEWS = "products/reviews";
     public static final String PRODUCT_CATEGORIES = "products/categories";
 
+    public static final String REPORTS = "reports";
+
+        public static final String REPORTS_SALES = "reports/sales";
+        public static final String REPORTS_TOP_SELLERS = "reports/top_sellers";
+        public static final String REPORTS_COUPONS_TOTALS = "reports/coupons/totals";
+        public static final String REPORTS_CUSTOMERS_TOTALS = "reports/customers/totals";
+        public static final String REPORTS_ORDERS_TOTALS = "reports/orders/totals";
+        public static final String REPORTS_PRODUCTS_TOTALS = "reports/products/totals";
+        public static final String REPORTS_REVIEWS_TOTALS = "reports/reviews/totals";
 
 }

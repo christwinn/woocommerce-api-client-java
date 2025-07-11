@@ -30,14 +30,14 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
 * Note: currently only one action is available, other actions will be introduced at a later time.
 *
 * */
-public class OrderActionsRequest extends ApiRequest {
+public class OrderActionApi extends ApiRequest {
 
     /** Send order details to customer
     * This endpoint allows you to trigger an email to the customer with the details of their order, if the order contains a customer email address.
      *
      **/
 
-    public OrderActionsRequest(SendEmail sendEmail){
+    public OrderActionApi(SendEmail sendEmail){
 
     }
     public static class SendEmail<T extends SendEmail<T>>{

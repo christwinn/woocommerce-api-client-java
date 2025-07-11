@@ -17,24 +17,21 @@ import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
-import uk.co.twinn.pl_wtx_woocommerce.model.Order;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductAttribute;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductImage;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductVariation;
 
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
-public class ProductAttributesRequest  extends ApiRequest {
+public class ProductAttributeApi extends ApiRequest {
 
     protected final ProductAttribute productAttribute = new ProductAttribute();
 
     private boolean force;
 
-    public ProductAttributesRequest(){}
+    public ProductAttributeApi(){}
 
-    private ProductAttributesRequest(Creator<?> creator){
+    private ProductAttributeApi(Creator<?> creator){
 
         productAttribute.setName(creator.name);
         productAttribute.setSlug(creator.slug);
@@ -44,7 +41,7 @@ public class ProductAttributesRequest  extends ApiRequest {
 
     }
 
-    private ProductAttributesRequest(Updater<?> updater){
+    private ProductAttributeApi(Updater<?> updater){
 
         this((Creator<?>)updater);
         productAttribute.setId(updater.id);
@@ -53,7 +50,7 @@ public class ProductAttributesRequest  extends ApiRequest {
 
     }
 
-    private ProductAttributesRequest(Deleter<?> deleter){
+    private ProductAttributeApi(Deleter<?> deleter){
 
         productAttribute.setId(deleter.id);
         force = deleter.force;
@@ -127,8 +124,8 @@ public class ProductAttributesRequest  extends ApiRequest {
             return self();
         }
 
-        protected ProductAttributesRequest build(){
-            return new ProductAttributesRequest(this);
+        protected ProductAttributeApi build(){
+            return new ProductAttributeApi(this);
         }
 
         /** Returns single Created ProductAttribute**/
@@ -143,7 +140,7 @@ public class ProductAttributesRequest  extends ApiRequest {
                 );
             }else {
 
-                ProductAttributesRequest create = build();
+                ProductAttributeApi create = build();
                 //make the call
                 return new Created<ProductAttribute>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductAttribute>(){})
@@ -168,8 +165,8 @@ public class ProductAttributesRequest  extends ApiRequest {
             return self();
         }
 
-        protected ProductAttributesRequest build(){
-            return new ProductAttributesRequest(this);
+        protected ProductAttributeApi build(){
+            return new ProductAttributeApi(this);
         }
 
         /**
@@ -187,7 +184,7 @@ public class ProductAttributesRequest  extends ApiRequest {
                         "Id and Name are MANDATORY")
                 );
             }else {
-                ProductAttributesRequest create = build();
+                ProductAttributeApi create = build();
                 //make the call
                 return new Updated<ProductAttribute>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductAttribute>(){})
@@ -219,8 +216,8 @@ public class ProductAttributesRequest  extends ApiRequest {
         @Override
         T self() {return (T) this;}
 
-        protected ProductAttributesRequest build(){
-            return new ProductAttributesRequest(this);
+        protected ProductAttributeApi build(){
+            return new ProductAttributeApi(this);
         }
 
         public Deleted<ProductAttribute> getResponse(){

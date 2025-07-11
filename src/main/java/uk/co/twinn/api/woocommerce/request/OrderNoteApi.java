@@ -26,7 +26,7 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
-public class OrderNoteRequest extends ApiRequest {
+public class OrderNoteApi extends ApiRequest {
 
     private Integer orderId; //write only
 
@@ -34,7 +34,7 @@ public class OrderNoteRequest extends ApiRequest {
 
     private boolean force;
 
-    public OrderNoteRequest(Creator<?> creator){
+    public OrderNoteApi(Creator<?> creator){
 
         orderId = creator.orderId;
         orderNote.setNote(creator.note);
@@ -43,7 +43,7 @@ public class OrderNoteRequest extends ApiRequest {
 
     }
 
-    public OrderNoteRequest(ListAll<?> listAller){
+    public OrderNoteApi(ListAll<?> listAller){
 
         orderId = listAller.orderId;
 
@@ -133,8 +133,8 @@ public class OrderNoteRequest extends ApiRequest {
             return self();
         }
 
-        protected OrderNoteRequest build(){
-            return new OrderNoteRequest(this);
+        protected OrderNoteApi build(){
+            return new OrderNoteApi(this);
         }
 
 
@@ -148,7 +148,7 @@ public class OrderNoteRequest extends ApiRequest {
                         "Order Id MANDATORY!\nUse Lister to ListAll")
                 );
             }else {
-                OrderNoteRequest create = build();
+                OrderNoteApi create = build();
                 //make the call
                 return new Created<>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<OrderNote>(){})

@@ -43,7 +43,7 @@ import java.util.Map;
 import java.util.Set;
 
 import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
-import uk.co.twinn.api.woocommerce.response.core.ErrorObject;
+import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 /**
  * ProductCategory
@@ -75,7 +75,7 @@ public class ProductCategory {
   @javax.annotation.Nullable
   private String description;
 
-  private ErrorObject error; //batch notifier
+  private ErrorMessage error; //batch notifier
 
   /**
    * Category archive display type.
@@ -416,12 +416,12 @@ public class ProductCategory {
      * Only way to catch the error and pass back is by adding the error message into here.
      */
     @javax.annotation.Nullable
-    public ErrorObject getError() {
+    public ErrorMessage getError() {
         return error;
     }
 
     @JsonProperty("error")
-    public void setError(@javax.annotation.Nullable ErrorObject error) {
+    public void setError(@javax.annotation.Nullable ErrorMessage error) {
         this.error = error;
     }
 

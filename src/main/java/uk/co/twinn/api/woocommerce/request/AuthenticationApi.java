@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.response.Message;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Configuration;
 
-public class AuthenticationRequest {
+public class AuthenticationApi {
 
     /**
      *  <h1>This is NOT to be supported</h1>

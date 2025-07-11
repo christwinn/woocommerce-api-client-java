@@ -10,7 +10,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import uk.co.twinn.api.woocommerce.response.core.ErrorObject;
+import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -46,7 +46,7 @@ public class Coupon {
     private List<Integer> usedBy; //	array	List of user IDs (or guest email addresses) that have used the coupon.read-only
     private List<MetaData> metaData; //	array	Meta data. See Coupon - Meta data properties
 
-    private ErrorObject error; //batch notifier
+    private ErrorMessage error; //batch notifier
 
     public Coupon(){}
 
@@ -297,12 +297,12 @@ public class Coupon {
      * Only way to catch the error and pass back is by adding the error message into here.
      */
     @javax.annotation.Nullable
-    public ErrorObject getError() {
+    public ErrorMessage getError() {
         return error;
     }
 
     @JsonProperty("error")
-    public void setError(@javax.annotation.Nullable ErrorObject error) {
+    public void setError(@javax.annotation.Nullable ErrorMessage error) {
         this.error = error;
     }
 

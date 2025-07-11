@@ -11,7 +11,7 @@ package uk.co.twinn.api.woocommerce.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponse;
-import uk.co.twinn.api.woocommerce.response.core.ErrorObject;
+import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class Listed<T> extends ApiResponse {
                     break;
                 default:
                     setSuccess(false);
-                    setError(new ErrorObject("Invalid response code"));
+                    setError(new ErrorMessage("Invalid response code"));
                     break;
             }
         }
@@ -48,7 +48,7 @@ public class Listed<T> extends ApiResponse {
         }catch (Exception e){
             Logger.getLogger(Listed.class.getName())
                 .log(Level.SEVERE, "Failed to parse list", e);
-            setError(new ErrorObject("Parse list failure"));
+            setError(new ErrorMessage("Parse list failure"));
         }
     }
 

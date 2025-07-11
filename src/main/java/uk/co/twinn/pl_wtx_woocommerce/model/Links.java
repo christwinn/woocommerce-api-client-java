@@ -73,24 +73,6 @@ public class Links {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Links link = (Links) o;
-        return Objects.equals(this.self, link.self) &&
-            Objects.equals(this.collection, link.collection);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(self);
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("class Links {\n")
             .append("    self: ").append(toIndentedString(self))
@@ -111,91 +93,6 @@ public class Links {
         return o.toString().replace("\n", "\n    ");
     }
 
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("self");
-        openapiFields.add("collection");
-        //yet there are more
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Billing
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!Link.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in Link is not found in the empty JSON string", Link.openapiRequiredFields.toString()));
-            }
-        }
-
-        //System.out.println(jsonElement.getAsJsonArray());
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!Links.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Link` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-            }
-        }
-
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-        for (Map.Entry entry : jsonObj.entrySet()){
-            String key = (String)entry.getKey();
-            if ((jsonObj.get(key) != null && !jsonObj.get(key).isJsonNull())) {
-                Link.validateJsonElement(jsonObj.get(key));
-            }
-        }
-
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!Links.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'Billing' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<Links> thisAdapter
-                = gson.getDelegateAdapter(this, TypeToken.get(Links.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<Links>() {
-                @Override
-                public void write(JsonWriter out, Links value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public Links read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of Brand given a JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of Billing
-     * @throws IOException if the JSON string is invalid with respect to Billing
-     */
-    public static Links fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, Links.class);
-    }
 
     /**
      * Convert an instance of Billing to an JSON string

@@ -8,12 +8,12 @@
  */
 package uk.co.twinn.api.woocommerce.response.core;
 
-public class Data {
+public class ErrorData {
 
     private int status;
     private int resource_id;
 
-    public Data(){}
+    public ErrorData(){}
 
     /**
      * @return the status

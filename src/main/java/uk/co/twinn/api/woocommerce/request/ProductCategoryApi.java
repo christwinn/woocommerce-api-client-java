@@ -23,13 +23,13 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
 
-public class ProductCategoryRequest extends ApiRequest {
+public class ProductCategoryApi extends ApiRequest {
 
     protected final ProductCategory category = new ProductCategory();
 
     private boolean force;
 
-    public ProductCategoryRequest(Creator<?> creator){
+    public ProductCategoryApi(Creator<?> creator){
 
         category.setName(creator.name);
         category.setSlug(creator.slug);
@@ -47,14 +47,14 @@ public class ProductCategoryRequest extends ApiRequest {
 
     }
 
-    public ProductCategoryRequest(Updater<?> updater){
+    public ProductCategoryApi(Updater<?> updater){
 
         this((Creator<?>)updater);
         category.setId(updater.id);
 
     }
 
-    public ProductCategoryRequest(Deleter<?> deleter){
+    public ProductCategoryApi(Deleter<?> deleter){
 
         category.setId(deleter.id);
         force = deleter.force;
@@ -138,13 +138,13 @@ public class ProductCategoryRequest extends ApiRequest {
             return self();
         }
 
-        protected ProductCategoryRequest build(){
-            return new ProductCategoryRequest(this);
+        protected ProductCategoryApi build(){
+            return new ProductCategoryApi(this);
         }
 
         public Created<ProductCategory> getResponse(){
 
-            ProductCategoryRequest create = build();
+            ProductCategoryApi create = build();
             //make the call
             return new Created<>(
                 new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductCategory>(){})
@@ -163,15 +163,15 @@ public class ProductCategoryRequest extends ApiRequest {
         }
 
         @Override
-        protected ProductCategoryRequest build(){
-            return new ProductCategoryRequest(this);
+        protected ProductCategoryApi build(){
+            return new ProductCategoryApi(this);
         }
 
         /** Returns single Updated ProductCategory**/
         @Override
         public Updated<ProductCategory> getResponse(){
             if (id > 0) {
-                ProductCategoryRequest create = build();
+                ProductCategoryApi create = build();
                 //make the call
                 return new Updated<>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductCategory>(){})
@@ -210,8 +210,8 @@ public class ProductCategoryRequest extends ApiRequest {
         @Override
         T self() {return (T) this;}
 
-        protected ProductCategoryRequest build(){
-            return new ProductCategoryRequest(this);
+        protected ProductCategoryApi build(){
+            return new ProductCategoryApi(this);
         }
 
         public Deleted<ProductCategory> getResponse(){

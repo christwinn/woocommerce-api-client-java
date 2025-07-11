@@ -23,6 +23,9 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -71,7 +74,6 @@ public class ProductReview {
   /**
    * Status of the review.
    */
-  @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
     APPROVED("approved"),
 
@@ -109,23 +111,7 @@ public class ProductReview {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
-    public static class Adapter extends TypeAdapter<StatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
 
-      @Override
-      public StatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return StatusEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      StatusEnum.fromValue(value);
-    }
   }
 
   public static final String SERIALIZED_NAME_STATUS = "status";
@@ -181,7 +167,9 @@ public class ProductReview {
     return id;
   }
 
-
+  public void setId(Integer id) {
+        this.id = id;
+    }
 
   /**
    * The date the review was created, in the site&#39;s timezone.
@@ -233,13 +221,25 @@ public class ProductReview {
    * Status of the review.
    * @return status
    */
+  @JsonIgnore
   @javax.annotation.Nullable
   public StatusEnum getStatus() {
     return status;
   }
 
+  @JsonProperty("status")
+  public String getStatusAsString() {
+      return status != null ? status.getValue() : "";
+  }
+
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
+  }
+  @JsonProperty("status")
+  public void setStatusAsString(@javax.annotation.Nullable String status) {
+
+      if (status != null){this.status.fromValue(status);}
+
   }
 
 
@@ -342,32 +342,6 @@ public class ProductReview {
 
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ProductReview productReview = (ProductReview) o;
-    return Objects.equals(this.id, productReview.id) &&
-        Objects.equals(this.dateCreated, productReview.dateCreated) &&
-        Objects.equals(this.dateCreatedGmt, productReview.dateCreatedGmt) &&
-        Objects.equals(this.productId, productReview.productId) &&
-        Objects.equals(this.status, productReview.status) &&
-        Objects.equals(this.reviewer, productReview.reviewer) &&
-        Objects.equals(this.reviewerEmail, productReview.reviewerEmail) &&
-        Objects.equals(this.review, productReview.review) &&
-        Objects.equals(this.rating, productReview.rating) &&
-        Objects.equals(this.verified, productReview.verified);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, dateCreated, dateCreatedGmt, productId, status, reviewer, reviewerEmail, review, rating, verified);
-  }
-
-  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductReview {\n");
@@ -396,114 +370,5 @@ public class ProductReview {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("date_created");
-    openapiFields.add("date_created_gmt");
-    openapiFields.add("product_id");
-    openapiFields.add("status");
-    openapiFields.add("reviewer");
-    openapiFields.add("reviewer_email");
-    openapiFields.add("review");
-    openapiFields.add("rating");
-    openapiFields.add("verified");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ProductReview
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ProductReview.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ProductReview is not found in the empty JSON string", ProductReview.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ProductReview.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductReview` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
-      }
-      // validate the optional field `status`
-      if (jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) {
-        StatusEnum.validateJsonElement(jsonObj.get("status"));
-      }
-      if ((jsonObj.get("reviewer") != null && !jsonObj.get("reviewer").isJsonNull()) && !jsonObj.get("reviewer").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `reviewer` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reviewer").toString()));
-      }
-      if ((jsonObj.get("reviewer_email") != null && !jsonObj.get("reviewer_email").isJsonNull()) && !jsonObj.get("reviewer_email").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `reviewer_email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reviewer_email").toString()));
-      }
-      if ((jsonObj.get("review") != null && !jsonObj.get("review").isJsonNull()) && !jsonObj.get("review").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `review` to be a primitive type in the JSON string but got `%s`", jsonObj.get("review").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ProductReview.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ProductReview' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ProductReview> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ProductReview.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ProductReview>() {
-           @Override
-           public void write(JsonWriter out, ProductReview value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ProductReview read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ProductReview given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ProductReview
-   * @throws IOException if the JSON string is invalid with respect to ProductReview
-   */
-  public static ProductReview fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ProductReview.class);
-  }
-
-  /**
-   * Convert an instance of ProductReview to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 

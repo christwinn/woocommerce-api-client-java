@@ -21,7 +21,7 @@ import java.io.IOException;
 public class ApiResponse {
 
     protected boolean success;
-    private ErrorObject error = null;
+    private ErrorMessage error = null;
 
     public ApiResponse(){}
 
@@ -34,13 +34,13 @@ public class ApiResponse {
                 case 0:
                 case 400: case 401: case 402: case 403: case 404: //not going to be json
                 case 500: case 502: case 503: case 504: //not going to be json
-                    error = new ErrorObject(result.getMessage());
+                    error = new ErrorMessage(result.getMessage());
                     break;
                 default:
                     try{
-                        error = objectMapper().readValue(result.getMessage(), new TypeReference<ErrorObject>(){});
+                        error = objectMapper().readValue(result.getMessage(), new TypeReference<ErrorMessage>(){});
                     }catch(UriBuilderException | IOException | IllegalArgumentException e){
-                        error = new ErrorObject(e.toString());
+                        error = new ErrorMessage(e.toString());
                     }
             }
 
@@ -70,11 +70,11 @@ public class ApiResponse {
         return error != null;
     }
 
-    public ErrorObject getError() {
+    public ErrorMessage getError() {
         return error;
     }
 
-    public void setError(ErrorObject error) {
+    public void setError(ErrorMessage error) {
         this.error = error;
     }
 

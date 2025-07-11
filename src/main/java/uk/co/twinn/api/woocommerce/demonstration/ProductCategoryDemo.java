@@ -9,7 +9,7 @@
 
 package uk.co.twinn.api.woocommerce.demonstration;
 
-import uk.co.twinn.api.woocommerce.request.ProductCategoryRequest;
+import uk.co.twinn.api.woocommerce.request.ProductCategoryApi;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.Updated;
@@ -39,7 +39,7 @@ public class ProductCategoryDemo {
     ){
 
         return
-            new ProductCategoryRequest.Creator<>()
+            new ProductCategoryApi.Creator<>()
                 .setName(name)
                 .setDescription(description)
                 .setImage(wooCommerceImageUrl)
@@ -50,7 +50,7 @@ public class ProductCategoryDemo {
 
     public Read<ProductCategory> readProductCategory(int productCategoryId){
 
-        return new ProductCategoryRequest.Reader<>()
+        return new ProductCategoryApi.Reader<>()
             .setId(productCategoryId)
             .getResponse();
 
@@ -63,7 +63,7 @@ public class ProductCategoryDemo {
     ){
 
         return
-            new ProductCategoryRequest.Updater<>()
+            new ProductCategoryApi.Updater<>()
                 .setId(productCategoryId)
                 .setName(name)
                 .setDescription(description)
@@ -103,7 +103,7 @@ public class ProductCategoryDemo {
         String imgUrl = (isRetry ? DESTINATION : SOURCE) + image;
 
         Created<ProductCategory> created =
-            new ProductCategoryRequest.Creator<>()
+            new ProductCategoryApi.Creator<>()
                 .setParent(parentId)
                 .setName(name)
                 .setDescription(description)
@@ -174,8 +174,8 @@ public class ProductCategoryDemo {
         ProductCategory existingCategory, boolean retry
     ){
 
-        ProductCategoryRequest.Updater<?> update =
-            new ProductCategoryRequest.Updater<>()
+        ProductCategoryApi.Updater<?> update =
+            new ProductCategoryApi.Updater<>()
                 .setId(wooId);
 
         boolean updatingImage = false;

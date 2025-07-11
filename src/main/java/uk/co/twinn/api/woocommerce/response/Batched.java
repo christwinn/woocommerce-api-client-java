@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponse;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.response.core.ErrorObject;
+import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 public class Batched<T> extends ApiResponse {
 
@@ -31,7 +31,7 @@ public class Batched<T> extends ApiResponse {
                     break;
                 default:
                     setSuccess(false);
-                    setError(new ErrorObject("Invalid response code"));
+                    setError(new ErrorMessage("Invalid response code"));
                     break;
             }
         }

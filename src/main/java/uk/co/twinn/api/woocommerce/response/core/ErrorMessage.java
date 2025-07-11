@@ -8,14 +8,14 @@
  */
 package uk.co.twinn.api.woocommerce.response.core;
 
-public class ErrorObject {
+public class ErrorMessage {
     private String code;
     private String message;
-    private Data data;
+    private ErrorData data;
 
-    public ErrorObject(){}
+    public ErrorMessage(){}
 
-    public ErrorObject(String message){
+    public ErrorMessage(String message){
         this.message = message;
     }
 
@@ -50,14 +50,14 @@ public class ErrorObject {
     /**
      * @return the data
      */
-    public Data getData() {
+    public ErrorData getData() {
         return data;
     }
 
     /**
      * @param data the data to set
      */
-    public void setData(Data data) {
+    public void setData(ErrorData data) {
         this.data = data;
     }
 

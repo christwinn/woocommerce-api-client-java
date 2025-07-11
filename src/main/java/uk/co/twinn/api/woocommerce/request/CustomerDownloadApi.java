@@ -19,7 +19,7 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 
-public class CustomerDownloadsRequest {
+public class CustomerDownloadApi {
 
     public static class Reader<T extends Reader<T>>{
 

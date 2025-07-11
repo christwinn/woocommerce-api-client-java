@@ -23,7 +23,7 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
 
-public class OrderRequest extends ApiRequest {
+public class OrderApi extends ApiRequest {
 
     protected final Order order = new Order();
 
@@ -33,7 +33,7 @@ public class OrderRequest extends ApiRequest {
     //private boolean duplicate;
     private boolean isBatch;
 
-    public OrderRequest(Creator<?> creator){
+    public OrderApi(Creator<?> creator){
 
         order.setPaymentMethod(creator.paymentMethod);
         order.setPaymentMethodTitle(creator.paymentMethodTitle);
@@ -45,20 +45,20 @@ public class OrderRequest extends ApiRequest {
 
     }
 
-    public OrderRequest(Reader<?> reader){
+    public OrderApi(Reader<?> reader){
 
         order.setId(reader.id);
 
     }
 
-    public OrderRequest(Updater<?> updater){
+    public OrderApi(Updater<?> updater){
 
         this((Creator)updater);
         order.setId(updater.id);
 
     }
 
-    public OrderRequest(Deleter<?> deleter){
+    public OrderApi(Deleter<?> deleter){
 
         order.setId(deleter.id);
         isBatch = false;
@@ -151,13 +151,13 @@ public class OrderRequest extends ApiRequest {
         }
 
 
-        protected OrderRequest build(){
-            return new OrderRequest(this);
+        protected OrderApi build(){
+            return new OrderApi(this);
         }
 
         public Created<Order> getResponse(){
 
-            OrderRequest create = build();
+            OrderApi create = build();
             //make the call
             return new Created<>(
                 new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Order>(){})
@@ -176,15 +176,15 @@ public class OrderRequest extends ApiRequest {
         }
 
         @Override
-        protected OrderRequest build(){
-            return new OrderRequest(this);
+        protected OrderApi build(){
+            return new OrderApi(this);
         }
 
         /** Returns single Updated ProductCategory**/
         @Override
         public Updated<Order> getResponse(){
             if (id > 0) {
-                OrderRequest create = build();
+                OrderApi create = build();
                 //make the call
                 return new Updated<>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Order>(){})
@@ -221,8 +221,8 @@ public class OrderRequest extends ApiRequest {
         @Override
         T self() {return (T) this;}
 
-        protected OrderRequest build(){
-            return new OrderRequest(this);
+        protected OrderApi build(){
+            return new OrderApi(this);
         }
 
         public Deleted<Order> getResponse(){

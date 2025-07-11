@@ -26,13 +26,13 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
-public class OrderRefundRequest extends ApiRequest {
+public class OrderRefundApi extends ApiRequest {
 
     protected final OrderRefund orderRefund = new OrderRefund();
 
     private boolean force;
 
-    public OrderRefundRequest(Creator<?> creator){
+    public OrderRefundApi(Creator<?> creator){
 
         orderRefund.setAmount(creator.amount);
         orderRefund.setReason(creator.reason);
@@ -46,7 +46,7 @@ public class OrderRefundRequest extends ApiRequest {
 
     }
 
-    public OrderRefundRequest(ListAll<?> listAller){
+    public OrderRefundApi(ListAll<?> listAller){
 
         orderRefund.setOrderId(listAller.orderId);
 
@@ -163,8 +163,8 @@ public class OrderRefundRequest extends ApiRequest {
         }
 
 
-        protected OrderRefundRequest build(){
-            return new OrderRefundRequest(this);
+        protected OrderRefundApi build(){
+            return new OrderRefundApi(this);
         }
 
 
@@ -178,7 +178,7 @@ public class OrderRefundRequest extends ApiRequest {
                         "Order Id is MANDATORY!")
                 );
             }else {
-                OrderRefundRequest create = build();
+                OrderRefundApi create = build();
                 //make the call
                 return new Created<>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<OrderRefund>(){})

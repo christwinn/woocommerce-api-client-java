@@ -23,6 +23,8 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
@@ -59,7 +61,7 @@ public class ReportListItem {
   public static final String SERIALIZED_NAME_LINKS = "_links";
   @SerializedName(SERIALIZED_NAME_LINKS)
   @javax.annotation.Nullable
-  private ReportListItemLinks links;
+  private Links links;
 
   public ReportListItem() {
   }
@@ -102,7 +104,7 @@ public class ReportListItem {
   }
 
 
-  public ReportListItem links(@javax.annotation.Nullable ReportListItemLinks links) {
+  public ReportListItem links(@javax.annotation.Nullable Links links) {
     this.links = links;
     return this;
   }
@@ -112,34 +114,16 @@ public class ReportListItem {
    * @return links
    */
   @javax.annotation.Nullable
-  public ReportListItemLinks getLinks() {
+  public Links getLinks() {
     return links;
   }
 
-  public void setLinks(@javax.annotation.Nullable ReportListItemLinks links) {
+  @JsonProperty("_links")
+  public void setLinks(@javax.annotation.Nullable Links links) {
     this.links = links;
   }
 
 
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ReportListItem reportListItem = (ReportListItem) o;
-    return Objects.equals(this.slug, reportListItem.slug) &&
-        Objects.equals(this.description, reportListItem.description) &&
-        Objects.equals(this.links, reportListItem.links);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(slug, description, links);
-  }
 
   @Override
   public String toString() {
@@ -163,93 +147,6 @@ public class ReportListItem {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("slug");
-    openapiFields.add("description");
-    openapiFields.add("_links");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ReportListItem
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ReportListItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ReportListItem is not found in the empty JSON string", ReportListItem.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ReportListItem.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ReportListItem` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("slug") != null && !jsonObj.get("slug").isJsonNull()) && !jsonObj.get("slug").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `slug` to be a primitive type in the JSON string but got `%s`", jsonObj.get("slug").toString()));
-      }
-      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
-      }
-      // validate the optional field `_links`
-      if (jsonObj.get("_links") != null && !jsonObj.get("_links").isJsonNull()) {
-        ReportListItemLinks.validateJsonElement(jsonObj.get("_links"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ReportListItem.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ReportListItem' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ReportListItem> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ReportListItem.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ReportListItem>() {
-           @Override
-           public void write(JsonWriter out, ReportListItem value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ReportListItem read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ReportListItem given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ReportListItem
-   * @throws IOException if the JSON string is invalid with respect to ReportListItem
-   */
-  public static ReportListItem fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ReportListItem.class);
-  }
 
   /**
    * Convert an instance of ReportListItem to an JSON string

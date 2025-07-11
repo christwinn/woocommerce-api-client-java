@@ -24,7 +24,7 @@ import java.util.List;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.VARIATIONS;
 
-public class ProductVariationsRequest extends ApiRequest {
+public class ProductVariationApi extends ApiRequest {
 
     //never appears in the variation but is key to retrieving the data.
     private int productId;
@@ -33,9 +33,9 @@ public class ProductVariationsRequest extends ApiRequest {
 
     private boolean force;
 
-    public ProductVariationsRequest(){}
+    public ProductVariationApi(){}
 
-    private ProductVariationsRequest(Creator<?> creator){
+    private ProductVariationApi(Creator<?> creator){
 
         //Set the object parameters from creator;
         productId = creator.product_Id;
@@ -69,7 +69,7 @@ public class ProductVariationsRequest extends ApiRequest {
 
     }
 
-    private ProductVariationsRequest(Updater<?> updater){
+    private ProductVariationApi(Updater<?> updater){
 
         this((Creator<?>)updater);
         //set the specific ids required to update an object
@@ -78,7 +78,7 @@ public class ProductVariationsRequest extends ApiRequest {
 
     }
 
-    private ProductVariationsRequest(Deleter<?> deleter){
+    private ProductVariationApi(Deleter<?> deleter){
 
         productVariation.setVariationId(deleter.childId);
         force = deleter.force;
@@ -135,8 +135,8 @@ public class ProductVariationsRequest extends ApiRequest {
             return self();
         }
 
-        protected ProductVariationsRequest build(){
-            return new ProductVariationsRequest(this);
+        protected ProductVariationApi build(){
+            return new ProductVariationApi(this);
         }
 
         /** Returns single Created ProductVariation**/
@@ -151,7 +151,7 @@ public class ProductVariationsRequest extends ApiRequest {
                 );
             }else {
 
-                ProductVariationsRequest create = build();
+                ProductVariationApi create = build();
                 //make the call
                 return new Created<ProductVariation>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>(){})
@@ -175,8 +175,8 @@ public class ProductVariationsRequest extends ApiRequest {
             return self();
         }
 
-        protected ProductVariationsRequest build(){
-            return new ProductVariationsRequest(this);
+        protected ProductVariationApi build(){
+            return new ProductVariationApi(this);
         }
 
         /**
@@ -194,7 +194,7 @@ public class ProductVariationsRequest extends ApiRequest {
                         "ProductId and id are MANDATORY")
                 );
             }else {
-                ProductVariationsRequest create = build();
+                ProductVariationApi create = build();
                 //make the call
                 return new Updated<ProductVariation>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>(){})
@@ -245,8 +245,8 @@ public class ProductVariationsRequest extends ApiRequest {
             super.setChildId(variationId);
             return self();
         }
-        protected ProductVariationsRequest build(){
-            return new ProductVariationsRequest(this);
+        protected ProductVariationApi build(){
+            return new ProductVariationApi(this);
         }
 
         public Deleted<ProductVariation> getResponse(){

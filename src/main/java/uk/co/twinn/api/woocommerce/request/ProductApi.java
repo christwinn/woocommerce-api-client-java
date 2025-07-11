@@ -23,18 +23,16 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 
-public class ProductRequest extends ApiRequest {
+public class ProductApi extends ApiRequest {
 
     protected final Product product = new Product();
 
-    private boolean isBatch;
     private boolean force;
-    private boolean duplicate;
 
-    public ProductRequest(){}
+    public ProductApi(){}
 
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
-    private ProductRequest(Creator<?> creator){
+    private ProductApi(Creator<?> creator){
 
         product.setName(creator.name);
         product.setSlug(creator.slug);
@@ -84,24 +82,18 @@ public class ProductRequest extends ApiRequest {
 
     }
 
-    private ProductRequest(Updater<?> updater){
+    private ProductApi(Updater<?> updater){
 
         this((Creator<?>)updater);
         product.setId(updater.id);
 
     }
 
-    private ProductRequest(Deleter<?> deleter){
+    private ProductApi(Deleter<?> deleter){
 
         product.setId(deleter.id);
-        isBatch = false;
-        duplicate = false;
         force = deleter.force;
 
-    }
-
-    public Product getProduct(){
-        return product;
     }
 
     public String toJson(){
@@ -122,10 +114,7 @@ public class ProductRequest extends ApiRequest {
             (product.getId() != null && product.getId() != 0
                 ? ("/" + product.getId())
                 : ""
-            ) +
-            (duplicate ? "/duplicate"  : "") +
-            (isBatch ? "/batch" : "") +
-            (force ? "?force=true" : "");
+            );
 
     }
 
@@ -394,24 +383,22 @@ public class ProductRequest extends ApiRequest {
             return self();
         }
 
-
-
         T self() {
             return (T) this;
         }
 
-        private ProductRequest build(){
-            return new ProductRequest(this);
+        private ProductApi build(){
+            return new ProductApi(this);
         }
 
         public Created<Product> getResponse(){
 
             //nothing is defined as mandatory, but we may want to build in some pre-validation
-            ProductRequest create = build();
+            ProductApi create = build();
 
             //make the call
             return new Created<>(
-                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>(){})
+                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Product>(){})
             );
 
         }
@@ -427,15 +414,15 @@ public class ProductRequest extends ApiRequest {
             return self();
         }
 
-        private ProductRequest build(){
-            return new ProductRequest(this);
+        private ProductApi build(){
+            return new ProductApi(this);
         }
 
         @Override
         public Updated<Product> getResponse(){
             if (id > 0){
 
-                ProductRequest create = build();
+                ProductApi create = build();
                 return new Updated<>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Product>(){})
                 );
@@ -467,8 +454,8 @@ public class ProductRequest extends ApiRequest {
         @Override
         T self() {return (T) this;}
 
-        protected ProductRequest build(){
-            return new ProductRequest(this);
+        protected ProductApi build(){
+            return new ProductApi(this);
         }
 
         public Deleted<Product> getResponse(){

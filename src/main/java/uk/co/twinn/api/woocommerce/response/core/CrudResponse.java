@@ -27,7 +27,7 @@ public class CrudResponse<T> extends ApiResponse{
                     break;
                 default:
                     setSuccess(false);
-                    setError(new ErrorObject("Invalid response code"));
+                    setError(new ErrorMessage("Invalid response code"));
                     break;
             }
         }

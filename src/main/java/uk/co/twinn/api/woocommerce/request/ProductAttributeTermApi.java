@@ -17,23 +17,22 @@ import uk.co.twinn.api.woocommerce.request.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductAttribute;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductAttributeTerm;
 
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
-public class ProductAttributeTermsRequest extends ApiRequest {
+public class ProductAttributeTermApi extends ApiRequest {
 
     protected final ProductAttributeTerm productAttribute = new ProductAttributeTerm();
 
     private int attributeId;
     private boolean force;
 
-    public ProductAttributeTermsRequest(){}
+    public ProductAttributeTermApi(){}
 
-    private ProductAttributeTermsRequest(Creator<?> creator){
+    private ProductAttributeTermApi(Creator<?> creator){
 
         attributeId = creator.attributeId;
         productAttribute.setName(creator.name);
@@ -43,7 +42,7 @@ public class ProductAttributeTermsRequest extends ApiRequest {
 
     }
 
-    private ProductAttributeTermsRequest(Updater<?> updater){
+    private ProductAttributeTermApi(Updater<?> updater){
 
         this((Creator<?>)updater);
         productAttribute.setId(updater.termsId);
@@ -52,7 +51,7 @@ public class ProductAttributeTermsRequest extends ApiRequest {
 
     }
 
-    private ProductAttributeTermsRequest(Deleter<?> deleter){
+    private ProductAttributeTermApi(Deleter<?> deleter){
 
         attributeId = deleter.id;
         productAttribute.setId(deleter.childId);
@@ -154,8 +153,8 @@ public class ProductAttributeTermsRequest extends ApiRequest {
             return self();
         }
 
-        protected ProductAttributeTermsRequest build(){
-            return new ProductAttributeTermsRequest(this);
+        protected ProductAttributeTermApi build(){
+            return new ProductAttributeTermApi(this);
         }
 
         /** Returns single Created ProductAttribute**/
@@ -170,7 +169,7 @@ public class ProductAttributeTermsRequest extends ApiRequest {
                 );
             }else {
 
-                ProductAttributeTermsRequest create = build();
+                ProductAttributeTermApi create = build();
                 //make the call
                 return new Created<>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductAttributeTerm>(){})
@@ -196,8 +195,8 @@ public class ProductAttributeTermsRequest extends ApiRequest {
             return self();
         }
 
-        protected ProductAttributeTermsRequest build(){
-            return new ProductAttributeTermsRequest(this);
+        protected ProductAttributeTermApi build(){
+            return new ProductAttributeTermApi(this);
         }
 
         /**
@@ -215,7 +214,7 @@ public class ProductAttributeTermsRequest extends ApiRequest {
                         "Attribute Id and Term Id are MANDATORY")
                 );
             }else {
-                ProductAttributeTermsRequest create = build();
+                ProductAttributeTermApi create = build();
                 //make the call
                 return new Updated<>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductAttributeTerm>(){})
@@ -267,8 +266,8 @@ public class ProductAttributeTermsRequest extends ApiRequest {
             return self();
         }
 
-        protected ProductAttributeTermsRequest build(){
-            return new ProductAttributeTermsRequest(this);
+        protected ProductAttributeTermApi build(){
+            return new ProductAttributeTermApi(this);
         }
 
         public Deleted<ProductAttributeTerm> getResponse(){

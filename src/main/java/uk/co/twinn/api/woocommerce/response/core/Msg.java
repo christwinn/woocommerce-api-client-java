@@ -8,7 +8,7 @@
  */
 package uk.co.twinn.api.woocommerce.response.core;
 
-public class Msg extends ErrorObject {
+public class Msg extends ErrorMessage {
 
     public Msg(){
         super();

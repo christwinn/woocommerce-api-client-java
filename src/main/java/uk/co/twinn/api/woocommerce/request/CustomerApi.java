@@ -24,13 +24,13 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 
-public class CustomerRequest extends ApiRequest {
+public class CustomerApi extends ApiRequest {
 
     protected final Customer customer = new Customer();
 
     private boolean force;
 
-    public CustomerRequest(Creator<?> creator){
+    public CustomerApi(Creator<?> creator){
 
         customer.setEmail(creator.email);
         customer.setFirstName(creator.firstName);
@@ -42,14 +42,14 @@ public class CustomerRequest extends ApiRequest {
 
     }
 
-    public CustomerRequest(Updater<?> updater){
+    public CustomerApi(Updater<?> updater){
 
         this((Creator)updater);
 
 
     }
 
-    public CustomerRequest(Deleter<?> deleter){
+    public CustomerApi(Deleter<?> deleter){
 
         customer.setId(deleter.id);
         force = deleter.force;
@@ -128,15 +128,15 @@ public class CustomerRequest extends ApiRequest {
             return self();
         }
 
-        protected CustomerRequest build(){
-            return new CustomerRequest(this);
+        protected CustomerApi build(){
+            return new CustomerApi(this);
         }
 
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
         public Created<Customer> getResponse(){
 
             if (username != null && password != null) {
-                CustomerRequest create = build();
+                CustomerApi create = build();
                 //make the call
                 return new Created<>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Customer>(){})
@@ -164,15 +164,15 @@ public class CustomerRequest extends ApiRequest {
         }
 
         @Override
-        protected CustomerRequest build(){
-            return new CustomerRequest(this);
+        protected CustomerApi build(){
+            return new CustomerApi(this);
         }
 
         /** Returns single Updated ProductCategory**/
         @Override
         public Updated<Customer> getResponse(){
             if (id > 0){
-                CustomerRequest create = build();
+                CustomerApi create = build();
                 //make the call
                 return new Updated<>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Customer>(){})
@@ -204,8 +204,8 @@ public class CustomerRequest extends ApiRequest {
         @Override
         T self() {return (T) this;}
 
-        protected CustomerRequest build(){
-            return new CustomerRequest(this);
+        protected CustomerApi build(){
+            return new CustomerApi(this);
         }
 
         public Deleted<Customer> getResponse(){

@@ -11,7 +11,7 @@ package uk.co.twinn.api.woocommerce.response;
 
 import uk.co.twinn.api.woocommerce.response.core.ApiResponse;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.response.core.ErrorObject;
+import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 import uk.co.twinn.api.woocommerce.response.core.Msg;
 
 
@@ -35,7 +35,7 @@ public class Message extends ApiResponse {
                     break;
                 default:
                     setSuccess(false);
-                    setError(new ErrorObject("Invalid response code"));
+                    setError(new ErrorMessage("Invalid response code"));
                     break;
             }
         }

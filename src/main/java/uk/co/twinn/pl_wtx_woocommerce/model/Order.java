@@ -47,7 +47,7 @@ import java.util.Map;
 import java.util.Set;
 
 import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
-import uk.co.twinn.api.woocommerce.response.core.ErrorObject;
+import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 /**
  * Order
@@ -631,14 +631,14 @@ public class Order {
   public static final String SERIALIZED_NAME_REFUNDS = "refunds";
   @SerializedName(SERIALIZED_NAME_REFUNDS)
   @javax.annotation.Nullable
-  private List<OrderRefundJUNK> refunds = new ArrayList<>();
+  private List<OrderRefund> refunds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SET_PAID = "set_paid";
   @SerializedName(SERIALIZED_NAME_SET_PAID)
   @javax.annotation.Nullable
   private Boolean setPaid;
 
-  private ErrorObject error; //batch notifier
+  private ErrorMessage error; //batch notifier
 
   public Order() {
   }
@@ -1486,12 +1486,12 @@ public class Order {
   }
 
 
-  public Order refunds(@javax.annotation.Nullable List<OrderRefundJUNK> refunds) {
+  public Order refunds(@javax.annotation.Nullable List<OrderRefund> refunds) {
     this.refunds = refunds;
     return this;
   }
 
-  public Order addRefundsItem(OrderRefundJUNK refundsItem) {
+  public Order addRefundsItem(OrderRefund refundsItem) {
     if (this.refunds == null) {
       this.refunds = new ArrayList<>();
     }
@@ -1504,11 +1504,11 @@ public class Order {
    * @return refunds
    */
   @javax.annotation.Nullable
-  public List<OrderRefundJUNK> getRefunds() {
+  public List<OrderRefund> getRefunds() {
     return refunds;
   }
 
-  public void setRefunds(@javax.annotation.Nullable List<OrderRefundJUNK> refunds) {
+  public void setRefunds(@javax.annotation.Nullable List<OrderRefund> refunds) {
     this.refunds = refunds;
   }
 
@@ -1538,12 +1538,12 @@ public class Order {
      * Only way to catch the error and pass back is by adding the error message into here.
      */
     @javax.annotation.Nullable
-    public ErrorObject getError() {
+    public ErrorMessage getError() {
         return error;
     }
 
     @JsonProperty("error")
-    public void setError(@javax.annotation.Nullable ErrorObject error) {
+    public void setError(@javax.annotation.Nullable ErrorMessage error) {
         this.error = error;
     }
 
@@ -1551,63 +1551,6 @@ public class Order {
         return error != null;
     }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Order order = (Order) o;
-    return Objects.equals(this.id, order.id) &&
-        Objects.equals(this.parentId, order.parentId) &&
-        Objects.equals(this.number, order.number) &&
-        Objects.equals(this.orderKey, order.orderKey) &&
-        Objects.equals(this.createdVia, order.createdVia) &&
-        Objects.equals(this.version, order.version) &&
-        Objects.equals(this.status, order.status) &&
-        Objects.equals(this.currency, order.currency) &&
-        Objects.equals(this.dateCreated, order.dateCreated) &&
-        Objects.equals(this.dateCreatedGmt, order.dateCreatedGmt) &&
-        Objects.equals(this.dateModified, order.dateModified) &&
-        Objects.equals(this.dateModifiedGmt, order.dateModifiedGmt) &&
-        Objects.equals(this.discountTotal, order.discountTotal) &&
-        Objects.equals(this.discountTax, order.discountTax) &&
-        Objects.equals(this.shippingTotal, order.shippingTotal) &&
-        Objects.equals(this.shippingTax, order.shippingTax) &&
-        Objects.equals(this.cartTax, order.cartTax) &&
-        Objects.equals(this.total, order.total) &&
-        Objects.equals(this.totalTax, order.totalTax) &&
-        Objects.equals(this.pricesIncludeTax, order.pricesIncludeTax) &&
-        Objects.equals(this.customerId, order.customerId) &&
-        Objects.equals(this.customerIpAddress, order.customerIpAddress) &&
-        Objects.equals(this.customerUserAgent, order.customerUserAgent) &&
-        Objects.equals(this.customerNote, order.customerNote) &&
-        Objects.equals(this.billing, order.billing) &&
-        Objects.equals(this.shipping, order.shipping) &&
-        Objects.equals(this.paymentMethod, order.paymentMethod) &&
-        Objects.equals(this.paymentMethodTitle, order.paymentMethodTitle) &&
-        Objects.equals(this.transactionId, order.transactionId) &&
-        Objects.equals(this.datePaid, order.datePaid) &&
-        Objects.equals(this.datePaidGmt, order.datePaidGmt) &&
-        Objects.equals(this.dateCompleted, order.dateCompleted) &&
-        Objects.equals(this.dateCompletedGmt, order.dateCompletedGmt) &&
-        Objects.equals(this.cartHash, order.cartHash) &&
-        Objects.equals(this.metaData, order.metaData) &&
-        Objects.equals(this.lineItems, order.lineItems) &&
-        Objects.equals(this.taxLines, order.taxLines) &&
-        Objects.equals(this.shippingLines, order.shippingLines) &&
-        Objects.equals(this.feeLines, order.feeLines) &&
-        Objects.equals(this.couponLines, order.couponLines) &&
-        Objects.equals(this.refunds, order.refunds) &&
-        Objects.equals(this.setPaid, order.setPaid);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, parentId, number, orderKey, createdVia, version, status, currency, dateCreated, dateCreatedGmt, dateModified, dateModifiedGmt, discountTotal, discountTax, shippingTotal, shippingTax, cartTax, total, totalTax, pricesIncludeTax, customerId, customerIpAddress, customerUserAgent, customerNote, billing, shipping, paymentMethod, paymentMethodTitle, transactionId, datePaid, datePaidGmt, dateCompleted, dateCompletedGmt, cartHash, metaData, lineItems, taxLines, shippingLines, feeLines, couponLines, refunds, setPaid);
-  }
 
   @Override
   public String toString() {
@@ -1671,299 +1614,5 @@ public class Order {
   }
 
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("parent_id");
-    openapiFields.add("number");
-    openapiFields.add("order_key");
-    openapiFields.add("created_via");
-    openapiFields.add("version");
-    openapiFields.add("status");
-    openapiFields.add("currency");
-    openapiFields.add("date_created");
-    openapiFields.add("date_created_gmt");
-    openapiFields.add("date_modified");
-    openapiFields.add("date_modified_gmt");
-    openapiFields.add("discount_total");
-    openapiFields.add("discount_tax");
-    openapiFields.add("shipping_total");
-    openapiFields.add("shipping_tax");
-    openapiFields.add("cart_tax");
-    openapiFields.add("total");
-    openapiFields.add("total_tax");
-    openapiFields.add("prices_include_tax");
-    openapiFields.add("customer_id");
-    openapiFields.add("customer_ip_address");
-    openapiFields.add("customer_user_agent");
-    openapiFields.add("customer_note");
-    openapiFields.add("billing");
-    openapiFields.add("shipping");
-    openapiFields.add("payment_method");
-    openapiFields.add("payment_method_title");
-    openapiFields.add("transaction_id");
-    openapiFields.add("date_paid");
-    openapiFields.add("date_paid_gmt");
-    openapiFields.add("date_completed");
-    openapiFields.add("date_completed_gmt");
-    openapiFields.add("cart_hash");
-    openapiFields.add("meta_data");
-    openapiFields.add("line_items");
-    openapiFields.add("tax_lines");
-    openapiFields.add("shipping_lines");
-    openapiFields.add("fee_lines");
-    openapiFields.add("coupon_lines");
-    openapiFields.add("refunds");
-    openapiFields.add("set_paid");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Order
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Order.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Order is not found in the empty JSON string", Order.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Order.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Order` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("number") != null && !jsonObj.get("number").isJsonNull()) && !jsonObj.get("number").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("number").toString()));
-      }
-      if ((jsonObj.get("order_key") != null && !jsonObj.get("order_key").isJsonNull()) && !jsonObj.get("order_key").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `order_key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("order_key").toString()));
-      }
-      if ((jsonObj.get("created_via") != null && !jsonObj.get("created_via").isJsonNull()) && !jsonObj.get("created_via").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `created_via` to be a primitive type in the JSON string but got `%s`", jsonObj.get("created_via").toString()));
-      }
-      if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) && !jsonObj.get("version").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
-      }
-      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
-      }
-      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
-      }
-      // validate the optional field `currency`
-      if (jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) {
-        CurrencyEnum.validateJsonElement(jsonObj.get("currency"));
-      }
-      if ((jsonObj.get("discount_total") != null && !jsonObj.get("discount_total").isJsonNull()) && !jsonObj.get("discount_total").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `discount_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("discount_total").toString()));
-      }
-      if ((jsonObj.get("discount_tax") != null && !jsonObj.get("discount_tax").isJsonNull()) && !jsonObj.get("discount_tax").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `discount_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("discount_tax").toString()));
-      }
-      if ((jsonObj.get("shipping_total") != null && !jsonObj.get("shipping_total").isJsonNull()) && !jsonObj.get("shipping_total").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `shipping_total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shipping_total").toString()));
-      }
-      if ((jsonObj.get("shipping_tax") != null && !jsonObj.get("shipping_tax").isJsonNull()) && !jsonObj.get("shipping_tax").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `shipping_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shipping_tax").toString()));
-      }
-      if ((jsonObj.get("cart_tax") != null && !jsonObj.get("cart_tax").isJsonNull()) && !jsonObj.get("cart_tax").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cart_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cart_tax").toString()));
-      }
-      if ((jsonObj.get("total") != null && !jsonObj.get("total").isJsonNull()) && !jsonObj.get("total").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total").toString()));
-      }
-      if ((jsonObj.get("total_tax") != null && !jsonObj.get("total_tax").isJsonNull()) && !jsonObj.get("total_tax").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_tax").toString()));
-      }
-      if ((jsonObj.get("customer_ip_address") != null && !jsonObj.get("customer_ip_address").isJsonNull()) && !jsonObj.get("customer_ip_address").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `customer_ip_address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customer_ip_address").toString()));
-      }
-      if ((jsonObj.get("customer_user_agent") != null && !jsonObj.get("customer_user_agent").isJsonNull()) && !jsonObj.get("customer_user_agent").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `customer_user_agent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customer_user_agent").toString()));
-      }
-      if ((jsonObj.get("customer_note") != null && !jsonObj.get("customer_note").isJsonNull()) && !jsonObj.get("customer_note").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `customer_note` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customer_note").toString()));
-      }
-      // validate the optional field `billing`
-      if (jsonObj.get("billing") != null && !jsonObj.get("billing").isJsonNull()) {
-        Billing.validateJsonElement(jsonObj.get("billing"));
-      }
-      // validate the optional field `shipping`
-      if (jsonObj.get("shipping") != null && !jsonObj.get("shipping").isJsonNull()) {
-        Shipping.validateJsonElement(jsonObj.get("shipping"));
-      }
-      if ((jsonObj.get("payment_method") != null && !jsonObj.get("payment_method").isJsonNull()) && !jsonObj.get("payment_method").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `payment_method` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_method").toString()));
-      }
-      if ((jsonObj.get("payment_method_title") != null && !jsonObj.get("payment_method_title").isJsonNull()) && !jsonObj.get("payment_method_title").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `payment_method_title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_method_title").toString()));
-      }
-      if ((jsonObj.get("transaction_id") != null && !jsonObj.get("transaction_id").isJsonNull()) && !jsonObj.get("transaction_id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `transaction_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("transaction_id").toString()));
-      }
-      if ((jsonObj.get("cart_hash") != null && !jsonObj.get("cart_hash").isJsonNull()) && !jsonObj.get("cart_hash").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cart_hash` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cart_hash").toString()));
-      }
-      if (jsonObj.get("meta_data") != null && !jsonObj.get("meta_data").isJsonNull()) {
-        JsonArray jsonArraymetaData = jsonObj.getAsJsonArray("meta_data");
-        if (jsonArraymetaData != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("meta_data").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `meta_data` to be an array in the JSON string but got `%s`", jsonObj.get("meta_data").toString()));
-          }
-
-          // validate the optional field `meta_data` (array)
-          for (int i = 0; i < jsonArraymetaData.size(); i++) {
-            MetaData.validateJsonElement(jsonArraymetaData.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("line_items") != null && !jsonObj.get("line_items").isJsonNull()) {
-        JsonArray jsonArraylineItems = jsonObj.getAsJsonArray("line_items");
-        if (jsonArraylineItems != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("line_items").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `line_items` to be an array in the JSON string but got `%s`", jsonObj.get("line_items").toString()));
-          }
-
-          // validate the optional field `line_items` (array)
-          for (int i = 0; i < jsonArraylineItems.size(); i++) {
-            OrderLineItem.validateJsonElement(jsonArraylineItems.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("tax_lines") != null && !jsonObj.get("tax_lines").isJsonNull()) {
-        JsonArray jsonArraytaxLines = jsonObj.getAsJsonArray("tax_lines");
-        if (jsonArraytaxLines != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("tax_lines").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `tax_lines` to be an array in the JSON string but got `%s`", jsonObj.get("tax_lines").toString()));
-          }
-
-          // validate the optional field `tax_lines` (array)
-          for (int i = 0; i < jsonArraytaxLines.size(); i++) {
-            OrderTaxLine.validateJsonElement(jsonArraytaxLines.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("shipping_lines") != null && !jsonObj.get("shipping_lines").isJsonNull()) {
-        JsonArray jsonArrayshippingLines = jsonObj.getAsJsonArray("shipping_lines");
-        if (jsonArrayshippingLines != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("shipping_lines").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `shipping_lines` to be an array in the JSON string but got `%s`", jsonObj.get("shipping_lines").toString()));
-          }
-
-          // validate the optional field `shipping_lines` (array)
-          for (int i = 0; i < jsonArrayshippingLines.size(); i++) {
-            OrderShippingLine.validateJsonElement(jsonArrayshippingLines.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("fee_lines") != null && !jsonObj.get("fee_lines").isJsonNull()) {
-        JsonArray jsonArrayfeeLines = jsonObj.getAsJsonArray("fee_lines");
-        if (jsonArrayfeeLines != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("fee_lines").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `fee_lines` to be an array in the JSON string but got `%s`", jsonObj.get("fee_lines").toString()));
-          }
-
-          // validate the optional field `fee_lines` (array)
-          for (int i = 0; i < jsonArrayfeeLines.size(); i++) {
-            OrderFeeLine.validateJsonElement(jsonArrayfeeLines.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("coupon_lines") != null && !jsonObj.get("coupon_lines").isJsonNull()) {
-        JsonArray jsonArraycouponLines = jsonObj.getAsJsonArray("coupon_lines");
-        if (jsonArraycouponLines != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("coupon_lines").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `coupon_lines` to be an array in the JSON string but got `%s`", jsonObj.get("coupon_lines").toString()));
-          }
-
-          // validate the optional field `coupon_lines` (array)
-          for (int i = 0; i < jsonArraycouponLines.size(); i++) {
-            OrderCouponLine.validateJsonElement(jsonArraycouponLines.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("refunds") != null && !jsonObj.get("refunds").isJsonNull()) {
-        JsonArray jsonArrayrefunds = jsonObj.getAsJsonArray("refunds");
-        if (jsonArrayrefunds != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("refunds").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `refunds` to be an array in the JSON string but got `%s`", jsonObj.get("refunds").toString()));
-          }
-
-          // validate the optional field `refunds` (array)
-          for (int i = 0; i < jsonArrayrefunds.size(); i++) {
-            OrderRefundJUNK.validateJsonElement(jsonArrayrefunds.get(i));
-          };
-        }
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Order.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Order' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Order> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Order.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<Order>() {
-           @Override
-           public void write(JsonWriter out, Order value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public Order read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of Order given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Order
-   * @throws IOException if the JSON string is invalid with respect to Order
-   */
-  public static Order fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Order.class);
-  }
-
-  /**
-   * Convert an instance of Order to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
 }
 
