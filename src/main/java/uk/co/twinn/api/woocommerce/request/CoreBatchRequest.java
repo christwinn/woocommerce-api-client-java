@@ -82,14 +82,14 @@ class CoreBatchRequest {
                 //System.out.println(toJson(batch));
 
                 return new Batched<>(
-                    new Rest().batch(endPoint, toJson(batch), type)
+                    new Rest().batch(endPoint, toJson(), type)
                 );
 
             }
 
         }
 
-        public String toJson(Batch<?> batch){
+        public String toJson(){
 
             return new JacksonObjectMapper().toJson(batch);
 

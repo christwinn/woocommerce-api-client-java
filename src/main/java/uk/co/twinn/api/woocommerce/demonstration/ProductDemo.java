@@ -96,11 +96,7 @@ public class ProductDemo {
 
             Updated<Product> updated = update.getResponse();
 
-            if (updated.isSuccess()){
-                return true;
-            }else{
-                return false;
-            }
+            return (updated.isSuccess());
 
         }else{
             return false;

@@ -180,7 +180,7 @@ public class ProductCategoryDemo {
 
         boolean updatingImage = false;
 
-        if (existingCategory.getName() == null ||
+        if (
             !name.equals(existingCategory.getName())
         ){
             update.setName(name);

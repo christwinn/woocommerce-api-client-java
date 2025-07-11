@@ -35,18 +35,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 /**
@@ -92,7 +80,6 @@ public class Order {
   /**
    * Currency the order was created with, in ISO format.
    */
-  @JsonAdapter(CurrencyEnum.Adapter.class)
   public enum CurrencyEnum {
     AED("AED"),
 
@@ -444,23 +431,6 @@ public class Order {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
-    public static class Adapter extends TypeAdapter<CurrencyEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final CurrencyEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public CurrencyEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return CurrencyEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      CurrencyEnum.fromValue(value);
-    }
   }
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";

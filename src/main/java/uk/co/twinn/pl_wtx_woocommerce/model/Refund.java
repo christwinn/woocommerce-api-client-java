@@ -11,8 +11,6 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.Ref;
-
 public class Refund extends OrderRefund {
     private Integer parentId;
 

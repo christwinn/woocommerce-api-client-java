@@ -40,7 +40,7 @@ public class CustomerDownloadApi {
          */
         public Listed<CustomerDownload> getResponse(){
             if (customerId == 0) {
-                return new Listed<CustomerDownload>(
+                return new Listed<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -48,7 +48,7 @@ public class CustomerDownloadApi {
                             "This API lets you retrieve customer downloads permissions.")
                 );
             }else {
-                return new Listed<CustomerDownload>(
+                return new Listed<>(
                     new Rest().listAll(
                         CUSTOMERS + "/" + customerId + "/downloads",
                         "",
