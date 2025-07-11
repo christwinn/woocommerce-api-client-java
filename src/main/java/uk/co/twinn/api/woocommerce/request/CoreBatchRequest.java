@@ -26,6 +26,8 @@ class CoreBatchRequest {
 
     static class BatchCore<T extends BatchCore>{
 
+        public static int MAX_RECORDS = 100;
+
         protected Batch batch;
 
         public BatchCore(){
@@ -34,6 +36,18 @@ class CoreBatchRequest {
 
         private Batch getBatch(){
             return batch;
+        }
+
+        public boolean empty(){
+            return batch.empty();
+        }
+
+        public int size(){
+            return batch.getRecordCount();
+        }
+
+        public boolean isFull(){
+            return batch.getRecordCount() >= MAX_RECORDS;
         }
 
         Batched<?> getResponse(String endPoint, Batch<?> batch, TypeReference<?> type){
@@ -56,7 +70,7 @@ class CoreBatchRequest {
 
                 return new Batched<>(new ApiResponseResult(false, 0, "Nothing to do"));
 
-            }else if (batch.getRecordCount() > 100){
+            }else if (batch.getRecordCount() > MAX_RECORDS){
 
                 return new Batched<>(new ApiResponseResult(false, 0,
                     "This API helps you to batch create, update and delete multiple products.\n\n" +

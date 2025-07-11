@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.ws.rs.core.UriBuilderException;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.io.IOException;
 
@@ -38,7 +39,7 @@ public class ApiResponse {
                     break;
                 default:
                     try{
-                        error = objectMapper().readValue(result.getMessage(), new TypeReference<ErrorMessage>(){});
+                        error = getObjectMapper().readValue(result.getMessage(), new TypeReference<ErrorMessage>(){});
                     }catch(UriBuilderException | IOException | IllegalArgumentException e){
                         error = new ErrorMessage(e.toString());
                     }
@@ -79,22 +80,7 @@ public class ApiResponse {
     }
 
     public ObjectMapper getObjectMapper(){
-        return objectMapper();
-    }
-
-    private ObjectMapper objectMapper(){
-
-        ObjectMapper objectMapper = new ObjectMapper()
-            .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .registerModule(new JavaTimeModule())
-            //.setDateFormat(new RFC3339DateFormat())
-            .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-
-        objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
-
-        return objectMapper;
-
+        return JacksonObjectMapper.getObjectMapper();
     }
 
 }

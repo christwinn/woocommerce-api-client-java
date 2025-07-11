@@ -20,9 +20,10 @@ public class JacksonObjectMapper {
 
     private static ObjectMapper objectMapper;
 
-    private ObjectMapper objectMapper(){
+    private static ObjectMapper objectMapper(){
 
         if (objectMapper == null) {
+
             objectMapper = new ObjectMapper()
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
@@ -31,10 +32,15 @@ public class JacksonObjectMapper {
                 .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
 
             objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
+
         }
 
         return objectMapper;
 
+    }
+
+    public static ObjectMapper getObjectMapper() {
+        return objectMapper();
     }
 
     public String toJson(Object object){
