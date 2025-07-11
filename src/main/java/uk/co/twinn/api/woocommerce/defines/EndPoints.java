@@ -29,6 +29,8 @@ public class EndPoints {
         public static final String PRODUCTS_REVIEWS = "products/reviews";
     public static final String PRODUCT_CATEGORIES = "products/categories";
 
+    //public static final String REFUNDS = "refunds";
+
     public static final String REPORTS = "reports";
 
         public static final String REPORTS_SALES = "reports/sales";
@@ -38,5 +40,7 @@ public class EndPoints {
         public static final String REPORTS_ORDERS_TOTALS = "reports/orders/totals";
         public static final String REPORTS_PRODUCTS_TOTALS = "reports/products/totals";
         public static final String REPORTS_REVIEWS_TOTALS = "reports/reviews/totals";
+    public static final String TAXES = "taxes";
+
 
 }

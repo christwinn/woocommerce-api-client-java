@@ -248,7 +248,7 @@ public class OrderRefundApi extends ApiRequest {
                 );
             }else {
 
-                String endPoint = ORDERS + "/" + orderId + "/refunds";
+                String endPoint = ORDERS + "/" + orderId + "/" + REFUNDS;
 
                 return new Listed<OrderRefund>(
                     new Rest().listAll(

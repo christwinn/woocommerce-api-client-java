@@ -28,6 +28,15 @@ public class Batch<T> {
 
     }
 
+    public boolean empty(){
+
+        create.clear();
+        update.clear();
+        delete.clear();
+
+        return isEmpty();
+
+    }
     @JsonIgnore
     public int getRecordCount(){
 

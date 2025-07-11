@@ -76,6 +76,8 @@ public class WooCommerceApiClientUsageDemo {
 
         }
 
+        System.out.println(new TaxRateApi.ListAll<>().getResponse().toJson());
+        System.out.println(new RefundsApi.ListAll<>().getResponse().toJson());
 
         System.exit(0);
 
