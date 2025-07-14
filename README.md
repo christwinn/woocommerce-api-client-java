@@ -11,6 +11,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 [Customers](README.md#customers)
 
 ## [Authentication](#authentication) 
+It is assumed you have obtained the relevant credentials as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys](https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys)
 ```java
 public void Authentication(){
 
@@ -32,7 +33,7 @@ public void Authentication(){
         .setSecret("myverysecretsecretthatIgotfrommywoocommerceinstallation")
         .getResponse();
 
-    /** Please note we have not implemented the non-secure method. We should not be retrieving customer detail's unencrypted **/
+    /** Please note we have not implemented "Authentication over HTTP". We should not be retrieving customer detail's unencrypted **/
 }
 ```
 
