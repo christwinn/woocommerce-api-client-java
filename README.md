@@ -13,7 +13,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 ## [Authentication](#authentication) 
 It is assumed you have obtained the relevant credentials as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys](https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys)
 ```java
-public void Authentication(){
+private void Authentication(){
 
     /** The simplest method is to place a file under ~/woocommerce-api/config.json 
     {
@@ -40,7 +40,7 @@ public void Authentication(){
 ## [Coupons](#coupons) 
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons](https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons)
 ```java
-public void Coupons() {
+private void Coupons() {
     /** Create **/
     Created<Coupon> created = WooCommerce.Coupons().create()
                         .setCode("10off")
@@ -96,7 +96,7 @@ public void Coupons() {
 ## [Customers](#Customers)
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
 ```java
-public void Customers() {
+private void Customers() {
     /** Create **/
     Created<Customer> created = WooCommerce.Customers().create()
                         .setEmail("john.doe@example.co")
