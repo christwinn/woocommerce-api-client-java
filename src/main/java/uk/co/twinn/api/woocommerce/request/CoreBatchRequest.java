@@ -24,7 +24,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreBatchRequest {
 
-    static class BatchCore<T extends BatchCore>{
+    static class BatchCore<T extends BatchCore<T>>{
 
         public static int MAX_RECORDS = 100;
 

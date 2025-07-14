@@ -27,8 +27,6 @@ public class OrderApi extends ApiRequest {
 
     protected final Order order = new Order();
 
-    private Batch batch;
-
     private boolean force;
     //private boolean duplicate;
     private boolean isBatch;
@@ -86,15 +84,9 @@ public class OrderApi extends ApiRequest {
 
     }
 
-    private OrderApi(Reader<?> reader){
-
-        order.setId(reader.id);
-
-    }
-
     private OrderApi(Updater<?> updater){
 
-        this((Creator)updater);
+        this((Creator<?>)updater);
         order.setId(updater.id);
 
     }
@@ -129,12 +121,9 @@ public class OrderApi extends ApiRequest {
 
         try {
 
-            if (isBatch){
-                return getObjectMapper().writeValueAsString(batch);
-            }else{
                 // covert Java object to JSON strings
-                return getObjectMapper().writeValueAsString(order);
-            }
+            return getObjectMapper().writeValueAsString(order);
+
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -209,7 +198,7 @@ public class OrderApi extends ApiRequest {
 
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
-        private int id;
+        private final int id;
 
         public Updater(int productId){
             this.id = productId;
@@ -470,7 +459,7 @@ public class OrderApi extends ApiRequest {
 
         public Listed<Order> getResponse(){
 
-            return new Listed<Order>(
+            return new Listed<>(
                 new Rest().listAll(
                     ORDERS,
                     build(),

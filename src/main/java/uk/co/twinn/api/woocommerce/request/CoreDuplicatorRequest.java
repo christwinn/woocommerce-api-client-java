@@ -22,7 +22,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreDuplicatorRequest {
 
-    static class DuplicatorCore<T extends DuplicatorCore>{
+    static class DuplicatorCore<T extends DuplicatorCore<?>>{
 
         protected int id;
 

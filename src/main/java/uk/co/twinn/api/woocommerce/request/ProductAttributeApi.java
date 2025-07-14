@@ -179,7 +179,7 @@ public class ProductAttributeApi extends ApiRequest {
 
                 ProductAttributeApi create = build();
                 //make the call
-                return new Created<ProductAttribute>(
+                return new Created<>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductAttribute>(){})
                 );
             }
@@ -218,7 +218,7 @@ public class ProductAttributeApi extends ApiRequest {
 
             //preliminary checks
             if (id <= 0 || name == null || name.isEmpty()) {
-                return new Updated<ProductAttribute>(
+                return new Updated<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -227,7 +227,7 @@ public class ProductAttributeApi extends ApiRequest {
             }else {
                 ProductAttributeApi create = build();
                 //make the call
-                return new Updated<ProductAttribute>(
+                return new Updated<>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductAttribute>(){})
                 );
             }

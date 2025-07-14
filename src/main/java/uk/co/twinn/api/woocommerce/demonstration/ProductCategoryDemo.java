@@ -149,7 +149,7 @@ public class ProductCategoryDemo {
                 image, itemCount,
                 existingDetails, false);
         }else{
-            return new Updated<ProductCategory>(
+            return new Updated<>(
                 new ApiResponseResult(
                     false,
                     0,

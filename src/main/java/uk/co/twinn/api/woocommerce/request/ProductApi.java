@@ -459,7 +459,7 @@ public class ProductApi extends ApiRequest {
             this.id = productId;
         }
 
-        private int id;
+        private final int id;
 
         /*public T setId(int id) {
             this.id = id;

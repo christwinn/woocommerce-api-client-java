@@ -22,7 +22,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreDeleterRequest {
 
-    static class DeleterCore<T extends DeleterCore>{
+    static class DeleterCore<T extends DeleterCore<?>>{
 
         protected int id;
         protected boolean force;
@@ -35,24 +35,6 @@ class CoreDeleterRequest {
         T self() {
             return (T) this;
         }
-
-        /**
-         * @param id set the id for the record to delete
-         * @return
-         */
-        /*public T setId(int id) {
-            this.id = id;
-            return self();
-        }*/
-        /**
-         *
-         * @param force The Force must be used.
-         * @return T
-         */
-        /*public T setForce(boolean force) {
-            this.force = force;
-            return self();
-        }*/
 
         Deleted<?> getResponse(String endPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id + "?force=" + force, type);
@@ -78,7 +60,7 @@ class CoreDeleterRequest {
 
     }
 
-    static class ChildDeleterCore<T extends ChildDeleterCore> extends DeleterCore<T> {
+    static class ChildDeleterCore<T extends ChildDeleterCore<T>> extends DeleterCore<T> {
 
         //set up the private variables
         protected int childId;
@@ -91,11 +73,7 @@ class CoreDeleterRequest {
         T self() {
             return (T) this;
         }
-        /**
-         *
-         * @param childId we are package-private, so we can display a nice setX to consumer
-         * @return T
-         */
+
         /*T setChildId(int childId) {
             this.childId = childId;
             return self();

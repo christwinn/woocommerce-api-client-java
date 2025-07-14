@@ -98,7 +98,7 @@ public class ProductAttributeTermApi extends ApiRequest {
 
     public String endPoint(){
 
-        return endPoint(productAttribute.getId() == null ? 0 : productAttribute.getId());
+        return endPoint(attributeId);
 
     }
 
