@@ -15,7 +15,8 @@ A fluent client WooCommerce Java Api
     </code>    
 <br>
 <li>Read</li>
-<code>Read&lt;Coupon&gt; read = WooCommerce.Coupons().read(719).getResponse();</code>
+<code>Read&lt;Coupon&gt; read = WooCommerce.Coupons().read(719).getResponse();
+</code>
 <br>
 <li>Update</li>
 <code>Updated&lt;Coupon&gt; updated = WooCommerce.Coupons().update(719)<br>
@@ -24,10 +25,12 @@ A fluent client WooCommerce Java Api
 </code>
 <br>
 <li>Delete</li>
-<code>Deleted&lt;Coupon&gt; deleted = WooCommerce.Coupons().delete(719, true).getResponse();</code>
+<code>Deleted&lt;Coupon&gt; deleted = WooCommerce.Coupons().delete(719, true).getResponse();
+</code>
 <br>
 <li>List All</li>
-<code>Listed&lt;Coupon&gt; listed = WooCommerce.Coupons().listing().getResponse();</code>
+<code>Listed&lt;Coupon&gt; listed = WooCommerce.Coupons().listing().getResponse();
+</code>
 <br>
 <li>Batch Create, Update, Delete</li>
 <code>Batched&lt;Coupon&gt; batched = WooCommerce.Coupons().batch()<br>
