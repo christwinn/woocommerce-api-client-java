@@ -1,66 +1,192 @@
 
-A fluent client WooCommerce Java Api
+# A fluent client WooCommerce Java Api
 
-<h3>Coupons</h3>
+##### Code Sample Index  
+[Coupons](README.md#coupons)
+[Customers](README.md#customers)
 
-<li>Create</li>
-    <code>  Created&lt;Coupon&gt; created = WooCommerce.Coupons().create()<br>
-                        .setCode("10off")<br>
-                        .setDiscountType("percent")<br>
-                        .setAmount(new BigDecimal(10))<br>
-                        .setIndividualUse(true)<br>
-                        .setExcludeSaleItems(true)<br>
-                        .setMinimumAmount(new BigDecimal(100.00))<br>
+## [Coupons](#coupons) 
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons](https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons)
+```java
+public void Coupons() {
+    /** Create **/
+    Created<Coupon> created = WooCommerce.Coupons().create()
+                        .setCode("10off")
+                        .setDiscountType("percent")
+                        .setAmount(new BigDecimal(10))
+                        .setIndividualUse(true)
+                        .setExcludeSaleItems(true)
+                        .setMinimumAmount(new BigDecimal(100.00))
                         .getResponse();
-    </code>    
-<br>
-<li>Read</li>
-<code>  Read&lt;Coupon&gt; read = WooCommerce.Coupons().read(719).getResponse();
-</code>
-<br>
-<li>Update</li>
-<code>  Updated&lt;Coupon&gt; updated = WooCommerce.Coupons().update(719)<br>
-                        .setAmount(new BigDecimal(15))<br>
+    /**Read**/
+    Read<Coupon> read = WooCommerce.Coupons().read(719).getResponse();
+
+    /**Update**/
+    Updated<Coupon> updated = WooCommerce.Coupons().update(719)
+                        .setAmount(new BigDecimal(15))
                         .getResponse();
-</code>
-<br>
-<li>Delete</li>
-<code>  Deleted&lt;Coupon&gt; deleted = WooCommerce.Coupons().delete(719, true).getResponse();
-</code>
-<br>
-<li>List All</li>
-<code>  Listed&lt;Coupon&gt; listed = WooCommerce.Coupons().listing().getResponse();
-</code>
-<br>
-<li>Batch Create, Update, Delete</li>
-<code>  Batched&lt;Coupon&gt; batched = WooCommerce.Coupons().batch()<br>
-                        <b>.addCreator</b>(<br>
-                            WooCommerce.Coupons().create()<br>
-                                .setCode("20off")<br>
-                                .setDiscountType("percent")<br>
-                                .setAmount(new BigDecimal(20))<br>
-                                .setIndividualUse(true)<br>
-                                .setExcludeSaleItems(true)<br>
-                                .setMinimumAmount(new BigDecimal(100.00))<br>
-                        )<br>
-                        <b>.addCreator</b>(<br>
-                            WooCommerce.Coupons().create()<br>
-                                .setCode("30off")<br>
-                                .setDiscountType("percent")<br>
-                                .setAmount(new BigDecimal(30))<br>
-                                .setIndividualUse(true)<br>
-                                .setExcludeSaleItems(true)<br>
-                                .setMinimumAmount(new BigDecimal(400.00))<br>
-                        )<br>
-                        <b>.addUpdater</b>(<br>
-                            WooCommerce.Coupons().update(719)<br>
-                                .setMinimumAmount(new BigDecimal(50))<br>
-                        )<br>
-                        <b>.addDeleter</b>(<br>
-                            WooCommerce.Coupons().delete(720, true)<br>
-                        )<br>
-                        .getResponse();<br>
-    </code>
+    /**Delete**/
+    Deleted<Coupon> deleted = WooCommerce.Coupons().delete(719, true).getResponse();
+
+    /**List All**/
+    Listed<Coupon> listed = WooCommerce.Coupons().listing().getResponse();
+
+    /** Batch [Create, Update, Delete]**/
+    Batched<Coupon> batched = WooCommerce.Coupons().batch()
+                        .addCreator(
+                            WooCommerce.Coupons().create()
+                                .setCode("20off")
+                                .setDiscountType("percent")
+                                .setAmount(new BigDecimal(20))
+                                .setIndividualUse(true)
+                                .setExcludeSaleItems(true)
+                                .setMinimumAmount(new BigDecimal(100.00))
+                        )
+                        .addCreator(
+                            WooCommerce.Coupons().create()
+                                .setCode("30off")
+                                .setDiscountType("percent")
+                                .setAmount(new BigDecimal(30))
+                                .setIndividualUse(true)
+                                .setExcludeSaleItems(true)
+                                .setMinimumAmount(new BigDecimal(400.00))
+                        )
+                        .addUpdater(
+                            WooCommerce.Coupons().update(719)
+                                .setMinimumAmount(new BigDecimal(50))
+                        )
+                        .addDeleter(
+                            WooCommerce.Coupons().delete(720, true)
+                        )
+                        .getResponse();
+}
+```
+## [Customers](#Customers)
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
+```java
+public void Customers() {
+    /** Create **/
+    Created<Customer> created = WooCommerce.Customers().create()
+                        .setEmail("john.doe@example.co")
+                        .setFirstName("John")
+                        .setLastName("Doe")
+                        .setUsername("john.doe")
+                        .setPassword("shh")
+                        .setBilling(new Billing()
+                            .firstName("John")
+                            .lastName("Doe")
+                            .company("")
+                            .address1("969 Market Street")
+                            .address2("")
+                            .city("San Fancisco")
+                            .state("CA")
+                            .postcode("94103")
+                            .email("john.doe@example.com")
+                            .phone("(555) 555-5555")
+                        ).setShipping(new Shipping()
+                            .firstName("John")
+                            .lastName("Doe")
+                            .company("")
+                            .address1("969 Market")
+                            .address2("")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postcode("94103")
+                            .country("US")
+                        .getResponse();
+    /**Read**/
+    Read<Customer> read = WooCommerce.Customers().read(25).getResponse();
+
+    /**Update**/
+    Updated<Customer> updated = WooCommerce.Customers().update(25)
+                        .setFirstName("James")
+                        .setShipping(
+                            new Shipping().firstName("James")
+                        )
+                        .getResponse();
+    /**Delete**/
+    Deleted<Customer> deleted = WooCommerce.Customers().delete(25, true).getResponse();
+
+    /**List All**/
+    Listed<Customer> listed = WooCommerce.Customers().listing().getResponse();
+
+    /**Search**/
+    Listed<Customer> listed = WooCommerce.Customers().listing().setEmail("john.doe@example.com").getResponse();
+
+    /** Batch [Create, Update, Delete]**/
+    Batched<Customer> batched = WooCommerce.Customers().batch()
+                        .addCreator(
+                            WooCommerce.Customers().create()
+                                .setEmail("jane.doe@example.com")
+                                .setFirstName("Jane")
+                                .setLastName("Doe")
+                                .setUsername("jane.doe")
+                                .setBilling(new Billing()
+                                    .firstName("Jane")
+                                    .lastName("Doe")
+                                    .company("")
+                                    .address1("969 Market Street")
+                                    .address2("")
+                                    .city("San Fancisco")
+                                    .state("CA")
+                                    .postcode("94103")
+                                    .email("jane.doe@example.com")
+                                    .phone("(555) 555-5555")
+                                )
+                                .setShipping(new Shipping()
+                                    .firstName("John")
+                                    .lastName("Doe")
+                                    .company("")
+                                    .address1("969 Market")
+                                    .address2("")
+                                    .city("San Francisco")
+                                    .state("CA")
+                                    .postcode("94103")
+                                    .country("US")
+                                )
+                        )
+                        .addCreator(
+                            WooCommerce.Customers().create()
+                                .setEmail("joao.silva2@example.com")
+                                .setFirstName("Joao")
+                                .setLastName("Silva")
+                                .setUsername("joao.silva")
+                                .setBilling(new Billing()
+                                    .firstName("Joao")
+                                    .lastName("Silva")
+                                    .company("")
+                                    .address1("Av. Brasil, 43")
+                                    .address2("")
+                                    .city("Rio de Janeiro")
+                                    .state("RJ")
+                                    .postcode("12345-000")
+                                    .country("BR")
+                                    .email("joao.silva2@example.com")
+                                    .phone("(555) 555-5555")
+                                )
+                                .setShipping(new Shipping()
+                                    .firstName("Joao")
+                                    .lastName("Silva")
+                                    .company("")
+                                    .address1("Av. Brasil, 43")
+                                    .address2("")
+                                    .city("Rio de Janeiro")
+                                    .state("RJ")
+                                    .postcode("12345-000")
+                                    .country("BR")
+                                )
+                        )
+                        .addUpdater(
+                            WooCommerce.Customers().update(26)
+                                .setBilling(new Billing()
+                                    .phone("(11) 1111-1111")
+                        )
+                        .addDeleter(
+                            WooCommerce.Customers().delete(21, true)
+                        )
+                        .getResponse();
+}
+```
 
 # Why the Fork?
 
