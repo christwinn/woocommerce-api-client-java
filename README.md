@@ -13,7 +13,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 ## [Authentication](#authentication) 
 It is assumed you have obtained the relevant credentials as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys](https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys)
 <details>
-<summary>Example methods to Authenticate</summary>
+<summary>Example methods to Authenticate when using the WooCommerce API</summary>
     
 ```java
 private void Authentication(){
@@ -46,7 +46,7 @@ private void Authentication(){
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons](https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons)
 
 <details>
-<summary>Example code to Create, Read, Update, Delete, Batch and get listed Coupons</summary>
+<summary>Example code to Create, Read, Update, Delete, Batch and get listed Coupons using the WooCommerce API</summary>
     
 ```java
 private void Coupons() {
@@ -108,7 +108,7 @@ private void Coupons() {
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
 
 <details>
-<summary>Example code to Create, Read, Update, Delete, Batch and get listed Coupons</summary>
+<summary>Example code to Create, Read, Update, Delete, Batch and get listed Customers using the WooCommerce API</summary>
     
 ```java
 private void Customers() {
