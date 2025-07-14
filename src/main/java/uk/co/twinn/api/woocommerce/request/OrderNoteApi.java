@@ -32,7 +32,7 @@ public class OrderNoteApi extends ApiRequest {
 
     private final OrderNote orderNote = new OrderNote();
 
-    private boolean force;
+    //private boolean force;
 
     public OrderNoteApi(){}
 
@@ -68,12 +68,6 @@ public class OrderNoteApi extends ApiRequest {
         orderNote.setNote(creator.note);
         orderNote.setCustomerNote(creator.customerNote);
         orderNote.setAddedByUser(creator.addedByUser);
-
-    }
-
-    private OrderNoteApi(ListAll<?> listAller){
-
-        orderId = listAller.orderId;
 
     }
 
