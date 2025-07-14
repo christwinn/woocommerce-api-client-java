@@ -22,7 +22,7 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 public class CustomerDownloadApi {
 
     public static class Reader<T extends Reader<T>>{
-        private int customerId;
+        private final int customerId;
 
         public Reader(int customerId){
             this.customerId = customerId;

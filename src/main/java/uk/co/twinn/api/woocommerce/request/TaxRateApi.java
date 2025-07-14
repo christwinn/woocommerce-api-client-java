@@ -9,7 +9,6 @@
 
 package uk.co.twinn.api.woocommerce.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.core.Batch;
@@ -21,7 +20,6 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.TaxRate;
 import uk.co.twinn.pl_wtx_woocommerce.model.ISO3166;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.TAXES;
@@ -150,8 +148,7 @@ public class TaxRateApi extends ApiRequest {
          *
          * @param country Country ISO 3166 code.
          *                See ISO 3166 Codes (Countries) for more details
-         *
-         *                https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+         *                <href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes">https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</a>
          * @return T
          */
         public T setCountry(String country) {
@@ -294,7 +291,7 @@ public class TaxRateApi extends ApiRequest {
 
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
-        private int id;
+        private final int id;
 
         public Updater(int taxRateId){
             this.id = taxRateId;
@@ -419,11 +416,9 @@ public class TaxRateApi extends ApiRequest {
          */
         public Listed<TaxRate> getResponse(){
 
-            String endPoint = TAXES;
-
-            return new Listed<TaxRate>(
+            return new Listed<>(
                 new Rest().listAll(
-                    endPoint,
+                    TAXES,
                     build(),
                     new TypeReference<List<TaxRate>>(){}
                 )

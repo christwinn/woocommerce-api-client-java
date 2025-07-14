@@ -22,12 +22,10 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreReaderRequest {
 
-    static class ReaderCore<T extends ReaderCore> {
+    static class ReaderCore<T extends ReaderCore<?>> {
 
         //set up the private variables
         protected int id;
-        /*package private*/
-        String endPoint;
 
         public ReaderCore(int id){
             this.id = id;
@@ -35,7 +33,7 @@ class CoreReaderRequest {
 
         T self() {return (T) this;}
 
-        /**
+        /*
          * @param id set the id for the record to read
          * @return
          */
@@ -73,7 +71,7 @@ class CoreReaderRequest {
 
     }
 
-    static class ChildReaderCore<T extends ChildReaderCore> extends ReaderCore<T>{
+    static class ChildReaderCore<T extends ChildReaderCore<?>> extends ReaderCore<T>{
 
         public ChildReaderCore(int id, int childId){
             super(id);
@@ -81,16 +79,12 @@ class CoreReaderRequest {
         }
 
         //set up the private variables
-        private int childId;
+        private final int childId;
 
         T self() {
             return (T) this;
         }
-        /**
-         *
-         * @param childId we are protected so we display a nice setX to consumer
-         * @return T
-         */
+
         /*protected T setChildId(int childId) {
             this.childId = childId;
             return self();

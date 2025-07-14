@@ -34,10 +34,7 @@ class CoreDuplicatorRequest {
             return (T) this;
         }*/
 
-        /**
-         * @param id set the id for the record to duplicate
-         * @return
-         */
+
         /*public T setId(int id) {
             this.id = id;
             return self();

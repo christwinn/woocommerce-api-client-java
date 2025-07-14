@@ -359,7 +359,7 @@ public class ProductCategoryApi extends ApiRequest {
 
         public Listed<ProductCategory> getResponse(){
 
-            return new Listed<ProductCategory>(
+            return new Listed<>(
                 new Rest().listAll(
                     PRODUCT_CATEGORIES,
                     build(),

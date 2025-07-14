@@ -370,14 +370,14 @@ public class ProductVariationApi extends ApiRequest {
         public Listed<ProductVariation> getResponse(){
 
             if (id <= 0) {
-                return new Listed<ProductVariation>(
+                return new Listed<>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Product Id is MANDATORY!")
                 );
             }else {
-                return new Listed<ProductVariation>(
+                return new Listed<>(
                     new Rest().listAll(
                         endPoint(id, 0), //endPoint, SET endPoint
                         build(),

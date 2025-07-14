@@ -13,17 +13,12 @@ import uk.co.twinn.api.woocommerce.request.*;
 
 /**
  * Purely a convenience class to allow nice easy fluent access to the API
- *
  *  Allows us to write:
  *  Read<Product> read = WooCommerce.Products().read(productId).getResponse();
- *
  *  Capitalised methods as they are class interfaces and so deserve to be capitalised
- *
  *  as opposed to:
  *  Read<Product> read = new ProductApi.Reader<>(productId).getResponse();
- *
  *  Pick your poison....
- *
  */
 public class WooCommerce {
 

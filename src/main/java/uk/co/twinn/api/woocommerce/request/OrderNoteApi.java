@@ -163,7 +163,7 @@ public class OrderNoteApi extends ApiRequest {
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
         public Created<OrderNote> getResponse(){
             if (orderId == 0) {
-                return new Created<OrderNote>(
+                return new Created<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -275,14 +275,14 @@ public class OrderNoteApi extends ApiRequest {
 
         public Listed<OrderNote> getResponse(){
             if (orderId == 0) {
-                return new Listed<OrderNote>(
+                return new Listed<>(
                     new ApiResponseResult(
                         false,
                         0,
                         "Order Id is MANDATORY!")
                 );
             }else {
-                return new Listed<OrderNote>(
+                return new Listed<>(
                     new Rest().listAll(
                         endPoint(orderId, 0),
                         build(),

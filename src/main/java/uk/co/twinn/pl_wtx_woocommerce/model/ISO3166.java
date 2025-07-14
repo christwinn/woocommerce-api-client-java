@@ -14,7 +14,6 @@ public class ISO3166 {
     public ISO3166(){}
     /**
      * Correct at 2025-07-11 as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2">https://en.wikipedia.org/wiki/ISO_3166-2</a>
-     *
      * Apologies to countries with accents, apostrophes, etc, this is as close as we can get to your country name.
      *
      */
@@ -85,7 +84,7 @@ public class ISO3166 {
 
         CABO_VERDE("CV"),
 
-        CURAÇAO("CW"),
+        CURACAO("CW"),
 
         CHRISTMAS_ISLAND("CX"),
 
@@ -355,7 +354,7 @@ public class ISO3166 {
 
         QATAR("QA"),
 
-        RÉUNION("RE"),
+        REUNION("RE"),
 
         ROMANIA("RO"),
 
@@ -479,7 +478,7 @@ public class ISO3166 {
 
         ZIMBABWE("ZW");
 
-        public String value;
+        private String value;
 
         CountryEnum(String value) {
             this.value = value;
