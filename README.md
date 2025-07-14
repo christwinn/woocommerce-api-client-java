@@ -28,12 +28,12 @@ A fluent client WooCommerce Java Api
 </ul>
 <br>
 <li>List All</li>
-<ul><li>Listed<Coupon> listed = WooCommerce.Coupons().listing().getResponse();</li>
+<ul><li>Listed&lt;Coupon&gt; listed = WooCommerce.Coupons().listing().getResponse();</li>
 </ul>
 
 <br>
 <li>Batch Create, Update, Delete</li>
-<ul><li>Batched<Coupon> batched = WooCommerce.Coupons().batch()<br>
+<ul><li>Batched&lt;Coupon&gt; batched = WooCommerce.Coupons().batch()<br>
                 <b>.addCreator</b>(<br>
                     WooCommerce.Coupons().create()<br>
                     .setCode("20off")<br>

@@ -49,7 +49,7 @@ public class OrderActionApi extends ApiRequest {
 
     public static class SendEmail<T extends SendEmail<T>>{
 
-        private int orderId;
+        private final int orderId;
 
         public SendEmail(int orderId){
             this.orderId = orderId;
@@ -72,7 +72,7 @@ public class OrderActionApi extends ApiRequest {
          */
         public Created<Message> getResponse(){
             if (orderId == 0) {
-                return new Created<Message>(
+                return new Created<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -82,7 +82,7 @@ public class OrderActionApi extends ApiRequest {
 
                 Rest woo = new Rest();
 
-                return new Created<Message>(
+                return new Created<>(
                     woo.create(getEndPoint(), new TypeReference<Msg>(){})
 
                 );
