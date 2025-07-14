@@ -1,65 +1,67 @@
+<style>
+.float{width:800px;float:right;}
+.floater{width:750px;float:right;}
+.code{width:50%;text-align:left;}
+</style>
 A fluent client WooCommerce Java Api
 
 <h3>Coupons</h3>
-<ul>
+
 <li>Create</li>
-    <table><tr><td colspan="2">Created&lt;Coupon&gt; created = WooCommerce.Coupons().create()</td></tr>
-        <tr><td style="width:40%"></td><td>.setCode("10off")</td></tr>
-        <tr><td></td><td>.setDiscountType("percent")</td></tr>
-        <tr><td></td><td>.setAmount(new BigDecimal(10))</td></tr>
-        <tr><td></td><td>.setIndividualUse(true)</td></tr>
-        <tr><td></td><td>.setExcludeSaleItems(true)</td></tr>
-        <tr><td></td><td>.setMinimumAmount(new BigDecimal(100.00))</td></tr>
-        <tr><td></td><td>.getResponse();</td></tr>
-    </table>
-    
+    <code>Created&lt;Coupon&gt; created = WooCommerce.Coupons().create()<br>
+        <span class="float"><span class="code">.setCode("10off")</span></span><br>
+        <span class="float"><span class="code">.setDiscountType("percent")</span></span><br>
+        <span class="float"><span class="code">.setAmount(new BigDecimal(10))</span></span><br>
+        <span class="float"><span class="code">.setIndividualUse(true)</span></span><br>
+        <span class="float"><span class="code">.setExcludeSaleItems(true)</span></span><br>
+        <span class="float"><span class="code">.setMinimumAmount(new BigDecimal(100.00))</span></span><br>
+        <span class="float"><span class="code">.getResponse();</span></span>
+    </code>    
 <br>
 <li>Read</li>
-<ul><li>Read&lt;Coupon&gt; read = WooCommerce.Coupons().read(719).getResponse();</li></ul>
+<code>Read&lt;Coupon&gt; read = WooCommerce.Coupons().read(719).getResponse();</code>
 <br>
 <li>Update</li>
-<ul><li>Updated&lt;Coupon&gt; updated = WooCommerce.Coupons().update(719)<br>
-            <span style="width:250px;text-align:right">.setAmount(new BigDecimal(15))&nbsp;</span><br>
-            .getResponse();
-</li></ul>
+<code>Updated&lt;Coupon&gt; updated = WooCommerce.Coupons().update(719)<br>
+    <span class="float"><span class="code">.setAmount(new BigDecimal(15))</span></span><br>
+    <span class="float"><span class="code">.getResponse();</span></span>
+</code>
 <br>
 <li>Delete</li>
-<ul><li>Deleted&lt;Coupon&gt; deleted = WooCommerce.Coupons().delete(719, true).getResponse();</li>
-</ul>
+<code>Deleted&lt;Coupon&gt; deleted = WooCommerce.Coupons().delete(719, true).getResponse();</code>
 <br>
 <li>List All</li>
-<ul><li>Listed&lt;Coupon&gt; listed = WooCommerce.Coupons().listing().getResponse();</li>
-</ul>
-
+<code>Listed&lt;Coupon&gt; listed = WooCommerce.Coupons().listing().getResponse();</code>
 <br>
 <li>Batch Create, Update, Delete</li>
-<ul><li>Batched&lt;Coupon&gt; batched = WooCommerce.Coupons().batch()<br>
-                <b>.addCreator</b>(<br>
-                    WooCommerce.Coupons().create()<br>
-                    .setCode("20off")<br>
-                    .setDiscountType("percent")<br>
-                    .setAmount(new BigDecimal(20))<br>
-                    .setIndividualUse(true)<br>
-                    .setExcludeSaleItems(true)<br>
-                    .setMinimumAmount(new BigDecimal(100.00)))<br>
-                <b>.addCreator</b>(<br>
-                    WooCommerce.Coupons().create()<br>
-                    .setCode("30off")<br>
-                    .setDiscountType("percent")<br>
-                    .setAmount(new BigDecimal(30))<br>
-                    .setIndividualUse(true)<br>
-                    .setExcludeSaleItems(true)<br>
-                    .setMinimumAmount(new BigDecimal(400.00)))<br>
-                 <b>.addUpdater</b>(<br>
-                    WooCommerce.Coupons().update(719)<br>
-                        .setMinimumAmount(new BigDecimal(50))<br>
-                )<br>
-                 <b>.addDeleter</b>(<br>
-                    WooCommerce.Coupons().delete(720, true)<br>
-                )<br>
-                .getResponse();<br>
-    </li>
-</ul>
+<code>Batched&lt;Coupon&gt; batched = WooCommerce.Coupons().batch()<br>
+    <span class="float"><span class="code"><b>.addCreator</b>(</span></span><br>
+    <span class="floater"><span class="code">WooCommerce.Coupons().create()</span></span><br>
+    <span class="floater"><span class="code">.setCode("20off")</span></span><br>
+    <span class="floater"><span class="code">.setDiscountType("percent")</span></span><br>
+    <span class="floater"><span class="code">.setAmount(new BigDecimal(20))</span></span><br>
+    <span class="floater"><span class="code">.setIndividualUse(true)</span></span><br>
+    <span class="floater"><span class="code">.setExcludeSaleItems(true)</span></span><br>
+    <span class="floater"><span class="code">.setMinimumAmount(new BigDecimal(100.00))</span></span><br>
+    <span class="float"><span class="code">)</span></span><br>
+    <span class="float"><span class="code"><b>.addCreator</b>(</span></span><br>
+    <span class="floater"><span class="code"> WooCommerce.Coupons().create()</span></span><br>
+    <span class="floater"><span class="code">.setCode("30off")</span></span><br>
+    <span class="floater"><span class="code">.setDiscountType("percent")</span></span><br>
+    <span class="floater"><span class="code">.setAmount(new BigDecimal(30))</span></span><br>
+    <span class="floater"><span class="code">.setIndividualUse(true)</span></span><br>
+    <span class="floater"><span class="code">.setExcludeSaleItems(true)</span></span><br>
+    <span class="floater"><span class="code">.setMinimumAmount(new BigDecimal(400.00))</span></span><br>
+    <span class="float"><span class="code">)</span></span><br>
+    <span class="float"><span class="code"><b>.addUpdater</b>(</span></span><br>
+    <span class="floater"><span class="code">WooCommerce.Coupons().update(719)</span></span><br>
+    <span class="floater"><span class="code">.setMinimumAmount(new BigDecimal(50))</span></span><br>
+    <span class="float"><span class="code">)</span></span><br>
+    <span class="float"><span class="code"><b>.addDeleter</b>(</span></span><br>
+    <span class="floater"><span class="code">WooCommerce.Coupons().delete(720, true)</span></span><br>
+    <span class="float"><span class="code">)</span></span><br>
+    <span class="float"><span class="code">.getResponse();</span></span><br>
+    </code>
 
 # Why the Fork?
 
@@ -139,7 +141,7 @@ The response will then contain:<br/>
   otherwise a List<Object><br/>
 
 So far we have implemented:
-<ul>
+
   <li>Authentication
      <ul>
         <li>HTTPS only</li>
@@ -158,8 +160,7 @@ So far we have implemented:
   <li>ProductCategory</li>
   <li>ProductCustomFields</li>
   <li>ProductVariations</li>
-   
-</ul>
+
 
 # WooCommerce API Client for Java
 
