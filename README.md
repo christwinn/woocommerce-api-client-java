@@ -140,6 +140,7 @@ private void Customers() {
                             .state("CA")
                             .postcode("94103")
                             .country("US")
+                        )
                         .getResponse();
     /**Read**/
     Read<Customer> read = WooCommerce.Customers().read(25).getResponse();
