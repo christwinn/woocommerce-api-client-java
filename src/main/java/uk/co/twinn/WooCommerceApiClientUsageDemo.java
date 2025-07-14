@@ -95,6 +95,14 @@ public class WooCommerceApiClientUsageDemo {
         Deleted<OrderRefund> deleted = WooCommerce.OrderRefunds().delete(1, 2, true).getResponse();
 
         //ProductApi.create()
+        Created<Coupon> created2 = WooCommerce.Coupons().create()
+            .setCode("10off")
+            .setDiscountType("percent")
+            .setAmount(new BigDecimal(10))
+            .setIndividualUse(true)
+            .setExcludeSaleItems(true)
+            .setMinimumAmount(new BigDecimal(100.00))
+            .getResponse();
 
         //Read<Product> product ; //= new ProductRequest.Reader<>().setId(315).getResponse();
 
