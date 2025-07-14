@@ -8,6 +8,8 @@
  */
 package uk.co.twinn.api.woocommerce.response.core;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ErrorMessage {
     private String code;
     private String message;
@@ -36,6 +38,7 @@ public class ErrorMessage {
     /**
      * @return the message
      */
+    @NotNull
     public String getMessage() {
         return message;
     }

@@ -33,7 +33,48 @@ public class OrderApi extends ApiRequest {
     //private boolean duplicate;
     private boolean isBatch;
 
-    public OrderApi(Creator<?> creator){
+    public OrderApi(){
+
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int orderId){
+
+        return new Reader<>(orderId);
+
+    }
+
+    public Updater<?> update(int orderId){
+
+        return new Updater<>(orderId);
+
+    }
+
+    public Deleter<?> delete(int orderId, boolean force){
+
+        return new Deleter<>(orderId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
+    private OrderApi(Creator<?> creator){
 
         order.setPaymentMethod(creator.paymentMethod);
         order.setPaymentMethodTitle(creator.paymentMethodTitle);
@@ -45,20 +86,20 @@ public class OrderApi extends ApiRequest {
 
     }
 
-    public OrderApi(Reader<?> reader){
+    private OrderApi(Reader<?> reader){
 
         order.setId(reader.id);
 
     }
 
-    public OrderApi(Updater<?> updater){
+    private OrderApi(Updater<?> updater){
 
         this((Creator)updater);
         order.setId(updater.id);
 
     }
 
-    public OrderApi(Deleter<?> deleter){
+    private OrderApi(Deleter<?> deleter){
 
         order.setId(deleter.id);
         isBatch = false;
@@ -170,10 +211,14 @@ public class OrderApi extends ApiRequest {
 
         private int id;
 
-        public T setId(int id){
+        public Updater(int productId){
+            this.id = productId;
+        }
+
+        /*public T setId(int id){
             this.id = id;
             return self();
-        }
+        }*/
 
         @Override
         protected OrderApi build(){
@@ -204,8 +249,12 @@ public class OrderApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int orderId){
+            super(orderId);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<Order> getResponse(){
             return (Read<Order>)super.getResponse(ORDERS, new TypeReference<Order>() {});
@@ -218,8 +267,12 @@ public class OrderApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int orderId, boolean force){
+            super(orderId, force);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         protected OrderApi build(){
             return new OrderApi(this);

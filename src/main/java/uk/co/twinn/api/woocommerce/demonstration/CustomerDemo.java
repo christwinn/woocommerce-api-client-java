@@ -9,6 +9,7 @@
 
 package uk.co.twinn.api.woocommerce.demonstration;
 
+import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
@@ -80,8 +81,7 @@ public class CustomerDemo {
             .getResponse() //returns object not Customer using full paths cast issues
             .getResult();*/
 
-        return new CustomerApi.Reader<>()
-            .setId(customerId)
+        return WooCommerce.Customers().read(customerId)
             .getResponse()
             .getResult();
 
@@ -107,8 +107,7 @@ public class CustomerDemo {
 
     public Customer updateACustomer(int customerId){
 
-        Updated<Customer> response = new CustomerApi.Updater<>()
-            .setId(customerId)
+        Updated<Customer> response = WooCommerce.Customers().update(customerId)
             .setFirstName("James")
             .setShipping(new Shipping().firstName("James"))
             .getResponse();
@@ -119,12 +118,13 @@ public class CustomerDemo {
 
     public Customer deleteACustomer(int customerId){
 
-        Deleted<Customer> response = new CustomerApi.Deleter<>()
-            .setId(customerId)
-            .setForce(true)
+        Deleted<Customer> response = WooCommerce.Customers().delete(customerId,true)
             .getResponse();
 
-        return response.getResult();
+        Deleted<Customer> responseB = new CustomerApi.Deleter(customerId,true)
+            .getResponse();
+
+        return responseB.getResult();
 
     }
 

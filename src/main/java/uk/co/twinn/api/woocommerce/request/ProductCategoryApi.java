@@ -29,7 +29,46 @@ public class ProductCategoryApi extends ApiRequest {
 
     private boolean force;
 
-    public ProductCategoryApi(Creator<?> creator){
+    public ProductCategoryApi(){}
+
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int productCategoryId){
+
+        return new Reader<>(productCategoryId);
+
+    }
+
+    public Updater<?> update(int productCategoryId){
+
+        return new Updater<>(productCategoryId);
+
+    }
+
+    public Deleter<?> delete(int productCategoryId, boolean force){
+
+        return new Deleter<>(productCategoryId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
+    private ProductCategoryApi(Creator<?> creator){
 
         category.setName(creator.name);
         category.setSlug(creator.slug);
@@ -47,14 +86,14 @@ public class ProductCategoryApi extends ApiRequest {
 
     }
 
-    public ProductCategoryApi(Updater<?> updater){
+    private ProductCategoryApi(Updater<?> updater){
 
         this((Creator<?>)updater);
         category.setId(updater.id);
 
     }
 
-    public ProductCategoryApi(Deleter<?> deleter){
+    private ProductCategoryApi(Deleter<?> deleter){
 
         category.setId(deleter.id);
         force = deleter.force;
@@ -157,10 +196,15 @@ public class ProductCategoryApi extends ApiRequest {
 
         private int id;
 
+        public Updater(int productCategoryId){
+            this.id = productCategoryId;
+        }
+
+        /*
         public T setId(int id){
             this.id = id;
             return self();
-        }
+        }*/
 
         @Override
         protected ProductCategoryApi build(){
@@ -193,8 +237,12 @@ public class ProductCategoryApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int productCategoryId){
+            super(productCategoryId);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<ProductCategory> getResponse(){
             return (Read<ProductCategory>)super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
@@ -207,8 +255,12 @@ public class ProductCategoryApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int productCategoryId, boolean force){
+            super(productCategoryId, force);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         protected ProductCategoryApi build(){
             return new ProductCategoryApi(this);

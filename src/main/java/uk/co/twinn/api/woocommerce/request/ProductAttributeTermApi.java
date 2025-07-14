@@ -32,6 +32,43 @@ public class ProductAttributeTermApi extends ApiRequest {
 
     public ProductAttributeTermApi(){}
 
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int attributeId, int termsId){
+
+        return new Reader<>(attributeId, termsId);
+
+    }
+
+    public Updater<?> update(int attributeId, int termsId){
+
+        return new Updater<>(attributeId, termsId);
+
+    }
+
+    public Deleter<?> delete(int attributeId, int termsId, boolean force){
+
+        return new Deleter<>(attributeId, termsId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
     private ProductAttributeTermApi(Creator<?> creator){
 
         attributeId = creator.attributeId;
@@ -183,17 +220,21 @@ public class ProductAttributeTermApi extends ApiRequest {
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
         //set up the private variables
-
         private int termsId;
+
+        public Updater(int attributeId, int termId){
+            this.attributeId = attributeId;
+            this.termsId = termId;
+        }
 
         T self() {
             return (T) this;
         }
 
-        public T setTermsId(int termsId){
+        /*public T setTermsId(int termsId){
             this.termsId = termsId;
             return self();
-        }
+        }*/
 
         protected ProductAttributeTermApi build(){
             return new ProductAttributeTermApi(this);
@@ -229,9 +270,12 @@ public class ProductAttributeTermApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ChildReaderCore<T>{
 
+        public Reader(int attributeId, int termId){
+            super(attributeId, termId);
+        }
+        /*
         @Override
         T self() {return (T) this;}
-
         public T setAttributeId(int attributeId){
             super.setId(attributeId);
             return self();
@@ -240,7 +284,7 @@ public class ProductAttributeTermApi extends ApiRequest {
         public T setTermsId(int termsId){
             super.setChildId(termsId);
             return self();
-        }
+        }*/
 
         public Read<ProductAttributeTerm> getResponse(){
             return (Read<ProductAttributeTerm>)super.getResponse(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
@@ -253,7 +297,11 @@ public class ProductAttributeTermApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.ChildDeleterCore<T>{
 
-        @Override
+        public Deleter(int attributeId, int termId, boolean force){
+            super(attributeId, termId, force);
+        }
+
+        /*@Override
         T self() {return (T) this;}
 
         public T setAttributeId(int attributeId){
@@ -264,7 +312,7 @@ public class ProductAttributeTermApi extends ApiRequest {
         public T setTermsId(int termsId){
             super.setChildId(termsId);
             return self();
-        }
+        }*/
 
         protected ProductAttributeTermApi build(){
             return new ProductAttributeTermApi(this);

@@ -27,13 +27,52 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
 
-public class CouponRequest extends ApiRequest {
+public class CouponApi extends ApiRequest {
 
     private final Coupon coupon = new Coupon();
 
     private boolean force;
 
-    private CouponRequest(Creator<?> creator){
+    public CouponApi(){}
+
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int couponId){
+
+        return new Reader<>(couponId);
+
+    }
+
+    public Updater<?> update(int couponId){
+
+        return new Updater<>(couponId);
+
+    }
+
+    public Deleter<?> delete(int couponId, boolean force){
+
+        return new Deleter<>(couponId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
+    private CouponApi(Creator<?> creator){
 
         coupon.setCode(creator.code);
         coupon.setAmount(creator.amount);
@@ -58,14 +97,14 @@ public class CouponRequest extends ApiRequest {
 
     }
 
-    private CouponRequest(Updater<?> updater){
+    private CouponApi(Updater<?> updater){
 
         this((Creator)updater);
         coupon.setId(updater.id);
 
     }
 
-    private CouponRequest(Deleter<?> deleter){
+    private CouponApi(Deleter<?> deleter){
 
         coupon.setId(deleter.id);
         force = deleter.force;
@@ -310,8 +349,8 @@ public class CouponRequest extends ApiRequest {
             return self();
         }
 
-        protected CouponRequest build(){
-            return new CouponRequest(this);
+        protected CouponApi build(){
+            return new CouponApi(this);
         }
 
         /** Returns single Created Coupon, unless it is a duplicate! **/
@@ -324,7 +363,7 @@ public class CouponRequest extends ApiRequest {
                         "Code is MANDATORY!")
                 );
             }else {
-                CouponRequest create = build();
+                CouponApi create = build();
                 //make the call
                 return new Created<>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
@@ -338,21 +377,25 @@ public class CouponRequest extends ApiRequest {
 
         private int id;
 
-        public T setId(int id){
-            this.id = id;
-            return self();
+        public Updater(int couponId){
+            this.id = couponId;
         }
 
+        /*public T setId(int id){
+            this.id = id;
+            return self();
+        }*/
+
         @Override
-        protected CouponRequest build(){
-            return new CouponRequest(this);
+        protected CouponApi build(){
+            return new CouponApi(this);
         }
 
         /** Returns single Updated ProductCategory**/
         @Override
         public Updated<Coupon> getResponse(){
             if (id > 0) {
-                CouponRequest create = build();
+                CouponApi create = build();
                 //make the call
                 return new Updated<>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
@@ -373,8 +416,9 @@ public class CouponRequest extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int couponId){
+            super(couponId);
+        }
 
         public Read<Coupon> getResponse(){
             return (Read<Coupon>)super.getResponse(COUPONS, new TypeReference<Coupon>() {});
@@ -387,11 +431,12 @@ public class CouponRequest extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int couponId, boolean force){
+            super(couponId, force);
+        }
 
-        protected CouponRequest build(){
-            return new CouponRequest(this);
+        protected CouponApi build(){
+            return new CouponApi(this);
         }
 
         public Deleted<Coupon> getResponse(){

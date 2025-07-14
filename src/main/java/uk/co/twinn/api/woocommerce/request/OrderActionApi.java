@@ -37,21 +37,32 @@ public class OrderActionApi extends ApiRequest {
      *
      **/
 
-    public OrderActionApi(SendEmail sendEmail){
+    public OrderActionApi(){
 
     }
+
+    public SendEmail<?> sendEmail(int customerId){
+
+        return new SendEmail<>(customerId);
+
+    }
+
     public static class SendEmail<T extends SendEmail<T>>{
 
         private int orderId;
 
-        T self() {
+        public SendEmail(int orderId){
+            this.orderId = orderId;
+        }
+
+        /*T self() {
             return (T) this;
         }
 
         public T setOrderId(int orderId){
             this.orderId = orderId;
             return self();
-        }
+        }*/
 
         private String getEndPoint(){
             return ORDERS + "/" + orderId + "/actions/send_order_details";

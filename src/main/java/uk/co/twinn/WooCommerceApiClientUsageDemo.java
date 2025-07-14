@@ -10,8 +10,10 @@
 
 package uk.co.twinn;
 
+import java.math.BigDecimal;
 import java.util.*;
 
+import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.api.woocommerce.request.*;
 import uk.co.twinn.api.woocommerce.response.*;
 
@@ -56,6 +58,43 @@ public class WooCommerceApiClientUsageDemo {
             }
         }*/
 
+        Created<Coupon> created = WooCommerce.Coupons().create()
+            .setCode("10off")
+            .setDiscountType("percent")
+            .setAmount(new BigDecimal(10))
+            .setIndividualUse(true)
+            .setExcludeSaleItems(true)
+            .setMinimumAmount(new BigDecimal(100.00))
+            .getResponse();
+
+        Listed<Coupon> listed = WooCommerce.Coupons().listing().getResponse();
+
+        Batched<Coupon> batch = WooCommerce.Coupons().batch()
+                .addCreator(
+                    WooCommerce.Coupons().create()
+                    .setCode("20off")
+                    .setDiscountType("percent")
+                    .setAmount(new BigDecimal(20))
+                    .setIndividualUse(true)
+                    .setExcludeSaleItems(true)
+                    .setMinimumAmount(new BigDecimal(100.00)))
+                .addUpdater(
+                    WooCommerce.Coupons().update(719)
+                        .setMinimumAmount(new BigDecimal(50))
+                )
+                .addDeleter(
+                    WooCommerce.Coupons().delete(720, true)
+                )
+                .getResponse();
+
+        Read<Product> read = WooCommerce.Products().read(1).getResponse();
+
+        Created<Message> message = WooCommerce.OrderActions().sendEmail(123).getResponse();
+
+        Read<Product> readP = new ProductApi().read(1).getResponse();
+        Deleted<OrderRefund> deleted = WooCommerce.OrderRefunds().delete(1, 2, true).getResponse();
+
+        //ProductApi.create()
 
         //Read<Product> product ; //= new ProductRequest.Reader<>().setId(315).getResponse();
 
@@ -219,16 +258,13 @@ public class WooCommerceApiClientUsageDemo {
         }*/
 
         //Customer fred = new CustomerTestRequest.Reader<>().setId(1).getResponse().getResult();
-        new CouponRequest.Reader<>().setId(1).getResponse();
-        new CouponRequest.Deleter<>().setForce(true).setId(1).setForce(false).getResponse();
-
-        new CouponRequest.Deleter<>().setId(1).getResponse();
-
-        new OrderNoteApi.Deleter<>().setNoteId(1).setId(2).setNoteId(1).getResponse();
+        new CouponApi.Reader<>(1).getResponse();
+        new CouponApi.Deleter<>(1, true).getResponse();
+        new CouponApi.Deleter<>(1, true).getResponse();
+        new OrderNoteApi.Deleter<>(1,2, true).getResponse();
 
         Updated<ProductCategory> category2 = new ProductCategoryApi
-            .Updater<>()
-            .setId(17)
+            .Updater<>(17)
             .setImage("https://wordpress.mackay.co.uk/wp-content/uploads/media/256/category/Angle.2.png")
             .getResponse();
 
@@ -321,8 +357,7 @@ public class WooCommerceApiClientUsageDemo {
         }else{
 
             ProductCategory category =
-                new ProductCategoryApi.Reader<>()
-                    .setId(id)
+                new ProductCategoryApi.Reader<>(id)
                     .getResponse().getResult();
 
                 System.out.println(category.toString());
@@ -404,16 +439,14 @@ public class WooCommerceApiClientUsageDemo {
 
         }else{
 
-            Product product = new ProductApi.Reader<>()
-                .setId(id)
+            Product product = new ProductApi.Reader<>(id)
                 .getResponse()
                 .getResult();
 
             printProduct(product);
 
             try {
-                Updated<Product> response = new ProductApi.Updater<>()
-                    .setId(product.getId())
+                Updated<Product> response = new ProductApi.Updater<>(product.getId())
                     .setSku("22221111")//.setMetaData(product.getMetaData())
                     .getResponse();
 
@@ -435,8 +468,8 @@ public class WooCommerceApiClientUsageDemo {
 
     private static void updateProduct(int id, String description){
 
-        Updated<Product> updater = new ProductApi.Updater<>()
-            .setId(id)
+        Updated<Product> updater = new ProductApi
+            .Updater<>(id)
             .setDescription(description)
             .getResponse();
 
@@ -519,71 +552,7 @@ public class WooCommerceApiClientUsageDemo {
 
     private static void pleaseExplain() {
 
-        String ex = "The notion of CRUD Create, Read, Update, Delete is well establised.\n" +
-            "Many methods for Creating API's there are, but these all focus on the generation.\n" +
-            "There appears to be a lack of coherent thinking on the API Consumption side.\n" +
-            "\n" +
-            "Here we introduce using the simple concept of CRUD+\n" +
-            "Whats's that?\n\n" +
-
-            "OK so each server API has it's objects and operations, distilling down to OBJECT+CRUDD+OTHERS, whichever way you chuck a ball at it.\n" +
-            "So building upon Builder classes and using fluent programming ideas, and sticking to the set and get principles we have \n" +
-            " [Object]Request\n" +
-            "   [Basically Builders, we use inheritance therefore we need the <>, even those that are base are forced to <> for consistency]\n" +
-            "   .Creator<>()\n" +
-            "   .Reader<>()\n" +
-            "   .Updater<>()\n" +
-            "   .Duplicator<>()\n" +
-            "   .Deleter<>()\n" +
-            "   [and now the plus]\n" +
-            "   .ListAll<>()\n" +
-            "   .Batcher<>()\n" +
-            "   .WhateverIAmTryingToAcheive<>()\n\n" +
-
-            "Each Builder only conveys what you can do with it, \n" +
-            " e.g. in Creator<>() you can not set the Id, therefore the option to setId is not available.\n" +
-            "   but in Updater<>() we need to set the Id, therefore the option to setId is available. (Updater is an extension of Creator)\n\n" +
-
-            "For simplicity, every response receives a correlating response object, \n" +
-            "\ta Creator receives a Created<Type>" +
-            "\ta Reader receives a Read<Type>" +
-            "\ta Updater receives a Updated<Type>" +
-            "\ta Deleter receives a Deleted<Type>" +
-            "\ta Duplicator receives a Duplicated<Type>" +
-
-            "Core construction is \n" +
-            "isSuccess() -> simply have we succeeded\n" +
-            "getStatus() -> integer response code from the remote server\n" +
-
-            "For CRUD actions we contain\n" +
-            "hasResult() and getResult() inside the Response\n\n" +
-            "the Plus actions return:\n" +
-            "\tListAll (Search) receives a Listed<Type> " +
-            "\tBatcher receives a Batched<Type>" +
-            "these also contain hasResult() and getResult() but the result is a List\n\n" +
-            "\n\n" +
-
-            "Example: create a product: \n" +
-            "Created<Product> result = new ProductRequest.Creator<>()\n" +
-            "\t.setSku(\"12345678\")\n" +
-            "\t.setName(\"My New Product Name\")\n" +
-            "\t.setDescription(\"<b>This is a bold assertion</b><br/>Buy Five Get one Free!\")\n" +
-            "\t.getResponse();\n" +
-
-            "We can then check our result with: \n" +
-            "if (result.isSuccess()){\n" +
-            "\tif (result.hasResult()){\n" +
-            "\t\tSystem.out.println(return result.getResult().getId());\n" +
-            "\t}else\t" +
-            "\t\tSystem.out.println(\"Send to server succeeded but we have failed to parse the result \" + result.getError().getMessage());\n" +
-            "\t}\n" +
-            "}else{" +
-            "\tSystem.out.println(result.getError().getMessage());\n"+
-            "}\n" +
-
-            "-------------------------------------------------------------------\n" +
-
-            "OK Great, but how do I set up my user details. Glad you asked: \n" +
+        String ex =
             "Use the Configuraton class or not?\n" +
             "The Configuration expects a file to at: ~/.woocommerce-api/config.json\n" +
             "if this file exists you do not need to call Configuration, the program just deals with it\n\n" +

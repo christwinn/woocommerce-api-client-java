@@ -1,3 +1,66 @@
+A fluent client WooCommerce Java Api
+
+<h3>Coupons</h3>
+<ul>
+<li>Create</li>
+    <table><tr><td colspan="2">Created&lt;Coupon&gt; created = WooCommerce.Coupons().create()</td></tr>
+        <tr><td style="width:40%"></td><td>.setCode("10off")</td></tr>
+        <tr><td></td><td>.setDiscountType("percent")</td></tr>
+        <tr><td></td><td>.setAmount(new BigDecimal(10))</td></tr>
+        <tr><td></td><td>.setIndividualUse(true)</td></tr>
+        <tr><td></td><td>.setExcludeSaleItems(true)</td></tr>
+        <tr><td></td><td>.setMinimumAmount(new BigDecimal(100.00))</td></tr>
+        <tr><td></td><td>.getResponse();</td></tr>
+    </table>
+    
+<br>
+<li>Read</li>
+<ul><li>Read&lt;Coupon&gt; read = WooCommerce.Coupons().read(719).getResponse();</li></ul>
+<br>
+<li>Update</li>
+<ul><li>Updated&lt;Coupon&gt; updated = WooCommerce.Coupons().update(719)<br>
+            <span style="width:250px;text-align:right">.setAmount(new BigDecimal(15))&nbsp;</span><br>
+            .getResponse();
+</li></ul>
+<br>
+<li>Delete</li>
+<ul><li>Deleted&lt;Coupon&gt; deleted = WooCommerce.Coupons().delete(719, true).getResponse();</li>
+</ul>
+<br>
+<li>List All</li>
+<ul><li>Listed<Coupon> listed = WooCommerce.Coupons().listing().getResponse();</li>
+</ul>
+
+<br>
+<li>Batch Create, Update, Delete</li>
+<ul><li>Batched<Coupon> batched = WooCommerce.Coupons().batch()<br>
+                <b>.addCreator</b>(<br>
+                    WooCommerce.Coupons().create()<br>
+                    .setCode("20off")<br>
+                    .setDiscountType("percent")<br>
+                    .setAmount(new BigDecimal(20))<br>
+                    .setIndividualUse(true)<br>
+                    .setExcludeSaleItems(true)<br>
+                    .setMinimumAmount(new BigDecimal(100.00)))<br>
+                <b>.addCreator</b>(<br>
+                    WooCommerce.Coupons().create()<br>
+                    .setCode("30off")<br>
+                    .setDiscountType("percent")<br>
+                    .setAmount(new BigDecimal(30))<br>
+                    .setIndividualUse(true)<br>
+                    .setExcludeSaleItems(true)<br>
+                    .setMinimumAmount(new BigDecimal(400.00)))<br>
+                 <b>.addUpdater</b>(<br>
+                    WooCommerce.Coupons().update(719)<br>
+                        .setMinimumAmount(new BigDecimal(50))<br>
+                )<br>
+                 <b>.addDeleter</b>(<br>
+                    WooCommerce.Coupons().delete(720, true)<br>
+                )<br>
+                .getResponse();<br>
+    </li>
+</ul>
+
 # Why the Fork?
 
 Simpicity! 

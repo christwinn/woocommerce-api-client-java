@@ -31,6 +31,50 @@ public class ProductApi extends ApiRequest {
 
     public ProductApi(){}
 
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int productId){
+
+        return new Reader<>(productId);
+
+    }
+
+    public Updater<?> update(int productId){
+
+        return new Updater<>(productId);
+
+    }
+
+    public Deleter<?> delete(int productId, boolean force){
+
+        return new Deleter<>(productId, force);
+
+    }
+
+    public Duplicator<?> duplicate(int productId){
+
+        return new Duplicator<>(productId);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Private Constructors">
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
     private ProductApi(Creator<?> creator){
 
@@ -95,6 +139,7 @@ public class ProductApi extends ApiRequest {
         force = deleter.force;
 
     }
+    //</editor-fold>
 
     public String toJson(){
 
@@ -108,7 +153,7 @@ public class ProductApi extends ApiRequest {
 
     }
 
-    public String endPoint(){
+    private String endPoint(){
 
         return PRODUCTS +
             (product.getId() != null && product.getId() != 0
@@ -118,6 +163,7 @@ public class ProductApi extends ApiRequest {
 
     }
 
+    //<editor-fold defaultstate="collapsed" desc="Creator Builder">
     public static class Creator<T extends Creator<?>> extends CoreProductRequest.Creator<T> {
 
         private String name;        //string	Product name.
@@ -404,15 +450,21 @@ public class ProductApi extends ApiRequest {
         }
 
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Update Builder">
     public static class Updater<T extends Updater<T>> extends Creator<T>{
+
+        public Updater(int productId){
+            this.id = productId;
+        }
 
         private int id;
 
-        public T setId(int id) {
+        /*public T setId(int id) {
             this.id = id;
             return self();
-        }
+        }*/
 
         private ProductApi build(){
             return new ProductApi(this);
@@ -434,11 +486,17 @@ public class ProductApi extends ApiRequest {
         }
     }
 
-    //<editor-fold name="Reader">
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Reader Builder">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int productId){
+            super(productId);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<Product> getResponse(){
             return (Read<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
@@ -448,11 +506,15 @@ public class ProductApi extends ApiRequest {
     }
     //</editor-fold>
 
-    //<editor-fold name="Deleter">
+    //<editor-fold defaultstate="collapsed" desc="Deleter Builder">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int productId, boolean force){
+            super(productId, force);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         protected ProductApi build(){
             return new ProductApi(this);
@@ -465,11 +527,13 @@ public class ProductApi extends ApiRequest {
 
     }
     //</editor-fold>
-    //<editor-fold name="Reader">
+
+    //<editor-fold  defaultstate="collapsed" desc="Duplicator Builder">
     public static class Duplicator<T extends Duplicator<T>> extends CoreDuplicatorRequest.DuplicatorCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Duplicator(int productId){
+            super(productId);
+        }
 
         public Duplicated<Product> getResponse(){
             return (Duplicated<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
@@ -479,6 +543,7 @@ public class ProductApi extends ApiRequest {
     }
     //</editor-fold>
 
+    //<editor-fold  defaultstate="collapsed" desc="Batch Builder">
     public static class Batcher<T extends Batcher<T>> extends CoreBatchRequest.BatchCore<T>{
 
         public Batcher(){
@@ -504,6 +569,14 @@ public class ProductApi extends ApiRequest {
             return self();
         }
 
+        /**
+         * Mileage may vary
+         * Supposedly we can batch 100 at a time.
+         * I have been finding this leads to an internal server error (500)
+         * Shrinking the batch to a smaller number works.
+         *
+         * @return Batched<Product>
+         */
         public Batched<Product> getResponse(){
 
             return (Batched<Product>) super.getResponse(PRODUCTS, batch, new TypeReference<Batch<Product>>(){});
@@ -511,7 +584,9 @@ public class ProductApi extends ApiRequest {
         }
 
     }
+    //</editor-fold>
 
+    //<editor-fold  defaultstate="collapsed" desc="Listing Builder">
     /**
      *
      * Searches the Products
@@ -660,4 +735,6 @@ public class ProductApi extends ApiRequest {
         }
 
     }
+    //</editor-fold>
+
 }

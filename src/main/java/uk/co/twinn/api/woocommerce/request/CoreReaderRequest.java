@@ -29,16 +29,20 @@ class CoreReaderRequest {
         /*package private*/
         String endPoint;
 
+        public ReaderCore(int id){
+            this.id = id;
+        }
+
         T self() {return (T) this;}
 
         /**
          * @param id set the id for the record to read
          * @return
          */
-        public T setId(int id) {
+        /*public T setId(int id) {
             this.id = id;
             return self();
-        }
+        }*/
 
         /** this needs to be exported to inheritor but not beyond* package-private*/
         Read<?> getResponse(String endPoint, TypeReference<?> type){
@@ -71,6 +75,11 @@ class CoreReaderRequest {
 
     static class ChildReaderCore<T extends ChildReaderCore> extends ReaderCore<T>{
 
+        public ChildReaderCore(int id, int childId){
+            super(id);
+            this.childId = childId;
+        }
+
         //set up the private variables
         private int childId;
 
@@ -82,10 +91,10 @@ class CoreReaderRequest {
          * @param childId we are protected so we display a nice setX to consumer
          * @return T
          */
-        protected T setChildId(int childId) {
+        /*protected T setChildId(int childId) {
             this.childId = childId;
             return self();
-        }
+        }*/
 
         Read<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id + "/" + childEndPoint + "/" + childId, type);

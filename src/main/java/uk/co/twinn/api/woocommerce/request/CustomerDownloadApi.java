@@ -22,22 +22,21 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 public class CustomerDownloadApi {
 
     public static class Reader<T extends Reader<T>>{
-
         private int customerId;
 
-        T self() {
-            return (T) this;
+        public Reader(int customerId){
+            this.customerId = customerId;
         }
 
-        public T setCustomerId(int customerId){
+        /*T self() {
+            return (T) this;
+        }*/
+
+        /*public T setCustomerId(int customerId){
             this.customerId = customerId;
             return self();
-        }
+        }*/
 
-        /**
-         *  If the id is set returns a single productCategory
-         *  otherwise returns list of productCategory
-         */
         public Listed<CustomerDownload> getResponse(){
             if (customerId == 0) {
                 return new Listed<>(
@@ -45,7 +44,7 @@ public class CustomerDownloadApi {
                         false,
                         0,
                         "Retrieve customer downloads\n" +
-                            "This API lets you retrieve customer downloads permissions.")
+                            "This API lets you retrieve customer downloads.")
                 );
             }else {
                 return new Listed<>(

@@ -41,6 +41,9 @@ class CoreBatchRequest {
         public boolean empty(){
             return batch.empty();
         }
+        public boolean isEmpty(){
+            return size() == 0;
+        }
 
         public int size(){
             return batch.getRecordCount();

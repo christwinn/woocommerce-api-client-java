@@ -30,7 +30,48 @@ public class CustomerApi extends ApiRequest {
 
     private boolean force;
 
-    public CustomerApi(Creator<?> creator){
+    public CustomerApi(){
+
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int customerId){
+
+        return new Reader<>(customerId);
+
+    }
+
+    public Updater<?> update(int customerId){
+
+        return new Updater<>(customerId);
+
+    }
+
+    public Deleter<?> delete(int customerId, boolean force){
+
+        return new Deleter<>(customerId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
+    private CustomerApi(Creator<?> creator){
 
         customer.setEmail(creator.email);
         customer.setFirstName(creator.firstName);
@@ -42,14 +83,14 @@ public class CustomerApi extends ApiRequest {
 
     }
 
-    public CustomerApi(Updater<?> updater){
+    private CustomerApi(Updater<?> updater){
 
         this((Creator)updater);
 
 
     }
 
-    public CustomerApi(Deleter<?> deleter){
+    private CustomerApi(Deleter<?> deleter){
 
         customer.setId(deleter.id);
         force = deleter.force;
@@ -158,10 +199,14 @@ public class CustomerApi extends ApiRequest {
 
         private int id;
 
-        public T setId(int id){
+        public Updater(int productId){
+            this.id = productId;
+        }
+
+        /*public T setId(int id){
             this.id = id;
             return self();
-        }
+        }*/
 
         @Override
         protected CustomerApi build(){
@@ -187,8 +232,12 @@ public class CustomerApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int id){
+            super(id);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<Customer> getResponse(){
             return (Read<Customer>)super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
@@ -201,8 +250,12 @@ public class CustomerApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int customerId, boolean force){
+            super(customerId, force);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         protected CustomerApi build(){
             return new CustomerApi(this);

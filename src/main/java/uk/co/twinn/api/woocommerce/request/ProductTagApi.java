@@ -31,6 +31,43 @@ public class ProductTagApi extends ApiRequest {
 
     public ProductTagApi(){}
 
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int productTagId){
+
+        return new Reader<>(productTagId);
+
+    }
+
+    public Updater<?> update(int productTagId){
+
+        return new Updater<>(productTagId);
+
+    }
+
+    public Deleter<?> delete(int productTagId, boolean force){
+
+        return new Deleter<>(productTagId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
     private ProductTagApi(Creator<?> creator){
 
@@ -140,10 +177,14 @@ public class ProductTagApi extends ApiRequest {
 
         private int id;
 
-        public T setId(int id) {
+        public Updater(int productTagId){
+            this.id = productTagId;
+        }
+
+        /*public T setId(int id) {
             this.id = id;
             return self();
-        }
+        }*/
 
         private ProductTagApi build(){
             return new ProductTagApi(this);
@@ -168,8 +209,12 @@ public class ProductTagApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int productTagId){
+            super(productTagId);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<ProductTag> getResponse(){
             return (Read<ProductTag>)super.getResponse(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
@@ -182,8 +227,12 @@ public class ProductTagApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int productTagId, boolean force){
+            super(productTagId, force);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         protected ProductTagApi build(){
             return new ProductTagApi(this);

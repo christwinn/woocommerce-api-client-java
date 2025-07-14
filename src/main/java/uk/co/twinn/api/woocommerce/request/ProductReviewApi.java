@@ -31,6 +31,43 @@ public class ProductReviewApi extends ApiRequest {
 
     public ProductReviewApi(){}
 
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int reviewId){
+
+        return new Reader<>(reviewId);
+
+    }
+
+    public Updater<?> update(int reviewId){
+
+        return new Updater<>(reviewId);
+
+    }
+
+    public Deleter<?> delete(int reviewId, boolean force){
+
+        return new Deleter<>(reviewId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
     private ProductReviewApi(Creator<?> creator){
 
@@ -161,12 +198,16 @@ public class ProductReviewApi extends ApiRequest {
 
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
+        public Updater(int reviewId){
+            this.id = reviewId;
+        }
+
         private int id;
 
-        public T setId(int id) {
+        /*public T setId(int id) {
             this.id = id;
             return self();
-        }
+        }*/
 
         private ProductReviewApi build(){
             return new ProductReviewApi(this);
@@ -191,8 +232,11 @@ public class ProductReviewApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int reviewId){
+            super(reviewId);
+        }
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<ProductReview> getResponse(){
             return (Read<ProductReview>)super.getResponse(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
@@ -205,8 +249,11 @@ public class ProductReviewApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int reviewId, boolean force){
+            super(reviewId, force);
+        }
+        /*@Override
+        T self() {return (T) this;}*/
 
         protected ProductReviewApi build(){
             return new ProductReviewApi(this);

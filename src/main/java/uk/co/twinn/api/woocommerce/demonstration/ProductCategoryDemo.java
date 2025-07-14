@@ -50,8 +50,7 @@ public class ProductCategoryDemo {
 
     public Read<ProductCategory> readProductCategory(int productCategoryId){
 
-        return new ProductCategoryApi.Reader<>()
-            .setId(productCategoryId)
+        return new ProductCategoryApi.Reader<>(productCategoryId)
             .getResponse();
 
     }
@@ -63,8 +62,7 @@ public class ProductCategoryDemo {
     ){
 
         return
-            new ProductCategoryApi.Updater<>()
-                .setId(productCategoryId)
+            new ProductCategoryApi.Updater<>(productCategoryId)
                 .setName(name)
                 .setDescription(description)
                 .setImage(wooCommerceImageUrl)
@@ -175,8 +173,7 @@ public class ProductCategoryDemo {
     ){
 
         ProductCategoryApi.Updater<?> update =
-            new ProductCategoryApi.Updater<>()
-                .setId(wooId);
+            new ProductCategoryApi.Updater(wooId);
 
         boolean updatingImage = false;
 

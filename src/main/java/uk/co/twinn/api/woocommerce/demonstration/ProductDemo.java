@@ -50,8 +50,7 @@ public class ProductDemo {
         int id
     ){
         Read<Product> read =
-            new ProductApi.Reader<>()
-                .setId(id)
+            new ProductApi.Reader<>(id)
                 .getResponse();
 
         if (read.isSuccess()){
@@ -69,15 +68,13 @@ public class ProductDemo {
         int menuOrder
     ){
 
-        Read<Product> read = new ProductApi.Reader<>().setId(id).getResponse();
+        Read<Product> read = new ProductApi.Reader<>(id).getResponse();
 
         if (read.isSuccess()){
 
             Product existing = read.getResult();
 
-            ProductApi.Updater<?> update = new ProductApi.Updater<>();
-
-            update.setId(id);
+            ProductApi.Updater<?> update = new ProductApi.Updater(id);
 
             update.setRegularPrice(new BigDecimal(9.99));
 

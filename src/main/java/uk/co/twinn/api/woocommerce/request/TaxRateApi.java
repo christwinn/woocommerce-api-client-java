@@ -32,7 +32,46 @@ public class TaxRateApi extends ApiRequest {
 
     private boolean force;
 
-    public TaxRateApi(Creator<?> creator){
+    public TaxRateApi(){}
+
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int taxRateId){
+
+        return new Reader<>(taxRateId);
+
+    }
+
+    public Updater<?> update(int taxRateId){
+
+        return new Updater<>(taxRateId);
+
+    }
+
+    public Deleter<?> delete(int taxRateId, boolean force){
+
+        return new Deleter<>(taxRateId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
+    private TaxRateApi(Creator<?> creator){
 
         taxRate.setCountry(creator.country);
         taxRate.setState(creator.state);
@@ -49,14 +88,14 @@ public class TaxRateApi extends ApiRequest {
 
     }
 
-    public TaxRateApi(Updater<?> updater){
+    private TaxRateApi(Updater<?> updater){
 
         this((Creator<?>)updater);
         taxRate.setId(updater.id);
 
     }
 
-    public TaxRateApi(Deleter<?> deleter){
+    private TaxRateApi(Deleter<?> deleter){
 
         taxRate.setId(deleter.id);
         force = deleter.force;
@@ -257,10 +296,14 @@ public class TaxRateApi extends ApiRequest {
 
         private int id;
 
-        public T setId(int id) {
+        public Updater(int taxRateId){
+            this.id = taxRateId;
+        }
+
+        /*public T setId(int id) {
             this.id = id;
             return self();
-        }
+        }*/
 
         protected TaxRateApi build(){
             return new TaxRateApi(this);
@@ -285,8 +328,11 @@ public class TaxRateApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int taxRateId){
+            super(taxRateId);
+        }
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<TaxRate> getResponse(){
             return (Read<TaxRate>)super.getResponse(TAXES, new TypeReference<TaxRate>() {});
@@ -299,8 +345,11 @@ public class TaxRateApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int taxRateId, boolean force){
+            super(taxRateId, force);
+        }
+        /*@Override
+        T self() {return (T) this;}*/
 
         protected TaxRateApi build(){
             return new TaxRateApi(this);

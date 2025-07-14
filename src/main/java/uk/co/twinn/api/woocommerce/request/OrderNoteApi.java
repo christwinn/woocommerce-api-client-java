@@ -34,7 +34,35 @@ public class OrderNoteApi extends ApiRequest {
 
     private boolean force;
 
-    public OrderNoteApi(Creator<?> creator){
+    public OrderNoteApi(){}
+
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int orderId, int noteId){
+
+        return new Reader<>(orderId, noteId);
+
+    }
+
+    public Deleter<?> delete(int orderId, int noteId, boolean force){
+
+        return new Deleter<>(orderId, noteId, force);
+
+    }
+
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
+    private OrderNoteApi(Creator<?> creator){
 
         orderId = creator.orderId;
         orderNote.setNote(creator.note);
@@ -43,7 +71,7 @@ public class OrderNoteApi extends ApiRequest {
 
     }
 
-    public OrderNoteApi(ListAll<?> listAller){
+    private OrderNoteApi(ListAll<?> listAller){
 
         orderId = listAller.orderId;
 
@@ -161,10 +189,14 @@ public class OrderNoteApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ChildReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int orderId, int noteId){
+            super(orderId, noteId);
+        }
 
-        public T setOrderId(int orderId){
+        /*@Override
+        T self() {return (T) this;}*/
+
+        /*public T setOrderId(int orderId){
             super.setId(orderId);
             return self();
         }
@@ -172,7 +204,8 @@ public class OrderNoteApi extends ApiRequest {
         public T setNoteId(int noteId){
             super.setChildId(noteId);
             return self();
-        }
+        }*/
+
         public Read<OrderNote> getResponse(){
             return (Read<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
 
@@ -184,7 +217,11 @@ public class OrderNoteApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.ChildDeleterCore<T>{
 
-        @Override
+        public Deleter(int orderId, int noteId, boolean force){
+            super(orderId, noteId, force);
+        }
+
+       /* @Override
         T self() {return (T) this;}
 
         public T setOrderId(int orderId){
@@ -195,7 +232,7 @@ public class OrderNoteApi extends ApiRequest {
         public T setNoteId(int noteId){
             super.setChildId(noteId);
             return self();
-        }
+        }*/
 
         public Deleted<OrderNote> getResponse(){
             return (Deleted<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});

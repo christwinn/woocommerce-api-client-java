@@ -32,7 +32,37 @@ public class OrderRefundApi extends ApiRequest {
 
     private boolean force;
 
-    public OrderRefundApi(Creator<?> creator){
+    public OrderRefundApi(){
+
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int orderId, int refundId){
+
+        return new Reader<>(orderId, refundId);
+
+    }
+
+    public Deleter<?> delete(int orderId, int refundId, boolean force){
+
+        return new Deleter<>(orderId, refundId, force);
+
+    }
+
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
+    private OrderRefundApi(Creator<?> creator){
 
         orderRefund.setAmount(creator.amount);
         orderRefund.setReason(creator.reason);
@@ -46,7 +76,7 @@ public class OrderRefundApi extends ApiRequest {
 
     }
 
-    public OrderRefundApi(ListAll<?> listAller){
+    private OrderRefundApi(ListAll<?> listAller){
 
         orderRefund.setOrderId(listAller.orderId);
 
@@ -191,8 +221,12 @@ public class OrderRefundApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ChildReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int orderId, int refundId){
+            super(orderId, refundId);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<OrderRefund> getResponse(){
             return (Read<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
@@ -205,8 +239,11 @@ public class OrderRefundApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.ChildDeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        /*@Override
+        T self() {return (T) this;}*/
+        public Deleter(int orderId, int refundId, boolean force){
+            super(orderId, refundId, force);
+        }
 
         public Deleted<OrderRefund> getResponse(){
             return (Deleted<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});

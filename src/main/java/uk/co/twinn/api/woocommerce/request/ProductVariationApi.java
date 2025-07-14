@@ -35,10 +35,47 @@ public class ProductVariationApi extends ApiRequest {
 
     public ProductVariationApi(){}
 
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int productId, int variationId){
+
+        return new Reader<>(productId, variationId);
+
+    }
+
+    public Updater<?> update(int productId, int variationId){
+
+        return new Updater<>(productId, variationId);
+
+    }
+
+    public Deleter<?> delete(int productId, int variationId, boolean force){
+
+        return new Deleter<>(productId, variationId, force);
+
+    }
+
+    public Batcher<?> batch(int productId){
+
+        return new Batcher<>(productId);
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
     private ProductVariationApi(Creator<?> creator){
 
         //Set the object parameters from creator;
-        productId = creator.product_Id;
+        productId = creator.productId;
 
         productVariation.setStatus(creator.status);
         productVariation.setDescription(creator.description);
@@ -72,8 +109,6 @@ public class ProductVariationApi extends ApiRequest {
     private ProductVariationApi(Updater<?> updater){
 
         this((Creator<?>)updater);
-        //set the specific ids required to update an object
-        productId = updater.product_Id;
         productVariation.setVariationId(updater.variationId);
 
     }
@@ -122,7 +157,7 @@ public class ProductVariationApi extends ApiRequest {
     public static class Creator<T extends Creator<T>> extends CoreProductRequest.Creator<T>{
 
         //set up the private variables
-        protected int product_Id; //_differentiate
+        protected int productId; //_differentiate
 
         private ProductImage image;    //array	List of images. See Product - Images properties
 
@@ -131,7 +166,7 @@ public class ProductVariationApi extends ApiRequest {
         }
 
         public T setProductId(int productId) {
-            this.product_Id = productId;
+            this.productId = productId;
             return self();
         }
 
@@ -142,7 +177,7 @@ public class ProductVariationApi extends ApiRequest {
         /** Returns single Created ProductVariation**/
         public Created<ProductVariation> getResponse(){
             //premliminary checks
-            if (product_Id <= 0) {
+            if (productId <= 0) {
                 return new Created<>(
                     new ApiResponseResult(
                         false,
@@ -166,14 +201,19 @@ public class ProductVariationApi extends ApiRequest {
         //set up the private variables
         private int variationId;
 
+        public Updater(int productId, int variationId){
+            this.productId = productId;
+            this.variationId = variationId;
+        }
+
         T self() {
             return (T) this;
         }
 
-        public T setVariationId(int variationId) {
+        /*public T setVariationId(int variationId) {
             this.variationId = variationId;
             return self();
-        }
+        }*/
 
         protected ProductVariationApi build(){
             return new ProductVariationApi(this);
@@ -186,7 +226,7 @@ public class ProductVariationApi extends ApiRequest {
         public Updated<ProductVariation> getResponse(){
 
             //preliminary checks
-            if (product_Id <= 0 || variationId <= 0) {
+            if (productId <= 0 || variationId <= 0) {
                 return new Updated<ProductVariation>(
                     new ApiResponseResult(
                         false,
@@ -209,7 +249,11 @@ public class ProductVariationApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ChildReaderCore<T>{
 
-        @Override
+        public Reader(int productId, int variationId){
+            super(productId, variationId);
+        }
+
+        /*@Override
         T self() {return (T) this;}
 
         public T setProductId(int productId){
@@ -220,7 +264,7 @@ public class ProductVariationApi extends ApiRequest {
         public T setVariationId(int variationId){
             super.setChildId(variationId);
             return self();
-        }
+        }*/
 
         public Read<ProductVariation> getResponse(){
             return (Read<ProductVariation>)super.getResponse(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
@@ -233,7 +277,11 @@ public class ProductVariationApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.ChildDeleterCore<T>{
 
-        @Override
+        public Deleter(int productId, int variationId, boolean force){
+            super(productId, variationId, force);
+        }
+
+        /*@Override
         T self() {return (T) this;}
 
         public T setProductId(int productId){
@@ -244,7 +292,8 @@ public class ProductVariationApi extends ApiRequest {
         public T setVariationId(int variationId){
             super.setChildId(variationId);
             return self();
-        }
+        }*/
+
         protected ProductVariationApi build(){
             return new ProductVariationApi(this);
         }
@@ -262,10 +311,14 @@ public class ProductVariationApi extends ApiRequest {
 
         private int id;
 
-        public T setProductId(int productId){
+        public Batcher(int productId){
+            this.id = productId;
+        }
+
+        /*public T setProductId(int productId){
             this.id = productId;
             return self();
-        }
+        }*/
 
         public Batcher(){
             super();

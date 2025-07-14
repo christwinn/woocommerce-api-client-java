@@ -26,18 +26,22 @@ class CoreDuplicatorRequest {
 
         protected int id;
 
-        T self() {
-            return (T) this;
+        public DuplicatorCore(int id){
+            this.id = id;
         }
+
+        /*T self() {
+            return (T) this;
+        }*/
 
         /**
          * @param id set the id for the record to duplicate
          * @return
          */
-        public T setId(int id) {
+        /*public T setId(int id) {
             this.id = id;
             return self();
-        }
+        }*/
 
         Duplicated<?> getResponse(String endPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id + "/duplicate", type);

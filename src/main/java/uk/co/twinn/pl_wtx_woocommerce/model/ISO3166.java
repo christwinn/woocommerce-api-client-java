@@ -12,7 +12,12 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 public class ISO3166 {
 
     public ISO3166(){}
-
+    /**
+     * Correct at 2025-07-11 as per <a href="https://en.wikipedia.org/wiki/ISO_3166-2">https://en.wikipedia.org/wiki/ISO_3166-2</a>
+     *
+     * Apologies to countries with accents, apostrophes, etc, this is as close as we can get to your country name.
+     *
+     */
     public enum CountryEnum {
         ANDORRA("AD"),
         UNITED_ARAB_EMIRATES("AE"),

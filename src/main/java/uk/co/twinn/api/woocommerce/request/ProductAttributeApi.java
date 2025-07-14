@@ -31,6 +31,43 @@ public class ProductAttributeApi extends ApiRequest {
 
     public ProductAttributeApi(){}
 
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int productAttributeId){
+
+        return new Reader<>(productAttributeId);
+
+    }
+
+    public Updater<?> update(int productAttributeId){
+
+        return new Updater<>(productAttributeId);
+
+    }
+
+    public Deleter<?> delete(int productAttributeId, boolean force){
+
+        return new Deleter<>(productAttributeId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
     private ProductAttributeApi(Creator<?> creator){
 
         productAttribute.setName(creator.name);
@@ -156,6 +193,10 @@ public class ProductAttributeApi extends ApiRequest {
         //set up the private variables
         private int id;
 
+        public Updater(int productAttributeId){
+            this.id = productAttributeId;
+        }
+
         T self() {
             return (T) this;
         }
@@ -199,8 +240,11 @@ public class ProductAttributeApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int productAttributeId){
+            super(productAttributeId);
+        }
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<ProductAttribute> getResponse(){
             return (Read<ProductAttribute>)super.getResponse(PRODUCTS_ATTRIBUTES, new TypeReference<ProductAttribute>() {});
@@ -213,8 +257,12 @@ public class ProductAttributeApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int productAttributeId, boolean force){
+            super(productAttributeId, force);
+        }
+
+        /*@Override
+        T self() {return (T) this;}*/
 
         protected ProductAttributeApi build(){
             return new ProductAttributeApi(this);

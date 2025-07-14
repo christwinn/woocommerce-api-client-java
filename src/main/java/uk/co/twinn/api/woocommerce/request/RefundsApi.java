@@ -23,6 +23,16 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.REFUNDS;
 
 public class RefundsApi extends ApiRequest {
 
+    public RefundsApi(){}
+
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
+
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T>{
 
         T self() {

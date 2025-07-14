@@ -23,16 +23,53 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS_SHIPPING_CLASSES;
 
-public class ProductShippingApi extends ApiRequest {
+public class ProductShippingClassApi extends ApiRequest {
 
     protected final ProductShippingClass productShippingClass = new ProductShippingClass();
 
     private boolean force;
 
-    public ProductShippingApi(){}
+    public ProductShippingClassApi(){}
+
+    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
+    public Creator<?> create(){
+
+        return new Creator<>();
+
+    }
+
+    public Reader<?> read(int shippingClassId){
+
+        return new Reader<>(shippingClassId);
+
+    }
+
+    public Updater<?> update(int shippingClassId){
+
+        return new Updater<>(shippingClassId);
+
+    }
+
+    public Deleter<?> delete(int shippingClassId, boolean force){
+
+        return new Deleter<>(shippingClassId, force);
+
+    }
+
+    public Batcher<?> batch(){
+
+        return new Batcher<>();
+
+    }
+    public ListAll<?> listing(){
+
+        return new ListAll<>();
+
+    }
+    //</editor-fold>
 
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
-    private ProductShippingApi(Creator<?> creator){
+    private ProductShippingClassApi(Creator<?> creator){
 
         productShippingClass.setName(creator.name);
         productShippingClass.setSlug(creator.slug);
@@ -40,14 +77,14 @@ public class ProductShippingApi extends ApiRequest {
 
     }
 
-    private ProductShippingApi(Updater<?> updater){
+    private ProductShippingClassApi(Updater<?> updater){
 
         this((Creator<?>)updater);
         productShippingClass.setId(updater.id);
 
     }
 
-    private ProductShippingApi(Deleter<?> deleter){
+    private ProductShippingClassApi(Deleter<?> deleter){
 
         productShippingClass.setId(deleter.id);
         force = deleter.force;
@@ -116,8 +153,8 @@ public class ProductShippingApi extends ApiRequest {
             return (T) this;
         }
 
-        private ProductShippingApi build(){
-            return new ProductShippingApi(this);
+        private ProductShippingClassApi build(){
+            return new ProductShippingClassApi(this);
         }
 
         public Created<ProductShippingClass> getResponse(){
@@ -125,7 +162,7 @@ public class ProductShippingApi extends ApiRequest {
             if (name == null || name.isEmpty()){
                 return new Created<>(new ApiResponseResult(false, 0, "Name is Mandatory"));
             }else {
-                ProductShippingApi create = build();
+                ProductShippingClassApi create = build();
                 //make the call
                 return new Created<>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductShippingClass>() {})
@@ -140,20 +177,24 @@ public class ProductShippingApi extends ApiRequest {
 
         private int id;
 
-        public T setId(int id) {
-            this.id = id;
-            return self();
+        public Updater(int shippingClassId){
+            this.id = shippingClassId;
         }
 
-        private ProductShippingApi build(){
-            return new ProductShippingApi(this);
+        /*public T setId(int id) {
+            this.id = id;
+            return self();
+        }*/
+
+        private ProductShippingClassApi build(){
+            return new ProductShippingClassApi(this);
         }
 
         @Override
         public Updated<ProductShippingClass> getResponse(){
             if (id > 0){
 
-                ProductShippingApi create = build();
+                ProductShippingClassApi create = build();
                 return new Updated<>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductShippingClass>(){})
                 );
@@ -168,8 +209,11 @@ public class ProductShippingApi extends ApiRequest {
     //<editor-fold name="Reader">
     public static class Reader<T extends Reader<T>> extends CoreReaderRequest.ReaderCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Reader(int shippingClassId){
+            super(shippingClassId);
+        }
+        /*@Override
+        T self() {return (T) this;}*/
 
         public Read<ProductShippingClass> getResponse(){
             return (Read<ProductShippingClass>)super.getResponse(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
@@ -182,11 +226,15 @@ public class ProductShippingApi extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleterRequest.DeleterCore<T>{
 
-        @Override
-        T self() {return (T) this;}
+        public Deleter(int shippingClassId, boolean force){
+            super(shippingClassId, force);
+        }
 
-        protected ProductShippingApi build(){
-            return new ProductShippingApi(this);
+        /*@Override
+        T self() {return (T) this;}*/
+
+        protected ProductShippingClassApi build(){
+            return new ProductShippingClassApi(this);
         }
 
         public Deleted<ProductShippingClass> getResponse(){
@@ -207,17 +255,17 @@ public class ProductShippingApi extends ApiRequest {
             return (T) this;
         }
 
-        public T addCreator(ProductShippingApi.Creator<?> create){
+        public T addCreator(ProductShippingClassApi.Creator<?> create){
             batch.addCreate(create.build().productShippingClass);
             return self();
         }
 
-        public T addUpdater(ProductShippingApi.Updater<?> update){
+        public T addUpdater(ProductShippingClassApi.Updater<?> update){
             batch.addUpdate(update.build().productShippingClass);
             return self();
         }
 
-        public T addDeleter(ProductShippingApi.Deleter<?> delete){
+        public T addDeleter(ProductShippingClassApi.Deleter<?> delete){
             batch.addDelete(delete.build().productShippingClass);
             return self();
         }

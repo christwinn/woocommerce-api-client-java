@@ -21,6 +21,12 @@ import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
+/**
+ * An anomoly on the design we do not use internal builders as they are pure pre-defined reads
+ * Fits in to WooCommerce.Reports().getList() except no getResponse()
+ * does not fit new Reports.Listed<>.getList().getResponse()
+ *
+ */
 public class ReportApi {
 
     public ReportApi(){}
