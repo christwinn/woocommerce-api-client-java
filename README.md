@@ -4,62 +4,62 @@ A fluent client WooCommerce Java Api
 <h3>Coupons</h3>
 
 <li>Create</li>
-    <code>Created&lt;Coupon&gt; created = WooCommerce.Coupons().create()<br>
-                .setCode("10off")<br>
-                .setDiscountType("percent")<br>
-                .setAmount(new BigDecimal(10))<br>
-                .setIndividualUse(true)<br>
-                .setExcludeSaleItems(true)<br>
-                .setMinimumAmount(new BigDecimal(100.00))<br>
-                .getResponse();
+    <code>  Created&lt;Coupon&gt; created = WooCommerce.Coupons().create()<br>
+                        .setCode("10off")<br>
+                        .setDiscountType("percent")<br>
+                        .setAmount(new BigDecimal(10))<br>
+                        .setIndividualUse(true)<br>
+                        .setExcludeSaleItems(true)<br>
+                        .setMinimumAmount(new BigDecimal(100.00))<br>
+                        .getResponse();
     </code>    
 <br>
 <li>Read</li>
-<code>Read&lt;Coupon&gt; read = WooCommerce.Coupons().read(719).getResponse();
+<code>  Read&lt;Coupon&gt; read = WooCommerce.Coupons().read(719).getResponse();
 </code>
 <br>
 <li>Update</li>
-<code>Updated&lt;Coupon&gt; updated = WooCommerce.Coupons().update(719)<br>
-                .setAmount(new BigDecimal(15))<br>
-                .getResponse();
+<code>  Updated&lt;Coupon&gt; updated = WooCommerce.Coupons().update(719)<br>
+                        .setAmount(new BigDecimal(15))<br>
+                        .getResponse();
 </code>
 <br>
 <li>Delete</li>
-<code>Deleted&lt;Coupon&gt; deleted = WooCommerce.Coupons().delete(719, true).getResponse();
+<code>  Deleted&lt;Coupon&gt; deleted = WooCommerce.Coupons().delete(719, true).getResponse();
 </code>
 <br>
 <li>List All</li>
-<code>Listed&lt;Coupon&gt; listed = WooCommerce.Coupons().listing().getResponse();
+<code>  Listed&lt;Coupon&gt; listed = WooCommerce.Coupons().listing().getResponse();
 </code>
 <br>
 <li>Batch Create, Update, Delete</li>
-<code>Batched&lt;Coupon&gt; batched = WooCommerce.Coupons().batch()<br>
-                <b>.addCreator</b>(<br>
-                    WooCommerce.Coupons().create()<br>
-                    .setCode("20off")<br>
-                    .setDiscountType("percent")<br>
-                    .setAmount(new BigDecimal(20))<br>
-                    .setIndividualUse(true)<br>
-                    .setExcludeSaleItems(true)<br>
-                    .setMinimumAmount(new BigDecimal(100.00))<br>
-                )<br>
-                <b>.addCreator</b>(<br>
-                    WooCommerce.Coupons().create()<br>
-                    .setCode("30off")<br>
-                    .setDiscountType("percent")<br>
-                    .setAmount(new BigDecimal(30))<br>
-                    .setIndividualUse(true)<br>
-                    .setExcludeSaleItems(true)<br>
-                    .setMinimumAmount(new BigDecimal(400.00))<br>
-                )<br>
-                <b>.addUpdater</b>(<br>
-                    WooCommerce.Coupons().update(719)<br>
-                    .setMinimumAmount(new BigDecimal(50))<br>
-                )<br>
-                <b>.addDeleter</b>(<br>
-                    WooCommerce.Coupons().delete(720, true)<br>
-                )<br>
-                .getResponse();<br>
+<code>  Batched&lt;Coupon&gt; batched = WooCommerce.Coupons().batch()<br>
+                        <b>.addCreator</b>(<br>
+                            WooCommerce.Coupons().create()<br>
+                            .setCode("20off")<br>
+                            .setDiscountType("percent")<br>
+                            .setAmount(new BigDecimal(20))<br>
+                            .setIndividualUse(true)<br>
+                            .setExcludeSaleItems(true)<br>
+                            .setMinimumAmount(new BigDecimal(100.00))<br>
+                        )<br>
+                        <b>.addCreator</b>(<br>
+                            WooCommerce.Coupons().create()<br>
+                            .setCode("30off")<br>
+                            .setDiscountType("percent")<br>
+                            .setAmount(new BigDecimal(30))<br>
+                            .setIndividualUse(true)<br>
+                            .setExcludeSaleItems(true)<br>
+                            .setMinimumAmount(new BigDecimal(400.00))<br>
+                        )<br>
+                        <b>.addUpdater</b>(<br>
+                            WooCommerce.Coupons().update(719)<br>
+                            .setMinimumAmount(new BigDecimal(50))<br>
+                        )<br>
+                        <b>.addDeleter</b>(<br>
+                            WooCommerce.Coupons().delete(720, true)<br>
+                        )<br>
+                        .getResponse();<br>
     </code>
 
 # Why the Fork?
