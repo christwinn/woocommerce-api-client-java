@@ -1,9 +1,40 @@
 
 # A fluent client WooCommerce Java Api
 
+The samples shown are the same as [https://woocommerce.github.io/woocommerce-rest-api-docs/](https://woocommerce.github.io/woocommerce-rest-api-docs/) but using this WooCommerce API Java Client
+
 ##### Code Sample Index  
+[Authentication](README.md#Authentication)
+
 [Coupons](README.md#coupons)
+
 [Customers](README.md#customers)
+
+## [Authentication](#authentication) 
+```java
+public void Authentication(){
+
+    /** The simplest method is to place a file under ~/woocommerce-api/config.json 
+    {
+       "website": "example.com",
+       "api": "/wp-json/wc/v3",
+       "key": "myverysecretkeythatIgotfrommywoocommerceinstallation",
+       "secret": "myverysecretsecretthatIgotfrommywoocommerceinstallation"
+    }
+    **/
+
+    /**Alternatively we can...*/
+    Message message = WooCommerce.Authentication()
+        .https().
+        .setWebsite("example.com")
+        .setApiPath("/wp-json/wc/v3")
+        .setKey("myverysecretkeythatIgotfrommywoocommerceinstallation")
+        .setSecret("myverysecretsecretthatIgotfrommywoocommerceinstallation")
+        .getResponse();
+
+    /** Please note we have not implemented the non-secure method. We should not be retrieving customer detail's unencrypted **/
+}
+```
 
 ## [Coupons](#coupons) 
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons](https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons)
