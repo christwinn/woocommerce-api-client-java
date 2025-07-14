@@ -294,8 +294,8 @@ public class CustomerApi extends ApiRequest {
 
         public T addCreator(Creator<?> create){
             Customer c = create.build().customer;
-            if (c instanceof Customer) {
-                batch.addCreate((Customer)c);
+            if (c != null) {
+                batch.addCreate(c);
             }
             return self();
         }
