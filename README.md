@@ -12,6 +12,9 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 
 ## [Authentication](#authentication) 
 It is assumed you have obtained the relevant credentials as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys](https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys)
+<details>
+<summary>Example methods to Authenticate</summary>
+    
 ```java
 private void Authentication(){
 
@@ -37,8 +40,14 @@ private void Authentication(){
 }
 ```
 
+</details>
+
 ## [Coupons](#coupons) 
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons](https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons)
+
+<details>
+<summary>Example code to Create, Read, Update, Delete, Batch and get listed Coupons</summary>
+    
 ```java
 private void Coupons() {
     /** Create **/
@@ -93,8 +102,14 @@ private void Coupons() {
                         .getResponse();
 }
 ```
+</details>
+
 ## [Customers](#Customers)
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
+
+<details>
+<summary>Example code to Create, Read, Update, Delete, Batch and get listed Coupons</summary>
+    
 ```java
 private void Customers() {
     /** Create **/
@@ -219,6 +234,8 @@ private void Customers() {
                         .getResponse();
 }
 ```
+
+</details>
 
 # Why the Fork?
 
