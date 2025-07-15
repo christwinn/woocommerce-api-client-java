@@ -385,8 +385,6 @@ public class TaxRateApi extends ApiRequest {
 
     public static class ListAll<T extends ListAll<T>> extends Seek.SearchCorePaging<T>{
 
-        protected String taxClass;
-
         T self() {
             return (T) this;
         }
@@ -396,8 +394,18 @@ public class TaxRateApi extends ApiRequest {
          * @param taxClass Retrieve only tax rates of this Tax class.
          * @return T
          */
-        public T setTaxClass(String taxClass){
-            this.taxClass = taxClass;
+        public T setClass(String taxClass){
+            addNameValuePair("class", taxClass);
+            return self();
+        }
+
+        public T setOrderby(String orderby) {
+            addNameValuePair("orderby", orderby);
+            return self();
+        }
+
+        public T setOffset(int offset) {
+            addNameValuePair("offset", offset);
             return self();
         }
 

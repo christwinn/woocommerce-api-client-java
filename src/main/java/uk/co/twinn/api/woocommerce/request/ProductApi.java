@@ -19,6 +19,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
@@ -404,6 +405,14 @@ public class ProductApi extends ApiRequest {
          */
         public T setImages(List<ProductImage> images) {
             this.images = images;
+            return self();
+        }
+
+        public T setImage(String imageUrl){
+            if (images == null){
+                images = new ArrayList<>();
+            }
+            images.add(new ProductImage().src(imageUrl));
             return self();
         }
 

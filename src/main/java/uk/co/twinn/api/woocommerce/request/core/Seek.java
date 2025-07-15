@@ -33,6 +33,13 @@ public class Seek {
 
     }
 
+    /***
+     * Provides
+     *  Context
+     *
+     *  Page, PerPage, Search, Order
+     *
+     */
     public static class SearchCorePaging<T extends SearchCorePaging<T>> extends SearchCore<T> {
         /**
          * @param page Current page of the collection. Default is 1.
@@ -77,6 +84,14 @@ public class Seek {
 
     }
 
+    /***
+     * Provides
+     *  Context<br>
+     *
+     *  Page, PerPage, Search, Order<br>
+     *
+     *  Exclude, Include, OrderBy<br>
+     */
     public static class Searcher<T extends Searcher<T>> extends SearchCorePaging<T> {
 
         /**
@@ -110,7 +125,17 @@ public class Seek {
 
     }
 
-    public static class StockSearcher<T extends StockSearcher<T>> extends Searcher<T> {
+    /***
+     * Provides
+     *  Context<br>
+     *
+     *  Page, PerPage, Search, Order<br>
+     *
+     *  Exclude, Include, OrderBy<br>
+     *
+     *  Offset, after, before
+     */
+    public static class DatesSearcher<T extends DatesSearcher<T>> extends Searcher<T> {
 
         /**
          * @param offset Offset the result set by a specific number of items.
@@ -138,6 +163,10 @@ public class Seek {
             addNameValuePair("before", before);
             return self();
         }
+
+    }
+
+    public static class StockSearcher<T extends StockSearcher<T>> extends DatesSearcher<T> {
 
         /**
          * @param parent Limit result set to those of particular parent IDs.

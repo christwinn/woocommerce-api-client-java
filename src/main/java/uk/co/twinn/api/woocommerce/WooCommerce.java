@@ -18,17 +18,16 @@ import uk.co.twinn.api.woocommerce.request.*;
  *  <p>Read&lt;Product&gt; read = WooCommerce.Products().read(productId).getResponse();</p>
  *  <p><i>Capitalised methods as they are class interfaces and so deserve to be capitalised</i>
  *  as opposed to:</p>
- *  <p>Read&lt;Product&gt; read = new ProductApi.Reader<>(productId).getResponse();</p>
+ *  <p>Read&lt;Product&gt; read = new ProductApi.Reader&lt;&gt;(productId).getResponse();</p>
  *  Pick your poison....
  *
- *  Aim is to provide easy simple access to the specialist builders in each [Object]Api
- *  Calling create, update, read .... on each [Object]Api which returns us a new Builder.
+ *  <p>Aim is to provide easy simple access to the specialist builders in each [Object]Api
+ *  Calling create, update, read .... on each [Object]Api which returns us a new [Builder].</p>
  *
- *  Each Specialist Builder(Creator, Reader, Updater, Deleter, ListAll, Batcher) is
- *  rigid in what is allowed and parameters that can be set.
- *  Aiming for a super simplistic interface.
- *  Mandatory parameters must be provided in the constructors.
- *  Optionals are set using standard setX(value)
+ *  <p>Each Specialist Builder (Creator, Reader, Updater, Deleter, ListAll, Batcher) is
+ *  rigid in what is allowed and parameters that can be set.</p>
+ *  Mandatory parameters must be provided in the constructors.<br>
+ *  Optionals are set using standard setX(value).
  *
  */
 public final class WooCommerce {
@@ -57,6 +56,7 @@ public final class WooCommerce {
     private static ReportApi reportsApi = null;
     private static TaxRateApi taxRateApi = null;
     private static TaxClassApi taxClassApi = null;
+    private static WebHooksApi webHooksApi = null;
 
     public static AuthenticationApi Authentication(){
         if (authenticationApi == null){
@@ -203,6 +203,13 @@ public final class WooCommerce {
             taxClassApi = new TaxClassApi();
         }
         return taxClassApi;
+    }
+
+    public static WebHooksApi Webhooks(){
+        if (webHooksApi == null){
+            webHooksApi = new WebHooksApi();
+        }
+        return webHooksApi;
     }
 
 }
