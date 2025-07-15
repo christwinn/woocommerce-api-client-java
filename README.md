@@ -10,6 +10,10 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 
 [Customers](README.md#customers)
 
+[Settings](README.md#settings)
+
+[SettingOptions](README.md#settingsOptions)
+
 Implemented, awaiting manual
 <ul>
     <li>CustomerDownloads</li>
@@ -130,7 +134,7 @@ private void Coupons() {
 ```
 </details>
 
-## [Customers](#Customers)
+## [Customers](#customers)
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
 
 <details>
@@ -262,6 +266,49 @@ private void Customers() {
 }
 ```
 
+</details>
+
+
+## [Settings](#settings)
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
+
+<details>
+<summary>Example code to list Settings using the WooCommerce API</summary>
+    
+```java
+private void Settings() {
+
+    /**List All**/
+    Listed<Setting> listing = WooCommerce.Settings().listing().getResponse();
+    for (Setting s : listing.getResult()){
+        System.out.println(s.toJson().replace("},{", "},\n{"));
+    }
+}
+```
+</details>
+
+## [SettingOptions](#settingOptions)
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties](https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties)
+
+<details>
+<summary>Example code to read/ update Settings using the WooCommerce API</summary>
+    
+```java
+private void Settings() {
+
+    /** Read a specific option**/
+    Read<SettingOption> read = WooCommerce.SettingOptions().read("general", "woocommerce_allowed_countries").getResponse();
+    System.out.println(read.getResult().toJson());
+
+
+    /**List All**/
+    Listed<Setting> listing = WooCommerce.Settings().listing().getResponse();
+    for (Setting s : listing.getResult()){
+        System.out.println(s.toJson());
+    }
+
+}
+```
 </details>
 
 # Why the Fork?
