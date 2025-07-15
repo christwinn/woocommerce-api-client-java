@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,19 +72,7 @@ public class CustomerApiTest {
 
     }
 
-    private ObjectMapper objectMapper(){
 
-        ObjectMapper objectMapper = new ObjectMapper()
-            .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            //.setDateFormat(new RFC3339DateFormat())
-            .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-
-        objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
-
-        return objectMapper;
-
-    }
 
     @Test
     void testListAllOrdersStatuses() throws IOException, InterruptedException {
@@ -118,7 +107,7 @@ public class CustomerApiTest {
             Paths.get("src/test/resources/wtx/woocommerce/api/client/" + frequest)
         ));
 
-        Batch batch = objectMapper().readValue(mockRequest, new TypeReference<Batch>(){});
+        Batch batch = new JacksonObjectMapper().getObjectMapper().readValue(mockRequest, new TypeReference<Batch>(){});
 
         System.out.println(batch.getRecordCount());
 
