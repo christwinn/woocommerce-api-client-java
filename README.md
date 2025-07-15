@@ -11,25 +11,29 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 [Customers](README.md#customers)
 
 Implemented, awaiting manual
-CustomerDownloads
-OrderActions
-Orders
-OrderNotes
-OrderRefunds
-Products
-ProductAttributes
-ProductAttributeTerms
-ProductCategory
-ProductCustomFields
-ProductReviews
-ProductShippingClasses
-ProductTags
-ProductVariations
-Refunds
-Reports
-TaxClasses
-TaxRates
-Webhooks
+<ul>
+    <li>CustomerDownloads</li>
+<li>OrderActions</li>
+<li>Orders</li>
+<li>OrderNotes</li>
+<li>OrderRefunds</li>
+<li>Products</li>
+<li>ProductAttributes</li>
+<li>ProductAttributeTerms</li>
+<li>ProductCategory</li>
+<li>ProductCustomFields</li>
+<li>ProductReviews</li>
+<li>ProductShippingClasses</li>
+<li>ProductTags</li>
+<li>ProductVariations</li>
+<li>Refunds</li>
+<li>Reports</li>
+<li>Settings</li>
+<li>SettingOptions</li>
+<li>TaxClasses</li>
+<li>TaxRates</li>
+<li>Webhooks</li>
+</ul>
 
 
 ## [Authentication](#authentication) 
