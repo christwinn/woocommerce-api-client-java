@@ -10,6 +10,28 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 
 [Customers](README.md#customers)
 
+Implemented, awaiting manual
+CustomerDownloads
+OrderActions
+Orders
+OrderNotes
+OrderRefunds
+Products
+ProductAttributes
+ProductAttributeTerms
+ProductCategory
+ProductCustomFields
+ProductReviews
+ProductShippingClasses
+ProductTags
+ProductVariations
+Refunds
+Reports
+TaxClasses
+TaxRates
+Webhooks
+
+
 ## [Authentication](#authentication) 
 It is assumed you have obtained the relevant credentials as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys](https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys)
 <details>
