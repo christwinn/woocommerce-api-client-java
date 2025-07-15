@@ -43,6 +43,8 @@ public class EndPoints {
     public static final String TAXES = "taxes";
         public static final String TAX_CLASSES = "taxes/classes";
 
+    public static final String SETTINGS = "settings";
+
     public static final String WEBHOOKS = "webhooks";
 
 

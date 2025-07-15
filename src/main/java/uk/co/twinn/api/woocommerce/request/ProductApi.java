@@ -408,6 +408,11 @@ public class ProductApi extends ApiRequest {
             return self();
         }
 
+        /**
+        *
+        * @param imageUrl adds this url to the images or creates a new list
+        * @return T
+        */
         public T setImage(String imageUrl){
             if (images == null){
                 images = new ArrayList<>();
@@ -415,8 +420,6 @@ public class ProductApi extends ApiRequest {
             images.add(new ProductImage().src(imageUrl));
             return self();
         }
-
-
 
         /**
          *

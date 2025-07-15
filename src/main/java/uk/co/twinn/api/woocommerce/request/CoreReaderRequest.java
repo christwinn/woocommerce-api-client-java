@@ -33,15 +33,6 @@ class CoreReaderRequest {
 
         T self() {return (T) this;}
 
-        /*
-         * @param id set the id for the record to read
-         * @return
-         */
-        /*public T setId(int id) {
-            this.id = id;
-            return self();
-        }*/
-
         /** this needs to be exported to inheritor but not beyond* package-private*/
         Read<?> getResponse(String endPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id, type);
@@ -85,11 +76,6 @@ class CoreReaderRequest {
             return (T) this;
         }
 
-        /*protected T setChildId(int childId) {
-            this.childId = childId;
-            return self();
-        }*/
-
         Read<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id + "/" + childEndPoint + "/" + childId, type);
         }
@@ -109,5 +95,46 @@ class CoreReaderRequest {
         }
 
     }
+
+    static class ReaderCoreStringKey<T extends ReaderCoreStringKey<?>> {
+
+        //set up the private variables
+        protected String key;
+
+        public ReaderCoreStringKey(String key){
+            this.key = key;
+        }
+
+        T self() {return (T) this;}
+
+        /** this needs to be exported to inheritor but not beyond* package-private*/
+        Read<?> getResponse(String endPoint, TypeReference<?> type){
+            return readResponse(endPoint + "/" + key, type);
+        }
+
+        /**
+         *  If the id is set returns a single productCategory
+         *  otherwise returns list of productCategory
+         */
+        private Read<?> readResponse(String endPoint, TypeReference<?> type){
+            if (key.isEmpty()) {
+                return new Read<>(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Read is limited to a single object result\n" +
+                            "Please set requested id"
+                    )
+                );
+            }else{
+                return new Read<>(
+                    new Rest().read(endPoint, type)
+                );
+            }
+        }
+
+    }
+
+
 
 }

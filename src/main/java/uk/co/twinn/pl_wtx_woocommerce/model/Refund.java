@@ -10,6 +10,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 public class Refund extends OrderRefund {
     private Integer parentId;
@@ -27,4 +28,9 @@ public class Refund extends OrderRefund {
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
+
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
+    }
+
 }

@@ -8,6 +8,7 @@
  */
 package uk.co.twinn.api.woocommerce.response.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.ws.rs.core.UriBuilderException;
@@ -77,6 +78,7 @@ public class ApiResponse {
         this.error = error;
     }
 
+    @JsonIgnore
     public ObjectMapper getObjectMapper(){
         return json.getObjectMapper();
     }

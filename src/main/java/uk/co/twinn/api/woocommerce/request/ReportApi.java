@@ -33,13 +33,13 @@ public class ReportApi {
 
     public Listed<ReportListItem> getList(){
 
-            return new Listed<ReportListItem>(
-                new Rest().listAll(
-                    REPORTS, //endPoint, SET endPoint
-                    "",
-                    new TypeReference<List<ReportListItem>>(){}
-                )
-            );
+        return new Listed<ReportListItem>(
+            new Rest().listAll(
+                REPORTS, //endPoint, SET endPoint
+                "",
+                new TypeReference<List<ReportListItem>>(){}
+            )
+        );
 
     }
 

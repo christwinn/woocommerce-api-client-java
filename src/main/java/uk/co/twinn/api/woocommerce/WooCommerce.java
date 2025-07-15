@@ -54,9 +54,13 @@ public final class WooCommerce {
     private static ProductVariationApi productVariationApi = null;
     private static RefundsApi refundsApi = null;
     private static ReportApi reportsApi = null;
+    private static SettingsApi settingsApi = null;
+    private static SettingOptionsApi settingOptionsApi = null;
     private static TaxRateApi taxRateApi = null;
     private static TaxClassApi taxClassApi = null;
     private static WebHooksApi webHooksApi = null;
+
+
 
     public static AuthenticationApi Authentication(){
         if (authenticationApi == null){
@@ -189,6 +193,20 @@ public final class WooCommerce {
             reportsApi = new ReportApi();
         }
         return reportsApi;
+    }
+
+    public static SettingsApi Settings(){
+        if (settingsApi == null){
+            settingsApi = new SettingsApi();
+        }
+        return settingsApi;
+    }
+
+    public static SettingOptionsApi SettingOptions(){
+        if (settingOptionsApi == null){
+            settingOptionsApi = new SettingOptionsApi();
+        }
+        return settingOptionsApi;
     }
 
     public static TaxRateApi TaxRates(){

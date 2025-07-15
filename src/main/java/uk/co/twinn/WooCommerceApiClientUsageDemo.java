@@ -89,8 +89,26 @@ public class WooCommerceApiClientUsageDemo {
                 )
                 .getResponse();
 */
-        Read<Product> read = WooCommerce.Products().read(1252).getResponse();
-        System.out.println(read.toJson());
+        Listed<Setting> listing = WooCommerce.Settings().listing().getResponse();
+
+        /*Read<Product> read = WooCommerce.Products().read(1252).getResponse();*/
+        for (Setting s : listing.getResult()){
+            System.out.println(s.toJson().replace("},{", "},\n{"));
+        }
+
+
+        Read<SettingOption> read = WooCommerce.SettingOptions().read("general", "woocommerce_allowed_countries").getResponse();
+
+        /*Read<Product> read = WooCommerce.Products().read(1252).getResponse();*/
+        System.out.println(read.getResult().toJson().replace(",", ",\n"));
+
+
+        Listed<SettingOption> listingOption = WooCommerce.SettingOptions().listing("general").getResponse();
+
+        /*Read<Product> read = WooCommerce.Products().read(1252).getResponse();*/
+        for (SettingOption s : listingOption.getResult()){
+            System.out.println(s.toJson().replace("},{", "},\n{"));
+        }
 
         /*Created<Message> message = WooCommerce.OrderActions().sendEmail(123).getResponse();
 
