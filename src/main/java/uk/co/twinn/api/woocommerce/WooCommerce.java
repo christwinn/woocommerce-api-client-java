@@ -12,15 +12,28 @@ package uk.co.twinn.api.woocommerce;
 import uk.co.twinn.api.woocommerce.request.*;
 
 /**
- * Purely a convenience class to allow nice easy fluent access to the API
+ *
+ * Purely a convenient utility class to allow nice easy fluent access to the API
  *  Allows us to write:
- *  Read<Product> read = WooCommerce.Products().read(productId).getResponse();
- *  Capitalised methods as they are class interfaces and so deserve to be capitalised
- *  as opposed to:
- *  Read<Product> read = new ProductApi.Reader<>(productId).getResponse();
+ *  <p>Read<Product> read = WooCommerce.Products().read(productId).getResponse();</p>
+ *  <p><i>Capitalised methods as they are class interfaces and so deserve to be capitalised</i>
+ *  as opposed to:</p>
+ *  <p>Read<Product> read = new ProductApi.Reader<>(productId).getResponse();</p>
  *  Pick your poison....
+ *
+ *  Aim is to provide easy simple access to the specialist builders in each [Object]Api
+ *  Calling create, update, read .... on each [Object]Api which returns us a new Builder.
+ *
+ *  Each Specialist Builder(Creator, Reader, Updater, Deleter, ListAll, Batcher) is
+ *  rigid in what is allowed and parameters that can be set.
+ *  Aiming for a super simplistic interface.
+ *  Mandatory parameters must be provided in the constructors.
+ *  Optionals are set using standard setX(value)
+ *
  */
-public class WooCommerce {
+public final class WooCommerce {
+
+    private WooCommerce(){}
 
     //lazily load these as required
     private static AuthenticationApi authenticationApi = null;
@@ -43,6 +56,7 @@ public class WooCommerce {
     private static RefundsApi refundsApi = null;
     private static ReportApi reportsApi = null;
     private static TaxRateApi taxRateApi = null;
+    private static TaxClassApi taxClassApi = null;
 
     public static AuthenticationApi Authentication(){
         if (authenticationApi == null){
@@ -182,6 +196,13 @@ public class WooCommerce {
             taxRateApi = new TaxRateApi();
         }
         return taxRateApi;
+    }
+
+    public static TaxClassApi TaxClass(){
+        if (taxClassApi == null){
+            taxClassApi = new TaxClassApi();
+        }
+        return taxClassApi;
     }
 
 }

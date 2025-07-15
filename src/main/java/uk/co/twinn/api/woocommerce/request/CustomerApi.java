@@ -279,11 +279,6 @@ public class CustomerApi extends ApiRequest {
             return (T) this;
         }
 
-        public T setBatch(Batch batch){
-            this.batch = batch;
-            return self();
-        }
-
         public T addCreators(List<Creator<?>> creators){
             //we need to extract the create
             for(Creator create : creators){

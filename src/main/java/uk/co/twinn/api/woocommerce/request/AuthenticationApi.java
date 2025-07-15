@@ -44,6 +44,10 @@ public class AuthenticationApi {
 
     }
 
+    public Https<?> https(){
+        return new Https();
+    }
+
     /**
      *
      * REST API keys

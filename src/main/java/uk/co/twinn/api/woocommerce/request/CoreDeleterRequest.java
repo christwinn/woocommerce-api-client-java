@@ -99,4 +99,44 @@ class CoreDeleterRequest {
 
     }
 
+
+
+    static class DeleterCoreStringKey<T extends DeleterCoreStringKey<?>>{
+
+        protected String key;
+        protected boolean force;
+
+        public DeleterCoreStringKey(String key, boolean force){
+            this.key = key;
+            this.force = force;
+        }
+
+        T self() {
+            return (T) this;
+        }
+
+        Deleted<?> getResponse(String endPoint, TypeReference<?> type){
+            return readResponse(endPoint + "/" + key + "?force=" + force, type);
+        }
+
+        private Deleted<?> readResponse(String endPoint, TypeReference<?> type){
+            if (key.isEmpty() || !force) {
+                return new Deleted<>(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Delete is limited to a single object result\n" +
+                            "Please set requested id AND set the Force!"
+                    )
+                );
+            }else{
+                return new Deleted<>(
+                    new Rest().delete(endPoint, type)
+                );
+            }
+
+        }
+
+    }
+
 }

@@ -39,6 +39,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
 
 /**
@@ -60,16 +61,6 @@ public class MetaData {
   @SerializedName(SERIALIZED_NAME_VALUE)
   @javax.annotation.Nullable
   private Object value;
-
-  public static final String SERIALIZED_NAME_DISPLAY_KEY = "display_key";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_KEY)
-  @javax.annotation.Nullable
-  private String displayKey;
-
-  public static final String SERIALIZED_NAME_DISPLAY_VALUE = "display_value";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_VALUE)
-  @javax.annotation.Nullable
-  private Object displayValue;
 
   public MetaData() {
   }
@@ -130,67 +121,6 @@ public class MetaData {
     this.value = value;
   }
 
-
-  public MetaData displayKey(@javax.annotation.Nullable String displayKey) {
-    this.displayKey = displayKey;
-    return this;
-  }
-
-  /**
-   * Meta key for UI display.
-   * @return displayKey
-   */
-  @javax.annotation.Nullable
-  public String getDisplayKey() {
-    return displayKey;
-  }
-
-  public void setDisplayKey(@javax.annotation.Nullable String displayKey) {
-    this.displayKey = displayKey;
-  }
-
-
-  public MetaData displayValue(@javax.annotation.Nullable Object displayValue) {
-    this.displayValue = displayValue;
-    return this;
-  }
-
-  /**
-   * Meta value for UI display.
-   * @return displayValue
-   */
-  @javax.annotation.Nullable
-  public Object getDisplayValue() {
-    return displayValue;
-  }
-
-  public void setDisplayValue(@javax.annotation.Nullable Object displayValue) {
-    this.displayValue = displayValue;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    MetaData metaData = (MetaData) o;
-    return Objects.equals(this.id, metaData.id) &&
-        Objects.equals(this.key, metaData.key) &&
-        Objects.equals(this.value, metaData.value) &&
-        Objects.equals(this.displayKey, metaData.displayKey) &&
-        Objects.equals(this.displayValue, metaData.displayValue);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, key, value, displayKey, displayValue);
-  }
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -198,8 +128,6 @@ public class MetaData {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    displayKey: ").append(toIndentedString(displayKey)).append("\n");
-    sb.append("    displayValue: ").append(toIndentedString(displayValue)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -216,98 +144,13 @@ public class MetaData {
   }
 
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("key");
-    openapiFields.add("value");
-    openapiFields.add("display_key");
-    openapiFields.add("display_value");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to MetaData
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!MetaData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in MetaData is not found in the empty JSON string", MetaData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!MetaData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MetaData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("key") != null && !jsonObj.get("key").isJsonNull()) && !jsonObj.get("key").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("key").toString()));
-      }
-      if ((jsonObj.get("display_key") != null && !jsonObj.get("display_key").isJsonNull()) && !jsonObj.get("display_key").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `display_key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("display_key").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!MetaData.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'MetaData' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<MetaData> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(MetaData.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<MetaData>() {
-           @Override
-           public void write(JsonWriter out, MetaData value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public MetaData read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of MetaData given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of MetaData
-   * @throws IOException if the JSON string is invalid with respect to MetaData
-   */
-  public static MetaData fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, MetaData.class);
-  }
-
   /**
    * Convert an instance of MetaData to an JSON string
    *
    * @return JSON string
    */
   public String toJson() {
-    return JSON.getGson().toJson(this);
+      return new JacksonObjectMapper().toJson(this);
   }
 }
 

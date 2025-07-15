@@ -22,6 +22,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.jetbrains.annotations.NotNull;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Configuration;
 
@@ -39,27 +40,7 @@ import java.util.logging.Logger;
  */
 public class Http {
 
-    /*public ApiResponseResult create(String target, List<NameValuePair> headers, List<NameValuePair> entity, String content){
-
-        json goes in content, we do not send if key=value in content
-        return create(target, headers, new ArrayList<>(), content);
-
-    }*/
-
-    private ObjectMapper getObjectMapper(){
-
-        ObjectMapper objectMapper = new ObjectMapper()
-            .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            //.setDateFormat(new RFC3339DateFormat())
-            .registerModule(new JavaTimeModule())
-            .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-
-        objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
-
-        return objectMapper;
-
-    }
+    private JacksonObjectMapper json = new JacksonObjectMapper();
 
     private ApiResponseResult parseResponse(CloseableHttpResponse response, TypeReference<?> typeReference){
 
@@ -72,21 +53,27 @@ public class Http {
                 case 201:
                     if (Configuration.isDebug()){
                         String r = EntityUtils.toString(response.getEntity());
-                        System.out.println(r.replace(",", ",\n"));
+                        Logger.getLogger(Http.class.getName()).log(
+                            Level.INFO,
+                            r.replace("},{", "},\n{")
+                        );
                         return new ApiResponseResult(
                             true,
                             sl.getStatusCode(),
-                            getObjectMapper().readValue(r, typeReference));
+                            json.getObjectMapper().readValue(r, typeReference));
                     }else {
                         return new ApiResponseResult(
                             true,
                             sl.getStatusCode(),
-                            getObjectMapper().readValue(EntityUtils.toString(response.getEntity()), typeReference));
+                            json.getObjectMapper().readValue(EntityUtils.toString(response.getEntity()), typeReference));
                     }
                 default:
                     if (Configuration.isDebug()){
                         String r = EntityUtils.toString(response.getEntity());
-                        System.out.println(r.replace(",", ",\n"));
+                        Logger.getLogger(Http.class.getName()).log(
+                            Level.INFO,
+                            r.replace(",", ",\n")
+                        );
                         return new ApiResponseResult(false, sl.getStatusCode(), r);
                     }else {
                         return new ApiResponseResult(false, sl.getStatusCode(), EntityUtils.toString(response.getEntity()));

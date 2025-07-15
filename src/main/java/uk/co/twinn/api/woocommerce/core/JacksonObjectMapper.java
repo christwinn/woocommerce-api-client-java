@@ -18,9 +18,10 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class JacksonObjectMapper {
 
-    private static ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
-    private static ObjectMapper objectMapper(){
+    /*1 standard way to load the objectMapper*/
+    private ObjectMapper objectMapper(){
 
         if (objectMapper == null) {
 
@@ -29,7 +30,9 @@ public class JacksonObjectMapper {
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 //.setDateFormat(new RFC3339DateFormat())
                 .registerModule(new JavaTimeModule())
-                .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+                //.setSerializationInclusion(JsonInclude.Include.NON_EMPTY); excludes empty ("") strings not what we want
+                //causes Php to error so... which if it is null then it is not included
+                .setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
 
             objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
 
@@ -39,7 +42,7 @@ public class JacksonObjectMapper {
 
     }
 
-    public static ObjectMapper getObjectMapper() {
+    public ObjectMapper getObjectMapper() {
         return objectMapper();
     }
 

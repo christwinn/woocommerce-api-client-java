@@ -721,7 +721,6 @@ public class ProductApi extends ApiRequest {
             return self();
         }
 
-
         public Listed<Product> getResponse(){
 
             return new Listed<>(

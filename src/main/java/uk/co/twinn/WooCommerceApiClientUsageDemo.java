@@ -12,6 +12,8 @@ package uk.co.twinn;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.api.woocommerce.request.*;
@@ -58,7 +60,7 @@ public class WooCommerceApiClientUsageDemo {
             }
         }*/
 
-        Created<Coupon> created = WooCommerce.Coupons().create()
+        /*Created<Coupon> created = WooCommerce.Coupons().create()
             .setCode("10off")
             .setDiscountType("percent")
             .setAmount(new BigDecimal(10))
@@ -86,10 +88,11 @@ public class WooCommerceApiClientUsageDemo {
                     WooCommerce.Coupons().delete(720, true)
                 )
                 .getResponse();
+*/
+        Read<Product> read = WooCommerce.Products().read(1252).getResponse();
+        System.out.println(read.toJson());
 
-        Read<Product> read = WooCommerce.Products().read(1).getResponse();
-
-        Created<Message> message = WooCommerce.OrderActions().sendEmail(123).getResponse();
+        /*Created<Message> message = WooCommerce.OrderActions().sendEmail(123).getResponse();
 
         Read<Product> readP = new ProductApi().read(1).getResponse();
         Deleted<OrderRefund> deleted = WooCommerce.OrderRefunds().delete(1, 2, true).getResponse();
@@ -103,7 +106,7 @@ public class WooCommerceApiClientUsageDemo {
             .setExcludeSaleItems(true)
             .setMinimumAmount(new BigDecimal(100.00))
             .getResponse();
-
+*/
         //Read<Product> product ; //= new ProductRequest.Reader<>().setId(315).getResponse();
 
         //System.out.println(product.toJson());
@@ -113,7 +116,7 @@ public class WooCommerceApiClientUsageDemo {
         //System.out.println(product.toJson());
 
 
-        Listed<ReportOrderTotalSummary> list = new ReportApi().getCustomersTotals();
+        /*Listed<ReportOrderTotalSummary> list = new ReportApi().getCustomersTotals();
 
         System.out.println(list.toJson());
 
@@ -124,7 +127,7 @@ public class WooCommerceApiClientUsageDemo {
         }
 
         System.out.println(new TaxRateApi.ListAll<>().getResponse().toJson());
-        System.out.println(new RefundsApi.ListAll<>().getResponse().toJson());
+        System.out.println(new RefundsApi.ListAll<>().getResponse().toJson());*/
 
         System.exit(0);
 
@@ -597,6 +600,108 @@ public class WooCommerceApiClientUsageDemo {
 
         System.out.println(ex);
 
+    }
+    public void Coupons() {
+        /** Create **/
+        Created<Coupon> created = WooCommerce.Coupons().create()
+            .setCode("10off")
+            .setDiscountType("percent")
+            .setAmount(new BigDecimal(10))
+            .setIndividualUse(true)
+            .setExcludeSaleItems(true)
+            .setMinimumAmount(new BigDecimal(100.00))
+            .getResponse();
+        /**Read**/
+        Read<Coupon> read = WooCommerce.Coupons().read(719).getResponse();
+
+        /**Update**/
+        Updated<Coupon> updated = WooCommerce.Coupons().update(719)
+            .setAmount(new BigDecimal(15))
+            .getResponse();
+        /**Delete**/
+        Deleted<Coupon> deleted = WooCommerce.Coupons().delete(719, true).getResponse();
+
+        /**List All**/
+        Listed<Coupon> listed = WooCommerce.Coupons().listing().getResponse();
+
+        /** Batch [Create, Update, Delete]**/
+        Batched<Coupon> batched = WooCommerce.Coupons().batch()
+            .addCreator(
+                WooCommerce.Coupons().create()
+                    .setCode("20off")
+                    .setDiscountType("percent")
+                    .setAmount(new BigDecimal(20))
+                    .setIndividualUse(true)
+                    .setExcludeSaleItems(true)
+                    .setMinimumAmount(new BigDecimal(100.00))
+            )
+            .addCreator(
+                WooCommerce.Coupons().create()
+                    .setCode("30off")
+                    .setDiscountType("percent")
+                    .setAmount(new BigDecimal(30))
+                    .setIndividualUse(true)
+                    .setExcludeSaleItems(true)
+                    .setMinimumAmount(new BigDecimal(400.00))
+            )
+            .addUpdater(
+                WooCommerce.Coupons().update(719)
+                    .setMinimumAmount(new BigDecimal(50))
+            )
+            .addDeleter(
+                WooCommerce.Coupons().delete(720, true)
+            )
+            .getResponse();
+
+        Message message = WooCommerce.Authentication()
+            .https()
+            .setWebsite("example.com")
+            .setApiPath("/wp-json/wc/v3")
+            .setKey("myverysecretkeythatIgotfrommywoocommerceinstallation")
+            .setSecret("myverysecretsecretthatIgotfrommywoocommerceinstallation")
+            .getResponse();
+
+
+        Created<Order> creator = WooCommerce.Orders().create()
+            .setPaymentMethod("bacs")
+            .setPaymentMethodTitle("Direct Bank Transfer")
+            .setPaid(true)
+            .setBilling(new Billing()
+                .firstName("John")
+                .lastName("Doe")
+                .company("")
+                .address1("969 Market Street")
+                .address2("")
+                .city("San Fancisco")
+                .state("CA")
+                .postcode("94103")
+                .email("john.doe@example.com")
+                .phone("(555) 555-5555")
+            )
+            .setShipping(new Shipping()
+                .firstName("John")
+                .lastName("Doe")
+                .company("")
+                .address1("969 Market")
+                .address2("")
+                .city("San Francisco")
+                .state("CA")
+                .postcode("94103")
+                .country("US")
+            )
+            .setLineItems(
+                Arrays.asList(
+                    new OrderLineItem().productId(93).quantity(2),
+                    new OrderLineItem().productId(22).variationId(23).quantity(2)
+                )
+            )
+            .setShippingLines(
+                Stream.of(
+                    new OrderShippingLine().methodId("flat_rate")
+                        .methodTitle("Flat Rate")
+                        .total(new BigDecimal(10))
+                ).collect(Collectors.toList())
+            ).getResponse();
     }
 
 }
