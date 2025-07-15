@@ -32,8 +32,6 @@ Implemented, awaiting manual
 <li>ProductVariations</li>
 <li>Refunds</li>
 <li>Reports</li>
-<li>Settings</li>
-<li>SettingOptions</li>
 <li>TaxClasses</li>
 <li>TaxRates</li>
 <li>Webhooks</li>
@@ -297,14 +295,33 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting
 private void SettingOptions() {
 
     /** Read a specific option**/
-    Read<SettingOption> read = WooCommerce.SettingOptions().read("general", "woocommerce_allowed_countries").getResponse();
+    Read<SettingOption> read = WooCommerce.SettingOptions()
+            .read("general", "woocommerce_allowed_countries")
+            .getResponse();
     System.out.println(read.getResult().toJson());
 
     /**List All**/
-    Listed<SettingOption> listingOption = WooCommerce.SettingOptions().listing("general").getResponse();
+    Listed<SettingOption> listingOption = WooCommerce.SettingOptions()
+            .listing("general")
+            .getResponse();
     for (SettingOption s : listingOption.getResult()){
         System.out.println(s.toJson().replace("},{", "},\n{"));
     }
+
+    /**Update**/
+    WooCommerce.SettingOptions()
+        .update("general", "woocommerce_allowed_countries")
+        .setValue("all_except")
+        .getResponse();
+
+    /*Batch*/
+    WooCommerce.SettingOptions().batch("general")
+        .addUpdater(
+            WooCommerce.SettingOptions()
+                .update("ignoredInBatch", "woocommerce_allowed_countries")
+                .setValue("all_except")
+        )
+        .getResponse();
 
 }
 ```
