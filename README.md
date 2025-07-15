@@ -12,7 +12,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 
 [Settings](README.md#settings)
 
-[SettingOptions](README.md#settingsOptions)
+[SettingOptions](README.md#settingOptions)
 
 Implemented, awaiting manual
 <ul>
