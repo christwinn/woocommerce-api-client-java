@@ -4,7 +4,7 @@
 The samples shown are the same as [https://woocommerce.github.io/woocommerce-rest-api-docs/](https://woocommerce.github.io/woocommerce-rest-api-docs/) but using this WooCommerce API Java Client
 
 ##### Code Sample Index  
-[Authentication](README.md#Authentication)
+[Authentication](README.md#authentication)
 
 [Coupons](README.md#coupons)
 
@@ -270,7 +270,7 @@ private void Customers() {
 
 
 ## [Settings](#settings)
-Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#settings](https://woocommerce.github.io/woocommerce-rest-api-docs/#settings)
 
 <details>
 <summary>Example code to list Settings using the WooCommerce API</summary>
@@ -294,17 +294,16 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting
 <summary>Example code to read/ update Settings using the WooCommerce API</summary>
     
 ```java
-private void Settings() {
+private void SettingOptions() {
 
     /** Read a specific option**/
     Read<SettingOption> read = WooCommerce.SettingOptions().read("general", "woocommerce_allowed_countries").getResponse();
     System.out.println(read.getResult().toJson());
 
-
     /**List All**/
-    Listed<Setting> listing = WooCommerce.Settings().listing().getResponse();
-    for (Setting s : listing.getResult()){
-        System.out.println(s.toJson());
+    Listed<SettingOption> listingOption = WooCommerce.SettingOptions().listing("general").getResponse();
+    for (SettingOption s : listingOption.getResult()){
+        System.out.println(s.toJson().replace("},{", "},\n{"));
     }
 
 }
