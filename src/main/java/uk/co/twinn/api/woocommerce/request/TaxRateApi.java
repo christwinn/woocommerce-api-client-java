@@ -148,7 +148,7 @@ public class TaxRateApi extends ApiRequest {
          *
          * @param country Country ISO 3166 code.
          *                See ISO 3166 Codes (Countries) for more details
-         *                <href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes">https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</a>
+         *                <a href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes">https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</a>
          * @return T
          */
         public T setCountry(String country) {
@@ -297,11 +297,6 @@ public class TaxRateApi extends ApiRequest {
             this.id = taxRateId;
         }
 
-        /*public T setId(int id) {
-            this.id = id;
-            return self();
-        }*/
-
         protected TaxRateApi build(){
             return new TaxRateApi(this);
         }
@@ -328,8 +323,6 @@ public class TaxRateApi extends ApiRequest {
         public Reader(int taxRateId){
             super(taxRateId);
         }
-        /*@Override
-        T self() {return (T) this;}*/
 
         public Read<TaxRate> getResponse(){
             return (Read<TaxRate>)super.getResponse(TAXES, new TypeReference<TaxRate>() {});
@@ -345,8 +338,6 @@ public class TaxRateApi extends ApiRequest {
         public Deleter(int taxRateId, boolean force){
             super(taxRateId, force);
         }
-        /*@Override
-        T self() {return (T) this;}*/
 
         protected TaxRateApi build(){
             return new TaxRateApi(this);

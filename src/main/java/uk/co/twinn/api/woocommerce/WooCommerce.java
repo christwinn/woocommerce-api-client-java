@@ -15,10 +15,10 @@ import uk.co.twinn.api.woocommerce.request.*;
  *
  * Purely a convenient utility class to allow nice easy fluent access to the API
  *  Allows us to write:
- *  <p>Read<Product> read = WooCommerce.Products().read(productId).getResponse();</p>
+ *  <p>Read&lt;Product&gt; read = WooCommerce.Products().read(productId).getResponse();</p>
  *  <p><i>Capitalised methods as they are class interfaces and so deserve to be capitalised</i>
  *  as opposed to:</p>
- *  <p>Read<Product> read = new ProductApi.Reader<>(productId).getResponse();</p>
+ *  <p>Read&lt;Product&gt; read = new ProductApi.Reader<>(productId).getResponse();</p>
  *  Pick your poison....
  *
  *  Aim is to provide easy simple access to the specialist builders in each [Object]Api
