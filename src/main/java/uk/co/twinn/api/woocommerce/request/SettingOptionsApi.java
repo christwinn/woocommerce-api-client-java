@@ -60,6 +60,12 @@ public class SettingOptionsApi extends ApiRequest {
 
     }
 
+    public Batcher<?> batch(String groupId){
+
+        return new Batcher<>(groupId);
+
+    }
+
     public String toJson(){
 
         try {
@@ -87,13 +93,17 @@ public class SettingOptionsApi extends ApiRequest {
 
     public static class Updater<T extends Updater<T>>{
 
-        private final String groupId;
+        private String groupId;
         private final String optionId;
 
         private Object value;
 
         public Updater(String groupId, String optionId){
             this.groupId = groupId;
+            this.optionId = optionId;
+        }
+
+        public Updater(String optionId){
             this.optionId = optionId;
         }
 

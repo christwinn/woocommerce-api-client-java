@@ -89,27 +89,34 @@ public class WooCommerceApiClientUsageDemo {
                 )
                 .getResponse();
 */
-        Listed<Setting> listing = WooCommerce.Settings().listing().getResponse();
+        //Listed<Setting> listing = WooCommerce.Settings().listing().getResponse();
 
         /*Read<Product> read = WooCommerce.Products().read(1252).getResponse();*/
-        for (Setting s : listing.getResult()){
+        /*for (Setting s : listing.getResult()){
             System.out.println(s.toJson().replace("},{", "},\n{"));
         }
 
 
-        Read<SettingOption> read = WooCommerce.SettingOptions().read("general", "woocommerce_allowed_countries").getResponse();
+        Read<SettingOption> read = WooCommerce.SettingOptions().read("general", "woocommerce_allowed_countries").getResponse();*/
 
         /*Read<Product> read = WooCommerce.Products().read(1252).getResponse();*/
-        System.out.println(read.getResult().toJson().replace(",", ",\n"));
+        /*System.out.println(read.getResult().toJson().replace(",", ",\n"));
 
 
         Listed<SettingOption> listingOption = WooCommerce.SettingOptions().listing("general").getResponse();
-
+*/
         /*Read<Product> read = WooCommerce.Products().read(1252).getResponse();*/
-        for (SettingOption s : listingOption.getResult()){
+        /*for (SettingOption s : listingOption.getResult()){
             System.out.println(s.toJson().replace("},{", "},\n{"));
         }
 
+        //WooCommerce.SettingOptions().update("general", "woocommerce_allowed_countries").setValue("all_except").getResponse();
+        WooCommerce.SettingOptions().batch("general")
+            .addUpdater(
+                WooCommerce.SettingOptions()
+                    .update("general","woocommerce_allowed_countries")
+                    .setValue("all_except"))
+            .getResponse();*/
         /*Created<Message> message = WooCommerce.OrderActions().sendEmail(123).getResponse();
 
         Read<Product> readP = new ProductApi().read(1).getResponse();
@@ -146,6 +153,16 @@ public class WooCommerceApiClientUsageDemo {
 
         System.out.println(new TaxRateApi.ListAll<>().getResponse().toJson());
         System.out.println(new RefundsApi.ListAll<>().getResponse().toJson());*/
+
+        /*Listed<PaymentGateway> gateways = WooCommerce.PaymentGateways().listing().getResponse();
+
+        for (PaymentGateway s : gateways.getResult()){
+            System.out.println(s.toJson(true));
+        }*/
+
+        Read<PaymentGateway> gateway = WooCommerce.PaymentGateways().read("woocommerce_payments").getResponse();
+
+        System.out.println(gateway.getResult().toJson(true));
 
         System.exit(0);
 

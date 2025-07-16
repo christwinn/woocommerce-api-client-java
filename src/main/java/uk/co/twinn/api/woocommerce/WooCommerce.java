@@ -43,6 +43,7 @@ public final class WooCommerce {
     private static OrderApi orderApi = null;
     private static OrderNoteApi orderNoteApi = null;
     private static OrderRefundApi orderRefundApi = null;
+    private static PaymentGatewaysApi paymentGatewaysApi = null;
     private static ProductApi productApi = null;
     private static ProductAttributeApi productAttributeApi = null;
     private static ProductAttributeTermApi productAttributeTermApi = null;
@@ -116,6 +117,13 @@ public final class WooCommerce {
             orderRefundApi = new OrderRefundApi();
         }
         return orderRefundApi;
+    }
+
+    public static PaymentGatewaysApi PaymentGateways(){
+        if (paymentGatewaysApi == null){
+            paymentGatewaysApi = new PaymentGatewaysApi();
+        }
+        return paymentGatewaysApi;
     }
 
     public static ProductApi Products(){

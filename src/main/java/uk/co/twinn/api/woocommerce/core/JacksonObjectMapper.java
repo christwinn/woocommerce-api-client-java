@@ -30,8 +30,9 @@ public class JacksonObjectMapper {
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 //.setDateFormat(new RFC3339DateFormat())
                 .registerModule(new JavaTimeModule())
-                //.setSerializationInclusion(JsonInclude.Include.NON_EMPTY); excludes empty ("") strings not what we want
-                //causes Php to error so... which if it is null then it is not included
+                //.setSerializationInclusion(JsonInclude.Include.NON_EMPTY); excludes empty ("") strings
+                // not what we want as it causes Php to error so...
+                // use NON_ABSENT which, if it is null then it is not included but includes isEmpty()
                 .setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
 
             objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
@@ -46,6 +47,16 @@ public class JacksonObjectMapper {
         return objectMapper();
     }
 
+    public String toJson(boolean makePretty, Object object){
+
+        if (makePretty){
+            return toPrettyJson(object);
+        }else{
+            return toJson(object);
+        }
+
+    }
+
     public String toJson(Object object){
 
         try {
@@ -54,6 +65,20 @@ public class JacksonObjectMapper {
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
+        }
+
+    }
+
+    public String toPrettyJson(Object object){
+
+        try {
+
+            return objectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(object);
+
+        } catch (JsonProcessingException e) {
+
+            throw new RuntimeException(e);
+
         }
 
     }
