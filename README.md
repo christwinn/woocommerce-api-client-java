@@ -14,6 +14,8 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 
 [Payment Gateways](README.md#payment-gateways)
 
+[Reports](README.md#reports)
+
 [Settings](README.md#settings)
 
 [SettingOptions](README.md#setting-options)
@@ -35,7 +37,6 @@ Implemented, awaiting manual
 <li>ProductTags</li>
 <li>ProductVariations</li>
 <li>Refunds</li>
-<li>Reports</li>
 <li>TaxClasses</li>
 <li>TaxRates</li>
 <li>Webhooks</li>
@@ -296,6 +297,47 @@ private void paymentGateways() {
 }
 ```
 </details>
+
+## [Reports](#reports)
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#reports](https://woocommerce.github.io/woocommerce-rest-api-docs/#reports)
+
+<details>
+<summary>Example code to retrieve the Reports using the WooCommerce API</summary>
+    
+```java
+private void reports() {
+
+    /*List All reports*/
+    Listed<ReportListItem> list = WooCommerce.Reports().getList();
+    System.out.println(list.toJson());
+
+    /*Retrieve sales report*/
+    Listed<ReportSalesSummary> sales = WooCommerce.Reports().getSalesSummary()
+    
+    /*Retrieve top sellers report*/
+    Listed<ReportTopSellersItem> topSellers = WooCommerce.Reports().getTopSellers();
+
+    /*Retrieve coupons totals*/
+    Listed<ReportOrderTotalSummary> coupons = WooCommerce.Reports().getCouponsTotals();
+
+    /*Retrieve customers totals*/
+    Listed<ReportOrderTotalSummary> customers = WooCommerce.Reports().getCustomersTotals();
+
+    /*Retrieve orders totals*/
+    Listed<ReportOrderTotalSummary> orders = WooCommerce.Reports().getOrdersTotals();
+
+    /*Retrieve products totals*/
+    Listed<ReportOrderTotalSummary> products = WooCommerce.Reports().getProductsTotals();
+
+    /*Retrieve reviews totals*/
+    Listed<ReportOrderTotalSummary> reviews = WooCommerce.Reports().getReviewsTotals();
+
+}
+```
+</details>
+
+Listed<ReportOrderTotalSummary> list = new ReportApi().getCustomersTotals();
 
 ## [Settings](#settings)
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#settings](https://woocommerce.github.io/woocommerce-rest-api-docs/#settings)
