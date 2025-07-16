@@ -10,11 +10,11 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 
 [Customers](README.md#customers)
 
-[Payment Gateways](README.md#paymentGateways)
+[Payment Gateways](README.md#payment-gateways)
 
 [Settings](README.md#settings)
 
-[SettingOptions](README.md#settingOptions)
+[SettingOptions](README.md#setting-options)
 
 Implemented, awaiting manual
 <ul>
@@ -268,7 +268,7 @@ private void customers() {
 
 </details>
 
-## [Payment Gateways](#paymentGateways)
+## [Payment Gateways](#payment-gateways)
 
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways](https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways)
 
@@ -313,7 +313,7 @@ private void settings() {
 ```
 </details>
 
-## [SettingOptions](#settingOptions)
+## [SettingOptions](#setting-options)
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties](https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties)
 
 <details>
