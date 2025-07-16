@@ -269,6 +269,7 @@ private void customers() {
 </details>
 
 ## [Payment Gateways](#paymentGateways)
+
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways](https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways)
 
 <details>
