@@ -4,32 +4,38 @@
 The samples shown are the same as [https://woocommerce.github.io/woocommerce-rest-api-docs/](https://woocommerce.github.io/woocommerce-rest-api-docs/) but using this WooCommerce API Java Client
 
 ##### Code Sample Index  
-[Authentication](README.md#Authentication)
+[Authentication](README.md#authentication)
 
 [Coupons](README.md#coupons)
 
 [Customers](README.md#customers)
 
+[Settings](README.md#settings)
+
+[SettingOptions](README.md#settingOptions)
+
 Implemented, awaiting manual
-CustomerDownloads
-OrderActions
-Orders
-OrderNotes
-OrderRefunds
-Products
-ProductAttributes
-ProductAttributeTerms
-ProductCategory
-ProductCustomFields
-ProductReviews
-ProductShippingClasses
-ProductTags
-ProductVariations
-Refunds
-Reports
-TaxClasses
-TaxRates
-Webhooks
+<ul>
+    <li>CustomerDownloads</li>
+<li>OrderActions</li>
+<li>Orders</li>
+<li>OrderNotes</li>
+<li>OrderRefunds</li>
+<li>Products</li>
+<li>ProductAttributes</li>
+<li>ProductAttributeTerms</li>
+<li>ProductCategory</li>
+<li>ProductCustomFields</li>
+<li>ProductReviews</li>
+<li>ProductShippingClasses</li>
+<li>ProductTags</li>
+<li>ProductVariations</li>
+<li>Refunds</li>
+<li>Reports</li>
+<li>TaxClasses</li>
+<li>TaxRates</li>
+<li>Webhooks</li>
+</ul>
 
 
 ## [Authentication](#authentication) 
@@ -126,7 +132,7 @@ private void Coupons() {
 ```
 </details>
 
-## [Customers](#Customers)
+## [Customers](#customers)
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
 
 <details>
@@ -258,6 +264,67 @@ private void Customers() {
 }
 ```
 
+</details>
+
+
+## [Settings](#settings)
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#settings](https://woocommerce.github.io/woocommerce-rest-api-docs/#settings)
+
+<details>
+<summary>Example code to list Settings using the WooCommerce API</summary>
+    
+```java
+private void Settings() {
+
+    /**List All**/
+    Listed<Setting> listing = WooCommerce.Settings().listing().getResponse();
+    for (Setting s : listing.getResult()){
+        System.out.println(s.toJson().replace("},{", "},\n{"));
+    }
+}
+```
+</details>
+
+## [SettingOptions](#settingOptions)
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties](https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties)
+
+<details>
+<summary>Example code to read/ update Settings using the WooCommerce API</summary>
+    
+```java
+private void SettingOptions() {
+
+    /** Read a specific option**/
+    Read<SettingOption> read = WooCommerce.SettingOptions()
+            .read("general", "woocommerce_allowed_countries")
+            .getResponse();
+    System.out.println(read.getResult().toJson());
+
+    /**List All**/
+    Listed<SettingOption> listingOption = WooCommerce.SettingOptions()
+            .listing("general")
+            .getResponse();
+    for (SettingOption s : listingOption.getResult()){
+        System.out.println(s.toJson().replace("},{", "},\n{"));
+    }
+
+    /**Update**/
+    WooCommerce.SettingOptions()
+        .update("general", "woocommerce_allowed_countries")
+        .setValue("all_except")
+        .getResponse();
+
+    /*Batch*/
+    WooCommerce.SettingOptions().batch("general")
+        .addUpdater(
+            WooCommerce.SettingOptions()
+                .update("ignoredInBatch", "woocommerce_allowed_countries")
+                .setValue("all_except")
+        )
+        .getResponse();
+
+}
+```
 </details>
 
 # Why the Fork?
