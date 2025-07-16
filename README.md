@@ -10,6 +10,8 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 
 [Customers](README.md#customers)
 
+[Payment Gateways](README.md#paymentGateways)
+
 [Settings](README.md#settings)
 
 [SettingOptions](README.md#settingOptions)
@@ -44,7 +46,7 @@ It is assumed you have obtained the relevant credentials as per [https://woocomm
 <summary>Example methods to Authenticate when using the WooCommerce API</summary>
     
 ```java
-private void Authentication(){
+private void authentication(){
 
     /** The simplest method is to place a file under ~/woocommerce-api/config.json 
     {
@@ -77,7 +79,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons
 <summary>Example code to Create, Read, Update, Delete, Batch and get listed Coupons using the WooCommerce API</summary>
     
 ```java
-private void Coupons() {
+private void coupons() {
     /** Create **/
     Created<Coupon> created = WooCommerce.Coupons().create()
                         .setCode("10off")
@@ -139,7 +141,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#custome
 <summary>Example code to Create, Read, Update, Delete, Batch and get listed Customers using the WooCommerce API</summary>
     
 ```java
-private void Customers() {
+private void customers() {
     /** Create **/
     Created<Customer> created = WooCommerce.Customers().create()
                         .setEmail("john.doe@example.co")
@@ -266,6 +268,31 @@ private void Customers() {
 
 </details>
 
+## [Payment Gateways](#paymentGateways)
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways](https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways)
+
+<details>
+<summary>Example code to list and update Payment Gateways using the WooCommerce API</summary>
+    
+```java
+private void paymentGateways() {
+
+    /*Read*/
+    Read<PaymentGateway> gateway = WooCommerce.PaymentGateways().read("woocommerce_payments").getResponse();
+    System.out.println(gateway.getResult().toJson(true)); //pretty print
+
+    /**List All**/
+    Listed<PaymentGateway> gateways = WooCommerce.PaymentGateways().listing().getResponse();
+    for (PaymentGateway s : gateways.getResult()){
+        System.out.println(s.toJson(true)); //pretty print
+    }
+
+    /*Update*/
+    Updated<PaymentGateway> update = WooCommerce.PaymentGateways().update("woocommerce_payments")
+                .setEnable(true).getResponse();
+}
+```
+</details>
 
 ## [Settings](#settings)
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#settings](https://woocommerce.github.io/woocommerce-rest-api-docs/#settings)
@@ -274,7 +301,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting
 <summary>Example code to list Settings using the WooCommerce API</summary>
     
 ```java
-private void Settings() {
+private void settings() {
 
     /**List All**/
     Listed<Setting> listing = WooCommerce.Settings().listing().getResponse();
@@ -292,7 +319,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting
 <summary>Example code to read/ update Settings using the WooCommerce API</summary>
     
 ```java
-private void SettingOptions() {
+private void settingOptions() {
 
     /** Read a specific option**/
     Read<SettingOption> read = WooCommerce.SettingOptions()
