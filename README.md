@@ -337,8 +337,6 @@ private void reports() {
 ```
 </details>
 
-Listed<ReportOrderTotalSummary> list = new ReportApi().getCustomersTotals();
-
 ## [Settings](#settings)
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#settings](https://woocommerce.github.io/woocommerce-rest-api-docs/#settings)
 
