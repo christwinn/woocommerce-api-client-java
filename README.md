@@ -1,6 +1,8 @@
 
 # A fluent client WooCommerce Java Api
 
+A deceptively simple java interface to the WooCommerce API
+
 The samples shown are the same as [https://woocommerce.github.io/woocommerce-rest-api-docs/](https://woocommerce.github.io/woocommerce-rest-api-docs/) but using this WooCommerce API Java Client
 
 ##### Code Sample Index  
