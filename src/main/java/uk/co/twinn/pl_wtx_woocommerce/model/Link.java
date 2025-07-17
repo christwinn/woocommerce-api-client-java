@@ -9,18 +9,8 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
-import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
-
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 public class Link {
 
@@ -72,12 +62,13 @@ public class Link {
 
 
     /**
-     * Convert an instance of Billing to an JSON string
+     * Convert an instance of this to an JSON string
      *
      * @return JSON string
      */
+
     public String toJson() {
-        return JSON.getGson().toJson(this);
+        return new JacksonObjectMapper().toJson(this);
     }
 
 }

@@ -11,9 +11,6 @@ package uk.co.twinn.api.woocommerce.rest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import uk.co.twinn.api.woocommerce.core.Batch;
-import uk.co.twinn.api.woocommerce.request.*;
-import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 
@@ -23,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import uk.co.twinn.api.woocommerce.transportation.Http;
-import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
 public class Rest {
 

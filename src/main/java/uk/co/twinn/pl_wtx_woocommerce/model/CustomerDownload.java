@@ -9,7 +9,9 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.time.LocalDateTime;
 
@@ -128,6 +130,10 @@ public class CustomerDownload {
 
     public void setFile(CustomerDownloadFile file) {
         this.file = file;
+    }
+
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
     }
 
 }

@@ -9,11 +9,11 @@
 
 package uk.co.twinn.api.woocommerce.demonstration;
 
-import uk.co.twinn.api.woocommerce.WooCommerce;
+import uk.co.twinn.api.woocommerce.api.Customers;
 import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
-import uk.co.twinn.api.woocommerce.request.CustomerApi;
+import uk.co.twinn.api.woocommerce.builders.CustomerBuilder;
 import uk.co.twinn.api.woocommerce.response.*;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class CustomerDemo {
             .postcode("94103")
             .country("US");
 
-        Created<Customer> response = new CustomerApi.Creator<>()
+        Created<Customer> response = new CustomerBuilder.Creator<>()
             .setEmail("john.doe@example.com")
             .setFirstName("John")
             .setLastName("Doe")
@@ -81,7 +81,7 @@ public class CustomerDemo {
             .getResponse() //returns object not Customer using full paths cast issues
             .getResult();*/
 
-        return WooCommerce.Customers().read(customerId)
+        return Customers.read(customerId)
             .getResponse()
             .getResult();
 
@@ -89,7 +89,7 @@ public class CustomerDemo {
 
     public List<Customer> retrieveCustomers(String customerEmail){
 
-        return new CustomerApi.ListAll<>()
+        return Customers.listing()
             .setEmail(customerEmail)
             .getResponse()
             .getResult();
@@ -98,7 +98,7 @@ public class CustomerDemo {
 
     public List<Customer> listAllCustomers(){
 
-        Listed<Customer> response = new CustomerApi.ListAll<>()
+        Listed<Customer> response = new CustomerBuilder.ListAll<>()
             .getResponse();
 
         return response.getResult();
@@ -107,7 +107,7 @@ public class CustomerDemo {
 
     public Customer updateACustomer(int customerId){
 
-        Updated<Customer> response = WooCommerce.Customers().update(customerId)
+        Updated<Customer> response = Customers.update(customerId)
             .setFirstName("James")
             .setShipping(new Shipping().firstName("James"))
             .getResponse();
@@ -118,10 +118,10 @@ public class CustomerDemo {
 
     public Customer deleteACustomer(int customerId){
 
-        Deleted<Customer> response = WooCommerce.Customers().delete(customerId,true)
+        Deleted<Customer> response = Customers.delete(customerId,true)
             .getResponse();
 
-        Deleted<Customer> responseB = new CustomerApi.Deleter(customerId,true)
+        Deleted<Customer> responseB = Customers.delete(customerId,true)
             .getResponse();
 
         return responseB.getResult();
@@ -129,12 +129,12 @@ public class CustomerDemo {
     }
 
     public Batched<Customer> batchUpdateCustomers(
-        List<CustomerApi.Creator<?>> createThese,
-        List<CustomerApi.Updater<?>> modifyThese,
-        List<CustomerApi.Deleter<?>> deleteThese
+        List<CustomerBuilder.Creator<?>> createThese,
+        List<CustomerBuilder.Updater<?>> modifyThese,
+        List<CustomerBuilder.Deleter<?>> deleteThese
     ){
 
-        return new CustomerApi.Batcher<>()
+        return Customers.batch()
             .addCreators(createThese)
             .addUpdaters(modifyThese)
             .addDeleters(deleteThese)
@@ -144,22 +144,22 @@ public class CustomerDemo {
 
     public Batched<Customer> batchUpdateCustomers(){
 
-        return new CustomerApi.Batcher<>()
+        return new CustomerBuilder.Batcher<>()
             .addCreators(getBatchCreate())
             .getResponse();
 
     }
 
-    private List<CustomerApi.Creator<?>> getBatchCreate() {
+    private List<CustomerBuilder.Creator<?>> getBatchCreate() {
 
-        List<CustomerApi.Creator<?>> list = new ArrayList<>();
+        List<CustomerBuilder.Creator<?>> list = new ArrayList<>();
         list.add(getJohnDoe());
         list.add(getJoaoSilva());
         return list;
 
     }
 
-    private CustomerApi.Creator<?> getJohnDoe(){
+    private CustomerBuilder.Creator<?> getJohnDoe(){
 
         Billing billing = new Billing()
             .firstName("John")
@@ -184,7 +184,7 @@ public class CustomerDemo {
             .postcode("94103")
             .country("US");
 
-        return new CustomerApi.Creator<>()
+        return new CustomerBuilder.Creator<>()
             .setEmail("john.doe@example.com")
             .setFirstName("John")
             .setLastName("Doe")
@@ -194,7 +194,7 @@ public class CustomerDemo {
 
     }
 
-    private CustomerApi.Creator<?> getJoaoSilva(){
+    private CustomerBuilder.Creator<?> getJoaoSilva(){
 
         Billing billing = new Billing()
             .firstName("Joao")
@@ -220,7 +220,7 @@ public class CustomerDemo {
             .postcode("12345-000")
             .country("BR");
 
-        return new CustomerApi.Creator<>()
+        return new CustomerBuilder.Creator<>()
             .setEmail("joao.silva2@example.com")
             .setFirstName("Joao")
             .setLastName("Silva")

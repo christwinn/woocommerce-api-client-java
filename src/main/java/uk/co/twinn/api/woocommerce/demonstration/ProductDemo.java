@@ -9,7 +9,7 @@
 
 package uk.co.twinn.api.woocommerce.demonstration;
 
-import uk.co.twinn.api.woocommerce.request.ProductApi;
+import uk.co.twinn.api.woocommerce.builders.ProductBuilder;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
@@ -29,7 +29,7 @@ public class ProductDemo {
     ){
 
         Created<Product> created =
-            new ProductApi.Creator<>()
+            new ProductBuilder.Creator<>()
                 .setSku(sku)
                 .setName(name)
                 .setDescription(description)
@@ -50,7 +50,7 @@ public class ProductDemo {
         int id
     ){
         Read<Product> read =
-            new ProductApi.Reader<>(id)
+            new ProductBuilder.Reader<>(id)
                 .getResponse();
 
         if (read.isSuccess()){
@@ -68,13 +68,13 @@ public class ProductDemo {
         int menuOrder
     ){
 
-        Read<Product> read = new ProductApi.Reader<>(id).getResponse();
+        Read<Product> read = new ProductBuilder.Reader<>(id).getResponse();
 
         if (read.isSuccess()){
 
             Product existing = read.getResult();
 
-            ProductApi.Updater<?> update = new ProductApi.Updater(id);
+            ProductBuilder.Updater<?> update = new ProductBuilder.Updater(id);
 
             update.setRegularPrice(new BigDecimal(9.99));
 
@@ -103,7 +103,7 @@ public class ProductDemo {
 
     private void searchProduct(String sku){
 
-        Listed<Product> isListed = new ProductApi.ListAll<>().setSku(sku).getResponse();
+        Listed<Product> isListed = new ProductBuilder.ListAll<>().setSku(sku).getResponse();
         if (isListed.isSuccess()){
             if (isListed.getResult().isEmpty()){
 

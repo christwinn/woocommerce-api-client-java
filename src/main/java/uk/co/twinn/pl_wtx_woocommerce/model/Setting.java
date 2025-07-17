@@ -69,7 +69,6 @@ public class Setting {
         this.subGroups = subGroups;
     }
 
-    @JsonIgnore
     public String toJson() {
         return new JacksonObjectMapper().toJson(this);
     }

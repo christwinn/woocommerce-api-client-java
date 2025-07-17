@@ -9,7 +9,7 @@
 
 package uk.co.twinn.api.woocommerce.demonstration;
 
-import uk.co.twinn.api.woocommerce.request.ProductCategoryApi;
+import uk.co.twinn.api.woocommerce.builders.ProductCategoryBuilder;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.Updated;
@@ -39,7 +39,7 @@ public class ProductCategoryDemo {
     ){
 
         return
-            new ProductCategoryApi.Creator<>()
+            new ProductCategoryBuilder.Creator<>()
                 .setName(name)
                 .setDescription(description)
                 .setImage(wooCommerceImageUrl)
@@ -50,7 +50,7 @@ public class ProductCategoryDemo {
 
     public Read<ProductCategory> readProductCategory(int productCategoryId){
 
-        return new ProductCategoryApi.Reader<>(productCategoryId)
+        return new ProductCategoryBuilder.Reader<>(productCategoryId)
             .getResponse();
 
     }
@@ -62,7 +62,7 @@ public class ProductCategoryDemo {
     ){
 
         return
-            new ProductCategoryApi.Updater<>(productCategoryId)
+            new ProductCategoryBuilder.Updater<>(productCategoryId)
                 .setName(name)
                 .setDescription(description)
                 .setImage(wooCommerceImageUrl)
@@ -101,7 +101,7 @@ public class ProductCategoryDemo {
         String imgUrl = (isRetry ? DESTINATION : SOURCE) + image;
 
         Created<ProductCategory> created =
-            new ProductCategoryApi.Creator<>()
+            new ProductCategoryBuilder.Creator<>()
                 .setParent(parentId)
                 .setName(name)
                 .setDescription(description)
@@ -172,8 +172,8 @@ public class ProductCategoryDemo {
         ProductCategory existingCategory, boolean retry
     ){
 
-        ProductCategoryApi.Updater<?> update =
-            new ProductCategoryApi.Updater(wooId);
+        ProductCategoryBuilder.Updater<?> update =
+            new ProductCategoryBuilder.Updater(wooId);
 
         boolean updatingImage = false;
 

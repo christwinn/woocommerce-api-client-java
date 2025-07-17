@@ -15,8 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import uk.co.twinn.api.woocommerce.WooCommerce;
-import uk.co.twinn.api.woocommerce.request.*;
+import uk.co.twinn.api.woocommerce.api.*;
 import uk.co.twinn.api.woocommerce.response.*;
 
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
@@ -25,8 +24,8 @@ import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
 
 /**
  * WooCommerce API Client - Usage Demo
- * @author WTX Labs
- * @see "https://github.com/wtx-labs/woocommerce-api-client-java"
+ *
+ * A lot of Models from <a href="https://github.com/wtx-labs/woocommerce-api-client-java">https://github.com/wtx-labs/woocommerce-api-client-java</a>
  * license MIT
  */
 public class WooCommerceApiClientUsageDemo {
@@ -141,6 +140,10 @@ public class WooCommerceApiClientUsageDemo {
         //System.out.println(product.toJson());
 
 
+        Read<Product> list = Products.read(1).getResponse();
+        Read<Product> read = Products.read(1).getResponse();
+
+        System.out.println(list.toJson());
         /*Listed<ReportOrderTotalSummary> list = new ReportApi().getCustomersTotals();
 
         System.out.println(list.toJson());
@@ -160,10 +163,12 @@ public class WooCommerceApiClientUsageDemo {
             System.out.println(s.toJson(true));
         }*/
 
-        Read<PaymentGateway> gateway = WooCommerce.PaymentGateways().read("woocommerce_payments").getResponse();
+        /*Read<PaymentGateway> gateway = WooCommerce.PaymentGateways().read("woocommerce_payments").getResponse();
 
         System.out.println(gateway.getResult().toJson(true));
 
+        Updated<PaymentGateway> update = WooCommerce.PaymentGateways().update("woocommerce_payments")
+                .setEnable(true).getResponse();*/
         System.exit(0);
 
         /*String date = "2025-07-03T11:12:55Z";
@@ -304,13 +309,12 @@ public class WooCommerceApiClientUsageDemo {
         }*/
 
         //Customer fred = new CustomerTestRequest.Reader<>().setId(1).getResponse().getResult();
-        new CouponApi.Reader<>(1).getResponse();
-        new CouponApi.Deleter<>(1, true).getResponse();
-        new CouponApi.Deleter<>(1, true).getResponse();
-        new OrderNoteApi.Deleter<>(1,2, true).getResponse();
+        Coupons.read(1).getResponse();
+        Coupons.delete(1, true).getResponse();
+        Coupons.delete(1, true).getResponse();
+        OrderNotes.delete(1,2, true).getResponse();
 
-        Updated<ProductCategory> category2 = new ProductCategoryApi
-            .Updater<>(17)
+        Updated<ProductCategory> category2 = ProductCategories.update(17)
             .setImage("https://wordpress.mackay.co.uk/wp-content/uploads/media/256/category/Angle.2.png")
             .getResponse();
 
@@ -356,7 +360,7 @@ public class WooCommerceApiClientUsageDemo {
     private static void createAndReadProductCategories() {
 
         Created<ProductCategory> createResponse =
-            new ProductCategoryApi.Creator<>()
+            ProductCategories.create()
                 .setName("NEW Category Name 123")
                 .setDescription("Category Description")
                 .setParent(0)
@@ -393,7 +397,7 @@ public class WooCommerceApiClientUsageDemo {
         if (id == 0){
 
             List<ProductCategory> categories =
-                new ProductCategoryApi.ListAll<>()
+                ProductCategories.listing()
                     .getResponse().getResult();
 
             for (ProductCategory productCategory : categories) {
@@ -403,7 +407,7 @@ public class WooCommerceApiClientUsageDemo {
         }else{
 
             ProductCategory category =
-                new ProductCategoryApi.Reader<>(id)
+                ProductCategories.read(id)
                     .getResponse().getResult();
 
                 System.out.println(category.toString());
@@ -415,7 +419,7 @@ public class WooCommerceApiClientUsageDemo {
     private static void crudPlusProducts(){
 
         String sku = "A1234567";
-        Created<Product> create = new ProductApi.Creator<>()
+        Created<Product> create = Products.create()
             .setSku(sku)
             .setName("My New Product")
             .setDescription("<b>This is a bold assertion</b><br/>Buy Five Get one Free!")
@@ -459,7 +463,7 @@ public class WooCommerceApiClientUsageDemo {
 
         if (id == 0) {
 
-            Listed<Product> response = new ProductApi.ListAll<>()
+            Listed<Product> response = Products.listing()
                 .getResponse();
 
             if (response.isSuccess()) {
@@ -485,14 +489,14 @@ public class WooCommerceApiClientUsageDemo {
 
         }else{
 
-            Product product = new ProductApi.Reader<>(id)
+            Product product = Products.read(id)
                 .getResponse()
                 .getResult();
 
             printProduct(product);
 
             try {
-                Updated<Product> response = new ProductApi.Updater<>(product.getId())
+                Updated<Product> response = Products.update(product.getId())
                     .setSku("22221111")//.setMetaData(product.getMetaData())
                     .getResponse();
 
@@ -514,8 +518,7 @@ public class WooCommerceApiClientUsageDemo {
 
     private static void updateProduct(int id, String description){
 
-        Updated<Product> updater = new ProductApi
-            .Updater<>(id)
+        Updated<Product> updater = Products.update(id)
             .setDescription(description)
             .getResponse();
 
@@ -548,7 +551,7 @@ public class WooCommerceApiClientUsageDemo {
 
     private static void seekProduct(String sku){
 
-        Listed<Product> seeker = new ProductApi.ListAll<>()
+        Listed<Product> seeker = Products.listing()
             .setSku(sku)
             .getResponse();
 
@@ -638,7 +641,7 @@ public class WooCommerceApiClientUsageDemo {
     }
     public void Coupons() {
         /** Create **/
-        Created<Coupon> created = WooCommerce.Coupons().create()
+        Created<Coupon> created = Coupons.create()
             .setCode("10off")
             .setDiscountType("percent")
             .setAmount(new BigDecimal(10))
@@ -647,22 +650,22 @@ public class WooCommerceApiClientUsageDemo {
             .setMinimumAmount(new BigDecimal(100.00))
             .getResponse();
         /**Read**/
-        Read<Coupon> read = WooCommerce.Coupons().read(719).getResponse();
+        Read<Coupon> read = Coupons.read(719).getResponse();
 
         /**Update**/
-        Updated<Coupon> updated = WooCommerce.Coupons().update(719)
+        Updated<Coupon> updated = Coupons.update(719)
             .setAmount(new BigDecimal(15))
             .getResponse();
         /**Delete**/
-        Deleted<Coupon> deleted = WooCommerce.Coupons().delete(719, true).getResponse();
+        Deleted<Coupon> deleted = Coupons.delete(719, true).getResponse();
 
         /**List All**/
-        Listed<Coupon> listed = WooCommerce.Coupons().listing().getResponse();
+        Listed<Coupon> listed = Coupons.listing().getResponse();
 
         /** Batch [Create, Update, Delete]**/
-        Batched<Coupon> batched = WooCommerce.Coupons().batch()
+        Batched<Coupon> batched =Coupons.batch()
             .addCreator(
-                WooCommerce.Coupons().create()
+                Coupons.create()
                     .setCode("20off")
                     .setDiscountType("percent")
                     .setAmount(new BigDecimal(20))
@@ -671,7 +674,7 @@ public class WooCommerceApiClientUsageDemo {
                     .setMinimumAmount(new BigDecimal(100.00))
             )
             .addCreator(
-                WooCommerce.Coupons().create()
+                Coupons.create()
                     .setCode("30off")
                     .setDiscountType("percent")
                     .setAmount(new BigDecimal(30))
@@ -680,16 +683,15 @@ public class WooCommerceApiClientUsageDemo {
                     .setMinimumAmount(new BigDecimal(400.00))
             )
             .addUpdater(
-                WooCommerce.Coupons().update(719)
+                Coupons.update(719)
                     .setMinimumAmount(new BigDecimal(50))
             )
             .addDeleter(
-                WooCommerce.Coupons().delete(720, true)
+                Coupons.delete(720, true)
             )
             .getResponse();
 
-        Message message = WooCommerce.Authentication()
-            .https()
+        Message message = Authentication.https()
             .setWebsite("example.com")
             .setApiPath("/wp-json/wc/v3")
             .setKey("myverysecretkeythatIgotfrommywoocommerceinstallation")
@@ -697,7 +699,7 @@ public class WooCommerceApiClientUsageDemo {
             .getResponse();
 
 
-        Created<Order> creator = WooCommerce.Orders().create()
+        Created<Order> creator = Orders.create()
             .setPaymentMethod("bacs")
             .setPaymentMethodTitle("Direct Bank Transfer")
             .setPaid(true)

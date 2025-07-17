@@ -22,25 +22,9 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
-import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
 
 /**
  * MetaData
@@ -149,8 +133,8 @@ public class MetaData {
    *
    * @return JSON string
    */
-  public String toJson() {
-      return new JacksonObjectMapper().toJson(this);
-  }
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
+    }
 }
 

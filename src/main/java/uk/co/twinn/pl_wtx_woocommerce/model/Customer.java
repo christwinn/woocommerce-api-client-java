@@ -25,27 +25,13 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 /**
@@ -573,8 +559,9 @@ public class Customer {
    *
    * @return JSON string
    */
+
   public String toJson() {
-    return JSON.getGson().toJson(this);
+      return new JacksonObjectMapper().toJson(this);
   }
 }
 

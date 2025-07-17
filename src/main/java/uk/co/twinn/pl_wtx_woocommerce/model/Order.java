@@ -35,6 +35,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 /**
@@ -1583,6 +1584,15 @@ public class Order {
     return o.toString().replace("\n", "\n    ");
   }
 
+    /**
+     * Convert an instance of this to an JSON string
+     *
+     * @return JSON string
+     */
+
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
+    }
 
 }
 

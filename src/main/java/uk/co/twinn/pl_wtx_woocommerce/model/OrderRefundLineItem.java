@@ -11,6 +11,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.math.BigDecimal;
 
@@ -54,5 +55,10 @@ public class OrderRefundLineItem extends OrderLineItem {
     @JsonProperty("refund_total")
     public void setRefundTotal(@javax.annotation.Nullable BigDecimal total) {
         setTotal(total);
+    }
+
+
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
     }
 }

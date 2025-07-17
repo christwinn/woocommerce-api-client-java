@@ -11,9 +11,8 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.http.NameValuePair;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class PaymentGatewaySetting {
@@ -105,6 +104,10 @@ public class PaymentGatewaySetting {
 
     public void setOptions( List<NameValuePair> options ) {
         this.options = options;
+    }
+
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
     }
 
 }

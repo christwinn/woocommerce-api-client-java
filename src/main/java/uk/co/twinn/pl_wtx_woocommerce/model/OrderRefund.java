@@ -11,6 +11,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -165,5 +166,9 @@ public class OrderRefund {
     @JsonProperty("api_restock") //writeonly!
     public void setApiRestock(Boolean apiRestock) {
         this.apiRestock = apiRestock;
+    }
+
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
     }
 }

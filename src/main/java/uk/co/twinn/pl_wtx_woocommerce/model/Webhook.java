@@ -10,6 +10,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -191,6 +192,10 @@ public class Webhook {
                 }
             }
             throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+
+        public String toJson() {
+            return new JacksonObjectMapper().toJson(this);
         }
     }
 }

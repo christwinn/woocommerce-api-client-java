@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import uk.co.twinn.api.woocommerce.request.core.ParameterCollector;
+import uk.co.twinn.api.woocommerce.builders.core.ParameterCollector;
 
 import java.io.*;
 import java.util.logging.Level;

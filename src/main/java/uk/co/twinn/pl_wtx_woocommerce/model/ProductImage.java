@@ -23,24 +23,12 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+
 import java.time.LocalDateTime;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
  * ProductImage
@@ -301,105 +289,13 @@ public class ProductImage {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("date_created");
-    openapiFields.add("date_created_gmt");
-    openapiFields.add("date_modified");
-    openapiFields.add("date_modified_gmt");
-    openapiFields.add("src");
-    openapiFields.add("name");
-    openapiFields.add("alt");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ProductImage
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ProductImage.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ProductImage is not found in the empty JSON string", ProductImage.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ProductImage.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductImage` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("src") != null && !jsonObj.get("src").isJsonNull()) && !jsonObj.get("src").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `src` to be a primitive type in the JSON string but got `%s`", jsonObj.get("src").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      if ((jsonObj.get("alt") != null && !jsonObj.get("alt").isJsonNull()) && !jsonObj.get("alt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `alt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("alt").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ProductImage.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ProductImage' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ProductImage> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ProductImage.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ProductImage>() {
-           @Override
-           public void write(JsonWriter out, ProductImage value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ProductImage read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ProductImage given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ProductImage
-   * @throws IOException if the JSON string is invalid with respect to ProductImage
-   */
-  public static ProductImage fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ProductImage.class);
-  }
-
   /**
    * Convert an instance of ProductImage to an JSON string
    *
    * @return JSON string
    */
   public String toJson() {
-    return JSON.getGson().toJson(this);
+      return new JacksonObjectMapper().toJson(this);
   }
 }
 

@@ -39,7 +39,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
  * ProductAttributeTerm
@@ -321,23 +321,12 @@ public class ProductAttributeTerm {
   }
 
   /**
-   * Create an instance of ProductAttributeTerm given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ProductAttributeTerm
-   * @throws IOException if the JSON string is invalid with respect to ProductAttributeTerm
-   */
-  public static ProductAttributeTerm fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ProductAttributeTerm.class);
-  }
-
-  /**
    * Convert an instance of ProductAttributeTerm to an JSON string
    *
    * @return JSON string
    */
   public String toJson() {
-    return JSON.getGson().toJson(this);
+      return new JacksonObjectMapper().toJson(this);
   }
 }
 

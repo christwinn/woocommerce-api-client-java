@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.google.gson.annotations.SerializedName;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.time.LocalDateTime;
 
@@ -353,6 +354,10 @@ public class ProductReview {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+
+  public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
   }
 
 }

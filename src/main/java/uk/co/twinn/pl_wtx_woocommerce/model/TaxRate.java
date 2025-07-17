@@ -10,6 +10,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.util.List;
 
@@ -142,4 +143,7 @@ public class TaxRate {
         this.taxClass = taxClass;
     }
 
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
+    }
 }

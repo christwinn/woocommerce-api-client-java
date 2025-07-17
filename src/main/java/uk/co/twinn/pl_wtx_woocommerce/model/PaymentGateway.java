@@ -10,9 +10,6 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.util.List;
@@ -159,9 +156,7 @@ public class PaymentGateway {
     }
 
     public String toJson(boolean isPretty){
-
-        return new JacksonObjectMapper().toJson(true, this);
-
+        return new JacksonObjectMapper().toJson(isPretty, this);
     }
 
 }

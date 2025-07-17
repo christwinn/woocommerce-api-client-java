@@ -10,6 +10,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 public class TaxClass {
 
@@ -46,5 +47,8 @@ public class TaxClass {
         this.links = links;
     }
 
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
+    }
 
 }

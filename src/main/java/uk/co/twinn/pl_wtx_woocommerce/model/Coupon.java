@@ -10,6 +10,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 import java.math.BigDecimal;
@@ -309,4 +310,9 @@ public class Coupon {
     public boolean hasError() {
         return error != null;
     }
+
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
+    }
+
 }

@@ -23,25 +23,14 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import uk.co.twinn.pl_wtx_woocommerce.invoker.JSON;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
  * ReportSalesSummary
@@ -407,121 +396,13 @@ public class ReportSalesSummary {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("total_sales");
-    openapiFields.add("net_sales");
-    openapiFields.add("average_sales");
-    openapiFields.add("total_orders");
-    openapiFields.add("total_items");
-    openapiFields.add("total_tax");
-    openapiFields.add("total_shipping");
-    openapiFields.add("total_refunds");
-    openapiFields.add("total_discount");
-    openapiFields.add("totals_grouped_by");
-    openapiFields.add("total_customers");
-    openapiFields.add("totals");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ReportSalesSummary
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ReportSalesSummary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ReportSalesSummary is not found in the empty JSON string", ReportSalesSummary.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ReportSalesSummary.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ReportSalesSummary` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("total_sales") != null && !jsonObj.get("total_sales").isJsonNull()) && !jsonObj.get("total_sales").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total_sales` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_sales").toString()));
-      }
-      if ((jsonObj.get("net_sales") != null && !jsonObj.get("net_sales").isJsonNull()) && !jsonObj.get("net_sales").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `net_sales` to be a primitive type in the JSON string but got `%s`", jsonObj.get("net_sales").toString()));
-      }
-      if ((jsonObj.get("average_sales") != null && !jsonObj.get("average_sales").isJsonNull()) && !jsonObj.get("average_sales").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `average_sales` to be a primitive type in the JSON string but got `%s`", jsonObj.get("average_sales").toString()));
-      }
-      if ((jsonObj.get("total_tax") != null && !jsonObj.get("total_tax").isJsonNull()) && !jsonObj.get("total_tax").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_tax").toString()));
-      }
-      if ((jsonObj.get("total_shipping") != null && !jsonObj.get("total_shipping").isJsonNull()) && !jsonObj.get("total_shipping").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total_shipping` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_shipping").toString()));
-      }
-      if ((jsonObj.get("total_discount") != null && !jsonObj.get("total_discount").isJsonNull()) && !jsonObj.get("total_discount").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `total_discount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total_discount").toString()));
-      }
-      if ((jsonObj.get("totals_grouped_by") != null && !jsonObj.get("totals_grouped_by").isJsonNull()) && !jsonObj.get("totals_grouped_by").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `totals_grouped_by` to be a primitive type in the JSON string but got `%s`", jsonObj.get("totals_grouped_by").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ReportSalesSummary.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ReportSalesSummary' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ReportSalesSummary> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ReportSalesSummary.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ReportSalesSummary>() {
-           @Override
-           public void write(JsonWriter out, ReportSalesSummary value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ReportSalesSummary read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
-    }
-  }
-
-  /**
-   * Create an instance of ReportSalesSummary given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ReportSalesSummary
-   * @throws IOException if the JSON string is invalid with respect to ReportSalesSummary
-   */
-  public static ReportSalesSummary fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ReportSalesSummary.class);
-  }
-
   /**
    * Convert an instance of ReportSalesSummary to an JSON string
    *
    * @return JSON string
    */
   public String toJson() {
-    return JSON.getGson().toJson(this);
+      return new JacksonObjectMapper().toJson(this);
   }
 }
 
