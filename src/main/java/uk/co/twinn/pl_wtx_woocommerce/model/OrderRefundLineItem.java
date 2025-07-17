@@ -57,8 +57,9 @@ public class OrderRefundLineItem extends OrderLineItem {
         setTotal(total);
     }
 
-
+    @Override
     public String toJson() {
         return new JacksonObjectMapper().toJson(this);
     }
+
 }

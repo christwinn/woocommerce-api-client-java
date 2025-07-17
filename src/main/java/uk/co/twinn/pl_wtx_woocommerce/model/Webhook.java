@@ -170,7 +170,7 @@ public class Webhook {
         PAUSED("paused"),
         DISABLED("disabled");
 
-        private String value;
+        private final String value;
 
         WebhookStatusEnum(String value) {
             this.value = value;

@@ -401,7 +401,7 @@ public class Order {
 
     ZMW("ZMW");
 
-    private String value;
+    private final String value;
 
     CurrencyEnum(String value) {
       this.value = value;

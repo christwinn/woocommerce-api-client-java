@@ -10,6 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.CustomerBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 
 public class Customers {
 

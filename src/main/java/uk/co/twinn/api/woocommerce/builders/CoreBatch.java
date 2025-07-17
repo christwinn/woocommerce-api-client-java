@@ -26,7 +26,7 @@ class CoreBatch {
 
     static class BatchCore<T extends BatchCore<T>>{
 
-        public static int MAX_RECORDS = 100;
+        public static final int MAX_RECORDS = 100;
 
         protected Batch batch;
 

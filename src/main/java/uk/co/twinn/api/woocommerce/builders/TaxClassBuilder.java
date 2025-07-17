@@ -60,7 +60,7 @@ public class TaxClassBuilder extends ApiRequest {
 
     public static class Creator<T extends Creator<T>>{
 
-        private String name; //	string	Tax rate name.
+        private final String name; //	string	Tax rate name.
 
         public Creator(String name){
             this.name = name;

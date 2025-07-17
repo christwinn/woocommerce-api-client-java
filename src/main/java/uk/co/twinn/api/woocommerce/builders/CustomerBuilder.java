@@ -48,7 +48,7 @@ public class CustomerBuilder extends ApiRequest {
 
     private CustomerBuilder(Updater<?> updater){
 
-        this((Creator)updater);
+        this((Creator<?>)updater);
 
 
     }
@@ -160,7 +160,7 @@ public class CustomerBuilder extends ApiRequest {
 
     public static class Updater<T extends Updater<T>> extends Creator<T>{
 
-        private int id;
+        private final int id;
 
         public Updater(int productId){
             this.id = productId;
@@ -243,14 +243,14 @@ public class CustomerBuilder extends ApiRequest {
         }
 
         /** for testing only **/
-        public T setBatch(Batch batch){
+        public T setBatch(Batch<?> batch){
             this.batch = batch;
             return self();
         }
 
         public T addCreators(List<Creator<?>> creators){
             //we need to extract the create
-            for(Creator create : creators){
+            for(Creator<?> create : creators){
                 addCreator(create);
             }
             return self();
@@ -259,7 +259,7 @@ public class CustomerBuilder extends ApiRequest {
         public T addCreator(Creator<?> create){
             Customer c = create.build().customer;
             if (c != null) {
-                batch.addCreate(c);
+                batch.addCreate(create.build().customer);
             }
             return self();
         }

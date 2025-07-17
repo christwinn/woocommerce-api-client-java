@@ -24,8 +24,8 @@ class CoreDeleter {
 
     static class DeleterCore<T extends DeleterCore<?>>{
 
-        protected int id;
-        protected boolean force;
+        protected final int id;
+        protected final boolean force;
 
         public DeleterCore(int id, boolean force){
             this.id = id;
@@ -63,7 +63,7 @@ class CoreDeleter {
     static class ChildDeleterCore<T extends ChildDeleterCore<T>> extends DeleterCore<T> {
 
         //set up the private variables
-        protected int childId;
+        protected final int childId;
 
         public ChildDeleterCore(int id, int childId, boolean force){
             super(id, force);
@@ -101,8 +101,8 @@ class CoreDeleter {
 
     static class DeleterCoreStringKey<T extends DeleterCoreStringKey<?>>{
 
-        protected String key;
-        protected boolean force;
+        protected final String key;
+        protected final boolean force;
 
         public DeleterCoreStringKey(String key, boolean force){
             this.key = key;

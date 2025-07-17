@@ -478,7 +478,7 @@ public class ISO3166 {
 
         ZIMBABWE("ZW");
 
-        private String value;
+        private final String value;
 
         CountryEnum(String value) {
             this.value = value;

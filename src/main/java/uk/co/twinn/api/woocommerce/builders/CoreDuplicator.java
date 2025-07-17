@@ -24,7 +24,7 @@ class CoreDuplicator {
 
     static class DuplicatorCore<T extends DuplicatorCore<?>>{
 
-        protected int id;
+        protected final int id;
 
         public DuplicatorCore(int id){
             this.id = id;

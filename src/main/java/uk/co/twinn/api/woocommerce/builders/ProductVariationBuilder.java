@@ -162,7 +162,7 @@ public class ProductVariationBuilder extends ApiRequest {
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
         //set up the private variables
-        private int variationId;
+        private final int variationId;
 
         public Updater(int productId, int variationId){
             this.productId = productId;

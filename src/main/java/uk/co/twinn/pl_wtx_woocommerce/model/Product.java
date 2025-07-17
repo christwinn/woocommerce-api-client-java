@@ -426,7 +426,7 @@ public class Product {
 
     VARIABLE("variable");
 
-    private String value;
+    private final String value;
 
     TypeEnum(String value) {
         this.value = value;
@@ -457,7 +457,7 @@ public enum StatusEnum {
     PUBLISH("publish"),
     DEFAULT("publish");
 
-    private String value;
+    private final String value;
 
     StatusEnum(String value) {
         this.value = value;
@@ -491,7 +491,7 @@ public enum CatalogVisiblityEnum {
 
     HIDDEN("hidden");
 
-    private String value;
+    private final String value;
 
     CatalogVisiblityEnum(String value) {
         this.value = value;
@@ -523,7 +523,7 @@ public enum TaxStatusEnum {
 
     NONE("none");
 
-    private String value;
+    private final String value;
 
     TaxStatusEnum(String value) {
         this.value = value;
@@ -554,7 +554,7 @@ public enum TaxStatusEnum {
 
         ON_BACK_ORDER("onbackorder");
 
-        private String value;
+        private final String value;
         StockStatusEnum(String value) {
             this.value = value;
         }

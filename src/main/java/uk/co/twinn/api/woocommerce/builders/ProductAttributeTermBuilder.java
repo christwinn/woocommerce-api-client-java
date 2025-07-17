@@ -183,7 +183,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
         //set up the private variables
-        private int termsId;
+        private final int termsId;
 
         public Updater(int attributeId, int termId){
             this.attributeId = attributeId;

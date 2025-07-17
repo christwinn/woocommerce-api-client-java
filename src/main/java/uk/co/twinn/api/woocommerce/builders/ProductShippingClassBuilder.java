@@ -138,7 +138,7 @@ public class ProductShippingClassBuilder extends ApiRequest {
 
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
-        private int id;
+        private final int id;
 
         public Updater(int shippingClassId){
             this.id = shippingClassId;

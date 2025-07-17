@@ -29,6 +29,7 @@ public class Refund extends OrderRefund {
         this.parentId = parentId;
     }
 
+    @Override
     public String toJson() {
         return new JacksonObjectMapper().toJson(this);
     }

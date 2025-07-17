@@ -165,12 +165,7 @@ public class ProductReviewBuilder extends ApiRequest {
             this.id = reviewId;
         }
 
-        private int id;
-
-        /*public T setId(int id) {
-            this.id = id;
-            return self();
-        }*/
+        private final int id;
 
         private ProductReviewBuilder build(){
             return new ProductReviewBuilder(this);

@@ -82,7 +82,7 @@ public class ProductCategory {
 
     BOTH("both");
 
-    private String value;
+    private final String value;
 
     DisplayEnum(String value) {
       this.value = value;

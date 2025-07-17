@@ -25,7 +25,7 @@ class CoreReader {
     static class ReaderCore<T extends ReaderCore<?>> {
 
         //set up the private variables
-        protected int id;
+        protected final int id;
 
         public ReaderCore(int id){
             this.id = id;
@@ -99,7 +99,7 @@ class CoreReader {
     static class ReaderCoreStringKey<T extends ReaderCoreStringKey<?>> {
 
         //set up the private variables
-        protected String key;
+        protected final String key;
 
         public ReaderCoreStringKey(String key){
             this.key = key;

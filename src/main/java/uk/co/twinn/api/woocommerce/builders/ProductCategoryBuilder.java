@@ -157,7 +157,7 @@ public class ProductCategoryBuilder extends ApiRequest {
 
     public static class Updater<T extends Updater<T>> extends Creator<T>{
 
-        private int id;
+        private final int id;
 
         public Updater(int productCategoryId){
             this.id = productCategoryId;

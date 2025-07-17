@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  **/
 public class JsonPaymentGatewaySettings extends StdDeserializer<PaymentGatewaySettings> {
 
-    private HashMap<String, PaymentGatewaySetting> keys = new LinkedHashMap<>();
+    private final HashMap<String, PaymentGatewaySetting> keys = new LinkedHashMap<>();
 
     protected JsonPaymentGatewaySettings(){
         this(null);
@@ -41,7 +41,7 @@ public class JsonPaymentGatewaySettings extends StdDeserializer<PaymentGatewaySe
     }
 
     @Override
-    public PaymentGatewaySettings deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
+    public PaymentGatewaySettings deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
 
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
 

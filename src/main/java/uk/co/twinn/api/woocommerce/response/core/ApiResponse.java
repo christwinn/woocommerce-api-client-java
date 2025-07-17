@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class ApiResponse {
 
-    private JacksonObjectMapper json = new JacksonObjectMapper();
+    private final JacksonObjectMapper json = new JacksonObjectMapper();
 
     protected boolean success;
     private ErrorMessage error = null;

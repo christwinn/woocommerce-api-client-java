@@ -99,7 +99,7 @@ public class CouponBuilder extends ApiRequest {
 
     private CouponBuilder(Updater<?> updater){
 
-        this((Creator)updater);
+        this((Creator<?>)updater);
         coupon.setId(updater.id);
 
     }
@@ -375,7 +375,7 @@ public class CouponBuilder extends ApiRequest {
 
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
-        private int id;
+        private final int id;
 
         public Updater(int couponId){
             this.id = couponId;
