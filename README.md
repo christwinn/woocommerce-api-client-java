@@ -1,7 +1,9 @@
 
-# A fluent client WooCommerce Java Api
+# A fluent java client interface to the  WooCommerce REST Api
 
-A deceptively simple, yet harnessing the full power, java interface to the WooCommerce API
+A lightweight, deceptively simple, Fluent Java client library for the WooCommerce REST API. 
+
+Built for Java developers who need to quickly integrate their applications with the WooCommerce e-commerce platform.
 
 The samples shown are the same as [https://woocommerce.github.io/woocommerce-rest-api-docs/](https://woocommerce.github.io/woocommerce-rest-api-docs/) but using this WooCommerce API Java Client
 
@@ -61,8 +63,7 @@ private void authentication(){
     **/
 
     /**Alternatively we can...*/
-    Message message = WooCommerce.Authentication()
-        .https().
+    Message message = Authentication.https()
         .setWebsite("example.com")
         .setApiPath("/wp-json/wc/v3")
         .setKey("myverysecretkeythatIgotfrommywoocommerceinstallation")
@@ -84,7 +85,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons
 ```java
 private void coupons() {
     /** Create **/
-    Created<Coupon> created = WooCommerce.Coupons().create()
+    Created<Coupon> created = Coupons.create()
                         .setCode("10off")
                         .setDiscountType("percent")
                         .setAmount(new BigDecimal(10))
@@ -93,22 +94,22 @@ private void coupons() {
                         .setMinimumAmount(new BigDecimal(100.00))
                         .getResponse();
     /**Read**/
-    Read<Coupon> read = WooCommerce.Coupons().read(719).getResponse();
+    Read<Coupon> read = Coupons.read(719).getResponse();
 
     /**Update**/
-    Updated<Coupon> updated = WooCommerce.Coupons().update(719)
+    Updated<Coupon> updated = Coupons.update(719)
                         .setAmount(new BigDecimal(15))
                         .getResponse();
     /**Delete**/
-    Deleted<Coupon> deleted = WooCommerce.Coupons().delete(719, true).getResponse();
+    Deleted<Coupon> deleted = Coupons.delete(719, true).getResponse();
 
     /**List All**/
-    Listed<Coupon> listed = WooCommerce.Coupons().listing().getResponse();
+    Listed<Coupon> listed = Coupons.listing().getResponse();
 
     /** Batch [Create, Update, Delete]**/
-    Batched<Coupon> batched = WooCommerce.Coupons().batch()
+    Batched<Coupon> batched = Coupons.batch()
                         .addCreator(
-                            WooCommerce.Coupons().create()
+                            Coupons.create()
                                 .setCode("20off")
                                 .setDiscountType("percent")
                                 .setAmount(new BigDecimal(20))
@@ -117,7 +118,7 @@ private void coupons() {
                                 .setMinimumAmount(new BigDecimal(100.00))
                         )
                         .addCreator(
-                            WooCommerce.Coupons().create()
+                            Coupons.create()
                                 .setCode("30off")
                                 .setDiscountType("percent")
                                 .setAmount(new BigDecimal(30))
@@ -126,11 +127,11 @@ private void coupons() {
                                 .setMinimumAmount(new BigDecimal(400.00))
                         )
                         .addUpdater(
-                            WooCommerce.Coupons().update(719)
+                            Coupons.update(719)
                                 .setMinimumAmount(new BigDecimal(50))
                         )
                         .addDeleter(
-                            WooCommerce.Coupons().delete(720, true)
+                            Coupons.delete(720, true)
                         )
                         .getResponse();
 }
@@ -146,7 +147,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#custome
 ```java
 private void customers() {
     /** Create **/
-    Created<Customer> created = WooCommerce.Customers().create()
+    Created<Customer> created = Customers.create()
                         .setEmail("john.doe@example.co")
                         .setFirstName("John")
                         .setLastName("Doe")
@@ -175,29 +176,29 @@ private void customers() {
                             .country("US")
                         )
                         .getResponse();
-    /**Read**/
-    Read<Customer> read = WooCommerce.Customers().read(25).getResponse();
+    /**Read (id of customer)**/
+    Read<Customer> read = Customers.read(25).getResponse();
 
     /**Update**/
-    Updated<Customer> updated = WooCommerce.Customers().update(25)
+    Updated<Customer> updated = Customers.update(25)
                         .setFirstName("James")
                         .setShipping(
                             new Shipping().firstName("James")
                         )
                         .getResponse();
     /**Delete**/
-    Deleted<Customer> deleted = WooCommerce.Customers().delete(25, true).getResponse();
+    Deleted<Customer> deleted = Customers.delete(25, true).getResponse();
 
     /**List All**/
-    Listed<Customer> listed = WooCommerce.Customers().listing().getResponse();
+    Listed<Customer> listed = Customers.listing().getResponse();
 
     /**Search**/
-    Listed<Customer> listed = WooCommerce.Customers().listing().setEmail("john.doe@example.com").getResponse();
+    Listed<Customer> listed = Customers.listing().setEmail("john.doe@example.com").getResponse();
 
     /** Batch [Create, Update, Delete]**/
-    Batched<Customer> batched = WooCommerce.Customers().batch()
+    Batched<Customer> batched = Customers.batch()
                         .addCreator(
-                            WooCommerce.Customers().create()
+                            Customers.create()
                                 .setEmail("jane.doe@example.com")
                                 .setFirstName("Jane")
                                 .setLastName("Doe")
@@ -227,7 +228,7 @@ private void customers() {
                                 )
                         )
                         .addCreator(
-                            WooCommerce.Customers().create()
+                            Customers.create()
                                 .setEmail("joao.silva2@example.com")
                                 .setFirstName("Joao")
                                 .setLastName("Silva")
@@ -258,12 +259,14 @@ private void customers() {
                                 )
                         )
                         .addUpdater(
-                            WooCommerce.Customers().update(26)
-                                .setBilling(new Billing()
+                            Customers.update(26)
+                                .setBilling(
+                                    new Billing()
                                     .phone("(11) 1111-1111")
+                                )
                         )
                         .addDeleter(
-                            WooCommerce.Customers().delete(21, true)
+                            Customers.delete(21, true)
                         )
                         .getResponse();
 }
@@ -282,17 +285,17 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#payment
 private void paymentGateways() {
 
     /*Read*/
-    Read<PaymentGateway> gateway = WooCommerce.PaymentGateways().read("woocommerce_payments").getResponse();
-    System.out.println(gateway.getResult().toJson(true)); //pretty print
+    Read<PaymentGateway> gateway = PaymentGateways.read("woocommerce_payments").getResponse();
+    System.out.println(gateway.getResult().toJson()); 
 
     /**List All**/
-    Listed<PaymentGateway> gateways = WooCommerce.PaymentGateways().listing().getResponse();
+    Listed<PaymentGateway> gateways = PaymentGateways.listing().getResponse();
     for (PaymentGateway s : gateways.getResult()){
-        System.out.println(s.toJson(true)); //pretty print
+        System.out.println(s.toJson()); 
     }
 
     /*Update*/
-    Updated<PaymentGateway> update = WooCommerce.PaymentGateways().update("woocommerce_payments")
+    Updated<PaymentGateway> update = PaymentGateways.update("woocommerce_payments")
                 .setEnable(true).getResponse();
 }
 ```
@@ -309,29 +312,29 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#reports
 private void reports() {
 
     /*List All reports*/
-    Listed<ReportListItem> list = WooCommerce.Reports().getList();
+    Listed<ReportListItem> list = Reports.listAll().getResponse();
     System.out.println(list.toJson());
 
     /*Retrieve sales report*/
-    Listed<ReportSalesSummary> sales = WooCommerce.Reports().getSalesSummary()
+    Listed<ReportSalesSummary> sales = Reports.getSalesSummary().getResponse();
     
     /*Retrieve top sellers report*/
-    Listed<ReportTopSellersItem> topSellers = WooCommerce.Reports().getTopSellers();
+    Listed<ReportTopSellersItem> topSellers = Reports.topSellers().getResponse();
 
     /*Retrieve coupons totals*/
-    Listed<ReportOrderTotalSummary> coupons = WooCommerce.Reports().getCouponsTotals();
+    Listed<ReportOrderTotalSummary> coupons = Reports.couponsTotals().getResponse();
 
     /*Retrieve customers totals*/
-    Listed<ReportOrderTotalSummary> customers = WooCommerce.Reports().getCustomersTotals();
+    Listed<ReportOrderTotalSummary> customers = Reports.customersTotals().getResponse();
 
     /*Retrieve orders totals*/
-    Listed<ReportOrderTotalSummary> orders = WooCommerce.Reports().getOrdersTotals();
+    Listed<ReportOrderTotalSummary> orders = Reports.ordersTotals().getResponse();
 
     /*Retrieve products totals*/
-    Listed<ReportOrderTotalSummary> products = WooCommerce.Reports().getProductsTotals();
+    Listed<ReportOrderTotalSummary> products = Reports.productsTotals().getResponse();
 
     /*Retrieve reviews totals*/
-    Listed<ReportOrderTotalSummary> reviews = WooCommerce.Reports().getReviewsTotals();
+    Listed<ReportOrderTotalSummary> reviews = Reports.reviewsTotals().getResponse();
 
 }
 ```
@@ -347,7 +350,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting
 private void settings() {
 
     /**List All**/
-    Listed<Setting> listing = WooCommerce.Settings().listing().getResponse();
+    Listed<Setting> listing = Settings.listing().getResponse();
     for (Setting s : listing.getResult()){
         System.out.println(s.toJson().replace("},{", "},\n{"));
     }
@@ -365,13 +368,13 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting
 private void settingOptions() {
 
     /** Read a specific option**/
-    Read<SettingOption> read = WooCommerce.SettingOptions()
+    Read<SettingOption> read = SettingOptions
             .read("general", "woocommerce_allowed_countries")
             .getResponse();
     System.out.println(read.getResult().toJson());
 
     /**List All**/
-    Listed<SettingOption> listingOption = WooCommerce.SettingOptions()
+    Listed<SettingOption> listingOption = SettingOptions
             .listing("general")
             .getResponse();
     for (SettingOption s : listingOption.getResult()){
@@ -379,13 +382,13 @@ private void settingOptions() {
     }
 
     /**Update**/
-    WooCommerce.SettingOptions()
+    Update<SettingOption> updated = SettingOptions
         .update("general", "woocommerce_allowed_countries")
         .setValue("all_except")
         .getResponse();
 
     /*Batch*/
-    WooCommerce.SettingOptions().batch("general")
+    Batched<SettingOption> batched = SettingOptions.batch("general")
         .addUpdater(
             WooCommerce.SettingOptions()
                 .update("ignoredInBatch", "woocommerce_allowed_countries")
