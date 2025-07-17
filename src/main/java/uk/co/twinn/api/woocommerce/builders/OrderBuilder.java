@@ -31,7 +31,7 @@ public class OrderBuilder extends ApiRequest {
     //private boolean duplicate;
     private boolean isBatch;
 
-    public OrderBuilder(){
+    private OrderBuilder(){
 
     }
 
