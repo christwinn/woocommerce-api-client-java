@@ -8,12 +8,7 @@
  */
 package uk.co.twinn.api.woocommerce.transportation;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.*;
@@ -40,7 +35,7 @@ import java.util.logging.Logger;
  */
 public class Http {
 
-    private JacksonObjectMapper json = new JacksonObjectMapper();
+    private final JacksonObjectMapper json = new JacksonObjectMapper();
 
     private ApiResponseResult parseResponse(CloseableHttpResponse response, TypeReference<?> typeReference){
 

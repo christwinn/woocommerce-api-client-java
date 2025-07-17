@@ -16,6 +16,7 @@ public class Seek {
 
     public static class SearchCore<T extends SearchCore<?>> extends ParameterCollector {
 
+
         T self() {
             return (T) this;
         }
@@ -35,8 +36,7 @@ public class Seek {
 
     /***
      * Provides
-     *  Context
-     *
+     *  Context<br>
      *  Page, PerPage, Search, Order
      *
      */

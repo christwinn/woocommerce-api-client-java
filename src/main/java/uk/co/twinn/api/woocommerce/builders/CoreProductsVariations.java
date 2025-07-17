@@ -88,7 +88,7 @@ class CoreProductsVariations {
 
         /**
          * Pseudonym for RegularPrice
-         * @param regular_price Product regular price.
+         * @param regularPrice Product regular price.
          * @return T
          */
         public T setPrice(BigDecimal regularPrice) {
@@ -106,7 +106,7 @@ class CoreProductsVariations {
 
         /**
          *
-         * @param sale_price  Product sale price.
+         * @param salePrice  Product sale price.
          * @return T
          */
         public T setSalePrice(BigDecimal salePrice) {

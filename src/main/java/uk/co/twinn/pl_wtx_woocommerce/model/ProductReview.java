@@ -22,8 +22,6 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 public class ApiRequest {
 
-    private JacksonObjectMapper json = new JacksonObjectMapper();
+    private final JacksonObjectMapper json = new JacksonObjectMapper();
     public ApiRequest(){}
 
     protected ObjectMapper getObjectMapper(){

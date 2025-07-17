@@ -9,7 +9,6 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
@@ -55,7 +54,7 @@ public class Setting {
     }
 
     @JsonProperty("parent_id")
-    public void setParentId(String parent_id) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
