@@ -28,7 +28,7 @@ import java.util.Objects;
 
 import java.io.IOException;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
@@ -39,7 +39,7 @@ import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 public class ProductCategory {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -49,17 +49,17 @@ public class ProductCategory {
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
-  @Nullable
+  @javax.annotation.Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_PARENT = "parent";
   //@SerializedName(SERIALIZED_NAME_PARENT)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer parent;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   //@SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  @Nullable
+  @javax.annotation.Nullable
   private String description;
 
   private ErrorMessage error; //batch notifier
@@ -105,22 +105,22 @@ public class ProductCategory {
 
   public static final String SERIALIZED_NAME_DISPLAY = "display";
   //@SerializedName(SERIALIZED_NAME_DISPLAY)
-  @Nullable
+  @javax.annotation.Nullable
   private DisplayEnum display = DisplayEnum.DEFAULT;
 
   public static final String SERIALIZED_NAME_IMAGE = "image";
   //@SerializedName(SERIALIZED_NAME_IMAGE)
-  @Nullable
+  @javax.annotation.Nullable
   private ProductImage image;
 
   public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
   //@SerializedName(SERIALIZED_NAME_MENU_ORDER)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer menuOrder;
 
   public static final String SERIALIZED_NAME_COUNT = "count";
   //@SerializedName(SERIALIZED_NAME_COUNT)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer count;
 
   public ProductCategory() {
@@ -139,7 +139,7 @@ public class ProductCategory {
    * Unique identifier for the resource.
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getId() {
     return id;
   }
@@ -167,7 +167,7 @@ public class ProductCategory {
   }
 
 
-  public ProductCategory slug(@Nullable String slug) {
+  public ProductCategory slug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
     return this;
   }
@@ -176,17 +176,17 @@ public class ProductCategory {
    * An alphanumeric identifier for the resource unique to its type.
    * @return slug
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSlug() {
     return slug;
   }
 
-  public void setSlug(@Nullable String slug) {
+  public void setSlug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
   }
 
 
-  public ProductCategory parent(@Nullable Integer parent) {
+  public ProductCategory parent(@javax.annotation.Nullable Integer parent) {
     this.parent = parent;
     return this;
   }
@@ -195,17 +195,17 @@ public class ProductCategory {
    * The ID for the parent of the resource.
    * @return parent
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getParent() {
     return parent;
   }
 
-  public void setParent(@Nullable Integer parent) {
+  public void setParent(@javax.annotation.Nullable Integer parent) {
     this.parent = parent;
   }
 
 
-  public ProductCategory description(@Nullable String description) {
+  public ProductCategory description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
@@ -214,7 +214,7 @@ public class ProductCategory {
    * HTML description of the resource.
    * @return description
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
@@ -288,12 +288,12 @@ public class ProductCategory {
    *         )
    *
    **/
-  public void setDescription(@Nullable String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public ProductCategory display(@Nullable DisplayEnum display) {
+  public ProductCategory display(@javax.annotation.Nullable DisplayEnum display) {
     this.display = display;
     return this;
   }
@@ -303,7 +303,7 @@ public class ProductCategory {
    * @return display
    */
   @JsonIgnore
-  @Nullable
+  @javax.annotation.Nullable
   public DisplayEnum getDisplay() {
     return display;
   }
@@ -317,11 +317,11 @@ public class ProductCategory {
         }
     }
 
-  public void setDisplay(@Nullable DisplayEnum display) {
+  public void setDisplay(@javax.annotation.Nullable DisplayEnum display) {
     this.display = display;
   }
 
-  public void setDisplay(@Nullable String display) {
+  public void setDisplay(@javax.annotation.Nullable String display) {
 
       if (this.display != null) {
           this.display = DisplayEnum.fromValue(display);
@@ -330,7 +330,7 @@ public class ProductCategory {
     }
 
 
-  public ProductCategory image(@Nullable ProductImage image) {
+  public ProductCategory image(@javax.annotation.Nullable ProductImage image) {
     this.image = image;
     return this;
   }
@@ -339,17 +339,17 @@ public class ProductCategory {
    * Get image
    * @return image
    */
-  @Nullable
+  @javax.annotation.Nullable
   public ProductImage getImage() {
     return image;
   }
 
-  public void setImage(@Nullable ProductImage image) {
+  public void setImage(@javax.annotation.Nullable ProductImage image) {
     this.image = image;
   }
 
 
-  public ProductCategory menuOrder(@Nullable Integer menuOrder) {
+  public ProductCategory menuOrder(@javax.annotation.Nullable Integer menuOrder) {
     this.menuOrder = menuOrder;
     return this;
   }
@@ -358,13 +358,13 @@ public class ProductCategory {
    * Menu order, used to custom sort the resource.
    * @return menuOrder
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getMenuOrder() {
     return menuOrder;
   }
 
   @JsonProperty("menu_order")
-  public void setMenuOrder(@Nullable Integer menuOrder) {
+  public void setMenuOrder(@javax.annotation.Nullable Integer menuOrder) {
     this.menuOrder = menuOrder;
   }
 
@@ -373,7 +373,7 @@ public class ProductCategory {
    * Number of published products for the resource.
    * @return count
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getCount() {
     return count;
   }
@@ -385,13 +385,13 @@ public class ProductCategory {
      * BUT record B may fail with exists, or something else.
      * Only way to catch the error and pass back is by adding the error message into here.
      */
-    @Nullable
+    @javax.annotation.Nullable
     public ErrorMessage getError() {
         return error;
     }
 
     @JsonProperty("error")
-    public void setError(@Nullable ErrorMessage error) {
+    public void setError(@javax.annotation.Nullable ErrorMessage error) {
         this.error = error;
     }
 

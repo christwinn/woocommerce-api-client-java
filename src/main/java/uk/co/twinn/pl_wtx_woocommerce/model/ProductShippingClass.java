@@ -26,7 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -36,33 +36,33 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ProductShippingClass {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @Nullable
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
-  @Nullable
+  @javax.annotation.Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   //@SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  @Nullable
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_COUNT = "count";
   //@SerializedName(SERIALIZED_NAME_COUNT)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer count;
 
   public ProductShippingClass() {
   }
 
-  public ProductShippingClass id(@Nullable Integer id) {
+  public ProductShippingClass id(@javax.annotation.Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -71,17 +71,17 @@ public class ProductShippingClass {
    * Shipping class ID.
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@Nullable Integer id) {
+  public void setId(@javax.annotation.Nullable Integer id) {
     this.id = id;
   }
 
 
-  public ProductShippingClass name(@Nullable String name) {
+  public ProductShippingClass name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
@@ -90,17 +90,17 @@ public class ProductShippingClass {
    * Shipping class name.
    * @return name
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@Nullable String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public ProductShippingClass slug(@Nullable String slug) {
+  public ProductShippingClass slug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
     return this;
   }
@@ -109,17 +109,17 @@ public class ProductShippingClass {
    * Shipping class slug.
    * @return slug
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSlug() {
     return slug;
   }
 
-  public void setSlug(@Nullable String slug) {
+  public void setSlug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
   }
 
 
-  public ProductShippingClass description(@Nullable String description) {
+  public ProductShippingClass description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
@@ -128,17 +128,17 @@ public class ProductShippingClass {
    * Shipping class description.
    * @return description
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(@Nullable String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public ProductShippingClass count(@Nullable Integer count) {
+  public ProductShippingClass count(@javax.annotation.Nullable Integer count) {
     this.count = count;
     return this;
   }
@@ -147,12 +147,12 @@ public class ProductShippingClass {
    * Number of products in class.
    * @return count
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getCount() {
     return count;
   }
 
-  public void setCount(@Nullable Integer count) {
+  public void setCount(@javax.annotation.Nullable Integer count) {
     this.count = count;
   }
 

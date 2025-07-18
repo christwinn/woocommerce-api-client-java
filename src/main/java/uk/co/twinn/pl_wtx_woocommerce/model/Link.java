@@ -10,19 +10,19 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 //import com.google.gson.annotations.SerializedName;
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 public class Link {
 
     public static final String SERIALIZED_NAME_HREF = "href";
     //@SerializedName(SERIALIZED_NAME_HREF)
-    @Nullable
+    @javax.annotation.Nullable
     private String href;
 
     public Link(){}
 
-    public Link href(@Nullable String href) {
+    public Link href(@javax.annotation.Nullable String href) {
         this.href = href;
         return this;
     }
@@ -31,12 +31,12 @@ public class Link {
      * id.
      * @return id
      */
-    @Nullable
+    @javax.annotation.Nullable
     public String getHref() {
         return href;
     }
 
-    public void setHref(@Nullable String href) {
+    public void setHref(@javax.annotation.Nullable String href) {
         this.href = href;
     }
 

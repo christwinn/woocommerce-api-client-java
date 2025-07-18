@@ -32,7 +32,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -46,198 +46,198 @@ public class ProductVariation {
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   //@SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  @Nullable
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_PERMALINK = "permalink";
   //@SerializedName(SERIALIZED_NAME_PERMALINK)
-  @Nullable
+  @javax.annotation.Nullable
   private String permalink;
 
   public static final String SERIALIZED_NAME_SKU = "sku";
   //@SerializedName(SERIALIZED_NAME_SKU)
-  @Nullable
+  @javax.annotation.Nullable
   private String sku;
 
   public static final String SERIALIZED_NAME_PRICE = "price";
   //@SerializedName(SERIALIZED_NAME_PRICE)
-  @Nullable
+  @javax.annotation.Nullable
   private String price;
 
   public static final String SERIALIZED_NAME_REGULAR_PRICE = "regular_price";
   //@SerializedName(SERIALIZED_NAME_REGULAR_PRICE)
-  @Nullable
+  @javax.annotation.Nullable
   private String regularPrice;
 
   public static final String SERIALIZED_NAME_SALE_PRICE = "sale_price";
   //@SerializedName(SERIALIZED_NAME_SALE_PRICE)
-  @Nullable
+  @javax.annotation.Nullable
   private String salePrice;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_FROM = "date_on_sale_from";
   //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateOnSaleFrom;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_FROM_GMT = "date_on_sale_from_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateOnSaleFromGmt;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_TO = "date_on_sale_to";
   //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateOnSaleTo;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_TO_GMT = "date_on_sale_to_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateOnSaleToGmt;
 
   public static final String SERIALIZED_NAME_ON_SALE = "on_sale";
   //@SerializedName(SERIALIZED_NAME_ON_SALE)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean onSale;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   //@SerializedName(SERIALIZED_NAME_STATUS)
-  @Nullable
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_PURCHASABLE = "purchasable";
   //@SerializedName(SERIALIZED_NAME_PURCHASABLE)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean purchasable;
 
   public static final String SERIALIZED_NAME_VIRTUAL = "virtual";
   //@SerializedName(SERIALIZED_NAME_VIRTUAL)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean virtual;
 
   public static final String SERIALIZED_NAME_DOWNLOADABLE = "downloadable";
   //@SerializedName(SERIALIZED_NAME_DOWNLOADABLE)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean downloadable;
 
   public static final String SERIALIZED_NAME_DOWNLOADS = "downloads";
   //@SerializedName(SERIALIZED_NAME_DOWNLOADS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<ProductDownload> downloads = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DOWNLOAD_LIMIT = "download_limit";
   //@SerializedName(SERIALIZED_NAME_DOWNLOAD_LIMIT)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer downloadLimit;
 
   public static final String SERIALIZED_NAME_DOWNLOAD_EXPIRY = "download_expiry";
   //@SerializedName(SERIALIZED_NAME_DOWNLOAD_EXPIRY)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer downloadExpiry;
 
   public static final String SERIALIZED_NAME_TAX_STATUS = "tax_status";
   //@SerializedName(SERIALIZED_NAME_TAX_STATUS)
-  @Nullable
+  @javax.annotation.Nullable
   private String taxStatus;
 
   public static final String SERIALIZED_NAME_TAX_CLASS = "tax_class";
   //@SerializedName(SERIALIZED_NAME_TAX_CLASS)
-  @Nullable
+  @javax.annotation.Nullable
   private String taxClass;
 
   public static final String SERIALIZED_NAME_MANAGE_STOCK = "manage_stock";
   //@SerializedName(SERIALIZED_NAME_MANAGE_STOCK)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean manageStock;
 
   public static final String SERIALIZED_NAME_STOCK_QUANTITY = "stock_quantity";
   //@SerializedName(SERIALIZED_NAME_STOCK_QUANTITY)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer stockQuantity;
 
   public static final String SERIALIZED_NAME_STOCK_STATUS = "stock_status";
   //@SerializedName(SERIALIZED_NAME_STOCK_STATUS)
-  @Nullable
+  @javax.annotation.Nullable
   private String stockStatus;
 
   public static final String SERIALIZED_NAME_BACKORDERS = "backorders";
   //@SerializedName(SERIALIZED_NAME_BACKORDERS)
-  @Nullable
+  @javax.annotation.Nullable
   private String backorders;
 
   public static final String SERIALIZED_NAME_BACKORDERS_ALLOWED = "backorders_allowed";
   //@SerializedName(SERIALIZED_NAME_BACKORDERS_ALLOWED)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean backordersAllowed;
 
   public static final String SERIALIZED_NAME_BACKORDERED = "backordered";
   //@SerializedName(SERIALIZED_NAME_BACKORDERED)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean backordered;
 
   public static final String SERIALIZED_NAME_WEIGHT = "weight";
   //@SerializedName(SERIALIZED_NAME_WEIGHT)
-  @Nullable
+  @javax.annotation.Nullable
   private String weight;
 
   public static final String SERIALIZED_NAME_DIMENSIONS = "dimensions";
   //@SerializedName(SERIALIZED_NAME_DIMENSIONS)
-  @Nullable
+  @javax.annotation.Nullable
   private ProductDimension dimensions;
 
   public static final String SERIALIZED_NAME_SHIPPING_CLASS = "shipping_class";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_CLASS)
-  @Nullable
+  @javax.annotation.Nullable
   private String shippingClass;
 
   public static final String SERIALIZED_NAME_SHIPPING_CLASS_ID = "shipping_class_id";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_CLASS_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer shippingClassId;
 
   public static final String SERIALIZED_NAME_IMAGE = "image";
   //@SerializedName(SERIALIZED_NAME_IMAGE)
-  @Nullable
+  @javax.annotation.Nullable
   private ProductImage image;
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   //@SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<ProductAttribute> attributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
   //@SerializedName(SERIALIZED_NAME_MENU_ORDER)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer menuOrder;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
   //@SerializedName(SERIALIZED_NAME_META_DATA)
-  @Nullable
+  @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public ProductVariation() {
   }
 
-  public ProductVariation variationId(@Nullable Integer variationId) {
+  public ProductVariation variationId(@javax.annotation.Nullable Integer variationId) {
     this.variationId = variationId;
     return this;
   }
@@ -246,18 +246,18 @@ public class ProductVariation {
    * Unique identifier for the resource. read-only
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   @JsonProperty("id")
   public Integer getVariationId() {
     return variationId;
   }
 
   @JsonProperty("id")
-  public void setVariationId(@Nullable Integer variationId) {
+  public void setVariationId(@javax.annotation.Nullable Integer variationId) {
     this.variationId = variationId;
   }
 
-  public ProductVariation dateCreated(@Nullable LocalDateTime dateCreated) {
+  public ProductVariation dateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
@@ -266,17 +266,17 @@ public class ProductVariation {
    * The date the variation  was created, in the site&#39;s timezone. read-only
    * @return dateCreated
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCreated() {
     return dateCreated;
   }
 
-  public void setDateCreated(@Nullable LocalDateTime dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public ProductVariation dateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
+  public ProductVariation dateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
     return this;
   }
@@ -285,17 +285,17 @@ public class ProductVariation {
    * The date the variation  was created, as GMT. read-only
    * @return dateCreatedGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCreatedGmt() {
     return dateCreatedGmt;
   }
 
-  public void setDateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
+  public void setDateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
   }
 
 
-  public ProductVariation dateModified(@Nullable LocalDateTime dateModified) {
+  public ProductVariation dateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
     return this;
   }
@@ -304,17 +304,17 @@ public class ProductVariation {
    * The date the variation  was last modified, in the site&#39;s timezone. read-only
    * @return dateModified
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateModified() {
     return dateModified;
   }
 
-  public void setDateModified(@Nullable LocalDateTime dateModified) {
+  public void setDateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
   }
 
 
-  public ProductVariation dateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
+  public ProductVariation dateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
     return this;
   }
@@ -323,17 +323,17 @@ public class ProductVariation {
    * The date the variation  was last modified, as GMT. read-only
    * @return dateModifiedGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateModifiedGmt() {
     return dateModifiedGmt;
   }
 
-  public void setDateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
+  public void setDateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
   }
 
 
-  public ProductVariation description(@Nullable String description) {
+  public ProductVariation description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
@@ -342,17 +342,17 @@ public class ProductVariation {
    * Variation description.
    * @return description
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(@Nullable String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public ProductVariation permalink(@Nullable String permalink) {
+  public ProductVariation permalink(@javax.annotation.Nullable String permalink) {
     this.permalink = permalink;
     return this;
   }
@@ -361,17 +361,17 @@ public class ProductVariation {
    * Variation URL. read-only
    * @return permalink
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPermalink() {
     return permalink;
   }
 
-  public void setPermalink(@Nullable String permalink) {
+  public void setPermalink(@javax.annotation.Nullable String permalink) {
     this.permalink = permalink;
   }
 
 
-  public ProductVariation sku(@Nullable String sku) {
+  public ProductVariation sku(@javax.annotation.Nullable String sku) {
     this.sku = sku;
     return this;
   }
@@ -380,17 +380,17 @@ public class ProductVariation {
    * Unique identifier.
    * @return sku
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSku() {
     return sku;
   }
 
-  public void setSku(@Nullable String sku) {
+  public void setSku(@javax.annotation.Nullable String sku) {
     this.sku = sku;
   }
 
 
-  public ProductVariation price(@Nullable String price) {
+  public ProductVariation price(@javax.annotation.Nullable String price) {
     this.price = price;
     return this;
   }
@@ -399,17 +399,17 @@ public class ProductVariation {
    * Current variation price. read-only
    * @return price
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPrice() {
     return price;
   }
 
-  public void setPrice(@Nullable String price) {
+  public void setPrice(@javax.annotation.Nullable String price) {
     this.price = price;
   }
 
 
-  public ProductVariation regularPrice(@Nullable String regularPrice) {
+  public ProductVariation regularPrice(@javax.annotation.Nullable String regularPrice) {
     this.regularPrice = regularPrice;
     return this;
   }
@@ -418,16 +418,16 @@ public class ProductVariation {
    * Variation product price.
    * @return regularPrice
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getRegularPrice() {
     return regularPrice;
   }
 
-  public void setRegularPrice(@Nullable String regularPrice) {
+  public void setRegularPrice(@javax.annotation.Nullable String regularPrice) {
     this.regularPrice = regularPrice;
   }
 
-public void setRegularPrice(@Nullable BigDecimal regularPrice) {
+public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) {
 
     if (regularPrice != null) {
         setRegularPrice(regularPrice.toString());
@@ -435,7 +435,7 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
 
 }
 
-  public ProductVariation salePrice(@Nullable String salePrice) {
+  public ProductVariation salePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
     return this;
   }
@@ -444,17 +444,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Variation sale price.
    * @return salePrice
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSalePrice() {
     return salePrice;
   }
 
-  public void setSalePrice(@Nullable String salePrice) {
+  public void setSalePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
   }
 
 
- public void setSalePrice(@Nullable BigDecimal salePrice) {
+ public void setSalePrice(@javax.annotation.Nullable BigDecimal salePrice) {
 
       if (salePrice != null) {
           setSalePrice(salePrice.toString());
@@ -463,7 +463,7 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
 }
 
 
-  public ProductVariation dateOnSaleFrom(@Nullable LocalDateTime dateOnSaleFrom) {
+  public ProductVariation dateOnSaleFrom(@javax.annotation.Nullable LocalDateTime dateOnSaleFrom) {
     this.dateOnSaleFrom = dateOnSaleFrom;
     return this;
   }
@@ -472,17 +472,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Start date of sale price, in the site&#39;s timezone.
    * @return dateOnSaleFrom
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateOnSaleFrom() {
     return dateOnSaleFrom;
   }
 
-  public void setDateOnSaleFrom(@Nullable LocalDateTime dateOnSaleFrom) {
+  public void setDateOnSaleFrom(@javax.annotation.Nullable LocalDateTime dateOnSaleFrom) {
     this.dateOnSaleFrom = dateOnSaleFrom;
   }
 
 
-  public ProductVariation dateOnSaleFromGmt(@Nullable LocalDateTime dateOnSaleFromGmt) {
+  public ProductVariation dateOnSaleFromGmt(@javax.annotation.Nullable LocalDateTime dateOnSaleFromGmt) {
     this.dateOnSaleFromGmt = dateOnSaleFromGmt;
     return this;
   }
@@ -491,17 +491,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Start date of sale price, as GMT.
    * @return dateOnSaleFromGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateOnSaleFromGmt() {
     return dateOnSaleFromGmt;
   }
 
-  public void setDateOnSaleFromGmt(@Nullable LocalDateTime dateOnSaleFromGmt) {
+  public void setDateOnSaleFromGmt(@javax.annotation.Nullable LocalDateTime dateOnSaleFromGmt) {
     this.dateOnSaleFromGmt = dateOnSaleFromGmt;
   }
 
 
-  public ProductVariation dateOnSaleTo(@Nullable LocalDateTime dateOnSaleTo) {
+  public ProductVariation dateOnSaleTo(@javax.annotation.Nullable LocalDateTime dateOnSaleTo) {
     this.dateOnSaleTo = dateOnSaleTo;
     return this;
   }
@@ -510,17 +510,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * End date of sale price, in the site&#39;s timezone.
    * @return dateOnSaleTo
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateOnSaleTo() {
     return dateOnSaleTo;
   }
 
-  public void setDateOnSaleTo(@Nullable LocalDateTime dateOnSaleTo) {
+  public void setDateOnSaleTo(@javax.annotation.Nullable LocalDateTime dateOnSaleTo) {
     this.dateOnSaleTo = dateOnSaleTo;
   }
 
 
-  public ProductVariation dateOnSaleToGmt(@Nullable LocalDateTime dateOnSaleToGmt) {
+  public ProductVariation dateOnSaleToGmt(@javax.annotation.Nullable LocalDateTime dateOnSaleToGmt) {
     this.dateOnSaleToGmt = dateOnSaleToGmt;
     return this;
   }
@@ -529,17 +529,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * End date of sale price, as GMT.
    * @return dateOnSaleToGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateOnSaleToGmt() {
     return dateOnSaleToGmt;
   }
 
-  public void setDateOnSaleToGmt(@Nullable LocalDateTime dateOnSaleToGmt) {
+  public void setDateOnSaleToGmt(@javax.annotation.Nullable LocalDateTime dateOnSaleToGmt) {
     this.dateOnSaleToGmt = dateOnSaleToGmt;
   }
 
 
-  public ProductVariation onSale(@Nullable Boolean onSale) {
+  public ProductVariation onSale(@javax.annotation.Nullable Boolean onSale) {
     this.onSale = onSale;
     return this;
   }
@@ -548,17 +548,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Shows if the variation is on sale. read-only
    * @return onSale
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getOnSale() {
     return onSale;
   }
 
-  public void setOnSale(@Nullable Boolean onSale) {
+  public void setOnSale(@javax.annotation.Nullable Boolean onSale) {
     this.onSale = onSale;
   }
 
 
-  public ProductVariation status(@Nullable String status) {
+  public ProductVariation status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
@@ -567,17 +567,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Variation status. Options: draft, pending, private and publish. Default is publish.
    * @return status
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(@Nullable String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public ProductVariation purchasable(@Nullable Boolean purchasable) {
+  public ProductVariation purchasable(@javax.annotation.Nullable Boolean purchasable) {
     this.purchasable = purchasable;
     return this;
   }
@@ -586,17 +586,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Shows if the variation can be bought. read-only
    * @return purchasable
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getPurchasable() {
     return purchasable;
   }
 
-  public void setPurchasable(@Nullable Boolean purchasable) {
+  public void setPurchasable(@javax.annotation.Nullable Boolean purchasable) {
     this.purchasable = purchasable;
   }
 
 
-  public ProductVariation virtual(@Nullable Boolean virtual) {
+  public ProductVariation virtual(@javax.annotation.Nullable Boolean virtual) {
     this.virtual = virtual;
     return this;
   }
@@ -605,17 +605,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * If the variation is virtual. Default is false.
    * @return virtual
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getVirtual() {
     return virtual;
   }
 
-  public void setVirtual(@Nullable Boolean virtual) {
+  public void setVirtual(@javax.annotation.Nullable Boolean virtual) {
     this.virtual = virtual;
   }
 
 
-  public ProductVariation downloadable(@Nullable Boolean downloadable) {
+  public ProductVariation downloadable(@javax.annotation.Nullable Boolean downloadable) {
     this.downloadable = downloadable;
     return this;
   }
@@ -624,17 +624,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * If the variation is downloadable. Default is false.
    * @return downloadable
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getDownloadable() {
     return downloadable;
   }
 
-  public void setDownloadable(@Nullable Boolean downloadable) {
+  public void setDownloadable(@javax.annotation.Nullable Boolean downloadable) {
     this.downloadable = downloadable;
   }
 
 
-  public ProductVariation downloads(@Nullable List<ProductDownload> downloads) {
+  public ProductVariation downloads(@javax.annotation.Nullable List<ProductDownload> downloads) {
     this.downloads = downloads;
     return this;
   }
@@ -651,17 +651,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * List of downloadable files.
    * @return downloads
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<ProductDownload> getDownloads() {
     return downloads;
   }
 
-  public void setDownloads(@Nullable List<ProductDownload> downloads) {
+  public void setDownloads(@javax.annotation.Nullable List<ProductDownload> downloads) {
     this.downloads = downloads;
   }
 
 
-  public ProductVariation downloadLimit(@Nullable Integer downloadLimit) {
+  public ProductVariation downloadLimit(@javax.annotation.Nullable Integer downloadLimit) {
     this.downloadLimit = downloadLimit;
     return this;
   }
@@ -670,17 +670,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Number of times downloadable files can be downloaded after purchase. Default is -1.
    * @return downloadLimit
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getDownloadLimit() {
     return downloadLimit;
   }
 
-  public void setDownloadLimit(@Nullable Integer downloadLimit) {
+  public void setDownloadLimit(@javax.annotation.Nullable Integer downloadLimit) {
     this.downloadLimit = downloadLimit;
   }
 
 
-  public ProductVariation downloadExpiry(@Nullable Integer downloadExpiry) {
+  public ProductVariation downloadExpiry(@javax.annotation.Nullable Integer downloadExpiry) {
     this.downloadExpiry = downloadExpiry;
     return this;
   }
@@ -689,17 +689,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Number of days until access to downloadable files expires. Default is -1.
    * @return downloadExpiry
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getDownloadExpiry() {
     return downloadExpiry;
   }
 
-  public void setDownloadExpiry(@Nullable Integer downloadExpiry) {
+  public void setDownloadExpiry(@javax.annotation.Nullable Integer downloadExpiry) {
     this.downloadExpiry = downloadExpiry;
   }
 
 
-  public ProductVariation taxStatus(@Nullable String taxStatus) {
+  public ProductVariation taxStatus(@javax.annotation.Nullable String taxStatus) {
     this.taxStatus = taxStatus;
     return this;
   }
@@ -708,17 +708,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Tax status. Options: taxable, shipping and none. Default is taxable.
    * @return taxStatus
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTaxStatus() {
     return taxStatus;
   }
 
-  public void setTaxStatus(@Nullable String taxStatus) {
+  public void setTaxStatus(@javax.annotation.Nullable String taxStatus) {
     this.taxStatus = taxStatus;
   }
 
 
-  public ProductVariation taxClass(@Nullable String taxClass) {
+  public ProductVariation taxClass(@javax.annotation.Nullable String taxClass) {
     this.taxClass = taxClass;
     return this;
   }
@@ -727,17 +727,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Tax class.
    * @return taxClass
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTaxClass() {
     return taxClass;
   }
 
-  public void setTaxClass(@Nullable String taxClass) {
+  public void setTaxClass(@javax.annotation.Nullable String taxClass) {
     this.taxClass = taxClass;
   }
 
 
-  public ProductVariation manageStock(@Nullable Boolean manageStock) {
+  public ProductVariation manageStock(@javax.annotation.Nullable Boolean manageStock) {
     this.manageStock = manageStock;
     return this;
   }
@@ -746,17 +746,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Stock management at variation level. Default is false.
    * @return manageStock
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getManageStock() {
     return manageStock;
   }
 
-  public void setManageStock(@Nullable Boolean manageStock) {
+  public void setManageStock(@javax.annotation.Nullable Boolean manageStock) {
     this.manageStock = manageStock;
   }
 
 
-  public ProductVariation stockQuantity(@Nullable Integer stockQuantity) {
+  public ProductVariation stockQuantity(@javax.annotation.Nullable Integer stockQuantity) {
     this.stockQuantity = stockQuantity;
     return this;
   }
@@ -765,17 +765,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Stock quantity.
    * @return stockQuantity
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getStockQuantity() {
     return stockQuantity;
   }
 
-  public void setStockQuantity(@Nullable Integer stockQuantity) {
+  public void setStockQuantity(@javax.annotation.Nullable Integer stockQuantity) {
     this.stockQuantity = stockQuantity;
   }
 
 
-  public ProductVariation stockStatus(@Nullable String stockStatus) {
+  public ProductVariation stockStatus(@javax.annotation.Nullable String stockStatus) {
     this.stockStatus = stockStatus;
     return this;
   }
@@ -784,17 +784,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Controls the stock status of the product. Options: instock, outofstock, onbackorder. Default is instock.
    * @return stockStatus
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getStockStatus() {
     return stockStatus;
   }
 
-  public void setStockStatus(@Nullable String stockStatus) {
+  public void setStockStatus(@javax.annotation.Nullable String stockStatus) {
     this.stockStatus = stockStatus;
   }
 
 
-  public ProductVariation backorders(@Nullable String backorders) {
+  public ProductVariation backorders(@javax.annotation.Nullable String backorders) {
     this.backorders = backorders;
     return this;
   }
@@ -803,17 +803,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * If managing stock, this controls if backorders are allowed. Options: no, notify and yes. Default is no.
    * @return backorders
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getBackorders() {
     return backorders;
   }
 
-  public void setBackorders(@Nullable String backorders) {
+  public void setBackorders(@javax.annotation.Nullable String backorders) {
     this.backorders = backorders;
   }
 
 
-  public ProductVariation backordersAllowed(@Nullable Boolean backordersAllowed) {
+  public ProductVariation backordersAllowed(@javax.annotation.Nullable Boolean backordersAllowed) {
     this.backordersAllowed = backordersAllowed;
     return this;
   }
@@ -822,17 +822,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Shows if backorders are allowed. read-only
    * @return backordersAllowed
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getBackordersAllowed() {
     return backordersAllowed;
   }
 
-  public void setBackordersAllowed(@Nullable Boolean backordersAllowed) {
+  public void setBackordersAllowed(@javax.annotation.Nullable Boolean backordersAllowed) {
     this.backordersAllowed = backordersAllowed;
   }
 
 
-  public ProductVariation backordered(@Nullable Boolean backordered) {
+  public ProductVariation backordered(@javax.annotation.Nullable Boolean backordered) {
     this.backordered = backordered;
     return this;
   }
@@ -841,17 +841,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Shows if the variation is on backordered. read-only
    * @return backordered
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getBackordered() {
     return backordered;
   }
 
-  public void setBackordered(@Nullable Boolean backordered) {
+  public void setBackordered(@javax.annotation.Nullable Boolean backordered) {
     this.backordered = backordered;
   }
 
 
-  public ProductVariation weight(@Nullable String weight) {
+  public ProductVariation weight(@javax.annotation.Nullable String weight) {
     this.weight = weight;
     return this;
   }
@@ -860,17 +860,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Variation weight.
    * @return weight
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getWeight() {
     return weight;
   }
 
-  public void setWeight(@Nullable String weight) {
+  public void setWeight(@javax.annotation.Nullable String weight) {
     this.weight = weight;
   }
 
 
-  public ProductVariation dimensions(@Nullable ProductDimension dimensions) {
+  public ProductVariation dimensions(@javax.annotation.Nullable ProductDimension dimensions) {
     this.dimensions = dimensions;
     return this;
   }
@@ -879,17 +879,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Get dimensions
    * @return dimensions
    */
-  @Nullable
+  @javax.annotation.Nullable
   public ProductDimension getDimensions() {
     return dimensions;
   }
 
-  public void setDimensions(@Nullable ProductDimension dimensions) {
+  public void setDimensions(@javax.annotation.Nullable ProductDimension dimensions) {
     this.dimensions = dimensions;
   }
 
 
-  public ProductVariation shippingClass(@Nullable String shippingClass) {
+  public ProductVariation shippingClass(@javax.annotation.Nullable String shippingClass) {
     this.shippingClass = shippingClass;
     return this;
   }
@@ -898,17 +898,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Shipping class slug.
    * @return shippingClass
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getShippingClass() {
     return shippingClass;
   }
 
-  public void setShippingClass(@Nullable String shippingClass) {
+  public void setShippingClass(@javax.annotation.Nullable String shippingClass) {
     this.shippingClass = shippingClass;
   }
 
 
-  public ProductVariation shippingClassId(@Nullable Integer shippingClassId) {
+  public ProductVariation shippingClassId(@javax.annotation.Nullable Integer shippingClassId) {
     this.shippingClassId = shippingClassId;
     return this;
   }
@@ -917,17 +917,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Shipping class ID.
    * @return shippingClassId
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getShippingClassId() {
     return shippingClassId;
   }
 
-  public void setShippingClassId(@Nullable Integer shippingClassId) {
+  public void setShippingClassId(@javax.annotation.Nullable Integer shippingClassId) {
     this.shippingClassId = shippingClassId;
   }
 
 
-  public ProductVariation image(@Nullable ProductImage image) {
+  public ProductVariation image(@javax.annotation.Nullable ProductImage image) {
     this.image = image;
     return this;
   }
@@ -936,17 +936,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Get image
    * @return image
    */
-  @Nullable
+  @javax.annotation.Nullable
   public ProductImage getImage() {
     return image;
   }
 
-  public void setImage(@Nullable ProductImage image) {
+  public void setImage(@javax.annotation.Nullable ProductImage image) {
     this.image = image;
   }
 
 
-  public ProductVariation attributes(@Nullable List<ProductAttribute> attributes) {
+  public ProductVariation attributes(@javax.annotation.Nullable List<ProductAttribute> attributes) {
     this.attributes = attributes;
     return this;
   }
@@ -963,17 +963,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * List of attributes.
    * @return attributes
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<ProductAttribute> getAttributes() {
     return attributes;
   }
 
-  public void setAttributes(@Nullable List<ProductAttribute> attributes) {
+  public void setAttributes(@javax.annotation.Nullable List<ProductAttribute> attributes) {
     this.attributes = attributes;
   }
 
 
-  public ProductVariation menuOrder(@Nullable Integer menuOrder) {
+  public ProductVariation menuOrder(@javax.annotation.Nullable Integer menuOrder) {
     this.menuOrder = menuOrder;
     return this;
   }
@@ -982,17 +982,17 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Menu order, used to custom sort products.
    * @return menuOrder
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getMenuOrder() {
     return menuOrder;
   }
 
-  public void setMenuOrder(@Nullable Integer menuOrder) {
+  public void setMenuOrder(@javax.annotation.Nullable Integer menuOrder) {
     this.menuOrder = menuOrder;
   }
 
 
-  public ProductVariation metaData(@Nullable List<MetaData> metaData) {
+  public ProductVariation metaData(@javax.annotation.Nullable List<MetaData> metaData) {
     this.metaData = metaData;
     return this;
   }
@@ -1009,12 +1009,12 @@ public void setRegularPrice(@Nullable BigDecimal regularPrice) {
    * Meta data properties.
    * @return metaData
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<MetaData> getMetaData() {
     return metaData;
   }
 
-  public void setMetaData(@Nullable List<MetaData> metaData) {
+  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
     this.metaData = metaData;
   }
 

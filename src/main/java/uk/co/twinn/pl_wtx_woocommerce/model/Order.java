@@ -28,7 +28,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
@@ -39,37 +39,37 @@ import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 public class Order {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_PARENT_ID = "parent_id";
   //@SerializedName(SERIALIZED_NAME_PARENT_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer parentId;
 
   public static final String SERIALIZED_NAME_NUMBER = "number";
   //@SerializedName(SERIALIZED_NAME_NUMBER)
-  @Nullable
+  @javax.annotation.Nullable
   private String number;
 
   public static final String SERIALIZED_NAME_ORDER_KEY = "order_key";
   //@SerializedName(SERIALIZED_NAME_ORDER_KEY)
-  @Nullable
+  @javax.annotation.Nullable
   private String orderKey;
 
   public static final String SERIALIZED_NAME_CREATED_VIA = "created_via";
   //@SerializedName(SERIALIZED_NAME_CREATED_VIA)
-  @Nullable
+  @javax.annotation.Nullable
   private String createdVia;
 
   public static final String SERIALIZED_NAME_VERSION = "version";
   //@SerializedName(SERIALIZED_NAME_VERSION)
-  @Nullable
+  @javax.annotation.Nullable
   private String version;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   //@SerializedName(SERIALIZED_NAME_STATUS)
-  @Nullable
+  @javax.annotation.Nullable
   private String status;
 
   /**
@@ -430,177 +430,177 @@ public class Order {
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   //@SerializedName(SERIALIZED_NAME_CURRENCY)
-  @Nullable
+  @javax.annotation.Nullable
   private CurrencyEnum currency;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_DISCOUNT_TOTAL = "discount_total";
   //@SerializedName(SERIALIZED_NAME_DISCOUNT_TOTAL)
-  @Nullable
+  @javax.annotation.Nullable
   private String discountTotal;
 
   public static final String SERIALIZED_NAME_DISCOUNT_TAX = "discount_tax";
   //@SerializedName(SERIALIZED_NAME_DISCOUNT_TAX)
-  @Nullable
+  @javax.annotation.Nullable
   private String discountTax;
 
   public static final String SERIALIZED_NAME_SHIPPING_TOTAL = "shipping_total";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_TOTAL)
-  @Nullable
+  @javax.annotation.Nullable
   private String shippingTotal;
 
   public static final String SERIALIZED_NAME_SHIPPING_TAX = "shipping_tax";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_TAX)
-  @Nullable
+  @javax.annotation.Nullable
   private String shippingTax;
 
   public static final String SERIALIZED_NAME_CART_TAX = "cart_tax";
   //@SerializedName(SERIALIZED_NAME_CART_TAX)
-  @Nullable
+  @javax.annotation.Nullable
   private String cartTax;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   //@SerializedName(SERIALIZED_NAME_TOTAL)
-  @Nullable
+  @javax.annotation.Nullable
   private String total;
 
   public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
   //@SerializedName(SERIALIZED_NAME_TOTAL_TAX)
-  @Nullable
+  @javax.annotation.Nullable
   private String totalTax;
 
   public static final String SERIALIZED_NAME_PRICES_INCLUDE_TAX = "prices_include_tax";
   //@SerializedName(SERIALIZED_NAME_PRICES_INCLUDE_TAX)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean pricesIncludeTax;
 
   public static final String SERIALIZED_NAME_CUSTOMER_ID = "customer_id";
   //@SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer customerId;
 
   public static final String SERIALIZED_NAME_CUSTOMER_IP_ADDRESS = "customer_ip_address";
   //@SerializedName(SERIALIZED_NAME_CUSTOMER_IP_ADDRESS)
-  @Nullable
+  @javax.annotation.Nullable
   private String customerIpAddress;
 
   public static final String SERIALIZED_NAME_CUSTOMER_USER_AGENT = "customer_user_agent";
   //@SerializedName(SERIALIZED_NAME_CUSTOMER_USER_AGENT)
-  @Nullable
+  @javax.annotation.Nullable
   private String customerUserAgent;
 
   public static final String SERIALIZED_NAME_CUSTOMER_NOTE = "customer_note";
   //@SerializedName(SERIALIZED_NAME_CUSTOMER_NOTE)
-  @Nullable
+  @javax.annotation.Nullable
   private String customerNote;
 
   public static final String SERIALIZED_NAME_BILLING = "billing";
   //@SerializedName(SERIALIZED_NAME_BILLING)
-  @Nullable
+  @javax.annotation.Nullable
   private Billing billing;
 
   public static final String SERIALIZED_NAME_SHIPPING = "shipping";
   //@SerializedName(SERIALIZED_NAME_SHIPPING)
-  @Nullable
+  @javax.annotation.Nullable
   private Shipping shipping;
 
   public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
   //@SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
-  @Nullable
+  @javax.annotation.Nullable
   private String paymentMethod;
 
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_TITLE = "payment_method_title";
   //@SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TITLE)
-  @Nullable
+  @javax.annotation.Nullable
   private String paymentMethodTitle;
 
   public static final String SERIALIZED_NAME_TRANSACTION_ID = "transaction_id";
   //@SerializedName(SERIALIZED_NAME_TRANSACTION_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private String transactionId;
 
   public static final String SERIALIZED_NAME_DATE_PAID = "date_paid";
   //@SerializedName(SERIALIZED_NAME_DATE_PAID)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime datePaid;
 
   public static final String SERIALIZED_NAME_DATE_PAID_GMT = "date_paid_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_PAID_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime datePaidGmt;
 
   public static final String SERIALIZED_NAME_DATE_COMPLETED = "date_completed";
   //@SerializedName(SERIALIZED_NAME_DATE_COMPLETED)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCompleted;
 
   public static final String SERIALIZED_NAME_DATE_COMPLETED_GMT = "date_completed_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_COMPLETED_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCompletedGmt;
 
   public static final String SERIALIZED_NAME_CART_HASH = "cart_hash";
   //@SerializedName(SERIALIZED_NAME_CART_HASH)
-  @Nullable
+  @javax.annotation.Nullable
   private String cartHash;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
   //@SerializedName(SERIALIZED_NAME_META_DATA)
-  @Nullable
+  @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINE_ITEMS = "line_items";
   //@SerializedName(SERIALIZED_NAME_LINE_ITEMS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<OrderLineItem> lineItems = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TAX_LINES = "tax_lines";
   //@SerializedName(SERIALIZED_NAME_TAX_LINES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<OrderTaxLine> taxLines = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SHIPPING_LINES = "shipping_lines";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_LINES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<OrderShippingLine> shippingLines = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FEE_LINES = "fee_lines";
   //@SerializedName(SERIALIZED_NAME_FEE_LINES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<OrderFeeLine> feeLines = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_COUPON_LINES = "coupon_lines";
   //@SerializedName(SERIALIZED_NAME_COUPON_LINES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<OrderCouponLine> couponLines = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REFUNDS = "refunds";
   //@SerializedName(SERIALIZED_NAME_REFUNDS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<OrderRefund> refunds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SET_PAID = "set_paid";
   //@SerializedName(SERIALIZED_NAME_SET_PAID)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean setPaid;
 
   private ErrorMessage error; //batch notifier
@@ -608,7 +608,7 @@ public class Order {
   public Order() {
   }
 
-  public Order id(@Nullable Integer id) {
+  public Order id(@javax.annotation.Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -617,17 +617,17 @@ public class Order {
    * Unique identifier for the resource.
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@Nullable Integer id) {
+  public void setId(@javax.annotation.Nullable Integer id) {
     this.id = id;
   }
 
 
-  public Order parentId(@Nullable Integer parentId) {
+  public Order parentId(@javax.annotation.Nullable Integer parentId) {
     this.parentId = parentId;
     return this;
   }
@@ -636,18 +636,18 @@ public class Order {
    * Parent order ID.
    * @return parentId
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getParentId() {
     return parentId;
   }
 
   @JsonProperty("parent_id")
-  public void setParentId(@Nullable Integer parentId) {
+  public void setParentId(@javax.annotation.Nullable Integer parentId) {
     this.parentId = parentId;
   }
 
 
-  public Order number(@Nullable String number) {
+  public Order number(@javax.annotation.Nullable String number) {
     this.number = number;
     return this;
   }
@@ -656,17 +656,17 @@ public class Order {
    * Order number.
    * @return number
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getNumber() {
     return number;
   }
 
-  public void setNumber(@Nullable String number) {
+  public void setNumber(@javax.annotation.Nullable String number) {
     this.number = number;
   }
 
 
-  public Order orderKey(@Nullable String orderKey) {
+  public Order orderKey(@javax.annotation.Nullable String orderKey) {
     this.orderKey = orderKey;
     return this;
   }
@@ -675,18 +675,18 @@ public class Order {
    * Order key.
    * @return orderKey
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getOrderKey() {
     return orderKey;
   }
 
   @JsonProperty("order_key")
-  public void setOrderKey(@Nullable String orderKey) {
+  public void setOrderKey(@javax.annotation.Nullable String orderKey) {
     this.orderKey = orderKey;
   }
 
 
-  public Order createdVia(@Nullable String createdVia) {
+  public Order createdVia(@javax.annotation.Nullable String createdVia) {
     this.createdVia = createdVia;
     return this;
   }
@@ -695,18 +695,18 @@ public class Order {
    * Shows where the order was created.
    * @return createdVia
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCreatedVia() {
     return createdVia;
   }
 
   @JsonProperty("created_via")
-  public void setCreatedVia(@Nullable String createdVia) {
+  public void setCreatedVia(@javax.annotation.Nullable String createdVia) {
     this.createdVia = createdVia;
   }
 
 
-  public Order version(@Nullable String version) {
+  public Order version(@javax.annotation.Nullable String version) {
     this.version = version;
     return this;
   }
@@ -715,17 +715,17 @@ public class Order {
    * Version of WooCommerce which last updated the order.
    * @return version
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getVersion() {
     return version;
   }
 
-  public void setVersion(@Nullable String version) {
+  public void setVersion(@javax.annotation.Nullable String version) {
     this.version = version;
   }
 
 
-  public Order status(@Nullable String status) {
+  public Order status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
@@ -734,17 +734,17 @@ public class Order {
    * Order status. Options - pending, processing, on-hold, completed, cancelled, refunded, failed, trash and checkout-draft. Default is pending.
    * @return status
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(@Nullable String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public Order currency(@Nullable CurrencyEnum currency) {
+  public Order currency(@javax.annotation.Nullable CurrencyEnum currency) {
     this.currency = currency;
     return this;
   }
@@ -753,17 +753,17 @@ public class Order {
    * Currency the order was created with, in ISO format.
    * @return currency
    */
-  @Nullable
+  @javax.annotation.Nullable
   public CurrencyEnum getCurrency() {
     return currency;
   }
 
-  public void setCurrency(@Nullable CurrencyEnum currency) {
+  public void setCurrency(@javax.annotation.Nullable CurrencyEnum currency) {
     this.currency = currency;
   }
 
 
-  public Order dateCreated(@Nullable LocalDateTime dateCreated) {
+  public Order dateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
@@ -772,18 +772,18 @@ public class Order {
    * The date the order was created, in the site&#39;s timezone.
    * @return dateCreated
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCreated() {
     return dateCreated;
   }
 
   @JsonProperty("date_created")
-  public void setDateCreated(@Nullable LocalDateTime dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public Order dateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
+  public Order dateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
     return this;
   }
@@ -792,18 +792,18 @@ public class Order {
    * The date the order was created, as GMT.
    * @return dateCreatedGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCreatedGmt() {
     return dateCreatedGmt;
   }
 
   @JsonProperty("date_created_gmt")
-  public void setDateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
+  public void setDateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
   }
 
 
-  public Order dateModified(@Nullable LocalDateTime dateModified) {
+  public Order dateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
     return this;
   }
@@ -812,18 +812,18 @@ public class Order {
    * The date the order was last modified, in the site&#39;s timezone.
    * @return dateModified
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateModified() {
     return dateModified;
   }
 
   @JsonProperty("date_modified")
-  public void setDateModified(@Nullable LocalDateTime dateModified) {
+  public void setDateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
   }
 
 
-  public Order dateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
+  public Order dateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
     return this;
   }
@@ -832,18 +832,18 @@ public class Order {
    * The date the order was last modified, as GMT.
    * @return dateModifiedGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateModifiedGmt() {
     return dateModifiedGmt;
   }
 
   @JsonProperty("date_modified_gmt")
-  public void setDateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
+  public void setDateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
   }
 
 
-  public Order discountTotal(@Nullable String discountTotal) {
+  public Order discountTotal(@javax.annotation.Nullable String discountTotal) {
     this.discountTotal = discountTotal;
     return this;
   }
@@ -852,18 +852,18 @@ public class Order {
    * Total discount amount for the order.
    * @return discountTotal
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getDiscountTotal() {
     return discountTotal;
   }
 
   @JsonProperty("discount_total")
-  public void setDiscountTotal(@Nullable String discountTotal) {
+  public void setDiscountTotal(@javax.annotation.Nullable String discountTotal) {
     this.discountTotal = discountTotal;
   }
 
 
-  public Order discountTax(@Nullable String discountTax) {
+  public Order discountTax(@javax.annotation.Nullable String discountTax) {
     this.discountTax = discountTax;
     return this;
   }
@@ -872,18 +872,18 @@ public class Order {
    * Total discount tax amount for the order.
    * @return discountTax
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getDiscountTax() {
     return discountTax;
   }
 
   @JsonProperty("discount_tax")
-  public void setDiscountTax(@Nullable String discountTax) {
+  public void setDiscountTax(@javax.annotation.Nullable String discountTax) {
     this.discountTax = discountTax;
   }
 
 
-  public Order shippingTotal(@Nullable String shippingTotal) {
+  public Order shippingTotal(@javax.annotation.Nullable String shippingTotal) {
     this.shippingTotal = shippingTotal;
     return this;
   }
@@ -892,18 +892,18 @@ public class Order {
    * Total shipping amount for the order.
    * @return shippingTotal
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getShippingTotal() {
     return shippingTotal;
   }
 
   @JsonProperty("shipping_total")
-  public void setShippingTotal(@Nullable String shippingTotal) {
+  public void setShippingTotal(@javax.annotation.Nullable String shippingTotal) {
     this.shippingTotal = shippingTotal;
   }
 
 
-  public Order shippingTax(@Nullable String shippingTax) {
+  public Order shippingTax(@javax.annotation.Nullable String shippingTax) {
     this.shippingTax = shippingTax;
     return this;
   }
@@ -912,18 +912,18 @@ public class Order {
    * Total shipping tax amount for the order.
    * @return shippingTax
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getShippingTax() {
     return shippingTax;
   }
 
   @JsonProperty("shipping_tax")
-  public void setShippingTax(@Nullable String shippingTax) {
+  public void setShippingTax(@javax.annotation.Nullable String shippingTax) {
     this.shippingTax = shippingTax;
   }
 
 
-  public Order cartTax(@Nullable String cartTax) {
+  public Order cartTax(@javax.annotation.Nullable String cartTax) {
     this.cartTax = cartTax;
     return this;
   }
@@ -932,18 +932,18 @@ public class Order {
    * Sum of line item taxes only.
    * @return cartTax
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCartTax() {
     return cartTax;
   }
 
   @JsonProperty("cart_tax")
-  public void setCartTax(@Nullable String cartTax) {
+  public void setCartTax(@javax.annotation.Nullable String cartTax) {
     this.cartTax = cartTax;
   }
 
 
-  public Order total(@Nullable String total) {
+  public Order total(@javax.annotation.Nullable String total) {
     this.total = total;
     return this;
   }
@@ -952,17 +952,17 @@ public class Order {
    * Grand total.
    * @return total
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTotal() {
     return total;
   }
 
-  public void setTotal(@Nullable String total) {
+  public void setTotal(@javax.annotation.Nullable String total) {
     this.total = total;
   }
 
 
-  public Order totalTax(@Nullable String totalTax) {
+  public Order totalTax(@javax.annotation.Nullable String totalTax) {
     this.totalTax = totalTax;
     return this;
   }
@@ -971,18 +971,18 @@ public class Order {
    * Sum of all taxes.
    * @return totalTax
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTotalTax() {
     return totalTax;
   }
 
   @JsonProperty("total_tax")
-  public void setTotalTax(@Nullable String totalTax) {
+  public void setTotalTax(@javax.annotation.Nullable String totalTax) {
     this.totalTax = totalTax;
   }
 
 
-  public Order pricesIncludeTax(@Nullable Boolean pricesIncludeTax) {
+  public Order pricesIncludeTax(@javax.annotation.Nullable Boolean pricesIncludeTax) {
     this.pricesIncludeTax = pricesIncludeTax;
     return this;
   }
@@ -991,18 +991,18 @@ public class Order {
    * True the prices included tax during checkout.
    * @return pricesIncludeTax
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getPricesIncludeTax() {
     return pricesIncludeTax;
   }
 
   @JsonProperty("prices_include_tax")
-  public void setPricesIncludeTax(@Nullable Boolean pricesIncludeTax) {
+  public void setPricesIncludeTax(@javax.annotation.Nullable Boolean pricesIncludeTax) {
     this.pricesIncludeTax = pricesIncludeTax;
   }
 
 
-  public Order customerId(@Nullable Integer customerId) {
+  public Order customerId(@javax.annotation.Nullable Integer customerId) {
     this.customerId = customerId;
     return this;
   }
@@ -1011,18 +1011,18 @@ public class Order {
    * User ID who owns the order. 0 for guests.
    * @return customerId
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getCustomerId() {
     return customerId;
   }
 
   @JsonProperty("customer_id")
-  public void setCustomerId(@Nullable Integer customerId) {
+  public void setCustomerId(@javax.annotation.Nullable Integer customerId) {
     this.customerId = customerId;
   }
 
 
-  public Order customerIpAddress(@Nullable String customerIpAddress) {
+  public Order customerIpAddress(@javax.annotation.Nullable String customerIpAddress) {
     this.customerIpAddress = customerIpAddress;
     return this;
   }
@@ -1031,18 +1031,18 @@ public class Order {
    * Customer&#39;s IP address.
    * @return customerIpAddress
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCustomerIpAddress() {
     return customerIpAddress;
   }
 
   @JsonProperty("customer_ip_address")
-  public void setCustomerIpAddress(@Nullable String customerIpAddress) {
+  public void setCustomerIpAddress(@javax.annotation.Nullable String customerIpAddress) {
     this.customerIpAddress = customerIpAddress;
   }
 
 
-  public Order customerUserAgent(@Nullable String customerUserAgent) {
+  public Order customerUserAgent(@javax.annotation.Nullable String customerUserAgent) {
     this.customerUserAgent = customerUserAgent;
     return this;
   }
@@ -1051,18 +1051,18 @@ public class Order {
    * User agent of the customer.
    * @return customerUserAgent
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCustomerUserAgent() {
     return customerUserAgent;
   }
 
   @JsonProperty("customer_user_agent")
-  public void setCustomerUserAgent(@Nullable String customerUserAgent) {
+  public void setCustomerUserAgent(@javax.annotation.Nullable String customerUserAgent) {
     this.customerUserAgent = customerUserAgent;
   }
 
 
-  public Order customerNote(@Nullable String customerNote) {
+  public Order customerNote(@javax.annotation.Nullable String customerNote) {
     this.customerNote = customerNote;
     return this;
   }
@@ -1071,18 +1071,18 @@ public class Order {
    * Note left by customer during checkout.
    * @return customerNote
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCustomerNote() {
     return customerNote;
   }
 
   @JsonProperty("customer_note")
-  public void setCustomerNote(@Nullable String customerNote) {
+  public void setCustomerNote(@javax.annotation.Nullable String customerNote) {
     this.customerNote = customerNote;
   }
 
 
-  public Order billing(@Nullable Billing billing) {
+  public Order billing(@javax.annotation.Nullable Billing billing) {
     this.billing = billing;
     return this;
   }
@@ -1091,17 +1091,17 @@ public class Order {
    * Get billing
    * @return billing
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Billing getBilling() {
     return billing;
   }
 
-  public void setBilling(@Nullable Billing billing) {
+  public void setBilling(@javax.annotation.Nullable Billing billing) {
     this.billing = billing;
   }
 
 
-  public Order shipping(@Nullable Shipping shipping) {
+  public Order shipping(@javax.annotation.Nullable Shipping shipping) {
     this.shipping = shipping;
     return this;
   }
@@ -1110,17 +1110,17 @@ public class Order {
    * Get shipping
    * @return shipping
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Shipping getShipping() {
     return shipping;
   }
 
-  public void setShipping(@Nullable Shipping shipping) {
+  public void setShipping(@javax.annotation.Nullable Shipping shipping) {
     this.shipping = shipping;
   }
 
 
-  public Order paymentMethod(@Nullable String paymentMethod) {
+  public Order paymentMethod(@javax.annotation.Nullable String paymentMethod) {
     this.paymentMethod = paymentMethod;
     return this;
   }
@@ -1129,18 +1129,18 @@ public class Order {
    * Payment method ID.
    * @return paymentMethod
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPaymentMethod() {
     return paymentMethod;
   }
 
   @JsonProperty("payment_method")
-  public void setPaymentMethod(@Nullable String paymentMethod) {
+  public void setPaymentMethod(@javax.annotation.Nullable String paymentMethod) {
     this.paymentMethod = paymentMethod;
   }
 
 
-  public Order paymentMethodTitle(@Nullable String paymentMethodTitle) {
+  public Order paymentMethodTitle(@javax.annotation.Nullable String paymentMethodTitle) {
     this.paymentMethodTitle = paymentMethodTitle;
     return this;
   }
@@ -1149,18 +1149,18 @@ public class Order {
    * Payment method title.
    * @return paymentMethodTitle
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPaymentMethodTitle() {
     return paymentMethodTitle;
   }
 
   @JsonProperty("payment_method_title")
-  public void setPaymentMethodTitle(@Nullable String paymentMethodTitle) {
+  public void setPaymentMethodTitle(@javax.annotation.Nullable String paymentMethodTitle) {
     this.paymentMethodTitle = paymentMethodTitle;
   }
 
 
-  public Order transactionId(@Nullable String transactionId) {
+  public Order transactionId(@javax.annotation.Nullable String transactionId) {
     this.transactionId = transactionId;
     return this;
   }
@@ -1169,18 +1169,18 @@ public class Order {
    * Unique transaction ID.
    * @return transactionId
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTransactionId() {
     return transactionId;
   }
 
   @JsonProperty("transaction_id")
-  public void setTransactionId(@Nullable String transactionId) {
+  public void setTransactionId(@javax.annotation.Nullable String transactionId) {
     this.transactionId = transactionId;
   }
 
 
-  public Order datePaid(@Nullable LocalDateTime datePaid) {
+  public Order datePaid(@javax.annotation.Nullable LocalDateTime datePaid) {
     this.datePaid = datePaid;
     return this;
   }
@@ -1189,18 +1189,18 @@ public class Order {
    * The date the order was paid, in the site&#39;s timezone.
    * @return datePaid
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDatePaid() {
     return datePaid;
   }
 
   @JsonProperty("date_paid")
-  public void setDatePaid(@Nullable LocalDateTime datePaid) {
+  public void setDatePaid(@javax.annotation.Nullable LocalDateTime datePaid) {
     this.datePaid = datePaid;
   }
 
 
-  public Order datePaidGmt(@Nullable LocalDateTime datePaidGmt) {
+  public Order datePaidGmt(@javax.annotation.Nullable LocalDateTime datePaidGmt) {
     this.datePaidGmt = datePaidGmt;
     return this;
   }
@@ -1209,18 +1209,18 @@ public class Order {
    * The date the order was paid, as GMT.
    * @return datePaidGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDatePaidGmt() {
     return datePaidGmt;
   }
 
   @JsonProperty("date_paid_gmt")
-  public void setDatePaidGmt(@Nullable LocalDateTime datePaidGmt) {
+  public void setDatePaidGmt(@javax.annotation.Nullable LocalDateTime datePaidGmt) {
     this.datePaidGmt = datePaidGmt;
   }
 
 
-  public Order dateCompleted(@Nullable LocalDateTime dateCompleted) {
+  public Order dateCompleted(@javax.annotation.Nullable LocalDateTime dateCompleted) {
     this.dateCompleted = dateCompleted;
     return this;
   }
@@ -1229,18 +1229,18 @@ public class Order {
    * The date the order was completed, in the site&#39;s timezone.
    * @return dateCompleted
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCompleted() {
     return dateCompleted;
   }
 
   @JsonProperty("date_completed")
-  public void setDateCompleted(@Nullable LocalDateTime dateCompleted) {
+  public void setDateCompleted(@javax.annotation.Nullable LocalDateTime dateCompleted) {
     this.dateCompleted = dateCompleted;
   }
 
 
-  public Order dateCompletedGmt(@Nullable LocalDateTime dateCompletedGmt) {
+  public Order dateCompletedGmt(@javax.annotation.Nullable LocalDateTime dateCompletedGmt) {
     this.dateCompletedGmt = dateCompletedGmt;
     return this;
   }
@@ -1249,18 +1249,18 @@ public class Order {
    * The date the order was completed, as GMT.
    * @return dateCompletedGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCompletedGmt() {
     return dateCompletedGmt;
   }
 
   @JsonProperty("date_completed_gmt")
-  public void setDateCompletedGmt(@Nullable LocalDateTime dateCompletedGmt) {
+  public void setDateCompletedGmt(@javax.annotation.Nullable LocalDateTime dateCompletedGmt) {
     this.dateCompletedGmt = dateCompletedGmt;
   }
 
 
-  public Order cartHash(@Nullable String cartHash) {
+  public Order cartHash(@javax.annotation.Nullable String cartHash) {
     this.cartHash = cartHash;
     return this;
   }
@@ -1269,18 +1269,18 @@ public class Order {
    * MD5 hash of cart items to ensure orders are not modified.
    * @return cartHash
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCartHash() {
     return cartHash;
   }
 
   @JsonProperty("cart_hash")
-  public void setCartHash(@Nullable String cartHash) {
+  public void setCartHash(@javax.annotation.Nullable String cartHash) {
     this.cartHash = cartHash;
   }
 
 
-  public Order metaData(@Nullable List<MetaData> metaData) {
+  public Order metaData(@javax.annotation.Nullable List<MetaData> metaData) {
     this.metaData = metaData;
     return this;
   }
@@ -1297,18 +1297,18 @@ public class Order {
    * Meta data properties.
    * @return metaData
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<MetaData> getMetaData() {
     return metaData;
   }
 
   @JsonProperty("meta_data")
-  public void setMetaData(@Nullable List<MetaData> metaData) {
+  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
     this.metaData = metaData;
   }
 
 
-  public Order lineItems(@Nullable List<OrderLineItem> lineItems) {
+  public Order lineItems(@javax.annotation.Nullable List<OrderLineItem> lineItems) {
     this.lineItems = lineItems;
     return this;
   }
@@ -1325,18 +1325,18 @@ public class Order {
    * Line items data.
    * @return lineItems
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<OrderLineItem> getLineItems() {
     return lineItems;
   }
 
   @JsonProperty("line_items")
-  public void setLineItems(@Nullable List<OrderLineItem> lineItems) {
+  public void setLineItems(@javax.annotation.Nullable List<OrderLineItem> lineItems) {
     this.lineItems = lineItems;
   }
 
 
-  public Order taxLines(@Nullable List<OrderTaxLine> taxLines) {
+  public Order taxLines(@javax.annotation.Nullable List<OrderTaxLine> taxLines) {
     this.taxLines = taxLines;
     return this;
   }
@@ -1353,18 +1353,18 @@ public class Order {
    * Tax lines data.
    * @return taxLines
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<OrderTaxLine> getTaxLines() {
     return taxLines;
   }
 
   @JsonProperty("tax_lines")
-  public void setTaxLines(@Nullable List<OrderTaxLine> taxLines) {
+  public void setTaxLines(@javax.annotation.Nullable List<OrderTaxLine> taxLines) {
     this.taxLines = taxLines;
   }
 
 
-  public Order shippingLines(@Nullable List<OrderShippingLine> shippingLines) {
+  public Order shippingLines(@javax.annotation.Nullable List<OrderShippingLine> shippingLines) {
     this.shippingLines = shippingLines;
     return this;
   }
@@ -1381,19 +1381,19 @@ public class Order {
    * Shipping lines data.
    * @return shippingLines
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<OrderShippingLine> getShippingLines() {
     return shippingLines;
   }
 
 
   @JsonProperty("shipping_lines")
-  public void setShippingLines(@Nullable List<OrderShippingLine> shippingLines) {
+  public void setShippingLines(@javax.annotation.Nullable List<OrderShippingLine> shippingLines) {
     this.shippingLines = shippingLines;
   }
 
 
-  public Order feeLines(@Nullable List<OrderFeeLine> feeLines) {
+  public Order feeLines(@javax.annotation.Nullable List<OrderFeeLine> feeLines) {
     this.feeLines = feeLines;
     return this;
   }
@@ -1410,19 +1410,19 @@ public class Order {
    * Fee lines data.
    * @return feeLines
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<OrderFeeLine> getFeeLines() {
     return feeLines;
   }
 
 
   @JsonProperty("fee_lines")
-  public void setFeeLines(@Nullable List<OrderFeeLine> feeLines) {
+  public void setFeeLines(@javax.annotation.Nullable List<OrderFeeLine> feeLines) {
     this.feeLines = feeLines;
   }
 
 
-  public Order couponLines(@Nullable List<OrderCouponLine> couponLines) {
+  public Order couponLines(@javax.annotation.Nullable List<OrderCouponLine> couponLines) {
     this.couponLines = couponLines;
     return this;
   }
@@ -1439,19 +1439,19 @@ public class Order {
    * Fee lines data.
    * @return couponLines
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<OrderCouponLine> getCouponLines() {
     return couponLines;
   }
 
 
   @JsonProperty("coupon_lines")
-  public void setCouponLines(@Nullable List<OrderCouponLine> couponLines) {
+  public void setCouponLines(@javax.annotation.Nullable List<OrderCouponLine> couponLines) {
     this.couponLines = couponLines;
   }
 
 
-  public Order refunds(@Nullable List<OrderRefund> refunds) {
+  public Order refunds(@javax.annotation.Nullable List<OrderRefund> refunds) {
     this.refunds = refunds;
     return this;
   }
@@ -1468,17 +1468,17 @@ public class Order {
    * List of refunds.
    * @return refunds
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<OrderRefund> getRefunds() {
     return refunds;
   }
 
-  public void setRefunds(@Nullable List<OrderRefund> refunds) {
+  public void setRefunds(@javax.annotation.Nullable List<OrderRefund> refunds) {
     this.refunds = refunds;
   }
 
 
-  public Order setPaid(@Nullable Boolean setPaid) {
+  public Order setPaid(@javax.annotation.Nullable Boolean setPaid) {
     this.setPaid = setPaid;
     return this;
   }
@@ -1487,12 +1487,12 @@ public class Order {
    * Define if the order is paid. It will set the status to processing and reduce stock items.
    * @return setPaid
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getSetPaid() {
     return setPaid;
   }
 
-  public void setSetPaid(@Nullable Boolean setPaid) {
+  public void setSetPaid(@javax.annotation.Nullable Boolean setPaid) {
     this.setPaid = setPaid;
   }
 
@@ -1502,13 +1502,13 @@ public class Order {
      * BUT record B may fail with exists, or something else.
      * Only way to catch the error and pass back is by adding the error message into here.
      */
-    @Nullable
+    @javax.annotation.Nullable
     public ErrorMessage getError() {
         return error;
     }
 
     @JsonProperty("error")
-    public void setError(@Nullable ErrorMessage error) {
+    public void setError(@javax.annotation.Nullable ErrorMessage error) {
         this.error = error;
     }
 

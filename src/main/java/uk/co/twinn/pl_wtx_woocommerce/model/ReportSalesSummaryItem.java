@@ -26,7 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -36,43 +36,43 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ReportSalesSummaryItem {
   public static final String SERIALIZED_NAME_SALES = "sales";
   //@SerializedName(SERIALIZED_NAME_SALES)
-  @Nullable
+  @javax.annotation.Nullable
   private String sales;
 
   public static final String SERIALIZED_NAME_ORDERS = "orders";
   //@SerializedName(SERIALIZED_NAME_ORDERS)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer orders;
 
   public static final String SERIALIZED_NAME_ITEMS = "items";
   //@SerializedName(SERIALIZED_NAME_ITEMS)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer items;
 
   public static final String SERIALIZED_NAME_TAX = "tax";
   //@SerializedName(SERIALIZED_NAME_TAX)
-  @Nullable
+  @javax.annotation.Nullable
   private String tax;
 
   public static final String SERIALIZED_NAME_SHIPPING = "shipping";
   //@SerializedName(SERIALIZED_NAME_SHIPPING)
-  @Nullable
+  @javax.annotation.Nullable
   private String shipping;
 
   public static final String SERIALIZED_NAME_DISCOUNT = "discount";
   //@SerializedName(SERIALIZED_NAME_DISCOUNT)
-  @Nullable
+  @javax.annotation.Nullable
   private String discount;
 
   public static final String SERIALIZED_NAME_CUSTOMERS = "customers";
   //@SerializedName(SERIALIZED_NAME_CUSTOMERS)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer customers;
 
   public ReportSalesSummaryItem() {
   }
 
-  public ReportSalesSummaryItem sales(@Nullable String sales) {
+  public ReportSalesSummaryItem sales(@javax.annotation.Nullable String sales) {
     this.sales = sales;
     return this;
   }
@@ -81,17 +81,17 @@ public class ReportSalesSummaryItem {
    * Get sales
    * @return sales
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSales() {
     return sales;
   }
 
-  public void setSales(@Nullable String sales) {
+  public void setSales(@javax.annotation.Nullable String sales) {
     this.sales = sales;
   }
 
 
-  public ReportSalesSummaryItem orders(@Nullable Integer orders) {
+  public ReportSalesSummaryItem orders(@javax.annotation.Nullable Integer orders) {
     this.orders = orders;
     return this;
   }
@@ -100,17 +100,17 @@ public class ReportSalesSummaryItem {
    * Get orders
    * @return orders
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getOrders() {
     return orders;
   }
 
-  public void setOrders(@Nullable Integer orders) {
+  public void setOrders(@javax.annotation.Nullable Integer orders) {
     this.orders = orders;
   }
 
 
-  public ReportSalesSummaryItem items(@Nullable Integer items) {
+  public ReportSalesSummaryItem items(@javax.annotation.Nullable Integer items) {
     this.items = items;
     return this;
   }
@@ -119,17 +119,17 @@ public class ReportSalesSummaryItem {
    * Get items
    * @return items
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getItems() {
     return items;
   }
 
-  public void setItems(@Nullable Integer items) {
+  public void setItems(@javax.annotation.Nullable Integer items) {
     this.items = items;
   }
 
 
-  public ReportSalesSummaryItem tax(@Nullable String tax) {
+  public ReportSalesSummaryItem tax(@javax.annotation.Nullable String tax) {
     this.tax = tax;
     return this;
   }
@@ -138,17 +138,17 @@ public class ReportSalesSummaryItem {
    * Get tax
    * @return tax
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTax() {
     return tax;
   }
 
-  public void setTax(@Nullable String tax) {
+  public void setTax(@javax.annotation.Nullable String tax) {
     this.tax = tax;
   }
 
 
-  public ReportSalesSummaryItem shipping(@Nullable String shipping) {
+  public ReportSalesSummaryItem shipping(@javax.annotation.Nullable String shipping) {
     this.shipping = shipping;
     return this;
   }
@@ -157,17 +157,17 @@ public class ReportSalesSummaryItem {
    * Get shipping
    * @return shipping
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getShipping() {
     return shipping;
   }
 
-  public void setShipping(@Nullable String shipping) {
+  public void setShipping(@javax.annotation.Nullable String shipping) {
     this.shipping = shipping;
   }
 
 
-  public ReportSalesSummaryItem discount(@Nullable String discount) {
+  public ReportSalesSummaryItem discount(@javax.annotation.Nullable String discount) {
     this.discount = discount;
     return this;
   }
@@ -176,17 +176,17 @@ public class ReportSalesSummaryItem {
    * Get discount
    * @return discount
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getDiscount() {
     return discount;
   }
 
-  public void setDiscount(@Nullable String discount) {
+  public void setDiscount(@javax.annotation.Nullable String discount) {
     this.discount = discount;
   }
 
 
-  public ReportSalesSummaryItem customers(@Nullable Integer customers) {
+  public ReportSalesSummaryItem customers(@javax.annotation.Nullable Integer customers) {
     this.customers = customers;
     return this;
   }
@@ -195,12 +195,12 @@ public class ReportSalesSummaryItem {
    * Get customers
    * @return customers
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getCustomers() {
     return customers;
   }
 
-  public void setCustomers(@Nullable Integer customers) {
+  public void setCustomers(@javax.annotation.Nullable Integer customers) {
     this.customers = customers;
   }
 

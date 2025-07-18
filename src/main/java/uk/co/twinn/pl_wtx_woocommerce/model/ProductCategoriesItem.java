@@ -26,7 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -36,23 +36,23 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ProductCategoriesItem {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @Nullable
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
-  @Nullable
+  @javax.annotation.Nullable
   private String slug;
 
   public ProductCategoriesItem() {
   }
 
-  public ProductCategoriesItem id(@Nullable Integer id) {
+  public ProductCategoriesItem id(@javax.annotation.Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -61,17 +61,17 @@ public class ProductCategoriesItem {
    * Category ID.
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@Nullable Integer id) {
+  public void setId(@javax.annotation.Nullable Integer id) {
     this.id = id;
   }
 
 
-  public ProductCategoriesItem name(@Nullable String name) {
+  public ProductCategoriesItem name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
@@ -80,17 +80,17 @@ public class ProductCategoriesItem {
    * Category name. read-only
    * @return name
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@Nullable String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public ProductCategoriesItem slug(@Nullable String slug) {
+  public ProductCategoriesItem slug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
     return this;
   }
@@ -99,12 +99,12 @@ public class ProductCategoriesItem {
    * Category slug. read-only
    * @return slug
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSlug() {
     return slug;
   }
 
-  public void setSlug(@Nullable String slug) {
+  public void setSlug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
   }
 

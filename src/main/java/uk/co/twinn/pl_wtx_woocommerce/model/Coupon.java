@@ -10,7 +10,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
@@ -298,13 +298,13 @@ public class Coupon {
      * BUT record B may fail with exists, or something else.
      * Only way to catch the error and pass back is by adding the error message into here.
      */
-    @Nullable
+    @javax.annotation.Nullable
     public ErrorMessage getError() {
         return error;
     }
 
     @JsonProperty("error")
-    public void setError(@Nullable ErrorMessage error) {
+    public void setError(@javax.annotation.Nullable ErrorMessage error) {
         this.error = error;
     }
 

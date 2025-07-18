@@ -27,7 +27,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -37,58 +37,58 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class Shipping {
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   //@SerializedName(SERIALIZED_NAME_FIRST_NAME)
-  @Nullable
+  @javax.annotation.Nullable
   private String firstName;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
   //@SerializedName(SERIALIZED_NAME_LAST_NAME)
-  @Nullable
+  @javax.annotation.Nullable
   private String lastName;
 
   public static final String SERIALIZED_NAME_COMPANY = "company";
   //@SerializedName(SERIALIZED_NAME_COMPANY)
-  @Nullable
+  @javax.annotation.Nullable
   private String company;
 
   public static final String SERIALIZED_NAME_ADDRESS1 = "address_1";
   //@SerializedName(SERIALIZED_NAME_ADDRESS1)
-  @Nullable
+  @javax.annotation.Nullable
   private String address1;
 
   public static final String SERIALIZED_NAME_ADDRESS2 = "address_2";
   //@SerializedName(SERIALIZED_NAME_ADDRESS2)
-  @Nullable
+  @javax.annotation.Nullable
   private String address2;
 
   public static final String SERIALIZED_NAME_CITY = "city";
   //@SerializedName(SERIALIZED_NAME_CITY)
-  @Nullable
+  @javax.annotation.Nullable
   private String city;
 
   public static final String SERIALIZED_NAME_STATE = "state";
   //@SerializedName(SERIALIZED_NAME_STATE)
-  @Nullable
+  @javax.annotation.Nullable
   private String state;
 
   public static final String SERIALIZED_NAME_POSTCODE = "postcode";
   //@SerializedName(SERIALIZED_NAME_POSTCODE)
-  @Nullable
+  @javax.annotation.Nullable
   private String postcode;
 
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   //@SerializedName(SERIALIZED_NAME_COUNTRY)
-  @Nullable
+  @javax.annotation.Nullable
   private String country;
 
   public static final String SERIALIZED_NAME_PHONE = "phone";
   //@SerializedName(SERIALIZED_NAME_PHONE)
-  @Nullable
+  @javax.annotation.Nullable
   private String phone;
 
   public Shipping() {
   }
 
-  public Shipping firstName(@Nullable String firstName) {
+  public Shipping firstName(@javax.annotation.Nullable String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -97,18 +97,18 @@ public class Shipping {
    * First name.
    * @return firstName
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getFirstName() {
     return firstName;
   }
 
   @JsonProperty("first_name")
-  public void setFirstName(@Nullable String firstName) {
+  public void setFirstName(@javax.annotation.Nullable String firstName) {
     this.firstName = firstName;
   }
 
 
-  public Shipping lastName(@Nullable String lastName) {
+  public Shipping lastName(@javax.annotation.Nullable String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -117,18 +117,18 @@ public class Shipping {
    * Last name.
    * @return lastName
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getLastName() {
     return lastName;
   }
 
   @JsonProperty("last_name")
-  public void setLastName(@Nullable String lastName) {
+  public void setLastName(@javax.annotation.Nullable String lastName) {
     this.lastName = lastName;
   }
 
 
-  public Shipping company(@Nullable String company) {
+  public Shipping company(@javax.annotation.Nullable String company) {
     this.company = company;
     return this;
   }
@@ -137,17 +137,17 @@ public class Shipping {
    * Company name.
    * @return company
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCompany() {
     return company;
   }
 
-  public void setCompany(@Nullable String company) {
+  public void setCompany(@javax.annotation.Nullable String company) {
     this.company = company;
   }
 
 
-  public Shipping address1(@Nullable String address1) {
+  public Shipping address1(@javax.annotation.Nullable String address1) {
     this.address1 = address1;
     return this;
   }
@@ -156,18 +156,18 @@ public class Shipping {
    * Address line 1
    * @return address1
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getAddress1() {
     return address1;
   }
 
   @JsonProperty("address_1")
-  public void setAddress1(@Nullable String address1) {
+  public void setAddress1(@javax.annotation.Nullable String address1) {
     this.address1 = address1;
   }
 
 
-  public Shipping address2(@Nullable String address2) {
+  public Shipping address2(@javax.annotation.Nullable String address2) {
     this.address2 = address2;
     return this;
   }
@@ -176,18 +176,18 @@ public class Shipping {
    * Address line 2
    * @return address2
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getAddress2() {
     return address2;
   }
 
   @JsonProperty("address_2")
-  public void setAddress2(@Nullable String address2) {
+  public void setAddress2(@javax.annotation.Nullable String address2) {
     this.address2 = address2;
   }
 
 
-  public Shipping city(@Nullable String city) {
+  public Shipping city(@javax.annotation.Nullable String city) {
     this.city = city;
     return this;
   }
@@ -196,17 +196,17 @@ public class Shipping {
    * City name.
    * @return city
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCity() {
     return city;
   }
 
-  public void setCity(@Nullable String city) {
+  public void setCity(@javax.annotation.Nullable String city) {
     this.city = city;
   }
 
 
-  public Shipping state(@Nullable String state) {
+  public Shipping state(@javax.annotation.Nullable String state) {
     this.state = state;
     return this;
   }
@@ -215,17 +215,17 @@ public class Shipping {
    * ISO code or name of the state, province or district.
    * @return state
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getState() {
     return state;
   }
 
-  public void setState(@Nullable String state) {
+  public void setState(@javax.annotation.Nullable String state) {
     this.state = state;
   }
 
 
-  public Shipping postcode(@Nullable String postcode) {
+  public Shipping postcode(@javax.annotation.Nullable String postcode) {
     this.postcode = postcode;
     return this;
   }
@@ -234,17 +234,17 @@ public class Shipping {
    * Postal code.
    * @return postcode
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPostcode() {
     return postcode;
   }
 
-  public void setPostcode(@Nullable String postcode) {
+  public void setPostcode(@javax.annotation.Nullable String postcode) {
     this.postcode = postcode;
   }
 
 
-  public Shipping country(@Nullable String country) {
+  public Shipping country(@javax.annotation.Nullable String country) {
     this.country = country;
     return this;
   }
@@ -253,17 +253,17 @@ public class Shipping {
    * ISO code of the country.
    * @return country
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCountry() {
     return country;
   }
 
-  public void setCountry(@Nullable String country) {
+  public void setCountry(@javax.annotation.Nullable String country) {
     this.country = country;
   }
 
 
-  public Shipping phone(@Nullable String phone) {
+  public Shipping phone(@javax.annotation.Nullable String phone) {
     this.phone = phone;
     return this;
   }
@@ -272,12 +272,12 @@ public class Shipping {
    * Phone number.
    * @return phone
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPhone() {
     return phone;
   }
 
-  public void setPhone(@Nullable String phone) {
+  public void setPhone(@javax.annotation.Nullable String phone) {
     this.phone = phone;
   }
 

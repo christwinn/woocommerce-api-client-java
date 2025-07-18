@@ -26,7 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -36,23 +36,23 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ReportTotalsItem {
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
-  @Nullable
+  @javax.annotation.Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @Nullable
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   //@SerializedName(SERIALIZED_NAME_TOTAL)
-  @Nullable
+  @javax.annotation.Nullable
   private String total;
 
   public ReportTotalsItem() {
   }
 
-  public ReportTotalsItem slug(@Nullable String slug) {
+  public ReportTotalsItem slug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
     return this;
   }
@@ -61,17 +61,17 @@ public class ReportTotalsItem {
    * Get slug
    * @return slug
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSlug() {
     return slug;
   }
 
-  public void setSlug(@Nullable String slug) {
+  public void setSlug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
   }
 
 
-  public ReportTotalsItem name(@Nullable String name) {
+  public ReportTotalsItem name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
@@ -80,17 +80,17 @@ public class ReportTotalsItem {
    * Get name
    * @return name
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@Nullable String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public ReportTotalsItem total(@Nullable String total) {
+  public ReportTotalsItem total(@javax.annotation.Nullable String total) {
     this.total = total;
     return this;
   }
@@ -99,12 +99,12 @@ public class ReportTotalsItem {
    * Get total
    * @return total
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTotal() {
     return total;
   }
 
-  public void setTotal(@Nullable String total) {
+  public void setTotal(@javax.annotation.Nullable String total) {
     this.total = total;
   }
 

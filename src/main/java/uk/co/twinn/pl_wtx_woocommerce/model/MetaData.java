@@ -24,35 +24,32 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 //import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Generated;
-import javax.annotation.Nullable;
-
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
  * MetaData
  */
-@Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class MetaData {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_KEY = "key";
   //@SerializedName(SERIALIZED_NAME_KEY)
-  @Nullable
+  @javax.annotation.Nullable
   private String key;
 
   public static final String SERIALIZED_NAME_VALUE = "value";
   //@SerializedName(SERIALIZED_NAME_VALUE)
-  @Nullable
+  @javax.annotation.Nullable
   private Object value;
 
   public MetaData() {
   }
 
-  public MetaData id(@Nullable Integer id) {
+  public MetaData id(@javax.annotation.Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -61,17 +58,17 @@ public class MetaData {
    * Meta ID.
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@Nullable Integer id) {
+  public void setId(@javax.annotation.Nullable Integer id) {
     this.id = id;
   }
 
 
-  public MetaData key(@Nullable String key) {
+  public MetaData key(@javax.annotation.Nullable String key) {
     this.key = key;
     return this;
   }
@@ -80,17 +77,17 @@ public class MetaData {
    * Meta key.
    * @return key
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getKey() {
     return key;
   }
 
-  public void setKey(@Nullable String key) {
+  public void setKey(@javax.annotation.Nullable String key) {
     this.key = key;
   }
 
 
-  public MetaData value(@Nullable Object value) {
+  public MetaData value(@javax.annotation.Nullable Object value) {
     this.value = value;
     return this;
   }
@@ -99,12 +96,12 @@ public class MetaData {
    * Meta value.
    * @return value
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Object getValue() {
     return value;
   }
 
-  public void setValue(@Nullable Object value) {
+  public void setValue(@javax.annotation.Nullable Object value) {
     this.value = value;
   }
 

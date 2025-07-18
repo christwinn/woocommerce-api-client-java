@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 //import com.google.gson.annotations.SerializedName;
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.time.LocalDateTime;
@@ -38,22 +38,22 @@ import java.time.LocalDateTime;
 public class ProductReview {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_PRODUCT_ID = "product_id";
   //@SerializedName(SERIALIZED_NAME_PRODUCT_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer productId;
 
   /**
@@ -101,32 +101,32 @@ public class ProductReview {
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   //@SerializedName(SERIALIZED_NAME_STATUS)
-  @Nullable
+  @javax.annotation.Nullable
   private StatusEnum status = StatusEnum.APPROVED;
 
   public static final String SERIALIZED_NAME_REVIEWER = "reviewer";
   //@SerializedName(SERIALIZED_NAME_REVIEWER)
-  @Nullable
+  @javax.annotation.Nullable
   private String reviewer;
 
   public static final String SERIALIZED_NAME_REVIEWER_EMAIL = "reviewer_email";
   //@SerializedName(SERIALIZED_NAME_REVIEWER_EMAIL)
-  @Nullable
+  @javax.annotation.Nullable
   private String reviewerEmail;
 
   public static final String SERIALIZED_NAME_REVIEW = "review";
   //@SerializedName(SERIALIZED_NAME_REVIEW)
-  @Nullable
+  @javax.annotation.Nullable
   private String review;
 
   public static final String SERIALIZED_NAME_RATING = "rating";
   //@SerializedName(SERIALIZED_NAME_RATING)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer rating;
 
   public static final String SERIALIZED_NAME_VERIFIED = "verified";
   //@SerializedName(SERIALIZED_NAME_VERIFIED)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean verified;
 
   public ProductReview() {
@@ -147,7 +147,7 @@ public class ProductReview {
    * Unique identifier for the resource.
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getId() {
     return id;
   }
@@ -160,7 +160,7 @@ public class ProductReview {
    * The date the review was created, in the site&#39;s timezone.
    * @return dateCreated
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCreated() {
     return dateCreated;
   }
@@ -171,14 +171,14 @@ public class ProductReview {
    * The date the review was created, as GMT.
    * @return dateCreatedGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCreatedGmt() {
     return dateCreatedGmt;
   }
 
 
 
-  public ProductReview productId(@Nullable Integer productId) {
+  public ProductReview productId(@javax.annotation.Nullable Integer productId) {
     this.productId = productId;
     return this;
   }
@@ -187,17 +187,17 @@ public class ProductReview {
    * Unique identifier for the product that the review belongs to.
    * @return productId
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(@Nullable Integer productId) {
+  public void setProductId(@javax.annotation.Nullable Integer productId) {
     this.productId = productId;
   }
 
 
-  public ProductReview status(@Nullable StatusEnum status) {
+  public ProductReview status(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -207,7 +207,7 @@ public class ProductReview {
    * @return status
    */
   @JsonIgnore
-  @Nullable
+  @javax.annotation.Nullable
   public StatusEnum getStatus() {
     return status;
   }
@@ -217,18 +217,18 @@ public class ProductReview {
       return status != null ? status.getValue() : "";
   }
 
-  public void setStatus(@Nullable StatusEnum status) {
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
   }
   @JsonProperty("status")
-  public void setStatusAsString(@Nullable String status) {
+  public void setStatusAsString(@javax.annotation.Nullable String status) {
 
       if (status != null){this.status.fromValue(status);}
 
   }
 
 
-  public ProductReview reviewer(@Nullable String reviewer) {
+  public ProductReview reviewer(@javax.annotation.Nullable String reviewer) {
     this.reviewer = reviewer;
     return this;
   }
@@ -237,17 +237,17 @@ public class ProductReview {
    * Reviewer name.
    * @return reviewer
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getReviewer() {
     return reviewer;
   }
 
-  public void setReviewer(@Nullable String reviewer) {
+  public void setReviewer(@javax.annotation.Nullable String reviewer) {
     this.reviewer = reviewer;
   }
 
 
-  public ProductReview reviewerEmail(@Nullable String reviewerEmail) {
+  public ProductReview reviewerEmail(@javax.annotation.Nullable String reviewerEmail) {
     this.reviewerEmail = reviewerEmail;
     return this;
   }
@@ -256,17 +256,17 @@ public class ProductReview {
    * Reviewer email.
    * @return reviewerEmail
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getReviewerEmail() {
     return reviewerEmail;
   }
 
-  public void setReviewerEmail(@Nullable String reviewerEmail) {
+  public void setReviewerEmail(@javax.annotation.Nullable String reviewerEmail) {
     this.reviewerEmail = reviewerEmail;
   }
 
 
-  public ProductReview review(@Nullable String review) {
+  public ProductReview review(@javax.annotation.Nullable String review) {
     this.review = review;
     return this;
   }
@@ -275,17 +275,17 @@ public class ProductReview {
    * The content of the review.
    * @return review
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getReview() {
     return review;
   }
 
-  public void setReview(@Nullable String review) {
+  public void setReview(@javax.annotation.Nullable String review) {
     this.review = review;
   }
 
 
-  public ProductReview rating(@Nullable Integer rating) {
+  public ProductReview rating(@javax.annotation.Nullable Integer rating) {
     this.rating = rating;
     return this;
   }
@@ -296,17 +296,17 @@ public class ProductReview {
    * maximum: 5
    * @return rating
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getRating() {
     return rating;
   }
 
-  public void setRating(@Nullable Integer rating) {
+  public void setRating(@javax.annotation.Nullable Integer rating) {
     this.rating = rating;
   }
 
 
-  public ProductReview verified(@Nullable Boolean verified) {
+  public ProductReview verified(@javax.annotation.Nullable Boolean verified) {
     this.verified = verified;
     return this;
   }
@@ -315,12 +315,12 @@ public class ProductReview {
    * Shows if the reviewer bought the product or not.
    * @return verified
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getVerified() {
     return verified;
   }
 
-  public void setVerified(@Nullable Boolean verified) {
+  public void setVerified(@javax.annotation.Nullable Boolean verified) {
     this.verified = verified;
   }
 

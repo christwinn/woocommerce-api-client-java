@@ -32,7 +32,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
@@ -43,227 +43,227 @@ import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 public class Product {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @Nullable
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
-  @Nullable
+  @javax.annotation.Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_PERMALINK = "permalink";
   //@SerializedName(SERIALIZED_NAME_PERMALINK)
-  @Nullable
+  @javax.annotation.Nullable
   private String permalink;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   //@SerializedName(SERIALIZED_NAME_TYPE)
-  @Nullable
+  @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   //@SerializedName(SERIALIZED_NAME_STATUS)
-  @Nullable
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_FEATURED = "featured";
   //@SerializedName(SERIALIZED_NAME_FEATURED)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean featured;
 
   public static final String SERIALIZED_NAME_CATALOG_VISIBILITY = "catalog_visibility";
   //@SerializedName(SERIALIZED_NAME_CATALOG_VISIBILITY)
-  @Nullable
+  @javax.annotation.Nullable
   private String catalogVisibility;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   //@SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  @Nullable
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_SHORT_DESCRIPTION = "short_description";
   //@SerializedName(SERIALIZED_NAME_SHORT_DESCRIPTION)
-  @Nullable
+  @javax.annotation.Nullable
   private String shortDescription;
 
   public static final String SERIALIZED_NAME_SKU = "sku";
   //@SerializedName(SERIALIZED_NAME_SKU)
-  @Nullable
+  @javax.annotation.Nullable
   private String sku;
 
   public static final String SERIALIZED_NAME_PRICE = "price";
   //@SerializedName(SERIALIZED_NAME_PRICE)
-  @Nullable
+  @javax.annotation.Nullable
   private String price;
 
   public static final String SERIALIZED_NAME_REGULAR_PRICE = "regular_price";
   //@SerializedName(SERIALIZED_NAME_REGULAR_PRICE)
-  @Nullable
+  @javax.annotation.Nullable
   private String regularPrice;
 
   public static final String SERIALIZED_NAME_SALE_PRICE = "sale_price";
   //@SerializedName(SERIALIZED_NAME_SALE_PRICE)
-  @Nullable
+  @javax.annotation.Nullable
   private String salePrice;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_FROM = "date_on_sale_from";
   //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateOnSaleFrom;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_FROM_GMT = "date_on_sale_from_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateOnSaleFromGmt;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_TO = "date_on_sale_to";
   //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateOnSaleTo;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_TO_GMT = "date_on_sale_to_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO_GMT)
-  @Nullable
+  @javax.annotation.Nullable
   private LocalDateTime dateOnSaleToGmt;
 
   public static final String SERIALIZED_NAME_PRICE_HTML = "price_html";
   //@SerializedName(SERIALIZED_NAME_PRICE_HTML)
-  @Nullable
+  @javax.annotation.Nullable
   private String priceHtml;
 
   public static final String SERIALIZED_NAME_ON_SALE = "on_sale";
   //@SerializedName(SERIALIZED_NAME_ON_SALE)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean onSale;
 
   public static final String SERIALIZED_NAME_PURCHASABLE = "purchasable";
   //@SerializedName(SERIALIZED_NAME_PURCHASABLE)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean purchasable;
 
   public static final String SERIALIZED_NAME_TOTAL_SALES = "total_sales";
   //@SerializedName(SERIALIZED_NAME_TOTAL_SALES)
-  @Nullable
+  @javax.annotation.Nullable
   private Long totalSales;
 
   public static final String SERIALIZED_NAME_VIRTUAL = "virtual";
   //@SerializedName(SERIALIZED_NAME_VIRTUAL)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean virtual;
 
   public static final String SERIALIZED_NAME_DOWNLOADABLE = "downloadable";
   //@SerializedName(SERIALIZED_NAME_DOWNLOADABLE)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean downloadable;
 
   public static final String SERIALIZED_NAME_DOWNLOADS = "downloads";
   //@SerializedName(SERIALIZED_NAME_DOWNLOADS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<ProductDownload> downloads = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DOWNLOAD_LIMIT = "download_limit";
   //@SerializedName(SERIALIZED_NAME_DOWNLOAD_LIMIT)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer downloadLimit;
 
   public static final String SERIALIZED_NAME_DOWNLOAD_EXPIRY = "download_expiry";
   //@SerializedName(SERIALIZED_NAME_DOWNLOAD_EXPIRY)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer downloadExpiry;
 
   public static final String SERIALIZED_NAME_EXTERNAL_URL = "external_url";
   //@SerializedName(SERIALIZED_NAME_EXTERNAL_URL)
-  @Nullable
+  @javax.annotation.Nullable
   private String externalUrl;
 
   public static final String SERIALIZED_NAME_BUTTON_TEXT = "button_text";
   //@SerializedName(SERIALIZED_NAME_BUTTON_TEXT)
-  @Nullable
+  @javax.annotation.Nullable
   private String buttonText;
 
   public static final String SERIALIZED_NAME_TAX_STATUS = "tax_status";
   //@SerializedName(SERIALIZED_NAME_TAX_STATUS)
-  @Nullable
+  @javax.annotation.Nullable
   private String taxStatus;
 
   public static final String SERIALIZED_NAME_TAX_CLASS = "tax_class";
   //@SerializedName(SERIALIZED_NAME_TAX_CLASS)
-  @Nullable
+  @javax.annotation.Nullable
   private String taxClass;
 
   public static final String SERIALIZED_NAME_MANAGE_STOCK = "manage_stock";
   //@SerializedName(SERIALIZED_NAME_MANAGE_STOCK)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean manageStock;
 
   public static final String SERIALIZED_NAME_STOCK_QUANTITY = "stock_quantity";
   //@SerializedName(SERIALIZED_NAME_STOCK_QUANTITY)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer stockQuantity;
 
   public static final String SERIALIZED_NAME_STOCK_STATUS = "stock_status";
   //@SerializedName(SERIALIZED_NAME_STOCK_STATUS)
-  @Nullable
+  @javax.annotation.Nullable
   private String stockStatus;
 
   public static final String SERIALIZED_NAME_BACKORDERS = "backorders";
   //@SerializedName(SERIALIZED_NAME_BACKORDERS)
-  @Nullable
+  @javax.annotation.Nullable
   private String backorders;
 
   public static final String SERIALIZED_NAME_BACKORDERS_ALLOWED = "backorders_allowed";
   //@SerializedName(SERIALIZED_NAME_BACKORDERS_ALLOWED)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean backordersAllowed;
 
   public static final String SERIALIZED_NAME_BACKORDERED = "backordered";
   //@SerializedName(SERIALIZED_NAME_BACKORDERED)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean backordered;
 
     public static final String SERIALIZED_NAME_LOW_STOCK_AMOUNT = "low_stock_amount";
     //@SerializedName(SERIALIZED_NAME_LOW_STOCK_AMOUNT)
-    @Nullable
+    @javax.annotation.Nullable
     private Integer lowStockAmount;
 
     public static final String SERIALIZED_NAME_BRANDS = "brands";
     //@SerializedName(SERIALIZED_NAME_BRANDS)
-    @Nullable
+    @javax.annotation.Nullable
     private List<Brand> brands;
 
     public static final String SERIALIZED_NAME_HAS_OPTIONS = "has_options";
     //@SerializedName(SERIALIZED_NAME_HAS_OPTIONS)
-    @Nullable
+    @javax.annotation.Nullable
     private Boolean hasOptions;
 
     public static final String SERIALIZED_NAME_POST_PASSWORD = "post_password";
     //@SerializedName(SERIALIZED_NAME_POST_PASSWORD)
-    @Nullable
+    @javax.annotation.Nullable
     private String postPassword;
 
     /**
@@ -275,147 +275,147 @@ public class Product {
 
     public static final String SERIALIZED_NAME_GLOBAL_UNIQUE_ID = "global_unique_id";
     //@SerializedName(SERIALIZED_NAME_GLOBAL_UNIQUE_ID)
-    @Nullable
+    @javax.annotation.Nullable
     private String globalUniqueId;
 
     public static final String SERIALIZED_NAME_PERMALINK_TEMPLATE = "permalink_template";
     //@SerializedName(SERIALIZED_NAME_PERMALINK_TEMPLATE)
-    @Nullable
+    @javax.annotation.Nullable
     private String permalinkTemplate;
 
     public static final String SERIALIZED_NAME_GENERATED_SLUG = "generated_slug";
     //@SerializedName(SERIALIZED_NAME_GENERATED_SLUG)
-    @Nullable
+    @javax.annotation.Nullable
     private String generatedSlug;
 
     public static final String SERIALIZED_NAME_JETPACK_SHARING_ENABLED = "jetpack_sharing_enabled";
     //@SerializedName(SERIALIZED_NAME_JETPACK_SHARING_ENABLED)
-    @Nullable
+    @javax.annotation.Nullable
     private Boolean jetpackSharingEnabled;
 
     public static final String SERIALIZED_NAME_LINKS = "_links";
     //@SerializedName(SERIALIZED_NAME_LINKS)
-    @Nullable
+    @javax.annotation.Nullable
     private Links links;
 
   public static final String SERIALIZED_NAME_SOLD_INDIVIDUALLY = "sold_individually";
   //@SerializedName(SERIALIZED_NAME_SOLD_INDIVIDUALLY)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean soldIndividually;
 
   public static final String SERIALIZED_NAME_WEIGHT = "weight";
   //@SerializedName(SERIALIZED_NAME_WEIGHT)
-  @Nullable
+  @javax.annotation.Nullable
   private String weight;
 
   public static final String SERIALIZED_NAME_DIMENSIONS = "dimensions";
   //@SerializedName(SERIALIZED_NAME_DIMENSIONS)
-  @Nullable
+  @javax.annotation.Nullable
   private ProductDimension dimensions;
 
   public static final String SERIALIZED_NAME_SHIPPING_REQUIRED = "shipping_required";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_REQUIRED)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean shippingRequired;
 
   public static final String SERIALIZED_NAME_SHIPPING_TAXABLE = "shipping_taxable";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_TAXABLE)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean shippingTaxable;
 
   public static final String SERIALIZED_NAME_SHIPPING_CLASS = "shipping_class";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_CLASS)
-  @Nullable
+  @javax.annotation.Nullable
   private String shippingClass;
 
   public static final String SERIALIZED_NAME_SHIPPING_CLASS_ID = "shipping_class_id";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_CLASS_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer shippingClassId;
 
   public static final String SERIALIZED_NAME_REVIEWS_ALLOWED = "reviews_allowed";
   //@SerializedName(SERIALIZED_NAME_REVIEWS_ALLOWED)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean reviewsAllowed;
 
   public static final String SERIALIZED_NAME_AVERAGE_RATING = "average_rating";
   //@SerializedName(SERIALIZED_NAME_AVERAGE_RATING)
-  @Nullable
+  @javax.annotation.Nullable
   private String averageRating;
 
   public static final String SERIALIZED_NAME_RATING_COUNT = "rating_count";
   //@SerializedName(SERIALIZED_NAME_RATING_COUNT)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer ratingCount;
 
   public static final String SERIALIZED_NAME_RELATED_IDS = "related_ids";
   //@SerializedName(SERIALIZED_NAME_RELATED_IDS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<Integer> relatedIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UPSELL_IDS = "upsell_ids";
   //@SerializedName(SERIALIZED_NAME_UPSELL_IDS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<Integer> upsellIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CROSS_SELL_IDS = "cross_sell_ids";
   //@SerializedName(SERIALIZED_NAME_CROSS_SELL_IDS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<Integer> crossSellIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PARENT_ID = "parent_id";
   //@SerializedName(SERIALIZED_NAME_PARENT_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer parentId;
 
   public static final String SERIALIZED_NAME_PURCHASE_NOTE = "purchase_note";
   //@SerializedName(SERIALIZED_NAME_PURCHASE_NOTE)
-  @Nullable
+  @javax.annotation.Nullable
   private String purchaseNote;
 
   public static final String SERIALIZED_NAME_CATEGORIES = "categories";
   //@SerializedName(SERIALIZED_NAME_CATEGORIES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<ProductCategoriesItem> categories = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   //@SerializedName(SERIALIZED_NAME_TAGS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<ProductTag> tags = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_IMAGES = "images";
   //@SerializedName(SERIALIZED_NAME_IMAGES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<ProductImage> images = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   //@SerializedName(SERIALIZED_NAME_ATTRIBUTES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<ProductAttribute> attributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DEFAULT_ATTRIBUTES = "default_attributes";
   //@SerializedName(SERIALIZED_NAME_DEFAULT_ATTRIBUTES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<ProductAttribute> defaultAttributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_VARIATIONS = "variations";
   //@SerializedName(SERIALIZED_NAME_VARIATIONS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<Integer> variations = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_GROUPED_PRODUCTS = "grouped_products";
   //@SerializedName(SERIALIZED_NAME_GROUPED_PRODUCTS)
-  @Nullable
+  @javax.annotation.Nullable
   private List<Integer> groupedProducts = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
   //@SerializedName(SERIALIZED_NAME_MENU_ORDER)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer menuOrder;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
   //@SerializedName(SERIALIZED_NAME_META_DATA)
-  @Nullable
+  @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public enum TypeEnum {
@@ -583,7 +583,7 @@ public enum TaxStatusEnum {
   public Product() {
   }
 
-  public Product id(@Nullable Integer id) {
+  public Product id(@javax.annotation.Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -592,17 +592,17 @@ public enum TaxStatusEnum {
    * Unique identifier for the resource. read-only
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@Nullable Integer id) {
+  public void setId(@javax.annotation.Nullable Integer id) {
     this.id = id;
   }
 
 
-  public Product name(@Nullable String name) {
+  public Product name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
@@ -611,17 +611,17 @@ public enum TaxStatusEnum {
    * Product name.
    * @return name
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@Nullable String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public Product slug(@Nullable String slug) {
+  public Product slug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
     return this;
   }
@@ -630,17 +630,17 @@ public enum TaxStatusEnum {
    * Product slug.
    * @return slug
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSlug() {
     return slug;
   }
 
-  public void setSlug(@Nullable String slug) {
+  public void setSlug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
   }
 
 
-  public Product permalink(@Nullable String permalink) {
+  public Product permalink(@javax.annotation.Nullable String permalink) {
     this.permalink = permalink;
     return this;
   }
@@ -649,17 +649,17 @@ public enum TaxStatusEnum {
    * Product URL. read-only
    * @return permalink
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPermalink() {
     return permalink;
   }
 
-  public void setPermalink(@Nullable String permalink) {
+  public void setPermalink(@javax.annotation.Nullable String permalink) {
     this.permalink = permalink;
   }
 
 
-  public Product dateCreated(@Nullable LocalDateTime dateCreated) {
+  public Product dateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
@@ -668,18 +668,18 @@ public enum TaxStatusEnum {
    * The date the product was created, in the site&#39;s timezone. read-only
    * @return dateCreated
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCreated() {
     return dateCreated;
   }
 
   @JsonProperty("date_created")
-  public void setDateCreated(@Nullable LocalDateTime dateCreated) {
+  public void setDateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public Product dateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
+  public Product dateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
     return this;
   }
@@ -688,18 +688,18 @@ public enum TaxStatusEnum {
    * The date the product was created, as GMT. read-only
    * @return dateCreatedGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateCreatedGmt() {
     return dateCreatedGmt;
   }
 
   @JsonProperty("date_created_gmt")
-  public void setDateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
+  public void setDateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
   }
 
 
-  public Product dateModified(@Nullable LocalDateTime dateModified) {
+  public Product dateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
     return this;
   }
@@ -708,18 +708,18 @@ public enum TaxStatusEnum {
    * The date the product was last modified, in the site&#39;s timezone. read-only
    * @return dateModified
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateModified() {
     return dateModified;
   }
 
   @JsonProperty("date_modified")
-  public void setDateModified(@Nullable LocalDateTime dateModified) {
+  public void setDateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
   }
 
 
-  public Product dateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
+  public Product dateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
     return this;
   }
@@ -728,18 +728,18 @@ public enum TaxStatusEnum {
    * The date the product was last modified, as GMT. read-only
    * @return dateModifiedGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateModifiedGmt() {
     return dateModifiedGmt;
   }
 
   @JsonProperty("date_modified_gmt")
-  public void setDateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
+  public void setDateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
   }
 
 
-  public Product type(@Nullable String type) {
+  public Product type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
@@ -748,12 +748,12 @@ public enum TaxStatusEnum {
    * Product type. Options: simple, grouped, external and variable. Default is simple.
    * @return type
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(@Nullable String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
   }
 
@@ -762,7 +762,7 @@ public enum TaxStatusEnum {
     }
 
 
-  public Product status(@Nullable String status) {
+  public Product status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
@@ -771,12 +771,12 @@ public enum TaxStatusEnum {
    * Product status (post status). Options: draft, pending, private and publish. Default is publish.
    * @return status
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(@Nullable String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
@@ -785,7 +785,7 @@ public enum TaxStatusEnum {
     }
 
 
-  public Product featured(@Nullable Boolean featured) {
+  public Product featured(@javax.annotation.Nullable Boolean featured) {
     this.featured = featured;
     return this;
   }
@@ -794,17 +794,17 @@ public enum TaxStatusEnum {
    * Featured product. Default is false.
    * @return featured
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getFeatured() {
     return featured;
   }
 
-  public void setFeatured(@Nullable Boolean featured) {
+  public void setFeatured(@javax.annotation.Nullable Boolean featured) {
     this.featured = featured;
   }
 
 
-  public Product catalogVisibility(@Nullable String catalogVisibility) {
+  public Product catalogVisibility(@javax.annotation.Nullable String catalogVisibility) {
     this.catalogVisibility = catalogVisibility;
     return this;
   }
@@ -813,13 +813,13 @@ public enum TaxStatusEnum {
    * Catalog visibility. Options: visible, catalog, search and hidden. Default is visible.
    * @return catalogVisibility
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getCatalogVisibility() {
     return catalogVisibility;
   }
 
   @JsonProperty("catalog_visibility")
-  public void setCatalogVisibility(@Nullable String catalogVisibility) {
+  public void setCatalogVisibility(@javax.annotation.Nullable String catalogVisibility) {
     this.catalogVisibility = catalogVisibility;
   }
 
@@ -828,7 +828,7 @@ public enum TaxStatusEnum {
     }
 
 
-  public Product description(@Nullable String description) {
+  public Product description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
@@ -837,17 +837,17 @@ public enum TaxStatusEnum {
    * Product description.
    * @return description
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(@Nullable String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public Product shortDescription(@Nullable String shortDescription) {
+  public Product shortDescription(@javax.annotation.Nullable String shortDescription) {
     this.shortDescription = shortDescription;
     return this;
   }
@@ -856,18 +856,18 @@ public enum TaxStatusEnum {
    * Product short description.
    * @return shortDescription
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getShortDescription() {
     return shortDescription;
   }
 
   @JsonProperty("short_description")
-  public void setShortDescription(@Nullable String shortDescription) {
+  public void setShortDescription(@javax.annotation.Nullable String shortDescription) {
     this.shortDescription = shortDescription;
   }
 
 
-  public Product sku(@Nullable String sku) {
+  public Product sku(@javax.annotation.Nullable String sku) {
     this.sku = sku;
     return this;
   }
@@ -876,17 +876,17 @@ public enum TaxStatusEnum {
    * Unique identifier.
    * @return sku
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSku() {
     return sku;
   }
 
-  public void setSku(@Nullable String sku) {
+  public void setSku(@javax.annotation.Nullable String sku) {
     this.sku = sku;
   }
 
 
-  public Product price(@Nullable String price) {
+  public Product price(@javax.annotation.Nullable String price) {
     this.price = price;
     return this;
   }
@@ -895,17 +895,17 @@ public enum TaxStatusEnum {
    * Current product price. read-only
    * @return price
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPrice() {
     return price;
   }
 
-  public void setPrice(@Nullable String price) {
+  public void setPrice(@javax.annotation.Nullable String price) {
     this.price = price;
   }
 
 
-  public Product regularPrice(@Nullable String regularPrice) {
+  public Product regularPrice(@javax.annotation.Nullable String regularPrice) {
     this.regularPrice = regularPrice;
     return this;
   }
@@ -914,23 +914,23 @@ public enum TaxStatusEnum {
    * Regular product price.
    * @return regularPrice
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getRegularPrice() {
     return regularPrice;
   }
 
   @JsonProperty("regular_price")
-  public void setRegularPrice(@Nullable String regularPrice) {
+  public void setRegularPrice(@javax.annotation.Nullable String regularPrice) {
     this.regularPrice = regularPrice;
   }
 
-  public void setRegularPrice(@Nullable BigDecimal regularPrice) {
+  public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) {
       if (regularPrice != null) {
           setRegularPrice(regularPrice.toString());
       }
     }
 
-  public Product salePrice(@Nullable String salePrice) {
+  public Product salePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
     return this;
   }
@@ -939,24 +939,24 @@ public enum TaxStatusEnum {
    * Product sale price.
    * @return salePrice
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSalePrice() {
     return salePrice;
   }
 
   @JsonProperty("sale_price")
-  public void setSalePrice(@Nullable String salePrice) {
+  public void setSalePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
   }
 
-    public void setSalePrice(@Nullable BigDecimal salePrice) {
+    public void setSalePrice(@javax.annotation.Nullable BigDecimal salePrice) {
         if (salePrice != null) {
             setSalePrice(salePrice.toString());
         }
     }
 
 
-  public Product dateOnSaleFrom(@Nullable LocalDateTime dateOnSaleFrom) {
+  public Product dateOnSaleFrom(@javax.annotation.Nullable LocalDateTime dateOnSaleFrom) {
     this.dateOnSaleFrom = dateOnSaleFrom;
     return this;
   }
@@ -965,18 +965,18 @@ public enum TaxStatusEnum {
    * Start date of sale price, in the site&#39;s timezone.
    * @return dateOnSaleFrom
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateOnSaleFrom() {
     return dateOnSaleFrom;
   }
 
   @JsonProperty("date_on_sale_from")
-  public void setDateOnSaleFrom(@Nullable LocalDateTime dateOnSaleFrom) {
+  public void setDateOnSaleFrom(@javax.annotation.Nullable LocalDateTime dateOnSaleFrom) {
     this.dateOnSaleFrom = dateOnSaleFrom;
   }
 
 
-  public Product dateOnSaleFromGmt(@Nullable LocalDateTime dateOnSaleFromGmt) {
+  public Product dateOnSaleFromGmt(@javax.annotation.Nullable LocalDateTime dateOnSaleFromGmt) {
     this.dateOnSaleFromGmt = dateOnSaleFromGmt;
     return this;
   }
@@ -985,17 +985,17 @@ public enum TaxStatusEnum {
    * Start date of sale price, as GMT.
    * @return dateOnSaleFromGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateOnSaleFromGmt() {
     return dateOnSaleFromGmt;
   }
 
   @JsonProperty("date_on_sale_from_gmt")
-  public void setDateOnSaleFromGmt(@Nullable LocalDateTime dateOnSaleFromGmt) {
+  public void setDateOnSaleFromGmt(@javax.annotation.Nullable LocalDateTime dateOnSaleFromGmt) {
     this.dateOnSaleFromGmt = dateOnSaleFromGmt;
   }
 
-  public Product dateOnSaleTo(@Nullable LocalDateTime dateOnSaleTo) {
+  public Product dateOnSaleTo(@javax.annotation.Nullable LocalDateTime dateOnSaleTo) {
     this.dateOnSaleTo = dateOnSaleTo;
     return this;
   }
@@ -1004,18 +1004,18 @@ public enum TaxStatusEnum {
    * End date of sale price, in the site&#39;s timezone.
    * @return dateOnSaleTo
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateOnSaleTo() {
     return dateOnSaleTo;
   }
 
   @JsonProperty("date_on_sale_to")
-  public void setDateOnSaleTo(@Nullable LocalDateTime dateOnSaleTo) {
+  public void setDateOnSaleTo(@javax.annotation.Nullable LocalDateTime dateOnSaleTo) {
     this.dateOnSaleTo = dateOnSaleTo;
   }
 
 
-  public Product dateOnSaleToGmt(@Nullable LocalDateTime dateOnSaleToGmt) {
+  public Product dateOnSaleToGmt(@javax.annotation.Nullable LocalDateTime dateOnSaleToGmt) {
     this.dateOnSaleToGmt = dateOnSaleToGmt;
     return this;
   }
@@ -1024,18 +1024,18 @@ public enum TaxStatusEnum {
    * End date of sale price, as GMT.
    * @return dateOnSaleToGmt
    */
-  @Nullable
+  @javax.annotation.Nullable
   public LocalDateTime getDateOnSaleToGmt() {
     return dateOnSaleToGmt;
   }
 
   @JsonProperty("date_on_sale_to_gmt")
-  public void setDateOnSaleToGmt(@Nullable LocalDateTime dateOnSaleToGmt) {
+  public void setDateOnSaleToGmt(@javax.annotation.Nullable LocalDateTime dateOnSaleToGmt) {
     this.dateOnSaleToGmt = dateOnSaleToGmt;
   }
 
 
-  public Product priceHtml(@Nullable String priceHtml) {
+  public Product priceHtml(@javax.annotation.Nullable String priceHtml) {
     this.priceHtml = priceHtml;
     return this;
   }
@@ -1044,18 +1044,18 @@ public enum TaxStatusEnum {
    * Price formatted in HTML. read-only
    * @return priceHtml
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPriceHtml() {
     return priceHtml;
   }
 
   @JsonProperty("price_html")
-  public void setPriceHtml(@Nullable String priceHtml) {
+  public void setPriceHtml(@javax.annotation.Nullable String priceHtml) {
     this.priceHtml = priceHtml;
   }
 
 
-  public Product onSale(@Nullable Boolean onSale) {
+  public Product onSale(@javax.annotation.Nullable Boolean onSale) {
     this.onSale = onSale;
     return this;
   }
@@ -1064,18 +1064,18 @@ public enum TaxStatusEnum {
    * Shows if the product is on sale. read-only
    * @return onSale
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getOnSale() {
     return onSale;
   }
 
   @JsonProperty("on_sale")
-  public void setOnSale(@Nullable Boolean onSale) {
+  public void setOnSale(@javax.annotation.Nullable Boolean onSale) {
     this.onSale = onSale;
   }
 
 
-  public Product purchasable(@Nullable Boolean purchasable) {
+  public Product purchasable(@javax.annotation.Nullable Boolean purchasable) {
     this.purchasable = purchasable;
     return this;
   }
@@ -1084,17 +1084,17 @@ public enum TaxStatusEnum {
    * Shows if the product can be bought. read-only
    * @return purchasable
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getPurchasable() {
     return purchasable;
   }
 
-  public void setPurchasable(@Nullable Boolean purchasable) {
+  public void setPurchasable(@javax.annotation.Nullable Boolean purchasable) {
     this.purchasable = purchasable;
   }
 
 
-  public Product totalSales(@Nullable Long totalSales) {
+  public Product totalSales(@javax.annotation.Nullable Long totalSales) {
     this.totalSales = totalSales;
     return this;
   }
@@ -1103,18 +1103,18 @@ public enum TaxStatusEnum {
    * Amount of sales. read-only
    * @return totalSales
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Long getTotalSales() {
     return totalSales;
   }
 
   @JsonProperty("total_sales")
-  public void setTotalSales(@Nullable Long totalSales) {
+  public void setTotalSales(@javax.annotation.Nullable Long totalSales) {
     this.totalSales = totalSales;
   }
 
 
-  public Product virtual(@Nullable Boolean virtual) {
+  public Product virtual(@javax.annotation.Nullable Boolean virtual) {
     this.virtual = virtual;
     return this;
   }
@@ -1123,17 +1123,17 @@ public enum TaxStatusEnum {
    * If the product is virtual. Default is false.
    * @return virtual
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getVirtual() {
     return virtual;
   }
 
-  public void setVirtual(@Nullable Boolean virtual) {
+  public void setVirtual(@javax.annotation.Nullable Boolean virtual) {
     this.virtual = virtual;
   }
 
 
-  public Product downloadable(@Nullable Boolean downloadable) {
+  public Product downloadable(@javax.annotation.Nullable Boolean downloadable) {
     this.downloadable = downloadable;
     return this;
   }
@@ -1142,17 +1142,17 @@ public enum TaxStatusEnum {
    * If the product is downloadable. Default is false.
    * @return downloadable
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getDownloadable() {
     return downloadable;
   }
 
-  public void setDownloadable(@Nullable Boolean downloadable) {
+  public void setDownloadable(@javax.annotation.Nullable Boolean downloadable) {
     this.downloadable = downloadable;
   }
 
 
-  public Product downloads(@Nullable List<ProductDownload> downloads) {
+  public Product downloads(@javax.annotation.Nullable List<ProductDownload> downloads) {
     this.downloads = downloads;
     return this;
   }
@@ -1169,17 +1169,17 @@ public enum TaxStatusEnum {
    * List of downloadable files.
    * @return downloads
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<ProductDownload> getDownloads() {
     return downloads;
   }
 
-  public void setDownloads(@Nullable List<ProductDownload> downloads) {
+  public void setDownloads(@javax.annotation.Nullable List<ProductDownload> downloads) {
     this.downloads = downloads;
   }
 
 
-  public Product downloadLimit(@Nullable Integer downloadLimit) {
+  public Product downloadLimit(@javax.annotation.Nullable Integer downloadLimit) {
     this.downloadLimit = downloadLimit;
     return this;
   }
@@ -1188,18 +1188,18 @@ public enum TaxStatusEnum {
    * Number of times downloadable files can be downloaded after purchase. Default is -1.
    * @return downloadLimit
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getDownloadLimit() {
     return downloadLimit;
   }
 
   @JsonProperty("download_limit")
-  public void setDownloadLimit(@Nullable Integer downloadLimit) {
+  public void setDownloadLimit(@javax.annotation.Nullable Integer downloadLimit) {
     this.downloadLimit = downloadLimit;
   }
 
 
-  public Product downloadExpiry(@Nullable Integer downloadExpiry) {
+  public Product downloadExpiry(@javax.annotation.Nullable Integer downloadExpiry) {
     this.downloadExpiry = downloadExpiry;
     return this;
   }
@@ -1208,17 +1208,17 @@ public enum TaxStatusEnum {
    * Number of days until access to downloadable files expires. Default is -1.
    * @return downloadExpiry
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getDownloadExpiry() {
     return downloadExpiry;
   }
 
   @JsonProperty("download_expiry")
-  public void setDownloadExpiry(@Nullable Integer downloadExpiry) {
+  public void setDownloadExpiry(@javax.annotation.Nullable Integer downloadExpiry) {
     this.downloadExpiry = downloadExpiry;
   }
 
-  public Product externalUrl(@Nullable String externalUrl) {
+  public Product externalUrl(@javax.annotation.Nullable String externalUrl) {
     this.externalUrl = externalUrl;
     return this;
   }
@@ -1227,18 +1227,18 @@ public enum TaxStatusEnum {
    * Product external URL. Only for external products.
    * @return externalUrl
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getExternalUrl() {
     return externalUrl;
   }
 
   @JsonProperty("external_url")
-  public void setExternalUrl(@Nullable String externalUrl) {
+  public void setExternalUrl(@javax.annotation.Nullable String externalUrl) {
     this.externalUrl = externalUrl;
   }
 
 
-  public Product buttonText(@Nullable String buttonText) {
+  public Product buttonText(@javax.annotation.Nullable String buttonText) {
     this.buttonText = buttonText;
     return this;
   }
@@ -1247,18 +1247,18 @@ public enum TaxStatusEnum {
    * Product external button text. Only for external products.
    * @return buttonText
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getButtonText() {
     return buttonText;
   }
 
   @JsonProperty("button_text")
-  public void setButtonText(@Nullable String buttonText) {
+  public void setButtonText(@javax.annotation.Nullable String buttonText) {
     this.buttonText = buttonText;
   }
 
 
-  public Product taxStatus(@Nullable String taxStatus) {
+  public Product taxStatus(@javax.annotation.Nullable String taxStatus) {
     this.taxStatus = taxStatus;
     return this;
   }
@@ -1267,18 +1267,18 @@ public enum TaxStatusEnum {
    * Tax status. Options: taxable, shipping and none. Default is taxable.
    * @return taxStatus
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTaxStatus() {
     return taxStatus;
   }
 
   @JsonProperty("tax_status")
-  public void setTaxStatus(@Nullable String taxStatus) {
+  public void setTaxStatus(@javax.annotation.Nullable String taxStatus) {
     this.taxStatus = taxStatus;
   }
 
 
-  public Product taxClass(@Nullable String taxClass) {
+  public Product taxClass(@javax.annotation.Nullable String taxClass) {
     this.taxClass = taxClass;
     return this;
   }
@@ -1287,18 +1287,18 @@ public enum TaxStatusEnum {
    * Tax class.
    * @return taxClass
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTaxClass() {
     return taxClass;
   }
 
   @JsonProperty("tax_class")
-  public void setTaxClass(@Nullable String taxClass) {
+  public void setTaxClass(@javax.annotation.Nullable String taxClass) {
     this.taxClass = taxClass;
   }
 
 
-  public Product manageStock(@Nullable Boolean manageStock) {
+  public Product manageStock(@javax.annotation.Nullable Boolean manageStock) {
     this.manageStock = manageStock;
     return this;
   }
@@ -1307,18 +1307,18 @@ public enum TaxStatusEnum {
    * Stock management at product level. Default is false.
    * @return manageStock
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getManageStock() {
     return manageStock;
   }
 
   @JsonProperty("manage_stock")
-  public void setManageStock(@Nullable Boolean manageStock) {
+  public void setManageStock(@javax.annotation.Nullable Boolean manageStock) {
     this.manageStock = manageStock;
   }
 
 
-  public Product stockQuantity(@Nullable Integer stockQuantity) {
+  public Product stockQuantity(@javax.annotation.Nullable Integer stockQuantity) {
     this.stockQuantity = stockQuantity;
     return this;
   }
@@ -1327,17 +1327,17 @@ public enum TaxStatusEnum {
    * Stock quantity.
    * @return stockQuantity
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getStockQuantity() {
     return stockQuantity;
   }
 
   @JsonProperty("stock_quantity")
-  public void setStockQuantity(@Nullable Integer stockQuantity) {
+  public void setStockQuantity(@javax.annotation.Nullable Integer stockQuantity) {
     this.stockQuantity = stockQuantity;
   }
 
-  public Product stockStatus(@Nullable String stockStatus) {
+  public Product stockStatus(@javax.annotation.Nullable String stockStatus) {
     this.stockStatus = stockStatus;
     return this;
   }
@@ -1346,17 +1346,17 @@ public enum TaxStatusEnum {
    * Controls the stock status of the product. Options: instock, outofstock, onbackorder. Default is instock.
    * @return stockStatus
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getStockStatus() {
     return stockStatus;
   }
 
   @JsonProperty("stock_status")
-  public void setStockStatus(@Nullable String stockStatus) {
+  public void setStockStatus(@javax.annotation.Nullable String stockStatus) {
     this.stockStatus = stockStatus;
   }
 
-  public Product backorders(@Nullable String backorders) {
+  public Product backorders(@javax.annotation.Nullable String backorders) {
     this.backorders = backorders;
     return this;
   }
@@ -1365,17 +1365,17 @@ public enum TaxStatusEnum {
    * If managing stock, this controls if backorders are allowed. Options: no, notify and yes. Default is no.
    * @return backorders
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getBackorders() {
     return backorders;
   }
 
-  public void setBackorders(@Nullable String backorders) {
+  public void setBackorders(@javax.annotation.Nullable String backorders) {
     this.backorders = backorders;
   }
 
 
-  public Product backordersAllowed(@Nullable Boolean backordersAllowed) {
+  public Product backordersAllowed(@javax.annotation.Nullable Boolean backordersAllowed) {
     this.backordersAllowed = backordersAllowed;
     return this;
   }
@@ -1384,18 +1384,18 @@ public enum TaxStatusEnum {
    * Shows if backorders are allowed. read-only
    * @return backordersAllowed
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getBackordersAllowed() {
     return backordersAllowed;
   }
 
   @JsonProperty("backorders_allowed")
-  public void setBackordersAllowed(@Nullable Boolean backordersAllowed) {
+  public void setBackordersAllowed(@javax.annotation.Nullable Boolean backordersAllowed) {
     this.backordersAllowed = backordersAllowed;
   }
 
 
-  public Product backordered(@Nullable Boolean backordered) {
+  public Product backordered(@javax.annotation.Nullable Boolean backordered) {
     this.backordered = backordered;
     return this;
   }
@@ -1404,16 +1404,16 @@ public enum TaxStatusEnum {
    * Shows if the product is on backordered. read-only
    * @return backordered
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getBackordered() {
     return backordered;
   }
 
-  public void setBackordered(@Nullable Boolean backordered) {
+  public void setBackordered(@javax.annotation.Nullable Boolean backordered) {
     this.backordered = backordered;
   }
 
-    public Product lowStockAmount(@Nullable Integer lowStockAmount) {
+    public Product lowStockAmount(@javax.annotation.Nullable Integer lowStockAmount) {
         this.lowStockAmount = lowStockAmount;
         return this;
     }
@@ -1421,17 +1421,17 @@ public enum TaxStatusEnum {
      * Shows if the product low_stock_amount. NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return lowStockAmount
      */
-    @Nullable
+    @javax.annotation.Nullable
     public Integer getLowStockAmount() {
         return lowStockAmount;
     }
 
-    public void setLowStockAmount(@Nullable Integer lowStockAmount) {
+    public void setLowStockAmount(@javax.annotation.Nullable Integer lowStockAmount) {
         this.lowStockAmount = lowStockAmount;
     }
 
 
-    public Product brands(@Nullable List<Brand> brands) {
+    public Product brands(@javax.annotation.Nullable List<Brand> brands) {
         this.brands = brands;
         return this;
     }
@@ -1439,16 +1439,16 @@ public enum TaxStatusEnum {
      * Shows the product brands. NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return brands
      */
-    @Nullable
+    @javax.annotation.Nullable
     public List<Brand> getBrands() {
         return brands;
     }
 
-    public void setBrands(@Nullable List<Brand> brands) {
+    public void setBrands(@javax.annotation.Nullable List<Brand> brands) {
         this.brands = brands;
     }
 
-    public Product hasOptions(@Nullable Boolean hasOptions) {
+    public Product hasOptions(@javax.annotation.Nullable Boolean hasOptions) {
         this.hasOptions = hasOptions;
         return this;
     }
@@ -1456,16 +1456,16 @@ public enum TaxStatusEnum {
      * Shows if the product has_options. NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return hasOptions
      */
-    @Nullable
+    @javax.annotation.Nullable
     public Boolean getHasOptions() {
         return hasOptions;
     }
 
-    public void setHasOptions(@Nullable Boolean hasOptions) {
+    public void setHasOptions(@javax.annotation.Nullable Boolean hasOptions) {
         this.hasOptions = hasOptions;
     }
 
-    public Product postPassword(@Nullable String postPassword) {
+    public Product postPassword(@javax.annotation.Nullable String postPassword) {
         this.postPassword = postPassword;
         return this;
     }
@@ -1473,17 +1473,17 @@ public enum TaxStatusEnum {
      * Shows post_password. NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return postPassword
      */
-    @Nullable
+    @javax.annotation.Nullable
     public String getPostPassword() {
         return postPassword;
     }
 
-    public void setPostPassword(@Nullable String postPassword) {
+    public void setPostPassword(@javax.annotation.Nullable String postPassword) {
         this.postPassword = postPassword;
     }
 
 
-    public Product globalUniqueId(@Nullable String globalUniqueId) {
+    public Product globalUniqueId(@javax.annotation.Nullable String globalUniqueId) {
         this.globalUniqueId = globalUniqueId;
         return this;
     }
@@ -1491,16 +1491,16 @@ public enum TaxStatusEnum {
      * Shows global_unique_id. NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return globalUniqueId
      */
-    @Nullable
+    @javax.annotation.Nullable
     public String getGlobalUniqueId() {
         return globalUniqueId;
     }
 
-    public void setGlobalUniqueId(@Nullable String globalUniqueId) {
+    public void setGlobalUniqueId(@javax.annotation.Nullable String globalUniqueId) {
         this.globalUniqueId = globalUniqueId;
     }
 
-    public Product permalinkTemplate(@Nullable String permalinkTemplate) {
+    public Product permalinkTemplate(@javax.annotation.Nullable String permalinkTemplate) {
         this.permalinkTemplate = permalinkTemplate;
         return this;
     }
@@ -1508,17 +1508,17 @@ public enum TaxStatusEnum {
      * Shows permalink_template. NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return permalinkTemplate
      */
-    @Nullable
+    @javax.annotation.Nullable
     public String getPermalinkTemplate() {
         return permalinkTemplate;
     }
 
-    public void setPermalinkTemplate(@Nullable String permalinkTemplate) {
+    public void setPermalinkTemplate(@javax.annotation.Nullable String permalinkTemplate) {
         this.permalinkTemplate = permalinkTemplate;
     }
 
 
-    public Product generatedSlug(@Nullable String generatedSlug) {
+    public Product generatedSlug(@javax.annotation.Nullable String generatedSlug) {
         this.generatedSlug = generatedSlug;
         return this;
     }
@@ -1526,17 +1526,17 @@ public enum TaxStatusEnum {
      * Shows generated_slug. NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return generatedSlug
      */
-    @Nullable
+    @javax.annotation.Nullable
     public String getGeneratedSlug() {
         return generatedSlug;
     }
 
-    public void setGeneratedSlug(@Nullable String generatedSlug) {
+    public void setGeneratedSlug(@javax.annotation.Nullable String generatedSlug) {
         this.generatedSlug = generatedSlug;
     }
 
 
-    public Product jetpackSharingEnabled(@Nullable Boolean jetpackSharingEnabled) {
+    public Product jetpackSharingEnabled(@javax.annotation.Nullable Boolean jetpackSharingEnabled) {
         this.jetpackSharingEnabled = jetpackSharingEnabled;
         return this;
     }
@@ -1544,16 +1544,16 @@ public enum TaxStatusEnum {
      * Shows jetpack_sharing_enabled. NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return jetpackSharingEnabled.
      */
-    @Nullable
+    @javax.annotation.Nullable
     public Boolean getJetpackSharingEnabled() {
         return jetpackSharingEnabled;
     }
 
-    public void setJetpackSharingEnabled(@Nullable Boolean jetpackSharingEnabled) {
+    public void setJetpackSharingEnabled(@javax.annotation.Nullable Boolean jetpackSharingEnabled) {
         this.jetpackSharingEnabled = jetpackSharingEnabled;
     }
 
-    public Product links(@Nullable Links links) {
+    public Product links(@javax.annotation.Nullable Links links) {
         this.links = links;
         return this;
     }
@@ -1561,18 +1561,18 @@ public enum TaxStatusEnum {
      * Shows _links NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return _links
      */
-    @Nullable
+    @javax.annotation.Nullable
     public Links getLinks() {
         return links;
     }
 
     @JsonProperty("_links")
-    public void setLinks(@Nullable Links links) {
+    public void setLinks(@javax.annotation.Nullable Links links) {
         this.links = links;
     }
 
 
-  public Product soldIndividually(@Nullable Boolean soldIndividually) {
+  public Product soldIndividually(@javax.annotation.Nullable Boolean soldIndividually) {
     this.soldIndividually = soldIndividually;
     return this;
   }
@@ -1581,18 +1581,18 @@ public enum TaxStatusEnum {
    * Allow one item to be bought in a single order. Default is false.
    * @return soldIndividually
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getSoldIndividually() {
     return soldIndividually;
   }
 
   @JsonProperty("sold_individually")
-  public void setSoldIndividually(@Nullable Boolean soldIndividually) {
+  public void setSoldIndividually(@javax.annotation.Nullable Boolean soldIndividually) {
     this.soldIndividually = soldIndividually;
   }
 
 
-  public Product weight(@Nullable String weight) {
+  public Product weight(@javax.annotation.Nullable String weight) {
     this.weight = weight;
     return this;
   }
@@ -1601,17 +1601,17 @@ public enum TaxStatusEnum {
    * Product weight.
    * @return weight
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getWeight() {
     return weight;
   }
 
-  public void setWeight(@Nullable String weight) {
+  public void setWeight(@javax.annotation.Nullable String weight) {
     this.weight = weight;
   }
 
 
-  public Product dimensions(@Nullable ProductDimension dimensions) {
+  public Product dimensions(@javax.annotation.Nullable ProductDimension dimensions) {
     this.dimensions = dimensions;
     return this;
   }
@@ -1620,17 +1620,17 @@ public enum TaxStatusEnum {
    * Get dimensions
    * @return dimensions
    */
-  @Nullable
+  @javax.annotation.Nullable
   public ProductDimension getDimensions() {
     return dimensions;
   }
 
-  public void setDimensions(@Nullable ProductDimension dimensions) {
+  public void setDimensions(@javax.annotation.Nullable ProductDimension dimensions) {
     this.dimensions = dimensions;
   }
 
 
-  public Product shippingRequired(@Nullable Boolean shippingRequired) {
+  public Product shippingRequired(@javax.annotation.Nullable Boolean shippingRequired) {
     this.shippingRequired = shippingRequired;
     return this;
   }
@@ -1639,18 +1639,18 @@ public enum TaxStatusEnum {
    * Shows if the product need to be shipped. read-only
    * @return shippingRequired
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getShippingRequired() {
     return shippingRequired;
   }
 
   @JsonProperty("shipping_required")
-  public void setShippingRequired(@Nullable Boolean shippingRequired) {
+  public void setShippingRequired(@javax.annotation.Nullable Boolean shippingRequired) {
     this.shippingRequired = shippingRequired;
   }
 
 
-  public Product shippingTaxable(@Nullable Boolean shippingTaxable) {
+  public Product shippingTaxable(@javax.annotation.Nullable Boolean shippingTaxable) {
     this.shippingTaxable = shippingTaxable;
     return this;
   }
@@ -1659,18 +1659,18 @@ public enum TaxStatusEnum {
    * Shows whether or not the product shipping is taxable. read-only
    * @return shippingTaxable
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getShippingTaxable() {
     return shippingTaxable;
   }
 
   @JsonProperty("shipping_taxable")
-  public void setShippingTaxable(@Nullable Boolean shippingTaxable) {
+  public void setShippingTaxable(@javax.annotation.Nullable Boolean shippingTaxable) {
     this.shippingTaxable = shippingTaxable;
   }
 
 
-  public Product shippingClass(@Nullable String shippingClass) {
+  public Product shippingClass(@javax.annotation.Nullable String shippingClass) {
     this.shippingClass = shippingClass;
     return this;
   }
@@ -1679,18 +1679,18 @@ public enum TaxStatusEnum {
    * Shipping class slug.
    * @return shippingClass
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getShippingClass() {
     return shippingClass;
   }
 
   @JsonProperty("shipping_class")
-  public void setShippingClass(@Nullable String shippingClass) {
+  public void setShippingClass(@javax.annotation.Nullable String shippingClass) {
     this.shippingClass = shippingClass;
   }
 
 
-  public Product shippingClassId(@Nullable Integer shippingClassId) {
+  public Product shippingClassId(@javax.annotation.Nullable Integer shippingClassId) {
     this.shippingClassId = shippingClassId;
     return this;
   }
@@ -1699,18 +1699,18 @@ public enum TaxStatusEnum {
    * Shipping class ID.
    * @return shippingClassId
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getShippingClassId() {
     return shippingClassId;
   }
 
   @JsonProperty("shipping_class_id")
-  public void setShippingClassId(@Nullable Integer shippingClassId) {
+  public void setShippingClassId(@javax.annotation.Nullable Integer shippingClassId) {
     this.shippingClassId = shippingClassId;
   }
 
 
-  public Product reviewsAllowed(@Nullable Boolean reviewsAllowed) {
+  public Product reviewsAllowed(@javax.annotation.Nullable Boolean reviewsAllowed) {
     this.reviewsAllowed = reviewsAllowed;
     return this;
   }
@@ -1719,18 +1719,18 @@ public enum TaxStatusEnum {
    * Allow reviews. Default is true.
    * @return reviewsAllowed
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getReviewsAllowed() {
     return reviewsAllowed;
   }
 
   @JsonProperty("reviews_allowed")
-  public void setReviewsAllowed(@Nullable Boolean reviewsAllowed) {
+  public void setReviewsAllowed(@javax.annotation.Nullable Boolean reviewsAllowed) {
     this.reviewsAllowed = reviewsAllowed;
   }
 
 
-  public Product averageRating(@Nullable String averageRating) {
+  public Product averageRating(@javax.annotation.Nullable String averageRating) {
     this.averageRating = averageRating;
     return this;
   }
@@ -1739,18 +1739,18 @@ public enum TaxStatusEnum {
    * Reviews average rating. read-only
    * @return averageRating
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getAverageRating() {
     return averageRating;
   }
 
   @JsonProperty("average_rating")
-  public void setAverageRating(@Nullable String averageRating) {
+  public void setAverageRating(@javax.annotation.Nullable String averageRating) {
     this.averageRating = averageRating;
   }
 
 
-  public Product ratingCount(@Nullable Integer ratingCount) {
+  public Product ratingCount(@javax.annotation.Nullable Integer ratingCount) {
     this.ratingCount = ratingCount;
     return this;
   }
@@ -1759,18 +1759,18 @@ public enum TaxStatusEnum {
    * Amount of reviews that the product have. read-only
    * @return ratingCount
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getRatingCount() {
     return ratingCount;
   }
 
   @JsonProperty("rating_count")
-  public void setRatingCount(@Nullable Integer ratingCount) {
+  public void setRatingCount(@javax.annotation.Nullable Integer ratingCount) {
     this.ratingCount = ratingCount;
   }
 
 
-  public Product relatedIds(@Nullable List<Integer> relatedIds) {
+  public Product relatedIds(@javax.annotation.Nullable List<Integer> relatedIds) {
     this.relatedIds = relatedIds;
     return this;
   }
@@ -1787,18 +1787,18 @@ public enum TaxStatusEnum {
    * List of related products IDs. read-only
    * @return relatedIds
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<Integer> getRelatedIds() {
     return relatedIds;
   }
 
   @JsonProperty("related_ids")
-  public void setRelatedIds(@Nullable List<Integer> relatedIds) {
+  public void setRelatedIds(@javax.annotation.Nullable List<Integer> relatedIds) {
     this.relatedIds = relatedIds;
   }
 
 
-  public Product upsellIds(@Nullable List<Integer> upsellIds) {
+  public Product upsellIds(@javax.annotation.Nullable List<Integer> upsellIds) {
     this.upsellIds = upsellIds;
     return this;
   }
@@ -1815,18 +1815,18 @@ public enum TaxStatusEnum {
    * List of up-sell products IDs.
    * @return upsellIds
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<Integer> getUpsellIds() {
     return upsellIds;
   }
 
   @JsonProperty("upsell_ids")
-  public void setUpsellIds(@Nullable List<Integer> upsellIds) {
+  public void setUpsellIds(@javax.annotation.Nullable List<Integer> upsellIds) {
     this.upsellIds = upsellIds;
   }
 
 
-  public Product crossSellIds(@Nullable List<Integer> crossSellIds) {
+  public Product crossSellIds(@javax.annotation.Nullable List<Integer> crossSellIds) {
     this.crossSellIds = crossSellIds;
     return this;
   }
@@ -1843,18 +1843,18 @@ public enum TaxStatusEnum {
    * List of cross-sell products IDs.
    * @return crossSellIds
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<Integer> getCrossSellIds() {
     return crossSellIds;
   }
 
   @JsonProperty("cross_sell_ids")
-  public void setCrossSellIds(@Nullable List<Integer> crossSellIds) {
+  public void setCrossSellIds(@javax.annotation.Nullable List<Integer> crossSellIds) {
     this.crossSellIds = crossSellIds;
   }
 
 
-  public Product parentId(@Nullable Integer parentId) {
+  public Product parentId(@javax.annotation.Nullable Integer parentId) {
     this.parentId = parentId;
     return this;
   }
@@ -1863,18 +1863,18 @@ public enum TaxStatusEnum {
    * Product parent ID.
    * @return parentId
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getParentId() {
     return parentId;
   }
 
   @JsonProperty("parent_id")
-  public void setParentId(@Nullable Integer parentId) {
+  public void setParentId(@javax.annotation.Nullable Integer parentId) {
     this.parentId = parentId;
   }
 
 
-  public Product purchaseNote(@Nullable String purchaseNote) {
+  public Product purchaseNote(@javax.annotation.Nullable String purchaseNote) {
     this.purchaseNote = purchaseNote;
     return this;
   }
@@ -1883,18 +1883,18 @@ public enum TaxStatusEnum {
    * Optional note to send the customer after purchase.
    * @return purchaseNote
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getPurchaseNote() {
     return purchaseNote;
   }
 
   @JsonProperty("purchase_note")
-  public void setPurchaseNote(@Nullable String purchaseNote) {
+  public void setPurchaseNote(@javax.annotation.Nullable String purchaseNote) {
     this.purchaseNote = purchaseNote;
   }
 
 
-  public Product categories(@Nullable List<ProductCategoriesItem> categories) {
+  public Product categories(@javax.annotation.Nullable List<ProductCategoriesItem> categories) {
     this.categories = categories;
     return this;
   }
@@ -1911,17 +1911,17 @@ public enum TaxStatusEnum {
    * List of categories.
    * @return categories
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<ProductCategoriesItem> getCategories() {
     return categories;
   }
 
-  public void setCategories(@Nullable List<ProductCategoriesItem> categories) {
+  public void setCategories(@javax.annotation.Nullable List<ProductCategoriesItem> categories) {
     this.categories = categories;
   }
 
 
-  public Product tags(@Nullable List<ProductTag> tags) {
+  public Product tags(@javax.annotation.Nullable List<ProductTag> tags) {
     this.tags = tags;
     return this;
   }
@@ -1938,17 +1938,17 @@ public enum TaxStatusEnum {
    * List of tags.
    * @return tags
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<ProductTag> getTags() {
     return tags;
   }
 
-  public void setTags(@Nullable List<ProductTag> tags) {
+  public void setTags(@javax.annotation.Nullable List<ProductTag> tags) {
     this.tags = tags;
   }
 
 
-  public Product images(@Nullable List<ProductImage> images) {
+  public Product images(@javax.annotation.Nullable List<ProductImage> images) {
     this.images = images;
     return this;
   }
@@ -1965,17 +1965,17 @@ public enum TaxStatusEnum {
    * List of product images.
    * @return images
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<ProductImage> getImages() {
     return images;
   }
 
-  public void setImages(@Nullable List<ProductImage> images) {
+  public void setImages(@javax.annotation.Nullable List<ProductImage> images) {
     this.images = images;
   }
 
 
-  public Product attributes(@Nullable List<ProductAttribute> attributes) {
+  public Product attributes(@javax.annotation.Nullable List<ProductAttribute> attributes) {
     this.attributes = attributes;
     return this;
   }
@@ -1992,17 +1992,17 @@ public enum TaxStatusEnum {
    * List of attributes.
    * @return attributes
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<ProductAttribute> getAttributes() {
     return attributes;
   }
 
-  public void setAttributes(@Nullable List<ProductAttribute> attributes) {
+  public void setAttributes(@javax.annotation.Nullable List<ProductAttribute> attributes) {
     this.attributes = attributes;
   }
 
 
-  public Product defaultAttributes(@Nullable List<ProductAttribute> defaultAttributes) {
+  public Product defaultAttributes(@javax.annotation.Nullable List<ProductAttribute> defaultAttributes) {
     this.defaultAttributes = defaultAttributes;
     return this;
   }
@@ -2019,18 +2019,18 @@ public enum TaxStatusEnum {
    * List of default attributes.
    * @return defaultAttributes
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<ProductAttribute> getDefaultAttributes() {
     return defaultAttributes;
   }
 
   @JsonProperty("default_attributes")
-  public void setDefaultAttributes(@Nullable List<ProductAttribute> defaultAttributes) {
+  public void setDefaultAttributes(@javax.annotation.Nullable List<ProductAttribute> defaultAttributes) {
     this.defaultAttributes = defaultAttributes;
   }
 
 
-  public Product variations(@Nullable List<Integer> variations) {
+  public Product variations(@javax.annotation.Nullable List<Integer> variations) {
     this.variations = variations;
     return this;
   }
@@ -2047,17 +2047,17 @@ public enum TaxStatusEnum {
    * List of variations IDs. read-only
    * @return variations
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<Integer> getVariations() {
     return variations;
   }
 
-  public void setVariations(@Nullable List<Integer> variations) {
+  public void setVariations(@javax.annotation.Nullable List<Integer> variations) {
     this.variations = variations;
   }
 
 
-  public Product groupedProducts(@Nullable List<Integer> groupedProducts) {
+  public Product groupedProducts(@javax.annotation.Nullable List<Integer> groupedProducts) {
     this.groupedProducts = groupedProducts;
     return this;
   }
@@ -2074,18 +2074,18 @@ public enum TaxStatusEnum {
    * List of grouped products ID.
    * @return groupedProducts
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<Integer> getGroupedProducts() {
     return groupedProducts;
   }
 
   @JsonProperty("grouped_products")
-  public void setGroupedProducts(@Nullable List<Integer> groupedProducts) {
+  public void setGroupedProducts(@javax.annotation.Nullable List<Integer> groupedProducts) {
     this.groupedProducts = groupedProducts;
   }
 
 
-  public Product menuOrder(@Nullable Integer menuOrder) {
+  public Product menuOrder(@javax.annotation.Nullable Integer menuOrder) {
     this.menuOrder = menuOrder;
     return this;
   }
@@ -2094,18 +2094,18 @@ public enum TaxStatusEnum {
    * Menu order, used to custom sort products.
    * @return menuOrder
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getMenuOrder() {
     return menuOrder;
   }
 
   @JsonProperty("menu_order")
-  public void setMenuOrder(@Nullable Integer menuOrder) {
+  public void setMenuOrder(@javax.annotation.Nullable Integer menuOrder) {
     this.menuOrder = menuOrder;
   }
 
 
-  public Product metaData(@Nullable List<MetaData> metaData) {
+  public Product metaData(@javax.annotation.Nullable List<MetaData> metaData) {
     this.metaData = metaData;
     return this;
   }
@@ -2122,13 +2122,13 @@ public enum TaxStatusEnum {
    * Meta data properties.
    * @return metaData
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<MetaData> getMetaData() {
     return metaData;
   }
 
   @JsonProperty("meta_data")
-  public void setMetaData(@Nullable List<MetaData> metaData) {
+  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
     this.metaData = metaData;
   }
 
@@ -2138,13 +2138,13 @@ public enum TaxStatusEnum {
      * BUT record B may fail with exists, or something else.
      * Only way to catch the error and pass back is by adding the error message into here.
      */
-    @Nullable
+    @javax.annotation.Nullable
     public ErrorMessage getError() {
         return error;
     }
 
     @JsonProperty("error")
-    public void setError(@Nullable ErrorMessage error) {
+    public void setError(@javax.annotation.Nullable ErrorMessage error) {
         this.error = error;
     }
 

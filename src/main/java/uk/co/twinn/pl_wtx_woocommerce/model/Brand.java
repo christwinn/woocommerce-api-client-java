@@ -10,7 +10,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 //import com.google.gson.annotations.SerializedName;
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.util.Objects;
@@ -20,22 +20,22 @@ public class Brand {
 
     public static final String SERIALIZED_NAME_ID = "id";
     //@SerializedName(SERIALIZED_NAME_ID)
-    @Nullable
+    @javax.annotation.Nullable
     private Integer id;
 
     public static final String SERIALIZED_NAME_NAME = "name";
     //@SerializedName(SERIALIZED_NAME_NAME)
-    @Nullable
+    @javax.annotation.Nullable
     private String name;
 
     public static final String SERIALIZED_NAME_SLUG = "slug";
     //@SerializedName(SERIALIZED_NAME_SLUG)
-    @Nullable
+    @javax.annotation.Nullable
     private String slug;
 
     public Brand(){}
 
-    public Brand id(@Nullable Integer id) {
+    public Brand id(@javax.annotation.Nullable Integer id) {
         this.id = id;
         return this;
     }
@@ -44,12 +44,12 @@ public class Brand {
      * id.
      * @return id
      */
-    @Nullable
+    @javax.annotation.Nullable
     public Integer getId() {
         return id;
     }
 
-    public void setId(@Nullable Integer id) {
+    public void setId(@javax.annotation.Nullable Integer id) {
         this.id = id;
     }
 
@@ -57,17 +57,17 @@ public class Brand {
      * name.
      * @return Name
      */
-    @Nullable
+    @javax.annotation.Nullable
     public String getName() {
         return name;
     }
 
-    public void setName(@Nullable String name) {
+    public void setName(@javax.annotation.Nullable String name) {
         this.name = name;
     }
 
 
-    public Brand name(@Nullable String name) {
+    public Brand name(@javax.annotation.Nullable String name) {
         this.name = name;
         return this;
     }
@@ -76,17 +76,17 @@ public class Brand {
      * slug.
      * @return Slug
      */
-    @Nullable
+    @javax.annotation.Nullable
     public String getSlug() {
         return slug;
     }
 
-    public void setSlug(@Nullable String slug) {
+    public void setSlug(@javax.annotation.Nullable String slug) {
         this.slug = slug;
     }
 
 
-    public Brand slug(@Nullable String slug) {
+    public Brand slug(@javax.annotation.Nullable String slug) {
         this.slug = slug;
         return this;
     }

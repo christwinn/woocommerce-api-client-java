@@ -26,7 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -36,43 +36,43 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ProductAttribute {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @Nullable
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_OPTION = "option";
   //@SerializedName(SERIALIZED_NAME_OPTION)
-  @Nullable
+  @javax.annotation.Nullable
   private String option;
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
-  @Nullable
+  @javax.annotation.Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   //@SerializedName(SERIALIZED_NAME_TYPE)
-  @Nullable
+  @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_ORDER_BY = "order_by";
   //@SerializedName(SERIALIZED_NAME_ORDER_BY)
-  @Nullable
+  @javax.annotation.Nullable
   private String orderBy;
 
   public static final String SERIALIZED_NAME_HAS_ARCHIVES = "has_archives";
   //@SerializedName(SERIALIZED_NAME_HAS_ARCHIVES)
-  @Nullable
+  @javax.annotation.Nullable
   private Boolean hasArchives;
 
   public ProductAttribute() {
   }
 
-  public ProductAttribute id(@Nullable Integer id) {
+  public ProductAttribute id(@javax.annotation.Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -81,17 +81,17 @@ public class ProductAttribute {
    * Attribute ID.
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@Nullable Integer id) {
+  public void setId(@javax.annotation.Nullable Integer id) {
     this.id = id;
   }
 
 
-  public ProductAttribute name(@Nullable String name) {
+  public ProductAttribute name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
@@ -100,17 +100,17 @@ public class ProductAttribute {
    * Attribute name.
    * @return name
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@Nullable String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public ProductAttribute option(@Nullable String option) {
+  public ProductAttribute option(@javax.annotation.Nullable String option) {
     this.option = option;
     return this;
   }
@@ -119,17 +119,17 @@ public class ProductAttribute {
    * Selected attribute term name. Applicable only for Product represents SKU (variation)
    * @return option
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getOption() {
     return option;
   }
 
-  public void setOption(@Nullable String option) {
+  public void setOption(@javax.annotation.Nullable String option) {
     this.option = option;
   }
 
 
-  public ProductAttribute slug(@Nullable String slug) {
+  public ProductAttribute slug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
     return this;
   }
@@ -138,17 +138,17 @@ public class ProductAttribute {
    * Attribute slug.
    * @return slug
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSlug() {
     return slug;
   }
 
-  public void setSlug(@Nullable String slug) {
+  public void setSlug(@javax.annotation.Nullable String slug) {
     this.slug = slug;
   }
 
 
-  public ProductAttribute type(@Nullable String type) {
+  public ProductAttribute type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
@@ -157,17 +157,17 @@ public class ProductAttribute {
    * Attribute type.
    * @return type
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(@Nullable String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
   }
 
 
-  public ProductAttribute orderBy(@Nullable String orderBy) {
+  public ProductAttribute orderBy(@javax.annotation.Nullable String orderBy) {
     this.orderBy = orderBy;
     return this;
   }
@@ -176,17 +176,17 @@ public class ProductAttribute {
    * Sort order.
    * @return orderBy
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getOrderBy() {
     return orderBy;
   }
 
-  public void setOrderBy(@Nullable String orderBy) {
+  public void setOrderBy(@javax.annotation.Nullable String orderBy) {
     this.orderBy = orderBy;
   }
 
 
-  public ProductAttribute hasArchives(@Nullable Boolean hasArchives) {
+  public ProductAttribute hasArchives(@javax.annotation.Nullable Boolean hasArchives) {
     this.hasArchives = hasArchives;
     return this;
   }
@@ -195,12 +195,12 @@ public class ProductAttribute {
    * Enable/Disable attribute archives.
    * @return hasArchives
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Boolean getHasArchives() {
     return hasArchives;
   }
 
-  public void setHasArchives(@Nullable Boolean hasArchives) {
+  public void setHasArchives(@javax.annotation.Nullable Boolean hasArchives) {
     this.hasArchives = hasArchives;
   }
 

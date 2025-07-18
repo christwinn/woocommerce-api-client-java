@@ -31,7 +31,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -41,83 +41,83 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class OrderLineItem {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @Nullable
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_PARENT_NAME = "parent_name";
   //@SerializedName(SERIALIZED_NAME_PARENT_NAME)
-  @Nullable
+  @javax.annotation.Nullable
   private String parentName;
 
   public static final String SERIALIZED_NAME_PRODUCT_ID = "product_id";
   //@SerializedName(SERIALIZED_NAME_PRODUCT_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer productId;
 
   public static final String SERIALIZED_NAME_VARIATION_ID = "variation_id";
   //@SerializedName(SERIALIZED_NAME_VARIATION_ID)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer variationId;
 
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
   //@SerializedName(SERIALIZED_NAME_QUANTITY)
-  @Nullable
+  @javax.annotation.Nullable
   private Integer quantity;
 
   public static final String SERIALIZED_NAME_TAX_CLASS = "tax_class";
   //@SerializedName(SERIALIZED_NAME_TAX_CLASS)
-  @Nullable
+  @javax.annotation.Nullable
   private String taxClass;
 
   public static final String SERIALIZED_NAME_SUBTOTAL = "subtotal";
   //@SerializedName(SERIALIZED_NAME_SUBTOTAL)
-  @Nullable
+  @javax.annotation.Nullable
   private BigDecimal subtotal;
 
   public static final String SERIALIZED_NAME_SUBTOTAL_TAX = "subtotal_tax";
   //@SerializedName(SERIALIZED_NAME_SUBTOTAL_TAX)
-  @Nullable
+  @javax.annotation.Nullable
   private BigDecimal subtotalTax;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   //@SerializedName(SERIALIZED_NAME_TOTAL)
-  @Nullable
+  @javax.annotation.Nullable
   private BigDecimal total;
 
   public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
   //@SerializedName(SERIALIZED_NAME_TOTAL_TAX)
-  @Nullable
+  @javax.annotation.Nullable
   private BigDecimal totalTax;
 
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   //@SerializedName(SERIALIZED_NAME_TAXES)
-  @Nullable
+  @javax.annotation.Nullable
   private List<OrderTaxLine> taxes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
   //@SerializedName(SERIALIZED_NAME_META_DATA)
-  @Nullable
+  @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SKU = "sku";
   //@SerializedName(SERIALIZED_NAME_SKU)
-  @Nullable
+  @javax.annotation.Nullable
   private String sku;
 
   public static final String SERIALIZED_NAME_PRICE = "price";
   //@SerializedName(SERIALIZED_NAME_PRICE)
-  @Nullable
+  @javax.annotation.Nullable
   private BigDecimal price;
 
   public OrderLineItem() {
   }
 
-  public OrderLineItem id(@Nullable Integer id) {
+  public OrderLineItem id(@javax.annotation.Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -126,17 +126,17 @@ public class OrderLineItem {
    * Item ID.
    * @return id
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@Nullable Integer id) {
+  public void setId(@javax.annotation.Nullable Integer id) {
     this.id = id;
   }
 
 
-  public OrderLineItem name(@Nullable String name) {
+  public OrderLineItem name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
@@ -145,17 +145,17 @@ public class OrderLineItem {
    * Product name.
    * @return name
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@Nullable String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public OrderLineItem parentName(@Nullable String parentName) {
+  public OrderLineItem parentName(@javax.annotation.Nullable String parentName) {
     this.parentName = parentName;
     return this;
   }
@@ -164,18 +164,18 @@ public class OrderLineItem {
    * Parent product name if the product is a variation.
    * @return parentName
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getParentName() {
     return parentName;
   }
 
   @JsonProperty("parent_name")
-  public void setParentName(@Nullable String parentName) {
+  public void setParentName(@javax.annotation.Nullable String parentName) {
     this.parentName = parentName;
   }
 
 
-  public OrderLineItem productId(@Nullable Integer productId) {
+  public OrderLineItem productId(@javax.annotation.Nullable Integer productId) {
     this.productId = productId;
     return this;
   }
@@ -184,18 +184,18 @@ public class OrderLineItem {
    * Product ID.
    * @return productId
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getProductId() {
     return productId;
   }
 
   @JsonProperty("product_id")
-  public void setProductId(@Nullable Integer productId) {
+  public void setProductId(@javax.annotation.Nullable Integer productId) {
     this.productId = productId;
   }
 
 
-  public OrderLineItem variationId(@Nullable Integer variationId) {
+  public OrderLineItem variationId(@javax.annotation.Nullable Integer variationId) {
     this.variationId = variationId;
     return this;
   }
@@ -204,18 +204,18 @@ public class OrderLineItem {
    * Variation ID, if applicable.
    * @return variationId
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getVariationId() {
     return variationId;
   }
 
   @JsonProperty("variation_id")
-  public void setVariationId(@Nullable Integer variationId) {
+  public void setVariationId(@javax.annotation.Nullable Integer variationId) {
     this.variationId = variationId;
   }
 
 
-  public OrderLineItem quantity(@Nullable Integer quantity) {
+  public OrderLineItem quantity(@javax.annotation.Nullable Integer quantity) {
     this.quantity = quantity;
     return this;
   }
@@ -224,17 +224,17 @@ public class OrderLineItem {
    * Quantity ordered.
    * @return quantity
    */
-  @Nullable
+  @javax.annotation.Nullable
   public Integer getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(@Nullable Integer quantity) {
+  public void setQuantity(@javax.annotation.Nullable Integer quantity) {
     this.quantity = quantity;
   }
 
 
-  public OrderLineItem taxClass(@Nullable String taxClass) {
+  public OrderLineItem taxClass(@javax.annotation.Nullable String taxClass) {
     this.taxClass = taxClass;
     return this;
   }
@@ -243,18 +243,18 @@ public class OrderLineItem {
    * Tax class of product.
    * @return taxClass
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getTaxClass() {
     return taxClass;
   }
 
   @JsonProperty("tax_class")
-  public void setTaxClass(@Nullable String taxClass) {
+  public void setTaxClass(@javax.annotation.Nullable String taxClass) {
     this.taxClass = taxClass;
   }
 
 
-  public OrderLineItem subtotal(@Nullable BigDecimal subtotal) {
+  public OrderLineItem subtotal(@javax.annotation.Nullable BigDecimal subtotal) {
     this.subtotal = subtotal;
     return this;
   }
@@ -263,17 +263,17 @@ public class OrderLineItem {
    * Line subtotal (before discounts).
    * @return subtotal
    */
-  @Nullable
+  @javax.annotation.Nullable
   public BigDecimal getSubtotal() {
     return subtotal;
   }
 
-  public void setSubtotal(@Nullable BigDecimal subtotal) {
+  public void setSubtotal(@javax.annotation.Nullable BigDecimal subtotal) {
     this.subtotal = subtotal;
   }
 
 
-  public OrderLineItem subtotalTax(@Nullable BigDecimal subtotalTax) {
+  public OrderLineItem subtotalTax(@javax.annotation.Nullable BigDecimal subtotalTax) {
     this.subtotalTax = subtotalTax;
     return this;
   }
@@ -282,18 +282,18 @@ public class OrderLineItem {
    * Line subtotal tax (before discounts).
    * @return subtotalTax
    */
-  @Nullable
+  @javax.annotation.Nullable
   public BigDecimal getSubtotalTax() {
     return subtotalTax;
   }
 
   @JsonProperty("subtotal_tax")
-  public void setSubtotalTax(@Nullable BigDecimal subtotalTax) {
+  public void setSubtotalTax(@javax.annotation.Nullable BigDecimal subtotalTax) {
     this.subtotalTax = subtotalTax;
   }
 
 
-  public OrderLineItem total(@Nullable BigDecimal total) {
+  public OrderLineItem total(@javax.annotation.Nullable BigDecimal total) {
     this.total = total;
     return this;
   }
@@ -302,17 +302,17 @@ public class OrderLineItem {
    * Line total (after discounts).
    * @return total
    */
-  @Nullable
+  @javax.annotation.Nullable
   public BigDecimal getTotal() {
     return total;
   }
 
-  public void setTotal(@Nullable BigDecimal total) {
+  public void setTotal(@javax.annotation.Nullable BigDecimal total) {
     this.total = total;
   }
 
 
-  public OrderLineItem totalTax(@Nullable BigDecimal totalTax) {
+  public OrderLineItem totalTax(@javax.annotation.Nullable BigDecimal totalTax) {
     this.totalTax = totalTax;
     return this;
   }
@@ -321,18 +321,18 @@ public class OrderLineItem {
    * Line total tax (after discounts).
    * @return totalTax
    */
-  @Nullable
+  @javax.annotation.Nullable
   public BigDecimal getTotalTax() {
     return totalTax;
   }
 
   @JsonProperty("total_tax")
-  public void setTotalTax(@Nullable BigDecimal totalTax) {
+  public void setTotalTax(@javax.annotation.Nullable BigDecimal totalTax) {
     this.totalTax = totalTax;
   }
 
 
-  public OrderLineItem taxes(@Nullable List<OrderTaxLine> taxes) {
+  public OrderLineItem taxes(@javax.annotation.Nullable List<OrderTaxLine> taxes) {
     this.taxes = taxes;
     return this;
   }
@@ -349,17 +349,17 @@ public class OrderLineItem {
    * Line taxes.
    * @return taxes
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<OrderTaxLine> getTaxes() {
     return taxes;
   }
 
-  public void setTaxes(@Nullable List<OrderTaxLine> taxes) {
+  public void setTaxes(@javax.annotation.Nullable List<OrderTaxLine> taxes) {
     this.taxes = taxes;
   }
 
 
-  public OrderLineItem metaData(@Nullable List<MetaData> metaData) {
+  public OrderLineItem metaData(@javax.annotation.Nullable List<MetaData> metaData) {
     this.metaData = metaData;
     return this;
   }
@@ -376,18 +376,18 @@ public class OrderLineItem {
    * Meta data properties.
    * @return metaData
    */
-  @Nullable
+  @javax.annotation.Nullable
   public List<MetaData> getMetaData() {
     return metaData;
   }
 
   @JsonProperty("meta_data")
-  public void setMetaData(@Nullable List<MetaData> metaData) {
+  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
     this.metaData = metaData;
   }
 
 
-  public OrderLineItem sku(@Nullable String sku) {
+  public OrderLineItem sku(@javax.annotation.Nullable String sku) {
     this.sku = sku;
     return this;
   }
@@ -396,17 +396,17 @@ public class OrderLineItem {
    * Product SKU.
    * @return sku
    */
-  @Nullable
+  @javax.annotation.Nullable
   public String getSku() {
     return sku;
   }
 
-  public void setSku(@Nullable String sku) {
+  public void setSku(@javax.annotation.Nullable String sku) {
     this.sku = sku;
   }
 
 
-  public OrderLineItem price(@Nullable BigDecimal price) {
+  public OrderLineItem price(@javax.annotation.Nullable BigDecimal price) {
     this.price = price;
     return this;
   }
@@ -415,12 +415,12 @@ public class OrderLineItem {
    * Product price.
    * @return price
    */
-  @Nullable
+  @javax.annotation.Nullable
   public BigDecimal getPrice() {
     return price;
   }
 
-  public void setPrice(@Nullable BigDecimal price) {
+  public void setPrice(@javax.annotation.Nullable BigDecimal price) {
     this.price = price;
   }
 
