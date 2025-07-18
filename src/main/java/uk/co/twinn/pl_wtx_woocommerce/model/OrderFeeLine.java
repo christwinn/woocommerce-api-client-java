@@ -30,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -39,48 +40,48 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class OrderFeeLine {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nullable
+  @Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_TAX_CLASS = "tax_class";
   //@SerializedName(SERIALIZED_NAME_TAX_CLASS)
-  @javax.annotation.Nullable
+  @Nullable
   private String taxClass;
 
   public static final String SERIALIZED_NAME_TAX_STATUS = "tax_status";
   //@SerializedName(SERIALIZED_NAME_TAX_STATUS)
-  @javax.annotation.Nullable
+  @Nullable
   private String taxStatus;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   //@SerializedName(SERIALIZED_NAME_TOTAL)
-  @javax.annotation.Nullable
+  @Nullable
   private String total;
 
   public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
   //@SerializedName(SERIALIZED_NAME_TOTAL_TAX)
-  @javax.annotation.Nullable
+  @Nullable
   private String totalTax;
 
   public static final String SERIALIZED_NAME_TAXES = "taxes";
   //@SerializedName(SERIALIZED_NAME_TAXES)
-  @javax.annotation.Nullable
+  @Nullable
   private List<OrderTaxLine> taxes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
   //@SerializedName(SERIALIZED_NAME_META_DATA)
-  @javax.annotation.Nullable
+  @Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public OrderFeeLine() {
   }
 
-  public OrderFeeLine id(@javax.annotation.Nullable Integer id) {
+  public OrderFeeLine id(@Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -89,17 +90,17 @@ public class OrderFeeLine {
    * Item ID.
    * @return id
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@javax.annotation.Nullable Integer id) {
+  public void setId(@Nullable Integer id) {
     this.id = id;
   }
 
 
-  public OrderFeeLine name(@javax.annotation.Nullable String name) {
+  public OrderFeeLine name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -108,17 +109,17 @@ public class OrderFeeLine {
    * Fee name.
    * @return name
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@javax.annotation.Nullable String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
 
-  public OrderFeeLine taxClass(@javax.annotation.Nullable String taxClass) {
+  public OrderFeeLine taxClass(@Nullable String taxClass) {
     this.taxClass = taxClass;
     return this;
   }
@@ -127,18 +128,18 @@ public class OrderFeeLine {
    * Tax class of fee.
    * @return taxClass
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTaxClass() {
     return taxClass;
   }
 
   @JsonProperty("tax_class")
-  public void setTaxClass(@javax.annotation.Nullable String taxClass) {
+  public void setTaxClass(@Nullable String taxClass) {
     this.taxClass = taxClass;
   }
 
 
-  public OrderFeeLine taxStatus(@javax.annotation.Nullable String taxStatus) {
+  public OrderFeeLine taxStatus(@Nullable String taxStatus) {
     this.taxStatus = taxStatus;
     return this;
   }
@@ -147,18 +148,18 @@ public class OrderFeeLine {
    * Tax status of fee. Options taxable and none.
    * @return taxStatus
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTaxStatus() {
     return taxStatus;
   }
 
   @JsonProperty("tax_status")
-  public void setTaxStatus(@javax.annotation.Nullable String taxStatus) {
+  public void setTaxStatus(@Nullable String taxStatus) {
     this.taxStatus = taxStatus;
   }
 
 
-  public OrderFeeLine total(@javax.annotation.Nullable String total) {
+  public OrderFeeLine total(@Nullable String total) {
     this.total = total;
     return this;
   }
@@ -167,17 +168,17 @@ public class OrderFeeLine {
    * Line total (after discounts).
    * @return total
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTotal() {
     return total;
   }
 
-  public void setTotal(@javax.annotation.Nullable String total) {
+  public void setTotal(@Nullable String total) {
     this.total = total;
   }
 
 
-  public OrderFeeLine totalTax(@javax.annotation.Nullable String totalTax) {
+  public OrderFeeLine totalTax(@Nullable String totalTax) {
     this.totalTax = totalTax;
     return this;
   }
@@ -186,18 +187,18 @@ public class OrderFeeLine {
    * Line total tax (after discounts).
    * @return totalTax
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTotalTax() {
     return totalTax;
   }
 
   @JsonProperty("total_tax")
-  public void setTotalTax(@javax.annotation.Nullable String totalTax) {
+  public void setTotalTax(@Nullable String totalTax) {
     this.totalTax = totalTax;
   }
 
 
-  public OrderFeeLine taxes(@javax.annotation.Nullable List<OrderTaxLine> taxes) {
+  public OrderFeeLine taxes(@Nullable List<OrderTaxLine> taxes) {
     this.taxes = taxes;
     return this;
   }
@@ -214,17 +215,17 @@ public class OrderFeeLine {
    * Line taxes.
    * @return taxes
    */
-  @javax.annotation.Nullable
+  @Nullable
   public List<OrderTaxLine> getTaxes() {
     return taxes;
   }
 
-  public void setTaxes(@javax.annotation.Nullable List<OrderTaxLine> taxes) {
+  public void setTaxes(@Nullable List<OrderTaxLine> taxes) {
     this.taxes = taxes;
   }
 
 
-  public OrderFeeLine metaData(@javax.annotation.Nullable List<MetaData> metaData) {
+  public OrderFeeLine metaData(@Nullable List<MetaData> metaData) {
     this.metaData = metaData;
     return this;
   }
@@ -241,13 +242,13 @@ public class OrderFeeLine {
    * Meta data properties.
    * @return metaData
    */
-  @javax.annotation.Nullable
+  @Nullable
   public List<MetaData> getMetaData() {
     return metaData;
   }
 
   @JsonProperty("meta_data")
-  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
+  public void setMetaData(@Nullable List<MetaData> metaData) {
     this.metaData = metaData;
   }
 

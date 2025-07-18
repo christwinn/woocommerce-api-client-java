@@ -26,6 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -35,23 +36,23 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ProductDimension {
   public static final String SERIALIZED_NAME_LENGTH = "length";
   //@SerializedName(SERIALIZED_NAME_LENGTH)
-  @javax.annotation.Nullable
+  @Nullable
   private String length;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
   //@SerializedName(SERIALIZED_NAME_WIDTH)
-  @javax.annotation.Nullable
+  @Nullable
   private String width;
 
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   //@SerializedName(SERIALIZED_NAME_HEIGHT)
-  @javax.annotation.Nullable
+  @Nullable
   private String height;
 
   public ProductDimension() {
   }
 
-  public ProductDimension length(@javax.annotation.Nullable String length) {
+  public ProductDimension length(@Nullable String length) {
     this.length = length;
     return this;
   }
@@ -60,17 +61,17 @@ public class ProductDimension {
    * Product length.
    * @return length
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getLength() {
     return length;
   }
 
-  public void setLength(@javax.annotation.Nullable String length) {
+  public void setLength(@Nullable String length) {
     this.length = length;
   }
 
 
-  public ProductDimension width(@javax.annotation.Nullable String width) {
+  public ProductDimension width(@Nullable String width) {
     this.width = width;
     return this;
   }
@@ -79,17 +80,17 @@ public class ProductDimension {
    * Product width.
    * @return width
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getWidth() {
     return width;
   }
 
-  public void setWidth(@javax.annotation.Nullable String width) {
+  public void setWidth(@Nullable String width) {
     this.width = width;
   }
 
 
-  public ProductDimension height(@javax.annotation.Nullable String height) {
+  public ProductDimension height(@Nullable String height) {
     this.height = height;
     return this;
   }
@@ -98,12 +99,12 @@ public class ProductDimension {
    * Product height.
    * @return height
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getHeight() {
     return height;
   }
 
-  public void setHeight(@javax.annotation.Nullable String height) {
+  public void setHeight(@Nullable String height) {
     this.height = height;
   }
 

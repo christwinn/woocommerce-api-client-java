@@ -26,6 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -35,7 +36,7 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ProductTag {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
@@ -45,23 +46,23 @@ public class ProductTag {
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
-  @javax.annotation.Nullable
+  @Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   //@SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  @javax.annotation.Nullable
+  @Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_COUNT = "count";
   //@SerializedName(SERIALIZED_NAME_COUNT)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer count;
 
   public ProductTag() {
   }
 
-  public ProductTag id(@javax.annotation.Nullable Integer id) {
+  public ProductTag id(@Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -70,12 +71,12 @@ public class ProductTag {
    * Tag ID.
    * @return id
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@javax.annotation.Nullable Integer id) {
+  public void setId(@Nullable Integer id) {
     this.id = id;
   }
 
@@ -99,7 +100,7 @@ public class ProductTag {
   }
 
 
-  public ProductTag slug(@javax.annotation.Nullable String slug) {
+  public ProductTag slug(@Nullable String slug) {
     this.slug = slug;
     return this;
   }
@@ -108,17 +109,17 @@ public class ProductTag {
    * Tag slug. read-only
    * @return slug
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getSlug() {
     return slug;
   }
 
-  public void setSlug(@javax.annotation.Nullable String slug) {
+  public void setSlug(@Nullable String slug) {
     this.slug = slug;
   }
 
 
-  public ProductTag description(@javax.annotation.Nullable String description) {
+  public ProductTag description(@Nullable String description) {
     this.description = description;
     return this;
   }
@@ -127,17 +128,17 @@ public class ProductTag {
    * HTML description of the resource
    * @return description
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(@javax.annotation.Nullable String description) {
+  public void setDescription(@Nullable String description) {
     this.description = description;
   }
 
 
-  public ProductTag count(@javax.annotation.Nullable Integer count) {
+  public ProductTag count(@Nullable Integer count) {
     this.count = count;
     return this;
   }
@@ -146,12 +147,12 @@ public class ProductTag {
    * Number of published products for the resource
    * @return count
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getCount() {
     return count;
   }
 
-  public void setCount(@javax.annotation.Nullable Integer count) {
+  public void setCount(@Nullable Integer count) {
     this.count = count;
   }
 

@@ -31,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -40,48 +41,48 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class OrderTaxLine {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_RATE_CODE = "rate_code";
   //@SerializedName(SERIALIZED_NAME_RATE_CODE)
-  @javax.annotation.Nullable
+  @Nullable
   private String rateCode;
 
   public static final String SERIALIZED_NAME_RATE_ID = "rate_id";
   //@SerializedName(SERIALIZED_NAME_RATE_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private String rateId;
 
   public static final String SERIALIZED_NAME_LABEL = "label";
   //@SerializedName(SERIALIZED_NAME_LABEL)
-  @javax.annotation.Nullable
+  @Nullable
   private String label;
 
   public static final String SERIALIZED_NAME_COMPOUND = "compound";
   //@SerializedName(SERIALIZED_NAME_COMPOUND)
-  @javax.annotation.Nullable
+  @Nullable
   private Boolean compound;
 
   public static final String SERIALIZED_NAME_TAX_TOTAL = "tax_total";
   //@SerializedName(SERIALIZED_NAME_TAX_TOTAL)
-  @javax.annotation.Nullable
+  @Nullable
   private BigDecimal taxTotal;
 
   public static final String SERIALIZED_NAME_SHIPPING_TAX_TOTAL = "shipping_tax_total";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_TAX_TOTAL)
-  @javax.annotation.Nullable
+  @Nullable
   private BigDecimal shippingTaxTotal;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
   //@SerializedName(SERIALIZED_NAME_META_DATA)
-  @javax.annotation.Nullable
+  @Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public OrderTaxLine() {
   }
 
-  public OrderTaxLine id(@javax.annotation.Nullable Integer id) {
+  public OrderTaxLine id(@Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -90,17 +91,17 @@ public class OrderTaxLine {
    * Item ID.
    * @return id
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@javax.annotation.Nullable Integer id) {
+  public void setId(@Nullable Integer id) {
     this.id = id;
   }
 
 
-  public OrderTaxLine rateCode(@javax.annotation.Nullable String rateCode) {
+  public OrderTaxLine rateCode(@Nullable String rateCode) {
     this.rateCode = rateCode;
     return this;
   }
@@ -109,18 +110,18 @@ public class OrderTaxLine {
    * Tax rate code.
    * @return rateCode
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getRateCode() {
     return rateCode;
   }
 
   @JsonProperty("rate_code")
-  public void setRateCode(@javax.annotation.Nullable String rateCode) {
+  public void setRateCode(@Nullable String rateCode) {
     this.rateCode = rateCode;
   }
 
 
-  public OrderTaxLine rateId(@javax.annotation.Nullable String rateId) {
+  public OrderTaxLine rateId(@Nullable String rateId) {
     this.rateId = rateId;
     return this;
   }
@@ -129,18 +130,18 @@ public class OrderTaxLine {
    * Tax rate ID.
    * @return rateId
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getRateId() {
     return rateId;
   }
 
   @JsonProperty("rate_id")
-  public void setRateId(@javax.annotation.Nullable String rateId) {
+  public void setRateId(@Nullable String rateId) {
     this.rateId = rateId;
   }
 
 
-  public OrderTaxLine label(@javax.annotation.Nullable String label) {
+  public OrderTaxLine label(@Nullable String label) {
     this.label = label;
     return this;
   }
@@ -149,17 +150,17 @@ public class OrderTaxLine {
    * Tax rate label.
    * @return label
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getLabel() {
     return label;
   }
 
-  public void setLabel(@javax.annotation.Nullable String label) {
+  public void setLabel(@Nullable String label) {
     this.label = label;
   }
 
 
-  public OrderTaxLine compound(@javax.annotation.Nullable Boolean compound) {
+  public OrderTaxLine compound(@Nullable Boolean compound) {
     this.compound = compound;
     return this;
   }
@@ -168,17 +169,17 @@ public class OrderTaxLine {
    * Whether or not this is a compound tax rate.
    * @return compound
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Boolean getCompound() {
     return compound;
   }
 
-  public void setCompound(@javax.annotation.Nullable Boolean compound) {
+  public void setCompound(@Nullable Boolean compound) {
     this.compound = compound;
   }
 
 
-  public OrderTaxLine taxTotal(@javax.annotation.Nullable BigDecimal taxTotal) {
+  public OrderTaxLine taxTotal(@Nullable BigDecimal taxTotal) {
     this.taxTotal = taxTotal;
     return this;
   }
@@ -187,18 +188,18 @@ public class OrderTaxLine {
    * Tax total (not including shipping taxes).
    * @return taxTotal
    */
-  @javax.annotation.Nullable
+  @Nullable
   public BigDecimal getTaxTotal() {
     return taxTotal;
   }
 
   @JsonProperty("tax_total")
-  public void setTaxTotal(@javax.annotation.Nullable BigDecimal taxTotal) {
+  public void setTaxTotal(@Nullable BigDecimal taxTotal) {
     this.taxTotal = taxTotal;
   }
 
 
-  public OrderTaxLine shippingTaxTotal(@javax.annotation.Nullable BigDecimal shippingTaxTotal) {
+  public OrderTaxLine shippingTaxTotal(@Nullable BigDecimal shippingTaxTotal) {
     this.shippingTaxTotal = shippingTaxTotal;
     return this;
   }
@@ -207,18 +208,18 @@ public class OrderTaxLine {
    * Shipping tax total.
    * @return shippingTaxTotal
    */
-  @javax.annotation.Nullable
+  @Nullable
   public BigDecimal getShippingTaxTotal() {
     return shippingTaxTotal;
   }
 
   @JsonProperty("shipping_tax_total")
-  public void setShippingTaxTotal(@javax.annotation.Nullable BigDecimal shippingTaxTotal) {
+  public void setShippingTaxTotal(@Nullable BigDecimal shippingTaxTotal) {
     this.shippingTaxTotal = shippingTaxTotal;
   }
 
 
-  public OrderTaxLine metaData(@javax.annotation.Nullable List<MetaData> metaData) {
+  public OrderTaxLine metaData(@Nullable List<MetaData> metaData) {
     this.metaData = metaData;
     return this;
   }
@@ -235,13 +236,13 @@ public class OrderTaxLine {
    * Meta data properties.
    * @return metaData
    */
-  @javax.annotation.Nullable
+  @Nullable
   public List<MetaData> getMetaData() {
     return metaData;
   }
 
   @JsonProperty("meta_data")
-  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
+  public void setMetaData(@Nullable List<MetaData> metaData) {
     this.metaData = metaData;
   }
 

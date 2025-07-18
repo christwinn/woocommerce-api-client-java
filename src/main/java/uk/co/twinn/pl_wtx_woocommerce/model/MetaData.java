@@ -24,6 +24,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 //import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -33,23 +34,23 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class MetaData {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_KEY = "key";
   //@SerializedName(SERIALIZED_NAME_KEY)
-  @javax.annotation.Nullable
+  @Nullable
   private String key;
 
   public static final String SERIALIZED_NAME_VALUE = "value";
   //@SerializedName(SERIALIZED_NAME_VALUE)
-  @javax.annotation.Nullable
+  @Nullable
   private Object value;
 
   public MetaData() {
   }
 
-  public MetaData id(@javax.annotation.Nullable Integer id) {
+  public MetaData id(@Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -58,17 +59,17 @@ public class MetaData {
    * Meta ID.
    * @return id
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@javax.annotation.Nullable Integer id) {
+  public void setId(@Nullable Integer id) {
     this.id = id;
   }
 
 
-  public MetaData key(@javax.annotation.Nullable String key) {
+  public MetaData key(@Nullable String key) {
     this.key = key;
     return this;
   }
@@ -77,17 +78,17 @@ public class MetaData {
    * Meta key.
    * @return key
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getKey() {
     return key;
   }
 
-  public void setKey(@javax.annotation.Nullable String key) {
+  public void setKey(@Nullable String key) {
     this.key = key;
   }
 
 
-  public MetaData value(@javax.annotation.Nullable Object value) {
+  public MetaData value(@Nullable Object value) {
     this.value = value;
     return this;
   }
@@ -96,12 +97,12 @@ public class MetaData {
    * Meta value.
    * @return value
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Object getValue() {
     return value;
   }
 
-  public void setValue(@javax.annotation.Nullable Object value) {
+  public void setValue(@Nullable Object value) {
     this.value = value;
   }
 

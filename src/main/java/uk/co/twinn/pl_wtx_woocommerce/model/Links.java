@@ -10,6 +10,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 //import com.google.gson.annotations.SerializedName;
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.util.*;
@@ -18,17 +19,17 @@ public class Links {
 
     public static final String SERIALIZED_NAME_SELF = "self";
     //@SerializedName(SERIALIZED_NAME_SELF)
-    @javax.annotation.Nullable
+    @Nullable
     private List<Link> self;
 
     public static final String SERIALIZED_NAME_COLLECTION = "collection";
     //@SerializedName(SERIALIZED_NAME_COLLECTION)
-    @javax.annotation.Nullable
+    @Nullable
     private List<Link> collection;
 
     public Links(){}
 
-    public Links self(@javax.annotation.Nullable List<Link> self) {
+    public Links self(@Nullable List<Link> self) {
         this.self = self;
         return this;
     }
@@ -37,19 +38,19 @@ public class Links {
      * id.
      * @return id
      */
-    @javax.annotation.Nullable
+    @Nullable
     public List<Link> getSelf() {
         return self;
     }
 
-    public void setSelf(@javax.annotation.Nullable List<Link> self) {
+    public void setSelf(@Nullable List<Link> self) {
 
         this.self = self;
 
     }
 
 
-    public Links collection(@javax.annotation.Nullable List<Link> collection) {
+    public Links collection(@Nullable List<Link> collection) {
         this.collection = collection;
         return this;
     }
@@ -58,12 +59,12 @@ public class Links {
      * id.
      * @return id
      */
-    @javax.annotation.Nullable
+    @Nullable
     public List<Link> getCollection() {
         return collection;
     }
 
-    public void setCollection(@javax.annotation.Nullable List<Link> collection) {
+    public void setCollection(@Nullable List<Link> collection) {
         this.collection = collection;
     }
 

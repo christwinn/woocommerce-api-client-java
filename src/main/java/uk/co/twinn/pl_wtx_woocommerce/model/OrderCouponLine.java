@@ -29,6 +29,7 @@ import java.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -38,33 +39,33 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class OrderCouponLine {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_CODE = "code";
   //@SerializedName(SERIALIZED_NAME_CODE)
-  @javax.annotation.Nullable
+  @Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_DISCOUNT = "discount";
   //@SerializedName(SERIALIZED_NAME_DISCOUNT)
-  @javax.annotation.Nullable
+  @Nullable
   private String discount;
 
   public static final String SERIALIZED_NAME_DISCOUNT_TAX = "discount_tax";
   //@SerializedName(SERIALIZED_NAME_DISCOUNT_TAX)
-  @javax.annotation.Nullable
+  @Nullable
   private String discountTax;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
   //@SerializedName(SERIALIZED_NAME_META_DATA)
-  @javax.annotation.Nullable
+  @Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public OrderCouponLine() {
   }
 
-  public OrderCouponLine id(@javax.annotation.Nullable Integer id) {
+  public OrderCouponLine id(@Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -73,17 +74,17 @@ public class OrderCouponLine {
    * Item ID.
    * @return id
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@javax.annotation.Nullable Integer id) {
+  public void setId(@Nullable Integer id) {
     this.id = id;
   }
 
 
-  public OrderCouponLine code(@javax.annotation.Nullable String code) {
+  public OrderCouponLine code(@Nullable String code) {
     this.code = code;
     return this;
   }
@@ -92,17 +93,17 @@ public class OrderCouponLine {
    * Coupon code.
    * @return code
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(@javax.annotation.Nullable String code) {
+  public void setCode(@Nullable String code) {
     this.code = code;
   }
 
 
-  public OrderCouponLine discount(@javax.annotation.Nullable String discount) {
+  public OrderCouponLine discount(@Nullable String discount) {
     this.discount = discount;
     return this;
   }
@@ -111,17 +112,17 @@ public class OrderCouponLine {
    * Discount total.
    * @return discount
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getDiscount() {
     return discount;
   }
 
-  public void setDiscount(@javax.annotation.Nullable String discount) {
+  public void setDiscount(@Nullable String discount) {
     this.discount = discount;
   }
 
 
-  public OrderCouponLine discountTax(@javax.annotation.Nullable String discountTax) {
+  public OrderCouponLine discountTax(@Nullable String discountTax) {
     this.discountTax = discountTax;
     return this;
   }
@@ -130,17 +131,17 @@ public class OrderCouponLine {
    * Discount total tax.
    * @return discountTax
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getDiscountTax() {
     return discountTax;
   }
 
-  public void setDiscountTax(@javax.annotation.Nullable String discountTax) {
+  public void setDiscountTax(@Nullable String discountTax) {
     this.discountTax = discountTax;
   }
 
 
-  public OrderCouponLine metaData(@javax.annotation.Nullable List<MetaData> metaData) {
+  public OrderCouponLine metaData(@Nullable List<MetaData> metaData) {
     this.metaData = metaData;
     return this;
   }
@@ -157,12 +158,12 @@ public class OrderCouponLine {
    * Meta data properties.
    * @return metaData
    */
-  @javax.annotation.Nullable
+  @Nullable
   public List<MetaData> getMetaData() {
     return metaData;
   }
 
-  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
+  public void setMetaData(@Nullable List<MetaData> metaData) {
     this.metaData = metaData;
   }
 

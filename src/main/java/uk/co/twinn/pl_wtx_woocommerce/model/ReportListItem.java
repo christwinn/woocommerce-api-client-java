@@ -25,6 +25,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -34,23 +35,23 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ReportListItem {
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
-  @javax.annotation.Nullable
+  @Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   //@SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  @javax.annotation.Nullable
+  @Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_LINKS = "_links";
   //@SerializedName(SERIALIZED_NAME_LINKS)
-  @javax.annotation.Nullable
+  @Nullable
   private Links links;
 
   public ReportListItem() {
   }
 
-  public ReportListItem slug(@javax.annotation.Nullable String slug) {
+  public ReportListItem slug(@Nullable String slug) {
     this.slug = slug;
     return this;
   }
@@ -59,17 +60,17 @@ public class ReportListItem {
    * Get slug
    * @return slug
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getSlug() {
     return slug;
   }
 
-  public void setSlug(@javax.annotation.Nullable String slug) {
+  public void setSlug(@Nullable String slug) {
     this.slug = slug;
   }
 
 
-  public ReportListItem description(@javax.annotation.Nullable String description) {
+  public ReportListItem description(@Nullable String description) {
     this.description = description;
     return this;
   }
@@ -78,17 +79,17 @@ public class ReportListItem {
    * Get description
    * @return description
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(@javax.annotation.Nullable String description) {
+  public void setDescription(@Nullable String description) {
     this.description = description;
   }
 
 
-  public ReportListItem links(@javax.annotation.Nullable Links links) {
+  public ReportListItem links(@Nullable Links links) {
     this.links = links;
     return this;
   }
@@ -97,13 +98,13 @@ public class ReportListItem {
    * Get links
    * @return links
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Links getLinks() {
     return links;
   }
 
   @JsonProperty("_links")
-  public void setLinks(@javax.annotation.Nullable Links links) {
+  public void setLinks(@Nullable Links links) {
     this.links = links;
   }
 

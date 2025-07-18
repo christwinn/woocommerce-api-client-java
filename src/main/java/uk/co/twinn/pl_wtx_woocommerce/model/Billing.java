@@ -27,6 +27,7 @@ import java.util.Objects;
 
 ////import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -36,63 +37,63 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class Billing {
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   ////@SerializedName(SERIALIZED_NAME_FIRST_NAME)
-  @javax.annotation.Nullable
+  @Nullable
   private String firstName;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
   //@SerializedName(SERIALIZED_NAME_LAST_NAME)
-  @javax.annotation.Nullable
+  @Nullable
   private String lastName;
 
   public static final String SERIALIZED_NAME_COMPANY = "company";
   //@SerializedName(SERIALIZED_NAME_COMPANY)
-  @javax.annotation.Nullable
+  @Nullable
   private String company;
 
   public static final String SERIALIZED_NAME_ADDRESS1 = "address_1";
   //@SerializedName(SERIALIZED_NAME_ADDRESS1)
-  @javax.annotation.Nullable
+  @Nullable
   private String address1;
 
   public static final String SERIALIZED_NAME_ADDRESS2 = "address_2";
   //@SerializedName(SERIALIZED_NAME_ADDRESS2)
-  @javax.annotation.Nullable
+  @Nullable
   private String address2;
 
   public static final String SERIALIZED_NAME_CITY = "city";
   //@SerializedName(SERIALIZED_NAME_CITY)
-  @javax.annotation.Nullable
+  @Nullable
   private String city;
 
   public static final String SERIALIZED_NAME_STATE = "state";
   //@SerializedName(SERIALIZED_NAME_STATE)
-  @javax.annotation.Nullable
+  @Nullable
   private String state;
 
   public static final String SERIALIZED_NAME_POSTCODE = "postcode";
   //@SerializedName(SERIALIZED_NAME_POSTCODE)
-  @javax.annotation.Nullable
+  @Nullable
   private String postcode;
 
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   //@SerializedName(SERIALIZED_NAME_COUNTRY)
-  @javax.annotation.Nullable
+  @Nullable
   private String country;
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
   //@SerializedName(SERIALIZED_NAME_EMAIL)
-  @javax.annotation.Nullable
+  @Nullable
   private String email;
 
   public static final String SERIALIZED_NAME_PHONE = "phone";
   //@SerializedName(SERIALIZED_NAME_PHONE)
-  @javax.annotation.Nullable
+  @Nullable
   private String phone;
 
   public Billing() {
   }
 
-  public Billing firstName(@javax.annotation.Nullable String firstName) {
+  public Billing firstName(@Nullable String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -101,19 +102,19 @@ public class Billing {
    * First name.
    * @return firstName
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getFirstName() {
     return firstName;
   }
 
 
   @JsonProperty("first_name")
-  public void setFirstName(@javax.annotation.Nullable String firstName) {
+  public void setFirstName(@Nullable String firstName) {
     this.firstName = firstName;
   }
 
 
-  public Billing lastName(@javax.annotation.Nullable String lastName) {
+  public Billing lastName(@Nullable String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -122,19 +123,19 @@ public class Billing {
    * Last name.
    * @return lastName
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getLastName() {
     return lastName;
   }
 
 
   @JsonProperty("last_name")
-  public void setLastName(@javax.annotation.Nullable String lastName) {
+  public void setLastName(@Nullable String lastName) {
     this.lastName = lastName;
   }
 
 
-  public Billing company(@javax.annotation.Nullable String company) {
+  public Billing company(@Nullable String company) {
     this.company = company;
     return this;
   }
@@ -143,17 +144,17 @@ public class Billing {
    * Company name.
    * @return company
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getCompany() {
     return company;
   }
 
-  public void setCompany(@javax.annotation.Nullable String company) {
+  public void setCompany(@Nullable String company) {
     this.company = company;
   }
 
 
-  public Billing address1(@javax.annotation.Nullable String address1) {
+  public Billing address1(@Nullable String address1) {
     this.address1 = address1;
     return this;
   }
@@ -162,19 +163,19 @@ public class Billing {
    * Address line 1
    * @return address1
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getAddress1() {
     return address1;
   }
 
 
   @JsonProperty("address_1")
-  public void setAddress1(@javax.annotation.Nullable String address1) {
+  public void setAddress1(@Nullable String address1) {
     this.address1 = address1;
   }
 
 
-  public Billing address2(@javax.annotation.Nullable String address2) {
+  public Billing address2(@Nullable String address2) {
     this.address2 = address2;
     return this;
   }
@@ -183,19 +184,19 @@ public class Billing {
    * Address line 2
    * @return address2
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getAddress2() {
     return address2;
   }
 
 
   @JsonProperty("address_2")
-  public void setAddress2(@javax.annotation.Nullable String address2) {
+  public void setAddress2(@Nullable String address2) {
     this.address2 = address2;
   }
 
 
-  public Billing city(@javax.annotation.Nullable String city) {
+  public Billing city(@Nullable String city) {
     this.city = city;
     return this;
   }
@@ -204,17 +205,17 @@ public class Billing {
    * City name.
    * @return city
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getCity() {
     return city;
   }
 
-  public void setCity(@javax.annotation.Nullable String city) {
+  public void setCity(@Nullable String city) {
     this.city = city;
   }
 
 
-  public Billing state(@javax.annotation.Nullable String state) {
+  public Billing state(@Nullable String state) {
     this.state = state;
     return this;
   }
@@ -223,17 +224,17 @@ public class Billing {
    * ISO code or name of the state, province or district.
    * @return state
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getState() {
     return state;
   }
 
-  public void setState(@javax.annotation.Nullable String state) {
+  public void setState(@Nullable String state) {
     this.state = state;
   }
 
 
-  public Billing postcode(@javax.annotation.Nullable String postcode) {
+  public Billing postcode(@Nullable String postcode) {
     this.postcode = postcode;
     return this;
   }
@@ -242,17 +243,17 @@ public class Billing {
    * Postal code.
    * @return postcode
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getPostcode() {
     return postcode;
   }
 
-  public void setPostcode(@javax.annotation.Nullable String postcode) {
+  public void setPostcode(@Nullable String postcode) {
     this.postcode = postcode;
   }
 
 
-  public Billing country(@javax.annotation.Nullable String country) {
+  public Billing country(@Nullable String country) {
     this.country = country;
     return this;
   }
@@ -261,17 +262,17 @@ public class Billing {
    * Country code in ISO 3166-1 alpha-2 format.
    * @return country
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getCountry() {
     return country;
   }
 
-  public void setCountry(@javax.annotation.Nullable String country) {
+  public void setCountry(@Nullable String country) {
     this.country = country;
   }
 
 
-  public Billing email(@javax.annotation.Nullable String email) {
+  public Billing email(@Nullable String email) {
     this.email = email;
     return this;
   }
@@ -280,17 +281,17 @@ public class Billing {
    * Email address.
    * @return email
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(@javax.annotation.Nullable String email) {
+  public void setEmail(@Nullable String email) {
     this.email = email;
   }
 
 
-  public Billing phone(@javax.annotation.Nullable String phone) {
+  public Billing phone(@Nullable String phone) {
     this.phone = phone;
     return this;
   }
@@ -299,12 +300,12 @@ public class Billing {
    * Phone number.
    * @return phone
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getPhone() {
     return phone;
   }
 
-  public void setPhone(@javax.annotation.Nullable String phone) {
+  public void setPhone(@Nullable String phone) {
     this.phone = phone;
   }
 

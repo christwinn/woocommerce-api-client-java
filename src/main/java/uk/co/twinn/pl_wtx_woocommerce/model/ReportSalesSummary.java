@@ -30,6 +30,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -39,68 +40,68 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ReportSalesSummary {
   public static final String SERIALIZED_NAME_TOTAL_SALES = "total_sales";
   //@SerializedName(SERIALIZED_NAME_TOTAL_SALES)
-  @javax.annotation.Nullable
+  @Nullable
   private String totalSales;
 
   public static final String SERIALIZED_NAME_NET_SALES = "net_sales";
   //@SerializedName(SERIALIZED_NAME_NET_SALES)
-  @javax.annotation.Nullable
+  @Nullable
   private String netSales;
 
   public static final String SERIALIZED_NAME_AVERAGE_SALES = "average_sales";
   //@SerializedName(SERIALIZED_NAME_AVERAGE_SALES)
-  @javax.annotation.Nullable
+  @Nullable
   private String averageSales;
 
   public static final String SERIALIZED_NAME_TOTAL_ORDERS = "total_orders";
   //@SerializedName(SERIALIZED_NAME_TOTAL_ORDERS)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer totalOrders;
 
   public static final String SERIALIZED_NAME_TOTAL_ITEMS = "total_items";
   //@SerializedName(SERIALIZED_NAME_TOTAL_ITEMS)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer totalItems;
 
   public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
   //@SerializedName(SERIALIZED_NAME_TOTAL_TAX)
-  @javax.annotation.Nullable
+  @Nullable
   private String totalTax;
 
   public static final String SERIALIZED_NAME_TOTAL_SHIPPING = "total_shipping";
   //@SerializedName(SERIALIZED_NAME_TOTAL_SHIPPING)
-  @javax.annotation.Nullable
+  @Nullable
   private String totalShipping;
 
   public static final String SERIALIZED_NAME_TOTAL_REFUNDS = "total_refunds";
   //@SerializedName(SERIALIZED_NAME_TOTAL_REFUNDS)
-  @javax.annotation.Nullable
+  @Nullable
   private BigDecimal totalRefunds;
 
   public static final String SERIALIZED_NAME_TOTAL_DISCOUNT = "total_discount";
   //@SerializedName(SERIALIZED_NAME_TOTAL_DISCOUNT)
-  @javax.annotation.Nullable
+  @Nullable
   private String totalDiscount;
 
   public static final String SERIALIZED_NAME_TOTALS_GROUPED_BY = "totals_grouped_by";
   //@SerializedName(SERIALIZED_NAME_TOTALS_GROUPED_BY)
-  @javax.annotation.Nullable
+  @Nullable
   private String totalsGroupedBy;
 
   public static final String SERIALIZED_NAME_TOTAL_CUSTOMERS = "total_customers";
   //@SerializedName(SERIALIZED_NAME_TOTAL_CUSTOMERS)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer totalCustomers;
 
   public static final String SERIALIZED_NAME_TOTALS = "totals";
   //@SerializedName(SERIALIZED_NAME_TOTALS)
-  @javax.annotation.Nullable
+  @Nullable
   private Map<String, ReportSalesSummaryItem> totals = new HashMap<>();
 
   public ReportSalesSummary() {
   }
 
-  public ReportSalesSummary totalSales(@javax.annotation.Nullable String totalSales) {
+  public ReportSalesSummary totalSales(@Nullable String totalSales) {
     this.totalSales = totalSales;
     return this;
   }
@@ -109,17 +110,17 @@ public class ReportSalesSummary {
    * Get totalSales
    * @return totalSales
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTotalSales() {
     return totalSales;
   }
 
-  public void setTotalSales(@javax.annotation.Nullable String totalSales) {
+  public void setTotalSales(@Nullable String totalSales) {
     this.totalSales = totalSales;
   }
 
 
-  public ReportSalesSummary netSales(@javax.annotation.Nullable String netSales) {
+  public ReportSalesSummary netSales(@Nullable String netSales) {
     this.netSales = netSales;
     return this;
   }
@@ -128,17 +129,17 @@ public class ReportSalesSummary {
    * Get netSales
    * @return netSales
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getNetSales() {
     return netSales;
   }
 
-  public void setNetSales(@javax.annotation.Nullable String netSales) {
+  public void setNetSales(@Nullable String netSales) {
     this.netSales = netSales;
   }
 
 
-  public ReportSalesSummary averageSales(@javax.annotation.Nullable String averageSales) {
+  public ReportSalesSummary averageSales(@Nullable String averageSales) {
     this.averageSales = averageSales;
     return this;
   }
@@ -147,17 +148,17 @@ public class ReportSalesSummary {
    * Get averageSales
    * @return averageSales
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getAverageSales() {
     return averageSales;
   }
 
-  public void setAverageSales(@javax.annotation.Nullable String averageSales) {
+  public void setAverageSales(@Nullable String averageSales) {
     this.averageSales = averageSales;
   }
 
 
-  public ReportSalesSummary totalOrders(@javax.annotation.Nullable Integer totalOrders) {
+  public ReportSalesSummary totalOrders(@Nullable Integer totalOrders) {
     this.totalOrders = totalOrders;
     return this;
   }
@@ -166,17 +167,17 @@ public class ReportSalesSummary {
    * Get totalOrders
    * @return totalOrders
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getTotalOrders() {
     return totalOrders;
   }
 
-  public void setTotalOrders(@javax.annotation.Nullable Integer totalOrders) {
+  public void setTotalOrders(@Nullable Integer totalOrders) {
     this.totalOrders = totalOrders;
   }
 
 
-  public ReportSalesSummary totalItems(@javax.annotation.Nullable Integer totalItems) {
+  public ReportSalesSummary totalItems(@Nullable Integer totalItems) {
     this.totalItems = totalItems;
     return this;
   }
@@ -185,17 +186,17 @@ public class ReportSalesSummary {
    * Get totalItems
    * @return totalItems
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getTotalItems() {
     return totalItems;
   }
 
-  public void setTotalItems(@javax.annotation.Nullable Integer totalItems) {
+  public void setTotalItems(@Nullable Integer totalItems) {
     this.totalItems = totalItems;
   }
 
 
-  public ReportSalesSummary totalTax(@javax.annotation.Nullable String totalTax) {
+  public ReportSalesSummary totalTax(@Nullable String totalTax) {
     this.totalTax = totalTax;
     return this;
   }
@@ -204,17 +205,17 @@ public class ReportSalesSummary {
    * Get totalTax
    * @return totalTax
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTotalTax() {
     return totalTax;
   }
 
-  public void setTotalTax(@javax.annotation.Nullable String totalTax) {
+  public void setTotalTax(@Nullable String totalTax) {
     this.totalTax = totalTax;
   }
 
 
-  public ReportSalesSummary totalShipping(@javax.annotation.Nullable String totalShipping) {
+  public ReportSalesSummary totalShipping(@Nullable String totalShipping) {
     this.totalShipping = totalShipping;
     return this;
   }
@@ -223,17 +224,17 @@ public class ReportSalesSummary {
    * Get totalShipping
    * @return totalShipping
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTotalShipping() {
     return totalShipping;
   }
 
-  public void setTotalShipping(@javax.annotation.Nullable String totalShipping) {
+  public void setTotalShipping(@Nullable String totalShipping) {
     this.totalShipping = totalShipping;
   }
 
 
-  public ReportSalesSummary totalRefunds(@javax.annotation.Nullable BigDecimal totalRefunds) {
+  public ReportSalesSummary totalRefunds(@Nullable BigDecimal totalRefunds) {
     this.totalRefunds = totalRefunds;
     return this;
   }
@@ -242,17 +243,17 @@ public class ReportSalesSummary {
    * Get totalRefunds
    * @return totalRefunds
    */
-  @javax.annotation.Nullable
+  @Nullable
   public BigDecimal getTotalRefunds() {
     return totalRefunds;
   }
 
-  public void setTotalRefunds(@javax.annotation.Nullable BigDecimal totalRefunds) {
+  public void setTotalRefunds(@Nullable BigDecimal totalRefunds) {
     this.totalRefunds = totalRefunds;
   }
 
 
-  public ReportSalesSummary totalDiscount(@javax.annotation.Nullable String totalDiscount) {
+  public ReportSalesSummary totalDiscount(@Nullable String totalDiscount) {
     this.totalDiscount = totalDiscount;
     return this;
   }
@@ -261,17 +262,17 @@ public class ReportSalesSummary {
    * Get totalDiscount
    * @return totalDiscount
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTotalDiscount() {
     return totalDiscount;
   }
 
-  public void setTotalDiscount(@javax.annotation.Nullable String totalDiscount) {
+  public void setTotalDiscount(@Nullable String totalDiscount) {
     this.totalDiscount = totalDiscount;
   }
 
 
-  public ReportSalesSummary totalsGroupedBy(@javax.annotation.Nullable String totalsGroupedBy) {
+  public ReportSalesSummary totalsGroupedBy(@Nullable String totalsGroupedBy) {
     this.totalsGroupedBy = totalsGroupedBy;
     return this;
   }
@@ -280,17 +281,17 @@ public class ReportSalesSummary {
    * Get totalsGroupedBy
    * @return totalsGroupedBy
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTotalsGroupedBy() {
     return totalsGroupedBy;
   }
 
-  public void setTotalsGroupedBy(@javax.annotation.Nullable String totalsGroupedBy) {
+  public void setTotalsGroupedBy(@Nullable String totalsGroupedBy) {
     this.totalsGroupedBy = totalsGroupedBy;
   }
 
 
-  public ReportSalesSummary totalCustomers(@javax.annotation.Nullable Integer totalCustomers) {
+  public ReportSalesSummary totalCustomers(@Nullable Integer totalCustomers) {
     this.totalCustomers = totalCustomers;
     return this;
   }
@@ -299,17 +300,17 @@ public class ReportSalesSummary {
    * Get totalCustomers
    * @return totalCustomers
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getTotalCustomers() {
     return totalCustomers;
   }
 
-  public void setTotalCustomers(@javax.annotation.Nullable Integer totalCustomers) {
+  public void setTotalCustomers(@Nullable Integer totalCustomers) {
     this.totalCustomers = totalCustomers;
   }
 
 
-  public ReportSalesSummary totals(@javax.annotation.Nullable Map<String, ReportSalesSummaryItem> totals) {
+  public ReportSalesSummary totals(@Nullable Map<String, ReportSalesSummaryItem> totals) {
     this.totals = totals;
     return this;
   }
@@ -326,12 +327,12 @@ public class ReportSalesSummary {
    * Get totals
    * @return totals
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Map<String, ReportSalesSummaryItem> getTotals() {
     return totals;
   }
 
-  public void setTotals(@javax.annotation.Nullable Map<String, ReportSalesSummaryItem> totals) {
+  public void setTotals(@Nullable Map<String, ReportSalesSummaryItem> totals) {
     this.totals = totals;
   }
 

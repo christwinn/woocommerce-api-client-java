@@ -26,6 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -35,23 +36,23 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ReportTopSellersItem {
   public static final String SERIALIZED_NAME_TITLE = "title";
   //@SerializedName(SERIALIZED_NAME_TITLE)
-  @javax.annotation.Nullable
+  @Nullable
   private String title;
 
   public static final String SERIALIZED_NAME_PRODUCT_ID = "product_id";
   //@SerializedName(SERIALIZED_NAME_PRODUCT_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer productId;
 
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
   //@SerializedName(SERIALIZED_NAME_QUANTITY)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer quantity;
 
   public ReportTopSellersItem() {
   }
 
-  public ReportTopSellersItem title(@javax.annotation.Nullable String title) {
+  public ReportTopSellersItem title(@Nullable String title) {
     this.title = title;
     return this;
   }
@@ -60,17 +61,17 @@ public class ReportTopSellersItem {
    * Get title
    * @return title
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(@javax.annotation.Nullable String title) {
+  public void setTitle(@Nullable String title) {
     this.title = title;
   }
 
 
-  public ReportTopSellersItem productId(@javax.annotation.Nullable Integer productId) {
+  public ReportTopSellersItem productId(@Nullable Integer productId) {
     this.productId = productId;
     return this;
   }
@@ -79,17 +80,17 @@ public class ReportTopSellersItem {
    * Get productId
    * @return productId
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getProductId() {
     return productId;
   }
 
-  public void setProductId(@javax.annotation.Nullable Integer productId) {
+  public void setProductId(@Nullable Integer productId) {
     this.productId = productId;
   }
 
 
-  public ReportTopSellersItem quantity(@javax.annotation.Nullable Integer quantity) {
+  public ReportTopSellersItem quantity(@Nullable Integer quantity) {
     this.quantity = quantity;
     return this;
   }
@@ -98,12 +99,12 @@ public class ReportTopSellersItem {
    * Get quantity
    * @return quantity
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(@javax.annotation.Nullable Integer quantity) {
+  public void setQuantity(@Nullable Integer quantity) {
     this.quantity = quantity;
   }
 

@@ -26,6 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -35,23 +36,23 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ReportOrderTotalSummary {
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
-  @javax.annotation.Nullable
+  @Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nullable
+  @Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   //@SerializedName(SERIALIZED_NAME_TOTAL)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer total;
 
   public ReportOrderTotalSummary() {
   }
 
-  public ReportOrderTotalSummary slug(@javax.annotation.Nullable String slug) {
+  public ReportOrderTotalSummary slug(@Nullable String slug) {
     this.slug = slug;
     return this;
   }
@@ -60,17 +61,17 @@ public class ReportOrderTotalSummary {
    * An alphanumeric identifier for the resource.
    * @return slug
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getSlug() {
     return slug;
   }
 
-  public void setSlug(@javax.annotation.Nullable String slug) {
+  public void setSlug(@Nullable String slug) {
     this.slug = slug;
   }
 
 
-  public ReportOrderTotalSummary name(@javax.annotation.Nullable String name) {
+  public ReportOrderTotalSummary name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -79,17 +80,17 @@ public class ReportOrderTotalSummary {
    * Orders status name.
    * @return name
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@javax.annotation.Nullable String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
 
-  public ReportOrderTotalSummary total(@javax.annotation.Nullable Integer total) {
+  public ReportOrderTotalSummary total(@Nullable Integer total) {
     this.total = total;
     return this;
   }
@@ -98,12 +99,12 @@ public class ReportOrderTotalSummary {
    * Amount of orders.
    * @return total
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getTotal() {
     return total;
   }
 
-  public void setTotal(@javax.annotation.Nullable Integer total) {
+  public void setTotal(@Nullable Integer total) {
     this.total = total;
   }
 

@@ -28,6 +28,7 @@ import java.util.Objects;
 
 import java.time.LocalDateTime;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -37,48 +38,48 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ProductImage {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
-  @javax.annotation.Nullable
+  @Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
-  @javax.annotation.Nullable
+  @Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
-  @javax.annotation.Nullable
+  @Nullable
   private LocalDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
-  @javax.annotation.Nullable
+  @Nullable
   private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_SRC = "src";
   //@SerializedName(SERIALIZED_NAME_SRC)
-  @javax.annotation.Nullable
+  @Nullable
   private String src;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nullable
+  @Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_ALT = "alt";
   //@SerializedName(SERIALIZED_NAME_ALT)
-  @javax.annotation.Nullable
+  @Nullable
   private String alt;
 
   public ProductImage() {
   }
 
-  public ProductImage id(@javax.annotation.Nullable Integer id) {
+  public ProductImage id(@Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -87,17 +88,17 @@ public class ProductImage {
    * Image ID.
    * @return id
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@javax.annotation.Nullable Integer id) {
+  public void setId(@Nullable Integer id) {
     this.id = id;
   }
 
 
-  public ProductImage dateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
+  public ProductImage dateCreated(@Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
@@ -106,17 +107,17 @@ public class ProductImage {
    * The date the image was created, in the site&#39;s timezone. read-only
    * @return dateCreated
    */
-  @javax.annotation.Nullable
+  @Nullable
   public LocalDateTime getDateCreated() {
     return dateCreated;
   }
 
-  public void setDateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
+  public void setDateCreated(@Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public ProductImage dateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
+  public ProductImage dateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
     return this;
   }
@@ -125,17 +126,17 @@ public class ProductImage {
    * The date the image was created, as GMT. read-only
    * @return dateCreatedGmt
    */
-  @javax.annotation.Nullable
+  @Nullable
   public LocalDateTime getDateCreatedGmt() {
     return dateCreatedGmt;
   }
 
-  public void setDateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
+  public void setDateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
   }
 
 
-  public ProductImage dateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
+  public ProductImage dateModified(@Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
     return this;
   }
@@ -144,17 +145,17 @@ public class ProductImage {
    * The date the image was last modified, in the site&#39;s timezone. read-only
    * @return dateModified
    */
-  @javax.annotation.Nullable
+  @Nullable
   public LocalDateTime getDateModified() {
     return dateModified;
   }
 
-  public void setDateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
+  public void setDateModified(@Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
   }
 
 
-  public ProductImage dateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
+  public ProductImage dateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
     return this;
   }
@@ -163,17 +164,17 @@ public class ProductImage {
    * The date the image was last modified, as GMT. read-only
    * @return dateModifiedGmt
    */
-  @javax.annotation.Nullable
+  @Nullable
   public LocalDateTime getDateModifiedGmt() {
     return dateModifiedGmt;
   }
 
-  public void setDateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
+  public void setDateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
   }
 
 
-  public ProductImage src(@javax.annotation.Nullable String src) {
+  public ProductImage src(@Nullable String src) {
     this.src = src;
     return this;
   }
@@ -182,7 +183,7 @@ public class ProductImage {
    * Image URL.
    * @return src
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getSrc() {
     return src;
   }
@@ -195,11 +196,11 @@ public class ProductImage {
      *
      * @param src url of the image
      */
-  public void setSrc(@javax.annotation.Nullable String src) {
+  public void setSrc(@Nullable String src) {
     this.src = src;
   }
 
-  public ProductImage name(@javax.annotation.Nullable String name) {
+  public ProductImage name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -208,17 +209,17 @@ public class ProductImage {
    * Image name.
    * @return name
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@javax.annotation.Nullable String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
 
-  public ProductImage alt(@javax.annotation.Nullable String alt) {
+  public ProductImage alt(@Nullable String alt) {
     this.alt = alt;
     return this;
   }
@@ -227,12 +228,12 @@ public class ProductImage {
    * Image alternative text.
    * @return alt
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getAlt() {
     return alt;
   }
 
-  public void setAlt(@javax.annotation.Nullable String alt) {
+  public void setAlt(@Nullable String alt) {
     this.alt = alt;
   }
 

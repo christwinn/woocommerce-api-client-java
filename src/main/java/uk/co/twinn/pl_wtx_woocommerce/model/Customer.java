@@ -31,6 +31,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
@@ -41,87 +42,87 @@ import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 public class Customer {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
-  @javax.annotation.Nullable
+  @Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
-  @javax.annotation.Nullable
+  @Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
-  @javax.annotation.Nullable
+  @Nullable
   private LocalDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
-  @javax.annotation.Nullable
+  @Nullable
   private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
   //@SerializedName(SERIALIZED_NAME_EMAIL)
-  @javax.annotation.Nullable
+  @Nullable
   private String email;
 
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   //@SerializedName(SERIALIZED_NAME_FIRST_NAME)
-  @javax.annotation.Nullable
+  @Nullable
   private String firstName;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
   //@SerializedName(SERIALIZED_NAME_LAST_NAME)
-  @javax.annotation.Nullable
+  @Nullable
   private String lastName;
 
   public static final String SERIALIZED_NAME_ROLE = "role";
   //@SerializedName(SERIALIZED_NAME_ROLE)
-  @javax.annotation.Nullable
+  @Nullable
   private String role;
 
   public static final String SERIALIZED_NAME_USERNAME = "username";
   //@SerializedName(SERIALIZED_NAME_USERNAME)
-  @javax.annotation.Nullable
+  @Nullable
   private String username;
 
   public static final String SERIALIZED_NAME_PASSWORD = "password";
   //@SerializedName(SERIALIZED_NAME_PASSWORD)
-  @javax.annotation.Nullable
+  @Nullable
   private String password;
 
   public static final String SERIALIZED_NAME_BILLING = "billing";
   //@SerializedName(SERIALIZED_NAME_BILLING)
-  @javax.annotation.Nullable
+  @Nullable
   private Billing billing;
 
   public static final String SERIALIZED_NAME_SHIPPING = "shipping";
   //@SerializedName(SERIALIZED_NAME_SHIPPING)
-  @javax.annotation.Nullable
+  @Nullable
   private Shipping shipping;
 
   public static final String SERIALIZED_NAME_IS_PAYING_CUSTOMER = "is_paying_customer";
   //@SerializedName(SERIALIZED_NAME_IS_PAYING_CUSTOMER)
-  @javax.annotation.Nullable
+  @Nullable
   private Boolean isPayingCustomer;
 
   public static final String SERIALIZED_NAME_AVATAR_URL = "avatar_url";
   //@SerializedName(SERIALIZED_NAME_AVATAR_URL)
-  @javax.annotation.Nullable
+  @Nullable
   private String avatarUrl;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
   //@SerializedName(SERIALIZED_NAME_META_DATA)
-  @javax.annotation.Nullable
+  @Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINKS = "_links";
    //@SerializedName(SERIALIZED_NAME_LINKS)
-   @javax.annotation.Nullable
+   @Nullable
    private Links links;
 
    private ErrorMessage error;
@@ -129,7 +130,7 @@ public class Customer {
   public Customer() {
   }
 
-  public Customer id(@javax.annotation.Nullable Integer id) {
+  public Customer id(@Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -138,17 +139,17 @@ public class Customer {
    * Unique identifier for the resource. read-only
    * @return id
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Integer getId() {
     return id;
   }
 
-  public void setId(@javax.annotation.Nullable Integer id) {
+  public void setId(@Nullable Integer id) {
     this.id = id;
   }
 
 
-  public Customer dateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
+  public Customer dateCreated(@Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
     return this;
   }
@@ -157,18 +158,18 @@ public class Customer {
    * The date the customer was created, in the site&#39;s timezone. read-only
    * @return dateCreated
    */
-  @javax.annotation.Nullable
+  @Nullable
   public LocalDateTime getDateCreated() {
     return dateCreated;
   }
 
   @JsonProperty("date_created")
-  public void setDateCreated(@javax.annotation.Nullable LocalDateTime dateCreated) {
+  public void setDateCreated(@Nullable LocalDateTime dateCreated) {
     this.dateCreated = dateCreated;
   }
 
 
-  public Customer dateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
+  public Customer dateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
     return this;
   }
@@ -177,18 +178,18 @@ public class Customer {
    * The date the customer was created, as GMT. read-only
    * @return dateCreatedGmt
    */
-  @javax.annotation.Nullable
+  @Nullable
   public LocalDateTime getDateCreatedGmt() {
     return dateCreatedGmt;
   }
 
   @JsonProperty("date_created_gmt")
-  public void setDateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
+  public void setDateCreatedGmt(@Nullable LocalDateTime dateCreatedGmt) {
     this.dateCreatedGmt = dateCreatedGmt;
   }
 
 
-  public Customer dateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
+  public Customer dateModified(@Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
     return this;
   }
@@ -197,18 +198,18 @@ public class Customer {
    * The date the customer was last modified, in the site&#39;s timezone. read-only
    * @return dateModified
    */
-  @javax.annotation.Nullable
+  @Nullable
   public LocalDateTime getDateModified() {
     return dateModified;
   }
 
   @JsonProperty("date_modified")
-  public void setDateModified(@javax.annotation.Nullable LocalDateTime dateModified) {
+  public void setDateModified(@Nullable LocalDateTime dateModified) {
     this.dateModified = dateModified;
   }
 
 
-  public Customer dateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
+  public Customer dateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
     return this;
   }
@@ -217,18 +218,18 @@ public class Customer {
    * The date the customer was last modified, as GMT. read-only
    * @return dateModifiedGmt
    */
-  @javax.annotation.Nullable
+  @Nullable
   public LocalDateTime getDateModifiedGmt() {
     return dateModifiedGmt;
   }
 
   @JsonProperty("date_modified_gmt")
-  public void setDateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
+  public void setDateModifiedGmt(@Nullable LocalDateTime dateModifiedGmt) {
     this.dateModifiedGmt = dateModifiedGmt;
   }
 
 
-  public Customer email(@javax.annotation.Nullable String email) {
+  public Customer email(@Nullable String email) {
     this.email = email;
     return this;
   }
@@ -237,17 +238,17 @@ public class Customer {
    * The email address for the customer. mandatory
    * @return email
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(@javax.annotation.Nullable String email) {
+  public void setEmail(@Nullable String email) {
     this.email = email;
   }
 
 
-  public Customer firstName(@javax.annotation.Nullable String firstName) {
+  public Customer firstName(@Nullable String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -256,18 +257,18 @@ public class Customer {
    * Customer first name.
    * @return firstName
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getFirstName() {
     return firstName;
   }
 
   @JsonProperty("first_name")
-  public void setFirstName(@javax.annotation.Nullable String firstName) {
+  public void setFirstName(@Nullable String firstName) {
     this.firstName = firstName;
   }
 
 
-  public Customer lastName(@javax.annotation.Nullable String lastName) {
+  public Customer lastName(@Nullable String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -276,18 +277,18 @@ public class Customer {
    * Customer last name.
    * @return lastName
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getLastName() {
     return lastName;
   }
 
   @JsonProperty("last_name")
-  public void setLastName(@javax.annotation.Nullable String lastName) {
+  public void setLastName(@Nullable String lastName) {
     this.lastName = lastName;
   }
 
 
-  public Customer role(@javax.annotation.Nullable String role) {
+  public Customer role(@Nullable String role) {
     this.role = role;
     return this;
   }
@@ -296,17 +297,17 @@ public class Customer {
    * Customer role. read-only
    * @return role
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getRole() {
     return role;
   }
 
-  public void setRole(@javax.annotation.Nullable String role) {
+  public void setRole(@Nullable String role) {
     this.role = role;
   }
 
 
-  public Customer username(@javax.annotation.Nullable String username) {
+  public Customer username(@Nullable String username) {
     this.username = username;
     return this;
   }
@@ -315,17 +316,17 @@ public class Customer {
    * Customer login name.
    * @return username
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getUsername() {
     return username;
   }
 
-  public void setUsername(@javax.annotation.Nullable String username) {
+  public void setUsername(@Nullable String username) {
     this.username = username;
   }
 
 
-  public Customer password(@javax.annotation.Nullable String password) {
+  public Customer password(@Nullable String password) {
     this.password = password;
     return this;
   }
@@ -334,17 +335,17 @@ public class Customer {
    * Customer password. write-only
    * @return password
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getPassword() {
     return password;
   }
 
-  public void setPassword(@javax.annotation.Nullable String password) {
+  public void setPassword(@Nullable String password) {
     this.password = password;
   }
 
 
-  public Customer billing(@javax.annotation.Nullable Billing billing) {
+  public Customer billing(@Nullable Billing billing) {
     this.billing = billing;
     return this;
   }
@@ -353,17 +354,17 @@ public class Customer {
    * Get billing
    * @return billing
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Billing getBilling() {
     return billing;
   }
 
-  public void setBilling(@javax.annotation.Nullable Billing billing) {
+  public void setBilling(@Nullable Billing billing) {
     this.billing = billing;
   }
 
 
-  public Customer shipping(@javax.annotation.Nullable Shipping shipping) {
+  public Customer shipping(@Nullable Shipping shipping) {
     this.shipping = shipping;
     return this;
   }
@@ -372,17 +373,17 @@ public class Customer {
    * Get shipping
    * @return shipping
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Shipping getShipping() {
     return shipping;
   }
 
-  public void setShipping(@javax.annotation.Nullable Shipping shipping) {
+  public void setShipping(@Nullable Shipping shipping) {
     this.shipping = shipping;
   }
 
 
-  public Customer isPayingCustomer(@javax.annotation.Nullable Boolean isPayingCustomer) {
+  public Customer isPayingCustomer(@Nullable Boolean isPayingCustomer) {
     this.isPayingCustomer = isPayingCustomer;
     return this;
   }
@@ -391,18 +392,18 @@ public class Customer {
    * Is the customer a paying customer? read-only
    * @return isPayingCustomer
    */
-  @javax.annotation.Nullable
+  @Nullable
   public Boolean getIsPayingCustomer() {
     return isPayingCustomer;
   }
 
   @JsonProperty("is_paying_customer")
-  public void setIsPayingCustomer(@javax.annotation.Nullable Boolean isPayingCustomer) {
+  public void setIsPayingCustomer(@Nullable Boolean isPayingCustomer) {
     this.isPayingCustomer = isPayingCustomer;
   }
 
 
-  public Customer avatarUrl(@javax.annotation.Nullable String avatarUrl) {
+  public Customer avatarUrl(@Nullable String avatarUrl) {
     this.avatarUrl = avatarUrl;
     return this;
   }
@@ -411,18 +412,18 @@ public class Customer {
    * Avatar URL. read-only
    * @return avatarUrl
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getAvatarUrl() {
     return avatarUrl;
   }
 
   @JsonProperty("avatar_url")
-  public void setAvatarUrl(@javax.annotation.Nullable String avatarUrl) {
+  public void setAvatarUrl(@Nullable String avatarUrl) {
     this.avatarUrl = avatarUrl;
   }
 
 
-  public Customer metaData(@javax.annotation.Nullable List<MetaData> metaData) {
+  public Customer metaData(@Nullable List<MetaData> metaData) {
     this.metaData = metaData;
     return this;
   }
@@ -441,13 +442,13 @@ public class Customer {
    * BUT record B may fail with exists, or something else.
    * Only way to catch the error and pass back is by adding the error message into here.
    */
-    @javax.annotation.Nullable
+    @Nullable
     public ErrorMessage getError() {
         return error;
     }
 
     @JsonProperty("error")
-    public void setError(@javax.annotation.Nullable ErrorMessage error) {
+    public void setError(@Nullable ErrorMessage error) {
         this.error = error;
     }
 
@@ -458,17 +459,17 @@ public class Customer {
    * Meta data.
    * @return metaData
    */
-  @javax.annotation.Nullable
+  @Nullable
   public List<MetaData> getMetaData() {
     return metaData;
   }
 
   @JsonProperty("meta_data")
-  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
+  public void setMetaData(@Nullable List<MetaData> metaData) {
     this.metaData = metaData;
   }
 
-    public Customer links(@javax.annotation.Nullable Links links) {
+    public Customer links(@Nullable Links links) {
         this.links = links;
         return this;
     }
@@ -476,13 +477,13 @@ public class Customer {
      * Shows _links NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
      * @return _links
      */
-    @javax.annotation.Nullable
+    @Nullable
     public Links getLinks() {
         return links;
     }
 
     @JsonProperty("_links")
-    public void setLinks(@javax.annotation.Nullable Links links) {
+    public void setLinks(@Nullable Links links) {
         this.links = links;
     }
 

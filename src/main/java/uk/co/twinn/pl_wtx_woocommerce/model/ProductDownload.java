@@ -26,6 +26,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
@@ -35,23 +36,23 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 public class ProductDownload {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)
-  @javax.annotation.Nullable
+  @Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   //@SerializedName(SERIALIZED_NAME_NAME)
-  @javax.annotation.Nullable
+  @Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_FILE = "file";
   //@SerializedName(SERIALIZED_NAME_FILE)
-  @javax.annotation.Nullable
+  @Nullable
   private String _file;
 
   public ProductDownload() {
   }
 
-  public ProductDownload id(@javax.annotation.Nullable String id) {
+  public ProductDownload id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -60,17 +61,17 @@ public class ProductDownload {
    * File ID.
    * @return id
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(@javax.annotation.Nullable String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
 
-  public ProductDownload name(@javax.annotation.Nullable String name) {
+  public ProductDownload name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -79,17 +80,17 @@ public class ProductDownload {
    * File name.
    * @return name
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(@javax.annotation.Nullable String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
 
-  public ProductDownload _file(@javax.annotation.Nullable String _file) {
+  public ProductDownload _file(@Nullable String _file) {
     this._file = _file;
     return this;
   }
@@ -98,12 +99,12 @@ public class ProductDownload {
    * File URL.
    * @return _file
    */
-  @javax.annotation.Nullable
+  @Nullable
   public String getFile() {
     return _file;
   }
 
-  public void setFile(@javax.annotation.Nullable String _file) {
+  public void setFile(@Nullable String _file) {
     this._file = _file;
   }
 
