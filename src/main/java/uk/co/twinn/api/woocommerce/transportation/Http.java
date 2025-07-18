@@ -9,13 +9,11 @@
 package uk.co.twinn.api.woocommerce.transportation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import org.apache.http.Header;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.jetbrains.annotations.NotNull;
@@ -26,8 +24,6 @@ import uk.co.twinn.api.woocommerce.rest.Configuration;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.SocketTimeoutException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +35,7 @@ import java.util.logging.Logger;
  */
 public class Http {
 
-    private static CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+    private static CloseableHttpClient httpClient = HttpClients.createDefault();
 
     private final JacksonObjectMapper json = new JacksonObjectMapper();
 
