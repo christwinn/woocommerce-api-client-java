@@ -26,7 +26,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,42 +39,42 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class OrderShippingLine {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_METHOD_TITLE = "method_title";
-  @SerializedName(SERIALIZED_NAME_METHOD_TITLE)
+  //@SerializedName(SERIALIZED_NAME_METHOD_TITLE)
   @javax.annotation.Nullable
   private String methodTitle;
 
   public static final String SERIALIZED_NAME_METHOD_ID = "method_id";
-  @SerializedName(SERIALIZED_NAME_METHOD_ID)
+  //@SerializedName(SERIALIZED_NAME_METHOD_ID)
   @javax.annotation.Nullable
   private String methodId;
 
   public static final String SERIALIZED_NAME_INSTANCE_ID = "instance_id";
-  @SerializedName(SERIALIZED_NAME_INSTANCE_ID)
+  //@SerializedName(SERIALIZED_NAME_INSTANCE_ID)
   @javax.annotation.Nullable
   private String instanceId;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
-  @SerializedName(SERIALIZED_NAME_TOTAL)
+  //@SerializedName(SERIALIZED_NAME_TOTAL)
   @javax.annotation.Nullable
   private BigDecimal total;
 
   public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
-  @SerializedName(SERIALIZED_NAME_TOTAL_TAX)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_TAX)
   @javax.annotation.Nullable
   private String totalTax;
 
   public static final String SERIALIZED_NAME_TAXES = "taxes";
-  @SerializedName(SERIALIZED_NAME_TAXES)
+  //@SerializedName(SERIALIZED_NAME_TAXES)
   @javax.annotation.Nullable
   private List<OrderTaxLine> taxes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
-  @SerializedName(SERIALIZED_NAME_META_DATA)
+  //@SerializedName(SERIALIZED_NAME_META_DATA)
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 

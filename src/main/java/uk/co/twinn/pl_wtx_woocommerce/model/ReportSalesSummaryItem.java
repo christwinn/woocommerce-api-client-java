@@ -24,7 +24,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
@@ -34,37 +34,37 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ReportSalesSummaryItem {
   public static final String SERIALIZED_NAME_SALES = "sales";
-  @SerializedName(SERIALIZED_NAME_SALES)
+  //@SerializedName(SERIALIZED_NAME_SALES)
   @javax.annotation.Nullable
   private String sales;
 
   public static final String SERIALIZED_NAME_ORDERS = "orders";
-  @SerializedName(SERIALIZED_NAME_ORDERS)
+  //@SerializedName(SERIALIZED_NAME_ORDERS)
   @javax.annotation.Nullable
   private Integer orders;
 
   public static final String SERIALIZED_NAME_ITEMS = "items";
-  @SerializedName(SERIALIZED_NAME_ITEMS)
+  //@SerializedName(SERIALIZED_NAME_ITEMS)
   @javax.annotation.Nullable
   private Integer items;
 
   public static final String SERIALIZED_NAME_TAX = "tax";
-  @SerializedName(SERIALIZED_NAME_TAX)
+  //@SerializedName(SERIALIZED_NAME_TAX)
   @javax.annotation.Nullable
   private String tax;
 
   public static final String SERIALIZED_NAME_SHIPPING = "shipping";
-  @SerializedName(SERIALIZED_NAME_SHIPPING)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING)
   @javax.annotation.Nullable
   private String shipping;
 
   public static final String SERIALIZED_NAME_DISCOUNT = "discount";
-  @SerializedName(SERIALIZED_NAME_DISCOUNT)
+  //@SerializedName(SERIALIZED_NAME_DISCOUNT)
   @javax.annotation.Nullable
   private String discount;
 
   public static final String SERIALIZED_NAME_CUSTOMERS = "customers";
-  @SerializedName(SERIALIZED_NAME_CUSTOMERS)
+  //@SerializedName(SERIALIZED_NAME_CUSTOMERS)
   @javax.annotation.Nullable
   private Integer customers;
 

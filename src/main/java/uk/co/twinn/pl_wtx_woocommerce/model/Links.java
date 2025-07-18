@@ -9,7 +9,7 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.util.*;
@@ -17,12 +17,12 @@ import java.util.*;
 public class Links {
 
     public static final String SERIALIZED_NAME_SELF = "self";
-    @SerializedName(SERIALIZED_NAME_SELF)
+    //@SerializedName(SERIALIZED_NAME_SELF)
     @javax.annotation.Nullable
     private List<Link> self;
 
     public static final String SERIALIZED_NAME_COLLECTION = "collection";
-    @SerializedName(SERIALIZED_NAME_COLLECTION)
+    //@SerializedName(SERIALIZED_NAME_COLLECTION)
     @javax.annotation.Nullable
     private List<Link> collection;
 

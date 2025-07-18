@@ -49,7 +49,7 @@ public class CustomerBuilder extends ApiRequest {
     private CustomerBuilder(Updater<?> updater){
 
         this((Creator<?>)updater);
-
+        this.customer.setId(updater.id);
 
     }
 

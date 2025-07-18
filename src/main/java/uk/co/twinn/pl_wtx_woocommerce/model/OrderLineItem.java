@@ -25,7 +25,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -39,77 +39,77 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class OrderLineItem {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  //@SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_PARENT_NAME = "parent_name";
-  @SerializedName(SERIALIZED_NAME_PARENT_NAME)
+  //@SerializedName(SERIALIZED_NAME_PARENT_NAME)
   @javax.annotation.Nullable
   private String parentName;
 
   public static final String SERIALIZED_NAME_PRODUCT_ID = "product_id";
-  @SerializedName(SERIALIZED_NAME_PRODUCT_ID)
+  //@SerializedName(SERIALIZED_NAME_PRODUCT_ID)
   @javax.annotation.Nullable
   private Integer productId;
 
   public static final String SERIALIZED_NAME_VARIATION_ID = "variation_id";
-  @SerializedName(SERIALIZED_NAME_VARIATION_ID)
+  //@SerializedName(SERIALIZED_NAME_VARIATION_ID)
   @javax.annotation.Nullable
   private Integer variationId;
 
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
-  @SerializedName(SERIALIZED_NAME_QUANTITY)
+  //@SerializedName(SERIALIZED_NAME_QUANTITY)
   @javax.annotation.Nullable
   private Integer quantity;
 
   public static final String SERIALIZED_NAME_TAX_CLASS = "tax_class";
-  @SerializedName(SERIALIZED_NAME_TAX_CLASS)
+  //@SerializedName(SERIALIZED_NAME_TAX_CLASS)
   @javax.annotation.Nullable
   private String taxClass;
 
   public static final String SERIALIZED_NAME_SUBTOTAL = "subtotal";
-  @SerializedName(SERIALIZED_NAME_SUBTOTAL)
+  //@SerializedName(SERIALIZED_NAME_SUBTOTAL)
   @javax.annotation.Nullable
   private BigDecimal subtotal;
 
   public static final String SERIALIZED_NAME_SUBTOTAL_TAX = "subtotal_tax";
-  @SerializedName(SERIALIZED_NAME_SUBTOTAL_TAX)
+  //@SerializedName(SERIALIZED_NAME_SUBTOTAL_TAX)
   @javax.annotation.Nullable
   private BigDecimal subtotalTax;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
-  @SerializedName(SERIALIZED_NAME_TOTAL)
+  //@SerializedName(SERIALIZED_NAME_TOTAL)
   @javax.annotation.Nullable
   private BigDecimal total;
 
   public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
-  @SerializedName(SERIALIZED_NAME_TOTAL_TAX)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_TAX)
   @javax.annotation.Nullable
   private BigDecimal totalTax;
 
   public static final String SERIALIZED_NAME_TAXES = "taxes";
-  @SerializedName(SERIALIZED_NAME_TAXES)
+  //@SerializedName(SERIALIZED_NAME_TAXES)
   @javax.annotation.Nullable
   private List<OrderTaxLine> taxes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
-  @SerializedName(SERIALIZED_NAME_META_DATA)
+  //@SerializedName(SERIALIZED_NAME_META_DATA)
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SKU = "sku";
-  @SerializedName(SERIALIZED_NAME_SKU)
+  //@SerializedName(SERIALIZED_NAME_SKU)
   @javax.annotation.Nullable
   private String sku;
 
   public static final String SERIALIZED_NAME_PRICE = "price";
-  @SerializedName(SERIALIZED_NAME_PRICE)
+  //@SerializedName(SERIALIZED_NAME_PRICE)
   @javax.annotation.Nullable
   private BigDecimal price;
 

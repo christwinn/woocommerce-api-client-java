@@ -25,14 +25,8 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import com.google.gson.JsonElement;
+import java.io.IOException;
 
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
@@ -43,27 +37,27 @@ import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ProductCategory {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  //@SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nonnull
   private String name;
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
-  @SerializedName(SERIALIZED_NAME_SLUG)
+  //@SerializedName(SERIALIZED_NAME_SLUG)
   @javax.annotation.Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_PARENT = "parent";
-  @SerializedName(SERIALIZED_NAME_PARENT)
+  //@SerializedName(SERIALIZED_NAME_PARENT)
   @javax.annotation.Nullable
   private Integer parent;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  //@SerializedName(SERIALIZED_NAME_DESCRIPTION)
   @javax.annotation.Nullable
   private String description;
 
@@ -72,7 +66,7 @@ public class ProductCategory {
   /**
    * Category archive display type.
    */
-  @JsonAdapter(DisplayEnum.Adapter.class)
+ // @JsonAdapter(DisplayEnum.Adapter.class)
   public enum DisplayEnum {
     DEFAULT("default"),
 
@@ -106,42 +100,25 @@ public class ProductCategory {
       throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
-    public static class Adapter extends TypeAdapter<DisplayEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final DisplayEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public DisplayEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return DisplayEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      DisplayEnum.fromValue(value);
-    }
   }
 
   public static final String SERIALIZED_NAME_DISPLAY = "display";
-  @SerializedName(SERIALIZED_NAME_DISPLAY)
+  //@SerializedName(SERIALIZED_NAME_DISPLAY)
   @javax.annotation.Nullable
   private DisplayEnum display = DisplayEnum.DEFAULT;
 
   public static final String SERIALIZED_NAME_IMAGE = "image";
-  @SerializedName(SERIALIZED_NAME_IMAGE)
+  //@SerializedName(SERIALIZED_NAME_IMAGE)
   @javax.annotation.Nullable
   private ProductImage image;
 
   public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
-  @SerializedName(SERIALIZED_NAME_MENU_ORDER)
+  //@SerializedName(SERIALIZED_NAME_MENU_ORDER)
   @javax.annotation.Nullable
   private Integer menuOrder;
 
   public static final String SERIALIZED_NAME_COUNT = "count";
-  @SerializedName(SERIALIZED_NAME_COUNT)
+  //@SerializedName(SERIALIZED_NAME_COUNT)
   @javax.annotation.Nullable
   private Integer count;
 

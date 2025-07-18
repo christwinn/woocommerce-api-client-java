@@ -25,7 +25,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -40,87 +40,87 @@ import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class Customer {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
   @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
-  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
+  //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
   @javax.annotation.Nullable
   private LocalDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
-  @SerializedName(SERIALIZED_NAME_EMAIL)
+  //@SerializedName(SERIALIZED_NAME_EMAIL)
   @javax.annotation.Nullable
   private String email;
 
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
-  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  //@SerializedName(SERIALIZED_NAME_FIRST_NAME)
   @javax.annotation.Nullable
   private String firstName;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
-  @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  //@SerializedName(SERIALIZED_NAME_LAST_NAME)
   @javax.annotation.Nullable
   private String lastName;
 
   public static final String SERIALIZED_NAME_ROLE = "role";
-  @SerializedName(SERIALIZED_NAME_ROLE)
+  //@SerializedName(SERIALIZED_NAME_ROLE)
   @javax.annotation.Nullable
   private String role;
 
   public static final String SERIALIZED_NAME_USERNAME = "username";
-  @SerializedName(SERIALIZED_NAME_USERNAME)
+  //@SerializedName(SERIALIZED_NAME_USERNAME)
   @javax.annotation.Nullable
   private String username;
 
   public static final String SERIALIZED_NAME_PASSWORD = "password";
-  @SerializedName(SERIALIZED_NAME_PASSWORD)
+  //@SerializedName(SERIALIZED_NAME_PASSWORD)
   @javax.annotation.Nullable
   private String password;
 
   public static final String SERIALIZED_NAME_BILLING = "billing";
-  @SerializedName(SERIALIZED_NAME_BILLING)
+  //@SerializedName(SERIALIZED_NAME_BILLING)
   @javax.annotation.Nullable
   private Billing billing;
 
   public static final String SERIALIZED_NAME_SHIPPING = "shipping";
-  @SerializedName(SERIALIZED_NAME_SHIPPING)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING)
   @javax.annotation.Nullable
   private Shipping shipping;
 
   public static final String SERIALIZED_NAME_IS_PAYING_CUSTOMER = "is_paying_customer";
-  @SerializedName(SERIALIZED_NAME_IS_PAYING_CUSTOMER)
+  //@SerializedName(SERIALIZED_NAME_IS_PAYING_CUSTOMER)
   @javax.annotation.Nullable
   private Boolean isPayingCustomer;
 
   public static final String SERIALIZED_NAME_AVATAR_URL = "avatar_url";
-  @SerializedName(SERIALIZED_NAME_AVATAR_URL)
+  //@SerializedName(SERIALIZED_NAME_AVATAR_URL)
   @javax.annotation.Nullable
   private String avatarUrl;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
-  @SerializedName(SERIALIZED_NAME_META_DATA)
+  //@SerializedName(SERIALIZED_NAME_META_DATA)
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINKS = "_links";
-   @SerializedName(SERIALIZED_NAME_LINKS)
+   //@SerializedName(SERIALIZED_NAME_LINKS)
    @javax.annotation.Nullable
    private Links links;
 

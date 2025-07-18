@@ -9,7 +9,7 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.util.Objects;
@@ -18,17 +18,17 @@ import java.util.Objects;
 public class Brand {
 
     public static final String SERIALIZED_NAME_ID = "id";
-    @SerializedName(SERIALIZED_NAME_ID)
+    //@SerializedName(SERIALIZED_NAME_ID)
     @javax.annotation.Nullable
     private Integer id;
 
     public static final String SERIALIZED_NAME_NAME = "name";
-    @SerializedName(SERIALIZED_NAME_NAME)
+    //@SerializedName(SERIALIZED_NAME_NAME)
     @javax.annotation.Nullable
     private String name;
 
     public static final String SERIALIZED_NAME_SLUG = "slug";
-    @SerializedName(SERIALIZED_NAME_SLUG)
+    //@SerializedName(SERIALIZED_NAME_SLUG)
     @javax.annotation.Nullable
     private String slug;
 

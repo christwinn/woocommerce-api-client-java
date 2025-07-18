@@ -24,7 +24,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDateTime;
 
@@ -36,42 +36,42 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ProductImage {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
   @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
-  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
+  //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
   @javax.annotation.Nullable
   private LocalDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_SRC = "src";
-  @SerializedName(SERIALIZED_NAME_SRC)
+  //@SerializedName(SERIALIZED_NAME_SRC)
   @javax.annotation.Nullable
   private String src;
 
   public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  //@SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_ALT = "alt";
-  @SerializedName(SERIALIZED_NAME_ALT)
+  //@SerializedName(SERIALIZED_NAME_ALT)
   @javax.annotation.Nullable
   private String alt;
 

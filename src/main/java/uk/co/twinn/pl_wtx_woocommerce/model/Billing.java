@@ -25,7 +25,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
-import com.google.gson.annotations.SerializedName;
+////import com.google.gson.annotations.SerializedName;
 
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
@@ -35,57 +35,57 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class Billing {
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
-  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  ////@SerializedName(SERIALIZED_NAME_FIRST_NAME)
   @javax.annotation.Nullable
   private String firstName;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
-  @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  //@SerializedName(SERIALIZED_NAME_LAST_NAME)
   @javax.annotation.Nullable
   private String lastName;
 
   public static final String SERIALIZED_NAME_COMPANY = "company";
-  @SerializedName(SERIALIZED_NAME_COMPANY)
+  //@SerializedName(SERIALIZED_NAME_COMPANY)
   @javax.annotation.Nullable
   private String company;
 
   public static final String SERIALIZED_NAME_ADDRESS1 = "address_1";
-  @SerializedName(SERIALIZED_NAME_ADDRESS1)
+  //@SerializedName(SERIALIZED_NAME_ADDRESS1)
   @javax.annotation.Nullable
   private String address1;
 
   public static final String SERIALIZED_NAME_ADDRESS2 = "address_2";
-  @SerializedName(SERIALIZED_NAME_ADDRESS2)
+  //@SerializedName(SERIALIZED_NAME_ADDRESS2)
   @javax.annotation.Nullable
   private String address2;
 
   public static final String SERIALIZED_NAME_CITY = "city";
-  @SerializedName(SERIALIZED_NAME_CITY)
+  //@SerializedName(SERIALIZED_NAME_CITY)
   @javax.annotation.Nullable
   private String city;
 
   public static final String SERIALIZED_NAME_STATE = "state";
-  @SerializedName(SERIALIZED_NAME_STATE)
+  //@SerializedName(SERIALIZED_NAME_STATE)
   @javax.annotation.Nullable
   private String state;
 
   public static final String SERIALIZED_NAME_POSTCODE = "postcode";
-  @SerializedName(SERIALIZED_NAME_POSTCODE)
+  //@SerializedName(SERIALIZED_NAME_POSTCODE)
   @javax.annotation.Nullable
   private String postcode;
 
   public static final String SERIALIZED_NAME_COUNTRY = "country";
-  @SerializedName(SERIALIZED_NAME_COUNTRY)
+  //@SerializedName(SERIALIZED_NAME_COUNTRY)
   @javax.annotation.Nullable
   private String country;
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
-  @SerializedName(SERIALIZED_NAME_EMAIL)
+  //@SerializedName(SERIALIZED_NAME_EMAIL)
   @javax.annotation.Nullable
   private String email;
 
   public static final String SERIALIZED_NAME_PHONE = "phone";
-  @SerializedName(SERIALIZED_NAME_PHONE)
+  //@SerializedName(SERIALIZED_NAME_PHONE)
   @javax.annotation.Nullable
   private String phone;
 

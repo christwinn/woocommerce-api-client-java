@@ -40,6 +40,11 @@ public class EndPoints {
         public static final String REPORTS_ORDERS_TOTALS = "reports/orders/totals";
         public static final String REPORTS_PRODUCTS_TOTALS = "reports/products/totals";
         public static final String REPORTS_REVIEWS_TOTALS = "reports/reviews/totals";
+
+    public static final String SHIPPINGZONES = "shipping/zones";
+
+        public static final String LOCATIONS = "locations";
+
     public static final String TAXES = "taxes";
         public static final String TAX_CLASSES = "taxes/classes";
 

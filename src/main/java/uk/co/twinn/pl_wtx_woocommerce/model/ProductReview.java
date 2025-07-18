@@ -25,7 +25,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.time.LocalDateTime;
@@ -36,22 +36,22 @@ import java.time.LocalDateTime;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ProductReview {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
   @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_PRODUCT_ID = "product_id";
-  @SerializedName(SERIALIZED_NAME_PRODUCT_ID)
+  //@SerializedName(SERIALIZED_NAME_PRODUCT_ID)
   @javax.annotation.Nullable
   private Integer productId;
 
@@ -99,32 +99,32 @@ public class ProductReview {
   }
 
   public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
+  //@SerializedName(SERIALIZED_NAME_STATUS)
   @javax.annotation.Nullable
   private StatusEnum status = StatusEnum.APPROVED;
 
   public static final String SERIALIZED_NAME_REVIEWER = "reviewer";
-  @SerializedName(SERIALIZED_NAME_REVIEWER)
+  //@SerializedName(SERIALIZED_NAME_REVIEWER)
   @javax.annotation.Nullable
   private String reviewer;
 
   public static final String SERIALIZED_NAME_REVIEWER_EMAIL = "reviewer_email";
-  @SerializedName(SERIALIZED_NAME_REVIEWER_EMAIL)
+  //@SerializedName(SERIALIZED_NAME_REVIEWER_EMAIL)
   @javax.annotation.Nullable
   private String reviewerEmail;
 
   public static final String SERIALIZED_NAME_REVIEW = "review";
-  @SerializedName(SERIALIZED_NAME_REVIEW)
+  //@SerializedName(SERIALIZED_NAME_REVIEW)
   @javax.annotation.Nullable
   private String review;
 
   public static final String SERIALIZED_NAME_RATING = "rating";
-  @SerializedName(SERIALIZED_NAME_RATING)
+  //@SerializedName(SERIALIZED_NAME_RATING)
   @javax.annotation.Nullable
   private Integer rating;
 
   public static final String SERIALIZED_NAME_VERIFIED = "verified";
-  @SerializedName(SERIALIZED_NAME_VERIFIED)
+  //@SerializedName(SERIALIZED_NAME_VERIFIED)
   @javax.annotation.Nullable
   private Boolean verified;
 

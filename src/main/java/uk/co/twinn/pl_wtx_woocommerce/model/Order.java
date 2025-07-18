@@ -23,7 +23,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,37 +37,37 @@ import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class Order {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_PARENT_ID = "parent_id";
-  @SerializedName(SERIALIZED_NAME_PARENT_ID)
+  //@SerializedName(SERIALIZED_NAME_PARENT_ID)
   @javax.annotation.Nullable
   private Integer parentId;
 
   public static final String SERIALIZED_NAME_NUMBER = "number";
-  @SerializedName(SERIALIZED_NAME_NUMBER)
+  //@SerializedName(SERIALIZED_NAME_NUMBER)
   @javax.annotation.Nullable
   private String number;
 
   public static final String SERIALIZED_NAME_ORDER_KEY = "order_key";
-  @SerializedName(SERIALIZED_NAME_ORDER_KEY)
+  //@SerializedName(SERIALIZED_NAME_ORDER_KEY)
   @javax.annotation.Nullable
   private String orderKey;
 
   public static final String SERIALIZED_NAME_CREATED_VIA = "created_via";
-  @SerializedName(SERIALIZED_NAME_CREATED_VIA)
+  //@SerializedName(SERIALIZED_NAME_CREATED_VIA)
   @javax.annotation.Nullable
   private String createdVia;
 
   public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
+  //@SerializedName(SERIALIZED_NAME_VERSION)
   @javax.annotation.Nullable
   private String version;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
+  //@SerializedName(SERIALIZED_NAME_STATUS)
   @javax.annotation.Nullable
   private String status;
 
@@ -428,177 +428,177 @@ public class Order {
   }
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
-  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  //@SerializedName(SERIALIZED_NAME_CURRENCY)
   @javax.annotation.Nullable
   private CurrencyEnum currency;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
   @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
-  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
+  //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
   @javax.annotation.Nullable
   private LocalDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_DISCOUNT_TOTAL = "discount_total";
-  @SerializedName(SERIALIZED_NAME_DISCOUNT_TOTAL)
+  //@SerializedName(SERIALIZED_NAME_DISCOUNT_TOTAL)
   @javax.annotation.Nullable
   private String discountTotal;
 
   public static final String SERIALIZED_NAME_DISCOUNT_TAX = "discount_tax";
-  @SerializedName(SERIALIZED_NAME_DISCOUNT_TAX)
+  //@SerializedName(SERIALIZED_NAME_DISCOUNT_TAX)
   @javax.annotation.Nullable
   private String discountTax;
 
   public static final String SERIALIZED_NAME_SHIPPING_TOTAL = "shipping_total";
-  @SerializedName(SERIALIZED_NAME_SHIPPING_TOTAL)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING_TOTAL)
   @javax.annotation.Nullable
   private String shippingTotal;
 
   public static final String SERIALIZED_NAME_SHIPPING_TAX = "shipping_tax";
-  @SerializedName(SERIALIZED_NAME_SHIPPING_TAX)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING_TAX)
   @javax.annotation.Nullable
   private String shippingTax;
 
   public static final String SERIALIZED_NAME_CART_TAX = "cart_tax";
-  @SerializedName(SERIALIZED_NAME_CART_TAX)
+  //@SerializedName(SERIALIZED_NAME_CART_TAX)
   @javax.annotation.Nullable
   private String cartTax;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
-  @SerializedName(SERIALIZED_NAME_TOTAL)
+  //@SerializedName(SERIALIZED_NAME_TOTAL)
   @javax.annotation.Nullable
   private String total;
 
   public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
-  @SerializedName(SERIALIZED_NAME_TOTAL_TAX)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_TAX)
   @javax.annotation.Nullable
   private String totalTax;
 
   public static final String SERIALIZED_NAME_PRICES_INCLUDE_TAX = "prices_include_tax";
-  @SerializedName(SERIALIZED_NAME_PRICES_INCLUDE_TAX)
+  //@SerializedName(SERIALIZED_NAME_PRICES_INCLUDE_TAX)
   @javax.annotation.Nullable
   private Boolean pricesIncludeTax;
 
   public static final String SERIALIZED_NAME_CUSTOMER_ID = "customer_id";
-  @SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
+  //@SerializedName(SERIALIZED_NAME_CUSTOMER_ID)
   @javax.annotation.Nullable
   private Integer customerId;
 
   public static final String SERIALIZED_NAME_CUSTOMER_IP_ADDRESS = "customer_ip_address";
-  @SerializedName(SERIALIZED_NAME_CUSTOMER_IP_ADDRESS)
+  //@SerializedName(SERIALIZED_NAME_CUSTOMER_IP_ADDRESS)
   @javax.annotation.Nullable
   private String customerIpAddress;
 
   public static final String SERIALIZED_NAME_CUSTOMER_USER_AGENT = "customer_user_agent";
-  @SerializedName(SERIALIZED_NAME_CUSTOMER_USER_AGENT)
+  //@SerializedName(SERIALIZED_NAME_CUSTOMER_USER_AGENT)
   @javax.annotation.Nullable
   private String customerUserAgent;
 
   public static final String SERIALIZED_NAME_CUSTOMER_NOTE = "customer_note";
-  @SerializedName(SERIALIZED_NAME_CUSTOMER_NOTE)
+  //@SerializedName(SERIALIZED_NAME_CUSTOMER_NOTE)
   @javax.annotation.Nullable
   private String customerNote;
 
   public static final String SERIALIZED_NAME_BILLING = "billing";
-  @SerializedName(SERIALIZED_NAME_BILLING)
+  //@SerializedName(SERIALIZED_NAME_BILLING)
   @javax.annotation.Nullable
   private Billing billing;
 
   public static final String SERIALIZED_NAME_SHIPPING = "shipping";
-  @SerializedName(SERIALIZED_NAME_SHIPPING)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING)
   @javax.annotation.Nullable
   private Shipping shipping;
 
   public static final String SERIALIZED_NAME_PAYMENT_METHOD = "payment_method";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
+  //@SerializedName(SERIALIZED_NAME_PAYMENT_METHOD)
   @javax.annotation.Nullable
   private String paymentMethod;
 
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_TITLE = "payment_method_title";
-  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TITLE)
+  //@SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_TITLE)
   @javax.annotation.Nullable
   private String paymentMethodTitle;
 
   public static final String SERIALIZED_NAME_TRANSACTION_ID = "transaction_id";
-  @SerializedName(SERIALIZED_NAME_TRANSACTION_ID)
+  //@SerializedName(SERIALIZED_NAME_TRANSACTION_ID)
   @javax.annotation.Nullable
   private String transactionId;
 
   public static final String SERIALIZED_NAME_DATE_PAID = "date_paid";
-  @SerializedName(SERIALIZED_NAME_DATE_PAID)
+  //@SerializedName(SERIALIZED_NAME_DATE_PAID)
   @javax.annotation.Nullable
   private LocalDateTime datePaid;
 
   public static final String SERIALIZED_NAME_DATE_PAID_GMT = "date_paid_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_PAID_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_PAID_GMT)
   @javax.annotation.Nullable
   private LocalDateTime datePaidGmt;
 
   public static final String SERIALIZED_NAME_DATE_COMPLETED = "date_completed";
-  @SerializedName(SERIALIZED_NAME_DATE_COMPLETED)
+  //@SerializedName(SERIALIZED_NAME_DATE_COMPLETED)
   @javax.annotation.Nullable
   private LocalDateTime dateCompleted;
 
   public static final String SERIALIZED_NAME_DATE_COMPLETED_GMT = "date_completed_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_COMPLETED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_COMPLETED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateCompletedGmt;
 
   public static final String SERIALIZED_NAME_CART_HASH = "cart_hash";
-  @SerializedName(SERIALIZED_NAME_CART_HASH)
+  //@SerializedName(SERIALIZED_NAME_CART_HASH)
   @javax.annotation.Nullable
   private String cartHash;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
-  @SerializedName(SERIALIZED_NAME_META_DATA)
+  //@SerializedName(SERIALIZED_NAME_META_DATA)
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LINE_ITEMS = "line_items";
-  @SerializedName(SERIALIZED_NAME_LINE_ITEMS)
+  //@SerializedName(SERIALIZED_NAME_LINE_ITEMS)
   @javax.annotation.Nullable
   private List<OrderLineItem> lineItems = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TAX_LINES = "tax_lines";
-  @SerializedName(SERIALIZED_NAME_TAX_LINES)
+  //@SerializedName(SERIALIZED_NAME_TAX_LINES)
   @javax.annotation.Nullable
   private List<OrderTaxLine> taxLines = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SHIPPING_LINES = "shipping_lines";
-  @SerializedName(SERIALIZED_NAME_SHIPPING_LINES)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING_LINES)
   @javax.annotation.Nullable
   private List<OrderShippingLine> shippingLines = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FEE_LINES = "fee_lines";
-  @SerializedName(SERIALIZED_NAME_FEE_LINES)
+  //@SerializedName(SERIALIZED_NAME_FEE_LINES)
   @javax.annotation.Nullable
   private List<OrderFeeLine> feeLines = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_COUPON_LINES = "coupon_lines";
-  @SerializedName(SERIALIZED_NAME_COUPON_LINES)
+  //@SerializedName(SERIALIZED_NAME_COUPON_LINES)
   @javax.annotation.Nullable
   private List<OrderCouponLine> couponLines = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REFUNDS = "refunds";
-  @SerializedName(SERIALIZED_NAME_REFUNDS)
+  //@SerializedName(SERIALIZED_NAME_REFUNDS)
   @javax.annotation.Nullable
   private List<OrderRefund> refunds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SET_PAID = "set_paid";
-  @SerializedName(SERIALIZED_NAME_SET_PAID)
+  //@SerializedName(SERIALIZED_NAME_SET_PAID)
   @javax.annotation.Nullable
   private Boolean setPaid;
 

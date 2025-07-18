@@ -23,21 +23,6 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
@@ -47,32 +32,32 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ProductAttributeTerm {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  //@SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
-  @SerializedName(SERIALIZED_NAME_SLUG)
+  //@SerializedName(SERIALIZED_NAME_SLUG)
   @javax.annotation.Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  //@SerializedName(SERIALIZED_NAME_DESCRIPTION)
   @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
-  @SerializedName(SERIALIZED_NAME_MENU_ORDER)
+  //@SerializedName(SERIALIZED_NAME_MENU_ORDER)
   @javax.annotation.Nullable
   private Integer menuOrder;
 
   public static final String SERIALIZED_NAME_COUNT = "count";
-  @SerializedName(SERIALIZED_NAME_COUNT)
+  //@SerializedName(SERIALIZED_NAME_COUNT)
   @javax.annotation.Nullable
   private Integer count;
 
@@ -249,5 +234,6 @@ public class ProductAttributeTerm {
   public String toJson() {
       return new JacksonObjectMapper().toJson(this);
   }
+
 }
 

@@ -26,7 +26,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,42 +39,42 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class OrderTaxLine {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_RATE_CODE = "rate_code";
-  @SerializedName(SERIALIZED_NAME_RATE_CODE)
+  //@SerializedName(SERIALIZED_NAME_RATE_CODE)
   @javax.annotation.Nullable
   private String rateCode;
 
   public static final String SERIALIZED_NAME_RATE_ID = "rate_id";
-  @SerializedName(SERIALIZED_NAME_RATE_ID)
+  //@SerializedName(SERIALIZED_NAME_RATE_ID)
   @javax.annotation.Nullable
   private String rateId;
 
   public static final String SERIALIZED_NAME_LABEL = "label";
-  @SerializedName(SERIALIZED_NAME_LABEL)
+  //@SerializedName(SERIALIZED_NAME_LABEL)
   @javax.annotation.Nullable
   private String label;
 
   public static final String SERIALIZED_NAME_COMPOUND = "compound";
-  @SerializedName(SERIALIZED_NAME_COMPOUND)
+  //@SerializedName(SERIALIZED_NAME_COMPOUND)
   @javax.annotation.Nullable
   private Boolean compound;
 
   public static final String SERIALIZED_NAME_TAX_TOTAL = "tax_total";
-  @SerializedName(SERIALIZED_NAME_TAX_TOTAL)
+  //@SerializedName(SERIALIZED_NAME_TAX_TOTAL)
   @javax.annotation.Nullable
   private BigDecimal taxTotal;
 
   public static final String SERIALIZED_NAME_SHIPPING_TAX_TOTAL = "shipping_tax_total";
-  @SerializedName(SERIALIZED_NAME_SHIPPING_TAX_TOTAL)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING_TAX_TOTAL)
   @javax.annotation.Nullable
   private BigDecimal shippingTaxTotal;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
-  @SerializedName(SERIALIZED_NAME_META_DATA)
+  //@SerializedName(SERIALIZED_NAME_META_DATA)
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 

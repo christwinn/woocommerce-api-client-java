@@ -24,7 +24,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
@@ -34,17 +34,17 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ReportTopSellersItem {
   public static final String SERIALIZED_NAME_TITLE = "title";
-  @SerializedName(SERIALIZED_NAME_TITLE)
+  //@SerializedName(SERIALIZED_NAME_TITLE)
   @javax.annotation.Nullable
   private String title;
 
   public static final String SERIALIZED_NAME_PRODUCT_ID = "product_id";
-  @SerializedName(SERIALIZED_NAME_PRODUCT_ID)
+  //@SerializedName(SERIALIZED_NAME_PRODUCT_ID)
   @javax.annotation.Nullable
   private Integer productId;
 
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
-  @SerializedName(SERIALIZED_NAME_QUANTITY)
+  //@SerializedName(SERIALIZED_NAME_QUANTITY)
   @javax.annotation.Nullable
   private Integer quantity;
 

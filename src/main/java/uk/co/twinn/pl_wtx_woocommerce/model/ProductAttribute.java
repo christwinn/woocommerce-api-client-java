@@ -24,7 +24,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
@@ -34,37 +34,37 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ProductAttribute {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  //@SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_OPTION = "option";
-  @SerializedName(SERIALIZED_NAME_OPTION)
+  //@SerializedName(SERIALIZED_NAME_OPTION)
   @javax.annotation.Nullable
   private String option;
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
-  @SerializedName(SERIALIZED_NAME_SLUG)
+  //@SerializedName(SERIALIZED_NAME_SLUG)
   @javax.annotation.Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
+  //@SerializedName(SERIALIZED_NAME_TYPE)
   @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_ORDER_BY = "order_by";
-  @SerializedName(SERIALIZED_NAME_ORDER_BY)
+  //@SerializedName(SERIALIZED_NAME_ORDER_BY)
   @javax.annotation.Nullable
   private String orderBy;
 
   public static final String SERIALIZED_NAME_HAS_ARCHIVES = "has_archives";
-  @SerializedName(SERIALIZED_NAME_HAS_ARCHIVES)
+  //@SerializedName(SERIALIZED_NAME_HAS_ARCHIVES)
   @javax.annotation.Nullable
   private Boolean hasArchives;
 

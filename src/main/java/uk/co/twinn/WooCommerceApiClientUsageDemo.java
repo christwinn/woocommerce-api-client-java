@@ -46,20 +46,35 @@ public class WooCommerceApiClientUsageDemo {
             System.out.println(update.toString());
         }*/
 
-        /*Listed<ProductCategory> root = new ProductCategoryRequest.ListAll<>().setParentId(0).setPerPage(50).getResponse();
+        Listed<ProductCategory> root = ProductCategories.listing().setParentId(0).setPerPage(50).getResponse();
 
-        for (ProductCategory p : root.getResult()) {
+        if (root.isSuccess()) {
+            for (ProductCategory p : root.getResult()) {
 
-            System.out.println(p.getDisplayAsString());
+                System.out.println(p.toJson());
 
-            Updated<ProductCategory> updte = new ProductCategoryRequest.Updater<>().setId(p.getId()).setDisplay(ProductCategory.DisplayEnum.SUBCATEGORIES).getResponse();
+                Read<ProductCategory> categoryRead = ProductCategories.read(p.getId()).getResponse();
 
-            if (updte.isSuccess()) {
-                System.out.println(updte.toString());
+                if (categoryRead.isSuccess()){
+                    if (categoryRead.getResult().getId().intValue() != p.getId().intValue()){
+                        System.out.println("EXPECTED: " + p.getId() + " GOT: " + categoryRead.getResult().getId());
+                        break;
+                    }
+                }else{
+                    System.out.println("FAIL" + categoryRead.getError().getMessage());
+                }
+                System.out.println(categoryRead.getResult().toJson());
+                //Updated<ProductCategory> updte = new ProductCategoryRequest.Updater<>().setId(p.getId()).setDisplay(ProductCategory.DisplayEnum.SUBCATEGORIES).getResponse();
+
+                /*if (updte.isSuccess()) {
+                    System.out.println(updte.toString());
+                }*/
             }
-        }*/
+        }else{
+            System.out.println(root.getError().getMessage());
+        }
 
-        /*Created<Coupon> created = WooCommerce.Coupons().create()
+        /*Created<Coupon> created = Coupons.create()
             .setCode("10off")
             .setDiscountType("percent")
             .setAmount(new BigDecimal(10))
@@ -68,23 +83,23 @@ public class WooCommerceApiClientUsageDemo {
             .setMinimumAmount(new BigDecimal(100.00))
             .getResponse();
 
-        Listed<Coupon> listed = WooCommerce.Coupons().listing().getResponse();
+        Listed<Coupon> listed = Coupons.listing().getResponse();
 
-        Batched<Coupon> batch = WooCommerce.Coupons().batch()
+        Batched<Coupon> batch = Coupons.batch()
                 .addCreator(
-                    WooCommerce.Coupons().create()
-                    .setCode("20off")
+                    Coupons.create()
+                    .setCode("25off")
                     .setDiscountType("percent")
                     .setAmount(new BigDecimal(20))
                     .setIndividualUse(true)
                     .setExcludeSaleItems(true)
                     .setMinimumAmount(new BigDecimal(100.00)))
                 .addUpdater(
-                    WooCommerce.Coupons().update(719)
+                    Coupons.update(719)
                         .setMinimumAmount(new BigDecimal(50))
                 )
                 .addDeleter(
-                    WooCommerce.Coupons().delete(720, true)
+                    Coupons.delete(720, true)
                 )
                 .getResponse();
 */
@@ -140,10 +155,10 @@ public class WooCommerceApiClientUsageDemo {
         //System.out.println(product.toJson());
 
 
-        Read<Product> list = Products.read(1).getResponse();
-        Read<Product> read = Products.read(1).getResponse();
+        /*Read<Product> list = Products.read(1).getResponse();
+        Read<Product> read = Products.read(1).getResponse();*/
 
-        System.out.println(list.toJson());
+        //System.out.println(list.toJson());
         /*Listed<ReportOrderTotalSummary> list = new ReportApi().getCustomersTotals();
 
         System.out.println(list.toJson());

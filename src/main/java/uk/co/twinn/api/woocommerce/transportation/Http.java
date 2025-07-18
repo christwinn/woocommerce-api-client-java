@@ -9,11 +9,13 @@
 package uk.co.twinn.api.woocommerce.transportation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import org.apache.http.Header;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.jetbrains.annotations.NotNull;
@@ -24,6 +26,8 @@ import uk.co.twinn.api.woocommerce.rest.Configuration;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.SocketTimeoutException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +38,8 @@ import java.util.logging.Logger;
  *
  */
 public class Http {
+
+    private static CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
     private final JacksonObjectMapper json = new JacksonObjectMapper();
 
@@ -92,8 +98,7 @@ public class Http {
 
             HttpPost post = getHttpPost(target, headers, content);
 
-            try (CloseableHttpClient httpClient = HttpClients.createDefault();
-                 CloseableHttpResponse response = httpClient.execute(post)) {
+            try (CloseableHttpResponse response = httpClient.execute(post)) {
 
                 return parseResponse(response, typeReference);
 
@@ -113,7 +118,6 @@ public class Http {
 
     @NotNull
     private static HttpPost getHttpPost(String target, List<NameValuePair> headers, String content) throws UnsupportedEncodingException {
-
 
         HttpPost post = new HttpPost(target);
 
@@ -144,14 +148,14 @@ public class Http {
         try {
 
             HttpGet get = new HttpGet(target);
+
             if (!headers.isEmpty()){
                 for (NameValuePair nvp : headers){
                     get.setHeader(nvp.getName(), nvp.getValue());
                 }
             }
 
-            try (CloseableHttpClient httpClient = HttpClients.createDefault();
-                 CloseableHttpResponse response = httpClient.execute(get)) {
+            try (CloseableHttpResponse response = httpClient.execute(get)) {
 
                 return parseResponse(response, typeReference);
 
@@ -175,8 +179,7 @@ public class Http {
 
             HttpPut put = getHttpPut(target, headers, content);
 
-            try (CloseableHttpClient httpClient = HttpClients.createDefault();
-                 CloseableHttpResponse response = httpClient.execute(put)) {
+            try (CloseableHttpResponse response = httpClient.execute(put)) {
 
                 return parseResponse(response, typeReference);
 
@@ -227,8 +230,7 @@ public class Http {
                 }
             }
 
-            try (CloseableHttpClient httpClient = HttpClients.createDefault();
-                 CloseableHttpResponse response = httpClient.execute(post)) {
+            try (CloseableHttpResponse response = httpClient.execute(post)) {
 
                 return parseResponse(response, typeReference);
 

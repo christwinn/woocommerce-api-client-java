@@ -27,7 +27,7 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,227 +41,227 @@ import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class Product {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  //@SerializedName(SERIALIZED_NAME_NAME)
   @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
-  @SerializedName(SERIALIZED_NAME_SLUG)
+  //@SerializedName(SERIALIZED_NAME_SLUG)
   @javax.annotation.Nullable
   private String slug;
 
   public static final String SERIALIZED_NAME_PERMALINK = "permalink";
-  @SerializedName(SERIALIZED_NAME_PERMALINK)
+  //@SerializedName(SERIALIZED_NAME_PERMALINK)
   @javax.annotation.Nullable
   private String permalink;
 
   public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED)
   @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
   public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateCreatedGmt;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
-  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
+  //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
   @javax.annotation.Nullable
   private LocalDateTime dateModified;
 
   public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
+  //@SerializedName(SERIALIZED_NAME_TYPE)
   @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
+  //@SerializedName(SERIALIZED_NAME_STATUS)
   @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_FEATURED = "featured";
-  @SerializedName(SERIALIZED_NAME_FEATURED)
+  //@SerializedName(SERIALIZED_NAME_FEATURED)
   @javax.annotation.Nullable
   private Boolean featured;
 
   public static final String SERIALIZED_NAME_CATALOG_VISIBILITY = "catalog_visibility";
-  @SerializedName(SERIALIZED_NAME_CATALOG_VISIBILITY)
+  //@SerializedName(SERIALIZED_NAME_CATALOG_VISIBILITY)
   @javax.annotation.Nullable
   private String catalogVisibility;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  //@SerializedName(SERIALIZED_NAME_DESCRIPTION)
   @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_SHORT_DESCRIPTION = "short_description";
-  @SerializedName(SERIALIZED_NAME_SHORT_DESCRIPTION)
+  //@SerializedName(SERIALIZED_NAME_SHORT_DESCRIPTION)
   @javax.annotation.Nullable
   private String shortDescription;
 
   public static final String SERIALIZED_NAME_SKU = "sku";
-  @SerializedName(SERIALIZED_NAME_SKU)
+  //@SerializedName(SERIALIZED_NAME_SKU)
   @javax.annotation.Nullable
   private String sku;
 
   public static final String SERIALIZED_NAME_PRICE = "price";
-  @SerializedName(SERIALIZED_NAME_PRICE)
+  //@SerializedName(SERIALIZED_NAME_PRICE)
   @javax.annotation.Nullable
   private String price;
 
   public static final String SERIALIZED_NAME_REGULAR_PRICE = "regular_price";
-  @SerializedName(SERIALIZED_NAME_REGULAR_PRICE)
+  //@SerializedName(SERIALIZED_NAME_REGULAR_PRICE)
   @javax.annotation.Nullable
   private String regularPrice;
 
   public static final String SERIALIZED_NAME_SALE_PRICE = "sale_price";
-  @SerializedName(SERIALIZED_NAME_SALE_PRICE)
+  //@SerializedName(SERIALIZED_NAME_SALE_PRICE)
   @javax.annotation.Nullable
   private String salePrice;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_FROM = "date_on_sale_from";
-  @SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM)
+  //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM)
   @javax.annotation.Nullable
   private LocalDateTime dateOnSaleFrom;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_FROM_GMT = "date_on_sale_from_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateOnSaleFromGmt;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_TO = "date_on_sale_to";
-  @SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO)
+  //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO)
   @javax.annotation.Nullable
   private LocalDateTime dateOnSaleTo;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_TO_GMT = "date_on_sale_to_gmt";
-  @SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO_GMT)
+  //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_TO_GMT)
   @javax.annotation.Nullable
   private LocalDateTime dateOnSaleToGmt;
 
   public static final String SERIALIZED_NAME_PRICE_HTML = "price_html";
-  @SerializedName(SERIALIZED_NAME_PRICE_HTML)
+  //@SerializedName(SERIALIZED_NAME_PRICE_HTML)
   @javax.annotation.Nullable
   private String priceHtml;
 
   public static final String SERIALIZED_NAME_ON_SALE = "on_sale";
-  @SerializedName(SERIALIZED_NAME_ON_SALE)
+  //@SerializedName(SERIALIZED_NAME_ON_SALE)
   @javax.annotation.Nullable
   private Boolean onSale;
 
   public static final String SERIALIZED_NAME_PURCHASABLE = "purchasable";
-  @SerializedName(SERIALIZED_NAME_PURCHASABLE)
+  //@SerializedName(SERIALIZED_NAME_PURCHASABLE)
   @javax.annotation.Nullable
   private Boolean purchasable;
 
   public static final String SERIALIZED_NAME_TOTAL_SALES = "total_sales";
-  @SerializedName(SERIALIZED_NAME_TOTAL_SALES)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_SALES)
   @javax.annotation.Nullable
   private Long totalSales;
 
   public static final String SERIALIZED_NAME_VIRTUAL = "virtual";
-  @SerializedName(SERIALIZED_NAME_VIRTUAL)
+  //@SerializedName(SERIALIZED_NAME_VIRTUAL)
   @javax.annotation.Nullable
   private Boolean virtual;
 
   public static final String SERIALIZED_NAME_DOWNLOADABLE = "downloadable";
-  @SerializedName(SERIALIZED_NAME_DOWNLOADABLE)
+  //@SerializedName(SERIALIZED_NAME_DOWNLOADABLE)
   @javax.annotation.Nullable
   private Boolean downloadable;
 
   public static final String SERIALIZED_NAME_DOWNLOADS = "downloads";
-  @SerializedName(SERIALIZED_NAME_DOWNLOADS)
+  //@SerializedName(SERIALIZED_NAME_DOWNLOADS)
   @javax.annotation.Nullable
   private List<ProductDownload> downloads = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DOWNLOAD_LIMIT = "download_limit";
-  @SerializedName(SERIALIZED_NAME_DOWNLOAD_LIMIT)
+  //@SerializedName(SERIALIZED_NAME_DOWNLOAD_LIMIT)
   @javax.annotation.Nullable
   private Integer downloadLimit;
 
   public static final String SERIALIZED_NAME_DOWNLOAD_EXPIRY = "download_expiry";
-  @SerializedName(SERIALIZED_NAME_DOWNLOAD_EXPIRY)
+  //@SerializedName(SERIALIZED_NAME_DOWNLOAD_EXPIRY)
   @javax.annotation.Nullable
   private Integer downloadExpiry;
 
   public static final String SERIALIZED_NAME_EXTERNAL_URL = "external_url";
-  @SerializedName(SERIALIZED_NAME_EXTERNAL_URL)
+  //@SerializedName(SERIALIZED_NAME_EXTERNAL_URL)
   @javax.annotation.Nullable
   private String externalUrl;
 
   public static final String SERIALIZED_NAME_BUTTON_TEXT = "button_text";
-  @SerializedName(SERIALIZED_NAME_BUTTON_TEXT)
+  //@SerializedName(SERIALIZED_NAME_BUTTON_TEXT)
   @javax.annotation.Nullable
   private String buttonText;
 
   public static final String SERIALIZED_NAME_TAX_STATUS = "tax_status";
-  @SerializedName(SERIALIZED_NAME_TAX_STATUS)
+  //@SerializedName(SERIALIZED_NAME_TAX_STATUS)
   @javax.annotation.Nullable
   private String taxStatus;
 
   public static final String SERIALIZED_NAME_TAX_CLASS = "tax_class";
-  @SerializedName(SERIALIZED_NAME_TAX_CLASS)
+  //@SerializedName(SERIALIZED_NAME_TAX_CLASS)
   @javax.annotation.Nullable
   private String taxClass;
 
   public static final String SERIALIZED_NAME_MANAGE_STOCK = "manage_stock";
-  @SerializedName(SERIALIZED_NAME_MANAGE_STOCK)
+  //@SerializedName(SERIALIZED_NAME_MANAGE_STOCK)
   @javax.annotation.Nullable
   private Boolean manageStock;
 
   public static final String SERIALIZED_NAME_STOCK_QUANTITY = "stock_quantity";
-  @SerializedName(SERIALIZED_NAME_STOCK_QUANTITY)
+  //@SerializedName(SERIALIZED_NAME_STOCK_QUANTITY)
   @javax.annotation.Nullable
   private Integer stockQuantity;
 
   public static final String SERIALIZED_NAME_STOCK_STATUS = "stock_status";
-  @SerializedName(SERIALIZED_NAME_STOCK_STATUS)
+  //@SerializedName(SERIALIZED_NAME_STOCK_STATUS)
   @javax.annotation.Nullable
   private String stockStatus;
 
   public static final String SERIALIZED_NAME_BACKORDERS = "backorders";
-  @SerializedName(SERIALIZED_NAME_BACKORDERS)
+  //@SerializedName(SERIALIZED_NAME_BACKORDERS)
   @javax.annotation.Nullable
   private String backorders;
 
   public static final String SERIALIZED_NAME_BACKORDERS_ALLOWED = "backorders_allowed";
-  @SerializedName(SERIALIZED_NAME_BACKORDERS_ALLOWED)
+  //@SerializedName(SERIALIZED_NAME_BACKORDERS_ALLOWED)
   @javax.annotation.Nullable
   private Boolean backordersAllowed;
 
   public static final String SERIALIZED_NAME_BACKORDERED = "backordered";
-  @SerializedName(SERIALIZED_NAME_BACKORDERED)
+  //@SerializedName(SERIALIZED_NAME_BACKORDERED)
   @javax.annotation.Nullable
   private Boolean backordered;
 
     public static final String SERIALIZED_NAME_LOW_STOCK_AMOUNT = "low_stock_amount";
-    @SerializedName(SERIALIZED_NAME_LOW_STOCK_AMOUNT)
+    //@SerializedName(SERIALIZED_NAME_LOW_STOCK_AMOUNT)
     @javax.annotation.Nullable
     private Integer lowStockAmount;
 
     public static final String SERIALIZED_NAME_BRANDS = "brands";
-    @SerializedName(SERIALIZED_NAME_BRANDS)
+    //@SerializedName(SERIALIZED_NAME_BRANDS)
     @javax.annotation.Nullable
     private List<Brand> brands;
 
     public static final String SERIALIZED_NAME_HAS_OPTIONS = "has_options";
-    @SerializedName(SERIALIZED_NAME_HAS_OPTIONS)
+    //@SerializedName(SERIALIZED_NAME_HAS_OPTIONS)
     @javax.annotation.Nullable
     private Boolean hasOptions;
 
     public static final String SERIALIZED_NAME_POST_PASSWORD = "post_password";
-    @SerializedName(SERIALIZED_NAME_POST_PASSWORD)
+    //@SerializedName(SERIALIZED_NAME_POST_PASSWORD)
     @javax.annotation.Nullable
     private String postPassword;
 
@@ -273,147 +273,147 @@ public class Product {
      */
 
     public static final String SERIALIZED_NAME_GLOBAL_UNIQUE_ID = "global_unique_id";
-    @SerializedName(SERIALIZED_NAME_GLOBAL_UNIQUE_ID)
+    //@SerializedName(SERIALIZED_NAME_GLOBAL_UNIQUE_ID)
     @javax.annotation.Nullable
     private String globalUniqueId;
 
     public static final String SERIALIZED_NAME_PERMALINK_TEMPLATE = "permalink_template";
-    @SerializedName(SERIALIZED_NAME_PERMALINK_TEMPLATE)
+    //@SerializedName(SERIALIZED_NAME_PERMALINK_TEMPLATE)
     @javax.annotation.Nullable
     private String permalinkTemplate;
 
     public static final String SERIALIZED_NAME_GENERATED_SLUG = "generated_slug";
-    @SerializedName(SERIALIZED_NAME_GENERATED_SLUG)
+    //@SerializedName(SERIALIZED_NAME_GENERATED_SLUG)
     @javax.annotation.Nullable
     private String generatedSlug;
 
     public static final String SERIALIZED_NAME_JETPACK_SHARING_ENABLED = "jetpack_sharing_enabled";
-    @SerializedName(SERIALIZED_NAME_JETPACK_SHARING_ENABLED)
+    //@SerializedName(SERIALIZED_NAME_JETPACK_SHARING_ENABLED)
     @javax.annotation.Nullable
     private Boolean jetpackSharingEnabled;
 
     public static final String SERIALIZED_NAME_LINKS = "_links";
-    @SerializedName(SERIALIZED_NAME_LINKS)
+    //@SerializedName(SERIALIZED_NAME_LINKS)
     @javax.annotation.Nullable
     private Links links;
 
   public static final String SERIALIZED_NAME_SOLD_INDIVIDUALLY = "sold_individually";
-  @SerializedName(SERIALIZED_NAME_SOLD_INDIVIDUALLY)
+  //@SerializedName(SERIALIZED_NAME_SOLD_INDIVIDUALLY)
   @javax.annotation.Nullable
   private Boolean soldIndividually;
 
   public static final String SERIALIZED_NAME_WEIGHT = "weight";
-  @SerializedName(SERIALIZED_NAME_WEIGHT)
+  //@SerializedName(SERIALIZED_NAME_WEIGHT)
   @javax.annotation.Nullable
   private String weight;
 
   public static final String SERIALIZED_NAME_DIMENSIONS = "dimensions";
-  @SerializedName(SERIALIZED_NAME_DIMENSIONS)
+  //@SerializedName(SERIALIZED_NAME_DIMENSIONS)
   @javax.annotation.Nullable
   private ProductDimension dimensions;
 
   public static final String SERIALIZED_NAME_SHIPPING_REQUIRED = "shipping_required";
-  @SerializedName(SERIALIZED_NAME_SHIPPING_REQUIRED)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING_REQUIRED)
   @javax.annotation.Nullable
   private Boolean shippingRequired;
 
   public static final String SERIALIZED_NAME_SHIPPING_TAXABLE = "shipping_taxable";
-  @SerializedName(SERIALIZED_NAME_SHIPPING_TAXABLE)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING_TAXABLE)
   @javax.annotation.Nullable
   private Boolean shippingTaxable;
 
   public static final String SERIALIZED_NAME_SHIPPING_CLASS = "shipping_class";
-  @SerializedName(SERIALIZED_NAME_SHIPPING_CLASS)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING_CLASS)
   @javax.annotation.Nullable
   private String shippingClass;
 
   public static final String SERIALIZED_NAME_SHIPPING_CLASS_ID = "shipping_class_id";
-  @SerializedName(SERIALIZED_NAME_SHIPPING_CLASS_ID)
+  //@SerializedName(SERIALIZED_NAME_SHIPPING_CLASS_ID)
   @javax.annotation.Nullable
   private Integer shippingClassId;
 
   public static final String SERIALIZED_NAME_REVIEWS_ALLOWED = "reviews_allowed";
-  @SerializedName(SERIALIZED_NAME_REVIEWS_ALLOWED)
+  //@SerializedName(SERIALIZED_NAME_REVIEWS_ALLOWED)
   @javax.annotation.Nullable
   private Boolean reviewsAllowed;
 
   public static final String SERIALIZED_NAME_AVERAGE_RATING = "average_rating";
-  @SerializedName(SERIALIZED_NAME_AVERAGE_RATING)
+  //@SerializedName(SERIALIZED_NAME_AVERAGE_RATING)
   @javax.annotation.Nullable
   private String averageRating;
 
   public static final String SERIALIZED_NAME_RATING_COUNT = "rating_count";
-  @SerializedName(SERIALIZED_NAME_RATING_COUNT)
+  //@SerializedName(SERIALIZED_NAME_RATING_COUNT)
   @javax.annotation.Nullable
   private Integer ratingCount;
 
   public static final String SERIALIZED_NAME_RELATED_IDS = "related_ids";
-  @SerializedName(SERIALIZED_NAME_RELATED_IDS)
+  //@SerializedName(SERIALIZED_NAME_RELATED_IDS)
   @javax.annotation.Nullable
   private List<Integer> relatedIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UPSELL_IDS = "upsell_ids";
-  @SerializedName(SERIALIZED_NAME_UPSELL_IDS)
+  //@SerializedName(SERIALIZED_NAME_UPSELL_IDS)
   @javax.annotation.Nullable
   private List<Integer> upsellIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CROSS_SELL_IDS = "cross_sell_ids";
-  @SerializedName(SERIALIZED_NAME_CROSS_SELL_IDS)
+  //@SerializedName(SERIALIZED_NAME_CROSS_SELL_IDS)
   @javax.annotation.Nullable
   private List<Integer> crossSellIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PARENT_ID = "parent_id";
-  @SerializedName(SERIALIZED_NAME_PARENT_ID)
+  //@SerializedName(SERIALIZED_NAME_PARENT_ID)
   @javax.annotation.Nullable
   private Integer parentId;
 
   public static final String SERIALIZED_NAME_PURCHASE_NOTE = "purchase_note";
-  @SerializedName(SERIALIZED_NAME_PURCHASE_NOTE)
+  //@SerializedName(SERIALIZED_NAME_PURCHASE_NOTE)
   @javax.annotation.Nullable
   private String purchaseNote;
 
   public static final String SERIALIZED_NAME_CATEGORIES = "categories";
-  @SerializedName(SERIALIZED_NAME_CATEGORIES)
+  //@SerializedName(SERIALIZED_NAME_CATEGORIES)
   @javax.annotation.Nullable
   private List<ProductCategoriesItem> categories = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
-  @SerializedName(SERIALIZED_NAME_TAGS)
+  //@SerializedName(SERIALIZED_NAME_TAGS)
   @javax.annotation.Nullable
   private List<ProductTag> tags = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_IMAGES = "images";
-  @SerializedName(SERIALIZED_NAME_IMAGES)
+  //@SerializedName(SERIALIZED_NAME_IMAGES)
   @javax.annotation.Nullable
   private List<ProductImage> images = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
-  @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  //@SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   @javax.annotation.Nullable
   private List<ProductAttribute> attributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DEFAULT_ATTRIBUTES = "default_attributes";
-  @SerializedName(SERIALIZED_NAME_DEFAULT_ATTRIBUTES)
+  //@SerializedName(SERIALIZED_NAME_DEFAULT_ATTRIBUTES)
   @javax.annotation.Nullable
   private List<ProductAttribute> defaultAttributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_VARIATIONS = "variations";
-  @SerializedName(SERIALIZED_NAME_VARIATIONS)
+  //@SerializedName(SERIALIZED_NAME_VARIATIONS)
   @javax.annotation.Nullable
   private List<Integer> variations = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_GROUPED_PRODUCTS = "grouped_products";
-  @SerializedName(SERIALIZED_NAME_GROUPED_PRODUCTS)
+  //@SerializedName(SERIALIZED_NAME_GROUPED_PRODUCTS)
   @javax.annotation.Nullable
   private List<Integer> groupedProducts = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
-  @SerializedName(SERIALIZED_NAME_MENU_ORDER)
+  //@SerializedName(SERIALIZED_NAME_MENU_ORDER)
   @javax.annotation.Nullable
   private Integer menuOrder;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
-  @SerializedName(SERIALIZED_NAME_META_DATA)
+  //@SerializedName(SERIALIZED_NAME_META_DATA)
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 

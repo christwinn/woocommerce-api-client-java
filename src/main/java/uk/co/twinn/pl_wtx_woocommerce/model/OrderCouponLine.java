@@ -24,7 +24,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,27 +37,27 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class OrderCouponLine {
   public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  //@SerializedName(SERIALIZED_NAME_ID)
   @javax.annotation.Nullable
   private Integer id;
 
   public static final String SERIALIZED_NAME_CODE = "code";
-  @SerializedName(SERIALIZED_NAME_CODE)
+  //@SerializedName(SERIALIZED_NAME_CODE)
   @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_DISCOUNT = "discount";
-  @SerializedName(SERIALIZED_NAME_DISCOUNT)
+  //@SerializedName(SERIALIZED_NAME_DISCOUNT)
   @javax.annotation.Nullable
   private String discount;
 
   public static final String SERIALIZED_NAME_DISCOUNT_TAX = "discount_tax";
-  @SerializedName(SERIALIZED_NAME_DISCOUNT_TAX)
+  //@SerializedName(SERIALIZED_NAME_DISCOUNT_TAX)
   @javax.annotation.Nullable
   private String discountTax;
 
   public static final String SERIALIZED_NAME_META_DATA = "meta_data";
-  @SerializedName(SERIALIZED_NAME_META_DATA)
+  //@SerializedName(SERIALIZED_NAME_META_DATA)
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 

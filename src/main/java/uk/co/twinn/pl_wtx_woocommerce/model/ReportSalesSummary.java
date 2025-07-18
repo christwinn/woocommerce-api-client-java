@@ -24,7 +24,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -38,62 +38,62 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ReportSalesSummary {
   public static final String SERIALIZED_NAME_TOTAL_SALES = "total_sales";
-  @SerializedName(SERIALIZED_NAME_TOTAL_SALES)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_SALES)
   @javax.annotation.Nullable
   private String totalSales;
 
   public static final String SERIALIZED_NAME_NET_SALES = "net_sales";
-  @SerializedName(SERIALIZED_NAME_NET_SALES)
+  //@SerializedName(SERIALIZED_NAME_NET_SALES)
   @javax.annotation.Nullable
   private String netSales;
 
   public static final String SERIALIZED_NAME_AVERAGE_SALES = "average_sales";
-  @SerializedName(SERIALIZED_NAME_AVERAGE_SALES)
+  //@SerializedName(SERIALIZED_NAME_AVERAGE_SALES)
   @javax.annotation.Nullable
   private String averageSales;
 
   public static final String SERIALIZED_NAME_TOTAL_ORDERS = "total_orders";
-  @SerializedName(SERIALIZED_NAME_TOTAL_ORDERS)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_ORDERS)
   @javax.annotation.Nullable
   private Integer totalOrders;
 
   public static final String SERIALIZED_NAME_TOTAL_ITEMS = "total_items";
-  @SerializedName(SERIALIZED_NAME_TOTAL_ITEMS)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_ITEMS)
   @javax.annotation.Nullable
   private Integer totalItems;
 
   public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
-  @SerializedName(SERIALIZED_NAME_TOTAL_TAX)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_TAX)
   @javax.annotation.Nullable
   private String totalTax;
 
   public static final String SERIALIZED_NAME_TOTAL_SHIPPING = "total_shipping";
-  @SerializedName(SERIALIZED_NAME_TOTAL_SHIPPING)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_SHIPPING)
   @javax.annotation.Nullable
   private String totalShipping;
 
   public static final String SERIALIZED_NAME_TOTAL_REFUNDS = "total_refunds";
-  @SerializedName(SERIALIZED_NAME_TOTAL_REFUNDS)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_REFUNDS)
   @javax.annotation.Nullable
   private BigDecimal totalRefunds;
 
   public static final String SERIALIZED_NAME_TOTAL_DISCOUNT = "total_discount";
-  @SerializedName(SERIALIZED_NAME_TOTAL_DISCOUNT)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_DISCOUNT)
   @javax.annotation.Nullable
   private String totalDiscount;
 
   public static final String SERIALIZED_NAME_TOTALS_GROUPED_BY = "totals_grouped_by";
-  @SerializedName(SERIALIZED_NAME_TOTALS_GROUPED_BY)
+  //@SerializedName(SERIALIZED_NAME_TOTALS_GROUPED_BY)
   @javax.annotation.Nullable
   private String totalsGroupedBy;
 
   public static final String SERIALIZED_NAME_TOTAL_CUSTOMERS = "total_customers";
-  @SerializedName(SERIALIZED_NAME_TOTAL_CUSTOMERS)
+  //@SerializedName(SERIALIZED_NAME_TOTAL_CUSTOMERS)
   @javax.annotation.Nullable
   private Integer totalCustomers;
 
   public static final String SERIALIZED_NAME_TOTALS = "totals";
-  @SerializedName(SERIALIZED_NAME_TOTALS)
+  //@SerializedName(SERIALIZED_NAME_TOTALS)
   @javax.annotation.Nullable
   private Map<String, ReportSalesSummaryItem> totals = new HashMap<>();
 

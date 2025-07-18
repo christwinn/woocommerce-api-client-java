@@ -32,49 +32,6 @@ public class ProductBuilder extends ApiRequest {
 
     public ProductBuilder(){}
 
-    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public static Creator<?> create(){
-
-        return new Creator<>();
-
-    }
-
-    public static Reader<?> read(int productId){
-
-        return new Reader<>(productId);
-
-    }
-
-    public static Updater<?> update(int productId){
-
-        return new Updater<>(productId);
-
-    }
-
-    public static Deleter<?> delete(int productId, boolean force){
-
-        return new Deleter<>(productId, force);
-
-    }
-
-    public static Duplicator<?> duplicate(int productId){
-
-        return new Duplicator<>(productId);
-
-    }
-
-    public static Batcher<?> batch(){
-
-        return new Batcher<>();
-
-    }
-    public static ListAll<?> listing(){
-
-        return new ListAll<>();
-
-    }
-    //</editor-fold>
-
     //<editor-fold defaultstate="collapsed" desc="Private Constructors">
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
     private ProductBuilder(Creator<?> creator){

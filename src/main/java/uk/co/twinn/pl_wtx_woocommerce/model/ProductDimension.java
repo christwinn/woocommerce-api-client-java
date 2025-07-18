@@ -24,7 +24,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.util.Objects;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
@@ -34,17 +34,17 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class ProductDimension {
   public static final String SERIALIZED_NAME_LENGTH = "length";
-  @SerializedName(SERIALIZED_NAME_LENGTH)
+  //@SerializedName(SERIALIZED_NAME_LENGTH)
   @javax.annotation.Nullable
   private String length;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
-  @SerializedName(SERIALIZED_NAME_WIDTH)
+  //@SerializedName(SERIALIZED_NAME_WIDTH)
   @javax.annotation.Nullable
   private String width;
 
   public static final String SERIALIZED_NAME_HEIGHT = "height";
-  @SerializedName(SERIALIZED_NAME_HEIGHT)
+  //@SerializedName(SERIALIZED_NAME_HEIGHT)
   @javax.annotation.Nullable
   private String height;
 

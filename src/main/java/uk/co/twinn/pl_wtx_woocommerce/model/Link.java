@@ -9,13 +9,13 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
-import com.google.gson.annotations.SerializedName;
+//import com.google.gson.annotations.SerializedName;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 public class Link {
 
     public static final String SERIALIZED_NAME_HREF = "href";
-    @SerializedName(SERIALIZED_NAME_HREF)
+    //@SerializedName(SERIALIZED_NAME_HREF)
     @javax.annotation.Nullable
     private String href;
 
