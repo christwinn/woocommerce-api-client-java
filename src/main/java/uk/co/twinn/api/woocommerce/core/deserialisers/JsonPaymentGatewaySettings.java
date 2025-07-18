@@ -55,8 +55,8 @@ public class JsonPaymentGatewaySettings extends StdDeserializer<PaymentGatewaySe
 
         if (jsonNode.isObject()) {
 
-            Iterator<Map.Entry<String, JsonNode>> fields = jsonNode.fields();
-            fields.forEachRemaining(field -> {
+            Set<Map.Entry<String, JsonNode>> fields = jsonNode.properties();
+            fields.iterator().forEachRemaining(field -> {
                 if (isRoot) {
                     keys.put(field.getKey(), new PaymentGatewaySetting());
                     getAllKeysUsingJsonNodeFields((JsonNode) field.getValue(), false, field.getKey());
@@ -98,8 +98,8 @@ public class JsonPaymentGatewaySettings extends StdDeserializer<PaymentGatewaySe
 
         if (jsonNode.isObject()) {
             List<NameValuePair> nvp = new ArrayList<>();
-            Iterator<Map.Entry<String, JsonNode>> fields = jsonNode.fields();
-            fields.forEachRemaining(field -> {
+            Set<Map.Entry<String, JsonNode>> fields = jsonNode.properties();
+            fields.iterator().forEachRemaining(field -> {
                 nvp.add(new BasicNameValuePair(field.getKey(), field.getValue().toString()));
             });
             keys.get(root).setOptions(nvp);

@@ -37,16 +37,16 @@ public class Authentication {
      *  <a href="https://letsencrypt.org">Let's Encrypt is a project of the nonprofit Internet Security Research Group.</a>
      *
      */
-    public static class Http<T extends Http<T>>{
-        public T nooooooGOSECURE(String letssEncryptIsFreeWhyAmIExposingDetails){
-            return (T) this;
+    public static class Http{
+        public Http nooooooGOSECURE(String letssEncryptIsFreeWhyAmIExposingDetails){
+            return this;
         }
 
     }
 
-    public static AuthenticationBuilder.Https<?> https(){
+    public static AuthenticationBuilder.Https<?> Https(){
 
-        return new AuthenticationBuilder.Https();
+        return new AuthenticationBuilder.Https<>();
 
     }
 
