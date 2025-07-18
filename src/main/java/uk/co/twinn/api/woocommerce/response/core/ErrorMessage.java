@@ -8,7 +8,7 @@
  */
 package uk.co.twinn.api.woocommerce.response.core;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 
 public class ErrorMessage {
     private String code;
@@ -38,7 +38,7 @@ public class ErrorMessage {
     /**
      * @return the message
      */
-    @NotNull
+    @Nonnull
     public String getMessage() {
         return message;
     }

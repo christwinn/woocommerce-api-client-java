@@ -706,7 +706,7 @@ public class WooCommerceApiClientUsageDemo {
             )
             .getResponse();
 
-        Message message = Authentication.https()
+        Message message = Authentication.Https()
             .setWebsite("example.com")
             .setApiPath("/wp-json/wc/v3")
             .setKey("myverysecretkeythatIgotfrommywoocommerceinstallation")

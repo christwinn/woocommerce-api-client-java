@@ -16,7 +16,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Configuration;
@@ -112,7 +112,7 @@ public class Http {
 
     }
 
-    @NotNull
+    @Nonnull
     private static HttpPost getHttpPost(String target, List<NameValuePair> headers, String content) throws UnsupportedEncodingException {
 
         HttpPost post = new HttpPost(target);
@@ -192,7 +192,7 @@ public class Http {
         }
 
     }
-    @NotNull
+    @Nonnull
     private static HttpPut getHttpPut(String target, List<NameValuePair> headers, String content) throws UnsupportedEncodingException {
 
         HttpPut put = new HttpPut(target);
