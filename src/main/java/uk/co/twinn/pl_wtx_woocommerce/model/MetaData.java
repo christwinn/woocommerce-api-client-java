@@ -24,13 +24,15 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 //import com.google.gson.annotations.SerializedName;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Generated;
+import javax.annotation.Nullable;
+
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
  * MetaData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class MetaData {
   public static final String SERIALIZED_NAME_ID = "id";
   //@SerializedName(SERIALIZED_NAME_ID)

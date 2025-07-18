@@ -25,7 +25,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.google.gson.annotations.SerializedName;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**

@@ -28,7 +28,7 @@ import java.util.Objects;
 
 import java.time.LocalDateTime;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**

@@ -27,7 +27,7 @@ import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
