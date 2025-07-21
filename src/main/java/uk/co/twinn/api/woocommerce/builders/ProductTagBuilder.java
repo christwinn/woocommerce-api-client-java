@@ -82,14 +82,16 @@ public class ProductTagBuilder extends ApiRequest {
         private String slug;        //string	Product slug.
         private String description;
 
-        /**
-         *
-         * @param name Product Name
-         * @return T
-         */
-        public T setName(String name) {
+        private Creator(){}
+
+        public Creator(String name){
             this.name = name;
-            return self();
+        }
+
+        public Creator(ProductTag productTag){
+            this(productTag.getName());
+            this.slug = productTag.getSlug();
+            this.description = productTag.getDescription();
         }
 
         /**
@@ -142,6 +144,11 @@ public class ProductTagBuilder extends ApiRequest {
 
         public Updater(int productTagId){
             this.id = productTagId;
+        }
+
+        public Updater(ProductTag productTag){
+            super(productTag);
+            this.id = productTag.getId();
         }
 
         /*public T setId(int id) {

@@ -98,19 +98,22 @@ public class ProductAttributeTermBuilder extends ApiRequest {
         protected String description; //	string	Type of attribute. By default only select is supported.
         protected Integer menuOrder; //	string	Default sort order. Options: menu_order, name, name_num and id. Default is menu_order
 
+        private Creator(){}
+
+        public Creator(int attributeId, String name){
+            this.attributeId = attributeId;
+            this.name = name;
+        }
+
+        public Creator(int attributeId, ProductAttributeTerm productAttributeTerm){
+            this(attributeId, productAttributeTerm.getName());
+            slug = productAttributeTerm.getSlug();
+            description = productAttributeTerm.getDescription();
+            menuOrder = productAttributeTerm.getMenuOrder();
+        }
 
         T self() {
             return (T) this;
-        }
-
-        /**
-         *
-         * @param attributeId Create a new product attribute term for Attribute.
-         * @return T
-         */
-        public T setAttributeId(int attributeId){
-            this.attributeId = attributeId;
-            return self();
         }
 
         /**
@@ -188,6 +191,11 @@ public class ProductAttributeTermBuilder extends ApiRequest {
         public Updater(int attributeId, int termId){
             this.attributeId = attributeId;
             this.termsId = termId;
+        }
+
+        public Updater(int attributeId, int attributeTermId, ProductAttributeTerm productAttributeTerm){
+            super(attributeId, productAttributeTerm);
+            this.termsId = attributeTermId;
         }
 
         T self() {

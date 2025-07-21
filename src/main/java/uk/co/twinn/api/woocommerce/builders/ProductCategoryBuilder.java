@@ -45,7 +45,7 @@ public class ProductCategoryBuilder extends ApiRequest {
             category.setImage(img);
         }
 
-        category.setMenuOrder(creator.menu_order);
+        category.setMenuOrder(creator.menuOrder);
 
     }
 
@@ -89,7 +89,7 @@ public class ProductCategoryBuilder extends ApiRequest {
 
     public static class Creator<T extends Creator<T>>{
 
-        private String name;
+        protected String name;
         private String description;
         private Integer parent;
 
@@ -97,16 +97,38 @@ public class ProductCategoryBuilder extends ApiRequest {
 
         private ProductCategory.DisplayEnum display;
         private String image;
-        private Integer menu_order;
+        private Integer menuOrder;
 
+        private Creator(){
+
+        }
+        public Creator(String name){
+            this.name = name;
+        }
+
+        public Creator(ProductCategory productCategory){
+            this(productCategory.getName());
+            slug = productCategory.getSlug();
+            parent = productCategory.getParent();
+            description = productCategory.getDescription();
+            display = productCategory.getDisplay();
+
+            if (productCategory.getImage() != null &&
+                productCategory.getImage().getSrc() != null &&
+                !productCategory.getImage().getSrc().isEmpty()){
+
+                image = productCategory.getImage().getSrc();
+
+            }
+
+            menuOrder = productCategory.getMenuOrder();
+
+        }
         T self() {
             return (T) this;
         }
 
-        public T setName(String name){
-            this.name = name;
-            return self();
-        }
+
         public T setDescription(String description){
             this.description = description;
             return self();
@@ -135,8 +157,8 @@ public class ProductCategoryBuilder extends ApiRequest {
             this.image = image;
             return self();
         }
-        public T setMenuOrder(Integer menu_order){
-            this.menu_order = menu_order;
+        public T setMenuOrder(Integer menuOrder){
+            this.menuOrder = menuOrder;
             return self();
         }
 
@@ -163,11 +185,15 @@ public class ProductCategoryBuilder extends ApiRequest {
             this.id = productCategoryId;
         }
 
-        /*
-        public T setId(int id){
-            this.id = id;
+        public Updater(ProductCategory productCategory){
+            super(productCategory);
+            this.id = productCategory.getId();
+        }
+
+        public T setName(String name){
+            this.name = name;
             return self();
-        }*/
+        }
 
         @Override
         protected ProductCategoryBuilder build(){

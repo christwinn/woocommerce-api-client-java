@@ -10,6 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.PaymentGatewayBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.PaymentGateway;
 
 public class PaymentGateways {
 
@@ -18,6 +19,12 @@ public class PaymentGateways {
     public static PaymentGatewayBuilder.Updater<?> update(String gatewayId){
 
         return new PaymentGatewayBuilder.Updater<>(gatewayId);
+
+    }
+
+    public static PaymentGatewayBuilder.Updater<?> update(PaymentGateway paymentGateway){
+
+        return new PaymentGatewayBuilder.Updater<>(paymentGateway);
 
     }
 

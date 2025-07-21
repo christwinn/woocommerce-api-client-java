@@ -45,27 +45,27 @@ public class ProductVariationBuilder extends ApiRequest {
         productVariation.setSku(creator.sku);
         productVariation.setRegularPrice(creator.regularPrice);
         productVariation.setSalePrice(creator.salePrice);
-        productVariation.setDateOnSaleFrom(creator.date_on_sale_from);
-        productVariation.setDateOnSaleFromGmt(creator.date_on_sale_from_gmt);
-        productVariation.setDateOnSaleTo(creator.date_on_sale_to);
-        productVariation.setDateOnSaleToGmt(creator.date_on_sale_to_gmt);
+        productVariation.setDateOnSaleFrom(creator.dateOnSaleFrom);
+        productVariation.setDateOnSaleFromGmt(creator.dateOnSaleFromGmt);
+        productVariation.setDateOnSaleTo(creator.dateOnSaleTo);
+        productVariation.setDateOnSaleToGmt(creator.dateOnSaleToGmt);
         productVariation.setVirtual(creator.virtual);
         productVariation.setDownloadable(creator.downloadable);
         productVariation.setDownloads(creator.downloads);
-        productVariation.setDownloadLimit(creator.download_limit);
-        productVariation.setDownloadExpiry(creator.download_expiry);
-        productVariation.setTaxStatus(creator.tax_status);
-        productVariation.setTaxClass(creator.tax_class);
-        productVariation.setManageStock(creator.manage_stock);
-        productVariation.setStockQuantity(creator.stock_quantity);
-        productVariation.setStockStatus(creator.stock_status);
+        productVariation.setDownloadLimit(creator.downloadLimit);
+        productVariation.setDownloadExpiry(creator.downloadExpiry);
+        productVariation.setTaxStatus(creator.taxStatus);
+        productVariation.setTaxClass(creator.taxClass);
+        productVariation.setManageStock(creator.manageStock);
+        productVariation.setStockQuantity(creator.stockQuantity);
+        productVariation.setStockStatus(creator.stockStatus);
         productVariation.setBackorders(creator.backorders);
         productVariation.setWeight(creator.weight);
         productVariation.setDimensions(creator.dimensions);
-        productVariation.setShippingClass(creator.shipping_class);
+        productVariation.setShippingClass(creator.shippingClass);
         productVariation.setAttributes(creator.attributes);
-        productVariation.setMenuOrder(creator.menu_order);
-        productVariation.setMetaData(creator.meta_data);
+        productVariation.setMenuOrder(creator.menuOrder);
+        productVariation.setMetaData(creator.metaData);
 
     }
 
@@ -120,7 +120,7 @@ public class ProductVariationBuilder extends ApiRequest {
     public static class Creator<T extends Creator<T>> extends CoreProductsVariations.Creator<T>{
 
         //set up the private variables
-        protected int productId; //_differentiate
+        protected final int productId; //_differentiate
 
         private ProductImage image;    //array	List of images. See Product - Images properties
 
@@ -128,9 +128,13 @@ public class ProductVariationBuilder extends ApiRequest {
             return (T) this;
         }
 
-        public T setProductId(int productId) {
+        public Creator(int productId){
             this.productId = productId;
-            return self();
+        }
+
+        public Creator(int productId, ProductVariation productVariation){
+            super(productVariation);
+            this.productId = productId;
         }
 
         protected ProductVariationBuilder build(){
@@ -165,8 +169,13 @@ public class ProductVariationBuilder extends ApiRequest {
         private final int variationId;
 
         public Updater(int productId, int variationId){
-            this.productId = productId;
+            super(productId);
             this.variationId = variationId;
+        }
+
+        public Updater(int productId, ProductVariation productVariation){
+            super(productId, productVariation);
+            this.variationId = productVariation.getVariationId();
         }
 
         T self() {

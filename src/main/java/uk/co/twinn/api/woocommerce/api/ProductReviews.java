@@ -10,15 +10,22 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductReviewBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.ProductReview;
 
 public class ProductReviews {
 
     private ProductReviews(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public static ProductReviewBuilder.Creator<?> create(){
+    public static ProductReviewBuilder.Creator<?> create(int productId){
 
-        return new ProductReviewBuilder.Creator<>();
+        return new ProductReviewBuilder.Creator<>(productId);
+
+    }
+
+    public static ProductReviewBuilder.Creator<?> create(ProductReview productReview){
+
+        return new ProductReviewBuilder.Creator<>(productReview);
 
     }
 
@@ -31,6 +38,12 @@ public class ProductReviews {
     public static ProductReviewBuilder.Updater<?> update(int reviewId){
 
         return new ProductReviewBuilder.Updater<>(reviewId);
+
+    }
+
+    public static ProductReviewBuilder.Updater<?> update(ProductReview productReview){
+
+        return new ProductReviewBuilder.Updater<>(productReview);
 
     }
 

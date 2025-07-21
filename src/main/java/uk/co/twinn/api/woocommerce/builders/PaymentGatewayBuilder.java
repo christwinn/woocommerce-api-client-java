@@ -73,6 +73,16 @@ public class PaymentGatewayBuilder extends ApiRequest {
             this.gatewayId = gatewayId;
         }
 
+        public Updater(PaymentGateway paymentGateway){
+
+            this(paymentGateway.getId());
+            this.title = paymentGateway.getTitle();
+            this.description = paymentGateway.getDescription();
+            this.order = paymentGateway.getOrder();
+            this.enabled = paymentGateway.getEnabled();
+
+        }
+
         @SuppressWarnings("unchecked")
         T self() {
             return (T) this;

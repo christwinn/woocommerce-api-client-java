@@ -10,6 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.CouponBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
 
 public class Coupons {
 
@@ -22,15 +23,27 @@ public class Coupons {
 
     }
 
+    public static CouponBuilder.Creator<?> create(Coupon coupon){
+
+        return new CouponBuilder.Creator<>(coupon);
+
+    }
+
     public static CouponBuilder.Reader<?> read(int CouponId){
 
         return new CouponBuilder.Reader<>(CouponId);
 
     }
 
-    public static CouponBuilder.Updater<?> update(int CouponId){
+    public static CouponBuilder.Updater<?> update(int couponId){
 
-        return new CouponBuilder.Updater<>(CouponId);
+        return new CouponBuilder.Updater<>(couponId);
+
+    }
+
+    public static CouponBuilder.Updater<?> update(Coupon coupon){
+
+        return new CouponBuilder.Updater<>(coupon);
 
     }
 

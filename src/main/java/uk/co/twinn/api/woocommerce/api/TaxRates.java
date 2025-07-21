@@ -10,6 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.TaxRateBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.TaxRate;
 
 public class TaxRates {
 
@@ -22,6 +23,12 @@ public class TaxRates {
 
     }
 
+    public static TaxRateBuilder.Creator<?> create(TaxRate taxRate){
+
+        return new TaxRateBuilder.Creator<>(taxRate);
+
+    }
+
     public static TaxRateBuilder.Reader<?> read(int taxRateId){
 
         return new TaxRateBuilder.Reader<>(taxRateId);
@@ -31,6 +38,12 @@ public class TaxRates {
     public static TaxRateBuilder.Updater<?> update(int taxRateId){
 
         return new TaxRateBuilder.Updater<>(taxRateId);
+
+    }
+
+    public static TaxRateBuilder.Updater<?> update(TaxRate taxRate){
+
+        return new TaxRateBuilder.Updater<>(taxRate);
 
     }
 

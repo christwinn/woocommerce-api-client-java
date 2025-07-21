@@ -56,22 +56,14 @@ public class OrderRefundBuilder extends ApiRequest {
 
     }
 
-    public String endPoint(){
+    public static String endPoint(int orderId){
 
         return ORDERS +
-            (orderRefund.getOrderId() != null && orderRefund.getOrderId() != 0
-                ? ("/" + orderRefund.getOrderId())
+            (orderId > 0
+                ? "/" + orderId
                 : ""
             ) +
-            "/" + REFUNDS +
-            (orderRefund.getId() != null && orderRefund.getId() != 0
-                ? "/" + orderRefund.getId()
-                : ""
-            ) +
-            (force
-                ? "?force=true"
-                : ""
-            );
+            "/" + REFUNDS;
 
     }
 
@@ -91,7 +83,7 @@ public class OrderRefundBuilder extends ApiRequest {
 
     public static class Creator<T extends Creator<T>>{
 
-        private int orderId;
+        private final int orderId;
 
         private BigDecimal amount;
         //string	Total refund amount.
@@ -107,19 +99,30 @@ public class OrderRefundBuilder extends ApiRequest {
         private Boolean apiRefund;//	boolean	When true, the payment gateway API is used to generate the refund. Default is true.write-only
         private Boolean apiRestock;//	boolean	When true, the selected line items are restocked Default is true.write-only
 
+        public Creator(int orderId){
+            this.orderId = orderId;
+        }
+
+        public Creator(int orderId, OrderRefund orderRefund){
+
+            this(orderId);
+
+            amount = orderRefund.getAmount();
+            reason = orderRefund.getReason();
+            refundedBy = orderRefund.getRefundedBy();
+            metaData = orderRefund.getMetaData();
+            lineItems = orderRefund.getLineItems();
+            shippingLines = orderRefund.getShippingLines();
+            feeLines = orderRefund.getFeeLines();
+            apiRefund = orderRefund.getApiRefund();
+            apiRestock = orderRefund.getApiRestock();
+        }
+
         T self() {
             return (T) this;
         }
 
-        /**
-         *
-         * @param orderId Order note(s) must be tied to an Order.
-         * @return T
-         */
-        public T setOrderId(int orderId){
-            this.orderId = orderId;
-            return self();
-        }
+
 
         public T setAmount(BigDecimal amount) {
             this.amount = amount;
@@ -185,7 +188,7 @@ public class OrderRefundBuilder extends ApiRequest {
                 OrderRefundBuilder create = build();
                 //make the call
                 return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<OrderRefund>(){})
+                    new Rest().create(endPoint(orderId), create.toJson(), new TypeReference<OrderRefund>(){})
                 );
             }
         }
@@ -229,20 +232,14 @@ public class OrderRefundBuilder extends ApiRequest {
 
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T>{
 
-        protected int orderId;
+        private final int orderId;
+
+        public ListAll(int orderId){
+            this.orderId = orderId;
+        }
 
         T self() {
             return (T) this;
-        }
-
-        /**
-         *
-         * @param orderId Order note(s) must be tied to an Order.
-         * @return T
-         */
-        public T setOrderId(int orderId){
-            this.orderId = orderId;
-            return self();
         }
 
         /**
@@ -250,8 +247,8 @@ public class OrderRefundBuilder extends ApiRequest {
          *  otherwise returns list of productCategory
          */
         public Listed<OrderRefund> getResponse(){
-            if (orderId == 0) {
-                return new Listed<OrderRefund>(
+            if (orderId <= 0) {
+                return new Listed<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -259,11 +256,9 @@ public class OrderRefundBuilder extends ApiRequest {
                 );
             }else {
 
-                String endPoint = ORDERS + "/" + orderId + "/" + REFUNDS;
-
-                return new Listed<OrderRefund>(
+                return new Listed<>(
                     new Rest().listAll(
-                        endPoint,
+                        endPoint(orderId),
                         build(),
                         new TypeReference<List<OrderRefund>>(){}
                     )

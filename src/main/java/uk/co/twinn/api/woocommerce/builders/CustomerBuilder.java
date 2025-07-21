@@ -93,6 +93,20 @@ public class CustomerBuilder extends ApiRequest {
         private Billing billing;
         private Shipping shipping;
 
+        public Creator(){
+
+        }
+        /** !Traditionally set a customer, passes through here only setting that, that we can */
+        public Creator(Customer customer){
+            email = customer.getEmail();
+            firstName = customer.getFirstName();
+            lastName = customer.getLastName();
+            username = customer.getUsername();
+            password = customer.getPassword();
+            billing = customer.getBilling();
+            shipping = customer.getShipping();
+        }
+
         T self() {
             return (T) this;
         }
@@ -163,13 +177,14 @@ public class CustomerBuilder extends ApiRequest {
         private final int id;
 
         public Updater(int productId){
+            super();
             this.id = productId;
         }
 
-        /*public T setId(int id){
-            this.id = id;
-            return self();
-        }*/
+        public Updater(Customer customer){
+            super(customer);
+            this.id = customer.getId();
+        }
 
         @Override
         protected CustomerBuilder build(){

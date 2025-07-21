@@ -122,17 +122,17 @@ public class Product {
   public static final String SERIALIZED_NAME_PRICE = "price";
   //@SerializedName(SERIALIZED_NAME_PRICE)
   @javax.annotation.Nullable
-  private String price;
+  private BigDecimal price;
 
   public static final String SERIALIZED_NAME_REGULAR_PRICE = "regular_price";
   //@SerializedName(SERIALIZED_NAME_REGULAR_PRICE)
   @javax.annotation.Nullable
-  private String regularPrice;
+  private BigDecimal regularPrice;
 
   public static final String SERIALIZED_NAME_SALE_PRICE = "sale_price";
   //@SerializedName(SERIALIZED_NAME_SALE_PRICE)
   @javax.annotation.Nullable
-  private String salePrice;
+  private BigDecimal salePrice;
 
   public static final String SERIALIZED_NAME_DATE_ON_SALE_FROM = "date_on_sale_from";
   //@SerializedName(SERIALIZED_NAME_DATE_ON_SALE_FROM)
@@ -889,7 +889,7 @@ public enum TaxStatusEnum {
   }
 
 
-  public Product price(@javax.annotation.Nullable String price) {
+  public Product price(@javax.annotation.Nullable BigDecimal price) {
     this.price = price;
     return this;
   }
@@ -899,16 +899,17 @@ public enum TaxStatusEnum {
    * @return price
    */
   @javax.annotation.Nullable
-  public String getPrice() {
+  public BigDecimal getPrice() {
     return price;
   }
 
-  public void setPrice(@javax.annotation.Nullable String price) {
+
+  public void setPrice(@javax.annotation.Nullable BigDecimal price) {
     this.price = price;
   }
 
 
-  public Product regularPrice(@javax.annotation.Nullable String regularPrice) {
+  public Product regularPrice(@javax.annotation.Nullable BigDecimal regularPrice) {
     this.regularPrice = regularPrice;
     return this;
   }
@@ -917,23 +918,21 @@ public enum TaxStatusEnum {
    * Regular product price.
    * @return regularPrice
    */
+  @JsonProperty("regular_price")
   @javax.annotation.Nullable
-  public String getRegularPrice() {
+  public BigDecimal getRegularPrice() {
     return regularPrice;
   }
 
-  @JsonProperty("regular_price")
-  public void setRegularPrice(@javax.annotation.Nullable String regularPrice) {
-    this.regularPrice = regularPrice;
-  }
 
+  /*public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) {this.regularPrice = regularPrice;  }*/
+
+    @JsonProperty("regular_price")
   public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) {
-      if (regularPrice != null) {
-          setRegularPrice(regularPrice.toString());
-      }
+        this.regularPrice = regularPrice;
     }
 
-  public Product salePrice(@javax.annotation.Nullable String salePrice) {
+  public Product salePrice(@javax.annotation.Nullable BigDecimal salePrice) {
     this.salePrice = salePrice;
     return this;
   }
@@ -942,20 +941,18 @@ public enum TaxStatusEnum {
    * Product sale price.
    * @return salePrice
    */
+  @JsonProperty("sale_price")
   @javax.annotation.Nullable
-  public String getSalePrice() {
+  public BigDecimal getSalePrice() {
     return salePrice;
   }
 
-  @JsonProperty("sale_price")
-  public void setSalePrice(@javax.annotation.Nullable String salePrice) {
-    this.salePrice = salePrice;
-  }
 
+  /*public void setSalePrice(@javax.annotation.Nullable String salePrice) {this.salePrice = salePrice;}*/
+
+    @JsonProperty("sale_price")
     public void setSalePrice(@javax.annotation.Nullable BigDecimal salePrice) {
-        if (salePrice != null) {
-            setSalePrice(salePrice.toString());
-        }
+        this.salePrice = salePrice;
     }
 
 

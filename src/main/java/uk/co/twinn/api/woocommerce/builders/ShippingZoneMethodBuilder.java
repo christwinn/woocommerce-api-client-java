@@ -85,6 +85,8 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
         protected int zoneId;        //string	ShippingZone name.
         protected String methodId;        //string	ShippingZoneMethod name.
 
+        private HashMap<String, String> settingNameValue;
+
         public Creator(int zoneId){
             this.zoneId = zoneId;
         }
@@ -100,6 +102,12 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
 
         T self() {
             return (T) this;
+        }
+
+
+        public T setSettingValue(String settingName, String value){
+            settingNameValue.put(settingName, value);
+            return self();
         }
 
         private ShippingZoneMethodBuilder build(){

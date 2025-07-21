@@ -157,6 +157,34 @@ public class CouponBuilder extends ApiRequest {
         private List<String> emailRestrictions; //	array	List of email addresses that can use this coupon.
         private List<MetaData> metaData; //	array	Meta data. See Coupon - Meta data properties
 
+        public Creator(){
+
+        }
+
+        public Creator(Coupon coupon){
+
+            code = coupon.getCode();
+            amount = coupon.getAmount();
+            discountType = coupon.getDiscountType();
+            description = coupon.getDescription();
+            dateExpires = coupon.getDateExpires();
+            dateExpiresGMT = coupon.getDateExpiresGMT();
+            individualUse = coupon.getIndividualUse();
+            productIds = coupon.getProductIds();
+            excludedProductIds = coupon.getExcludedProductIds();
+            usageLimit = coupon.getUsageLimit();
+            usageLimitPerUser = coupon.getUsageLimitPerUser();
+            limitUsageToXItems = coupon.getLimitUsageToXItems();
+            freeShipping = coupon.getFreeShipping();
+            productCategories = coupon.getProductCategories();
+            excludedProductCategories = coupon.getExcludedProductCategories();
+            excludeSaleItems = coupon.getExcludeSaleItems();
+            minimumAmount = coupon.getMinimumAmount();
+            maximumAmount = coupon.getMaximumAmount();
+            emailRestrictions = coupon.getEmailRestrictions();
+            metaData = coupon.getMetaData();
+
+        }
 
         T self() {
             return (T) this;
@@ -376,6 +404,11 @@ public class CouponBuilder extends ApiRequest {
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
         private final int id;
+
+        public Updater(Coupon coupon){
+            super(coupon);
+            this.id = coupon.getId();
+        }
 
         public Updater(int couponId){
             this.id = couponId;

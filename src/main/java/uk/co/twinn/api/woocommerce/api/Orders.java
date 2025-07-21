@@ -10,6 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.OrderBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.Order;
 
 public class Orders {
 
@@ -22,6 +23,12 @@ public class Orders {
 
     }
 
+    public static OrderBuilder.Creator<?> create(Order order){
+
+        return new OrderBuilder.Creator<>(order);
+
+    }
+
     public static OrderBuilder.Reader<?> read(int orderId){
 
         return new OrderBuilder.Reader<>(orderId);
@@ -31,6 +38,12 @@ public class Orders {
     public static OrderBuilder.Updater<?> update(int orderId){
 
         return new OrderBuilder.Updater<>(orderId);
+
+    }
+
+    public static OrderBuilder.Updater<?> update(Order order){
+
+        return new OrderBuilder.Updater<>(order);
 
     }
 

@@ -10,15 +10,22 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductAttributeTermBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.ProductAttributeTerm;
 
 public class ProductAttributeTerms {
 
     private ProductAttributeTerms(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public static ProductAttributeTermBuilder.Creator<?> create(){
+    public static ProductAttributeTermBuilder.Creator<?> create(int attributeId, String name){
 
-        return new ProductAttributeTermBuilder.Creator<>();
+        return new ProductAttributeTermBuilder.Creator<>(attributeId, name);
+
+    }
+
+    public static ProductAttributeTermBuilder.Creator<?> create(int attributeId, ProductAttributeTerm productAttributeTerm){
+
+        return new ProductAttributeTermBuilder.Creator<>(attributeId, productAttributeTerm);
 
     }
 
@@ -31,6 +38,12 @@ public class ProductAttributeTerms {
     public static ProductAttributeTermBuilder.Updater<?> update(int attributeId, int termsId){
 
         return new ProductAttributeTermBuilder.Updater<>(attributeId, termsId);
+
+    }
+
+    public static ProductAttributeTermBuilder.Updater<?> update(int attributeId, int attributeTermId, ProductAttributeTerm productAttributeTerm){
+
+        return new ProductAttributeTermBuilder.Updater<>(attributeId, attributeTermId, productAttributeTerm);
 
     }
 

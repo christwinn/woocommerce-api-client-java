@@ -10,15 +10,22 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductTagBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.ProductTag;
 
 public class ProductTags {
 
     private ProductTags(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public static ProductTagBuilder.Creator<?> create(){
+    public static ProductTagBuilder.Creator<?> create(String name){
 
-        return new ProductTagBuilder.Creator<>();
+        return new ProductTagBuilder.Creator<>(name);
+
+    }
+
+    public static ProductTagBuilder.Creator<?> create(ProductTag productTag){
+
+        return new ProductTagBuilder.Creator<>(productTag);
 
     }
 
@@ -31,6 +38,12 @@ public class ProductTags {
     public static ProductTagBuilder.Updater<?> update(int productTagId){
 
         return new ProductTagBuilder.Updater<>(productTagId);
+
+    }
+
+    public static ProductTagBuilder.Updater<?> update(ProductTag productTag){
+
+        return new ProductTagBuilder.Updater<>(productTag);
 
     }
 

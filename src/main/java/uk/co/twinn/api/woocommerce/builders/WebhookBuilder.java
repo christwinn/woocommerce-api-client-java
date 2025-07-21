@@ -87,7 +87,7 @@ public class WebhookBuilder extends ApiRequest {
         private String deliveryUrl; //string	The URL where the webhook payload is delivered.read-only(?) mandatory
         private String secret; //string	Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID
 
-        Creator(){
+        private Creator(){
 
         }
 

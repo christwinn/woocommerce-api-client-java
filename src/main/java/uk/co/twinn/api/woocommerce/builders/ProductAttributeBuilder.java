@@ -99,9 +99,19 @@ public class ProductAttributeBuilder extends ApiRequest {
             return (T) this;
         }
 
-        public T setName(String name) {
+        private Creator(){
+        }
+
+        public Creator(String name){
             this.name = name;
-            return self();
+        }
+
+        public Creator(ProductAttribute productAttribute) {
+            this(productAttribute.getName());
+            this.slug = productAttribute.getSlug();
+            this.type = productAttribute.getType();
+            this.orderBy = productAttribute.getOrderBy();
+            this.hasArchives = productAttribute.getHasArchives();
         }
 
         public T setSlug(String slug) {
@@ -157,7 +167,13 @@ public class ProductAttributeBuilder extends ApiRequest {
         private int id;
 
         public Updater(int productAttributeId){
+            super();
             this.id = productAttributeId;
+        }
+
+        public Updater(ProductAttribute productAttribute) {
+            super(productAttribute);
+            this.id = productAttribute.getId();
         }
 
         T self() {

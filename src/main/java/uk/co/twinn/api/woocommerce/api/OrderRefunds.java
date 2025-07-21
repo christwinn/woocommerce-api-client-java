@@ -16,9 +16,9 @@ public class OrderRefunds {
     private OrderRefunds(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public static OrderRefundBuilder.Creator<?> create(){
+    public static OrderRefundBuilder.Creator<?> create(int orderId){
 
-        return new OrderRefundBuilder.Creator<>();
+        return new OrderRefundBuilder.Creator<>(orderId);
 
     }
 
@@ -34,9 +34,9 @@ public class OrderRefunds {
 
     }
 
-    public static OrderRefundBuilder.ListAll<?> listing(){
+    public static OrderRefundBuilder.ListAll<?> listing(int orderId){
 
-        return new OrderRefundBuilder.ListAll<>();
+        return new OrderRefundBuilder.ListAll<>(orderId);
 
     }
     //</editor-fold>

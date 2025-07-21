@@ -10,15 +10,22 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductVariationBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.ProductVariation;
 
 public class ProductVariations {
 
     private ProductVariations(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public static ProductVariationBuilder.Creator<?> create(){
+    public static ProductVariationBuilder.Creator<?> create(int productId){
 
-        return new ProductVariationBuilder.Creator<>();
+        return new ProductVariationBuilder.Creator<>(productId);
+
+    }
+
+    public static ProductVariationBuilder.Creator<?> create(int productId, ProductVariation productVariation){
+
+        return new ProductVariationBuilder.Creator<>(productId, productVariation);
 
     }
 
@@ -31,6 +38,12 @@ public class ProductVariations {
     public static ProductVariationBuilder.Updater<?> update(int productId, int variationId){
 
         return new ProductVariationBuilder.Updater<>(productId, variationId);
+
+    }
+
+    public static ProductVariationBuilder.Updater<?> update(int productId, ProductVariation productVariation){
+
+        return new ProductVariationBuilder.Updater<>(productId, productVariation);
 
     }
 

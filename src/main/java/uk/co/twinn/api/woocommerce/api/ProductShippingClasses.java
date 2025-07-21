@@ -10,15 +10,21 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductShippingClassBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.ProductShippingClass;
 
 public class ProductShippingClasses {
 
     private ProductShippingClasses(){ }
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public static ProductShippingClassBuilder.Creator<?> create(){
+    public static ProductShippingClassBuilder.Creator<?> create(String name){
 
-        return new ProductShippingClassBuilder.Creator<>();
+        return new ProductShippingClassBuilder.Creator<>(name);
+
+    }
+    public static ProductShippingClassBuilder.Creator<?> create(ProductShippingClass productShippingClass){
+
+        return new ProductShippingClassBuilder.Creator<>(productShippingClass);
 
     }
 
@@ -31,6 +37,11 @@ public class ProductShippingClasses {
     public static ProductShippingClassBuilder.Updater<?> update(int shippingClassId){
 
         return new ProductShippingClassBuilder.Updater<>(shippingClassId);
+
+    }
+    public static ProductShippingClassBuilder.Updater<?> update(ProductShippingClass productShippingClass){
+
+        return new ProductShippingClassBuilder.Updater<>(productShippingClass);
 
     }
 

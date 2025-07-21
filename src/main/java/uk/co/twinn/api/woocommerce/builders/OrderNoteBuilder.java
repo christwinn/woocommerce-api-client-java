@@ -84,15 +84,21 @@ public class OrderNoteBuilder extends ApiRequest {
         private Boolean customerNote;
         private Boolean addedByUser;
 
-        protected int orderId;
+        protected final int orderId;
+
+        public Creator(int orderId){
+            this.orderId = orderId;
+        }
+
+        public Creator(int orderId, OrderNote orderNote){
+            this(orderId);
+            note = orderNote.getNote();
+            customerNote = orderNote.getCustomerNote();
+            addedByUser = orderNote.getAddedByUser();
+        }
 
         T self() {
             return (T) this;
-        }
-
-        public T setOrderId(int orderId){
-            this.orderId = orderId;
-            return self();
         }
 
         /**
@@ -161,18 +167,6 @@ public class OrderNoteBuilder extends ApiRequest {
             super(orderId, noteId);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
-        /*public T setOrderId(int orderId){
-            super.setId(orderId);
-            return self();
-        }
-
-        public T setNoteId(int noteId){
-            super.setChildId(noteId);
-            return self();
-        }*/
 
         public Read<OrderNote> getResponse(){
             return (Read<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
@@ -188,19 +182,6 @@ public class OrderNoteBuilder extends ApiRequest {
         public Deleter(int orderId, int noteId, boolean force){
             super(orderId, noteId, force);
         }
-
-       /* @Override
-        T self() {return (T) this;}
-
-        public T setOrderId(int orderId){
-            super.setId(orderId);
-            return self();
-        }
-
-        public T setNoteId(int noteId){
-            super.setChildId(noteId);
-            return self();
-        }*/
 
         public Deleted<OrderNote> getResponse(){
             return (Deleted<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});

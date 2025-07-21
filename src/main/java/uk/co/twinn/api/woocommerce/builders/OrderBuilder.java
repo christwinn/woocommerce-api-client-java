@@ -104,6 +104,17 @@ public class OrderBuilder extends ApiRequest {
         private List<OrderLineItem> lineItems;
         private List<OrderShippingLine> shippingLines;
 
+        public Creator(){}
+
+        public Creator(Order order){
+            paymentMethod = order.getPaymentMethod();
+            paymentMethodTitle = order.getPaymentMethodTitle();
+            paid = order.getSetPaid();
+            billing = order.getBilling();
+            shipping = order.getShipping();
+            lineItems = order.getLineItems();
+            shippingLines = order.getShippingLines();
+        }
         T self() {
             return (T) this;
         }
@@ -162,6 +173,11 @@ public class OrderBuilder extends ApiRequest {
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
         private final int id;
+
+        public Updater(Order order){
+            super(order);
+            this.id = order.getId();
+        }
 
         public Updater(int productId){
             this.id = productId;

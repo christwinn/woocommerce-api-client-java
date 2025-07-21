@@ -10,6 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductBuilder;
+import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 
 public class Products {
 
@@ -22,6 +23,12 @@ public class Products {
 
     }
 
+    public static ProductBuilder.Creator<?> create(Product product){
+
+        return new ProductBuilder.Creator<>(product);
+
+    }
+
     public static ProductBuilder.Reader<?> read(int productId){
 
         return new ProductBuilder.Reader<>(productId);
@@ -31,6 +38,12 @@ public class Products {
     public static ProductBuilder.Updater<?> update(int productId){
 
         return new ProductBuilder.Updater<>(productId);
+
+    }
+
+    public static ProductBuilder.Updater<?> update(Product product){
+
+        return new ProductBuilder.Updater<>(product);
 
     }
 

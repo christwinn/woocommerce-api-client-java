@@ -382,8 +382,7 @@ public class WooCommerceApiClientUsageDemo {
     private static void createAndReadProductCategories() {
 
         Created<ProductCategory> createResponse =
-            ProductCategories.create()
-                .setName("NEW Category Name 123")
+            ProductCategories.create("NEW Category Name 123")
                 .setDescription("Category Description")
                 .setParent(0)
                 //.image("TO DO: IMAGE MUST EXIST IN WORDPRESS, MEDIA UPLOAD REQUIRED OR USE EXISTING")

@@ -82,14 +82,16 @@ public class ProductShippingClassBuilder extends ApiRequest {
         private String slug;        //string	Product slug.
         private String description;
 
-        /**
-         *
-         * @param name Product Name
-         * @return T
-         */
-        public T setName(String name) {
+        private Creator(){}
+
+        public Creator(String name){
             this.name = name;
-            return self();
+        }
+
+        public Creator(ProductShippingClass productShippingClass){
+            this(productShippingClass.getName());
+            this.slug = productShippingClass.getSlug();
+            this.description = productShippingClass.getDescription();
         }
 
         /**
@@ -144,10 +146,10 @@ public class ProductShippingClassBuilder extends ApiRequest {
             this.id = shippingClassId;
         }
 
-        /*public T setId(int id) {
-            this.id = id;
-            return self();
-        }*/
+        public Updater(ProductShippingClass productShippingClass){
+            super(productShippingClass);
+            this.id = productShippingClass.getId();
+        }
 
         private ProductShippingClassBuilder build(){
             return new ProductShippingClassBuilder(this);

@@ -103,6 +103,24 @@ public class TaxRateBuilder extends ApiRequest {
         private Integer order; //	integer	Indicates the order that will appear in queries.
         private String taxClass; //	string	Tax class. Default is standard.
 
+        public Creator(){}
+
+        public Creator(TaxRate taxRate){
+
+            country = taxRate.getCountry();
+            state = taxRate.getState();
+
+            postcodes = taxRate.getPostcodes();
+            cities = taxRate.getCities();
+            rate = taxRate.getRate();
+            name = taxRate.getName();
+            priority = taxRate.getPriority();
+            compound = taxRate.getCompound();
+            shipping = taxRate.getShipping();
+            order = taxRate.getOrder();
+            taxClass = taxRate.getTaxClass();
+        }
+
         T self() {
             return (T) this;
         }
@@ -260,6 +278,10 @@ public class TaxRateBuilder extends ApiRequest {
             this.id = taxRateId;
         }
 
+        public Updater(TaxRate taxRate){
+            super(taxRate);
+            this.id = taxRate.getId();
+        }
         protected TaxRateBuilder build(){
             return new TaxRateBuilder(this);
         }

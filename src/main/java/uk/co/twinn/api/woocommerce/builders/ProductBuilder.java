@@ -10,6 +10,7 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.api.Products;
 import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
@@ -28,8 +29,6 @@ public class ProductBuilder extends ApiRequest {
 
     protected final Product product = new Product();
 
-    private boolean force;
-
     public ProductBuilder(){}
 
     //<editor-fold defaultstate="collapsed" desc="Private Constructors">
@@ -41,46 +40,46 @@ public class ProductBuilder extends ApiRequest {
         product.setType(creator.type);
         product.setStatus(creator.status);
         product.setFeatured(creator.featured);
-        product.setCatalogVisibility(creator.catalog_visibility);
+        product.setCatalogVisibility(creator.catalogVisibility);
         product.setDescription(creator.description);
-        product.setShortDescription(creator.short_description);
+        product.setShortDescription(creator.shortDescription);
         product.setSku(creator.sku);
         product.setRegularPrice(creator.regularPrice);
         product.setSalePrice(creator.salePrice);
-        product.setDateOnSaleFrom(creator.date_on_sale_from);
-        product.setDateOnSaleFromGmt(creator.date_on_sale_from_gmt);
-        product.setDateOnSaleTo(creator.date_on_sale_to);
-        product.setDateOnSaleToGmt(creator.date_on_sale_to_gmt);
+        product.setDateOnSaleFrom(creator.dateOnSaleFrom);
+        product.setDateOnSaleFromGmt(creator.dateOnSaleFromGmt);
+        product.setDateOnSaleTo(creator.dateOnSaleTo);
+        product.setDateOnSaleToGmt(creator.dateOnSaleToGmt);
         product.setVirtual(creator.virtual);
         product.setDownloadable(creator.downloadable);
         product.setDownloads(creator.downloads);
-        product.setDownloadLimit(creator.download_limit);
-        product.setDownloadExpiry(creator.download_expiry);
-        product.setExternalUrl(creator.external_url);
-        product.setButtonText(creator.button_text);
-        product.setTaxStatus(creator.tax_status);
-        product.setTaxClass(creator.tax_class);
-        product.setManageStock(creator.manage_stock);
-        product.setStockQuantity(creator.stock_quantity);
-        product.setStockStatus(creator.stock_status);
+        product.setDownloadLimit(creator.downloadLimit);
+        product.setDownloadExpiry(creator.downloadExpiry);
+        product.setExternalUrl(creator.externalUrl);
+        product.setButtonText(creator.buttonText);
+        product.setTaxStatus(creator.taxStatus);
+        product.setTaxClass(creator.taxClass);
+        product.setManageStock(creator.manageStock);
+        product.setStockQuantity(creator.stockQuantity);
+        product.setStockStatus(creator.stockStatus);
         product.setBackorders(creator.backorders);
-        product.setSoldIndividually(creator.sold_individually);
+        product.setSoldIndividually(creator.soldIndividually);
         product.setWeight(creator.weight);
         product.setDimensions(creator.dimensions);
-        product.setShippingClass(creator.shipping_class);
-        product.setReviewsAllowed(creator.reviews_allowed);
-        product.setUpsellIds(creator.upsell_ids);
-        product.setCrossSellIds(creator.cross_sell_ids);
-        product.setParentId(creator.parent_id);
-        product.setPurchaseNote(creator.purchase_note);
+        product.setShippingClass(creator.shippingClass);
+        product.setReviewsAllowed(creator.reviewsAllowed);
+        product.setUpsellIds(creator.upsellIds);
+        product.setCrossSellIds(creator.crossSellIds);
+        product.setParentId(creator.parentId);
+        product.setPurchaseNote(creator.purchaseNote);
         product.setCategories(creator.categories);
         product.setTags(creator.tags);
         product.setImages(creator.images);
         product.setAttributes(creator.attributes);
-        product.setDefaultAttributes(creator.default_attributes);
-        product.setGroupedProducts(creator.grouped_products);
-        product.setMenuOrder(creator.menu_order);
-        product.setMetaData(creator.meta_data);
+        product.setDefaultAttributes(creator.defaultAttributes);
+        product.setGroupedProducts(creator.groupedProducts);
+        product.setMenuOrder(creator.menuOrder);
+        product.setMetaData(creator.metaData);
 
     }
 
@@ -94,7 +93,6 @@ public class ProductBuilder extends ApiRequest {
     private ProductBuilder(Deleter<?> deleter){
 
         product.setId(deleter.id);
-        force = deleter.force;
 
     }
     //</editor-fold>
@@ -128,23 +126,55 @@ public class ProductBuilder extends ApiRequest {
         private String slug;        //string	Product slug.
         private String type;    //string	Product type. Options: simple, grouped, external and variable. Default is simple.
         private Boolean featured;    //boolean	Featured product. Default is false.
-        private String catalog_visibility;    //string	Catalog visibility. Options: visible, catalog, search and hidden. Default is visible.
-        private String short_description;    //string	Product short description.
-        private String external_url;    //string	Product external URL. Only for external products.
-        private String button_text;    //string	Product external button text. Only for external products.
-        private Boolean sold_individually;    //boolean	Allow one item to be bought in a single order. Default is false.
-        private Boolean reviews_allowed;    //boolean	Allow reviews. Default is true.
-        private List<Integer> upsell_ids;    //array	List of up-sell products IDs.
-        private List<Integer> cross_sell_ids;    //array	List of cross-sell products IDs.
-        private Integer parent_id;    //integer	Product parent ID.
-        private String purchase_note;    //string	Optional note to send the customer after purchase.
+        private String catalogVisibility;    //string	Catalog visibility. Options: visible, catalog, search and hidden. Default is visible.
+        private String shortDescription;    //string	Product short description.
+        private String externalUrl;    //string	Product external URL. Only for external products.
+        private String buttonText;    //string	Product external button text. Only for external products.
+        private Boolean soldIndividually;    //boolean	Allow one item to be bought in a single order. Default is false.
+        private Boolean reviewsAllowed;    //boolean	Allow reviews. Default is true.
+        private List<Integer> upsellIds;    //array	List of up-sell products IDs.
+        private List<Integer> crossSellIds;    //array	List of cross-sell products IDs.
+        private Integer parentId;    //integer	Product parent ID.
+        private String purchaseNote;    //string	Optional note to send the customer after purchase.
         private List<ProductCategoriesItem> categories;    //array	List of categories. See Product - Categories properties
         private List<ProductTag> tags;    //array	List of tags. See Product - Tags properties
         private List<ProductImage> images;    //array	List of images. See Product - Images properties
-        private List<ProductAttribute> default_attributes;    //array	Defaults variation attributes. See Product - Default attributes properties
+        private List<ProductAttribute> defaultAttributes;    //array	Defaults variation attributes. See Product - Default attributes properties
         //private int[] variations;    //array	List of variations IDs.read-only
-        private List<Integer> grouped_products;    //array	List of grouped products ID.
+        private List<Integer> groupedProducts;    //array	List of grouped products ID.
 
+        public Creator(){}
+
+        public Creator(Product product){
+
+            super(product);
+
+            name = product.getName();
+            slug = product.getSlug();
+            type = product.getType();
+
+            featured = product.getFeatured();
+            catalogVisibility = product.getCatalogVisibility();
+
+            shortDescription = product.getShortDescription();
+
+            externalUrl = product.getExternalUrl();
+            buttonText = product.getButtonText();
+
+            soldIndividually = product.getSoldIndividually();
+
+            reviewsAllowed = product.getReviewsAllowed();
+            upsellIds = product.getUpsellIds();
+            crossSellIds = product.getCrossSellIds();
+            parentId = product.getParentId();
+            purchaseNote = product.getPurchaseNote();
+            categories = product.getCategories();
+            tags = product.getTags();
+            images = product.getImages();
+            defaultAttributes = product.getDefaultAttributes();
+            groupedProducts = product.getGroupedProducts();
+
+        }
         /**
          *
          * @param name Product Name
@@ -214,58 +244,58 @@ public class ProductBuilder extends ApiRequest {
 
         /**
          *
-         * @param catalog_visibility  Catalog visibility.
+         * @param catalogVisibility  Catalog visibility.
          *                            Options: visible, catalog, search and hidden.
          *                            Default is visible.
          * @return T
          */
-        public T setCatalogVisibility(String catalog_visibility) {
-            this.catalog_visibility = catalog_visibility;
+        public T setCatalogVisibility(String catalogVisibility) {
+            this.catalogVisibility = catalogVisibility;
             return self();
         }
 
         /**
          *
-         * @param catalog_visibility  Catalog visibility.
+         * @param catalogVisibility  Catalog visibility.
          *                            Options: visible, catalog, search and hidden.
          *                            Default is visible.
          * @return T
          */
-        public T setCatalogVisibility(Product.CatalogVisiblityEnum catalog_visibility) {
-            this.catalog_visibility = catalog_visibility.getValue();
+        public T setCatalogVisibility(Product.CatalogVisiblityEnum catalogVisibility) {
+            this.catalogVisibility = catalogVisibility.getValue();
             return self();
         }
 
         /**
          *
-         * @param short_description Product short description.
+         * @param shortDescription Product short description.
          * @return T
          */
-        public T setShort_description(String short_description) {
-            this.short_description = short_description;
+        public T setShortDescription(String shortDescription) {
+            this.shortDescription = shortDescription;
             return self();
         }
 
 
         /**
          *
-         * @param external_url Product external URL.
+         * @param externalUrl Product external URL.
          *                     Only for external products.
          * @return T
          */
-        public T setExternal_url(String external_url) {
-            this.external_url = external_url;
+        public T setExternalUrl(String externalUrl) {
+            this.externalUrl = externalUrl;
             return self();
         }
 
         /**
          *
-         * @param button_text Product external button text.
+         * @param buttonText Product external button text.
          *                    Only for external products.
          * @return T
          */
-        public T setButtonText(String button_text) {
-            this.button_text = button_text;
+        public T setButtonText(String buttonText) {
+            this.buttonText = buttonText;
             return self();
         }
 
@@ -274,12 +304,12 @@ public class ProductBuilder extends ApiRequest {
 
         /**
          *
-         * @param sold_individually Allow one item to be bought in a single order.
+         * @param soldIndividually Allow one item to be bought in a single order.
          *                          Default is false
          * @return T
          */
-        public T setSoldIndividually(boolean sold_individually) {
-            this.sold_individually = sold_individually;
+        public T setSoldIndividually(boolean soldIndividually) {
+            this.soldIndividually = soldIndividually;
             return self();
         }
 
@@ -287,51 +317,51 @@ public class ProductBuilder extends ApiRequest {
 
         /**
          *
-         * @param reviews_allowed Allow reviews. Default is true.
+         * @param reviewsAllowed Allow reviews. Default is true.
          * @return T
          */
-        public T setReviewsAllowed(boolean reviews_allowed) {
-            this.reviews_allowed = reviews_allowed;
+        public T setReviewsAllowed(boolean reviewsAllowed) {
+            this.reviewsAllowed = reviewsAllowed;
             return self();
         }
 
         /**
          *
-         * @param upsell_ids List of up-sell products IDs.
+         * @param upsellIds List of up-sell products IDs.
          * @return T
          */
-        public T setUpsellIds(List<Integer> upsell_ids) {
-            this.upsell_ids = upsell_ids;
+        public T setUpsellIds(List<Integer> upsellIds) {
+            this.upsellIds = upsellIds;
             return self();
         }
 
         /**
          *
-         * @param cross_sell_ids List of cross-sell products IDs.
+         * @param crossSellIds List of cross-sell products IDs.
          * @return T
          */
-        public T setCrossSellIds(List<Integer> cross_sell_ids) {
-            this.cross_sell_ids = cross_sell_ids;
+        public T setCrossSellIds(List<Integer> crossSellIds) {
+            this.crossSellIds = crossSellIds;
             return self();
         }
 
         /**
          *
-         * @param parent_id  	Product parent ID.
+         * @param parentId  	Product parent ID.
          * @return T
          */
-        public T setParentId(int parent_id) {
-            this.parent_id = parent_id;
+        public T setParentId(int parentId) {
+            this.parentId = parentId;
             return self();
         }
 
         /**
          *
-         * @param purchase_note Optional note to send the customer after purchase.
+         * @param purchaseNote Optional note to send the customer after purchase.
          * @return T
          */
-        public T setPurchaseNote(String purchase_note) {
-            this.purchase_note = purchase_note;
+        public T setPurchaseNote(String purchaseNote) {
+            this.purchaseNote = purchaseNote;
             return self();
         }
 
@@ -380,21 +410,21 @@ public class ProductBuilder extends ApiRequest {
 
         /**
          *
-         * @param default_attributes  Defaults variation attributes. See Product - Default attributes properties
+         * @param defaultAttributes  Defaults variation attributes. See Product - Default attributes properties
          * @return T
          */
-        public T setDefaultAttributes(List<ProductAttribute> default_attributes) {
-            this.default_attributes = default_attributes;
+        public T setDefaultAttributes(List<ProductAttribute> defaultAttributes) {
+            this.defaultAttributes = defaultAttributes;
             return self();
         }
 
         /**
          *
-         * @param grouped_products List of grouped products ID.
+         * @param groupedProducts List of grouped products ID.
          * @return T
          */
-        public T setGroupedProducts(List<Integer> grouped_products) {
-            this.grouped_products = grouped_products;
+        public T setGroupedProducts(List<Integer> groupedProducts) {
+            this.groupedProducts = groupedProducts;
             return self();
         }
 
@@ -428,12 +458,11 @@ public class ProductBuilder extends ApiRequest {
             this.id = productId;
         }
 
+        public Updater(Product product){
+            super(product);
+            this.id = product.getId();
+        }
         private final int id;
-
-        /*public T setId(int id) {
-            this.id = id;
-            return self();
-        }*/
 
         private ProductBuilder build(){
             return new ProductBuilder(this);
@@ -485,6 +514,7 @@ public class ProductBuilder extends ApiRequest {
         /*@Override
         T self() {return (T) this;}*/
 
+        //require for batch
         protected ProductBuilder build(){
             return new ProductBuilder(this);
         }

@@ -39,29 +39,101 @@ class CoreProductsVariations {
         protected String sku;    //string	Unique identifier.
         protected BigDecimal regularPrice;    //string	Product regular price.
         protected BigDecimal salePrice;    //string	Product sale price.
-        protected LocalDateTime date_on_sale_from;    //date-time	Start date of sale price, in the site's timezone.
-        protected LocalDateTime date_on_sale_from_gmt;    //date-time	Start date of sale price, as GMT.
-        protected LocalDateTime date_on_sale_to;    //date-time	End date of sale price, in the site's timezone.
-        protected LocalDateTime date_on_sale_to_gmt;    //date-time	End date of sale price, as GMT.
+        protected LocalDateTime dateOnSaleFrom;    //date-time	Start date of sale price, in the site's timezone.
+        protected LocalDateTime dateOnSaleFromGmt;    //date-time	Start date of sale price, as GMT.
+        protected LocalDateTime dateOnSaleTo;    //date-time	End date of sale price, in the site's timezone.
+        protected LocalDateTime dateOnSaleToGmt;    //date-time	End date of sale price, as GMT.
+
         protected String status;    //string	Product status (post status). Options: draft, pending, protected and publish. Default is publish.
         protected Boolean virtual;    //boolean	If the product is virtual. Default is false.
         protected Boolean downloadable;    //boolean	If the product is downloadable. Default is false.
         protected List<ProductDownload> downloads;    //array	List of downloadable files. See Product - Downloads properties
-        protected Integer download_limit;    //integer	Number of times downloadable files can be downloaded after purchase. Default is -1.
-        protected Integer download_expiry;    //integer	Number of days until access to downloadable files expires. Default is -1.
-        protected String tax_status;    //string	Tax status. Options: taxable, shipping and none. Default is taxable.
-        protected String tax_class;    //string	Tax class.
-        protected Boolean manage_stock;    //boolean	Stock management at product level. Default is false.
-        protected Integer stock_quantity;    //integer	Stock quantity.
-        protected String stock_status;    //string	Controls the stock status of the product. Options: instock, outofstock, onbackorder. Default is instock.
+        protected Integer downloadLimit;    //integer	Number of times downloadable files can be downloaded after purchase. Default is -1.
+        protected Integer downloadExpiry;    //integer	Number of days until access to downloadable files expires. Default is -1.
+        protected String taxStatus;    //string	Tax status. Options: taxable, shipping and none. Default is taxable.
+        protected String taxClass;    //string	Tax class.
+        protected Boolean manageStock;    //boolean	Stock management at product level. Default is false.
+        protected Integer stockQuantity;    //integer	Stock quantity.
+        protected String stockStatus;    //string	Controls the stock status of the product. Options: instock, outofstock, onbackorder. Default is instock.
         protected String backorders;    //string	If managing stock, this controls if backorders are allowed. Options: no, notify and yes. Default is no.
         protected String weight;    //string	Product weight.
         protected ProductDimension dimensions;    //object	Product dimensions. See Product - Dimensions properties
-        protected String shipping_class;    //string	Shipping class slug.
+        protected String shippingClass;    //string	Shipping class slug.
         protected List<ProductAttribute>attributes;    //array	List of attributes. See Product - Attributes properties
-        protected Integer menu_order;    //integer	Menu order, used to custom sort products.
+        protected Integer menuOrder;    //integer	Menu order, used to custom sort products.
 
-        protected List<MetaData> meta_data;    //array	Meta data. See Product - Meta data properties
+        protected List<MetaData> metaData;    //array	Meta data. See Product - Meta data properties
+
+        public Creator(){}
+
+        public Creator(Product product){
+
+            description = product.getDescription();
+            sku = product.getSku();
+            regularPrice = product.getRegularPrice();
+            salePrice = product.getSalePrice();
+
+            dateOnSaleFrom = product.getDateOnSaleFrom();
+            dateOnSaleFromGmt = product.getDateOnSaleFromGmt();
+            dateOnSaleTo = product.getDateOnSaleTo();
+            dateOnSaleToGmt = product.getDateOnSaleToGmt();
+
+            virtual = product.getVirtual();
+            status = product.getStatus();
+            downloadable = product.getDownloadable();
+            downloads = product.getDownloads();
+            downloadLimit = product.getDownloadLimit();
+            downloadExpiry = product.getDownloadExpiry();
+
+            taxStatus = product.getTaxStatus();
+            taxClass = product.getTaxClass();
+            manageStock = product.getManageStock();
+
+            stockQuantity = product.getStockQuantity();
+            stockStatus = product.getStockStatus();
+            backorders = product.getBackorders();
+            weight = product.getWeight();
+            dimensions = product.getDimensions();
+            shippingClass = product.getShippingClass();
+            attributes = product.getAttributes();
+            menuOrder = product.getMenuOrder();
+            metaData = product.getMetaData();
+
+        }
+
+        /** THESE NEED EXTENDING **/
+        public Creator(ProductVariation product){
+
+            description = product.getDescription();
+            sku = product.getSku();
+
+            dateOnSaleFrom = product.getDateOnSaleFrom();
+            dateOnSaleFromGmt = product.getDateOnSaleFromGmt();
+            dateOnSaleTo = product.getDateOnSaleTo();
+            dateOnSaleToGmt = product.getDateOnSaleToGmt();
+
+            virtual = product.getVirtual();
+            status = product.getStatus();
+            downloadable = product.getDownloadable();
+            downloads = product.getDownloads();
+            downloadLimit = product.getDownloadLimit();
+            downloadExpiry = product.getDownloadExpiry();
+
+            taxStatus = product.getTaxStatus();
+            taxClass = product.getTaxClass();
+            manageStock = product.getManageStock();
+
+            stockQuantity = product.getStockQuantity();
+            stockStatus = product.getStockStatus();
+            backorders = product.getBackorders();
+            weight = product.getWeight();
+            dimensions = product.getDimensions();
+            shippingClass = product.getShippingClass();
+            attributes = product.getAttributes();
+            menuOrder = product.getMenuOrder();
+            metaData = product.getMetaData();
+
+        }
 
         T self() {
             return (T) this;
@@ -116,41 +188,41 @@ class CoreProductsVariations {
 
         /**
          *
-         * @param date_on_sale_from Start date of sale price, in the site's timezone.
+         * @param dateOnSaleFrom Start date of sale price, in the site's timezone.
          * @return T
          */
-        public T setDateOnSaleFrom(LocalDateTime date_on_sale_from) {
-            this.date_on_sale_from = date_on_sale_from;
+        public T setDateOnSaleFrom(LocalDateTime dateOnSaleFrom) {
+            this.dateOnSaleFrom = dateOnSaleFrom;
             return self();
         }
 
         /**
          *
-         * @param date_on_sale_from_gmt Start date of sale price, as GMT.
+         * @param dateOnSaleFromGmt Start date of sale price, as GMT.
          * @return T
          */
-        public T setDateOnSaleFromGMT(LocalDateTime date_on_sale_from_gmt) {
-            this.date_on_sale_from_gmt = date_on_sale_from_gmt;
+        public T setDateOnSaleFromGMT(LocalDateTime dateOnSaleFromGmt) {
+            this.dateOnSaleFromGmt = dateOnSaleFromGmt;
             return self();
         }
 
         /**
          *
-         * @param date_on_sale_to End date of sale price, in the site's timezone.
+         * @param dateOnSaleTo End date of sale price, in the site's timezone.
          * @return T
          */
-        public T setDateOnSaleTo(LocalDateTime date_on_sale_to) {
-            this.date_on_sale_to = date_on_sale_to;
+        public T setDateOnSaleTo(LocalDateTime dateOnSaleTo) {
+            this.dateOnSaleTo = dateOnSaleTo;
             return self();
         }
 
         /**
          *
-         * @param date_on_sale_to_gmt  End date of sale price, as GMT.
+         * @param dateOnSaleToGmt  End date of sale price, as GMT.
          * @return T
          */
-        public T setDateOnSaleToGMT(LocalDateTime date_on_sale_to_gmt) {
-            this.date_on_sale_to_gmt = date_on_sale_to_gmt;
+        public T setDateOnSaleToGMT(LocalDateTime dateOnSaleToGmt) {
+            this.dateOnSaleToGmt = dateOnSaleToGmt;
             return self();
         }
 
@@ -199,99 +271,99 @@ class CoreProductsVariations {
 
         /**
          *
-         * @param download_limit  Number of times downloadable files can be downloaded after purchase.
+         * @param downloadLimit  Number of times downloadable files can be downloaded after purchase.
          *                        Default is -1.
          * @return T
          */
-        public T setDownloadLimit(int download_limit) {
-            this.download_limit = download_limit;
+        public T setDownloadLimit(int downloadLimit) {
+            this.downloadLimit = downloadLimit;
             return self();
         }
 
         /**
          *
-         * @param download_expiry Number of days until access to downloadable files expires.
+         * @param downloadExpiry Number of days until access to downloadable files expires.
          *                        Default is -1.
          * @return T
          */
-        public T setDownloadExpiry(int download_expiry) {
-            this.download_expiry = download_expiry;
+        public T setDownloadExpiry(int downloadExpiry) {
+            this.downloadExpiry = downloadExpiry;
             return self();
         }
         /**
          *
-         * @param tax_status Tax status.
+         * @param taxStatus Tax status.
          *                   Options: taxable, shipping and none.
          *                   Default is taxable.
          * @return T
          */
-        public T setTaxStatus(String tax_status) {
-            this.tax_status = tax_status;
+        public T setTaxStatus(String taxStatus) {
+            this.taxStatus = taxStatus;
             return self();
         }
 
         /**
          *
-         * @param tax_status Tax status.
+         * @param taxStatus Tax status.
          *                   Options: taxable, shipping and none.
          *                   Default is taxable.
          * @return T
          */
-        public T setTaxStatus(uk.co.twinn.pl_wtx_woocommerce.model.Product.TaxStatusEnum tax_status) {
-            this.tax_status = tax_status.getValue();
+        public T setTaxStatus(uk.co.twinn.pl_wtx_woocommerce.model.Product.TaxStatusEnum taxStatus) {
+            this.taxStatus = taxStatus.getValue();
             return self();
         }
 
         /**
          *
-         * @param tax_class Tax class.
+         * @param taxClass Tax class.
          * @return T
          */
-        public T setTaxClass(String tax_class) {
-            this.tax_class = tax_class;
+        public T setTaxClass(String taxClass) {
+            this.taxClass = taxClass;
             return self();
         }
 
         /**
          *
-         * @param manage_stock Stock management at product level. Default is false.
+         * @param manageStock Stock management at product level. Default is false.
          * @return T
          */
-        public T setManageStock(boolean manage_stock) {
-            this.manage_stock = manage_stock;
+        public T setManageStock(boolean manageStock) {
+            this.manageStock = manageStock;
             return self();
         }
 
         /**
          *
-         * @param stock_quantity Stock quantity.
+         * @param stockQuantity Stock quantity.
          * @return T
          */
-        public T setStockQuantity(int stock_quantity) {
-            this.stock_quantity = stock_quantity;
+        public T setStockQuantity(int stockQuantity) {
+            this.stockQuantity = stockQuantity;
             return self();
         }
 
         /**
          *
-         * @param stock_status Controls the stock status of the product.
+         * @param stockStatus Controls the stock status of the product.
          *                     Options: instock, outofstock, onbackorder.
          *                     Default is instock.
          * @return T
          */
-        public T setStockStatus(String stock_status) {
-            this.stock_status = stock_status;
+        public T setStockStatus(String stockStatus) {
+            this.stockStatus = stockStatus;
             return self();
         }
         /**
          *
-         * @param stock_status Controls the stock status of the product.
+         * @param stockStatus Controls the stock status of the product.
          *                     Options: instock, outofstock, onbackorder.
          *                     Default is instock.
          * @return T
          */
-        public T setStockStatus(uk.co.twinn.pl_wtx_woocommerce.model.Product.StockStatusEnum stock_status) {
-            this.stock_status = stock_status.getValue();
+        public T setStockStatus(uk.co.twinn.pl_wtx_woocommerce.model.Product.StockStatusEnum stockStatus) {
+            this.stockStatus = stockStatus.getValue();
             return self();
         }
 
@@ -328,11 +400,11 @@ class CoreProductsVariations {
 
         /**
          *
-         * @param shipping_class Shipping class slug.
+         * @param shippingClass Shipping class slug.
          * @return T
          */
-        public T setShippingClass(String shipping_class) {
-            this.shipping_class = shipping_class;
+        public T setShippingClass(String shippingClass) {
+            this.shippingClass = shippingClass;
             return self();
         }
 
@@ -348,21 +420,21 @@ class CoreProductsVariations {
 
         /**
          *
-         * @param menu_order Menu order, used to custom sort products.
+         * @param menuOrder Menu order, used to custom sort products.
          * @return T
          */
-        public T setMenuOrder(int menu_order) {
-            this.menu_order = menu_order;
+        public T setMenuOrder(int menuOrder) {
+            this.menuOrder = menuOrder;
             return self();
         }
 
         /**
          *
-         * @param meta_data  Meta data. See Product - Meta data properties
+         * @param metaData  Meta data. See Product - Meta data properties
          * @return T
          */
-        public T setMetaData(List<MetaData> meta_data) {
-            this.meta_data = meta_data;
+        public T setMetaData(List<MetaData> metaData) {
+            this.metaData = metaData;
             return self();
         }
 

@@ -90,6 +90,22 @@ public class ProductReviewBuilder extends ApiRequest {
         private Integer rating;
         private Boolean verified;
 
+
+        private Creator(){}
+
+        public Creator(int productId){
+            this.productId = productId;
+        }
+
+        public Creator(ProductReview productReview){
+            this(productReview.getProductId());
+            status = productReview.getStatus();        //string	Product name.
+            reviewer = productReview.getReviewer();        //string	Product slug.
+            reviewerEmail = productReview.getReviewerEmail();
+            review = productReview.getReview();
+            rating = productReview.getRating();
+            verified = productReview.getVerified();
+        }
         public T setProductId(Integer productId) {
             this.productId = productId;
             return self();
@@ -163,6 +179,11 @@ public class ProductReviewBuilder extends ApiRequest {
 
         public Updater(int reviewId){
             this.id = reviewId;
+        }
+
+        public Updater(ProductReview productReview){
+            super(productReview);
+            this.id = productReview.getId();
         }
 
         private final int id;

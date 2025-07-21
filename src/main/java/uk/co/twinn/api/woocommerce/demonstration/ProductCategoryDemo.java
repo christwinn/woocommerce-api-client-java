@@ -9,6 +9,7 @@
 
 package uk.co.twinn.api.woocommerce.demonstration;
 
+import uk.co.twinn.api.woocommerce.api.ProductCategories;
 import uk.co.twinn.api.woocommerce.builders.ProductCategoryBuilder;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Read;
@@ -39,8 +40,7 @@ public class ProductCategoryDemo {
     ){
 
         return
-            new ProductCategoryBuilder.Creator<>()
-                .setName(name)
+            ProductCategories.create(name)
                 .setDescription(description)
                 .setImage(wooCommerceImageUrl)
                 .setDisplay(itemCount > 0 ? PRODUCTS : SUBCATEGORIES)
@@ -50,7 +50,7 @@ public class ProductCategoryDemo {
 
     public Read<ProductCategory> readProductCategory(int productCategoryId){
 
-        return new ProductCategoryBuilder.Reader<>(productCategoryId)
+        return ProductCategories.read(productCategoryId)
             .getResponse();
 
     }
@@ -62,7 +62,7 @@ public class ProductCategoryDemo {
     ){
 
         return
-            new ProductCategoryBuilder.Updater<>(productCategoryId)
+            ProductCategories.update(productCategoryId)
                 .setName(name)
                 .setDescription(description)
                 .setImage(wooCommerceImageUrl)
@@ -101,9 +101,8 @@ public class ProductCategoryDemo {
         String imgUrl = (isRetry ? DESTINATION : SOURCE) + image;
 
         Created<ProductCategory> created =
-            new ProductCategoryBuilder.Creator<>()
+            ProductCategories.create(name)
                 .setParent(parentId)
-                .setName(name)
                 .setDescription(description)
                 .setImage(imgUrl)
                 .setDisplay(productCount > 0 ? PRODUCTS : SUBCATEGORIES)

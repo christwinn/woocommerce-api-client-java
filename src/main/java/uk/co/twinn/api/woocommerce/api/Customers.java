@@ -23,6 +23,12 @@ public class Customers {
 
     }
 
+    public static CustomerBuilder.Creator<?> create(Customer customer){
+
+        return new CustomerBuilder.Creator<>(customer);
+
+    }
+
     public static CustomerBuilder.Reader<?> read(int customerId){
 
         return new CustomerBuilder.Reader<>(customerId);
@@ -32,6 +38,12 @@ public class Customers {
     public static CustomerBuilder.Updater<?> update(int customerId){
 
         return new CustomerBuilder.Updater<>(customerId);
+
+    }
+
+    public static CustomerBuilder.Updater<?> update(Customer customer){
+
+        return new CustomerBuilder.Updater<>(customer);
 
     }
 
