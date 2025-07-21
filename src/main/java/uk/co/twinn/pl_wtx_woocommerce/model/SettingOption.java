@@ -10,7 +10,11 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
+
+import java.util.HashMap;
 
 public class SettingOption {
 
@@ -25,7 +29,7 @@ public class SettingOption {
     private Object options; //	object	Array of options (key value pairs) for inputs such as select, multiselect, and radio buttons.read-only
     private String groupId; //	string	An identifier for the group this setting belongs to.read-only
 
-    private Links links;
+    private HashMap<String, Link> links;
 
     public String getId() {
         return id;
@@ -110,12 +114,13 @@ public class SettingOption {
     }
 
     @JsonProperty("_links")
-    public Links getLinks() {
-        return links;
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
     }
     @JsonProperty("_links")
-    public void setLinks(Links links) {
-        this.links = links;
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 
     public String toJson() {

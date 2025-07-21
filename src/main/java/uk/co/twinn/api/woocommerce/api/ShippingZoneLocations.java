@@ -17,11 +17,11 @@ public class ShippingZoneLocations {
     private ShippingZoneLocations(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    /*public static ShippingZoneBuilder.Updater<?> update(int shippingZoneId){
-        --breaks the mould!
-        return new ShippingZoneBuilder.Updater<>(shippingZoneId);
+    public static ShippingZoneLocationBuilder.UpdateList<?> update(int shippingZoneId){
+        //--breaks the mould!
+        return new ShippingZoneLocationBuilder.UpdateList<>(shippingZoneId);
 
-    }*/
+    }
 
 
     public static ShippingZoneLocationBuilder.ListAll<?> listing(int zoneId){

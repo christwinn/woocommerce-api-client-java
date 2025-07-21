@@ -13,6 +13,13 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
+/**
+ * HAL - Hypertext Application Language
+ *
+ * Link used in '_links' HashMap as we never fully know the full list of object names that may exist
+ * but each Link follows the structure below ! to be completed. require targetHints 'allow'
+ *
+ **/
 public class Link {
 
     public static final String SERIALIZED_NAME_HREF = "href";

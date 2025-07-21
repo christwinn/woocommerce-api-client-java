@@ -23,6 +23,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,7 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 /**
@@ -296,7 +299,7 @@ public class Product {
     public static final String SERIALIZED_NAME_LINKS = "_links";
     //@SerializedName(SERIALIZED_NAME_LINKS)
     @javax.annotation.Nullable
-    private Links links;
+    private HashMap<String, Link> links;
 
   public static final String SERIALIZED_NAME_SOLD_INDIVIDUALLY = "sold_individually";
   //@SerializedName(SERIALIZED_NAME_SOLD_INDIVIDUALLY)
@@ -1553,22 +1556,18 @@ public enum TaxStatusEnum {
         this.jetpackSharingEnabled = jetpackSharingEnabled;
     }
 
-    public Product links(@javax.annotation.Nullable Links links) {
-        this.links = links;
-        return this;
-    }
     /**
-     * Shows _links NOT Documented on https://woocommerce.github.io/woocommerce-rest-api-docs/#product-properties
+     * Shows _links
      * @return _links
      */
-    @javax.annotation.Nullable
-    public Links getLinks() {
-        return links;
-    }
-
     @JsonProperty("_links")
-    public void setLinks(@javax.annotation.Nullable Links links) {
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
         this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 
 

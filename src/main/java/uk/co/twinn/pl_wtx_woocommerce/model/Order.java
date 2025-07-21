@@ -26,10 +26,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.google.gson.annotations.SerializedName;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 /**
@@ -71,6 +74,8 @@ public class Order {
   //@SerializedName(SERIALIZED_NAME_STATUS)
   @javax.annotation.Nullable
   private String status;
+
+  private HashMap<String, Link> links;
 
   /**
    * Currency the order was created with, in ISO format.
@@ -1495,6 +1500,16 @@ public class Order {
   public void setSetPaid(@javax.annotation.Nullable Boolean setPaid) {
     this.setPaid = setPaid;
   }
+
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
+    }
 
     /**
      * When we batch the customers we retrieve a list of customers that have been created, updated, deleted

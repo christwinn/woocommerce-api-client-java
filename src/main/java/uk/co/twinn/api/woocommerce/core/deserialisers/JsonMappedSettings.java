@@ -9,7 +9,6 @@
 
 package uk.co.twinn.api.woocommerce.core.deserialisers;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -17,37 +16,35 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import uk.co.twinn.pl_wtx_woocommerce.model.PaymentGatewaySetting;
-import uk.co.twinn.pl_wtx_woocommerce.model.PaymentGatewaySettings;
+import uk.co.twinn.pl_wtx_woocommerce.model.MappedSetting;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * <a href="https://www.baeldung.com/jackson-deserialization">https://www.baeldung.com/jackson-deserialization</a>
  * PaymentGatewaySettings is a list of settings, not defined as a list therefore we need to do some legwork
  **/
-public class JsonPaymentGatewaySettings extends StdDeserializer<PaymentGatewaySettings> {
+public class JsonMappedSettings extends StdDeserializer<HashMap<String, MappedSetting>> {
 
-    private final HashMap<String, PaymentGatewaySetting> keys = new LinkedHashMap<>();
+    private final HashMap<String, MappedSetting> keys = new LinkedHashMap<>();
 
-    protected JsonPaymentGatewaySettings(){
+    protected JsonMappedSettings(){
         this(null);
     }
 
-    protected JsonPaymentGatewaySettings(Class<?> vc) {
+    protected JsonMappedSettings(Class<?> vc) {
         super(vc);
     }
 
     @Override
-    public PaymentGatewaySettings deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public HashMap<String, MappedSetting> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
 
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
 
         getAllKeysUsingJsonNodeFields(node, true, "");
 
-        return new PaymentGatewaySettings(keys);
+        return keys;
 
     }
 
@@ -58,7 +55,7 @@ public class JsonPaymentGatewaySettings extends StdDeserializer<PaymentGatewaySe
             Set<Map.Entry<String, JsonNode>> fields = jsonNode.properties();
             fields.iterator().forEachRemaining(field -> {
                 if (isRoot) {
-                    keys.put(field.getKey(), new PaymentGatewaySetting());
+                    keys.put(field.getKey(), new MappedSetting());
                     getAllKeysUsingJsonNodeFields((JsonNode) field.getValue(), false, field.getKey());
                 }else {
                     switch (field.getKey()){

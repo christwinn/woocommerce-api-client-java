@@ -42,6 +42,7 @@ public class EndPoints {
         public static final String REPORTS_REVIEWS_TOTALS = "reports/reviews/totals";
 
     public static final String SHIPPINGZONES = "shipping/zones";
+        public static final String METHODS = "methods";
 
         public static final String LOCATIONS = "locations";
 

@@ -10,9 +10,12 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 public class OrderNote {
 
@@ -23,6 +26,8 @@ public class OrderNote {
     private String note;//	string	Order note content.mandatory
     private Boolean customerNote;//	boolean	If true, the note will be shown to customers and they will be notified. If false, the note will be for admin reference only. Default is false.
     private Boolean addedByUser;//	boolean	If true, this note will be attributed to the current user. If false, the note will be attributed to the system. Default is false.
+
+    private HashMap<String, Link> links;
 
     public OrderNote(){
 
@@ -89,6 +94,16 @@ public class OrderNote {
     @JsonProperty("addedByUser")
     public void setAddedByUser(Boolean addedByUser) {
         this.addedByUser = addedByUser;
+    }
+
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 
     public String toJson() {

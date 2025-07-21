@@ -10,13 +10,17 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
+
+import java.util.HashMap;
 
 public class ShippingZone {
 
     private Integer id;	//integer	Unique identifier for the resource.read-only
     private String name; //	string	Shipping zone name.mandatory
     private Integer order; //integer	Shipping zone order.
-    private Links links;
+    private HashMap<String, Link> links;
 
     public ShippingZone(){}
 
@@ -45,12 +49,12 @@ public class ShippingZone {
     }
 
     @JsonProperty("_links")
-    public Links getLinks() {
-        return links;
-    }
-
-    @JsonProperty("_links")
-    public void setLinks(Links links) {
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
         this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 }

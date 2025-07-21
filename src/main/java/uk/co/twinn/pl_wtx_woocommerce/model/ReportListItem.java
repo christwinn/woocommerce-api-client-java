@@ -26,7 +26,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.google.gson.annotations.SerializedName;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
+
+import java.util.HashMap;
 
 /**
  * ReportListItem
@@ -46,7 +50,7 @@ public class ReportListItem {
   public static final String SERIALIZED_NAME_LINKS = "_links";
   //@SerializedName(SERIALIZED_NAME_LINKS)
   @javax.annotation.Nullable
-  private Links links;
+  private HashMap<String, Link> links;
 
   public ReportListItem() {
   }
@@ -88,25 +92,19 @@ public class ReportListItem {
     this.description = description;
   }
 
-
-  public ReportListItem links(@javax.annotation.Nullable Links links) {
-    this.links = links;
-    return this;
-  }
-
   /**
    * Get links
    * @return links
    */
-  @javax.annotation.Nullable
-  public Links getLinks() {
-    return links;
-  }
-
   @JsonProperty("_links")
-  public void setLinks(@javax.annotation.Nullable Links links) {
-    this.links = links;
+  @JsonDeserialize(using = JsonMappedLinks.class)
+  public void setLinks(HashMap<String, Link> links) {
+      this.links = links;
   }
+  @JsonProperty("_links")
+  public HashMap<String, Link> getLinks( ) {
+        return links;
+    }
 
 
 

@@ -22,10 +22,14 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
 /**
  * ProductAttributeTerm
@@ -178,7 +182,17 @@ public class ProductAttributeTerm {
     this.count = count;
   }
 
+    private HashMap<String, Link> links;
 
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
+    }
 
   @Override
   public boolean equals(Object o) {

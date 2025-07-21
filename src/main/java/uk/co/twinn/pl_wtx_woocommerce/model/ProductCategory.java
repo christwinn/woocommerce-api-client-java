@@ -24,12 +24,16 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.HashMap;
 import java.util.Objects;
 
 import java.io.IOException;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 /**
@@ -368,6 +372,16 @@ public class ProductCategory {
     this.menuOrder = menuOrder;
   }
 
+    private HashMap<String, Link> links;
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
+    }
 
   /**
    * Number of published products for the resource.

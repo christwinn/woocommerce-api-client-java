@@ -22,7 +22,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreReader {
 
-    static class ReaderCore<T extends ReaderCore<?>> {
+    static class ReaderCore<T extends ReaderCore<T>> {
 
         //set up the private variables
         protected final int id;
@@ -62,7 +62,7 @@ class CoreReader {
 
     }
 
-    static class ChildReaderCore<T extends ChildReaderCore<?>> extends ReaderCore<T>{
+    static class ChildReaderCore<T extends ChildReaderCore<T>> extends ReaderCore<T>{
 
         public ChildReaderCore(int id, int childId){
             super(id);
@@ -117,7 +117,7 @@ class CoreReader {
          *  otherwise returns list of productCategory
          */
         private Read<?> readResponse(String endPoint, TypeReference<?> type){
-            if (key.isEmpty()) {
+            if (key == null || key.isEmpty()) {
                 return new Read<>(
                     new ApiResponseResult(
                         false,
@@ -135,6 +135,43 @@ class CoreReader {
 
     }
 
+    static class ChildReaderCoreStringKey<T extends ChildReaderCoreStringKey<T>> extends ReaderCoreStringKey<T> {
+
+        //set up the private variables
+        protected final String childKey;
+
+        public ChildReaderCoreStringKey(String key, String childKey){
+            super(key);
+            this.childKey = childKey;
+        }
+
+        T self() {return (T) this;}
+
+        /** this needs to be exported to inheritor but not beyond* package-private*/
+        Read<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
+            return readResponse(endPoint + "/" + key + "/" + childEndPoint + childKey, type);
+        }
+
+        /**
+         *  If the id is set returns a single productCategory
+         *  otherwise returns list of productCategory
+         */
+        private Read<?> readResponse(String endPoint, TypeReference<?> type){
+            if (childKey == null || childKey.isEmpty()) {
+                return new Read<>(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Read is limited to a single object result\n" +
+                            "Please set requested id"
+                    )
+                );
+            }else{
+                return super.readResponse(endPoint, type);
+            }
+        }
+
+    }
 
 
 }

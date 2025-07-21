@@ -22,7 +22,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreDeleter {
 
-    static class DeleterCore<T extends DeleterCore<?>>{
+    static class DeleterCore<T extends DeleterCore<T>>{
 
         protected final int id;
         protected final boolean force;
@@ -99,7 +99,7 @@ class CoreDeleter {
 
     }
 
-    static class DeleterCoreStringKey<T extends DeleterCoreStringKey<?>>{
+    static class DeleterCoreStringKey<T extends DeleterCoreStringKey<T>>{
 
         protected final String key;
         protected final boolean force;
@@ -118,7 +118,7 @@ class CoreDeleter {
         }
 
         private Deleted<?> readResponse(String endPoint, TypeReference<?> type){
-            if (key.isEmpty() || !force) {
+            if (key == null || key.isEmpty() || !force) {
                 return new Deleted<>(
                     new ApiResponseResult(
                         false,
@@ -131,6 +131,41 @@ class CoreDeleter {
                 return new Deleted<>(
                     new Rest().delete(endPoint, type)
                 );
+            }
+
+        }
+
+    }
+
+    static class ChildDeleterCoreStringKey<T extends ChildDeleterCoreStringKey<T>> extends DeleterCoreStringKey<T>{
+
+        private final String childKey;
+
+        public ChildDeleterCoreStringKey(String key, String childKey, boolean force){
+            super(key, force);
+            this.childKey = childKey;
+        }
+
+        T self() {
+            return (T) this;
+        }
+
+        Deleted<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
+            return readResponse(endPoint + "/" + key + "/" + childEndPoint + childKey + "?force=" + force, type);
+        }
+
+        private Deleted<?> readResponse(String endPoint, TypeReference<?> type){
+            if (childKey == null || childKey.isEmpty()) {
+                return new Deleted<>(
+                    new ApiResponseResult(
+                        false,
+                        0,
+                        "Delete is limited to a single object result\n" +
+                            "Please set requested [child]Id!"
+                    )
+                );
+            }else{
+                return super.getResponse(endPoint, type);
             }
 
         }

@@ -11,11 +11,14 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 public class Coupon {
@@ -48,6 +51,7 @@ public class Coupon {
     private List<Integer> usedBy; //	array	List of user IDs (or guest email addresses) that have used the coupon.read-only
     private List<MetaData> metaData; //	array	Meta data. See Coupon - Meta data properties
 
+    private HashMap<String, Link> links;
     private ErrorMessage error; //batch notifier
 
     public Coupon(){}
@@ -290,6 +294,16 @@ public class Coupon {
     @JsonProperty("meta_data")
     public void setMetaData(List<MetaData> metaData) {
         this.metaData = metaData;
+    }
+
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 
     /**

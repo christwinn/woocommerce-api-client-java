@@ -11,8 +11,12 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 //import com.google.gson.annotations.SerializedName;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")

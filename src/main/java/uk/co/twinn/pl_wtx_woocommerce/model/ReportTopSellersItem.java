@@ -22,12 +22,16 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
 /**
  * ReportTopSellersItem
@@ -48,6 +52,8 @@ public class ReportTopSellersItem {
   //@SerializedName(SERIALIZED_NAME_QUANTITY)
   @javax.annotation.Nullable
   private Integer quantity;
+
+  private HashMap<String, Link> links;
 
   public ReportTopSellersItem() {
   }
@@ -108,7 +114,15 @@ public class ReportTopSellersItem {
     this.quantity = quantity;
   }
 
-
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
+    }
 
   @Override
   public boolean equals(Object o) {

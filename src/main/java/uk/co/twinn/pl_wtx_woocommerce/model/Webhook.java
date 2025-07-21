@@ -10,9 +10,12 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 public class Webhook {
@@ -30,6 +33,8 @@ public class Webhook {
     private LocalDateTime dateCreatedGMT; //date-time	The date the webhook was created, as GMT.read-only
     private LocalDateTime dateModified; //date-time	The date the webhook was last modified, in the site's timezone.read-only
     private LocalDateTime dateModifiedGMT; //date-time	The date the webhook was last modified, as GMT.read-only
+
+    private HashMap<String, Link> links;
 
     public Webhook(){
 
@@ -163,6 +168,16 @@ public class Webhook {
     @JsonProperty("date_modified_gmt")
     public void setDateModifiedGMT(LocalDateTime dateModifiedGMT) {
         this.dateModifiedGMT = dateModifiedGMT;
+    }
+
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 
     public enum WebhookStatusEnum {

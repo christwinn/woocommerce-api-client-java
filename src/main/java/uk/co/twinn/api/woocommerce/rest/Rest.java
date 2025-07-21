@@ -127,6 +127,17 @@ public class Rest {
 
     }
 
+    public ApiResponseResult updateList(String endPoint, String content, TypeReference<?> type){
+
+        return http.update(
+            getUri(endPoint),
+            getHeaders(),
+            content,
+            type
+        );
+
+    }
+
     public ApiResponseResult delete(String endPoint, TypeReference<?> type){
 
         return http.delete(endPoint, getHeaders(), type);

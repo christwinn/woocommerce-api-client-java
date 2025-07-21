@@ -9,7 +9,12 @@
 
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
+
+import java.util.HashMap;
 
 public class CustomerDownloadFile {
 
@@ -33,7 +38,6 @@ public class CustomerDownloadFile {
     public void setFile(String file) {
         this.file = file;
     }
-
 
     public String toJson() {
         return new JacksonObjectMapper().toJson(this);

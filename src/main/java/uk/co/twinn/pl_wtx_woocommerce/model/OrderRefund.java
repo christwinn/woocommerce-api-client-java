@@ -11,10 +11,13 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 public class OrderRefund {
@@ -35,6 +38,8 @@ public class OrderRefund {
     private List<OrderFeeLine> feeLines;//	array	Fee lines data. See Order refund - Fee lines properties
     private Boolean apiRefund;//	boolean	When true, the payment gateway API is used to generate the refund. Default is true.write-only
     private Boolean apiRestock;//	boolean	When true, the selected line items are restocked Default is true.write-only
+
+    private HashMap<String, Link> links;
 
     public OrderRefund(){}
 
@@ -166,6 +171,16 @@ public class OrderRefund {
     @JsonProperty("api_restock") //writeonly!
     public void setApiRestock(Boolean apiRestock) {
         this.apiRestock = apiRestock;
+    }
+
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 
     public String toJson() {

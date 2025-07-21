@@ -23,12 +23,16 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.HashMap;
 import java.util.Objects;
 
 ////import com.google.gson.annotations.SerializedName;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
 /**
  * Billing
@@ -377,6 +381,7 @@ public class Billing {
   public String toJson() {
       return new JacksonObjectMapper().toJson(this);
   }
+
 
 }
 

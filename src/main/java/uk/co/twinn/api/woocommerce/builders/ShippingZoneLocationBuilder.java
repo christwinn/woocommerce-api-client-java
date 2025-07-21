@@ -18,6 +18,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.ShippingZone;
 import uk.co.twinn.pl_wtx_woocommerce.model.ShippingZoneLocation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
@@ -26,36 +27,25 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
 
     private int zoneId;
 
-    protected final ShippingZoneLocation shippingZoneLocation = new ShippingZoneLocation();
-
     public ShippingZoneLocationBuilder(){
 
     }
 
-    /*private ShippingZoneLocationBuilder(ShippingZoneLocationBuilder.Updater<?> updater){
-
-        shippingZoneLocation.setCode(updater.code);
-        shippingZoneLocation.setType(updater.type);
-
-    }*/
-
-    public String endPoint(){
-
-        return SHIPPINGZONES +
-            (zoneId != 0
-                ? ("/" + zoneId)
-                : ""
-            )
-            +
-            LOCATIONS;
+    private ShippingZoneLocationBuilder(ShippingZoneLocationBuilder.UpdateList<?> updater){
 
     }
 
-    public String toJson(){
+    public static String endPoint(int zoneId){
+
+        return SHIPPINGZONES + "/" + zoneId + "/" + LOCATIONS;
+
+    }
+
+    private String toJson(List<ShippingZoneLocation> zoneLocations){
 
         try {
             // covert Java object to JSON strings
-            return getObjectMapper().writeValueAsString(shippingZoneLocation);
+            return getObjectMapper().writeValueAsString(zoneLocations);
 
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -68,28 +58,30 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
      *
      * To be completed
      *
-     *
-    public static class Updater<T extends ShippingZoneLocationBuilder.Updater<T>> {
+     **/
+    public static class UpdateList<T extends UpdateList<T>> {
 
         private final int zoneId;
         private String code;
         private String type;
 
+        private final List<ShippingZoneLocation> list = new ArrayList<>();
+
         T self() {
             return (T) this;
         }
 
-        public Updater(int zoneId){
+        public UpdateList(int zoneId){
             this.zoneId = zoneId;
         }
 
-        public T setCode(String code){
-            this.code = code;
+        public T setZoneLocation(ShippingZoneLocation location){
+            list.add(location);
             return self();
-        }
 
-        public T setType(String type){
-            this.type = type;
+        }
+        public T setZoneLocation(String code, String type){
+            list.add(new ShippingZoneLocation(code, type));
             return self();
         }
 
@@ -97,20 +89,24 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
             return new ShippingZoneLocationBuilder(this);
         }
 
-        @Override
-        public Updated<ShippingZoneLocation> getResponse(){
+        public UpdatedList<ShippingZoneLocation> getResponse(){
+
+            if (zoneId >= 0 && !list.isEmpty()){
 
                 ShippingZoneLocationBuilder create = build();
-                //make the call
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ShippingZoneLocation>(){})
-                );
 
-            return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                //make the call
+                return new UpdatedList<>(
+                    new Rest().updateList(create.endPoint(zoneId), create.toJson(list), new TypeReference<List<ShippingZoneLocation>>(){})
+
+                );
+            }else {
+                return new UpdatedList<>(new ApiResponseResult(false, 0, "Missing required list and/or zoneId"));
+            }
 
         }
 
-    }*/
+    }
 
     /**
      *
@@ -132,7 +128,7 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
             if (zoneId > 0) {
                 return new Listed<ShippingZoneLocation>(
                     new Rest().listAll(
-                        SHIPPINGZONES + "/" + zoneId + "/" + LOCATIONS,
+                        endPoint(zoneId),
                         "",
                         new TypeReference<List<ShippingZoneLocation>>() {}
                     )

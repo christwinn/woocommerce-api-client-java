@@ -23,6 +23,7 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,7 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
 /**
  * ProductVariation
@@ -234,6 +237,8 @@ public class ProductVariation {
   @javax.annotation.Nullable
   private List<MetaData> metaData = new ArrayList<>();
 
+  private HashMap<String, Link> links;
+
   public ProductVariation() {
   }
 
@@ -241,6 +246,7 @@ public class ProductVariation {
     this.variationId = variationId;
     return this;
   }
+
 
   /**
    * Unique identifier for the resource. read-only
@@ -1018,7 +1024,15 @@ public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) 
     this.metaData = metaData;
   }
 
-
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
+    }
 
   @Override
   public boolean equals(Object o) {

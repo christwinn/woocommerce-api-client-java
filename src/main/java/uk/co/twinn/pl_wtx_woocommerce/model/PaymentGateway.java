@@ -10,8 +10,12 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedSettings;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class PaymentGateway {
@@ -24,14 +28,13 @@ public class PaymentGateway {
     private String methodTitle;//	string	Payment gateway method title.read-only
     private String methodDescription; //	string	Payment gateway method description.read-only
     private List<String> methodSupports; //	array	Supported features for this payment gateway.read-only
-    private PaymentGatewaySettings settings; //Payment gateway settings. See Payment gateway - Settings properties
-
+    //private PaymentGatewaySettings settings; //Payment gateway settings. See Payment gateway - Settings properties
+    private HashMap<String, MappedSetting> settings;
     private String settingsUrl;
     private String connectionUrl;
     private String setupHelpText;
 
-    private Links links;
-
+    private HashMap<String, Link> links;
 
     public PaymentGateway(){}
 
@@ -104,18 +107,23 @@ public class PaymentGateway {
         this.methodSupports = methodSupports;
     }
 
-    public void setSettings( PaymentGatewaySettings settings ) {
+    public HashMap<String, MappedSetting> getSettings() {
+        return settings;
+    }
+
+    @JsonDeserialize(using = JsonMappedSettings.class)
+    //public void setSettings(ShippingZoneMethodSettings settings) {
+    public void setSettings(HashMap<String, MappedSetting> settings) {
         this.settings = settings;
     }
 
-    public PaymentGatewaySettings getSettings(  ) {  return settings;  }
-
     @JsonProperty("_links")
-    public void setLinks(Links links) {
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
         this.links = links;
     }
     @JsonProperty("_links")
-    public Links getLinks( ) {
+    public HashMap<String, Link> getLinks( ) {
         return links;
     }
 

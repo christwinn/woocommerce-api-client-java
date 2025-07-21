@@ -40,12 +40,18 @@ public class WooCommerceApiClientUsageDemo {
     public static void main(String[] args) {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
+
+
+        /*UpdatedList<ShippingZoneLocation> listed = ShippingZoneLocations.update(1)
+            .setZoneLocation("BR:SP", "state")
+            .setZoneLocation("BR:RJ", "state").getResponse();*/
+
         /*Updated<ProductCategory> update = new ProductCategoryRequest.Updater<>().setId(346).setParent(0).getResponse();
 
         if (update.isSuccess()) {
             System.out.println(update.toString());
         }*/
-
+/*
         Listed<ProductCategory> root = ProductCategories.listing().setParentId(0).setPerPage(50).getResponse();
 
         if (root.isSuccess()) {
@@ -66,13 +72,13 @@ public class WooCommerceApiClientUsageDemo {
                 System.out.println(categoryRead.getResult().toJson());
                 //Updated<ProductCategory> updte = new ProductCategoryRequest.Updater<>().setId(p.getId()).setDisplay(ProductCategory.DisplayEnum.SUBCATEGORIES).getResponse();
 
-                /*if (updte.isSuccess()) {
-                    System.out.println(updte.toString());
-                }*/
+                //if (updte.isSuccess()) {
+                 //   System.out.println(updte.toString());
+                //}
             }
         }else{
             System.out.println(root.getError().getMessage());
-        }
+        }*/
 
         /*Created<Coupon> created = Coupons.create()
             .setCode("10off")
@@ -172,18 +178,19 @@ public class WooCommerceApiClientUsageDemo {
         System.out.println(new TaxRateApi.ListAll<>().getResponse().toJson());
         System.out.println(new RefundsApi.ListAll<>().getResponse().toJson());*/
 
-        /*Listed<PaymentGateway> gateways = WooCommerce.PaymentGateways().listing().getResponse();
+        Listed<PaymentGateway> gateways = PaymentGateways.listing().getResponse();
 
         for (PaymentGateway s : gateways.getResult()){
             System.out.println(s.toJson(true));
-        }*/
+        }
 
-        /*Read<PaymentGateway> gateway = WooCommerce.PaymentGateways().read("woocommerce_payments").getResponse();
+        Read<PaymentGateway> gateway = PaymentGateways.read("cod").getResponse();
 
         System.out.println(gateway.getResult().toJson(true));
 
-        Updated<PaymentGateway> update = WooCommerce.PaymentGateways().update("woocommerce_payments")
+        /*Updated<PaymentGateway> update = PaymentGateways().update("woocommerce_payments")
                 .setEnable(true).getResponse();*/
+
         System.exit(0);
 
         /*String date = "2025-07-03T11:12:55Z";

@@ -31,7 +31,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
 /**
  * ReportSalesSummary
@@ -97,6 +100,8 @@ public class ReportSalesSummary {
   //@SerializedName(SERIALIZED_NAME_TOTALS)
   @javax.annotation.Nullable
   private Map<String, ReportSalesSummaryItem> totals = new HashMap<>();
+
+  private HashMap<String, Link> links;
 
   public ReportSalesSummary() {
   }
@@ -336,7 +341,15 @@ public class ReportSalesSummary {
     this.totals = totals;
   }
 
-
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
+    }
 
   @Override
   public boolean equals(Object o) {

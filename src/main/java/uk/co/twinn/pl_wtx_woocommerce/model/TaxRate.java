@@ -10,8 +10,11 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class TaxRate {
@@ -30,6 +33,7 @@ public class TaxRate {
     private Boolean shipping; //	boolean	Whether or not this tax rate also gets applied to shipping. Default is true.
     private Integer order; //	integer	Indicates the order that will appear in queries.
     private String taxClass; //	string	Tax class. Default is standard.
+    private HashMap<String, Link> links;
 
     public TaxRate(){}
 
@@ -141,6 +145,16 @@ public class TaxRate {
     @JsonProperty("class")
     public void setTaxClass(String taxClass) {
         this.taxClass = taxClass;
+    }
+
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 
     public String toJson() {

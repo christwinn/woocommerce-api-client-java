@@ -10,9 +10,12 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 /**
  * This class is read-only
@@ -30,6 +33,8 @@ public class CustomerDownload {
     private LocalDateTime accessExpires; //	string	The date when download access expires, in the site's timezone.read-only
     private LocalDateTime accessExpiresGMT; //	string	The date when download access expires, as GMT.read-only
     private CustomerDownloadFile file; //	object	File details. read-onlySee Customers downloads - File properties
+
+    private HashMap<String, Link> links;
 
     public CustomerDownload(){}
 
@@ -129,6 +134,16 @@ public class CustomerDownload {
 
     public void setFile(CustomerDownloadFile file) {
         this.file = file;
+    }
+
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 
     public String toJson() {

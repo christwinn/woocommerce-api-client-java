@@ -10,8 +10,11 @@
 package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Setting {
@@ -21,6 +24,7 @@ public class Setting {
     private String description; //	string	A human readable description for the setting used in interfaces.read-only
     private String parentId; //	string	ID of parent grouping.read-only
     private List<String> subGroups; //	string	IDs for settings sub groups.read-only
+    private HashMap<String, Link> links;
 
     public Setting(){}
 
@@ -66,6 +70,16 @@ public class Setting {
     @JsonProperty("sub_groups")
     public void setSubGroups(List<String> subGroups) {
         this.subGroups = subGroups;
+    }
+
+    @JsonProperty("_links")
+    @JsonDeserialize(using = JsonMappedLinks.class)
+    public void setLinks(HashMap<String, Link> links) {
+        this.links = links;
+    }
+    @JsonProperty("_links")
+    public HashMap<String, Link> getLinks( ) {
+        return links;
     }
 
     public String toJson() {

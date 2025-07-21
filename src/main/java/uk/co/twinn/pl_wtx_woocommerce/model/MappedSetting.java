@@ -15,7 +15,10 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.util.List;
 
-public class PaymentGatewaySetting {
+/** We already have a setting class! MappedSetting used in 'settings' HashMap as we never fully know the full of object names that may exist but each setting follows the
+ * structure below
+ **/
+public class MappedSetting {
 
     private String id; //	string	A unique identifier for the setting.read-only
     private String label; //	string	A human readable label for the setting used in interfaces.read-only
@@ -28,7 +31,7 @@ public class PaymentGatewaySetting {
 
     private  List<NameValuePair> options; //undocumented
 
-    public PaymentGatewaySetting(){
+    public MappedSetting(){
 
     }
 
