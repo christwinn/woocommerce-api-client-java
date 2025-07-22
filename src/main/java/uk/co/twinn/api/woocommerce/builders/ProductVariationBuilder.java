@@ -180,11 +180,6 @@ public class ProductVariationBuilder extends ApiRequest {
             }
         }
 
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
-
         protected ProductVariationBuilder build(){
             return new ProductVariationBuilder(this);
         }
