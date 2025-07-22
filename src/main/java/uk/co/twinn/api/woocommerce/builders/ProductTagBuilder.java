@@ -215,17 +215,17 @@ public class ProductTagBuilder extends ApiRequest {
         public Batcher(){
             super();
         }
-        @SuppressWarnings("unchecked")
+
         public T addCreator(ProductTagBuilder.Creator<?> create){
             batch.addCreate(create.build().productTag);
             return self();
         }
-        @SuppressWarnings("unchecked")
+
         public T addUpdater(ProductTagBuilder.Updater<?> update){
             batch.addUpdate(update.build().productTag);
             return self();
         }
-        @SuppressWarnings("unchecked")
+
         public T addDeleter(ProductTagBuilder.Deleter<?> delete){
             batch.addDelete(delete.build().productTag.getId());
             return self();

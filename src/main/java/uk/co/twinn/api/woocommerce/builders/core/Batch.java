@@ -10,7 +10,6 @@
 package uk.co.twinn.api.woocommerce.builders.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.util.ArrayList;

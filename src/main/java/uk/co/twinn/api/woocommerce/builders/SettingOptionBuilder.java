@@ -159,7 +159,6 @@ public class SettingOptionBuilder extends ApiRequest {
             this.groupId = groupId;
         }
 
-        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().settingOption);
             return self();

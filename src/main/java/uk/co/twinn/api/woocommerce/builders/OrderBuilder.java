@@ -10,7 +10,6 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
@@ -363,7 +362,6 @@ public class OrderBuilder extends ApiRequest {
          * @param parents Limit result set to those of particular parent IDs.
          * @return T
          */
-        @SuppressWarnings("unchecked")
         public T setParents(List<Integer> parents) {
             addNameValueIntegers("parent", parents);
             return self();
@@ -374,7 +372,6 @@ public class OrderBuilder extends ApiRequest {
          * @param parents_exclude Limit result set to all items except those of a particular parent ID
          * @return T
          */
-        @SuppressWarnings("unchecked")
         public T setParentsExclude(List<Integer> parents_exclude) {
             addNameValueIntegers("parent_exclude", parents_exclude);
             return self();
@@ -388,7 +385,6 @@ public class OrderBuilder extends ApiRequest {
          *                      Default is any.
          * @return T
          */
-        @SuppressWarnings("unchecked")
         public T setStatus(List<String> statuses) {
             addNameValueStrings("status", statuses);
             return self();
