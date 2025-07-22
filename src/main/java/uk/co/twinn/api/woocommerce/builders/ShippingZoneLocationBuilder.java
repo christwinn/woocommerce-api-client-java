@@ -24,13 +24,15 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class ShippingZoneLocationBuilder  extends ApiRequest {
 
-    private int zoneId;
+    private List<ShippingZoneLocation> list = new ArrayList<>();
 
     public ShippingZoneLocationBuilder(){
 
     }
 
     private ShippingZoneLocationBuilder(ShippingZoneLocationBuilder.UpdateList<?> updater){
+
+        this.list = updater.list;
 
     }
 

@@ -26,11 +26,6 @@ public class ProductCustomFieldBuilder {
 
     public static class ListAll<T extends ListAll<T>> extends Seek.SearchCorePaging<T> {
 
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
-
         public Listed<String> getResponse() {
 
             return new Listed<>(

@@ -24,8 +24,6 @@ public class TaxClassBuilder extends ApiRequest {
 
     protected final TaxClass taxClass = new TaxClass();
 
-    private boolean force;
-
     public TaxClassBuilder(){}
 
     private TaxClassBuilder(Creator<?> creator){
