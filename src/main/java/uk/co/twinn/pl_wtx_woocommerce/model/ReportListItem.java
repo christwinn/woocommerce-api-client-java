@@ -94,7 +94,6 @@ public class ReportListItem {
 
   /**
    * Get links
-   * @return links
    */
   @JsonProperty("_links")
   @JsonDeserialize(using = JsonMappedLinks.class)

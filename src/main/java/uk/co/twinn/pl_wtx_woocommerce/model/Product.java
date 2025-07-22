@@ -1555,7 +1555,6 @@ public enum TaxStatusEnum {
 
     /**
      * Shows _links
-     * @return _links
      */
     @JsonProperty("_links")
     @JsonDeserialize(using = JsonMappedLinks.class)

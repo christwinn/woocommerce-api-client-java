@@ -84,12 +84,16 @@ public class WooCommerceApiClientUsageDemo {
         }
 
 
-        /*UpdatedList<ShippingZoneLocation> listed = ShippingZoneLocations.update(1)
+        UpdatedList<ShippingZoneLocation> shipZones = ShippingZoneLocations.update(1)
             .setZoneLocation("BR:SP", "state")
-            .setZoneLocation("BR:RJ", "state").getResponse();*/
+            .setZoneLocation("BR:RJ", "state").getResponse();
 
-        /*Updated<ProductCategory> update = new ProductCategoryRequest.Updater<>().setId(346).setParent(0).getResponse();
+        for (ShippingZoneLocation zone : shipZones.getResult()){
+            System.out.println(zone.toString());
+        }
 
+        //Updated<ProductCategory> update = new ProductCategoryRequest.Updater<>().setId(346).setParent(0).getResponse();
+/*
         if (update.isSuccess()) {
             System.out.println(update.toString());
         }*/

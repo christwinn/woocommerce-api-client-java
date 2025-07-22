@@ -103,7 +103,7 @@ public class CustomersTest {
             Paths.get("src/test/resources/wtx/woocommerce/api/client/" + frequest)
         ));
 
-        Batch<Customer> batch = new JacksonObjectMapper().getObjectMapper().readValue(mockRequest, new TypeReference<Batch>(){});
+        Batch<Customer> batch = new JacksonObjectMapper().getObjectMapper().readValue(mockRequest, new TypeReference<Batch<Customer>>(){});
 
         System.out.println(batch.getRecordCount());
 
