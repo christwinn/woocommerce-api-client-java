@@ -22,7 +22,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreDeleter {
 
-    static class DeleterCore<T extends DeleterCore<T>>{
+    static class DeleterCore{
 
         protected final int id;
         protected final boolean force;
@@ -30,11 +30,6 @@ class CoreDeleter {
         public DeleterCore(int id, boolean force){
             this.id = id;
             this.force = force;
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         Deleted<?> getResponse(String endPoint, TypeReference<?> type){
@@ -61,7 +56,7 @@ class CoreDeleter {
 
     }
 
-    static class ChildDeleterCore<T extends ChildDeleterCore<T>> extends DeleterCore<T> {
+    static class ChildDeleterCore extends DeleterCore {
 
         //set up the private variables
         protected final int childId;
@@ -69,11 +64,6 @@ class CoreDeleter {
         public ChildDeleterCore(int id, int childId, boolean force){
             super(id, force);
             this.childId = childId;
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         Deleted<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
@@ -96,7 +86,7 @@ class CoreDeleter {
 
     }
 
-    static class DeleterCoreStringKey<T extends DeleterCoreStringKey<T>>{
+    static class DeleterCoreStringKey{
 
         protected final String key;
         protected final boolean force;
@@ -104,11 +94,6 @@ class CoreDeleter {
         public DeleterCoreStringKey(String key, boolean force){
             this.key = key;
             this.force = force;
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         Deleted<?> getResponse(String endPoint, TypeReference<?> type){
@@ -135,18 +120,13 @@ class CoreDeleter {
 
     }
 
-    static class ChildDeleterCoreStringKey<T extends ChildDeleterCoreStringKey<T>> extends DeleterCoreStringKey<T>{
+    static class ChildDeleterCoreStringKey extends DeleterCoreStringKey{
 
         private final String childKey;
 
         public ChildDeleterCoreStringKey(String key, String childKey, boolean force){
             super(key, force);
             this.childKey = childKey;
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         Deleted<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){

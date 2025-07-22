@@ -54,7 +54,7 @@ public class OrderBuilder extends ApiRequest {
 
     }
 
-    private OrderBuilder(Deleter<?> deleter){
+    private OrderBuilder(Deleter deleter){
 
         order.setId(deleter.id);
         isBatch = false;
@@ -216,7 +216,7 @@ public class OrderBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends CoreReader.ReaderCore<T>{
+    public static class Reader extends CoreReader.ReaderCore{
 
         public Reader(int orderId){
             super(orderId);
@@ -232,7 +232,7 @@ public class OrderBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.DeleterCore<T>{
+    public static class Deleter extends CoreDeleter.DeleterCore{
 
         public Deleter(int orderId, boolean force){
             super(orderId, force);
@@ -268,7 +268,7 @@ public class OrderBuilder extends ApiRequest {
             return self();
         }
 
-        public T addDeleter(Deleter<?> delete){
+        public T addDeleter(Deleter delete){
             batch.addDelete(delete.build().order.getId());
             return self();
         }

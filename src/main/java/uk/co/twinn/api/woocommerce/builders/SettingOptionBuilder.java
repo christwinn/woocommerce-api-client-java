@@ -52,7 +52,7 @@ public class SettingOptionBuilder extends ApiRequest {
 
     }
 
-    public static class Reader<T extends Reader<T>> extends CoreReader.ReaderCoreStringKey<T>{
+    public static class Reader extends CoreReader.ReaderCoreStringKey{
 
         public Reader(String groupId, String settingId){
             super(groupId + "/" + settingId);
@@ -118,8 +118,8 @@ public class SettingOptionBuilder extends ApiRequest {
         }
     }
 
-    @SuppressWarnings("unused")
-    public static class ListAll<T extends SettingBuilder.ListAll<T>>{
+
+    public static class ListAll{
 
         private final String groupId;
 

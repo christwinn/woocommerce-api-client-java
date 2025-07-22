@@ -29,9 +29,9 @@ public class ProductTags {
 
     }
 
-    public static ProductTagBuilder.Reader<?> read(int productTagId){
+    public static ProductTagBuilder.Reader read(int productTagId){
 
-        return new ProductTagBuilder.Reader<>(productTagId);
+        return new ProductTagBuilder.Reader(productTagId);
 
     }
 
@@ -47,9 +47,9 @@ public class ProductTags {
 
     }
 
-    public static ProductTagBuilder.Deleter<?> delete(int productTagId, boolean force){
+    public static ProductTagBuilder.Deleter delete(int productTagId, boolean force){
 
-        return new ProductTagBuilder.Deleter<>(productTagId, force);
+        return new ProductTagBuilder.Deleter(productTagId, force);
 
     }
 

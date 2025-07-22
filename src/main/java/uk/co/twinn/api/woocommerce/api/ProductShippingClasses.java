@@ -28,9 +28,9 @@ public class ProductShippingClasses {
 
     }
 
-    public static ProductShippingClassBuilder.Reader<?> read(int shippingClassId){
+    public static ProductShippingClassBuilder.Reader read(int shippingClassId){
 
-        return new ProductShippingClassBuilder.Reader<>(shippingClassId);
+        return new ProductShippingClassBuilder.Reader(shippingClassId);
 
     }
 
@@ -45,9 +45,9 @@ public class ProductShippingClasses {
 
     }
 
-    public static ProductShippingClassBuilder.Deleter<?> delete(int shippingClassId, boolean force){
+    public static ProductShippingClassBuilder.Deleter delete(int shippingClassId, boolean force){
 
-        return new ProductShippingClassBuilder.Deleter<>(shippingClassId, force);
+        return new ProductShippingClassBuilder.Deleter(shippingClassId, force);
 
     }
 

@@ -22,9 +22,9 @@ public class TaxClasses {
 
     }
 
-    public static TaxClassBuilder.Deleter<?> delete(String taxClassSlug, boolean force){
+    public static TaxClassBuilder.Deleter delete(String taxClassSlug, boolean force){
 
-        return new TaxClassBuilder.Deleter<>(taxClassSlug, force);
+        return new TaxClassBuilder.Deleter(taxClassSlug, force);
 
     }
 

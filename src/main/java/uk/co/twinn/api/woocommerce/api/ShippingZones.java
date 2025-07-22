@@ -22,9 +22,9 @@ public class ShippingZones {
 
     }
 
-    public static ShippingZoneBuilder.Reader<?> read(int shippingZoneId){
+    public static ShippingZoneBuilder.Reader read(int shippingZoneId){
 
-        return new ShippingZoneBuilder.Reader<>(shippingZoneId);
+        return new ShippingZoneBuilder.Reader(shippingZoneId);
 
     }
 
@@ -34,9 +34,9 @@ public class ShippingZones {
 
     }
 
-    public static ShippingZoneBuilder.Deleter<?> delete(int productId, boolean force){
+    public static ShippingZoneBuilder.Deleter delete(int productId, boolean force){
 
-        return new ShippingZoneBuilder.Deleter<>(productId, force);
+        return new ShippingZoneBuilder.Deleter(productId, force);
 
     }
 

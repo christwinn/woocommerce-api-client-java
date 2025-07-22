@@ -22,9 +22,9 @@ public class Webhooks {
 
     }
 
-    public static WebhookBuilder.Reader<?> read(int webhookId){
+    public static WebhookBuilder.Reader read(int webhookId){
 
-        return new WebhookBuilder.Reader<>(webhookId);
+        return new WebhookBuilder.Reader(webhookId);
 
     }
 
@@ -34,9 +34,9 @@ public class Webhooks {
 
     }
 
-    public static WebhookBuilder.Deleter<?> delete(int webhookId, boolean force){
+    public static WebhookBuilder.Deleter delete(int webhookId, boolean force){
 
-        return new WebhookBuilder.Deleter<>(webhookId, force);
+        return new WebhookBuilder.Deleter(webhookId, force);
 
     }
 

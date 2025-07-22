@@ -50,7 +50,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
 
     }
 
-    private ProductAttributeTermBuilder(Deleter<?> deleter){
+    private ProductAttributeTermBuilder(Deleter deleter){
 
         attributeId = deleter.id;
         productAttribute.setId(deleter.childId);
@@ -234,7 +234,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
 
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends CoreReader.ChildReaderCore<T>{
+    public static class Reader extends CoreReader.ChildReaderCore{
 
         public Reader(int attributeId, int termId){
             super(attributeId, termId);
@@ -250,7 +250,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.ChildDeleterCore<T>{
+    public static class Deleter extends CoreDeleter.ChildDeleterCore{
 
         public Deleter(int attributeId, int termId, boolean force){
             super(attributeId, termId, force);
@@ -293,7 +293,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             return self();
         }
 
-        public T addDeleter(Deleter<?> delete){
+        public T addDeleter(Deleter delete){
             batch.addDelete(delete.build().productAttribute.getId());
             return self();
         }

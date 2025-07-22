@@ -52,7 +52,7 @@ public class CustomerBuilder extends ApiRequest {
 
     }
 
-    private CustomerBuilder(Deleter<?> deleter){
+    private CustomerBuilder(Deleter deleter){
 
         customer.setId(deleter.id);
 
@@ -211,7 +211,7 @@ public class CustomerBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends CoreReader.ReaderCore<T>{
+    public static class Reader extends CoreReader.ReaderCore{
 
         public Reader(int id){
             super(id);
@@ -227,7 +227,7 @@ public class CustomerBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.DeleterCore<T>{
+    public static class Deleter extends CoreDeleter.DeleterCore{
 
         public Deleter(int customerId, boolean force){
             super(customerId, force);
@@ -288,15 +288,15 @@ public class CustomerBuilder extends ApiRequest {
             return self();
         }
 
-        public T addDeleters(List<Deleter<?>> deletes){
+        public T addDeleters(List<Deleter> deletes){
             //we need to extract the deleter
-            for(Deleter<?> delete : deletes){
+            for(Deleter delete : deletes){
                 addDeleter(delete);
             }
             return self();
         }
 
-        public T addDeleter(Deleter<?> delete){
+        public T addDeleter(Deleter delete){
             batch.addDelete(delete.build().customer.getId());
             return self();
         }

@@ -45,7 +45,7 @@ public class ProductShippingClassBuilder extends ApiRequest {
 
     }
 
-    private ProductShippingClassBuilder(Deleter<?> deleter){
+    private ProductShippingClassBuilder(Deleter deleter){
 
         productShippingClass.setId(deleter.id);
 
@@ -174,7 +174,7 @@ public class ProductShippingClassBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends CoreReader.ReaderCore<T>{
+    public static class Reader extends CoreReader.ReaderCore{
 
         public Reader(int shippingClassId){
             super(shippingClassId);
@@ -190,7 +190,7 @@ public class ProductShippingClassBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.DeleterCore<T>{
+    public static class Deleter extends CoreDeleter.DeleterCore{
 
         public Deleter(int shippingClassId, boolean force){
             super(shippingClassId, force);
@@ -223,7 +223,7 @@ public class ProductShippingClassBuilder extends ApiRequest {
             batch.addUpdate(update.build().productShippingClass);
             return self();
         }
-        public T addDeleter(ProductShippingClassBuilder.Deleter<?> delete){
+        public T addDeleter(ProductShippingClassBuilder.Deleter delete){
             batch.addDelete(delete.build().productShippingClass.getId());
             return self();
         }

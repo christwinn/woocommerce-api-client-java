@@ -15,9 +15,9 @@ public class CustomerDownloads {
 
     private CustomerDownloads(){}
 
-    public static CustomerDownloadBuilder.ListAll<?> listing(int customerId){
+    public static CustomerDownloadBuilder.ListAll listing(int customerId){
 
-        return new CustomerDownloadBuilder.ListAll<>(customerId);
+        return new CustomerDownloadBuilder.ListAll(customerId);
 
     }
 

@@ -20,9 +20,9 @@ public class ShippingZoneMethods {
 
     }
 
-    public static ShippingZoneMethodBuilder.Reader<?> read(int shippingZoneId, int instanceId){
+    public static ShippingZoneMethodBuilder.Reader read(int shippingZoneId, int instanceId){
         //--breaks the mould!
-        return new ShippingZoneMethodBuilder.Reader<>(shippingZoneId, instanceId);
+        return new ShippingZoneMethodBuilder.Reader(shippingZoneId, instanceId);
 
     }
     public static ShippingZoneMethodBuilder.Updater<?> update(int shippingZoneId, int instanceId){
@@ -31,9 +31,9 @@ public class ShippingZoneMethods {
 
     }
 
-    public static ShippingZoneMethodBuilder.Deleter<?> delete(int shippingZoneId, int instanceId, boolean force){
+    public static ShippingZoneMethodBuilder.Deleter delete(int shippingZoneId, int instanceId, boolean force){
         //--breaks the mould!
-        return new ShippingZoneMethodBuilder.Deleter<>(shippingZoneId, instanceId, force);
+        return new ShippingZoneMethodBuilder.Deleter(shippingZoneId, instanceId, force);
 
     }
 

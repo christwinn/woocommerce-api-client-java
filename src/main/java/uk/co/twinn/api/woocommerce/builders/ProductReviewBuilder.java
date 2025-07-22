@@ -49,7 +49,7 @@ public class ProductReviewBuilder extends ApiRequest {
 
     }
 
-    private ProductReviewBuilder(Deleter<?> deleter){
+    private ProductReviewBuilder(Deleter deleter){
 
         productReview.setId(deleter.id);
 
@@ -211,7 +211,7 @@ public class ProductReviewBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends CoreReader.ReaderCore<T>{
+    public static class Reader extends CoreReader.ReaderCore{
 
         public Reader(int reviewId){
             super(reviewId);
@@ -227,7 +227,7 @@ public class ProductReviewBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.DeleterCore<T>{
+    public static class Deleter extends CoreDeleter.DeleterCore{
 
         public Deleter(int reviewId, boolean force){
             super(reviewId, force);
@@ -262,7 +262,7 @@ public class ProductReviewBuilder extends ApiRequest {
             return self();
         }
 
-        public T addDeleter(Deleter<?> delete){
+        public T addDeleter(Deleter delete){
             batch.addDelete(delete.build().productReview.getId());
             return self();
         }

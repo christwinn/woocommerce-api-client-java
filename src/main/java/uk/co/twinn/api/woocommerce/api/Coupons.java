@@ -29,9 +29,9 @@ public class Coupons {
 
     }
 
-    public static CouponBuilder.Reader<?> read(int CouponId){
+    public static CouponBuilder.Reader read(int CouponId){
 
-        return new CouponBuilder.Reader<>(CouponId);
+        return new CouponBuilder.Reader(CouponId);
 
     }
 
@@ -47,9 +47,9 @@ public class Coupons {
 
     }
 
-    public static CouponBuilder.Deleter<?> delete(int CouponId, boolean force){
+    public static CouponBuilder.Deleter delete(int CouponId, boolean force){
 
-        return new CouponBuilder.Deleter<>(CouponId, force);
+        return new CouponBuilder.Deleter(CouponId, force);
 
     }
 

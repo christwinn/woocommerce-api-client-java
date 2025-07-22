@@ -54,7 +54,7 @@ public class ProductCategoryBuilder extends ApiRequest {
 
     }
 
-    private ProductCategoryBuilder(Deleter<?> deleter){
+    private ProductCategoryBuilder(Deleter deleter){
 
         category.setId(deleter.id);
 
@@ -226,7 +226,7 @@ public class ProductCategoryBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends CoreReader.ReaderCore<T>{
+    public static class Reader extends CoreReader.ReaderCore{
 
         public Reader(int productCategoryId){
             super(productCategoryId);
@@ -242,7 +242,7 @@ public class ProductCategoryBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.DeleterCore<T>{
+    public static class Deleter extends CoreDeleter.DeleterCore{
 
         public Deleter(int productCategoryId, boolean force){
             super(productCategoryId, force);
@@ -277,7 +277,7 @@ public class ProductCategoryBuilder extends ApiRequest {
             return self();
         }
 
-        public T addDeleter(Deleter<?> delete){
+        public T addDeleter(Deleter delete){
             batch.addDelete(delete.build().category.getId());
             return self();
         }

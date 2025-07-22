@@ -126,7 +126,7 @@ public class CustomerDemo {
     public Batched<Customer> batchUpdateCustomers(
         List<CustomerBuilder.Creator<?>> createThese,
         List<CustomerBuilder.Updater<?>> modifyThese,
-        List<CustomerBuilder.Deleter<?>> deleteThese
+        List<CustomerBuilder.Deleter> deleteThese
     ){
 
         return Customers.batch()
@@ -140,6 +140,7 @@ public class CustomerDemo {
     public Batched<Customer> batchUpdateCustomers(){
 
         return Customers.batch()
+            .addCreators(getBatchCreate())
             .addCreators(getBatchCreate())
             .getResponse();
 

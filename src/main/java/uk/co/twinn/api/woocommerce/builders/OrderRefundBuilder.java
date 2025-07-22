@@ -195,7 +195,7 @@ public class OrderRefundBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends CoreReader.ChildReaderCore<T>{
+    public static class Reader extends CoreReader.ChildReaderCore{
 
         public Reader(int orderId, int refundId){
             super(orderId, refundId);
@@ -211,7 +211,7 @@ public class OrderRefundBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.ChildDeleterCore<T>{
+    public static class Deleter extends CoreDeleter.ChildDeleterCore{
 
         public Deleter(int orderId, int refundId, boolean force){
             super(orderId, refundId, force);

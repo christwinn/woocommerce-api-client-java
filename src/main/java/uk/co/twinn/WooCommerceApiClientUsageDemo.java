@@ -232,6 +232,8 @@ public class WooCommerceApiClientUsageDemo {
 
         Read<PaymentGateway> gateway = PaymentGateways.read("cod").getResponse();
 
+        Read<Customer> readCustomer = Customers.read(2).getResponse();
+
         System.out.println(gateway.getResult().toJson(true));
 
         /*Updated<PaymentGateway> update = PaymentGateways().update("woocommerce_payments")

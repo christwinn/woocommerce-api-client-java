@@ -15,9 +15,9 @@ public class OrderActions {
 
     private OrderActions(){}
 
-    public static OrderActionBuilder.SendEmail<?> sendEmail(int customerId){
+    public static OrderActionBuilder.SendEmail sendEmail(int customerId){
 
-        return new OrderActionBuilder.SendEmail<>(customerId);
+        return new OrderActionBuilder.SendEmail(customerId);
 
     }
 

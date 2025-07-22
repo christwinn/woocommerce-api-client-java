@@ -29,9 +29,9 @@ public class TaxRates {
 
     }
 
-    public static TaxRateBuilder.Reader<?> read(int taxRateId){
+    public static TaxRateBuilder.Reader read(int taxRateId){
 
-        return new TaxRateBuilder.Reader<>(taxRateId);
+        return new TaxRateBuilder.Reader(taxRateId);
 
     }
 
@@ -47,9 +47,9 @@ public class TaxRates {
 
     }
 
-    public static TaxRateBuilder.Deleter<?> delete(int taxRateId, boolean force){
+    public static TaxRateBuilder.Deleter delete(int taxRateId, boolean force){
 
-        return new TaxRateBuilder.Deleter<>(taxRateId, force);
+        return new TaxRateBuilder.Deleter(taxRateId, force);
 
     }
 

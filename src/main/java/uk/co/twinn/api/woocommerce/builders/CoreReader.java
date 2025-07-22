@@ -22,7 +22,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreReader {
 
-    static class ReaderCore<T extends ReaderCore<T>> {
+    static class ReaderCore {
 
         //set up the private variables
         protected final int id;
@@ -31,14 +31,10 @@ class CoreReader {
             this.id = id;
         }
 
-        @SuppressWarnings ("unchecked")
-        T self() {return (T) this;}
-
         /** this needs to be exported to inheritor but not beyond* package-private*/
         Read<?> getResponse(String endPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id, type);
         }
-
 
         /**
          *  If the id is set returns a single productCategory
@@ -63,7 +59,7 @@ class CoreReader {
 
     }
 
-    static class ChildReaderCore<T extends ChildReaderCore<T>> extends ReaderCore<T>{
+    static class ChildReaderCore extends ReaderCore{
 
         public ChildReaderCore(int id, int childId){
             super(id);
@@ -72,11 +68,6 @@ class CoreReader {
 
         //set up the private variables
         private final int childId;
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
 
         Read<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id + "/" + childEndPoint + "/" + childId, type);
@@ -98,7 +89,7 @@ class CoreReader {
 
     }
 
-    static class ReaderCoreStringKey<T extends ReaderCoreStringKey<?>> {
+    static class ReaderCoreStringKey {
 
         //set up the private variables
         protected final String key;
@@ -106,9 +97,6 @@ class CoreReader {
         public ReaderCoreStringKey(String key){
             this.key = key;
         }
-
-        @SuppressWarnings ("unchecked")
-        T self() {return (T) this;}
 
         /** this needs to be exported to inheritor but not beyond* package-private*/
         Read<?> getResponse(String endPoint, TypeReference<?> type){
@@ -138,7 +126,7 @@ class CoreReader {
 
     }
 
-    static class ChildReaderCoreStringKey<T extends ChildReaderCoreStringKey<T>> extends ReaderCoreStringKey<T> {
+    static class ChildReaderCoreStringKey extends ReaderCoreStringKey {
 
         //set up the private variables
         protected final String childKey;
@@ -147,9 +135,6 @@ class CoreReader {
             super(key);
             this.childKey = childKey;
         }
-
-        @SuppressWarnings ("unchecked")
-        T self() {return (T) this;}
 
         /** this needs to be exported to inheritor but not beyond* package-private*/
         Read<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){

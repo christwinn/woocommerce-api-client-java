@@ -15,9 +15,9 @@ public class Settings {
 
     private Settings(){}
 
-    public static SettingBuilder.ListAll<?> listing(){
+    public static SettingBuilder.ListAll listing(){
 
-        return new SettingBuilder.ListAll<>();
+        return new SettingBuilder.ListAll();
 
     }
 }

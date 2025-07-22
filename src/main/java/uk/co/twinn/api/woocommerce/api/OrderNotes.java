@@ -29,15 +29,15 @@ public class OrderNotes {
 
     }
 
-    public static OrderNoteBuilder.Reader<?> read(int orderId, int noteId){
+    public static OrderNoteBuilder.Reader read(int orderId, int noteId){
 
-        return new OrderNoteBuilder.Reader<>(orderId, noteId);
+        return new OrderNoteBuilder.Reader(orderId, noteId);
 
     }
 
-    public static OrderNoteBuilder.Deleter<?> delete(int orderId, int noteId, boolean force){
+    public static OrderNoteBuilder.Deleter delete(int orderId, int noteId, boolean force){
 
-        return new OrderNoteBuilder.Deleter<>(orderId, noteId, force);
+        return new OrderNoteBuilder.Deleter(orderId, noteId, force);
 
     }
 

@@ -28,9 +28,9 @@ public class PaymentGateways {
 
     }
 
-    public static PaymentGatewayBuilder.Reader<?> read(String gatewayId){
+    public static PaymentGatewayBuilder.Reader read(String gatewayId){
 
-        return new PaymentGatewayBuilder.Reader<>(gatewayId);
+        return new PaymentGatewayBuilder.Reader(gatewayId);
 
     }
 

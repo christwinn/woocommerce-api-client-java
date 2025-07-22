@@ -29,9 +29,9 @@ public class Products {
 
     }
 
-    public static ProductBuilder.Reader<?> read(int productId){
+    public static ProductBuilder.Reader read(int productId){
 
-        return new ProductBuilder.Reader<>(productId);
+        return new ProductBuilder.Reader(productId);
 
     }
 
@@ -47,15 +47,15 @@ public class Products {
 
     }
 
-    public static ProductBuilder.Deleter<?> delete(int productId, boolean force){
+    public static ProductBuilder.Deleter delete(int productId, boolean force){
 
-        return new ProductBuilder.Deleter<>(productId, force);
+        return new ProductBuilder.Deleter(productId, force);
 
     }
 
-    public static ProductBuilder.Duplicator<?> duplicate(int productId){
+    public static ProductBuilder.Duplicator duplicate(int productId){
 
-        return new ProductBuilder.Duplicator<>(productId);
+        return new ProductBuilder.Duplicator(productId);
 
     }
 

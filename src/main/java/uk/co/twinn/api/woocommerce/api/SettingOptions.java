@@ -15,9 +15,9 @@ public class SettingOptions {
 
     private SettingOptions(){}
 
-    public static SettingOptionBuilder.Reader<?> read(String groupId, String settingId){
+    public static SettingOptionBuilder.Reader read(String groupId, String settingId){
 
-        return new SettingOptionBuilder.Reader<>(groupId, settingId);
+        return new SettingOptionBuilder.Reader(groupId, settingId);
 
     }
 
@@ -27,9 +27,9 @@ public class SettingOptions {
 
     }
 
-    public static SettingOptionBuilder.ListAll<?> listing(String groupId){
+    public static SettingOptionBuilder.ListAll listing(String groupId){
 
-        return new SettingOptionBuilder.ListAll<>(groupId);
+        return new SettingOptionBuilder.ListAll(groupId);
 
     }
 

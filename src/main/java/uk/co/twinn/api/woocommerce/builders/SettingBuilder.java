@@ -22,7 +22,7 @@ public class SettingBuilder {
 
     private SettingBuilder(){}
 
-    public static class ListAll<T extends ListAll<T>>{
+    public static class ListAll{
 
         /**
          *  List the Settings

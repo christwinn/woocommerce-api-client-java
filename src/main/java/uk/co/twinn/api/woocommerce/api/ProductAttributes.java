@@ -29,9 +29,9 @@ public class ProductAttributes {
 
     }
 
-    public static ProductAttributeBuilder.Reader<?> read(int productAttributeId){
+    public static ProductAttributeBuilder.Reader read(int productAttributeId){
 
-        return new ProductAttributeBuilder.Reader<>(productAttributeId);
+        return new ProductAttributeBuilder.Reader(productAttributeId);
 
     }
 
@@ -47,9 +47,9 @@ public class ProductAttributes {
 
     }
 
-    public static ProductAttributeBuilder.Deleter<?> delete(int productAttributeId, boolean force){
+    public static ProductAttributeBuilder.Deleter delete(int productAttributeId, boolean force){
 
-        return new ProductAttributeBuilder.Deleter<>(productAttributeId, force);
+        return new ProductAttributeBuilder.Deleter(productAttributeId, force);
 
     }
 

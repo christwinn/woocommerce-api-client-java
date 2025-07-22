@@ -29,9 +29,9 @@ public class ProductVariations {
 
     }
 
-    public static ProductVariationBuilder.Reader<?> read(int productId, int variationId){
+    public static ProductVariationBuilder.Reader read(int productId, int variationId){
 
-        return new ProductVariationBuilder.Reader<>(productId, variationId);
+        return new ProductVariationBuilder.Reader(productId, variationId);
 
     }
 
@@ -47,9 +47,9 @@ public class ProductVariations {
 
     }
 
-    public static ProductVariationBuilder.Deleter<?> delete(int productId, int variationId, boolean force){
+    public static ProductVariationBuilder.Deleter delete(int productId, int variationId, boolean force){
 
-        return new ProductVariationBuilder.Deleter<>(productId, variationId, force);
+        return new ProductVariationBuilder.Deleter(productId, variationId, force);
 
     }
 

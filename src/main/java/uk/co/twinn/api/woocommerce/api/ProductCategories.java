@@ -29,9 +29,9 @@ public class ProductCategories {
 
     }
 
-    public static ProductCategoryBuilder.Reader<?> read(int productCategoryId){
+    public static ProductCategoryBuilder.Reader read(int productCategoryId){
 
-        return new ProductCategoryBuilder.Reader<>(productCategoryId);
+        return new ProductCategoryBuilder.Reader(productCategoryId);
 
     }
 
@@ -47,9 +47,9 @@ public class ProductCategories {
 
     }
 
-    public static ProductCategoryBuilder.Deleter<?> delete(int productCategoryId, boolean force){
+    public static ProductCategoryBuilder.Deleter delete(int productCategoryId, boolean force){
 
-        return new ProductCategoryBuilder.Deleter<>(productCategoryId, force);
+        return new ProductCategoryBuilder.Deleter(productCategoryId, force);
 
     }
 

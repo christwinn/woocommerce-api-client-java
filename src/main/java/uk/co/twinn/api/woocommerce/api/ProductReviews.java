@@ -29,9 +29,9 @@ public class ProductReviews {
 
     }
 
-    public static ProductReviewBuilder.Reader<?> read(int reviewId){
+    public static ProductReviewBuilder.Reader read(int reviewId){
 
-        return new ProductReviewBuilder.Reader<>(reviewId);
+        return new ProductReviewBuilder.Reader(reviewId);
 
     }
 
@@ -47,9 +47,9 @@ public class ProductReviews {
 
     }
 
-    public static ProductReviewBuilder.Deleter<?> delete(int reviewId, boolean force){
+    public static ProductReviewBuilder.Deleter delete(int reviewId, boolean force){
 
-        return new ProductReviewBuilder.Deleter<>(reviewId, force);
+        return new ProductReviewBuilder.Deleter(reviewId, force);
 
     }
 

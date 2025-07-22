@@ -42,7 +42,7 @@ public class ShippingZoneBuilder extends ApiRequest {
         shippingZone.setId(updater.id);
     }
 
-    private ShippingZoneBuilder(ShippingZoneBuilder.Deleter<?> deleter){
+    private ShippingZoneBuilder(ShippingZoneBuilder.Deleter deleter){
 
         shippingZone.setId(deleter.id);
 
@@ -151,7 +151,7 @@ public class ShippingZoneBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends ShippingZoneBuilder.Reader<T>> extends CoreReader.ReaderCore<T>{
+    public static class Reader extends CoreReader.ReaderCore{
 
         public Reader(int shippingZoneId){
             super(shippingZoneId);
@@ -167,7 +167,7 @@ public class ShippingZoneBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends ShippingZoneBuilder.Deleter<T>> extends CoreDeleter.DeleterCore<T>{
+    public static class Deleter extends CoreDeleter.DeleterCore{
 
         public Deleter(int shippingZoneId, boolean force){
             super(shippingZoneId, force);

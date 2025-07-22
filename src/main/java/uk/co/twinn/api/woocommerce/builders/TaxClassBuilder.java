@@ -82,7 +82,7 @@ public class TaxClassBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.DeleterCoreStringKey<T>{
+    public static class Deleter extends CoreDeleter.DeleterCoreStringKey{
 
         public Deleter(String taxClassSlug, boolean force){
             super(taxClassSlug, force);

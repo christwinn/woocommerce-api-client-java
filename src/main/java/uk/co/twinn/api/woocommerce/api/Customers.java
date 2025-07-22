@@ -29,9 +29,9 @@ public class Customers {
 
     }
 
-    public static CustomerBuilder.Reader<?> read(int customerId){
+    public static CustomerBuilder.Reader read(int customerId){
 
-        return new CustomerBuilder.Reader<>(customerId);
+        return new CustomerBuilder.Reader(customerId);
 
     }
 
@@ -47,9 +47,9 @@ public class Customers {
 
     }
 
-    public static CustomerBuilder.Deleter<?> delete(int customerId, boolean force){
+    public static CustomerBuilder.Deleter delete(int customerId, boolean force){
 
-        return new CustomerBuilder.Deleter<>(customerId, force);
+        return new CustomerBuilder.Deleter(customerId, force);
 
     }
 

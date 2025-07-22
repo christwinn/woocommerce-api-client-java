@@ -89,7 +89,7 @@ public class ProductBuilder extends ApiRequest {
 
     }
 
-    private ProductBuilder(Deleter<?> deleter){
+    private ProductBuilder(Deleter deleter){
 
         product.setId(deleter.id);
 
@@ -491,7 +491,7 @@ public class ProductBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Reader Builder">
-    public static class Reader<T extends Reader<T>> extends CoreReader.ReaderCore<T>{
+    public static class Reader extends CoreReader.ReaderCore{
 
         public Reader(int productId){
             super(productId);
@@ -507,7 +507,7 @@ public class ProductBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Deleter Builder">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.DeleterCore<T>{
+    public static class Deleter extends CoreDeleter.DeleterCore{
 
         public Deleter(int productId, boolean force){
             super(productId, force);
@@ -528,7 +528,7 @@ public class ProductBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold  defaultstate="collapsed" desc="Duplicator Builder">
-    public static class Duplicator<T extends Duplicator<T>> extends CoreDuplicator.DuplicatorCore<T>{
+    public static class Duplicator extends CoreDuplicator.DuplicatorCore{
 
         public Duplicator(int productId){
             super(productId);
@@ -557,7 +557,7 @@ public class ProductBuilder extends ApiRequest {
             batch.addUpdate(update.build().product);
             return self();
         }
-        public T addDeleter(Deleter<?> delete){
+        public T addDeleter(Deleter delete){
             batch.addDelete(delete.build().product.getId());
             return self();
         }

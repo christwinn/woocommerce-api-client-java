@@ -184,7 +184,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Reader Builder">
-    public static class Reader<T extends ShippingZoneMethodBuilder.Reader<T>> extends CoreReader.ChildReaderCore<T>{
+    public static class Reader extends CoreReader.ChildReaderCore{
 
         public Reader(int zoneId, int instanceId){
             super(zoneId, instanceId);
@@ -200,7 +200,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Deleter Builder">
-    public static class Deleter<T extends ShippingZoneMethodBuilder.Deleter<T>> extends CoreDeleter.ChildDeleterCore<T>{
+    public static class Deleter extends CoreDeleter.ChildDeleterCore{
 
         public Deleter(int zoneId, int instanceId, boolean force){
             super(zoneId, instanceId, force);

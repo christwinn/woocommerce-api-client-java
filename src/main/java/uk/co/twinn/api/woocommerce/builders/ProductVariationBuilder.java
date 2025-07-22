@@ -74,7 +74,7 @@ public class ProductVariationBuilder extends ApiRequest {
 
     }
 
-    private ProductVariationBuilder(Deleter<?> deleter){
+    private ProductVariationBuilder(Deleter deleter){
 
         productVariation.setVariationId(deleter.childId);
 
@@ -212,7 +212,7 @@ public class ProductVariationBuilder extends ApiRequest {
 
 
     //<editor-fold name="Reader">
-    public static class Reader<T extends Reader<T>> extends CoreReader.ChildReaderCore<T>{
+    public static class Reader extends CoreReader.ChildReaderCore{
 
         public Reader(int productId, int variationId){
             super(productId, variationId);
@@ -228,7 +228,7 @@ public class ProductVariationBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter<T extends Deleter<T>> extends CoreDeleter.ChildDeleterCore<T>{
+    public static class Deleter extends CoreDeleter.ChildDeleterCore{
 
         public Deleter(int productId, int variationId, boolean force){
             super(productId, variationId, force);
@@ -270,7 +270,7 @@ public class ProductVariationBuilder extends ApiRequest {
             return self();
         }
 
-        public T addDeleter(Deleter<?> delete){
+        public T addDeleter(Deleter delete){
             batch.addDelete(delete.build().productVariation.getVariationId());
             return self();
         }

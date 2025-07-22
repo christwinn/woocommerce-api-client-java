@@ -29,9 +29,9 @@ public class Orders {
 
     }
 
-    public static OrderBuilder.Reader<?> read(int orderId){
+    public static OrderBuilder.Reader read(int orderId){
 
-        return new OrderBuilder.Reader<>(orderId);
+        return new OrderBuilder.Reader(orderId);
 
     }
 
@@ -47,9 +47,9 @@ public class Orders {
 
     }
 
-    public static OrderBuilder.Deleter<?> delete(int orderId, boolean force){
+    public static OrderBuilder.Deleter delete(int orderId, boolean force){
 
-        return new OrderBuilder.Deleter<>(orderId, force);
+        return new OrderBuilder.Deleter(orderId, force);
 
     }
 

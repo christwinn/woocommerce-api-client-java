@@ -29,9 +29,9 @@ public class ProductAttributeTerms {
 
     }
 
-    public static ProductAttributeTermBuilder.Reader<?> read(int attributeId, int termsId){
+    public static ProductAttributeTermBuilder.Reader read(int attributeId, int termsId){
 
-        return new ProductAttributeTermBuilder.Reader<>(attributeId, termsId);
+        return new ProductAttributeTermBuilder.Reader(attributeId, termsId);
 
     }
 
@@ -47,9 +47,9 @@ public class ProductAttributeTerms {
 
     }
 
-    public static ProductAttributeTermBuilder.Deleter<?> delete(int attributeId, int termsId, boolean force){
+    public static ProductAttributeTermBuilder.Deleter delete(int attributeId, int termsId, boolean force){
 
-        return new ProductAttributeTermBuilder.Deleter<>(attributeId, termsId, force);
+        return new ProductAttributeTermBuilder.Deleter(attributeId, termsId, force);
 
     }
 

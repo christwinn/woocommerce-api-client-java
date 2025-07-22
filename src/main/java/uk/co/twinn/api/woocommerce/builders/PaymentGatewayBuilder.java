@@ -127,7 +127,7 @@ public class PaymentGatewayBuilder extends ApiRequest {
         }
     }
 
-    public static class Reader<T extends Reader<T>> extends CoreReader.ReaderCoreStringKey<T>{
+    public static class Reader extends CoreReader.ReaderCoreStringKey{
 
         public Reader(String gatewayId){
             super(gatewayId);

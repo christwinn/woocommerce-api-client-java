@@ -22,15 +22,15 @@ public class OrderRefunds {
 
     }
 
-    public static OrderRefundBuilder.Reader<?> read(int orderId, int refundId){
+    public static OrderRefundBuilder.Reader read(int orderId, int refundId){
 
-        return new OrderRefundBuilder.Reader<>(orderId, refundId);
+        return new OrderRefundBuilder.Reader(orderId, refundId);
 
     }
 
-    public static OrderRefundBuilder.Deleter<?> delete(int orderId, int refundId, boolean force){
+    public static OrderRefundBuilder.Deleter delete(int orderId, int refundId, boolean force){
 
-        return new OrderRefundBuilder.Deleter<>(orderId, refundId, force);
+        return new OrderRefundBuilder.Deleter(orderId, refundId, force);
 
     }
 

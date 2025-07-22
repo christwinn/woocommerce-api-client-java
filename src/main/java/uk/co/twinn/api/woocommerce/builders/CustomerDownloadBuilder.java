@@ -21,7 +21,7 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 
 public class CustomerDownloadBuilder {
 
-    public static class ListAll<T extends ListAll<T>>{
+    public static class ListAll{
 
         private final int customerId;
 

@@ -41,7 +41,7 @@ public class OrderActionBuilder extends ApiRequest {
 
     }
 
-    public static class SendEmail<T extends SendEmail<T>>{
+    public static class SendEmail{
 
         private final int orderId;
 
