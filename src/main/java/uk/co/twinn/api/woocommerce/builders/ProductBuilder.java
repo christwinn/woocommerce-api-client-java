@@ -10,7 +10,6 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.api.Products;
 import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
@@ -428,6 +427,7 @@ public class ProductBuilder extends ApiRequest {
             return self();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -493,9 +493,7 @@ public class ProductBuilder extends ApiRequest {
             super(productId);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
+        @SuppressWarnings("unchecked")
         public Read<Product> getResponse(){
             return (Read<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
 
@@ -511,14 +509,12 @@ public class ProductBuilder extends ApiRequest {
             super(productId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
         //require for batch
         protected ProductBuilder build(){
             return new ProductBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<Product> getResponse(){
             return (Deleted<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
 
@@ -534,6 +530,7 @@ public class ProductBuilder extends ApiRequest {
             super(productId);
         }
 
+        @SuppressWarnings("unchecked")
         public Duplicated<Product> getResponse(){
             return (Duplicated<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
 
@@ -543,26 +540,22 @@ public class ProductBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold  defaultstate="collapsed" desc="Batch Builder">
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<Product, T>{
 
         public Batcher(){
             super();
         }
-
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().product);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().product);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().product);
             return self();
@@ -576,10 +569,9 @@ public class ProductBuilder extends ApiRequest {
          *
          * @return Batched<Product>
          */
+        @SuppressWarnings("unchecked")
         public Batched<Product> getResponse(){
-
             return (Batched<Product>) super.getResponse(PRODUCTS, batch, new TypeReference<Batch<Product>>(){});
-
         }
 
     }
@@ -595,6 +587,7 @@ public class ProductBuilder extends ApiRequest {
      */
     public static class ListAll<T extends ListAll<T>> extends Seek.StockSearcher<T> {
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

@@ -31,6 +31,7 @@ class CoreReader {
             this.id = id;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {return (T) this;}
 
         /** this needs to be exported to inheritor but not beyond* package-private*/
@@ -72,6 +73,7 @@ class CoreReader {
         //set up the private variables
         private final int childId;
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -105,6 +107,7 @@ class CoreReader {
             this.key = key;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {return (T) this;}
 
         /** this needs to be exported to inheritor but not beyond* package-private*/
@@ -145,6 +148,7 @@ class CoreReader {
             this.childKey = childKey;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {return (T) this;}
 
         /** this needs to be exported to inheritor but not beyond* package-private*/

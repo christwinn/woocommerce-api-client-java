@@ -24,18 +24,24 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreBatch {
 
-    static class BatchCore<T extends BatchCore<T>>{
+    //Require S so we can type Batch, require T so we can call back on the inheritors
+    static class BatchCore<S, T extends BatchCore<S, T>>{
 
         public static final int MAX_RECORDS = 100;
 
-        protected Batch batch;
+        protected Batch<S> batch;
 
         public BatchCore(){
-            batch = new Batch();
+            batch = new Batch<S>();
         }
 
-        private Batch getBatch(){
+        private Batch<S> getBatch(){
             return batch;
+        }
+
+        @SuppressWarnings("unchecked")
+        T self() {
+            return (T) this;
         }
 
         public boolean empty(){
@@ -53,12 +59,12 @@ class CoreBatch {
             return batch.getRecordCount() >= MAX_RECORDS;
         }
 
-        Batched<?> getResponse(String endPoint, Batch<?> batch, TypeReference<?> type){
+        Batched<?> getResponse(String endPoint, Batch<S> batch, TypeReference<?> type){
             return readResponse(endPoint + "/batch", batch, type);
         }
 
         /*Product Variations, are there others? */
-        Batched<?> getResponse(String endPoint, int referenceId, String secondEndPoint, Batch<?> batch, TypeReference<?> type){
+        Batched<S> getResponse(String endPoint, int referenceId, String secondEndPoint, Batch<S> batch, TypeReference<?> type){
 
             if (referenceId <= 0) {
                 return new Batched<>(new ApiResponseResult(false, 0, "Reference Id is required"));
@@ -67,7 +73,7 @@ class CoreBatch {
             }
         }
 
-        private Batched<?> readResponse(String endPoint, Batch<?> batch, TypeReference<?> type){
+        private Batched<S> readResponse(String endPoint, Batch<S> batch, TypeReference<?> type){
 
             if (batch.isEmpty()){
 

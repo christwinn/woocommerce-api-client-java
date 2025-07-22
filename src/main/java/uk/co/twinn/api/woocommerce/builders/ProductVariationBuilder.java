@@ -31,8 +31,6 @@ public class ProductVariationBuilder extends ApiRequest {
 
     protected final ProductVariation productVariation = new ProductVariation();
 
-    private boolean force;
-
     public ProductVariationBuilder(){}
 
     private ProductVariationBuilder(Creator<?> creator){
@@ -79,7 +77,6 @@ public class ProductVariationBuilder extends ApiRequest {
     private ProductVariationBuilder(Deleter<?> deleter){
 
         productVariation.setVariationId(deleter.childId);
-        force = deleter.force;
 
     }
 
@@ -124,6 +121,7 @@ public class ProductVariationBuilder extends ApiRequest {
 
         private ProductImage image;    //array	List of images. See Product - Images properties
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -155,7 +153,7 @@ public class ProductVariationBuilder extends ApiRequest {
 
                 ProductVariationBuilder create = build();
                 //make the call
-                return new Created<ProductVariation>(
+                return new Created<>(
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>(){})
                 );
             }
@@ -178,14 +176,10 @@ public class ProductVariationBuilder extends ApiRequest {
             this.variationId = productVariation.getVariationId();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
-
-        /*public T setVariationId(int variationId) {
-            this.variationId = variationId;
-            return self();
-        }*/
 
         protected ProductVariationBuilder build(){
             return new ProductVariationBuilder(this);
@@ -199,7 +193,7 @@ public class ProductVariationBuilder extends ApiRequest {
 
             //preliminary checks
             if (productId <= 0 || variationId <= 0) {
-                return new Updated<ProductVariation>(
+                return new Updated<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -208,7 +202,7 @@ public class ProductVariationBuilder extends ApiRequest {
             }else {
                 ProductVariationBuilder create = build();
                 //make the call
-                return new Updated<ProductVariation>(
+                return new Updated<>(
                     new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>(){})
                 );
             }
@@ -225,19 +219,7 @@ public class ProductVariationBuilder extends ApiRequest {
             super(productId, variationId);
         }
 
-        /*@Override
-        T self() {return (T) this;}
-
-        public T setProductId(int productId){
-            super.setId(productId);
-            return self();
-        }
-
-        public T setVariationId(int variationId){
-            super.setChildId(variationId);
-            return self();
-        }*/
-
+        @SuppressWarnings("unchecked")
         public Read<ProductVariation> getResponse(){
             return (Read<ProductVariation>)super.getResponse(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
 
@@ -253,23 +235,11 @@ public class ProductVariationBuilder extends ApiRequest {
             super(productId, variationId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}
-
-        public T setProductId(int productId){
-            super.setId(productId);
-            return self();
-        }
-
-        public T setVariationId(int variationId){
-            super.setChildId(variationId);
-            return self();
-        }*/
-
         protected ProductVariationBuilder build(){
             return new ProductVariationBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<ProductVariation> getResponse(){
             return (Deleted<ProductVariation>)super.getResponse(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
 
@@ -279,7 +249,7 @@ public class ProductVariationBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Batcher">
-    public static class Batcher<T extends Batcher<T>>  extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>>  extends CoreBatch.BatchCore<ProductVariation, T>{
 
         private int id;
 
@@ -287,39 +257,32 @@ public class ProductVariationBuilder extends ApiRequest {
             this.id = productId;
         }
 
-        /*public T setProductId(int productId){
-            this.id = productId;
-            return self();
-        }*/
-
         public Batcher(){
             super();
         }
 
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().productVariation);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().productVariation);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().productVariation);
             return self();
         }
 
         /** Returns list of amended Orders **/
+        @SuppressWarnings("unchecked")
         public Batched<ProductVariation> getResponse(){
-
-            return (Batched<ProductVariation>) super.getResponse(PRODUCTS, id, VARIATIONS, batch, new TypeReference<Batch<ProductVariation>>(){});
-
+            return super.getResponse(PRODUCTS, id, VARIATIONS, batch, new TypeReference<Batch<ProductVariation>>(){});
         }
 
     }
@@ -335,6 +298,7 @@ public class ProductVariationBuilder extends ApiRequest {
             return self();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

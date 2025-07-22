@@ -12,15 +12,12 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
-import uk.co.twinn.api.woocommerce.core.Batch;
+
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,7 +42,8 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
 
         this((ShippingZoneMethodBuilder.Creator<?>)updater);
         shippingZoneMethod.setInstanceId(updater.instanceId);
-
+        shippingZoneMethod.setOrder(updater.order);
+        shippingZoneMethod.setEnabled(updater.enabled);
 
     }
     //</editor-fold>
@@ -82,7 +80,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
     //<editor-fold defaultstate="collapsed" desc="Creator Builder">
     public static class Creator<T extends ShippingZoneMethodBuilder.Creator<?>>{
 
-        protected int zoneId;        //string	ShippingZone name.
+        protected final int zoneId;        //string	ShippingZone name.
         protected String methodId;        //string	ShippingZoneMethod name.
 
         private HashMap<String, String> settingNameValue;
@@ -100,10 +98,10 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
             return self();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
-
 
         public T setSettingValue(String settingName, String value){
             settingNameValue.put(settingName, value);
@@ -138,10 +136,10 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
     //<editor-fold defaultstate="collapsed" desc="Update Builder">
     public static class Updater<T extends ShippingZoneMethodBuilder.Updater<T>> extends ShippingZoneMethodBuilder.Creator<T> {
 
-        private int instanceId;
+        private final int instanceId;
         private Integer order;
         private Boolean enabled;
-        private HashMap<String, String> values = new HashMap<>();
+        private final HashMap<String, String> values = new HashMap<>();
 
         public Updater(int zoneId, int instanceId){
             super(zoneId);
@@ -192,9 +190,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
             super(zoneId, instanceId);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
+        @SuppressWarnings("unchecked")
         public Read<ShippingZoneMethod> getResponse(){
             return (Read<ShippingZoneMethod>)super.getResponse(SHIPPINGZONES, METHODS, new TypeReference<ShippingZoneMethod>() {});
 
@@ -210,6 +206,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
             super(zoneId, instanceId, force);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<ShippingZoneMethod> getResponse(){
             return (Deleted<ShippingZoneMethod>)super.getResponse(SHIPPINGZONES, METHODS, new TypeReference<ShippingZoneMethod>() {});
 
@@ -228,7 +225,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
      */
     public static class ListAll<T extends ShippingZoneMethodBuilder.ListAll<T>>{
 
-        private int zoneId;
+        private final int zoneId;
         public ListAll(int zoneId){
             this.zoneId = zoneId;
         }

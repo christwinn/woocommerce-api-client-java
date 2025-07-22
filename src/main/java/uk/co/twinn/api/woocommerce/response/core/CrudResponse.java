@@ -22,17 +22,18 @@ public class CrudResponse<T> extends ApiResponse{
         if (result.getSuccess()){
             switch (result.getStatusCode()){
                 case 200: case 201:
-                    setSuccess(true);
+                    success = true;
                     this.object =  result.getData();
                     break;
                 default:
-                    setSuccess(false);
-                    setError(new ErrorMessage("Invalid response code"));
+                    success = false;
+                    error = new ErrorMessage("Invalid response code");
                     break;
             }
         }
 
     }
+
     @Override
     public boolean isSuccess() {
         return super.success && object != null;
@@ -50,7 +51,9 @@ public class CrudResponse<T> extends ApiResponse{
 
     }
 
+    @SuppressWarnings ("unchecked")
     public T getResult(){
+        /*T is set by the call*/
         return (T)object;
     }
 

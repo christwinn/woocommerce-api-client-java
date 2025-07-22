@@ -27,8 +27,6 @@ public class ProductReviewBuilder extends ApiRequest {
 
     protected final ProductReview productReview = new ProductReview();
 
-    private boolean force;
-
     public ProductReviewBuilder(){}
 
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
@@ -54,7 +52,6 @@ public class ProductReviewBuilder extends ApiRequest {
     private ProductReviewBuilder(Deleter<?> deleter){
 
         productReview.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -150,6 +147,7 @@ public class ProductReviewBuilder extends ApiRequest {
             return self();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -214,9 +212,8 @@ public class ProductReviewBuilder extends ApiRequest {
         public Reader(int reviewId){
             super(reviewId);
         }
-        /*@Override
-        T self() {return (T) this;}*/
 
+        @SuppressWarnings("unchecked")
         public Read<ProductReview> getResponse(){
             return (Read<ProductReview>)super.getResponse(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
 
@@ -231,13 +228,12 @@ public class ProductReviewBuilder extends ApiRequest {
         public Deleter(int reviewId, boolean force){
             super(reviewId, force);
         }
-        /*@Override
-        T self() {return (T) this;}*/
 
         protected ProductReviewBuilder build(){
             return new ProductReviewBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<ProductReview> getResponse(){
             return (Deleted<ProductReview>)super.getResponse(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
 
@@ -246,41 +242,36 @@ public class ProductReviewBuilder extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<ProductReview, T>{
 
         public Batcher(){
             super();
         }
-
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().productReview);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().productReview);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().productReview);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public Batched<ProductReview> getResponse(){
-
             return (Batched<ProductReview>) super.getResponse(PRODUCTS_REVIEWS, batch, new TypeReference<Batch<ProductReview>>(){});
-
         }
 
     }
 
     public static class ListAll<T extends ProductReviewBuilder.ListAll<T>> extends Seek.Searcher<T> {
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

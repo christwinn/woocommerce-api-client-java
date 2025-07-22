@@ -27,8 +27,6 @@ public class ProductShippingClassBuilder extends ApiRequest {
 
     protected final ProductShippingClass productShippingClass = new ProductShippingClass();
 
-    private boolean force;
-
     public ProductShippingClassBuilder(){}
 
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
@@ -50,7 +48,6 @@ public class ProductShippingClassBuilder extends ApiRequest {
     private ProductShippingClassBuilder(Deleter<?> deleter){
 
         productShippingClass.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -114,6 +111,7 @@ public class ProductShippingClassBuilder extends ApiRequest {
             return self();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -177,9 +175,8 @@ public class ProductShippingClassBuilder extends ApiRequest {
         public Reader(int shippingClassId){
             super(shippingClassId);
         }
-        /*@Override
-        T self() {return (T) this;}*/
 
+        @SuppressWarnings("unchecked")
         public Read<ProductShippingClass> getResponse(){
             return (Read<ProductShippingClass>)super.getResponse(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
 
@@ -195,13 +192,11 @@ public class ProductShippingClassBuilder extends ApiRequest {
             super(shippingClassId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
         protected ProductShippingClassBuilder build(){
             return new ProductShippingClassBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<ProductShippingClass> getResponse(){
             return (Deleted<ProductShippingClass>)super.getResponse(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
 
@@ -210,41 +205,37 @@ public class ProductShippingClassBuilder extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<ProductShippingClass, T>{
 
         public Batcher(){
             super();
         }
-
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(ProductShippingClassBuilder.Creator<?> create){
             batch.addCreate(create.build().productShippingClass);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdater(ProductShippingClassBuilder.Updater<?> update){
             batch.addUpdate(update.build().productShippingClass);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addDeleter(ProductShippingClassBuilder.Deleter<?> delete){
             batch.addDelete(delete.build().productShippingClass);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public Batched<ProductShippingClass> getResponse(){
-
             return (Batched<ProductShippingClass>) super.getResponse(PRODUCTS_SHIPPING_CLASSES, batch, new TypeReference<Batch<ProductShippingClass>>(){});
-
         }
 
     }
 
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

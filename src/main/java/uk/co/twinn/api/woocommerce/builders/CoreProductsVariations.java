@@ -27,10 +27,10 @@ class CoreProductsVariations {
      * Implements core elements to ProductRequest and ProductVariationRequest
      * in an ideal world we would have a "friend" option, similar to package-private
      * but only the next inheritor can see or say package+1-private
-     *
+     *<br/>
      * If I move to core package, where it really should be, then the protected can not be seen.
      * all Core* are package-private
-     *
+     *<br/>
      * Sets and Gets only do NOT use.
     **/
     public static class Creator<T extends Creator<?>> {
@@ -135,6 +135,7 @@ class CoreProductsVariations {
 
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

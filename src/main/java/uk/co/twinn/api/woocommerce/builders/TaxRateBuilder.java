@@ -28,8 +28,6 @@ public class TaxRateBuilder extends ApiRequest {
 
     protected final TaxRate taxRate = new TaxRate();
 
-    private boolean force;
-
     public TaxRateBuilder(){}
 
     private TaxRateBuilder(Creator<?> creator){
@@ -59,7 +57,6 @@ public class TaxRateBuilder extends ApiRequest {
     private TaxRateBuilder(Deleter<?> deleter){
 
         taxRate.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -121,6 +118,7 @@ public class TaxRateBuilder extends ApiRequest {
             taxClass = taxRate.getTaxClass();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -309,6 +307,7 @@ public class TaxRateBuilder extends ApiRequest {
             super(taxRateId);
         }
 
+        @SuppressWarnings("unchecked")
         public Read<TaxRate> getResponse(){
             return (Read<TaxRate>)super.getResponse(TAXES, new TypeReference<TaxRate>() {});
 
@@ -328,6 +327,7 @@ public class TaxRateBuilder extends ApiRequest {
             return new TaxRateBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<TaxRate> getResponse(){
             return (Deleted<TaxRate>)super.getResponse(TAXES, new TypeReference<TaxRate>() {});
 
@@ -335,31 +335,28 @@ public class TaxRateBuilder extends ApiRequest {
 
     }
 
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<TaxRate, T>{
 
         public Batcher(){
             super();
         }
-
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().taxRate);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().taxRate);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().taxRate);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public Batched<TaxRate> getResponse(){
 
             return (Batched<TaxRate>) super.getResponse(TAXES, batch, new TypeReference<Batch<TaxRate>>(){});
@@ -370,6 +367,7 @@ public class TaxRateBuilder extends ApiRequest {
 
     public static class ListAll<T extends ListAll<T>> extends Seek.SearchCorePaging<T>{
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

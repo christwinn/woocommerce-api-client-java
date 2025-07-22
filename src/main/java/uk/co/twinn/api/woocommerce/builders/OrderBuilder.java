@@ -115,6 +115,8 @@ public class OrderBuilder extends ApiRequest {
             lineItems = order.getLineItems();
             shippingLines = order.getShippingLines();
         }
+
+        @SuppressWarnings("unchecked")
         T self() {
             return (T) this;
         }
@@ -174,7 +176,7 @@ public class OrderBuilder extends ApiRequest {
 
         private final int id;
 
-        public Updater(Order order){
+        public Updater(uk.co.twinn.pl_wtx_woocommerce.model.Order order){
             super(order);
             this.id = order.getId();
         }
@@ -182,11 +184,6 @@ public class OrderBuilder extends ApiRequest {
         public Updater(int productId){
             this.id = productId;
         }
-
-        /*public T setId(int id){
-            this.id = id;
-            return self();
-        }*/
 
         @Override
         protected OrderBuilder build(){
@@ -221,9 +218,7 @@ public class OrderBuilder extends ApiRequest {
             super(orderId);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
+        @SuppressWarnings("unchecked")
         public Read<Order> getResponse(){
             return (Read<Order>)super.getResponse(ORDERS, new TypeReference<Order>() {});
 
@@ -239,13 +234,11 @@ public class OrderBuilder extends ApiRequest {
             super(orderId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
         protected OrderBuilder build(){
             return new OrderBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<Order> getResponse(){
             return (Deleted<Order>)super.getResponse(ORDERS, new TypeReference<Order>() {});
 
@@ -255,32 +248,29 @@ public class OrderBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Batcher">
-    public static class Batcher<T extends Batcher<T>>  extends CoreBatch.BatchCore<T>{
+    public static class Batcher<Order, T extends Batcher<Order, T>>  extends CoreBatch.BatchCore<Order, T>{
 
         public Batcher(){
             super();
         }
-
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
-            batch.addCreate(create.build().order);
+            batch.addCreate((Order)create.build().order);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update.build().order);
+            batch.addUpdate((Order)update.build().order);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
-            batch.addDelete(delete.build().order);
+            batch.addDelete((Order)delete.build().order);
             return self();
         }
 
         /** Returns list of amended Orders **/
+        @SuppressWarnings("unchecked")
         public Batched<Order> getResponse(){
 
             return (Batched<Order>) super.getResponse(ORDERS, batch, new TypeReference<Batch<Order>>(){});
@@ -300,6 +290,7 @@ public class OrderBuilder extends ApiRequest {
      */
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
 
+        @SuppressWarnings("unchecked")
         T self() {
             return (T) this;
         }
@@ -367,6 +358,7 @@ public class OrderBuilder extends ApiRequest {
          * @param parents Limit result set to those of particular parent IDs.
          * @return T
          */
+        @SuppressWarnings("unchecked")
         public T setParents(List<Integer> parents) {
             addNameValueIntegers("parent", parents);
             return self();
@@ -377,6 +369,7 @@ public class OrderBuilder extends ApiRequest {
          * @param parents_exclude Limit result set to all items except those of a particular parent ID
          * @return T
          */
+        @SuppressWarnings("unchecked")
         public T setParentsExclude(List<Integer> parents_exclude) {
             addNameValueIntegers("parent_exclude", parents_exclude);
             return self();
@@ -390,6 +383,7 @@ public class OrderBuilder extends ApiRequest {
          *                      Default is any.
          * @return T
          */
+        @SuppressWarnings("unchecked")
         public T setStatus(List<String> statuses) {
             addNameValueStrings("status", statuses);
             return self();

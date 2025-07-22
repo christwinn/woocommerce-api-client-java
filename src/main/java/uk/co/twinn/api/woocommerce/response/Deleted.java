@@ -9,7 +9,6 @@
 
 package uk.co.twinn.api.woocommerce.response;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 public class Deleted<T> extends Read<T> {

@@ -27,6 +27,8 @@ import java.util.*;
  **/
 public class JsonMappedSettings extends StdDeserializer<HashMap<String, MappedSetting>> {
 
+    private static final long serialVersionUID = 1L;
+
     private final HashMap<String, MappedSetting> keys = new LinkedHashMap<>();
 
     protected JsonMappedSettings(){
@@ -56,7 +58,7 @@ public class JsonMappedSettings extends StdDeserializer<HashMap<String, MappedSe
             fields.iterator().forEachRemaining(field -> {
                 if (isRoot) {
                     keys.put(field.getKey(), new MappedSetting());
-                    getAllKeysUsingJsonNodeFields((JsonNode) field.getValue(), false, field.getKey());
+                    getAllKeysUsingJsonNodeFields(field.getValue(), false, field.getKey());
                 }else {
                     switch (field.getKey()){
                         case "id":          keys.get(root).setId(field.getValue().toString()); break;
@@ -74,7 +76,7 @@ public class JsonMappedSettings extends StdDeserializer<HashMap<String, MappedSe
                         case "tip":         keys.get(root).setTip(field.getValue().toString()); break;
                         case "placeholder": keys.get(root).setPlaceholder(field.getValue().toString()); break;
                         //list namevaluepair
-                        case "options":     getOptionsJsonNodeFields((JsonNode) field.getValue(),false, root); break;
+                        case "options":     getOptionsJsonNodeFields(field.getValue(),false, root); break;
                         default:            break;
                     }
                     //
@@ -84,9 +86,7 @@ public class JsonMappedSettings extends StdDeserializer<HashMap<String, MappedSe
         } else if (jsonNode.isArray()) {
 
             ArrayNode arrayField = (ArrayNode) jsonNode;
-            arrayField.forEach(node -> {
-                getAllKeysUsingJsonNodeFields(node, false, root);
-            });
+            arrayField.forEach(node -> getAllKeysUsingJsonNodeFields(node, false, root));
 
         }
     }
@@ -96,9 +96,9 @@ public class JsonMappedSettings extends StdDeserializer<HashMap<String, MappedSe
         if (jsonNode.isObject()) {
             List<NameValuePair> nvp = new ArrayList<>();
             Set<Map.Entry<String, JsonNode>> fields = jsonNode.properties();
-            fields.iterator().forEachRemaining(field -> {
-                nvp.add(new BasicNameValuePair(field.getKey(), field.getValue().toString()));
-            });
+            fields.iterator().forEachRemaining(field ->
+                nvp.add(new BasicNameValuePair(field.getKey(), field.getValue().toString()))
+            );
             keys.get(root).setOptions(nvp);
         }
 
@@ -109,9 +109,7 @@ public class JsonMappedSettings extends StdDeserializer<HashMap<String, MappedSe
         if (value.isArray()){
             List<String> strings = new ArrayList<>();
             ArrayNode arrayField = (ArrayNode) value;
-            arrayField.forEach(node -> {
-                strings.add(node.asText());
-            });
+            arrayField.forEach(node -> strings.add(node.asText()));
             return strings;
         }else {
             return value.asText();

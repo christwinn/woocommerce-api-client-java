@@ -26,7 +26,7 @@ public class Message extends ApiResponse {
         if (result.getSuccess()){
             switch (result.getStatusCode()){
                 case 200: case 201:
-                    setSuccess(true);
+                    success = true;
                     if (result.getData() instanceof Msg) {
                         this.message = (Msg) result.getData();
                     }else{
@@ -34,8 +34,8 @@ public class Message extends ApiResponse {
                     }
                     break;
                 default:
-                    setSuccess(false);
-                    setError(new ErrorMessage("Invalid response code"));
+                    success = false;
+                    error = new ErrorMessage("Invalid response code");
                     break;
             }
         }

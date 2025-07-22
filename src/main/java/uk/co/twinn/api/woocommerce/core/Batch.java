@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Batch<T> {
@@ -48,6 +49,7 @@ public class Batch<T> {
 
     }
 
+    @JsonProperty("create")
     public void setCreate(List<T> create){
 
         this.create = create;

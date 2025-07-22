@@ -27,8 +27,6 @@ public class ProductTagBuilder extends ApiRequest {
 
     protected final ProductTag productTag = new ProductTag();
 
-    private boolean force;
-
     public ProductTagBuilder(){}
 
     /*Can not extend Reader as Create should not have an id set, so to enforce the rules we do not extend*/
@@ -50,7 +48,6 @@ public class ProductTagBuilder extends ApiRequest {
     private ProductTagBuilder(Deleter<?> deleter){
 
         productTag.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -114,6 +111,7 @@ public class ProductTagBuilder extends ApiRequest {
             return self();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -151,11 +149,6 @@ public class ProductTagBuilder extends ApiRequest {
             this.id = productTag.getId();
         }
 
-        /*public T setId(int id) {
-            this.id = id;
-            return self();
-        }*/
-
         private ProductTagBuilder build(){
             return new ProductTagBuilder(this);
         }
@@ -183,9 +176,7 @@ public class ProductTagBuilder extends ApiRequest {
             super(productTagId);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
+        @SuppressWarnings("unchecked")
         public Read<ProductTag> getResponse(){
             return (Read<ProductTag>)super.getResponse(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
 
@@ -201,13 +192,11 @@ public class ProductTagBuilder extends ApiRequest {
             super(productTagId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
         protected ProductTagBuilder build(){
             return new ProductTagBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<ProductTag> getResponse(){
             return (Deleted<ProductTag>)super.getResponse(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
 
@@ -216,31 +205,28 @@ public class ProductTagBuilder extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<ProductTag, T>{
 
         public Batcher(){
             super();
         }
-
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(ProductTagBuilder.Creator<?> create){
             batch.addCreate(create.build().productTag);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdater(ProductTagBuilder.Updater<?> update){
             batch.addUpdate(update.build().productTag);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addDeleter(ProductTagBuilder.Deleter<?> delete){
             batch.addDelete(delete.build().productTag);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public Batched<ProductTag> getResponse(){
 
             return (Batched<ProductTag>) super.getResponse(PRODUCTS_TAGS, batch, new TypeReference<Batch<ProductTag>>(){});
@@ -251,6 +237,7 @@ public class ProductTagBuilder extends ApiRequest {
 
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

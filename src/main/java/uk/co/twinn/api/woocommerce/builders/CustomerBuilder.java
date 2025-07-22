@@ -28,8 +28,6 @@ public class CustomerBuilder extends ApiRequest {
 
     protected final Customer customer = new Customer();
 
-    private boolean force;
-
     public CustomerBuilder(){
 
     }
@@ -56,7 +54,6 @@ public class CustomerBuilder extends ApiRequest {
     private CustomerBuilder(Deleter<?> deleter){
 
         customer.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -107,6 +104,7 @@ public class CustomerBuilder extends ApiRequest {
             shipping = customer.getShipping();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -160,7 +158,7 @@ public class CustomerBuilder extends ApiRequest {
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Customer>(){})
                 );
             }else{
-                return new Created<Customer>(
+                return new Created<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -181,7 +179,7 @@ public class CustomerBuilder extends ApiRequest {
             this.id = productId;
         }
 
-        public Updater(Customer customer){
+        public Updater(uk.co.twinn.pl_wtx_woocommerce.model.Customer customer){
             super(customer);
             this.id = customer.getId();
         }
@@ -214,9 +212,7 @@ public class CustomerBuilder extends ApiRequest {
             super(id);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
+        @SuppressWarnings("unchecked")
         public Read<Customer> getResponse(){
             return (Read<Customer>)super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
 
@@ -232,13 +228,11 @@ public class CustomerBuilder extends ApiRequest {
             super(customerId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
         protected CustomerBuilder build(){
             return new CustomerBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<Customer> getResponse(){
             return (Deleted<Customer>)super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
 
@@ -247,64 +241,65 @@ public class CustomerBuilder extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<Customer, T>{
 
         public Batcher(){
             super();
         }
 
-        T self() {
-            return (T) this;
-        }
+        //T self() {
+            //return (T) this;
+        //}
 
         /** for testing only **/
-        public T setBatch(Batch<?> batch){
+        public T setBatch(Batch<Customer> batch){
             this.batch = batch;
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addCreators(List<Creator<?>> creators){
-            //we need to extract the create
+            //we need to extract the creator
             for(Creator<?> create : creators){
                 addCreator(create);
             }
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
-            Customer c = create.build().customer;
-            if (c != null) {
-                batch.addCreate(create.build().customer);
-            }
+            batch.addCreate(create.build().customer);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdaters(List<Updater<?>> updates){
             //we need to extract the update
-            for(Updater update : updates){
+            for(Updater<?> update : updates){
                 addUpdater(update);
             }
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().customer);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addDeleters(List<Deleter<?>> deletes){
             //we need to extract the delete
-            for(Deleter delete : deletes){
+            for(Deleter<?> delete : deletes){
                 addDeleter(delete);
             }
             return self();
         }
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().customer);
             return self();
         }
 
         /** Returns list of amended ProductCategories **/
+        @SuppressWarnings("unchecked")
         public Batched<Customer> getResponse(){
 
             return (Batched<Customer>) super.getResponse(CUSTOMERS, batch, new TypeReference<Batch<Customer>>(){});
@@ -324,6 +319,7 @@ public class CustomerBuilder extends ApiRequest {
      */
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -363,7 +359,7 @@ public class CustomerBuilder extends ApiRequest {
 
         public Listed<Customer> getResponse(){
 
-            return new Listed<Customer>(
+            return new Listed<>(
                 new Rest().listAll(
                     CUSTOMERS,
                     build(),

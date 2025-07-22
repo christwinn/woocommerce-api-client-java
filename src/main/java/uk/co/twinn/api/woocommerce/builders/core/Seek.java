@@ -14,9 +14,9 @@ import java.util.List;
 
 public class Seek {
 
-    public static class SearchCore<T extends SearchCore<?>> extends ParameterCollector {
+    public static class SearchCore<T extends SearchCore<T>> extends ParameterCollector<T> {
 
-
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -98,6 +98,7 @@ public class Seek {
          * @param exclude Ensure result set excludes specific IDs.
          * @return T
          */
+        @SuppressWarnings("unchecked")
         public T setExclude(List<Integer> exclude) {
             addNameValueIntegers("exclude", exclude);
             return self();
@@ -107,6 +108,7 @@ public class Seek {
          * @param include Limit result set to specific ids.
          * @return T
          */
+        @SuppressWarnings("unchecked")
         public T setInclude(List<Integer> include) {
             addNameValueIntegers("include", include);
             return self();
@@ -172,6 +174,7 @@ public class Seek {
          * @param parent Limit result set to those of particular parent IDs.
          * @return T
          */
+        @SuppressWarnings("unchecked")
         public T setParent(List<Integer> parent) {
             addNameValueIntegers("parent", parent);
             return self();
@@ -181,6 +184,7 @@ public class Seek {
          * @param parent_exclude Limit result set to all items except those of a particular parent ID.
          * @return T
          */
+        @SuppressWarnings("unchecked")
         public T setParentExclude(List<Integer> parent_exclude) {
             addNameValueIntegers("parent_exclude", parent_exclude);
             return self();

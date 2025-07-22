@@ -23,7 +23,6 @@ import uk.co.twinn.api.woocommerce.rest.Configuration;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +34,7 @@ import java.util.logging.Logger;
  */
 public class Http {
 
-    private static CloseableHttpClient httpClient = HttpClients.createDefault();
+    private static final CloseableHttpClient httpClient = HttpClients.createDefault();
 
     private final JacksonObjectMapper json = new JacksonObjectMapper();
 
@@ -100,10 +99,6 @@ public class Http {
 
             }
 
-        } catch (SocketTimeoutException e) {
-
-            return new ApiResponseResult(false, 0, e.toString());
-
         } catch (IOException e) {
 
             return new ApiResponseResult(false, 0, e.toString());
@@ -157,10 +152,6 @@ public class Http {
 
             }
 
-        } catch (SocketTimeoutException e) {
-
-            return new ApiResponseResult(false, 0, e.toString());
-
         } catch (IOException e) {
 
             return new ApiResponseResult(false, 0, e.toString());
@@ -181,9 +172,6 @@ public class Http {
 
             }
 
-        } catch (SocketTimeoutException e) {
-
-            return new ApiResponseResult(false, 0, e.toString());
 
         } catch (IOException e) {
 
@@ -231,10 +219,6 @@ public class Http {
                 return parseResponse(response, typeReference);
 
             }
-
-        } catch (SocketTimeoutException e) {
-
-            return new ApiResponseResult(false, 0, e.toString());
 
         } catch (IOException e) {
 

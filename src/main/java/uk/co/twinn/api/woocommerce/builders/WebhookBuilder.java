@@ -27,8 +27,6 @@ public class WebhookBuilder extends ApiRequest {
 
     protected final Webhook webhook = new Webhook();
 
-    private boolean force;
-
     public WebhookBuilder(){}
 
     private WebhookBuilder(Creator<?> creator){
@@ -51,7 +49,6 @@ public class WebhookBuilder extends ApiRequest {
     private WebhookBuilder(Deleter<?> deleter){
 
         webhook.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -96,6 +93,7 @@ public class WebhookBuilder extends ApiRequest {
             this.deliveryUrl = deliveryUrl;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -202,6 +200,7 @@ public class WebhookBuilder extends ApiRequest {
             super(webhookId);
         }
 
+        @SuppressWarnings("unchecked")
         public Read<Webhook> getResponse(){
             return (Read<Webhook>)super.getResponse(WEBHOOKS, new TypeReference<Webhook>() {});
 
@@ -221,6 +220,7 @@ public class WebhookBuilder extends ApiRequest {
             return new WebhookBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<Webhook> getResponse(){
             return (Deleted<Webhook>)super.getResponse(WEBHOOKS, new TypeReference<Webhook>() {});
 
@@ -228,31 +228,29 @@ public class WebhookBuilder extends ApiRequest {
 
     }
 
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<Webhook, T>{
 
         public Batcher(){
             super();
         }
 
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().webhook);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().webhook);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().webhook);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public Batched<Webhook> getResponse(){
 
             return (Batched<Webhook>) super.getResponse(WEBHOOKS, batch, new TypeReference<Batch<Webhook>>(){});
@@ -263,6 +261,7 @@ public class WebhookBuilder extends ApiRequest {
 
     public static class ListAll<T extends ListAll<T>> extends Seek.DatesSearcher<T>{
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

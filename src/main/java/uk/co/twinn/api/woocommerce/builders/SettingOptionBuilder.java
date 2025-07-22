@@ -83,7 +83,7 @@ public class SettingOptionBuilder extends ApiRequest {
             this.optionId = optionId;
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -151,7 +151,7 @@ public class SettingOptionBuilder extends ApiRequest {
     }
 
 
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<SettingOption, T>{
 
         private final String groupId;
 
@@ -161,18 +161,8 @@ public class SettingOptionBuilder extends ApiRequest {
         }
 
         @SuppressWarnings("unchecked")
-        T self() {
-            return (T) this;
-        }
-
-        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
-            try {
-                SettingOption option = update.build().settingOption;
-                batch.addUpdate(option);
-            }catch(ClassCastException e){
-                Logger.getLogger(SettingOptionBuilder.class.getName()).log(Level.SEVERE, "Failure to Cast", e);
-            }
+            batch.addUpdate(update.build().settingOption);
             return self();
         }
 

@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import uk.co.twinn.api.woocommerce.builders.core.ParameterCollector;
@@ -180,8 +179,6 @@ public class Configuration {
 
             }catch (FileNotFoundException fileNotFoundException){
                 Logger.getLogger(ParameterCollector.class.getName()).log(Level.SEVERE, pathToConfigDOTjson, fileNotFoundException);
-            } catch (JsonMappingException e) {
-                throw new RuntimeException(e);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {

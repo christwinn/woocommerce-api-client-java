@@ -223,7 +223,7 @@ public class ProductReview {
   @JsonProperty("status")
   public void setStatusAsString(@javax.annotation.Nullable String status) {
 
-      if (status != null){this.status.fromValue(status);}
+      if (status != null){StatusEnum.fromValue(status);}
 
   }
 

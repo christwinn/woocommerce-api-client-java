@@ -29,15 +29,6 @@ public class CustomerDownloadBuilder {
             this.customerId = customerId;
         }
 
-        /*T self() {
-            return (T) this;
-        }*/
-
-        /*public T setCustomerId(int customerId){
-            this.customerId = customerId;
-            return self();
-        }*/
-
         public Listed<CustomerDownload> getResponse(){
             if (customerId == 0) {
                 return new Listed<>(

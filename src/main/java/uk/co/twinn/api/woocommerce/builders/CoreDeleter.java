@@ -32,6 +32,7 @@ class CoreDeleter {
             this.force = force;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -70,14 +71,10 @@ class CoreDeleter {
             this.childId = childId;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
-
-        /*T setChildId(int childId) {
-            this.childId = childId;
-            return self();
-        }*/
 
         Deleted<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id + "/" + childEndPoint + "/" + childId, type);
@@ -109,6 +106,7 @@ class CoreDeleter {
             this.force = force;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -146,6 +144,7 @@ class CoreDeleter {
             this.childKey = childKey;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

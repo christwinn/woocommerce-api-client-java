@@ -25,8 +25,6 @@ public class ShippingZoneBuilder extends ApiRequest {
 
     protected final ShippingZone shippingZone = new ShippingZone();
 
-    private boolean force;
-
     public ShippingZoneBuilder(){
 
     }
@@ -47,7 +45,6 @@ public class ShippingZoneBuilder extends ApiRequest {
     private ShippingZoneBuilder(ShippingZoneBuilder.Deleter<?> deleter){
 
         shippingZone.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -82,6 +79,7 @@ public class ShippingZoneBuilder extends ApiRequest {
             this.name = name;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -105,7 +103,7 @@ public class ShippingZoneBuilder extends ApiRequest {
                     new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ShippingZone>(){})
                 );
             }else{
-                return new Created<ShippingZone>(
+                return new Created<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -159,9 +157,7 @@ public class ShippingZoneBuilder extends ApiRequest {
             super(shippingZoneId);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
+        @SuppressWarnings("unchecked")
         public Read<ShippingZone> getResponse(){
             return (Read<ShippingZone>)super.getResponse(SHIPPINGZONES, new TypeReference<ShippingZone>() {});
 
@@ -177,13 +173,11 @@ public class ShippingZoneBuilder extends ApiRequest {
             super(shippingZoneId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
         protected ShippingZoneBuilder build(){
             return new ShippingZoneBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<ShippingZone> getResponse(){
             return (Deleted<ShippingZone>)super.getResponse(SHIPPINGZONES, new TypeReference<ShippingZone>() {});
 
@@ -205,7 +199,7 @@ public class ShippingZoneBuilder extends ApiRequest {
 
         public Listed<ShippingZone> getResponse(){
 
-            return new Listed<ShippingZone>(
+            return new Listed<>(
                 new Rest().listAll(
                     SHIPPINGZONES,
                     "",

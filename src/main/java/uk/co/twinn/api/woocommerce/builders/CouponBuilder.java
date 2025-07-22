@@ -31,46 +31,7 @@ public class CouponBuilder extends ApiRequest {
 
     private final Coupon coupon = new Coupon();
 
-    private boolean force;
-
     public CouponBuilder(){}
-
-    //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public Creator<?> create(){
-
-        return new Creator<>();
-
-    }
-
-    public Reader<?> read(int couponId){
-
-        return new Reader<>(couponId);
-
-    }
-
-    public Updater<?> update(int couponId){
-
-        return new Updater<>(couponId);
-
-    }
-
-    public Deleter<?> delete(int couponId, boolean force){
-
-        return new Deleter<>(couponId, force);
-
-    }
-
-    public Batcher<?> batch(){
-
-        return new Batcher<>();
-
-    }
-    public ListAll<?> listing(){
-
-        return new ListAll<>();
-
-    }
-    //</editor-fold>
 
     private CouponBuilder(Creator<?> creator){
 
@@ -107,7 +68,6 @@ public class CouponBuilder extends ApiRequest {
     private CouponBuilder(Deleter<?> deleter){
 
         coupon.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -134,7 +94,7 @@ public class CouponBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<?>>{
+    public static class Creator<T extends Creator<T>>{
 
         private String code; //	string	Coupon code.mandatory
         private BigDecimal amount; //	string	The amount of discount. Should always be numeric, even if setting a percentage.
@@ -186,6 +146,7 @@ public class CouponBuilder extends ApiRequest {
 
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -384,7 +345,7 @@ public class CouponBuilder extends ApiRequest {
         /** Returns single Created Coupon, unless it is a duplicate! **/
         public Created<Coupon> getResponse(){
             if (code == null || code.isEmpty()) {
-                return new Created<Coupon>(
+                return new Created<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -413,11 +374,6 @@ public class CouponBuilder extends ApiRequest {
         public Updater(int couponId){
             this.id = couponId;
         }
-
-        /*public T setId(int id){
-            this.id = id;
-            return self();
-        }*/
 
         @Override
         protected CouponBuilder build(){
@@ -453,6 +409,7 @@ public class CouponBuilder extends ApiRequest {
             super(couponId);
         }
 
+        @SuppressWarnings ("unchecked")
         public Read<Coupon> getResponse(){
             return (Read<Coupon>)super.getResponse(COUPONS, new TypeReference<Coupon>() {});
 
@@ -472,6 +429,7 @@ public class CouponBuilder extends ApiRequest {
             return new CouponBuilder(this);
         }
 
+        @SuppressWarnings ("unchecked")
         public Deleted<Coupon> getResponse(){
             return (Deleted<Coupon>)super.getResponse(COUPONS, new TypeReference<Coupon>() {});
 
@@ -482,6 +440,7 @@ public class CouponBuilder extends ApiRequest {
 
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -555,7 +514,7 @@ public class CouponBuilder extends ApiRequest {
 
         public Listed<Coupon> getResponse(){
 
-            return new Listed<Coupon>(
+            return new Listed<>(
                 new Rest().listAll(
                     COUPONS,
                     build(),
@@ -567,32 +526,32 @@ public class CouponBuilder extends ApiRequest {
 
     }
 
-    public static class Batcher<T extends Batcher<T>>  extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>>  extends CoreBatch.BatchCore<Coupon, T>{
 
         public Batcher(){
             super();
         }
 
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().coupon);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().coupon);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().coupon);
             return self();
         }
 
         /** Returns list of amended Coupons **/
+        @SuppressWarnings("unchecked")
         public Batched<Coupon> getResponse(){
 
             return (Batched<Coupon>) super.getResponse(COUPONS, batch, new TypeReference<Batch<Coupon>>(){});

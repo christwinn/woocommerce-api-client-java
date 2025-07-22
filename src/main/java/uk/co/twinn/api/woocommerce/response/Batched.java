@@ -26,16 +26,22 @@ public class Batched<T> extends ApiResponse {
         if (result.getSuccess()){
             switch (result.getStatusCode()){
                 case 200: case 201:
-                    setSuccess(true);
-                    this.batch = (Batch<T>)result.getData();
+                    success = true;
+                    setBatch(result.getData());
                     break;
                 default:
-                    setSuccess(false);
-                    setError(new ErrorMessage("Invalid response code"));
+                    success = false;
+                    error = new ErrorMessage("Invalid response code");
                     break;
             }
         }
 
+    }
+
+    @SuppressWarnings("unchecked")
+    private void setBatch(Object data){
+        /* if we are not a batch then something has gone very wrong*/
+        this.batch = (Batch<T>)data;
     }
 
     /*If the id is NOT set then we get an array of product*/

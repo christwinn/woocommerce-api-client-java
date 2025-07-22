@@ -9,7 +9,6 @@
 
 package uk.co.twinn.api.woocommerce.response;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import uk.co.twinn.api.woocommerce.response.core.CrudResponse;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 

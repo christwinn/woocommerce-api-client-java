@@ -30,25 +30,26 @@ public class Listed<T> extends ApiResponse {
         if (result.getSuccess()){
             switch (result.getStatusCode()){
                 case 200: case 201:
-                    setSuccess(true);
+                    success = true;
                     setList(result);
                     break;
                 default:
-                    setSuccess(false);
-                    setError(new ErrorMessage("Invalid response code"));
+                    success = false;
+                    error = new ErrorMessage("Invalid response code");
                     break;
             }
         }
 
     }
 
+    @SuppressWarnings("unchecked")
     private void setList(ApiResponseResult result){
         try {
             this.listed = (List<T>) result.getData();
         }catch (Exception e){
             Logger.getLogger(Listed.class.getName())
                 .log(Level.SEVERE, "Failed to parse list", e);
-            setError(new ErrorMessage("Parse list failure"));
+            this.error = new ErrorMessage("Parse list failure");
         }
     }
 

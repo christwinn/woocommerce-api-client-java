@@ -9,6 +9,7 @@
 
 package uk.co.twinn.api.woocommerce.demonstration;
 
+import uk.co.twinn.api.woocommerce.api.Products;
 import uk.co.twinn.api.woocommerce.builders.ProductBuilder;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Listed;
@@ -18,6 +19,7 @@ import uk.co.twinn.pl_wtx_woocommerce.model.Product;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategoriesItem;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Collections;
 
 public class ProductDemo {
@@ -29,7 +31,7 @@ public class ProductDemo {
     ){
 
         Created<Product> created =
-            new ProductBuilder.Creator<>()
+            Products.create()
                 .setSku(sku)
                 .setName(name)
                 .setDescription(description)
@@ -50,7 +52,7 @@ public class ProductDemo {
         int id
     ){
         Read<Product> read =
-            new ProductBuilder.Reader<>(id)
+            Products.read(id)
                 .getResponse();
 
         if (read.isSuccess()){
@@ -68,15 +70,17 @@ public class ProductDemo {
         int menuOrder
     ){
 
-        Read<Product> read = new ProductBuilder.Reader<>(id).getResponse();
+        Read<Product> read = Products.read(id).getResponse();
 
         if (read.isSuccess()){
 
             Product existing = read.getResult();
 
-            ProductBuilder.Updater<?> update = new ProductBuilder.Updater(id);
+            Product update = new Product();
 
-            update.setRegularPrice(new BigDecimal(9.99));
+            update.setId(id);
+
+            update.setRegularPrice(new BigDecimal(9.99).setScale(2, RoundingMode.HALF_UP));
 
             if ((existing.getSku() == null) || !existing.getSku().equals(sku)){
                 update.setSku(sku);
@@ -91,7 +95,7 @@ public class ProductDemo {
                 update.setMenuOrder(menuOrder);
             }
 
-            Updated<Product> updated = update.getResponse();
+            Updated<Product> updated = Products.update(update).getResponse();
 
             return (updated.isSuccess());
 
@@ -103,7 +107,7 @@ public class ProductDemo {
 
     private void searchProduct(String sku){
 
-        Listed<Product> isListed = new ProductBuilder.ListAll<>().setSku(sku).getResponse();
+        Listed<Product> isListed = Products.listing().setSku(sku).getResponse();
         if (isListed.isSuccess()){
             if (isListed.getResult().isEmpty()){
 

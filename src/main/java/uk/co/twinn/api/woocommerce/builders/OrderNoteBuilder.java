@@ -97,6 +97,7 @@ public class OrderNoteBuilder extends ApiRequest {
             addedByUser = orderNote.getAddedByUser();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -167,7 +168,7 @@ public class OrderNoteBuilder extends ApiRequest {
             super(orderId, noteId);
         }
 
-
+        @SuppressWarnings("unchecked")
         public Read<OrderNote> getResponse(){
             return (Read<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
 
@@ -183,6 +184,7 @@ public class OrderNoteBuilder extends ApiRequest {
             super(orderId, noteId, force);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<OrderNote> getResponse(){
             return (Deleted<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
 
@@ -197,6 +199,7 @@ public class OrderNoteBuilder extends ApiRequest {
 
         protected int orderId;
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

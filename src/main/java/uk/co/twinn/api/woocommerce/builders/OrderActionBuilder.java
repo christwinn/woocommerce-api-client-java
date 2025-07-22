@@ -49,15 +49,6 @@ public class OrderActionBuilder extends ApiRequest {
             this.orderId = orderId;
         }
 
-        /*T self() {
-            return (T) this;
-        }
-
-        public T setOrderId(int orderId){
-            this.orderId = orderId;
-            return self();
-        }*/
-
         private String getEndPoint(){
             return ORDERS + "/" + orderId + "/actions/send_order_details";
         }

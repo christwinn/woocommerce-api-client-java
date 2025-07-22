@@ -30,16 +30,6 @@ class CoreDuplicator {
             this.id = id;
         }
 
-        /*T self() {
-            return (T) this;
-        }*/
-
-
-        /*public T setId(int id) {
-            this.id = id;
-            return self();
-        }*/
-
         Duplicated<?> getResponse(String endPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id + "/duplicate", type);
         }

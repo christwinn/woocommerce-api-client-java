@@ -15,7 +15,7 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 /**
  * HAL - Hypertext Application Language
- *
+ * <br/>
  * Link used in '_links' HashMap as we never fully know the full list of object names that may exist
  * but each Link follows the structure below ! to be completed. require targetHints 'allow'
  *

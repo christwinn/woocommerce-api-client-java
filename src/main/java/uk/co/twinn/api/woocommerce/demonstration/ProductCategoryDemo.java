@@ -16,6 +16,7 @@ import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
+import uk.co.twinn.pl_wtx_woocommerce.model.ProductImage;
 
 import static uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory.DisplayEnum.PRODUCTS;
 import static uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory.DisplayEnum.SUBCATEGORIES;
@@ -171,8 +172,9 @@ public class ProductCategoryDemo {
         ProductCategory existingCategory, boolean retry
     ){
 
-        ProductCategoryBuilder.Updater<?> update =
-            new ProductCategoryBuilder.Updater(wooId);
+        ProductCategory update = new ProductCategory();
+
+        update.setId(wooId);
 
         boolean updatingImage = false;
 
@@ -190,7 +192,7 @@ public class ProductCategoryDemo {
 
         if (retry){ //update image to DESTINATION have to let woo move it
 
-            update.setImage(DESTINATION + image);
+            update.setImage(new ProductImage().src(DESTINATION + image));
 
         }else if (image != null && !image.isEmpty()){
 
@@ -207,7 +209,7 @@ public class ProductCategoryDemo {
 
                     if (!wooImage.startsWith(MODIFY_DESTINATION_START) && !wooImage.endsWith(tImage)) {
                         updatingImage = true;
-                        update.setImage(SOURCE + image);
+                        update.setImage(new ProductImage().src(SOURCE + image));
                     }
                 }
 
@@ -223,7 +225,7 @@ public class ProductCategoryDemo {
             update.setDisplay(SUBCATEGORIES);
         }
 
-        Updated<ProductCategory> updated = update.getResponse();
+        Updated<ProductCategory> updated = ProductCategories.update(update).getResponse();
 
         if (updatingImage) {
             return checkAndUpdateProductCategory(wooId, name, description, image, itemCount, existingCategory, true);

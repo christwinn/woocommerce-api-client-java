@@ -9,7 +9,6 @@
 
 package uk.co.twinn.api.woocommerce.api;
 
-import uk.co.twinn.api.woocommerce.builders.ShippingZoneBuilder;
 import uk.co.twinn.api.woocommerce.builders.ShippingZoneLocationBuilder;
 
 public class ShippingZoneLocations {

@@ -49,7 +49,7 @@ public class CustomerDemo {
             .postcode("94103")
             .country("US");
 
-        Created<Customer> response = new CustomerBuilder.Creator<>()
+        Created<Customer> response = Customers.create()
             .setEmail("john.doe@example.com")
             .setFirstName("John")
             .setLastName("Doe")
@@ -76,11 +76,6 @@ public class CustomerDemo {
 
     public Customer retrieveACustomer(int customerId){
 
-        /*Read<Customer> customer = new CustomerTestRequest.Reader<>()
-            .setId(customerId)
-            .getResponse() //returns object not Customer using full paths cast issues
-            .getResult();*/
-
         return Customers.read(customerId)
             .getResponse()
             .getResult();
@@ -98,7 +93,7 @@ public class CustomerDemo {
 
     public List<Customer> listAllCustomers(){
 
-        Listed<Customer> response = new CustomerBuilder.ListAll<>()
+        Listed<Customer> response = Customers.listing()
             .getResponse();
 
         return response.getResult();
@@ -144,7 +139,7 @@ public class CustomerDemo {
 
     public Batched<Customer> batchUpdateCustomers(){
 
-        return new CustomerBuilder.Batcher<>()
+        return Customers.batch()
             .addCreators(getBatchCreate())
             .getResponse();
 
@@ -184,7 +179,7 @@ public class CustomerDemo {
             .postcode("94103")
             .country("US");
 
-        return new CustomerBuilder.Creator<>()
+        return Customers.create()
             .setEmail("john.doe@example.com")
             .setFirstName("John")
             .setLastName("Doe")
@@ -220,7 +215,7 @@ public class CustomerDemo {
             .postcode("12345-000")
             .country("BR");
 
-        return new CustomerBuilder.Creator<>()
+        return Customers.create()
             .setEmail("joao.silva2@example.com")
             .setFirstName("Joao")
             .setLastName("Silva")

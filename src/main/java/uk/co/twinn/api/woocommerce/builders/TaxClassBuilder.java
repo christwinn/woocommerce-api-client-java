@@ -90,6 +90,7 @@ public class TaxClassBuilder extends ApiRequest {
             super(taxClassSlug, force);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<TaxClass> getResponse(){
             return (Deleted<TaxClass>)super.getResponse(TAX_CLASSES, new TypeReference<TaxClass>() {});
 

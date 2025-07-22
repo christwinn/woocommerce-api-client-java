@@ -27,8 +27,6 @@ public class ProductCategoryBuilder extends ApiRequest {
 
     protected final ProductCategory category = new ProductCategory();
 
-    private boolean force;
-
     public ProductCategoryBuilder(){}
 
     private ProductCategoryBuilder(Creator<?> creator){
@@ -59,7 +57,6 @@ public class ProductCategoryBuilder extends ApiRequest {
     private ProductCategoryBuilder(Deleter<?> deleter){
 
         category.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -124,10 +121,11 @@ public class ProductCategoryBuilder extends ApiRequest {
             menuOrder = productCategory.getMenuOrder();
 
         }
+
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
-
 
         public T setDescription(String description){
             this.description = description;
@@ -211,7 +209,7 @@ public class ProductCategoryBuilder extends ApiRequest {
                 );
 
             }else {
-                return new Updated<ProductCategory>(
+                return new Updated<>(
                     new ApiResponseResult(
                         false,
                         0,
@@ -230,9 +228,7 @@ public class ProductCategoryBuilder extends ApiRequest {
             super(productCategoryId);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
+        @SuppressWarnings("unchecked")
         public Read<ProductCategory> getResponse(){
             return (Read<ProductCategory>)super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
 
@@ -248,13 +244,11 @@ public class ProductCategoryBuilder extends ApiRequest {
             super(productCategoryId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
         protected ProductCategoryBuilder build(){
             return new ProductCategoryBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<ProductCategory> getResponse(){
             return (Deleted<ProductCategory>)super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
 
@@ -263,32 +257,32 @@ public class ProductCategoryBuilder extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<ProductCategory, T>{
 
         public Batcher(){
             super();
         }
 
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().category);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().category);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().category);
             return self();
         }
 
         /** Returns list of amended ProductCategories **/
+        @SuppressWarnings("unchecked")
         public Batched<ProductCategory> getResponse(){
 
             return (Batched<ProductCategory>) super.getResponse(PRODUCT_CATEGORIES, batch, new TypeReference<Batch<ProductCategory>>(){});
@@ -306,6 +300,7 @@ public class ProductCategoryBuilder extends ApiRequest {
      */
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

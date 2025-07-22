@@ -28,7 +28,6 @@ public class ProductAttributeTermBuilder extends ApiRequest {
     protected final ProductAttributeTerm productAttribute = new ProductAttributeTerm();
 
     private int attributeId;
-    private boolean force;
 
     public ProductAttributeTermBuilder(){}
 
@@ -55,7 +54,6 @@ public class ProductAttributeTermBuilder extends ApiRequest {
 
         attributeId = deleter.id;
         productAttribute.setId(deleter.childId);
-        force = deleter.force;
 
     }
 
@@ -112,6 +110,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             menuOrder = productAttributeTerm.getMenuOrder();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -198,14 +197,10 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             this.termsId = attributeTermId;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
-
-        /*public T setTermsId(int termsId){
-            this.termsId = termsId;
-            return self();
-        }*/
 
         protected ProductAttributeTermBuilder build(){
             return new ProductAttributeTermBuilder(this);
@@ -244,19 +239,8 @@ public class ProductAttributeTermBuilder extends ApiRequest {
         public Reader(int attributeId, int termId){
             super(attributeId, termId);
         }
-        /*
-        @Override
-        T self() {return (T) this;}
-        public T setAttributeId(int attributeId){
-            super.setId(attributeId);
-            return self();
-        }
 
-        public T setTermsId(int termsId){
-            super.setChildId(termsId);
-            return self();
-        }*/
-
+        @SuppressWarnings("unchecked")
         public Read<ProductAttributeTerm> getResponse(){
             return (Read<ProductAttributeTerm>)super.getResponse(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
 
@@ -272,23 +256,11 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             super(attributeId, termId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}
-
-        public T setAttributeId(int attributeId){
-            super.setId(attributeId);
-            return self();
-        }
-
-        public T setTermsId(int termsId){
-            super.setChildId(termsId);
-            return self();
-        }*/
-
         protected ProductAttributeTermBuilder build(){
             return new ProductAttributeTermBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<ProductAttributeTerm> getResponse(){
             return (Deleted<ProductAttributeTerm>)super.getResponse(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
 
@@ -298,7 +270,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Batcher">
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<ProductAttributeTerm, T>{
 
         private int attributeId;
 
@@ -306,31 +278,31 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             super();
         }
 
-        T self() {
-            return (T) this;
-        }
-
         public T setAttributeId(int attributeId){
             this.attributeId = attributeId;
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().productAttribute);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().productAttribute);
             return self();
         }
 
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().productAttribute);
             return self();
         }
 
         /** Returns list of amended Orders **/
+        @SuppressWarnings("unchecked")
         public Batched<ProductAttributeTerm> getResponse(){
 
             if (attributeId <= 0){
@@ -357,6 +329,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
     public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T>{
         private int attributeId;
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

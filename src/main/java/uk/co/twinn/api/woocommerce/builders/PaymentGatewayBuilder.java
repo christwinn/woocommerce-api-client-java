@@ -83,7 +83,7 @@ public class PaymentGatewayBuilder extends ApiRequest {
 
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

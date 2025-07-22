@@ -31,6 +31,7 @@ public class AuthenticationBuilder {
         private String key;
         private String secret;
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

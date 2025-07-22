@@ -118,11 +118,10 @@ public class OrderRefundBuilder extends ApiRequest {
             apiRestock = orderRefund.getApiRestock();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
-
-
 
         public T setAmount(BigDecimal amount) {
             this.amount = amount;
@@ -202,9 +201,7 @@ public class OrderRefundBuilder extends ApiRequest {
             super(orderId, refundId);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
+        @SuppressWarnings("unchecked")
         public Read<OrderRefund> getResponse(){
             return (Read<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
 
@@ -216,12 +213,11 @@ public class OrderRefundBuilder extends ApiRequest {
     //<editor-fold name="Deleter">
     public static class Deleter<T extends Deleter<T>> extends CoreDeleter.ChildDeleterCore<T>{
 
-        /*@Override
-        T self() {return (T) this;}*/
         public Deleter(int orderId, int refundId, boolean force){
             super(orderId, refundId, force);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<OrderRefund> getResponse(){
             return (Deleted<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
 
@@ -238,6 +234,7 @@ public class OrderRefundBuilder extends ApiRequest {
             this.orderId = orderId;
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

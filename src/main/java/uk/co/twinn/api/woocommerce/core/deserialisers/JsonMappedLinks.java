@@ -14,15 +14,13 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import uk.co.twinn.pl_wtx_woocommerce.model.Link;
-import uk.co.twinn.pl_wtx_woocommerce.model.MappedSetting;
-
 import java.io.IOException;
 import java.util.*;
 
 public class JsonMappedLinks  extends StdDeserializer<HashMap<String, Link>> {
+
+    private static final long serialVersionUID = 1L;
 
     private final HashMap<String, Link> keys = new LinkedHashMap<>();
 
@@ -53,23 +51,25 @@ public class JsonMappedLinks  extends StdDeserializer<HashMap<String, Link>> {
             fields.iterator().forEachRemaining(field -> {
                 if (isRoot) {
                     keys.put(field.getKey(), new Link());
-                    getAllKeysUsingJsonNodeFields((JsonNode) field.getValue(), false, field.getKey());
+                    getAllKeysUsingJsonNodeFields(field.getValue(), false, field.getKey());
                 }else {
-                    switch (field.getKey()){
+                    /*switch (field.getKey()){ //Do not delete we will expand to include methods
                         case "href":        keys.get(root).setHref(field.getValue().toString()); break;
                         //there is more to get
                         default:            break;
+                    }*/
+                    if (field.getKey().equals("href")){
+                        keys.get(root).setHref(field.getValue().toString());
                     }
-                    //
                 }
             });
 
         } else if (jsonNode.isArray()) {
 
             ArrayNode arrayField = (ArrayNode) jsonNode;
-            arrayField.forEach(node -> {
-                getAllKeysUsingJsonNodeFields(node, false, root);
-            });
+            arrayField.forEach(node ->
+                getAllKeysUsingJsonNodeFields(node, false, root)
+            );
 
         }
     }

@@ -15,7 +15,6 @@ import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
-import uk.co.twinn.pl_wtx_woocommerce.model.ShippingZone;
 import uk.co.twinn.pl_wtx_woocommerce.model.ShippingZoneLocation;
 
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
 
     /**
      * This is different, takes a list of locations? and returns a list of locations
-     *
+     *<br/>
      * To be completed
      *
      **/
@@ -67,6 +66,7 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
 
         private final List<ShippingZoneLocation> list = new ArrayList<>();
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -97,7 +97,7 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
 
                 //make the call
                 return new UpdatedList<>(
-                    new Rest().updateList(create.endPoint(zoneId), create.toJson(list), new TypeReference<List<ShippingZoneLocation>>(){})
+                    new Rest().updateList(endPoint(zoneId), create.toJson(list), new TypeReference<List<ShippingZoneLocation>>(){})
 
                 );
             }else {
@@ -126,7 +126,7 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
         public Listed<ShippingZoneLocation> getResponse(){
 
             if (zoneId > 0) {
-                return new Listed<ShippingZoneLocation>(
+                return new Listed<>(
                     new Rest().listAll(
                         endPoint(zoneId),
                         "",

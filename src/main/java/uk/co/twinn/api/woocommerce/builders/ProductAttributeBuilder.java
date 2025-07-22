@@ -27,8 +27,6 @@ public class ProductAttributeBuilder extends ApiRequest {
 
     protected final ProductAttribute productAttribute = new ProductAttribute();
 
-    private boolean force;
-
     public ProductAttributeBuilder(){}
 
     private ProductAttributeBuilder(Creator<?> creator){
@@ -53,7 +51,6 @@ public class ProductAttributeBuilder extends ApiRequest {
     private ProductAttributeBuilder(Deleter<?> deleter){
 
         productAttribute.setId(deleter.id);
-        force = deleter.force;
 
     }
 
@@ -95,6 +92,7 @@ public class ProductAttributeBuilder extends ApiRequest {
         protected String orderBy; //	string	Default sort order. Options: menu_order, name, name_num and id. Default is menu_order
         protected Boolean hasArchives; //	boolean	Enable/Disable attribute archives. Default is false.
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -176,6 +174,7 @@ public class ProductAttributeBuilder extends ApiRequest {
             this.id = productAttribute.getId();
         }
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }
@@ -222,9 +221,8 @@ public class ProductAttributeBuilder extends ApiRequest {
         public Reader(int productAttributeId){
             super(productAttributeId);
         }
-        /*@Override
-        T self() {return (T) this;}*/
 
+        @SuppressWarnings("unchecked")
         public Read<ProductAttribute> getResponse(){
             return (Read<ProductAttribute>)super.getResponse(PRODUCTS_ATTRIBUTES, new TypeReference<ProductAttribute>() {});
 
@@ -240,13 +238,11 @@ public class ProductAttributeBuilder extends ApiRequest {
             super(productAttributeId, force);
         }
 
-        /*@Override
-        T self() {return (T) this;}*/
-
         protected ProductAttributeBuilder build(){
             return new ProductAttributeBuilder(this);
         }
 
+        @SuppressWarnings("unchecked")
         public Deleted<ProductAttribute> getResponse(){
             return (Deleted<ProductAttribute>)super.getResponse(PRODUCTS_ATTRIBUTES, new TypeReference<ProductAttribute>() {});
 
@@ -256,32 +252,29 @@ public class ProductAttributeBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Batcher">
-    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<ProductAttribute, T>{
 
         public Batcher(){
             super();
         }
-
-        T self() {
-            return (T) this;
-        }
-
+        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().productAttribute);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().productAttribute);
             return self();
         }
-
+        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().productAttribute);
             return self();
         }
 
         /** Returns list of amended Orders **/
+        @SuppressWarnings("unchecked")
         public Batched<ProductAttribute> getResponse(){
 
             return (Batched<ProductAttribute>) super.getResponse(PRODUCTS_ATTRIBUTES, batch, new TypeReference<Batch<ProductAttribute>>(){});
@@ -294,6 +287,7 @@ public class ProductAttributeBuilder extends ApiRequest {
     //or Seek.SearchCore<T>
     public static class ListAll<T extends ListAll<T>> extends Seek.SearchCore<T>{
 
+        @SuppressWarnings ("unchecked")
         T self() {
             return (T) this;
         }

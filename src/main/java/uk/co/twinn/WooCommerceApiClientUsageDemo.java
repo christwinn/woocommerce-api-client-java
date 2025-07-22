@@ -11,6 +11,7 @@
 package uk.co.twinn;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -24,7 +25,7 @@ import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
 
 /**
  * WooCommerce API Client - Usage Demo
- *
+ *<br/>
  * A lot of Models from <a href="https://github.com/wtx-labs/woocommerce-api-client-java">https://github.com/wtx-labs/woocommerce-api-client-java</a>
  * license MIT
  */
@@ -40,6 +41,49 @@ public class WooCommerceApiClientUsageDemo {
     public static void main(String[] args) {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
+
+        CustomerDemo customerDemo = new CustomerDemo();
+
+        List<Customer> customers = customerDemo.listAllCustomers();
+        for (Customer bc : customers){
+            if (!bc.hasError()){
+                System.out.println(bc.toString());
+            }else{
+                System.out.println("CFAIL:" + bc.getError().getMessage());
+            }
+        }
+
+
+
+        Batched<Customer> batched = customerDemo.batchUpdateCustomers();
+        if (batched.isSuccess()){
+            System.out.println("The request was a success BUT cycle the records to check that they are!");
+
+            for (Customer bc : batched.getResult().getCreated()){
+                if (!bc.hasError()){
+                    System.out.println(bc.toString());
+                }else{
+                    System.out.println("CFAIL:" + bc.getError().getMessage());
+                }
+            }
+            for (Customer bc : batched.getResult().getUpdated()){
+                if (!bc.hasError()){
+                    System.out.println(bc.toString());
+                }else{
+                    System.out.println("UFAIL:" + bc.getError().getMessage());
+                }
+
+            }
+            for (Customer bc : batched.getResult().getDeleted()){
+                if (!bc.hasError()){
+                    System.out.println(bc.toString());
+                }else{
+                    System.out.println("DFAIL:" + bc.getError().getMessage());
+                }
+            }
+        }else{
+            System.out.println(batched.getError().getMessage());
+        }
 
 
         /*UpdatedList<ShippingZoneLocation> listed = ShippingZoneLocations.update(1)
@@ -266,37 +310,7 @@ public class WooCommerceApiClientUsageDemo {
             System.out.println(customer.toString());
         }
 */
-        CustomerDemo customerDemo = new CustomerDemo();
 
-        Batched<Customer> batched = customerDemo.batchUpdateCustomers();
-        if (batched.isSuccess()){
-            System.out.println("The request was a success BUT cycle the records to check that they are!");
-
-            for (Customer bc : batched.getResult().getCreated()){
-                if (!bc.hasError()){
-                    System.out.println(bc.toString());
-                }else{
-                    System.out.println("CFAIL:" + bc.getError().getMessage());
-                }
-            }
-            for (Customer bc : batched.getResult().getUpdated()){
-                if (!bc.hasError()){
-                    System.out.println(bc.toString());
-                }else{
-                    System.out.println("UFAIL:" + bc.getError().getMessage());
-                }
-
-            }
-            for (Customer bc : batched.getResult().getDeleted()){
-                if (!bc.hasError()){
-                    System.out.println(bc.toString());
-                }else{
-                    System.out.println("DFAIL:" + bc.getError().getMessage());
-                }
-            }
-        }else{
-            System.out.println(batched.getError().getMessage());
-        }
 /*
         pleaseExplain();
 
@@ -668,7 +682,7 @@ public class WooCommerceApiClientUsageDemo {
             .setAmount(new BigDecimal(10))
             .setIndividualUse(true)
             .setExcludeSaleItems(true)
-            .setMinimumAmount(new BigDecimal(100.00))
+            .setMinimumAmount(new BigDecimal(100.00).setScale(2, RoundingMode.HALF_UP))
             .getResponse();
         /**Read**/
         Read<Coupon> read = Coupons.read(719).getResponse();
@@ -684,7 +698,7 @@ public class WooCommerceApiClientUsageDemo {
         Listed<Coupon> listed = Coupons.listing().getResponse();
 
         /** Batch [Create, Update, Delete]**/
-        Batched<Coupon> batched =Coupons.batch()
+        Batched<Coupon> batched = Coupons.batch()
             .addCreator(
                 Coupons.create()
                     .setCode("20off")

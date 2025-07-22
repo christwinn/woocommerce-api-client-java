@@ -21,7 +21,7 @@ public class ApiResponse {
     private final JacksonObjectMapper json = new JacksonObjectMapper();
 
     protected boolean success;
-    private ErrorMessage error = null;
+    protected ErrorMessage error = null;
 
     public ApiResponse(){}
 
@@ -38,7 +38,7 @@ public class ApiResponse {
                     break;
                 default:
                     try{
-                        error = getObjectMapper().readValue(result.getMessage(), new TypeReference<ErrorMessage>(){});
+                        error = json.getObjectMapper().readValue(result.getMessage(), new TypeReference<ErrorMessage>(){});
                     }catch(UriBuilderException | IOException | IllegalArgumentException e){
                         error = new ErrorMessage(e.toString());
                     }
