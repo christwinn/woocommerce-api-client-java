@@ -15,51 +15,51 @@ public class Reports {
 
     private Reports(){}
 
-    public static ReportBuilder.ListAll<?> listAll(){
+    public static ReportBuilder.ListAll listAll(){
 
-        return new ReportBuilder.ListAll<>();
-
-    }
-
-    public static ReportBuilder.SalesSummary<?> salesSummary(){
-
-        return new ReportBuilder.SalesSummary<>();
+        return new ReportBuilder.ListAll();
 
     }
 
-    public static ReportBuilder.TopSellers<?> topSellers(){
+    public static ReportBuilder.SalesSummary salesSummary(){
 
-        return new ReportBuilder.TopSellers<>();
-
-    }
-
-    public ReportBuilder.CouponTotals<?> couponTotals(){
-
-        return new ReportBuilder.CouponTotals<>();
+        return new ReportBuilder.SalesSummary();
 
     }
 
-    public ReportBuilder.CustomerTotals<?> customerTotals(){
+    public static ReportBuilder.TopSellers topSellers(){
 
-        return new ReportBuilder.CustomerTotals<>();
-
-    }
-
-    public ReportBuilder.OrderTotals<?> orderTotals(){
-
-        return new ReportBuilder.OrderTotals<>();
+        return new ReportBuilder.TopSellers();
 
     }
 
-    public ReportBuilder.ProductTotals<?> productTotals(){
+    public static ReportBuilder.CouponTotals couponTotals(){
 
-        return new ReportBuilder.ProductTotals<>();
+        return new ReportBuilder.CouponTotals();
 
     }
 
-    public ReportBuilder.ReviewTotals<?> reviewTotals(){
+    public static ReportBuilder.CustomerTotals customerTotals(){
 
-        return new ReportBuilder.ReviewTotals<>();
+        return new ReportBuilder.CustomerTotals();
+
+    }
+
+    public static ReportBuilder.OrderTotals orderTotals(){
+
+        return new ReportBuilder.OrderTotals();
+
+    }
+
+    public static ReportBuilder.ProductTotals productTotals(){
+
+        return new ReportBuilder.ProductTotals();
+
+    }
+
+    public static ReportBuilder.ReviewTotals reviewTotals(){
+
+        return new ReportBuilder.ReviewTotals();
 
     }
 

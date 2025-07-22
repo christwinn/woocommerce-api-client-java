@@ -25,7 +25,7 @@ public class ReportBuilder {
 
     public ReportBuilder(){}
 
-    public static class ListAll<T extends ListAll<T>>{
+    public static class ListAll{
         public Listed<ReportListItem> getResponse(){
 
             return new Listed<>(
@@ -40,7 +40,7 @@ public class ReportBuilder {
 
     }
 
-    public static class SalesSummary<T extends SalesSummary<T>>{
+    public static class SalesSummary{
         public Listed<ReportSalesSummary> getResponse(){
 
             return new Listed<>(
@@ -55,7 +55,7 @@ public class ReportBuilder {
 
     }
 
-    public static class TopSellers<T extends TopSellers<T>>{
+    public static class TopSellers{
         public Listed<ReportTopSellersItem> getResponse(){
 
             return new Listed<>(
@@ -70,7 +70,7 @@ public class ReportBuilder {
 
     }
 
-    public static class CouponTotals<T extends CouponTotals<T>>{
+    public static class CouponTotals{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return new Listed<>(
@@ -85,7 +85,7 @@ public class ReportBuilder {
 
     }
 
-    public static class CustomerTotals<T extends CustomerTotals<T>>{
+    public static class CustomerTotals{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return new Listed<>(
@@ -100,7 +100,7 @@ public class ReportBuilder {
 
     }
 
-    public static class OrderTotals<T extends OrderTotals<T>>{
+    public static class OrderTotals{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return new Listed<>(
@@ -115,7 +115,7 @@ public class ReportBuilder {
 
     }
 
-    public static class ProductTotals<T extends ProductTotals<T>>{
+    public static class ProductTotals{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return new Listed<>(
@@ -130,7 +130,7 @@ public class ReportBuilder {
 
     }
 
-    public static class ReviewTotals<T extends ReviewTotals<T>>{
+    public static class ReviewTotals{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return new Listed<>(

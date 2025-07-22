@@ -53,8 +53,6 @@ public class WooCommerceApiClientUsageDemo {
             }
         }
 
-
-
         Batched<Customer> batched = customerDemo.batchUpdateCustomers();
         if (batched.isSuccess()){
             System.out.println("The request was a success BUT cycle the records to check that they are!");
@@ -209,7 +207,7 @@ public class WooCommerceApiClientUsageDemo {
         Read<Product> read = Products.read(1).getResponse();*/
 
         //System.out.println(list.toJson());
-        /*Listed<ReportOrderTotalSummary> list = new ReportApi().getCustomersTotals();
+        Listed<ReportOrderTotalSummary> list = Reports.orderTotals().getResponse();
 
         System.out.println(list.toJson());
 
@@ -219,7 +217,7 @@ public class WooCommerceApiClientUsageDemo {
 
         }
 
-        System.out.println(new TaxRateApi.ListAll<>().getResponse().toJson());
+        /*System.out.println(new TaxRateApi.ListAll<>().getResponse().toJson());
         System.out.println(new RefundsApi.ListAll<>().getResponse().toJson());*/
 
         Listed<PaymentGateway> gateways = PaymentGateways.listing().getResponse();
@@ -235,7 +233,7 @@ public class WooCommerceApiClientUsageDemo {
         /*Updated<PaymentGateway> update = PaymentGateways().update("woocommerce_payments")
                 .setEnable(true).getResponse();*/
 
-        System.exit(0);
+        //System.exit(0);
 
         /*String date = "2025-07-03T11:12:55Z";
         if (date.endsWith("+0000")) {
