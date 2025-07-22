@@ -178,7 +178,11 @@ public class OrderBuilder extends ApiRequest {
 
         public Updater(uk.co.twinn.pl_wtx_woocommerce.model.Order order){
             super(order);
-            this.id = order.getId();
+            if (order.getId() != null) {
+                this.id = order.getId();
+            }else{
+                this.id = 0;
+            }
         }
 
         public Updater(int productId){
@@ -248,24 +252,24 @@ public class OrderBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Batcher">
-    public static class Batcher<Order, T extends Batcher<Order, T>>  extends CoreBatch.BatchCore<Order, T>{
+    public static class Batcher<T extends Batcher<T>>  extends CoreBatch.BatchCore<Order, T>{
 
         public Batcher(){
             super();
         }
-        @SuppressWarnings("unchecked")
+
         public T addCreator(Creator<?> create){
-            batch.addCreate((Order)create.build().order);
+            batch.addCreate(create.build().order);
             return self();
         }
-        @SuppressWarnings("unchecked")
+
         public T addUpdater(Updater<?> update){
-            batch.addUpdate((Order)update.build().order);
+            batch.addUpdate(update.build().order);
             return self();
         }
-        @SuppressWarnings("unchecked")
+
         public T addDeleter(Deleter<?> delete){
-            batch.addDelete((Order)delete.build().order);
+            batch.addDelete(delete.build().order);
             return self();
         }
 

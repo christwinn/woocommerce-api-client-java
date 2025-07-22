@@ -460,7 +460,11 @@ public class ProductBuilder extends ApiRequest {
 
         public Updater(Product product){
             super(product);
-            this.id = product.getId();
+            if (product.getId() != null) {
+                this.id = product.getId();
+            }else{
+                this.id = 0;
+            }
         }
         private final int id;
 

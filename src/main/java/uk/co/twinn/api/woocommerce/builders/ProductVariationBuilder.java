@@ -173,7 +173,11 @@ public class ProductVariationBuilder extends ApiRequest {
 
         public Updater(int productId, ProductVariation productVariation){
             super(productId, productVariation);
-            this.variationId = productVariation.getVariationId();
+            if (productVariation.getVariationId() != null) {
+                this.variationId = productVariation.getVariationId();
+            }else {
+                this.variationId = 0;
+            }
         }
 
         @SuppressWarnings ("unchecked")
@@ -261,26 +265,22 @@ public class ProductVariationBuilder extends ApiRequest {
             super();
         }
 
-        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().productVariation);
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().productVariation);
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().productVariation);
             return self();
         }
 
         /** Returns list of amended Orders **/
-        @SuppressWarnings("unchecked")
         public Batched<ProductVariation> getResponse(){
             return super.getResponse(PRODUCTS, id, VARIATIONS, batch, new TypeReference<Batch<ProductVariation>>(){});
         }

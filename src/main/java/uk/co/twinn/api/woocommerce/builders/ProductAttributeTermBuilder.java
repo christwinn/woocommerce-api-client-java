@@ -93,7 +93,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
         //set up the private variables
         protected String name; //	string	Attribute name.mandatory
         protected String slug; //	string	An alphanumeric identifier for the resource unique to its type.
-        protected String description; //	string	Type of attribute. By default only select is supported.
+        protected String description; //	string	Type of attribute. By 'default' only select is supported.
         protected Integer menuOrder; //	string	Default sort order. Options: menu_order, name, name_num and id. Default is menu_order
 
         private Creator(){}
@@ -162,7 +162,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
         /** Returns single Created ProductAttribute**/
         public Created<ProductAttributeTerm> getResponse(){
             //premliminary checks
-            if (attributeId <= 0 || (name == null && name.isEmpty())) {
+            if (attributeId <= 0 || name == null || name.isEmpty()) {
                 return new Created<>(
                     new ApiResponseResult(
                         false,

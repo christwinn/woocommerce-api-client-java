@@ -53,7 +53,7 @@ public class Orders {
 
     }
 
-    public static OrderBuilder.Batcher<Order, ?> batch(){
+    public static OrderBuilder.Batcher<?> batch(){
 
         return new OrderBuilder.Batcher<>();
 

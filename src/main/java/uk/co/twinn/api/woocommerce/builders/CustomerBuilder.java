@@ -181,7 +181,11 @@ public class CustomerBuilder extends ApiRequest {
 
         public Updater(uk.co.twinn.pl_wtx_woocommerce.model.Customer customer){
             super(customer);
-            this.id = customer.getId();
+            if (customer.getId() != null) {
+                this.id = customer.getId();
+            }else{
+                this.id = 0;
+            }
         }
 
         @Override
@@ -257,7 +261,6 @@ public class CustomerBuilder extends ApiRequest {
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public T addCreators(List<Creator<?>> creators){
             //we need to extract the creator
             for(Creator<?> create : creators){
@@ -266,12 +269,11 @@ public class CustomerBuilder extends ApiRequest {
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().customer);
             return self();
         }
-        @SuppressWarnings("unchecked")
+
         public T addUpdaters(List<Updater<?>> updates){
             //we need to extract the update
             for(Updater<?> update : updates){
@@ -279,20 +281,20 @@ public class CustomerBuilder extends ApiRequest {
             }
             return self();
         }
-        @SuppressWarnings("unchecked")
+
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().customer);
             return self();
         }
-        @SuppressWarnings("unchecked")
+
         public T addDeleters(List<Deleter<?>> deletes){
-            //we need to extract the delete
+            //we need to extract the deleter
             for(Deleter<?> delete : deletes){
                 addDeleter(delete);
             }
             return self();
         }
-        @SuppressWarnings("unchecked")
+
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().customer);
             return self();

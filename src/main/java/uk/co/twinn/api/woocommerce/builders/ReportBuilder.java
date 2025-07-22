@@ -19,7 +19,7 @@ import java.util.List;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 /**
- * Builder may be overkill for the reports but it fits with the rest so .... *
+ * Builder may be overkill for the reports, but it fits with the rest so .... *
  */
 public class ReportBuilder {
 

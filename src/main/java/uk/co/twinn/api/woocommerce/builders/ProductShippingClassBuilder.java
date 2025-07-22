@@ -146,7 +146,11 @@ public class ProductShippingClassBuilder extends ApiRequest {
 
         public Updater(ProductShippingClass productShippingClass){
             super(productShippingClass);
-            this.id = productShippingClass.getId();
+            if (productShippingClass.getId() != null) {
+                this.id = productShippingClass.getId();
+            }else{
+                this.id = 0;
+            }
         }
 
         private ProductShippingClassBuilder build(){

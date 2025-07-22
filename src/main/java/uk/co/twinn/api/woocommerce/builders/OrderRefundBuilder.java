@@ -88,7 +88,7 @@ public class OrderRefundBuilder extends ApiRequest {
         private BigDecimal amount;
         //string	Total refund amount.
         // Optional. If this parameter is provided, it will take precedence over line item totals,
-        // even when total of line items does not matches with this amount.
+        // even when total of line items does not match with this amount.
         private String reason;//	string	Reason for refund.
         private Integer refundedBy;//	integer	User ID of user who created the refund.
         private List<MetaData> metaData;//	array	Meta data. See Order refund - Meta data properties

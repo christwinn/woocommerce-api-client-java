@@ -20,10 +20,8 @@ import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.SettingOption;
-import java.util.logging.Level;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 

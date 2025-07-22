@@ -146,7 +146,11 @@ public class ProductTagBuilder extends ApiRequest {
 
         public Updater(ProductTag productTag){
             super(productTag);
-            this.id = productTag.getId();
+            if (productTag.getId() != null) {
+                this.id = productTag.getId();
+            }else{
+                this.id = 0;
+            }
         }
 
         private ProductTagBuilder build(){

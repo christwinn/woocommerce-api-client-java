@@ -185,7 +185,11 @@ public class ProductCategoryBuilder extends ApiRequest {
 
         public Updater(ProductCategory productCategory){
             super(productCategory);
-            this.id = productCategory.getId();
+            if (productCategory.getId() != null) {
+                this.id = productCategory.getId();
+            }else{
+                this.id = 0;
+            }
         }
 
         public T setName(String name){

@@ -114,7 +114,7 @@ public class OrderNoteBuilder extends ApiRequest {
 
         /**
          *
-         * @param customerNote  If true, the note will be shown to customers and they will be notified.
+         * @param customerNote  If true, the note will be shown to customers, and they will be notified.
          *           If false, the note will be for admin reference only.
          *           Default is false.
          * @return T

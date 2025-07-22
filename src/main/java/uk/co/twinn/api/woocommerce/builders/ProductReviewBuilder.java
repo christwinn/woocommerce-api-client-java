@@ -95,7 +95,7 @@ public class ProductReviewBuilder extends ApiRequest {
         }
 
         public Creator(ProductReview productReview){
-            this(productReview.getProductId());
+            this(productReview.getProductId() == null ? 0 : productReview.getProductId());
             status = productReview.getStatus();        //string	Product name.
             reviewer = productReview.getReviewer();        //string	Product slug.
             reviewerEmail = productReview.getReviewerEmail();
@@ -179,9 +179,13 @@ public class ProductReviewBuilder extends ApiRequest {
             this.id = reviewId;
         }
 
-        public Updater(ProductReview productReview){
+        public Updater(ProductReview productReview) {
             super(productReview);
-            this.id = productReview.getId();
+            if (productReview.getId() != null){
+                this.id = productReview.getId();
+            }else{
+                this.id = 0;
+            }
         }
 
         private final int id;

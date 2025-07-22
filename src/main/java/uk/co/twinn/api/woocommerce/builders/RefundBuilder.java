@@ -63,7 +63,6 @@ public class RefundBuilder extends ApiRequest {
          * @param parent Limit result set to those of particular parent IDs.
          * @return T
          */
-        @SuppressWarnings("unchecked")
         public T setParent(List<Integer> parent) {
             addNameValueIntegers("parent", parent);
             return self();
@@ -73,7 +72,6 @@ public class RefundBuilder extends ApiRequest {
          * @param parent_exclude Limit result set to all items except those of a particular parent ID.
          * @return T
          */
-        @SuppressWarnings("unchecked")
         public T setParentExclude(List<Integer> parent_exclude) {
             addNameValueIntegers("parent_exclude", parent_exclude);
             return self();

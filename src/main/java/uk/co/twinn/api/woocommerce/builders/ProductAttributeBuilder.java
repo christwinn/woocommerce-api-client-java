@@ -88,7 +88,7 @@ public class ProductAttributeBuilder extends ApiRequest {
         //set up the private variables
         protected String name; //	string	Attribute name.mandatory
         protected String slug; //	string	An alphanumeric identifier for the resource unique to its type.
-        protected String type; //	string	Type of attribute. By default only select is supported.
+        protected String type; //	string	Type of attribute. By 'default' only select is supported.
         protected String orderBy; //	string	Default sort order. Options: menu_order, name, name_num and id. Default is menu_order
         protected Boolean hasArchives; //	boolean	Enable/Disable attribute archives. Default is false.
 
@@ -139,7 +139,7 @@ public class ProductAttributeBuilder extends ApiRequest {
         /** Returns single Created ProductAttribute**/
         public Created<ProductAttribute> getResponse(){
             //premliminary checks
-            if (name == null && name.isEmpty()) {
+            if (name == null || name.isEmpty()) {
                 return new Created<>(
                     new ApiResponseResult(
                         false,
@@ -171,7 +171,11 @@ public class ProductAttributeBuilder extends ApiRequest {
 
         public Updater(ProductAttribute productAttribute) {
             super(productAttribute);
-            this.id = productAttribute.getId();
+            if (productAttribute.getId() != null) {
+                this.id = productAttribute.getId();
+            }else{
+                this.id = 0;
+            }
         }
 
         @SuppressWarnings ("unchecked")

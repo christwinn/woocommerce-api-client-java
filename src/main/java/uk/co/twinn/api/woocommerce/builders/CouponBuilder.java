@@ -532,19 +532,16 @@ public class CouponBuilder extends ApiRequest {
             super();
         }
 
-        @SuppressWarnings("unchecked")
         public T addCreator(Creator<?> create){
             batch.addCreate(create.build().coupon);
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public T addUpdater(Updater<?> update){
             batch.addUpdate(update.build().coupon);
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
             batch.addDelete(delete.build().coupon);
             return self();

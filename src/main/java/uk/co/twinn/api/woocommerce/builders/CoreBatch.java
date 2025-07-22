@@ -24,7 +24,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreBatch {
 
-    //Require S so we can type Batch, require T so we can call back on the inheritors
+    //Require S so we can type Batch, require T, so we can call back on the inheritors
     static class BatchCore<S, T extends BatchCore<S, T>>{
 
         public static final int MAX_RECORDS = 100;
@@ -32,7 +32,7 @@ class CoreBatch {
         protected Batch<S> batch;
 
         public BatchCore(){
-            batch = new Batch<S>();
+            batch = new Batch<>();
         }
 
         private Batch<S> getBatch(){
