@@ -11,7 +11,8 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.core.Batch;
+import uk.co.twinn.api.woocommerce.builders.core.Batch;
+import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
 import uk.co.twinn.pl_wtx_woocommerce.model.MetaData;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
@@ -543,7 +544,7 @@ public class CouponBuilder extends ApiRequest {
         }
 
         public T addDeleter(Deleter<?> delete){
-            batch.addDelete(delete.build().coupon);
+            batch.addDelete(delete.build().coupon.getId());
             return self();
         }
 
@@ -551,7 +552,7 @@ public class CouponBuilder extends ApiRequest {
         @SuppressWarnings("unchecked")
         public Batched<Coupon> getResponse(){
 
-            return (Batched<Coupon>) super.getResponse(COUPONS, batch, new TypeReference<Batch<Coupon>>(){});
+            return (Batched<Coupon>) super.getResponse(COUPONS, batch, new TypeReference<BatchResult<Coupon>>(){});
 
         }
 

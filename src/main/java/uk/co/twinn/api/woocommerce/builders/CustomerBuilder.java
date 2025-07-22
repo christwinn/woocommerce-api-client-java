@@ -10,10 +10,11 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.core.Batch;
+import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
+import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
@@ -296,7 +297,7 @@ public class CustomerBuilder extends ApiRequest {
         }
 
         public T addDeleter(Deleter<?> delete){
-            batch.addDelete(delete.build().customer);
+            batch.addDelete(delete.build().customer.getId());
             return self();
         }
 
@@ -304,7 +305,7 @@ public class CustomerBuilder extends ApiRequest {
         @SuppressWarnings("unchecked")
         public Batched<Customer> getResponse(){
 
-            return (Batched<Customer>) super.getResponse(CUSTOMERS, batch, new TypeReference<Batch<Customer>>(){});
+            return (Batched<Customer>) super.getResponse(CUSTOMERS, batch, new TypeReference<BatchResult<Customer>>(){});
 
         }
 

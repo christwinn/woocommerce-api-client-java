@@ -11,11 +11,12 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
+import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.TaxRate;
 import uk.co.twinn.pl_wtx_woocommerce.model.ISO3166;
@@ -352,14 +353,14 @@ public class TaxRateBuilder extends ApiRequest {
         }
         @SuppressWarnings("unchecked")
         public T addDeleter(Deleter<?> delete){
-            batch.addDelete(delete.build().taxRate);
+            batch.addDelete(delete.build().taxRate.getId());
             return self();
         }
 
         @SuppressWarnings("unchecked")
         public Batched<TaxRate> getResponse(){
 
-            return (Batched<TaxRate>) super.getResponse(TAXES, batch, new TypeReference<Batch<TaxRate>>(){});
+            return (Batched<TaxRate>) super.getResponse(TAXES, batch, new TypeReference<BatchResult<TaxRate>>(){});
 
         }
 

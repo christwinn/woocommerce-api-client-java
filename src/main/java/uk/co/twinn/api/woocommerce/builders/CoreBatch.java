@@ -10,7 +10,7 @@
 package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.core.Batch;
+import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.Batched;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;

@@ -11,11 +11,12 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
+import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductTag;
 
@@ -226,14 +227,14 @@ public class ProductTagBuilder extends ApiRequest {
         }
         @SuppressWarnings("unchecked")
         public T addDeleter(ProductTagBuilder.Deleter<?> delete){
-            batch.addDelete(delete.build().productTag);
+            batch.addDelete(delete.build().productTag.getId());
             return self();
         }
 
         @SuppressWarnings("unchecked")
         public Batched<ProductTag> getResponse(){
 
-            return (Batched<ProductTag>) super.getResponse(PRODUCTS_TAGS, batch, new TypeReference<Batch<ProductTag>>(){});
+            return (Batched<ProductTag>) super.getResponse(PRODUCTS_TAGS, batch, new TypeReference<BatchResult<ProductTag>>(){});
 
         }
 

@@ -10,14 +10,14 @@
 package uk.co.twinn.api.woocommerce.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import uk.co.twinn.api.woocommerce.core.Batch;
+import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponse;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
 public class Batched<T> extends ApiResponse {
 
-    private Batch<T> batch = new Batch<>();
+    private BatchResult<T> batchResult = new BatchResult<>();
 
     public Batched(ApiResponseResult result){
 
@@ -41,12 +41,12 @@ public class Batched<T> extends ApiResponse {
     @SuppressWarnings("unchecked")
     private void setBatch(Object data){
         /* if we are not a batch then something has gone very wrong*/
-        this.batch = (Batch<T>)data;
+        this.batchResult = (BatchResult<T>)data;
     }
 
     /*If the id is NOT set then we get an array of product*/
-    public Batch<T> getResult(){
-        return batch;
+    public BatchResult<T> getResult(){
+        return batchResult;
     }
 
     public String toJson(){

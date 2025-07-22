@@ -14,11 +14,11 @@ import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
 import uk.co.twinn.api.woocommerce.api.Customers;
+import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.response.Batched;
 import uk.co.twinn.api.woocommerce.rest.Configuration;
 
@@ -106,6 +106,8 @@ public class CustomersTest {
         Batch<Customer> batch = new JacksonObjectMapper().getObjectMapper().readValue(mockRequest, new TypeReference<Batch<Customer>>(){});
 
         System.out.println(batch.getRecordCount());
+
+        System.out.println(batch.toJson());
 
         Batched<Customer> response = Customers.batch()
             .setBatch(batch)

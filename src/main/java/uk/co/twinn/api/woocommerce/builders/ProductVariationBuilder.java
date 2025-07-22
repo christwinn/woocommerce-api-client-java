@@ -11,11 +11,12 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
+import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
@@ -271,13 +272,13 @@ public class ProductVariationBuilder extends ApiRequest {
         }
 
         public T addDeleter(Deleter<?> delete){
-            batch.addDelete(delete.build().productVariation);
+            batch.addDelete(delete.build().productVariation.getVariationId());
             return self();
         }
 
         /** Returns list of amended Orders **/
         public Batched<ProductVariation> getResponse(){
-            return super.getResponse(PRODUCTS, id, VARIATIONS, batch, new TypeReference<Batch<ProductVariation>>(){});
+            return super.getResponse(PRODUCTS, id, VARIATIONS, batch, new TypeReference<BatchResult<ProductVariation>>(){});
         }
 
     }

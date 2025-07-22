@@ -7,10 +7,11 @@
  * All Rights Reserved
  */
 
-package uk.co.twinn.api.woocommerce.core;
+package uk.co.twinn.api.woocommerce.builders.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,9 @@ public class Batch<T> {
 
     private List<T> create = new ArrayList<>();
     private List<T> update = new ArrayList<>();
-    private List<T> delete = new ArrayList<>();
+
+    //we go in as a list of integers,
+    private List<Integer> delete = new ArrayList<>();
 
     @JsonIgnore
     public boolean isEmpty(){
@@ -48,7 +51,6 @@ public class Batch<T> {
 
     }
 
-    @JsonProperty("create")
     public void setCreate(List<T> create){
 
         this.create = create;
@@ -60,23 +62,10 @@ public class Batch<T> {
         this.update = update;
     }
 
-    public void setDelete(List<T> delete){
+    public void setDelete(List<Integer> delete){
 
         this.delete = delete;
 
-    }
-
-    @JsonProperty("create")
-    public List<T> getCreated(){
-        return create;
-    }
-    @JsonProperty("update")
-    public List<T> getUpdated(){
-        return update;
-    }
-    @JsonProperty("delete")
-    public List<T> getDeleted(){
-        return delete;
     }
 
     public void addCreate(T create){
@@ -87,8 +76,24 @@ public class Batch<T> {
         this.update.add(update);
     }
 
-    public void addDelete(T delete){
+    public void addDelete(Integer delete){
         this.delete.add(delete);
+    }
+
+    public List<T> getCreate(){
+        return create;
+    }
+
+    public List<T> getUpdate(){
+        return update;
+    }
+
+    public List<Integer> getDelete(){
+        return delete;
+    }
+
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
     }
 
 }
