@@ -24,7 +24,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 
 Implemented, awaiting manual
 <ul>
-    <li>CustomerDownloads</li>
+<li>CustomerDownloads</li>
 <li>OrderActions</li>
 <li>Orders</li>
 <li>OrderNotes</li>
@@ -42,8 +42,25 @@ Implemented, awaiting manual
 <li>TaxClasses</li>
 <li>TaxRates</li>
 <li>Webhooks</li>
+<li>Settings</li>
+<li>Setting Options</li>
+<li>Payment Gateways</li>
+<li>Shipping Zones</li>
+<li>Shipping Zone Locations</li>   
 </ul>
 
+## Under Development
+<ul>
+<li>Shipping Zone Methods - Update</li>
+</ul>
+
+## To Do
+<ul>
+<li>Shipping Methods</li>
+<li>System Status</li>
+<li>System Status Tools</li>
+<li>Data</li>
+</ul>
 
 ## [Authentication](#authentication) 
 It is assumed you have obtained the relevant credentials as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys](https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys)
