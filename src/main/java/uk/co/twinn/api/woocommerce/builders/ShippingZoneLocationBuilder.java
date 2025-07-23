@@ -14,7 +14,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.rest.Rest;
+
 import uk.co.twinn.pl_wtx_woocommerce.model.ShippingZoneLocation;
 
 import java.util.ArrayList;

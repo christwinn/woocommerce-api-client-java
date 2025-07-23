@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.Listed;
-import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import java.util.List;
 

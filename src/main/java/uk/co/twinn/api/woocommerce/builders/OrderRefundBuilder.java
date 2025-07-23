@@ -18,7 +18,7 @@ import uk.co.twinn.api.woocommerce.response.Deleted;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.rest.Rest;
+
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
 import java.math.BigDecimal;

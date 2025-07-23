@@ -42,10 +42,10 @@ public class Listed<T> extends ApiResponse<List<T>> {
 
     }
 
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     private void setList(ApiResponseResult<List<T>> result){
         try {
-            this.listed = (List<T>) result.getData();
+            this.listed = result.getData();
         }catch (Exception e){
             Logger.getLogger(Listed.class.getName())
                 .log(Level.SEVERE, "Failed to parse list", e);

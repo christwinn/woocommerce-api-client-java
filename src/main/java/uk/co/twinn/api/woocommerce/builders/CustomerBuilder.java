@@ -16,11 +16,10 @@ import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
-import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.rest.Rest;
+
 
 import java.util.List;
 

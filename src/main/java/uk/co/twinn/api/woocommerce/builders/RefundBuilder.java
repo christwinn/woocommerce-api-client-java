@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.Listed;
-import uk.co.twinn.api.woocommerce.rest.Rest;
 import uk.co.twinn.pl_wtx_woocommerce.model.Refund;
 
 import java.time.LocalDate;

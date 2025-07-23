@@ -16,7 +16,7 @@ import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.rest.Rest;
+
 import uk.co.twinn.pl_wtx_woocommerce.model.PaymentGateway;
 
 import java.util.List;

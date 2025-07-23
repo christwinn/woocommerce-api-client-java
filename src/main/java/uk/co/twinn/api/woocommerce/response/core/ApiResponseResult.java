@@ -44,8 +44,9 @@ public class ApiResponseResult<T>{
         return message;
     }
 
-    public Object getData() {
-        return data;
+    @SuppressWarnings("unchecked")
+    public T getData() {
+        return (T)data;
     }
 
     public void setMessage(String message) {

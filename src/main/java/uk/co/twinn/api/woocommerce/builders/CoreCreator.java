@@ -11,11 +11,9 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.response.Created;
-import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.api.woocommerce.response.UpdatedList;
 import uk.co.twinn.api.woocommerce.rest.Rest;
-import uk.co.twinn.pl_wtx_woocommerce.model.ShippingZoneLocation;
 
 import java.util.List;
 

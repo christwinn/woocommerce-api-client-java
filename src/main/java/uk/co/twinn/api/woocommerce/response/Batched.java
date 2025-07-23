@@ -38,10 +38,10 @@ public class Batched<T> extends ApiResponse<BatchResult<T>> {
 
     }
 
-    @SuppressWarnings("unchecked")
-    private void setBatch(Object data){
+    //@SuppressWarnings("unchecked")
+    private void setBatch(BatchResult<T> data){
         /* if we are not a batch then something has gone very wrong*/
-        this.batchResult = (BatchResult<T>)data;
+        this.batchResult = data;
     }
 
     public BatchResult<T> getResult(){

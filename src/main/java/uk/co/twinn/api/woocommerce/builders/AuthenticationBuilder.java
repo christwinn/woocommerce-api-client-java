@@ -11,7 +11,6 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import uk.co.twinn.api.woocommerce.response.Message;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.response.core.Msg;
 import uk.co.twinn.api.woocommerce.rest.Configuration;
 
 public class AuthenticationBuilder {
