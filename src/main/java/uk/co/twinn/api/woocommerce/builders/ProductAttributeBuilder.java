@@ -12,10 +12,8 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductAttribute;
 
@@ -83,7 +81,7 @@ public class ProductAttributeBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductAttribute>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductAttribute, T>{
 
         //set up the private variables
         protected String name; //	string	Attribute name.mandatory
@@ -91,11 +89,6 @@ public class ProductAttributeBuilder extends ApiRequest {
         protected String type; //	string	Type of attribute. By 'default' only select is supported.
         protected String orderBy; //	string	Default sort order. Options: menu_order, name, name_num and id. Default is menu_order
         protected Boolean hasArchives; //	boolean	Enable/Disable attribute archives. Default is false.
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
 
         private Creator(){
         }
@@ -177,11 +170,6 @@ public class ProductAttributeBuilder extends ApiRequest {
             }else{
                 this.id = 0;
             }
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         public T setId(int id) {
@@ -288,12 +276,7 @@ public class ProductAttributeBuilder extends ApiRequest {
     //</editor-fold>
 
     //or Seek.SearchCore<T>
-    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCore<ProductAttribute, T>{
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchCore<ProductAttribute, T>{
 
         public Listed<ProductAttribute> getResponse(){
 

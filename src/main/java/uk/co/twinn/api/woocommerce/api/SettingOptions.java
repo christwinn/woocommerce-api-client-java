@@ -27,9 +27,9 @@ public class SettingOptions {
 
     }
 
-    public static SettingOptionBuilder.ListAll listing(String groupId){
+    public static SettingOptionBuilder.ListAll<?> listing(String groupId){
 
-        return new SettingOptionBuilder.ListAll(groupId);
+        return new SettingOptionBuilder.ListAll<>(groupId);
 
     }
 

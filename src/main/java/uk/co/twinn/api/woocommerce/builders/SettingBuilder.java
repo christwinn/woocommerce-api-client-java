@@ -21,7 +21,7 @@ public class SettingBuilder {
 
     private SettingBuilder(){}
 
-    public static class ListAll extends CoreList<Setting>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<Setting, T>{
 
         /**
          *  List the Settings

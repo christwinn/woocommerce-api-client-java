@@ -10,7 +10,6 @@
 package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.Listed;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class ProductCustomFieldBuilder {
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCorePaging<String, T> {
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchCorePaging<String, T> {
 
         public Listed<String> getResponse() {
 

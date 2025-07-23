@@ -11,7 +11,6 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Deleted;
 import uk.co.twinn.api.woocommerce.response.Read;
@@ -19,7 +18,6 @@ import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.OrderNote;
 
 import java.util.List;
@@ -78,7 +76,7 @@ public class OrderNoteBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends CoreCreator<OrderNote>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<OrderNote, T>{
 
         private String note;
         private Boolean customerNote;
@@ -95,11 +93,6 @@ public class OrderNoteBuilder extends ApiRequest {
             note = orderNote.getNote();
             customerNote = orderNote.getCustomerNote();
             addedByUser = orderNote.getAddedByUser();
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         /**
@@ -195,14 +188,9 @@ public class OrderNoteBuilder extends ApiRequest {
 
 
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCore<OrderNote, T> {
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchCore<OrderNote, T> {
 
         protected int orderId;
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
 
         /**
          *

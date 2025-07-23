@@ -42,7 +42,6 @@ public class Listed<T> extends ApiResponse<List<T>> {
 
     }
 
-    //@SuppressWarnings("unchecked")
     private void setList(ApiResponseResult<List<T>> result){
         try {
             this.listed = result.getData();

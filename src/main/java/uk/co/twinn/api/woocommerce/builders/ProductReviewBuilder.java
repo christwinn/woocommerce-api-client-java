@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -77,7 +76,7 @@ public class ProductReviewBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductReview>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductReview, T>{
 
         private Integer productId;
         private ProductReview.StatusEnum status;        //string	Product name.
@@ -145,11 +144,6 @@ public class ProductReviewBuilder extends ApiRequest {
         public T setVerified(Boolean verified) {
             this.verified = verified;
             return self();
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         private ProductReviewBuilder build(){
@@ -271,12 +265,7 @@ public class ProductReviewBuilder extends ApiRequest {
 
     }
 
-    public static class ListAll<T extends ProductReviewBuilder.ListAll<T>> extends Seek.Searcher<ProductReview, T> {
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
+    public static class ListAll<T extends ProductReviewBuilder.ListAll<T>> extends CoreSeek.Searcher<ProductReview, T> {
 
         /**
          *

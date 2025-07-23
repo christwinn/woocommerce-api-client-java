@@ -62,7 +62,7 @@ public class SettingOptionBuilder extends ApiRequest {
 
     }
 
-    public static class Updater<T extends Updater<T>> extends CoreCreator<SettingOption>{
+    public static class Updater<T extends Updater<T>> extends CoreCreator<SettingOption, T>{
 
         private String groupId;
         private final String optionId;
@@ -76,11 +76,6 @@ public class SettingOptionBuilder extends ApiRequest {
 
         public Updater(String optionId){
             this.optionId = optionId;
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         public T setValue(Object value) {
@@ -116,7 +111,7 @@ public class SettingOptionBuilder extends ApiRequest {
     }
 
 
-    public static class ListAll extends CoreList<SettingOption>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<SettingOption, T>{
 
         private final String groupId;
 

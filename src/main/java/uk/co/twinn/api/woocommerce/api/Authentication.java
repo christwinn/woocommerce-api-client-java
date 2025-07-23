@@ -44,9 +44,9 @@ public class Authentication {
 
     }
 
-    public static AuthenticationBuilder.Https<?> Https(){
+    public static AuthenticationBuilder.Https Https(){
 
-        return new AuthenticationBuilder.Https<>();
+        return new AuthenticationBuilder.Https();
 
     }
 

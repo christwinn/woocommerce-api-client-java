@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -76,7 +75,7 @@ public class WebhookBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends CoreCreator<Webhook>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<Webhook, T>{
 
         private String name; //string	A friendly name for the webhook.
         private Webhook.WebhookStatusEnum status; //string	Webhook status. Options: active, paused and disabled. Default is active.
@@ -91,11 +90,6 @@ public class WebhookBuilder extends ApiRequest {
         public Creator(String topic, String deliveryUrl){
             this.topic = topic;
             this.deliveryUrl = deliveryUrl;
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         /**
@@ -255,12 +249,7 @@ public class WebhookBuilder extends ApiRequest {
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.DatesSearcher<Webhook, T>{
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.DatesSearcher<Webhook, T>{
 
         /**
          *

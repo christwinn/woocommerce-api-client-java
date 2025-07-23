@@ -17,7 +17,12 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import java.util.List;
 
-public class CoreCreator<S> {
+public class CoreCreator<S, T> {
+
+    @SuppressWarnings("unchecked")
+    T self() {
+        return (T) this;
+    }
 
     Created<S> getCreate(String endPoint, String parameters, TypeReference<?> type){
 

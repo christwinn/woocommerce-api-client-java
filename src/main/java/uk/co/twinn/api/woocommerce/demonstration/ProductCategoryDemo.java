@@ -10,7 +10,6 @@
 package uk.co.twinn.api.woocommerce.demonstration;
 
 import uk.co.twinn.api.woocommerce.api.ProductCategories;
-import uk.co.twinn.api.woocommerce.builders.ProductCategoryBuilder;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.Updated;

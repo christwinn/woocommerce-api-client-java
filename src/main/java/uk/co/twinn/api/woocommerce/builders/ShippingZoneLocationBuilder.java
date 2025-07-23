@@ -60,18 +60,13 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
      * To be completed
      *
      **/
-    public static class UpdateList<T extends UpdateList<T>> extends CoreCreator<ShippingZoneLocation>{
+    public static class UpdateList<T extends UpdateList<T>> extends CoreCreator<ShippingZoneLocation, T>{
 
         private final int zoneId;
         private String code;
         private String type;
 
         private final List<ShippingZoneLocation> list = new ArrayList<>();
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
 
         public UpdateList(int zoneId){
             this.zoneId = zoneId;
@@ -124,7 +119,7 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ListAll<T>> extends CoreList<ShippingZoneLocation>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<ShippingZoneLocation, T>{
 
         private final int zoneId;
         public ListAll(int zoneId){

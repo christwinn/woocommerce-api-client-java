@@ -20,7 +20,7 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 
 public class CustomerDownloadBuilder {
 
-    public static class ListAll extends CoreList<CustomerDownload>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<CustomerDownload, T>{
 
         private final int customerId;
 

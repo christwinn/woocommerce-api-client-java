@@ -11,7 +11,6 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.pl_wtx_woocommerce.model.Refund;
 
@@ -24,12 +23,7 @@ public class RefundBuilder extends ApiRequest {
 
     public RefundBuilder(){}
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<Refund, T>{
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.Searcher<Refund, T>{
 
         /**
          * @param offset Offset the result set by a specific number of items.

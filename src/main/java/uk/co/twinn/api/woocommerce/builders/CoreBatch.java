@@ -16,8 +16,6 @@ import uk.co.twinn.api.woocommerce.response.Batched;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
-import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
-import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 
 /**
  *

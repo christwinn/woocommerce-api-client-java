@@ -14,7 +14,7 @@ public class ApiResponseResult<T>{
     private int     status;
     private String  message = "";
 
-    private Object data;
+    private T data;
 
     public ApiResponseResult(boolean success, int status, String message){
         this.success = success;
@@ -22,7 +22,7 @@ public class ApiResponseResult<T>{
         this.status = status;
     }
 
-    public ApiResponseResult(boolean success, int status, Object data){
+    public ApiResponseResult(boolean success, int status, T data){
         this.success = success;
         this.data = data;
         this.status = status;
@@ -44,9 +44,8 @@ public class ApiResponseResult<T>{
         return message;
     }
 
-    @SuppressWarnings("unchecked")
     public T getData() {
-        return (T)data;
+        return data;
     }
 
     public void setMessage(String message) {

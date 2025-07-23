@@ -6,9 +6,9 @@
  * Licence: MIT Licence see LICENCE file
  * All Rights Reserved
  */
-package uk.co.twinn.api.woocommerce.builders.core;
+package uk.co.twinn.api.woocommerce.builders;
 
-import uk.co.twinn.api.woocommerce.builders.CoreList;
+import uk.co.twinn.api.woocommerce.builders.core.Dates;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
 
-public class ParameterCollector<S> extends CoreList<S> {
+public class CoreParameterCollector<S, T> extends CoreList<S, T> {
 
     //includeExclude is a list! while most parameters are single values
     private final HashMap<String, List<String>> urlParameters = new HashMap<>();
@@ -76,7 +76,7 @@ public class ParameterCollector<S> extends CoreList<S> {
         try {
             return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
         } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(ParameterCollector.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CoreParameterCollector.class.getName()).log(Level.SEVERE, null, ex);
             return "";
         }
     }
@@ -97,7 +97,7 @@ public class ParameterCollector<S> extends CoreList<S> {
                         )
             ).collect(joining("&", "", ""));
 
-        Logger.getLogger(ParameterCollector.class.getName()).log(Level.INFO, encodedURL);
+        Logger.getLogger(CoreParameterCollector.class.getName()).log(Level.INFO, encodedURL);
 
         return encodedURL;
 

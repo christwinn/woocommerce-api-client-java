@@ -69,18 +69,13 @@ public class ShippingZoneBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends ShippingZoneBuilder.Creator<T>> extends CoreCreator<ShippingZone>{
+    public static class Creator<T extends ShippingZoneBuilder.Creator<T>> extends CoreCreator<ShippingZone, T>{
 
         protected String name;
         private Integer order;
 
         public Creator(String name){
             this.name = name;
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         public T setOrder(Integer order) {
@@ -194,7 +189,7 @@ public class ShippingZoneBuilder extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ListAll<T>> extends CoreList<ShippingZone>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<ShippingZone, T>{
 
         public Listed<ShippingZone> getResponse(){
 

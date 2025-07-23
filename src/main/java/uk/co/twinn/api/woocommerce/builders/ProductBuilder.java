@@ -10,7 +10,6 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
@@ -422,11 +421,6 @@ public class ProductBuilder extends ApiRequest {
             return self();
         }
 
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
-
         private ProductBuilder build(){
             return new ProductBuilder(this);
         }
@@ -579,12 +573,7 @@ public class ProductBuilder extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ListAll<T>> extends Seek.StockSearcher<Product, T> {
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.StockSearcher<Product, T> {
 
         /**
          *

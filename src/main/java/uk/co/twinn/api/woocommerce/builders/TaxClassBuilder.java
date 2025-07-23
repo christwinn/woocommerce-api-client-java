@@ -55,7 +55,7 @@ public class TaxClassBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends CoreCreator<TaxClass>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<TaxClass, T>{
 
         private final String name; //	string	Tax rate name.
 
@@ -95,7 +95,7 @@ public class TaxClassBuilder extends ApiRequest {
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends CoreList<TaxClass>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<TaxClass, T>{
 
         public Listed<TaxClass> getResponse(){
 

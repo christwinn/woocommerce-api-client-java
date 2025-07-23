@@ -80,7 +80,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Creator Builder">
-    public static class Creator<T extends Creator<T>> extends CoreCreator<ShippingZoneMethod>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ShippingZoneMethod, T>{
 
         protected final int zoneId;        //string	ShippingZone name.
         protected String methodId;        //string	ShippingZoneMethod name.
@@ -98,11 +98,6 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
         public T setMethodId(String methodId) {
             this.methodId = methodId;
             return self();
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         public T setSettingValue(String settingName, String value){
@@ -235,7 +230,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ListAll<T>> extends CoreList<ShippingZoneMethod>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<ShippingZoneMethod, T>{
 
         private final int zoneId;
         public ListAll(int zoneId){

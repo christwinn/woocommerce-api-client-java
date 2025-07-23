@@ -6,20 +6,15 @@
  * Licence: MIT Licence see LICENCE file
  * All Rights Reserved
  */
-package uk.co.twinn.api.woocommerce.builders.core;
+package uk.co.twinn.api.woocommerce.builders;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Seek {
+public class CoreSeek {
 
-    public static class SearchCore<S, T extends SearchCore<S, T>> extends ParameterCollector<S> {
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
+    public static class SearchCore<S, T extends SearchCore<S, T>> extends CoreParameterCollector<S, T> {
 
         /**
          * @param context Scope under which the request is made; determines fields present in response.

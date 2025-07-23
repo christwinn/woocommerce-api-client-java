@@ -24,34 +24,30 @@ public class AuthenticationBuilder {
      *         New keys can be generated through the WordPress admin interface
      *
      */
-    public static class Https<T extends Https<T>>{
+    public static class Https{
 
         private String website;
         private String apiPath;
         private String key;
         private String secret;
 
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
 
-        public T setWebsite(String website){
+        public Https setWebsite(String website){
             this.website = website;
-            return self();
+            return this;
         }
 
-        public T setKey(String key){
+        public Https setKey(String key){
             this.key = key;
-            return self();
+            return this;
         }
-        public T setSecret(String secret){
+        public Https setSecret(String secret){
             this.secret = secret;
-            return self();
+            return this;
         }
-        public T setApiPath(String apiPath){
+        public Https setApiPath(String apiPath){
             this.apiPath = apiPath;
-            return self();
+            return this;
         }
 
         /**

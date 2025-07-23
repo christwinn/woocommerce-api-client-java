@@ -24,7 +24,7 @@ public class ReportBuilder {
 
     public ReportBuilder(){}
 
-    public static class ListAll extends CoreList<ReportListItem>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<ReportListItem, T>{
         public Listed<ReportListItem> getResponse(){
 
             return super.getResponse(
@@ -44,7 +44,7 @@ public class ReportBuilder {
 
     }
 
-    public static class SalesSummary extends CoreList<ReportSalesSummary>{
+    public static class SalesSummary<T extends SalesSummary<T>> extends CoreList<ReportSalesSummary, T>{
         public Listed<ReportSalesSummary> getResponse(){
 
             return super.getResponse(
@@ -65,7 +65,7 @@ public class ReportBuilder {
 
     }
 
-    public static class TopSellers extends CoreList<ReportTopSellersItem>{
+    public static class TopSellers<T extends TopSellers<T>> extends CoreList<ReportTopSellersItem, T>{
         public Listed<ReportTopSellersItem> getResponse(){
 
             return super.getResponse(
@@ -78,7 +78,7 @@ public class ReportBuilder {
 
     }
 
-    public static class CouponTotals extends CoreList<ReportOrderTotalSummary>{
+    public static class CouponTotals<T extends CouponTotals<T>> extends CoreList<ReportOrderTotalSummary, T>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return super.getResponse(
@@ -92,7 +92,7 @@ public class ReportBuilder {
 
     }
 
-    public static class CustomerTotals extends CoreList<ReportOrderTotalSummary>{
+    public static class CustomerTotals<T extends CustomerTotals<T>> extends CoreList<ReportOrderTotalSummary, T>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return super.getResponse(
@@ -105,7 +105,7 @@ public class ReportBuilder {
 
     }
 
-    public static class OrderTotals extends CoreList<ReportOrderTotalSummary>{
+    public static class OrderTotals<T extends OrderTotals<T>> extends CoreList<ReportOrderTotalSummary, T>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return super.getResponse(
@@ -118,7 +118,7 @@ public class ReportBuilder {
 
     }
 
-    public static class ProductTotals extends CoreList<ReportOrderTotalSummary>{
+    public static class ProductTotals<T extends ProductTotals<T>> extends CoreList<ReportOrderTotalSummary, T>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return super.getResponse(
@@ -131,7 +131,7 @@ public class ReportBuilder {
 
     }
 
-    public static class ReviewTotals extends CoreList<ReportOrderTotalSummary>{
+    public static class ReviewTotals<T extends ReviewTotals<T>> extends CoreList<ReportOrderTotalSummary, T>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
             return super.getResponse(

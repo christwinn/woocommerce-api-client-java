@@ -33,7 +33,7 @@ class CoreProductsVariations {
      *<br/>
      * Sets and Gets only do NOT use.
     **/
-    public static class Creator<S, T extends Creator<S, T>> extends CoreCreator<S> {
+    public static class Creator<S, T extends Creator<S, T>> extends CoreCreator<S, T> {
 
         protected String description;    //string	Product description.
         protected String sku;    //string	Unique identifier.
@@ -133,11 +133,6 @@ class CoreProductsVariations {
             menuOrder = product.getMenuOrder();
             metaData = product.getMetaData();
 
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         /**

@@ -222,10 +222,14 @@ public class WooCommerceApiClientUsageDemo {
 
         /*Read<Product> list = Products.read(1).getResponse();
         Read<Product> read = Products.read(1).getResponse();*/
+        //Products.create().setUpsellIds().setTaxClass().setSku().getResponse()
 
+        //Products.listing().setModifiedAfter(LocalDate.now()).setMaxPrice(BigDecimal.TEN).setSlug("").getResponse();
+        //ProductVariations.listing().setContext().setProductId().setContext().setDownloadable()
         //System.out.println(list.toJson());
         Listed<ReportOrderTotalSummary> list = Reports.orderTotals().getResponse();
 
+        //Orders.update(2).setBilling().setPaymentMethodTitle().
         System.out.println(list.toJson());
 
         for (ReportOrderTotalSummary i : list.getResult()){

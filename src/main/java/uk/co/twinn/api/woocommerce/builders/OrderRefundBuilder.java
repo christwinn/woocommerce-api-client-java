@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Deleted;
 import uk.co.twinn.api.woocommerce.response.Listed;
@@ -81,7 +80,7 @@ public class OrderRefundBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends CoreCreator<OrderRefund>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<OrderRefund, T>{
 
         private final int orderId;
 
@@ -116,11 +115,6 @@ public class OrderRefundBuilder extends ApiRequest {
             feeLines = orderRefund.getFeeLines();
             apiRefund = orderRefund.getApiRefund();
             apiRestock = orderRefund.getApiRestock();
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         public T setAmount(BigDecimal amount) {
@@ -222,17 +216,12 @@ public class OrderRefundBuilder extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<OrderRefund, T>{
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.Searcher<OrderRefund, T>{
 
         private final int orderId;
 
         public ListAll(int orderId){
             this.orderId = orderId;
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         /**

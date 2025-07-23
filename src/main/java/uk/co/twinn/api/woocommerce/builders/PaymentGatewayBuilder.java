@@ -61,7 +61,7 @@ public class PaymentGatewayBuilder extends ApiRequest {
 
     }
 
-    public static class Updater<T extends Updater<T>> extends CoreCreator<PaymentGateway>{
+    public static class Updater<T extends Updater<T>> extends CoreCreator<PaymentGateway, T>{
 
         private final String gatewayId;
         private String title;
@@ -81,11 +81,6 @@ public class PaymentGatewayBuilder extends ApiRequest {
             this.order = paymentGateway.getOrder();
             this.enabled = paymentGateway.getEnabled();
 
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         public T setTitle(String title) {
@@ -140,7 +135,7 @@ public class PaymentGatewayBuilder extends ApiRequest {
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends CoreList<PaymentGateway>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<PaymentGateway, T>{
 
         /**
          *  List the Payment Gateways

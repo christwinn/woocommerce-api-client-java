@@ -23,8 +23,6 @@ import uk.co.twinn.api.woocommerce.rest.Configuration;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,6 +44,20 @@ public class Http<T> {
 
     }*/
 
+    @SuppressWarnings("unchecked")
+    private ApiResponseResult<T> parseResponse(String content, int statusCode, TypeReference<?> type) {
+        try {
+            return new ApiResponseResult<>(
+                true,
+                statusCode,
+                (T) json.getObjectMapper().readValue(content, type)
+            );
+        }catch(IOException e){
+            return new ApiResponseResult<>(false, 0, e.toString());
+        }
+
+    }
+
     private ApiResponseResult<T> parseResponse(CloseableHttpResponse response, TypeReference<?> type){
 
         try {
@@ -61,16 +73,18 @@ public class Http<T> {
                             Level.INFO,
                             r.replace("},{", "},\n{")
                         );
-                        return new ApiResponseResult<T>(
+                        return parseResponse(r, sl.getStatusCode(), type);
+                        /*return new ApiResponseResult<>(
                             true,
                             sl.getStatusCode(),
-                            json.getObjectMapper().readValue(r, type)
-                        );
+                            (T)json.getObjectMapper().readValue(r, type)
+                        );*/
                     }else {
-                        return new ApiResponseResult<T>(
+                        return parseResponse(EntityUtils.toString(response.getEntity()), sl.getStatusCode(), type);
+                        /*return new ApiResponseResult<>(
                             true,
                             sl.getStatusCode(),
-                            json.getObjectMapper().readValue(EntityUtils.toString(response.getEntity()), type));
+                            (T)json.getObjectMapper().readValue(EntityUtils.toString(response.getEntity()), type));*/
                     }
                 default:
                     if (Configuration.isDebug()){

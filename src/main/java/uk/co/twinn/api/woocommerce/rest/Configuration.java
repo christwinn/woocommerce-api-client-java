@@ -14,7 +14,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import uk.co.twinn.api.woocommerce.builders.core.ParameterCollector;
+import uk.co.twinn.api.woocommerce.builders.CoreParameterCollector;
 
 import java.io.*;
 import java.util.logging.Level;
@@ -178,7 +178,7 @@ public class Configuration {
                 Configuration conf = getObjectMapper().readValue(config, new TypeReference<Configuration>(){});
 
             }catch (FileNotFoundException fileNotFoundException){
-                Logger.getLogger(ParameterCollector.class.getName()).log(Level.SEVERE, pathToConfigDOTjson, fileNotFoundException);
+                Logger.getLogger(CoreParameterCollector.class.getName()).log(Level.SEVERE, pathToConfigDOTjson, fileNotFoundException);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -188,7 +188,7 @@ public class Configuration {
                     try {
                         is.close();
                     } catch (IOException e) {
-                        Logger.getLogger(ParameterCollector.class.getName()).log(Level.SEVERE, "is.close()", e);
+                        Logger.getLogger(CoreParameterCollector.class.getName()).log(Level.SEVERE, "is.close()", e);
                     }
                 }
             }

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public class CrudResponse<T> extends ApiResponse<T>{
 
-    protected Object object = null;
+    protected T object = null;
 
     public CrudResponse(ApiResponseResult<T> result){
 
@@ -23,7 +23,7 @@ public class CrudResponse<T> extends ApiResponse<T>{
             switch (result.getStatusCode()){
                 case 200: case 201:
                     success = true;
-                    this.object =  result.getData();
+                    this.object = result.getData();
                     break;
                 default:
                     success = false;
@@ -51,10 +51,9 @@ public class CrudResponse<T> extends ApiResponse<T>{
 
     }
 
-    @SuppressWarnings ("unchecked")
     public T getResult(){
         /*T is set by the call*/
-        return (T)object;
+        return object;
     }
 
     public boolean hasResult(){

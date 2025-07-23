@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
 import uk.co.twinn.pl_wtx_woocommerce.model.ProductImage;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
@@ -84,7 +83,7 @@ public class ProductCategoryBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductCategory>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductCategory, T>{
 
         protected String name;
         private String description;
@@ -120,11 +119,6 @@ public class ProductCategoryBuilder extends ApiRequest {
 
             menuOrder = productCategory.getMenuOrder();
 
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         public T setDescription(String description){
@@ -298,12 +292,7 @@ public class ProductCategoryBuilder extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<ProductCategory, T> {
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.Searcher<ProductCategory, T> {
 
         /**
          * @param hideEmpty Whether to hide resources not assigned to any products. Default is false.

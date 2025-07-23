@@ -15,7 +15,6 @@ import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
 import uk.co.twinn.pl_wtx_woocommerce.model.MetaData;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
@@ -94,7 +93,7 @@ public class CouponBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends CoreCreator<Coupon>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<Coupon, T>{
 
         private String code; //	string	Coupon code.mandatory
         private BigDecimal amount; //	string	The amount of discount. Should always be numeric, even if setting a percentage.
@@ -144,11 +143,6 @@ public class CouponBuilder extends ApiRequest {
             emailRestrictions = coupon.getEmailRestrictions();
             metaData = coupon.getMetaData();
 
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         /**
@@ -439,12 +433,7 @@ public class CouponBuilder extends ApiRequest {
     }
     //</editor-fold>
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<Coupon, T> {
-
-         @SuppressWarnings ("unchecked")
-         T self() {
-            return (T) this;
-         }
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.Searcher<Coupon, T> {
 
         /**
          *

@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -120,11 +119,6 @@ public class ProductVariationBuilder extends ApiRequest {
         protected final int productId; //_differentiate
 
         private ProductImage image;    //array	List of images. See Product - Images properties
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
-        }
 
         public Creator(int productId){
             this.productId = productId;
@@ -282,18 +276,13 @@ public class ProductVariationBuilder extends ApiRequest {
     //</editor-fold>
 
     //or Seek.SearchCore<T>
-    public static class ListAll<T extends ListAll<T>> extends Seek.StockSearcher<ProductVariation, T>{
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.StockSearcher<ProductVariation, T>{
 
         private int id;
 
         public T setProductId(int productId){
             this.id = productId;
             return self();
-        }
-
-        @SuppressWarnings ("unchecked")
-        T self() {
-            return (T) this;
         }
 
         public Listed<ProductVariation> getResponse(){
