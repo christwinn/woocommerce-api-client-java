@@ -24,6 +24,7 @@ package uk.co.twinn.pl_wtx_woocommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.google.gson.annotations.SerializedName;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -461,37 +462,37 @@ public class Order {
   public static final String SERIALIZED_NAME_DISCOUNT_TOTAL = "discount_total";
   //@SerializedName(SERIALIZED_NAME_DISCOUNT_TOTAL)
   @javax.annotation.Nullable
-  private String discountTotal;
+  private BigDecimal discountTotal;
 
   public static final String SERIALIZED_NAME_DISCOUNT_TAX = "discount_tax";
   //@SerializedName(SERIALIZED_NAME_DISCOUNT_TAX)
   @javax.annotation.Nullable
-  private String discountTax;
+  private BigDecimal discountTax;
 
   public static final String SERIALIZED_NAME_SHIPPING_TOTAL = "shipping_total";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_TOTAL)
   @javax.annotation.Nullable
-  private String shippingTotal;
+  private BigDecimal shippingTotal;
 
   public static final String SERIALIZED_NAME_SHIPPING_TAX = "shipping_tax";
   //@SerializedName(SERIALIZED_NAME_SHIPPING_TAX)
   @javax.annotation.Nullable
-  private String shippingTax;
+  private BigDecimal shippingTax;
 
   public static final String SERIALIZED_NAME_CART_TAX = "cart_tax";
   //@SerializedName(SERIALIZED_NAME_CART_TAX)
   @javax.annotation.Nullable
-  private String cartTax;
+  private BigDecimal cartTax;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   //@SerializedName(SERIALIZED_NAME_TOTAL)
   @javax.annotation.Nullable
-  private String total;
+  private BigDecimal total;
 
   public static final String SERIALIZED_NAME_TOTAL_TAX = "total_tax";
   //@SerializedName(SERIALIZED_NAME_TOTAL_TAX)
   @javax.annotation.Nullable
-  private String totalTax;
+  private BigDecimal totalTax;
 
   public static final String SERIALIZED_NAME_PRICES_INCLUDE_TAX = "prices_include_tax";
   //@SerializedName(SERIALIZED_NAME_PRICES_INCLUDE_TAX)
@@ -848,7 +849,7 @@ public class Order {
   }
 
 
-  public Order discountTotal(@javax.annotation.Nullable String discountTotal) {
+  public Order discountTotal(@javax.annotation.Nullable BigDecimal discountTotal) {
     this.discountTotal = discountTotal;
     return this;
   }
@@ -858,17 +859,17 @@ public class Order {
    * @return discountTotal
    */
   @javax.annotation.Nullable
-  public String getDiscountTotal() {
+  public BigDecimal getDiscountTotal() {
     return discountTotal;
   }
 
   @JsonProperty("discount_total")
-  public void setDiscountTotal(@javax.annotation.Nullable String discountTotal) {
+  public void setDiscountTotal(@javax.annotation.Nullable BigDecimal discountTotal) {
     this.discountTotal = discountTotal;
   }
 
 
-  public Order discountTax(@javax.annotation.Nullable String discountTax) {
+  public Order discountTax(@javax.annotation.Nullable BigDecimal discountTax) {
     this.discountTax = discountTax;
     return this;
   }
@@ -878,17 +879,17 @@ public class Order {
    * @return discountTax
    */
   @javax.annotation.Nullable
-  public String getDiscountTax() {
+  public BigDecimal getDiscountTax() {
     return discountTax;
   }
 
   @JsonProperty("discount_tax")
-  public void setDiscountTax(@javax.annotation.Nullable String discountTax) {
+  public void setDiscountTax(@javax.annotation.Nullable BigDecimal discountTax) {
     this.discountTax = discountTax;
   }
 
 
-  public Order shippingTotal(@javax.annotation.Nullable String shippingTotal) {
+  public Order shippingTotal(@javax.annotation.Nullable BigDecimal shippingTotal) {
     this.shippingTotal = shippingTotal;
     return this;
   }
@@ -898,17 +899,17 @@ public class Order {
    * @return shippingTotal
    */
   @javax.annotation.Nullable
-  public String getShippingTotal() {
+  public BigDecimal getShippingTotal() {
     return shippingTotal;
   }
 
   @JsonProperty("shipping_total")
-  public void setShippingTotal(@javax.annotation.Nullable String shippingTotal) {
+  public void setShippingTotal(@javax.annotation.Nullable BigDecimal shippingTotal) {
     this.shippingTotal = shippingTotal;
   }
 
 
-  public Order shippingTax(@javax.annotation.Nullable String shippingTax) {
+  public Order shippingTax(@javax.annotation.Nullable BigDecimal shippingTax) {
     this.shippingTax = shippingTax;
     return this;
   }
@@ -918,17 +919,17 @@ public class Order {
    * @return shippingTax
    */
   @javax.annotation.Nullable
-  public String getShippingTax() {
+  public BigDecimal getShippingTax() {
     return shippingTax;
   }
 
   @JsonProperty("shipping_tax")
-  public void setShippingTax(@javax.annotation.Nullable String shippingTax) {
+  public void setShippingTax(@javax.annotation.Nullable BigDecimal shippingTax) {
     this.shippingTax = shippingTax;
   }
 
 
-  public Order cartTax(@javax.annotation.Nullable String cartTax) {
+  public Order cartTax(@javax.annotation.Nullable BigDecimal cartTax) {
     this.cartTax = cartTax;
     return this;
   }
@@ -938,17 +939,17 @@ public class Order {
    * @return cartTax
    */
   @javax.annotation.Nullable
-  public String getCartTax() {
+  public BigDecimal getCartTax() {
     return cartTax;
   }
 
   @JsonProperty("cart_tax")
-  public void setCartTax(@javax.annotation.Nullable String cartTax) {
+  public void setCartTax(@javax.annotation.Nullable BigDecimal cartTax) {
     this.cartTax = cartTax;
   }
 
 
-  public Order total(@javax.annotation.Nullable String total) {
+  public Order total(@javax.annotation.Nullable BigDecimal total) {
     this.total = total;
     return this;
   }
@@ -958,16 +959,16 @@ public class Order {
    * @return total
    */
   @javax.annotation.Nullable
-  public String getTotal() {
+  public BigDecimal getTotal() {
     return total;
   }
 
-  public void setTotal(@javax.annotation.Nullable String total) {
+  public void setTotal(@javax.annotation.Nullable BigDecimal total) {
     this.total = total;
   }
 
 
-  public Order totalTax(@javax.annotation.Nullable String totalTax) {
+  public Order totalTax(@javax.annotation.Nullable BigDecimal totalTax) {
     this.totalTax = totalTax;
     return this;
   }
@@ -977,12 +978,12 @@ public class Order {
    * @return totalTax
    */
   @javax.annotation.Nullable
-  public String getTotalTax() {
+  public BigDecimal getTotalTax() {
     return totalTax;
   }
 
   @JsonProperty("total_tax")
-  public void setTotalTax(@javax.annotation.Nullable String totalTax) {
+  public void setTotalTax(@javax.annotation.Nullable BigDecimal totalTax) {
     this.totalTax = totalTax;
   }
 
