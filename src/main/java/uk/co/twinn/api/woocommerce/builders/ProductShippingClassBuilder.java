@@ -73,7 +73,7 @@ public class ProductShippingClassBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<?>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductShippingClass>{
 
         private String name;        //string	Product name.
         private String slug;        //string	Product slug.
@@ -123,13 +123,14 @@ public class ProductShippingClassBuilder extends ApiRequest {
         public Created<ProductShippingClass> getResponse(){
 
             if (name == null || name.isEmpty()){
-                return new Created<>(new ApiResponseResult(false, 0, "Name is Mandatory"));
+                return new Created<>(new ApiResponseResult<>(false, 0, "Name is Mandatory"));
             }else {
                 ProductShippingClassBuilder create = build();
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductShippingClass>() {});
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductShippingClass>() {})
-                );
+                /*return new Created<>(
+                    new Rest<ProductShippingClass>().create(create.endPoint(), create.toJson())
+                );*/
             }
 
         }
@@ -160,37 +161,34 @@ public class ProductShippingClassBuilder extends ApiRequest {
         @Override
         public Updated<ProductShippingClass> getResponse(){
             if (id > 0){
-
                 ProductShippingClassBuilder create = build();
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductShippingClass>(){})
-                );
-
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ProductShippingClass>() {});
+                /*return new Updated<>(
+                    new Rest<ProductShippingClass>().update(create.endPoint(), create.toJson())
+                );*/
             }else{
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
 
         }
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<ProductShippingClass>{
 
         public Reader(int shippingClassId){
             super(shippingClassId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<ProductShippingClass> getResponse(){
-            return (Read<ProductShippingClass>)super.getResponse(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
-
+            return super.getResponse(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<ProductShippingClass>{
 
         public Deleter(int shippingClassId, boolean force){
             super(shippingClassId, force);
@@ -200,10 +198,8 @@ public class ProductShippingClassBuilder extends ApiRequest {
             return new ProductShippingClassBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<ProductShippingClass> getResponse(){
-            return (Deleted<ProductShippingClass>)super.getResponse(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
-
+            return super.getResponse(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
         }
 
     }
@@ -228,14 +224,13 @@ public class ProductShippingClassBuilder extends ApiRequest {
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public Batched<ProductShippingClass> getResponse(){
-            return (Batched<ProductShippingClass>) super.getResponse(PRODUCTS_SHIPPING_CLASSES, batch, new TypeReference<BatchResult<ProductShippingClass>>(){});
+            return super.getResponse(PRODUCTS_SHIPPING_CLASSES, batch, new TypeReference<BatchResult<ProductShippingClass>>() {});
         }
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<ProductShippingClass, T> {
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -272,13 +267,17 @@ public class ProductShippingClassBuilder extends ApiRequest {
 
         public Listed<ProductShippingClass> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    PRODUCTS_SHIPPING_CLASSES,
-                    build(),
-                    new TypeReference<List<ProductShippingClass>>(){}
-                )
+            return super.getResponse(
+                PRODUCTS_SHIPPING_CLASSES,
+                build(),
+                new TypeReference<List<ProductShippingClass>>() {}
             );
+            /*return new Listed<>(
+                new Rest<List<ProductShippingClass>>().listAll(
+                    PRODUCTS_SHIPPING_CLASSES,
+                    build()
+                )
+            );*/
 
         }
 

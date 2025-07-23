@@ -86,7 +86,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductAttributeTerm>{
 
         protected int attributeId;
 
@@ -164,7 +164,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             //premliminary checks
             if (attributeId <= 0 || name == null || name.isEmpty()) {
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "AttributeId and Name is MANDATORY!")
@@ -172,10 +172,13 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             }else {
 
                 ProductAttributeTermBuilder create = build();
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductAttributeTerm>() {});
+
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductAttributeTerm>(){})
-                );
+                /*return new Created<>(
+                    new Rest<ProductAttributeTerm>().create(create.endPoint(), create.toJson())
+                );*/
+
             }
         }
 
@@ -215,17 +218,18 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             //preliminary checks
             if (attributeId <= 0 || termsId <= 0) {
                 return new Updated<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Attribute Id and Term Id are MANDATORY")
                 );
             }else {
                 ProductAttributeTermBuilder create = build();
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ProductAttributeTerm>() {});
                 //make the call
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductAttributeTerm>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<ProductAttributeTerm>().update(create.endPoint(), create.toJson())
+                );*/
             }
 
         }
@@ -234,23 +238,21 @@ public class ProductAttributeTermBuilder extends ApiRequest {
 
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ChildReaderCore{
+    public static class Reader extends CoreReader.ChildReaderCore<ProductAttributeTerm>{
 
         public Reader(int attributeId, int termId){
             super(attributeId, termId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<ProductAttributeTerm> getResponse(){
-            return (Read<ProductAttributeTerm>)super.getResponse(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
-
+            return super.getResponse(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.ChildDeleterCore{
+    public static class Deleter extends CoreDeleter.ChildDeleterCore<ProductAttributeTerm>{
 
         public Deleter(int attributeId, int termId, boolean force){
             super(attributeId, termId, force);
@@ -260,10 +262,8 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             return new ProductAttributeTermBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<ProductAttributeTerm> getResponse(){
-            return (Deleted<ProductAttributeTerm>)super.getResponse(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
-
+            return super.getResponse(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
         }
 
     }
@@ -299,18 +299,17 @@ public class ProductAttributeTermBuilder extends ApiRequest {
         }
 
         /** Returns list of amended Orders **/
-        @SuppressWarnings("unchecked")
         public Batched<ProductAttributeTerm> getResponse(){
 
             if (attributeId <= 0){
                 return new Batched<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Attribute Id is MANDATORY")
                 );
             }else {
-                return (Batched<ProductAttributeTerm>) super.getResponse(
+                return super.getResponse(
                     endPoint(attributeId),
                     batch,
                     new TypeReference<BatchResult<ProductAttributeTerm>>() {}
@@ -323,7 +322,7 @@ public class ProductAttributeTermBuilder extends ApiRequest {
     //</editor-fold>
 
     //or Seek.SearchCore<T>
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T>{
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<ProductAttributeTerm, T>{
         private int attributeId;
 
         @SuppressWarnings ("unchecked")
@@ -385,20 +384,25 @@ public class ProductAttributeTermBuilder extends ApiRequest {
 
             if (attributeId <= 0){
                 return new Listed<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Attribute Id is MANDATORY")
                 );
             }else {
-                return new Listed<>(
-                    new Rest().listAll(
-                        endPoint(attributeId), //endPoint, SET endPoint
-                        build(),
-                        new TypeReference<List<ProductAttributeTerm>>() {
-                        }
-                    )
+
+                return super.getResponse(
+                    endPoint(attributeId), //endPoint, SET endPoint
+                    build(),
+                    new TypeReference<List<ProductAttributeTerm>>() {}
                 );
+
+                /*return new Listed<>(
+                    new Rest<List<ProductAttributeTerm>>().listAll(
+                        endPoint(attributeId), //endPoint, SET endPoint
+                        build()
+                    )
+                );*/
             }
 
         }

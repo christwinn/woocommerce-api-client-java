@@ -84,7 +84,7 @@ public class TaxRateBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<TaxRate>{
 
         private ISO3166.CountryEnum country; //	string	Country ISO 3166 code. See ISO 3166 Codes (Countries) for more details
         private String state; //	string	State code.
@@ -260,9 +260,10 @@ public class TaxRateBuilder extends ApiRequest {
 
             TaxRateBuilder create = build();
             //make the call
-            return new Created<>(
-                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<TaxRate>(){})
-            );
+            /*return new Created<>(
+                new Rest<TaxRate>().create(create.endPoint(), create.toJson())
+            );*/
+            return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<TaxRate>() {});
 
         }
 
@@ -289,35 +290,34 @@ public class TaxRateBuilder extends ApiRequest {
             if (id > 0){
 
                 TaxRateBuilder create = build();
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<TaxRate>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<TaxRate>().update(create.endPoint(), create.toJson())
+                );*/
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<TaxRate>() {});
 
             }else{
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
 
         }
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<TaxRate>{
 
         public Reader(int taxRateId){
             super(taxRateId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<TaxRate> getResponse(){
-            return (Read<TaxRate>)super.getResponse(TAXES, new TypeReference<TaxRate>() {});
-
+            return super.getResponse(TAXES, new TypeReference<TaxRate>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<TaxRate>{
 
         public Deleter(int taxRateId, boolean force){
             super(taxRateId, force);
@@ -327,10 +327,8 @@ public class TaxRateBuilder extends ApiRequest {
             return new TaxRateBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<TaxRate> getResponse(){
-            return (Deleted<TaxRate>)super.getResponse(TAXES, new TypeReference<TaxRate>() {});
-
+            return super.getResponse(TAXES, new TypeReference<TaxRate>() {});
         }
 
     }
@@ -356,16 +354,15 @@ public class TaxRateBuilder extends ApiRequest {
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public Batched<TaxRate> getResponse(){
 
-            return (Batched<TaxRate>) super.getResponse(TAXES, batch, new TypeReference<BatchResult<TaxRate>>(){});
+            return super.getResponse(TAXES, batch, new TypeReference<BatchResult<TaxRate>>() {});
 
         }
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCorePaging<T>{
+    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCorePaging<TaxRate, T>{
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -398,14 +395,18 @@ public class TaxRateBuilder extends ApiRequest {
          */
         public Listed<TaxRate> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    TAXES,
-                    build(),
-                    new TypeReference<List<TaxRate>>(){}
-                )
+            return super.getResponse(
+                TAXES,
+                build(),
+                new TypeReference<List<TaxRate>>() {}
             );
 
+            /*return new Listed<>(
+                new Rest<List<TaxRate>>().listAll(
+                    TAXES,
+                    build()
+                )
+            );*/
 
         }
 

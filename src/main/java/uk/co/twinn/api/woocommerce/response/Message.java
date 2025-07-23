@@ -15,11 +15,11 @@ import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 import uk.co.twinn.api.woocommerce.response.core.Msg;
 
 
-public class Message extends ApiResponse {
+public class Message extends ApiResponse<Msg> {
 
     private Msg message = null;
 
-    public Message(ApiResponseResult result){
+    public Message(ApiResponseResult<Msg> result){
 
         super(result);
 
@@ -27,8 +27,8 @@ public class Message extends ApiResponse {
             switch (result.getStatusCode()){
                 case 200: case 201:
                     success = true;
-                    if (result.getData() instanceof Msg) {
-                        this.message = (Msg) result.getData();
+                    if (result.getMessage() != null) {
+                        this.message = new Msg(result.getMessage());
                     }else{
                         this.message = new Msg("Success but failed to decipher the Message, incorrect object type");
                     }
@@ -42,8 +42,17 @@ public class Message extends ApiResponse {
 
     }
 
-    public Msg getMessage() {
+    public Msg getMsg() {
         return message;
+    }
+
+    public String getMessage() {
+        if (getMsg() != null) {
+            return getMsg().getMessage();
+        }else{
+            return "";
+        }
+
     }
 
 }

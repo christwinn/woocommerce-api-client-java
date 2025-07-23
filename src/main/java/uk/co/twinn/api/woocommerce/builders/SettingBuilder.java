@@ -22,21 +22,18 @@ public class SettingBuilder {
 
     private SettingBuilder(){}
 
-    public static class ListAll{
+    public static class ListAll extends CoreList<Setting>{
 
         /**
          *  List the Settings
          */
         public Listed<Setting> getResponse(){
-
-            return new Listed<>(
-                new Rest().listAll(
-                    SETTINGS,
-                    "",
-                    new TypeReference<List<Setting>>(){}
-                )
+            //return new Listed<>(new Rest<List<Setting>>().listAll(
+            return super.getResponse(
+                SETTINGS,
+                "",
+                new TypeReference<List<Setting>>() {}
             );
-
 
         }
 

@@ -23,6 +23,8 @@ import uk.co.twinn.api.woocommerce.rest.Configuration;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,13 +34,19 @@ import java.util.logging.Logger;
  * maybe should pass to CompletableFutures and/or ASync
  *
  */
-public class Http {
+public class Http<T> {
 
     private static final CloseableHttpClient httpClient = HttpClients.createDefault();
 
     private final JacksonObjectMapper json = new JacksonObjectMapper();
 
-    private ApiResponseResult parseResponse(CloseableHttpResponse response, TypeReference<?> typeReference){
+    /*private ApiResponseResult<T> parseResponse(CloseableHttpResponse response){
+
+        return parseResponse(response, new TypeReference<T>(){});
+
+    }*/
+
+    private ApiResponseResult<T> parseResponse(CloseableHttpResponse response, TypeReference<?> type){
 
         try {
 
@@ -53,15 +61,16 @@ public class Http {
                             Level.INFO,
                             r.replace("},{", "},\n{")
                         );
-                        return new ApiResponseResult(
+                        return new ApiResponseResult<T>(
                             true,
                             sl.getStatusCode(),
-                            json.getObjectMapper().readValue(r, typeReference));
+                            json.getObjectMapper().readValue(r, type)
+                        );
                     }else {
-                        return new ApiResponseResult(
+                        return new ApiResponseResult<T>(
                             true,
                             sl.getStatusCode(),
-                            json.getObjectMapper().readValue(EntityUtils.toString(response.getEntity()), typeReference));
+                            json.getObjectMapper().readValue(EntityUtils.toString(response.getEntity()), type));
                     }
                 default:
                     if (Configuration.isDebug()){
@@ -70,9 +79,9 @@ public class Http {
                             Level.INFO,
                             r.replace(",", ",\n")
                         );
-                        return new ApiResponseResult(false, sl.getStatusCode(), r);
+                        return new ApiResponseResult<>(false, sl.getStatusCode(), r);
                     }else {
-                        return new ApiResponseResult(false, sl.getStatusCode(), EntityUtils.toString(response.getEntity()));
+                        return new ApiResponseResult<>(false, sl.getStatusCode(), EntityUtils.toString(response.getEntity()));
                     }
             }
 
@@ -81,13 +90,13 @@ public class Http {
             Logger.getLogger(Http.class.getName())
                 .log(Level.SEVERE, "IOException", e);
 
-            return new ApiResponseResult(false, 0, e.toString());
+            return new ApiResponseResult<>(false, 0, e.toString());
 
         }
 
     }
 
-    public ApiResponseResult create(String target, List<NameValuePair> headers, String content, TypeReference<?> typeReference){
+    public ApiResponseResult<T> create(String target, List<NameValuePair> headers, String content, TypeReference<?> type){
 
         try {
 
@@ -95,13 +104,13 @@ public class Http {
 
             try (CloseableHttpResponse response = httpClient.execute(post)) {
 
-                return parseResponse(response, typeReference);
+                return parseResponse(response, type);
 
             }
 
         } catch (IOException e) {
 
-            return new ApiResponseResult(false, 0, e.toString());
+            return new ApiResponseResult<>(false, 0, e.toString());
 
         }
 
@@ -130,7 +139,7 @@ public class Http {
 
     }
 
-    public ApiResponseResult read(String target, List<NameValuePair> headers, TypeReference<?> typeReference){
+    public ApiResponseResult<T> read(String target, List<NameValuePair> headers, TypeReference<?> type){
 
         Logger.getLogger(Http.class.getName()).log(Level.INFO,
             String.format("Requesting %s", target)
@@ -148,19 +157,19 @@ public class Http {
 
             try (CloseableHttpResponse response = httpClient.execute(get)) {
 
-                return parseResponse(response, typeReference);
+                return parseResponse(response, type);
 
             }
 
         } catch (IOException e) {
 
-            return new ApiResponseResult(false, 0, e.toString());
+            return new ApiResponseResult<>(false, 0, e.toString());
 
         }
 
     }
 
-    public ApiResponseResult update(String target, List<NameValuePair> headers, String content, TypeReference<?> typeReference){
+    public ApiResponseResult<T> update(String target, List<NameValuePair> headers, String content, TypeReference<?> type){
 
         try {
 
@@ -168,14 +177,14 @@ public class Http {
 
             try (CloseableHttpResponse response = httpClient.execute(put)) {
 
-                return parseResponse(response, typeReference);
+                return parseResponse(response, type);
 
             }
 
 
         } catch (IOException e) {
 
-            return new ApiResponseResult(false, 0, e.toString());
+            return new ApiResponseResult<>(false, 0, e.toString());
 
         }
 
@@ -203,7 +212,7 @@ public class Http {
 
     }
 
-    public ApiResponseResult delete(String target, List<NameValuePair> headers, TypeReference<?> typeReference){
+    public ApiResponseResult<T> delete(String target, List<NameValuePair> headers, TypeReference<?> type){
 
         try {
 
@@ -216,13 +225,13 @@ public class Http {
 
             try (CloseableHttpResponse response = httpClient.execute(post)) {
 
-                return parseResponse(response, typeReference);
+                return parseResponse(response, type);
 
             }
 
         } catch (IOException e) {
 
-            return new ApiResponseResult(false, 0, e.toString());
+            return new ApiResponseResult<>(false, 0, e.toString());
 
         }
 

@@ -11,9 +11,11 @@ package uk.co.twinn.api.woocommerce.response;
 
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
+import java.util.List;
+
 public class UpdatedList<T> extends Listed<T>{
 
-    public UpdatedList(ApiResponseResult result){
+    public UpdatedList(ApiResponseResult<List<T>> result){
 
         super(result);
 

@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 public class Deleted<T> extends Read<T> {
 
-    public Deleted(ApiResponseResult result){
+    public Deleted(ApiResponseResult<T> result){
 
         super(result);
 

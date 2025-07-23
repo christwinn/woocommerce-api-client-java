@@ -77,7 +77,7 @@ public class ProductReviewBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<?>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductReview>{
 
         private Integer productId;
         private ProductReview.StatusEnum status;        //string	Product name.
@@ -159,13 +159,14 @@ public class ProductReviewBuilder extends ApiRequest {
         public Created<ProductReview> getResponse(){
 
             if (productId == null || productId == 0){
-                return new Created<>(new ApiResponseResult(false, 0, "Review MUST belong to a Product Id"));
+                return new Created<>(new ApiResponseResult<>(false, 0, "Review MUST belong to a Product Id"));
             }else {
                 ProductReviewBuilder create = build();
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductReview>() {});
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductReview>() {})
-                );
+                /*return new Created<>(
+                    new Rest<ProductReview>().create(create.endPoint(), create.toJson())
+                );*/
             }
 
         }
@@ -199,35 +200,34 @@ public class ProductReviewBuilder extends ApiRequest {
             if (id > 0){
 
                 ProductReviewBuilder create = build();
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductReview>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<ProductReview>().update(create.endPoint(), create.toJson())
+                );*/
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ProductReview>() {});
 
             }else{
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
 
         }
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<ProductReview>{
 
         public Reader(int reviewId){
             super(reviewId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<ProductReview> getResponse(){
-            return (Read<ProductReview>)super.getResponse(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
-
+            return super.getResponse(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<ProductReview>{
 
         public Deleter(int reviewId, boolean force){
             super(reviewId, force);
@@ -237,10 +237,8 @@ public class ProductReviewBuilder extends ApiRequest {
             return new ProductReviewBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<ProductReview> getResponse(){
-            return (Deleted<ProductReview>)super.getResponse(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
-
+            return super.getResponse(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
         }
 
     }
@@ -266,14 +264,14 @@ public class ProductReviewBuilder extends ApiRequest {
             batch.addDelete(delete.build().productReview.getId());
             return self();
         }
-        @SuppressWarnings("unchecked")
+
         public Batched<ProductReview> getResponse(){
-            return (Batched<ProductReview>) super.getResponse(PRODUCTS_REVIEWS, batch, new TypeReference<BatchResult<ProductReview>>(){});
+            return super.getResponse(PRODUCTS_REVIEWS, batch, new TypeReference<BatchResult<ProductReview>>() {});
         }
 
     }
 
-    public static class ListAll<T extends ProductReviewBuilder.ListAll<T>> extends Seek.Searcher<T> {
+    public static class ListAll<T extends ProductReviewBuilder.ListAll<T>> extends Seek.Searcher<ProductReview, T> {
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -310,13 +308,17 @@ public class ProductReviewBuilder extends ApiRequest {
 
         public Listed<ProductReview> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    PRODUCTS_REVIEWS,
-                    build(),
-                    new TypeReference<List<ProductReview>>(){}
-                )
+            return super.getResponse(
+                PRODUCTS_REVIEWS,
+                build(),
+                new TypeReference<List<ProductReview>>() {}
             );
+
+            /*return new Listed<>(
+                new Rest<List<ProductReview>>().listAll(
+
+                )
+            );*/
 
         }
 

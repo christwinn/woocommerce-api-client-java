@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.Seek;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
-import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
@@ -94,7 +93,7 @@ public class OrderBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<Order>{
 
         private String paymentMethod;
         private String paymentMethodTitle;
@@ -117,8 +116,8 @@ public class OrderBuilder extends ApiRequest {
         }
 
         @SuppressWarnings("unchecked")
-        T self() {
-            return (T) this;
+        T self(){
+            return (T)this;
         }
 
         public T setPaymentMethod(String paymentMethod) {
@@ -164,10 +163,12 @@ public class OrderBuilder extends ApiRequest {
         public Created<Order> getResponse(){
 
             OrderBuilder create = build();
-            //make the call
-            return new Created<>(
-                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Order>(){})
-            );
+
+            return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Order>() {});
+
+            /*return new Created<>(
+                new Rest<Order>().create(create.endPoint(), create.toJson())
+            );*/
         }
 
     }
@@ -189,6 +190,10 @@ public class OrderBuilder extends ApiRequest {
             this.id = productId;
         }
 
+        public T setTest(boolean test) {
+            return self();
+        }
+
         @Override
         protected OrderBuilder build(){
             return new OrderBuilder(this);
@@ -198,14 +203,17 @@ public class OrderBuilder extends ApiRequest {
         @Override
         public Updated<Order> getResponse(){
             if (id > 0) {
+
                 OrderBuilder create = build();
                 //make the call
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Order>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<Order>().update(create.endPoint(), create.toJson())
+                );*/
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Order>() {});
+
             }else{
                 return new Updated<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Order Id is MANDATORY!")
@@ -216,23 +224,21 @@ public class OrderBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<Order>{
 
         public Reader(int orderId){
             super(orderId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<Order> getResponse(){
-            return (Read<Order>)super.getResponse(ORDERS, new TypeReference<Order>() {});
-
+            return super.getResponse(ORDERS, new TypeReference<Order>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<Order>{
 
         public Deleter(int orderId, boolean force){
             super(orderId, force);
@@ -242,17 +248,15 @@ public class OrderBuilder extends ApiRequest {
             return new OrderBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<Order> getResponse(){
-            return (Deleted<Order>)super.getResponse(ORDERS, new TypeReference<Order>() {});
-
+            return super.getResponse(ORDERS, new TypeReference<Order>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Batcher">
-    public static class Batcher<T extends Batcher<T>>  extends CoreBatch.BatchCore<Order, T>{
+    public static class Batcher<T extends Batcher<T>> extends CoreBatch.BatchCore<Order, T>{
 
         public Batcher(){
             super();
@@ -274,10 +278,9 @@ public class OrderBuilder extends ApiRequest {
         }
 
         /** Returns list of amended Orders **/
-        @SuppressWarnings("unchecked")
         public Batched<Order> getResponse(){
 
-            return (Batched<Order>) super.getResponse(ORDERS, batch, new TypeReference<BatchResult<Order>>(){});
+            return super.getResponse(ORDERS, batch, new TypeReference<Order>() {});
 
         }
 
@@ -292,7 +295,7 @@ public class OrderBuilder extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<Order, T> {
 
         @SuppressWarnings("unchecked")
         T self() {
@@ -433,13 +436,18 @@ public class OrderBuilder extends ApiRequest {
 
         public Listed<Order> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    ORDERS,
-                    build(),
-                    new TypeReference<List<Order>>(){}
-                )
+            return super.getResponse(
+                ORDERS,
+                build(),
+                new TypeReference<List<Order>>() {}
             );
+
+            /*return new Listed<>(
+                new Rest<List<Order>>().listAll(
+                    ORDERS,
+                    build()
+                )
+            );*/
 
         }
 

@@ -11,11 +11,11 @@ package uk.co.twinn.api.woocommerce.response.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-public class CrudResponse<T> extends ApiResponse{
+public class CrudResponse<T> extends ApiResponse<T>{
 
     protected Object object = null;
 
-    public CrudResponse(ApiResponseResult result){
+    public CrudResponse(ApiResponseResult<T> result){
 
         super(result);
 

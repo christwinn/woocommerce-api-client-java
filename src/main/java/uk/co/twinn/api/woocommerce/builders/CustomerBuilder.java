@@ -16,6 +16,7 @@ import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
+import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
 import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
@@ -80,7 +81,7 @@ public class CustomerBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<Customer>{
 
         private String email;
         private String firstName;
@@ -155,12 +156,14 @@ public class CustomerBuilder extends ApiRequest {
             if (username != null && password != null) {
                 CustomerBuilder create = build();
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Customer>(){})
-                );
+                /*return new Created<>(
+                    new Rest<Customer>().create(create.endPoint(), create.toJson())
+                );*/
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Customer>() {});
+
             }else{
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Username and Password are required.")
@@ -198,36 +201,37 @@ public class CustomerBuilder extends ApiRequest {
         @Override
         public Updated<Customer> getResponse(){
             if (id > 0){
+
                 CustomerBuilder create = build();
                 //make the call
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Customer>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<Customer>().update(create.endPoint(), create.toJson())
+                );*/
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Customer>() {});
+
             }else {
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
         }
 
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<Customer>{
 
         public Reader(int id){
             super(id);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<Customer> getResponse(){
-            return (Read<Customer>)super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
-
+            return super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<Customer>{
 
         public Deleter(int customerId, boolean force){
             super(customerId, force);
@@ -237,10 +241,8 @@ public class CustomerBuilder extends ApiRequest {
             return new CustomerBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<Customer> getResponse(){
-            return (Deleted<Customer>)super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
-
+            return super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
         }
 
     }
@@ -251,10 +253,6 @@ public class CustomerBuilder extends ApiRequest {
         public Batcher(){
             super();
         }
-
-        //T self() {
-            //return (T) this;
-        //}
 
         /** for testing only **/
         public T setBatch(Batch<Customer> batch){
@@ -302,10 +300,9 @@ public class CustomerBuilder extends ApiRequest {
         }
 
         /** Returns list of amended ProductCategories **/
-        @SuppressWarnings("unchecked")
         public Batched<Customer> getResponse(){
 
-            return (Batched<Customer>) super.getResponse(CUSTOMERS, batch, new TypeReference<BatchResult<Customer>>(){});
+            return super.getResponse(CUSTOMERS, batch, new TypeReference<BatchResult<Customer>>() {});
 
         }
 
@@ -320,7 +317,7 @@ public class CustomerBuilder extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<Customer, T> {
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -362,14 +359,12 @@ public class CustomerBuilder extends ApiRequest {
 
         public Listed<Customer> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    CUSTOMERS,
-                    build(),
-                    new TypeReference<List<Customer>>(){}
-                )
-            );
+            return super.getResponse(CUSTOMERS, build(), new TypeReference<List<Customer>>() {});
 
+            /*return new Listed<>(
+                new Rest<List<Customer>>()
+                    .listAll(CUSTOMERS, build(), new TypeReference<List<Customer>>() {})
+            );*/
 
         }
 

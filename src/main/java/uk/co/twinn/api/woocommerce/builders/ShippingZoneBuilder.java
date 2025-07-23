@@ -70,7 +70,7 @@ public class ShippingZoneBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends ShippingZoneBuilder.Creator<T>>{
+    public static class Creator<T extends ShippingZoneBuilder.Creator<T>> extends CoreCreator<ShippingZone>{
 
         protected String name;
         private Integer order;
@@ -99,12 +99,13 @@ public class ShippingZoneBuilder extends ApiRequest {
             if (name != null && !name.isEmpty()) {
                 ShippingZoneBuilder create = build();
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ShippingZone>(){})
-                );
+                /*return new Created<>(
+                    new Rest<ShippingZone>().create(create.endPoint(), create.toJson())
+                );*/
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ShippingZone>() {});
             }else{
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Name is required.")
@@ -140,26 +141,26 @@ public class ShippingZoneBuilder extends ApiRequest {
             if (id > 0){
                 ShippingZoneBuilder create = build();
                 //make the call
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ShippingZone>(){})
-                );
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ShippingZone>() {});
+                /*return new Updated<>(
+                    new Rest<ShippingZone>().update(create.endPoint(), create.toJson())
+                );*/
             }else {
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
         }
 
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<ShippingZone>{
 
         public Reader(int shippingZoneId){
             super(shippingZoneId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<ShippingZone> getResponse(){
-            return (Read<ShippingZone>)super.getResponse(SHIPPINGZONES, new TypeReference<ShippingZone>() {});
+            return super.getResponse(SHIPPINGZONES, new TypeReference<ShippingZone>() {});
 
         }
 
@@ -167,7 +168,7 @@ public class ShippingZoneBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<ShippingZone>{
 
         public Deleter(int shippingZoneId, boolean force){
             super(shippingZoneId, force);
@@ -177,9 +178,8 @@ public class ShippingZoneBuilder extends ApiRequest {
             return new ShippingZoneBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<ShippingZone> getResponse(){
-            return (Deleted<ShippingZone>)super.getResponse(SHIPPINGZONES, new TypeReference<ShippingZone>() {});
+            return super.getResponse(SHIPPINGZONES, new TypeReference<ShippingZone>() {});
 
         }
 
@@ -195,17 +195,21 @@ public class ShippingZoneBuilder extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ShippingZoneBuilder.ListAll<T>>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<ShippingZone>{
 
         public Listed<ShippingZone> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    SHIPPINGZONES,
-                    "",
-                    new TypeReference<List<ShippingZone>>(){}
-                )
+            return super.getResponse(
+                SHIPPINGZONES,
+                "",
+                new TypeReference<List<ShippingZone>>() {}
             );
+            /*return new Listed<>(
+                new Rest<List<ShippingZone>>().listAll(
+                    SHIPPINGZONES,
+                    ""
+                )
+            );*/
 
 
         }

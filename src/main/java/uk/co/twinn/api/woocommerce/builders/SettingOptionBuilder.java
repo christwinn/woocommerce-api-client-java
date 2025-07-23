@@ -52,21 +52,19 @@ public class SettingOptionBuilder extends ApiRequest {
 
     }
 
-    public static class Reader extends CoreReader.ReaderCoreStringKey{
+    public static class Reader extends CoreReader.ReaderCoreStringKey<SettingOption>{
 
         public Reader(String groupId, String settingId){
             super(groupId + "/" + settingId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<SettingOption> getResponse(){
-            return (Read<SettingOption>)super.getResponse(SETTINGS, new TypeReference<SettingOption>() {});
-
+            return super.getResponse(SETTINGS, new TypeReference<SettingOption>() {});
         }
 
     }
 
-    public static class Updater<T extends Updater<T>>{
+    public static class Updater<T extends Updater<T>> extends CoreCreator<SettingOption>{
 
         private String groupId;
         private final String optionId;
@@ -107,19 +105,20 @@ public class SettingOptionBuilder extends ApiRequest {
                 optionId != null && !optionId.isEmpty()
             ){
                 SettingOptionBuilder create = build();
-                return new Updated<>(
-                    new Rest().update(endPoint(), create.toJson(), new TypeReference<SettingOption>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<SettingOption>().update(endPoint(), create.toJson())
+                );*/
+                return super.getUpdate(endPoint(), create.toJson(), new TypeReference<SettingOption>() {});
 
             }else{
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
 
         }
     }
 
 
-    public static class ListAll{
+    public static class ListAll extends CoreList<SettingOption>{
 
         private final String groupId;
 
@@ -132,16 +131,19 @@ public class SettingOptionBuilder extends ApiRequest {
         public Listed<SettingOption> getResponse(){
 
             if (groupId.isEmpty()){
-                return new Listed<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Listed<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }else {
-                return new Listed<>(
-                    new Rest().listAll(
-                        SETTINGS + "/" + groupId,
-                        "",
-                        new TypeReference<List<SettingOption>>() {
-                        }
-                    )
+                return super.getResponse(
+                    SETTINGS + "/" + groupId,
+                    "",
+                    new TypeReference<List<SettingOption>>(){}
                 );
+                /*return new Listed<>(
+                    new Rest<List<SettingOption>>().listAll(
+                        SETTINGS + "/" + groupId,
+                        ""
+                    )
+                );*/
             }
 
 
@@ -164,10 +166,13 @@ public class SettingOptionBuilder extends ApiRequest {
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public Batched<SettingOption> getResponse(){
 
-            return (Batched<SettingOption>) super.getResponse(SETTINGS + "/" + groupId, batch, new TypeReference<BatchResult<SettingOption>>(){});
+            return super.getResponse(
+                SETTINGS + "/" + groupId,
+                batch,
+                new TypeReference<BatchResult<SettingOption>>(){}
+            );
 
         }
 

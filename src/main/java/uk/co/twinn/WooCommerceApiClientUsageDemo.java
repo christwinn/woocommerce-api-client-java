@@ -12,6 +12,7 @@ package uk.co.twinn;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,6 +20,7 @@ import java.util.stream.Stream;
 import uk.co.twinn.api.woocommerce.api.*;
 import uk.co.twinn.api.woocommerce.response.*;
 
+import uk.co.twinn.api.woocommerce.response.core.Msg;
 import uk.co.twinn.pl_wtx_woocommerce.model.*;
 
 import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
@@ -41,6 +43,17 @@ public class WooCommerceApiClientUsageDemo {
     public static void main(String[] args) {
 
         System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
+
+        Message m = Authentication.Https().getResponse();
+        System.out.println(m.getMessage());
+
+        Read<Product> product = Products.read(315).getResponse();
+
+        System.out.println(product.toJson());
+
+
+        //System.exit(0);
+
 
         CustomerDemo customerDemo = new CustomerDemo();
 

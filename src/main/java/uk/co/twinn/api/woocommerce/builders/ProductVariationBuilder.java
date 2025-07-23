@@ -114,7 +114,7 @@ public class ProductVariationBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>> extends CoreProductsVariations.Creator<T>{
+    public static class Creator<T extends Creator<T>> extends CoreProductsVariations.Creator<ProductVariation, T>{
 
         //set up the private variables
         protected final int productId; //_differentiate
@@ -144,7 +144,7 @@ public class ProductVariationBuilder extends ApiRequest {
             //premliminary checks
             if (productId <= 0) {
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Product Id is MANDATORY!")
@@ -152,10 +152,11 @@ public class ProductVariationBuilder extends ApiRequest {
             }else {
 
                 ProductVariationBuilder create = build();
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>() {});
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>(){})
-                );
+                /*return new Created<>(
+                    new Rest<ProductVariation>().create(create.endPoint(), create.toJson())
+                );*/
             }
         }
 
@@ -193,7 +194,7 @@ public class ProductVariationBuilder extends ApiRequest {
             //preliminary checks
             if (productId <= 0 || variationId <= 0) {
                 return new Updated<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "ProductId and id are MANDATORY")
@@ -201,9 +202,10 @@ public class ProductVariationBuilder extends ApiRequest {
             }else {
                 ProductVariationBuilder create = build();
                 //make the call
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>(){})
-                );
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>() {});
+                /*return new Updated<>(
+                    new Rest<ProductVariation>().update(create.endPoint(), create.toJson())
+                );*/
             }
 
         }
@@ -212,23 +214,21 @@ public class ProductVariationBuilder extends ApiRequest {
 
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ChildReaderCore{
+    public static class Reader extends CoreReader.ChildReaderCore<ProductVariation> {
 
         public Reader(int productId, int variationId){
             super(productId, variationId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<ProductVariation> getResponse(){
-            return (Read<ProductVariation>)super.getResponse(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
-
+            return super.getResponse(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.ChildDeleterCore{
+    public static class Deleter extends CoreDeleter.ChildDeleterCore<ProductVariation>{
 
         public Deleter(int productId, int variationId, boolean force){
             super(productId, variationId, force);
@@ -238,10 +238,8 @@ public class ProductVariationBuilder extends ApiRequest {
             return new ProductVariationBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<ProductVariation> getResponse(){
-            return (Deleted<ProductVariation>)super.getResponse(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
-
+            return super.getResponse(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
         }
 
     }
@@ -277,14 +275,14 @@ public class ProductVariationBuilder extends ApiRequest {
 
         /** Returns list of amended Orders **/
         public Batched<ProductVariation> getResponse(){
-            return super.getResponse(PRODUCTS, id, VARIATIONS, batch, new TypeReference<BatchResult<ProductVariation>>(){});
+            return super.getResponse(PRODUCTS, id, VARIATIONS, batch, new TypeReference<BatchResult<ProductVariation>>() {});
         }
 
     }
     //</editor-fold>
 
     //or Seek.SearchCore<T>
-    public static class ListAll<T extends ListAll<T>> extends Seek.StockSearcher<T>{
+    public static class ListAll<T extends ListAll<T>> extends Seek.StockSearcher<ProductVariation, T>{
 
         private int id;
 
@@ -302,19 +300,24 @@ public class ProductVariationBuilder extends ApiRequest {
 
             if (id <= 0) {
                 return new Listed<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Product Id is MANDATORY!")
                 );
             }else {
-                return new Listed<>(
-                    new Rest().listAll(
-                        endPoint(id, 0), //endPoint, SET endPoint
-                        build(),
-                        new TypeReference<List<ProductVariation>>(){}
-                    )
+                return super.getResponse(
+                    endPoint(id, 0), //endPoint, SET endPoint
+                    build(),
+                    new TypeReference<List<ProductVariation>>() {}
                 );
+
+                /*return new Listed<>(
+                    new Rest<List<ProductVariation>>().listAll(
+                        endPoint(id, 0), //endPoint, SET endPoint
+                        build()
+                    )
+                );*/
             }
 
         }

@@ -23,4 +23,5 @@ public class Msg extends ErrorMessage {
         super.setMessage(message);
 
     }
+
 }

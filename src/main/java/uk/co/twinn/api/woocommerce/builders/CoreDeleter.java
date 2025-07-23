@@ -22,7 +22,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreDeleter {
 
-    static class DeleterCore{
+    static class DeleterCore<T>{
 
         protected final int id;
         protected final boolean force;
@@ -32,14 +32,14 @@ class CoreDeleter {
             this.force = force;
         }
 
-        Deleted<?> getResponse(String endPoint, TypeReference<?> type){
+        Deleted<T> getResponse(String endPoint, TypeReference<T> type){
             return readResponse(endPoint + "/" + id + "?force=" + force, type);
         }
 
-        private Deleted<?> readResponse(String endPoint, TypeReference<?> type){
+        private Deleted<T> readResponse(String endPoint, TypeReference<T> type){
             if (id <= 0 || !force) {
                 return new Deleted<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Delete is limited to a single object result\n" +
@@ -48,7 +48,7 @@ class CoreDeleter {
                 );
             }else{
                 return new Deleted<>(
-                    new Rest().delete(endPoint, type)
+                    new Rest<T>().delete(endPoint, type)
                 );
             }
 
@@ -56,7 +56,7 @@ class CoreDeleter {
 
     }
 
-    static class ChildDeleterCore extends DeleterCore {
+    static class ChildDeleterCore<T> extends DeleterCore<T> {
 
         //set up the private variables
         protected final int childId;
@@ -66,13 +66,13 @@ class CoreDeleter {
             this.childId = childId;
         }
 
-        Deleted<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
+        Deleted<T> getResponse(String endPoint, String childEndPoint, TypeReference<T> type){
             return readResponse(endPoint + "/" + id + "/" + childEndPoint + "/" + childId, type);
         }
-        protected Deleted<?> readResponse(String endPoint, TypeReference<?> type){
+        protected Deleted<T> readResponse(String endPoint, TypeReference<T> type){
             if (childId <= 0) {//this is our only responsibility,
                 return new Deleted<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Delete is limited to a single object result\n" +
@@ -86,7 +86,7 @@ class CoreDeleter {
 
     }
 
-    static class DeleterCoreStringKey{
+    static class DeleterCoreStringKey<T>{
 
         protected final String key;
         protected final boolean force;
@@ -96,14 +96,14 @@ class CoreDeleter {
             this.force = force;
         }
 
-        Deleted<?> getResponse(String endPoint, TypeReference<?> type){
+        Deleted<T> getResponse(String endPoint, TypeReference<T> type){
             return readResponse(endPoint + "/" + key + "?force=" + force, type);
         }
 
-        private Deleted<?> readResponse(String endPoint, TypeReference<?> type){
+        private Deleted<T> readResponse(String endPoint, TypeReference<T> type){
             if (key == null || key.isEmpty() || !force) {
                 return new Deleted<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Delete is limited to a single object result\n" +
@@ -112,7 +112,7 @@ class CoreDeleter {
                 );
             }else{
                 return new Deleted<>(
-                    new Rest().delete(endPoint, type)
+                    new Rest<T>().delete(endPoint, type)
                 );
             }
 
@@ -120,7 +120,7 @@ class CoreDeleter {
 
     }
 
-    static class ChildDeleterCoreStringKey extends DeleterCoreStringKey{
+    static class ChildDeleterCoreStringKey<T> extends DeleterCoreStringKey<T>{
 
         private final String childKey;
 
@@ -129,14 +129,14 @@ class CoreDeleter {
             this.childKey = childKey;
         }
 
-        Deleted<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
+        Deleted<T> getResponse(String endPoint, String childEndPoint, TypeReference<T> type){
             return readResponse(endPoint + "/" + key + "/" + childEndPoint + childKey + "?force=" + force, type);
         }
 
-        private Deleted<?> readResponse(String endPoint, TypeReference<?> type){
+        private Deleted<T> readResponse(String endPoint, TypeReference<T> type){
             if (childKey == null || childKey.isEmpty()) {
                 return new Deleted<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Delete is limited to a single object result\n" +

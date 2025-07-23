@@ -83,7 +83,7 @@ public class ProductAttributeBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductAttribute>{
 
         //set up the private variables
         protected String name; //	string	Attribute name.mandatory
@@ -141,7 +141,7 @@ public class ProductAttributeBuilder extends ApiRequest {
             //premliminary checks
             if (name == null || name.isEmpty()) {
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Name is MANDATORY!")
@@ -149,10 +149,11 @@ public class ProductAttributeBuilder extends ApiRequest {
             }else {
 
                 ProductAttributeBuilder create = build();
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductAttribute>(){});
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductAttribute>(){})
-                );
+                /*return new Created<>(
+                    new Rest<ProductAttribute>().create(create.endPoint(), create.toJson())
+                );*/
             }
         }
 
@@ -201,17 +202,18 @@ public class ProductAttributeBuilder extends ApiRequest {
             //preliminary checks
             if (id <= 0 || name == null || name.isEmpty()) {
                 return new Updated<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Id and Name are MANDATORY")
                 );
             }else {
                 ProductAttributeBuilder create = build();
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ProductAttribute>(){});
                 //make the call
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductAttribute>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<ProductAttribute>().update(create.endPoint(), create.toJson())
+                );*/
             }
 
         }
@@ -220,15 +222,14 @@ public class ProductAttributeBuilder extends ApiRequest {
 
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<ProductAttribute>{
 
         public Reader(int productAttributeId){
             super(productAttributeId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<ProductAttribute> getResponse(){
-            return (Read<ProductAttribute>)super.getResponse(PRODUCTS_ATTRIBUTES, new TypeReference<ProductAttribute>() {});
+            return super.getResponse(PRODUCTS_ATTRIBUTES, new TypeReference<ProductAttribute>(){});
 
         }
 
@@ -236,7 +237,7 @@ public class ProductAttributeBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<ProductAttribute>{
 
         public Deleter(int productAttributeId, boolean force){
             super(productAttributeId, force);
@@ -246,9 +247,8 @@ public class ProductAttributeBuilder extends ApiRequest {
             return new ProductAttributeBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<ProductAttribute> getResponse(){
-            return (Deleted<ProductAttribute>)super.getResponse(PRODUCTS_ATTRIBUTES, new TypeReference<ProductAttribute>() {});
+            return super.getResponse(PRODUCTS_ATTRIBUTES, new TypeReference<ProductAttribute>(){});
 
         }
 
@@ -278,10 +278,9 @@ public class ProductAttributeBuilder extends ApiRequest {
         }
 
         /** Returns list of amended Orders **/
-        @SuppressWarnings("unchecked")
         public Batched<ProductAttribute> getResponse(){
 
-            return (Batched<ProductAttribute>) super.getResponse(PRODUCTS_ATTRIBUTES, batch, new TypeReference<BatchResult<ProductAttribute>>(){});
+            return super.getResponse(PRODUCTS_ATTRIBUTES, batch, new TypeReference<ProductAttribute>(){});
 
         }
 
@@ -289,7 +288,7 @@ public class ProductAttributeBuilder extends ApiRequest {
     //</editor-fold>
 
     //or Seek.SearchCore<T>
-    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCore<T>{
+    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCore<ProductAttribute, T>{
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -298,17 +297,22 @@ public class ProductAttributeBuilder extends ApiRequest {
 
         public Listed<ProductAttribute> getResponse(){
 
+            return super.getResponse(
+                endPoint(0), //endPoint, SET endPoint
+                build(),
+                new TypeReference<List<ProductAttribute>>(){}
+            );
 
-                return new Listed<>(
-                    new Rest().listAll(
+            /*    return new Listed<>(
+                    new Rest<List<ProductAttribute>>().listAll(
                         endPoint(0), //endPoint, SET endPoint
-                        build(),
-                        new TypeReference<List<ProductAttribute>>(){}
+                        build()
                     )
-                );
+                );*/
 
 
         }
 
     }
+
 }

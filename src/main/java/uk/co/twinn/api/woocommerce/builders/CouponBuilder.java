@@ -94,7 +94,7 @@ public class CouponBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<Coupon>{
 
         private String code; //	string	Coupon code.mandatory
         private BigDecimal amount; //	string	The amount of discount. Should always be numeric, even if setting a percentage.
@@ -346,17 +346,20 @@ public class CouponBuilder extends ApiRequest {
         public Created<Coupon> getResponse(){
             if (code == null || code.isEmpty()) {
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Code is MANDATORY!")
                 );
             }else {
+
                 CouponBuilder create = build();
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){});
+
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
-                );
+                /*return new Created<>(
+                    new Rest<Coupon>().create(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
+                );*/
             }
         }
 
@@ -384,15 +387,17 @@ public class CouponBuilder extends ApiRequest {
         @Override
         public Updated<Coupon> getResponse(){
             if (id > 0) {
+
                 CouponBuilder create = build();
                 //make the call
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<Coupon>().update(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
+                );*/
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){});
 
             }else{
                 return new Updated<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Coupon Id is MANDATORY!")
@@ -403,23 +408,21 @@ public class CouponBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<Coupon>{
 
         public Reader(int couponId){
             super(couponId);
         }
 
-        @SuppressWarnings ("unchecked")
         public Read<Coupon> getResponse(){
-            return (Read<Coupon>)super.getResponse(COUPONS, new TypeReference<Coupon>() {});
-
+            return super.getResponse(COUPONS, new TypeReference<Coupon>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<Coupon>{
 
         public Deleter(int couponId, boolean force){
             super(couponId, force);
@@ -429,21 +432,19 @@ public class CouponBuilder extends ApiRequest {
             return new CouponBuilder(this);
         }
 
-        @SuppressWarnings ("unchecked")
         public Deleted<Coupon> getResponse(){
-            return (Deleted<Coupon>)super.getResponse(COUPONS, new TypeReference<Coupon>() {});
-
+            return super.getResponse(COUPONS, new TypeReference<Coupon>() {});
         }
 
     }
     //</editor-fold>
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<Coupon, T> {
 
-        @SuppressWarnings ("unchecked")
-        T self() {
+         @SuppressWarnings ("unchecked")
+         T self() {
             return (T) this;
-        }
+         }
 
         /**
          *
@@ -514,13 +515,16 @@ public class CouponBuilder extends ApiRequest {
 
         public Listed<Coupon> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
+            return super.getResponse(COUPONS, build(), new TypeReference<List<Coupon>>() {});
+
+            //return new Listed<>(
+
+                /*new Rest<List<Coupon>>().listAll(
                     COUPONS,
                     build(),
-                    new TypeReference<List<Coupon>>(){}
-                )
-            );
+                    new TypeReference<List<Coupon>>() {}
+                )*/
+            //);
 
         }
 
@@ -548,10 +552,9 @@ public class CouponBuilder extends ApiRequest {
         }
 
         /** Returns list of amended Coupons **/
-        @SuppressWarnings("unchecked")
         public Batched<Coupon> getResponse(){
 
-            return (Batched<Coupon>) super.getResponse(COUPONS, batch, new TypeReference<BatchResult<Coupon>>(){});
+            return super.getResponse(COUPONS, batch, new TypeReference<BatchResult<Coupon>>() {});
 
         }
 

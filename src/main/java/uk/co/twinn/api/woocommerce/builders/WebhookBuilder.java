@@ -76,7 +76,7 @@ public class WebhookBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<Webhook>{
 
         private String name; //string	A friendly name for the webhook.
         private Webhook.WebhookStatusEnum status; //string	Webhook status. Options: active, paused and disabled. Default is active.
@@ -149,10 +149,11 @@ public class WebhookBuilder extends ApiRequest {
         public Created<Webhook> getResponse(){
 
             WebhookBuilder create = build();
+            return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Webhook>() {});
             //make the call
-            return new Created<>(
-                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Webhook>(){})
-            );
+            /*return new Created<>(
+                new Rest<Webhook>().create(create.endPoint(), create.toJson())
+            );*/
 
         }
 
@@ -182,35 +183,34 @@ public class WebhookBuilder extends ApiRequest {
             if (id > 0){
 
                 WebhookBuilder create = build();
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Webhook>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<Webhook>().update(create.endPoint(), create.toJson())
+                );*/
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Webhook>() {});
 
             }else{
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
 
         }
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<Webhook>{
 
         public Reader(int webhookId){
             super(webhookId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<Webhook> getResponse(){
-            return (Read<Webhook>)super.getResponse(WEBHOOKS, new TypeReference<Webhook>() {});
-
+            return super.getResponse(WEBHOOKS, new TypeReference<Webhook>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<Webhook>{
 
         public Deleter(int webhookId, boolean force){
             super(webhookId, force);
@@ -220,10 +220,8 @@ public class WebhookBuilder extends ApiRequest {
             return new WebhookBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<Webhook> getResponse(){
-            return (Deleted<Webhook>)super.getResponse(WEBHOOKS, new TypeReference<Webhook>() {});
-
+            return super.getResponse(WEBHOOKS, new TypeReference<Webhook>() {});
         }
 
     }
@@ -249,16 +247,15 @@ public class WebhookBuilder extends ApiRequest {
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public Batched<Webhook> getResponse(){
 
-            return (Batched<Webhook>) super.getResponse(WEBHOOKS, batch, new TypeReference<BatchResult<Webhook>>(){});
+            return super.getResponse(WEBHOOKS, batch, new TypeReference<BatchResult<Webhook>>() {});
 
         }
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.DatesSearcher<T>{
+    public static class ListAll<T extends ListAll<T>> extends Seek.DatesSearcher<Webhook, T>{
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -283,13 +280,18 @@ public class WebhookBuilder extends ApiRequest {
          */
         public Listed<Webhook> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    WEBHOOKS,
-                    build(),
-                    new TypeReference<List<Webhook>>(){}
-                )
+            return super.getResponse(
+                WEBHOOKS,
+                build(),
+                new TypeReference<List<Webhook>>() {}
             );
+
+            /*return new Listed<>(
+                new Rest<List<Webhook>>().listAll(
+                    WEBHOOKS,
+                    build()
+                )
+            );*/
 
 
         }

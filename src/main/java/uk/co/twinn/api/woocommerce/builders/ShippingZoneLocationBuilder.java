@@ -60,7 +60,7 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
      * To be completed
      *
      **/
-    public static class UpdateList<T extends UpdateList<T>> {
+    public static class UpdateList<T extends UpdateList<T>> extends CoreCreator<ShippingZoneLocation>{
 
         private final int zoneId;
         private String code;
@@ -97,13 +97,19 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
 
                 ShippingZoneLocationBuilder create = build();
 
-                //make the call
-                return new UpdatedList<>(
-                    new Rest().updateList(endPoint(zoneId), create.toJson(list), new TypeReference<List<ShippingZoneLocation>>(){})
+                return super.getUpdateList(endPoint(zoneId), create.toJson(list), new TypeReference<ShippingZoneLocation>() {});
 
-                );
+                //make the call
+                /*return new UpdatedList<>(
+                    new Rest<List<ShippingZoneLocation>>().updateList(
+                        endPoint(zoneId),
+                        create.toJson(list),
+                        new TypeReference<ShippingZoneLocation>() {}
+                    )
+                );*/
+
             }else {
-                return new UpdatedList<>(new ApiResponseResult(false, 0, "Missing required list and/or zoneId"));
+                return new UpdatedList<>(new ApiResponseResult<>(false, 0, "Missing required list and/or zoneId"));
             }
 
         }
@@ -118,7 +124,7 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ShippingZoneLocationBuilder.ListAll<T>>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<ShippingZoneLocation>{
 
         private final int zoneId;
         public ListAll(int zoneId){
@@ -128,16 +134,20 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
         public Listed<ShippingZoneLocation> getResponse(){
 
             if (zoneId > 0) {
-                return new Listed<>(
-                    new Rest().listAll(
-                        endPoint(zoneId),
-                        "",
-                        new TypeReference<List<ShippingZoneLocation>>() {}
-                    )
+                return super.getResponse(
+                    endPoint(zoneId),
+                    "",
+                    new TypeReference<List<ShippingZoneLocation>>() {}
                 );
+                /*return new Listed<>(
+                    new Rest<List<ShippingZoneLocation>>().listAll(
+                        endPoint(zoneId),
+                        ""
+                    )
+                );*/
             }else{
                 return new Listed<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "ZoneId is required.")

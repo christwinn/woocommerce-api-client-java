@@ -15,11 +15,11 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponse;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 
-public class Batched<T> extends ApiResponse {
+public class Batched<T> extends ApiResponse<BatchResult<T>> {
 
     private BatchResult<T> batchResult = new BatchResult<>();
 
-    public Batched(ApiResponseResult result){
+    public Batched(ApiResponseResult<BatchResult<T>> result){
 
         super(result);
 
@@ -44,7 +44,6 @@ public class Batched<T> extends ApiResponse {
         this.batchResult = (BatchResult<T>)data;
     }
 
-    /*If the id is NOT set then we get an array of product*/
     public BatchResult<T> getResult(){
         return batchResult;
     }

@@ -14,7 +14,7 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 public class Created<T> extends CrudResponse<T> {
 
-    public Created(ApiResponseResult result){
+    public Created(ApiResponseResult<T>result){
 
         super(result);
 

@@ -22,7 +22,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreReader {
 
-    static class ReaderCore {
+    static class ReaderCore<T> {
 
         //set up the private variables
         protected final int id;
@@ -32,7 +32,7 @@ class CoreReader {
         }
 
         /** this needs to be exported to inheritor but not beyond* package-private*/
-        Read<?> getResponse(String endPoint, TypeReference<?> type){
+        Read<T> getResponse(String endPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id, type);
         }
 
@@ -40,10 +40,10 @@ class CoreReader {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        private Read<?> readResponse(String endPoint, TypeReference<?> type){
+        private Read<T> readResponse(String endPoint, TypeReference<?> type){
             if (id <= 0) {
                 return new Read<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Read is limited to a single object result\n" +
@@ -52,14 +52,14 @@ class CoreReader {
                 );
             }else{
                 return new Read<>(
-                    new Rest().read(endPoint, type)
+                    new Rest<T>().read(endPoint, type)
                 );
             }
         }
 
     }
 
-    static class ChildReaderCore extends ReaderCore{
+    static class ChildReaderCore<T> extends ReaderCore<T>{
 
         public ChildReaderCore(int id, int childId){
             super(id);
@@ -69,13 +69,13 @@ class CoreReader {
         //set up the private variables
         private final int childId;
 
-        Read<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
+        Read<T> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id + "/" + childEndPoint + "/" + childId, type);
         }
-        private Read<?> readResponse(String endPoint, TypeReference<?> type){
+        private Read<T> readResponse(String endPoint, TypeReference<?> type){
             if (childId <= 0) {//this is our only responsibility,
                 return new Read<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Read is limited to a single object result\n" +
@@ -89,7 +89,7 @@ class CoreReader {
 
     }
 
-    static class ReaderCoreStringKey {
+    static class ReaderCoreStringKey<T> {
 
         //set up the private variables
         protected final String key;
@@ -99,7 +99,7 @@ class CoreReader {
         }
 
         /** this needs to be exported to inheritor but not beyond* package-private*/
-        Read<?> getResponse(String endPoint, TypeReference<?> type){
+        Read<T> getResponse(String endPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + key, type);
         }
 
@@ -107,10 +107,10 @@ class CoreReader {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        private Read<?> readResponse(String endPoint, TypeReference<?> type){
+        private Read<T> readResponse(String endPoint, TypeReference<?> type){
             if (key == null || key.isEmpty()) {
                 return new Read<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Read is limited to a single object result\n" +
@@ -119,14 +119,14 @@ class CoreReader {
                 );
             }else{
                 return new Read<>(
-                    new Rest().read(endPoint, type)
+                    new Rest<T>().read(endPoint, type)
                 );
             }
         }
 
     }
 
-    static class ChildReaderCoreStringKey extends ReaderCoreStringKey {
+    static class ChildReaderCoreStringKey<T> extends ReaderCoreStringKey<T> {
 
         //set up the private variables
         protected final String childKey;
@@ -137,7 +137,7 @@ class CoreReader {
         }
 
         /** this needs to be exported to inheritor but not beyond* package-private*/
-        Read<?> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
+        Read<T> getResponse(String endPoint, String childEndPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + key + "/" + childEndPoint + childKey, type);
         }
 
@@ -145,10 +145,10 @@ class CoreReader {
          *  If the id is set returns a single productCategory
          *  otherwise returns list of productCategory
          */
-        private Read<?> readResponse(String endPoint, TypeReference<?> type){
+        private Read<T> readResponse(String endPoint, TypeReference<?> type){
             if (childKey == null || childKey.isEmpty()) {
                 return new Read<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Read is limited to a single object result\n" +
@@ -161,6 +161,5 @@ class CoreReader {
         }
 
     }
-
 
 }

@@ -16,7 +16,7 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 
 import java.io.IOException;
 
-public class ApiResponse {
+public class ApiResponse <T> {
 
     private final JacksonObjectMapper json = new JacksonObjectMapper();
 
@@ -25,7 +25,7 @@ public class ApiResponse {
 
     public ApiResponse(){}
 
-    public ApiResponse(ApiResponseResult result){
+    public ApiResponse(ApiResponseResult<T> result){
 
         if (!result.getSuccess()){
 

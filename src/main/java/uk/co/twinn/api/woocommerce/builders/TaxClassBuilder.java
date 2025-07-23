@@ -56,7 +56,7 @@ public class TaxClassBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<TaxClass>{
 
         private final String name; //	string	Tax rate name.
 
@@ -72,46 +72,46 @@ public class TaxClassBuilder extends ApiRequest {
         public Created<TaxClass> getResponse(){
 
             TaxClassBuilder create = build();
+            return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<TaxClass>() {});
             //make the call
-            return new Created<>(
-                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<TaxClass>(){})
-            );
+            /*return new Created<>(
+                new Rest<TaxClass>().create(create.endPoint(), create.toJson())
+            );*/
 
         }
 
     }
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCoreStringKey{
+    public static class Deleter extends CoreDeleter.DeleterCoreStringKey<TaxClass>{
 
         public Deleter(String taxClassSlug, boolean force){
             super(taxClassSlug, force);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<TaxClass> getResponse(){
-            return (Deleted<TaxClass>)super.getResponse(TAX_CLASSES, new TypeReference<TaxClass>() {});
+            return super.getResponse(TAX_CLASSES, new TypeReference<TaxClass>() {});
 
         }
 
     }
 
-    public static class ListAll<T extends ListAll<T>>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<TaxClass>{
 
-        /**
-         *  If the id is set returns a single productCategory
-         *  otherwise returns list of productCategory
-         */
         public Listed<TaxClass> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    TAX_CLASSES,
-                    "",
-                    new TypeReference<List<TaxClass>>(){}
-                )
+            return super.getResponse(
+                TAX_CLASSES,
+                "",
+                new TypeReference<List<TaxClass>>() {}
             );
 
+            /*return new Listed<>(
+                new Rest<List<TaxClass>>().listAll(
+                    TAX_CLASSES,
+                    "", new TypeReference<List<TaxClass>>() {}
+                )
+            );*/
 
         }
 

@@ -8,7 +8,7 @@
  */
 package uk.co.twinn.api.woocommerce.response.core;
 
-public class ApiResponseResult {
+public class ApiResponseResult<T>{
 
     private boolean success;
     private int     status;

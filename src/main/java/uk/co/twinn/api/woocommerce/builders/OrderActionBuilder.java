@@ -58,20 +58,15 @@ public class OrderActionBuilder extends ApiRequest {
         public Created<Message> getResponse(){
             if (orderId == 0) {
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "An OrderId is required.")
                 );
             }else {
-
-                Rest woo = new Rest();
-
                 return new Created<>(
-                    woo.create(getEndPoint(), new TypeReference<Msg>(){})
-
+                    new Rest<Message>().create(getEndPoint(), new TypeReference<Message>() {})
                 );
-
             }
         }
 

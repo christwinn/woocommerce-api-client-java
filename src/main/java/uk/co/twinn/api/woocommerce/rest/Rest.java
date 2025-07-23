@@ -21,12 +21,12 @@ import java.util.logging.Logger;
 
 import uk.co.twinn.api.woocommerce.transportation.Http;
 
-public class Rest {
+public class Rest<T> {
 
     public Rest() {
     }
 
-   private final Http http = new Http();
+   private final Http<T> http = new Http<>();
 
     //set the type of response and add basic auth, requires us to be https to work
     private List<NameValuePair> getHeaders() {
@@ -70,7 +70,7 @@ public class Rest {
      * Make a null content POST request, not usual oddball case
      *
      */
-    public ApiResponseResult create(String endPoint, TypeReference<?> type){
+    public ApiResponseResult<T> create(String endPoint, TypeReference<?> type){
 
         return http.create(
             getUri(endPoint),
@@ -81,7 +81,7 @@ public class Rest {
 
     }
 
-    public ApiResponseResult create(String endPoint, String content, TypeReference<?> type){
+    public ApiResponseResult<T> create(String endPoint, String content, TypeReference<?> type){
 
         return http.create(
             getUri(endPoint),
@@ -92,7 +92,7 @@ public class Rest {
 
     }
 
-    public ApiResponseResult read(String endPoint, TypeReference<?> type){
+    public ApiResponseResult<T> read(String endPoint, TypeReference<?> type){
 
         return http.read(
             getUri(endPoint),
@@ -102,7 +102,7 @@ public class Rest {
 
     }
 
-    private ApiResponseResult read(String endPoint, String parameters, TypeReference<?> type){
+    private ApiResponseResult<T> read(String endPoint, String parameters, TypeReference<?> type){
 
         return http.read(
         getUri(endPoint)
@@ -116,7 +116,7 @@ public class Rest {
 
     }
 
-    public ApiResponseResult update(String endPoint, String content, TypeReference<?> type){
+    public ApiResponseResult<T> update(String endPoint, String content, TypeReference<?> type){
 
         return http.update(
             getUri(endPoint),
@@ -127,7 +127,7 @@ public class Rest {
 
     }
 
-    public ApiResponseResult updateList(String endPoint, String content, TypeReference<?> type){
+    public ApiResponseResult<T> updateList(String endPoint, String content, TypeReference<?> type){
 
         return http.update(
             getUri(endPoint),
@@ -138,19 +138,19 @@ public class Rest {
 
     }
 
-    public ApiResponseResult delete(String endPoint, TypeReference<?> type){
+    public ApiResponseResult<T> delete(String endPoint, TypeReference<?> type){
 
         return http.delete(endPoint, getHeaders(), type);
 
     }
 
-    public ApiResponseResult duplicate(String endPoint, TypeReference<?> type){
+    public ApiResponseResult<T> duplicate(String endPoint, TypeReference<?> type){
 
         return create(endPoint, null, type);
 
     }
 
-    public ApiResponseResult batch(String endPoint, String content, TypeReference<?> type){
+    public ApiResponseResult<T> batch(String endPoint, String content, TypeReference<?> type){
 
         return create(endPoint, content, type);
 
@@ -163,10 +163,9 @@ public class Rest {
      *
      * @param endPoint where is the target
      * @param parameters the parameters for the search
-     * @param type return list type
      * @return ApiResponseResult
      */
-    public ApiResponseResult listAll(String endPoint, String parameters, TypeReference<?> type){
+    public ApiResponseResult<T> listAll(String endPoint, String parameters, TypeReference<?> type){
 
         //Logger.getLogger(Rest.class.getName()).log(Level.INFO, parameters);
 

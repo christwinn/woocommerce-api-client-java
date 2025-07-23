@@ -78,7 +78,7 @@ public class OrderNoteBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<OrderNote>{
 
         private String note;
         private Boolean customerNote;
@@ -145,49 +145,49 @@ public class OrderNoteBuilder extends ApiRequest {
         public Created<OrderNote> getResponse(){
             if (orderId == 0) {
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Order Id MANDATORY!\nUse Lister to ListAll")
                 );
             }else {
+
                 OrderNoteBuilder create = build();
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<OrderNote>() {});
+
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<OrderNote>(){})
-                );
+                /*return new Created<>(
+                    new Rest<OrderNote>().create(create.endPoint(), create.toJson())
+                );*/
+
             }
         }
 
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ChildReaderCore{
+    public static class Reader extends CoreReader.ChildReaderCore<OrderNote>{
 
         public Reader(int orderId, int noteId){
             super(orderId, noteId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<OrderNote> getResponse(){
-            return (Read<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
-
+            return super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.ChildDeleterCore{
+    public static class Deleter extends CoreDeleter.ChildDeleterCore<OrderNote>{
 
         public Deleter(int orderId, int noteId, boolean force){
             super(orderId, noteId, force);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<OrderNote> getResponse(){
-            return (Deleted<OrderNote>)super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
-
+            return super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
         }
 
     }
@@ -195,7 +195,7 @@ public class OrderNoteBuilder extends ApiRequest {
 
 
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCore<T> {
+    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCore<OrderNote, T> {
 
         protected int orderId;
 
@@ -234,19 +234,24 @@ public class OrderNoteBuilder extends ApiRequest {
         public Listed<OrderNote> getResponse(){
             if (orderId == 0) {
                 return new Listed<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Order Id is MANDATORY!")
                 );
             }else {
-                return new Listed<>(
-                    new Rest().listAll(
-                        endPoint(orderId, 0),
-                        build(),
-                        new TypeReference<List<Customer>>(){}
-                    )
+
+                return super.getResponse(
+                    endPoint(orderId, 0),
+                    build(),
+                    new TypeReference<List<OrderNote>>() {}
                 );
+
+                /*return new Listed<>(
+                    new Rest<List<OrderNote>>().listAll(
+
+                    )
+                );*/
             }
         }
 

@@ -84,7 +84,7 @@ public class ProductCategoryBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductCategory>{
 
         protected String name;
         private String description;
@@ -167,10 +167,11 @@ public class ProductCategoryBuilder extends ApiRequest {
         public Created<ProductCategory> getResponse(){
 
             ProductCategoryBuilder create = build();
+            return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductCategory>() {});
             //make the call
-            return new Created<>(
-                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductCategory>(){})
-            );
+            /*return new Created<>(
+                new Rest<ProductCategory>().create(create.endPoint(), create.toJson())
+            );*/
 
         }
     }
@@ -207,14 +208,15 @@ public class ProductCategoryBuilder extends ApiRequest {
         public Updated<ProductCategory> getResponse(){
             if (id > 0) {
                 ProductCategoryBuilder create = build();
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ProductCategory>() {});
                 //make the call
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductCategory>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<ProductCategory>().update(create.endPoint(), create.toJson())
+                );*/
 
             }else {
                 return new Updated<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Category Id is MANDATORY!")
@@ -226,15 +228,14 @@ public class ProductCategoryBuilder extends ApiRequest {
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<ProductCategory>{
 
         public Reader(int productCategoryId){
             super(productCategoryId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<ProductCategory> getResponse(){
-            return (Read<ProductCategory>)super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
+            return super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
 
         }
 
@@ -242,7 +243,7 @@ public class ProductCategoryBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<ProductCategory>{
 
         public Deleter(int productCategoryId, boolean force){
             super(productCategoryId, force);
@@ -252,9 +253,8 @@ public class ProductCategoryBuilder extends ApiRequest {
             return new ProductCategoryBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<ProductCategory> getResponse(){
-            return (Deleted<ProductCategory>)super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
+            return super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
 
         }
 
@@ -283,10 +283,9 @@ public class ProductCategoryBuilder extends ApiRequest {
         }
 
         /** Returns list of amended ProductCategories **/
-        @SuppressWarnings("unchecked")
         public Batched<ProductCategory> getResponse(){
 
-            return (Batched<ProductCategory>) super.getResponse(PRODUCT_CATEGORIES, batch, new TypeReference<BatchResult<ProductCategory>>(){});
+            return super.getResponse(PRODUCT_CATEGORIES, batch, new TypeReference<BatchResult<ProductCategory>>() {});
 
         }
 
@@ -299,7 +298,7 @@ public class ProductCategoryBuilder extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<ProductCategory, T> {
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -344,13 +343,17 @@ public class ProductCategoryBuilder extends ApiRequest {
 
         public Listed<ProductCategory> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    PRODUCT_CATEGORIES,
-                    build(),
-                    new TypeReference<List<ProductCategory>>(){}
-                )
+            return super.getResponse(
+                PRODUCT_CATEGORIES,
+                build(),
+                new TypeReference<List<ProductCategory>>() {}
             );
+
+            /*return new Listed<>(
+                new Rest<List<ProductCategory>>().listAll(
+
+                )
+            );*/
 
         }
 

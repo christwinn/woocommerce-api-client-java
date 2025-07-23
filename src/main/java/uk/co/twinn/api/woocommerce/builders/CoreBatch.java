@@ -14,7 +14,10 @@ import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.Batched;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
+import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
+import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
+import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
 
 /**
  *
@@ -59,7 +62,7 @@ class CoreBatch {
             return batch.getRecordCount() >= MAX_RECORDS;
         }
 
-        Batched<?> getResponse(String endPoint, Batch<S> batch, TypeReference<?> type){
+        Batched<S> getResponse(String endPoint, Batch<S> batch, TypeReference<?> type){
             return readResponse(endPoint + "/batch", batch, type);
         }
 
@@ -67,7 +70,7 @@ class CoreBatch {
         Batched<S> getResponse(String endPoint, int referenceId, String secondEndPoint, Batch<S> batch, TypeReference<?> type){
 
             if (referenceId <= 0) {
-                return new Batched<>(new ApiResponseResult(false, 0, "Reference Id is required"));
+                return new Batched<>(new ApiResponseResult<>(false, 0, "Reference Id is required"));
             }else {
                 return readResponse(endPoint + referenceId + "/" + secondEndPoint + "/batch", batch, type);
             }
@@ -77,11 +80,11 @@ class CoreBatch {
 
             if (batch.isEmpty()){
 
-                return new Batched<>(new ApiResponseResult(false, 0, "Nothing to do"));
+                return new Batched<>(new ApiResponseResult<>(false, 0, "Nothing to do"));
 
             }else if (batch.getRecordCount() > MAX_RECORDS){
 
-                return new Batched<>(new ApiResponseResult(false, 0,
+                return new Batched<>(new ApiResponseResult<>(false, 0,
                     "This API helps you to batch create, update and delete multiple products.\n\n" +
                         "Note: By default it's limited to up to 100 objects to be created, updated or deleted.")
                 );
@@ -91,7 +94,7 @@ class CoreBatch {
                 //System.out.println(toJson(batch));
 
                 return new Batched<>(
-                    new Rest().batch(endPoint, toJson(), type)
+                    new Rest<BatchResult<S>>().batch(endPoint, toJson(), type)
                 );
 
             }

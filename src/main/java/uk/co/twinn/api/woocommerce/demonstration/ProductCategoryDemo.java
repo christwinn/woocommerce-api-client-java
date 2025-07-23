@@ -150,7 +150,7 @@ public class ProductCategoryDemo {
                 existingDetails, false);
         }else{
             return new Updated<>(
-                new ApiResponseResult(
+                new ApiResponseResult<>(
                     false,
                     0,
                     "Failure to find requested ProductCategory")

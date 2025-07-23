@@ -29,8 +29,10 @@ public class JacksonObjectMapper {
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 //.setDateFormat(new RFC3339DateFormat())
+                //handle LocalDateTime in J8
                 .registerModule(new JavaTimeModule())
-                //.setSerializationInclusion(JsonInclude.Include.NON_EMPTY); excludes empty ("") strings
+                //.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+                // excludes empty ("") strings
                 // not what we want as it causes Php to error so...
                 // use NON_ABSENT which, if it is null then it is not included but includes isEmpty()
                 .setSerializationInclusion(JsonInclude.Include.NON_ABSENT);

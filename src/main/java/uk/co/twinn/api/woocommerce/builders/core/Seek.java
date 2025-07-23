@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Seek {
 
-    public static class SearchCore<T extends SearchCore<T>> extends ParameterCollector<T> {
+    public static class SearchCore<S, T extends SearchCore<S, T>> extends ParameterCollector<S> {
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -40,7 +40,7 @@ public class Seek {
      *  Page, PerPage, Search, Order
      *
      */
-    public static class SearchCorePaging<T extends SearchCorePaging<T>> extends SearchCore<T> {
+    public static class SearchCorePaging<S, T extends SearchCorePaging<S, T>> extends SearchCore<S, T> {
         /**
          * @param page Current page of the collection. Default is 1.
          * @return T
@@ -92,13 +92,12 @@ public class Seek {
      *
      *  Exclude, Include, OrderBy<br>
      */
-    public static class Searcher<T extends Searcher<T>> extends SearchCorePaging<T> {
+    public static class Searcher<S, T extends Searcher<S, T>> extends SearchCorePaging<S, T> {
 
         /**
          * @param exclude Ensure result set excludes specific IDs.
          * @return T
          */
-        @SuppressWarnings("unchecked")
         public T setExclude(List<Integer> exclude) {
             addNameValueIntegers("exclude", exclude);
             return self();
@@ -136,7 +135,7 @@ public class Seek {
      *
      *  Offset, after, before
      */
-    public static class DatesSearcher<T extends DatesSearcher<T>> extends Searcher<T> {
+    public static class DatesSearcher<S, T extends DatesSearcher<S, T>> extends Searcher<S, T> {
 
         /**
          * @param offset Offset the result set by a specific number of items.
@@ -167,7 +166,7 @@ public class Seek {
 
     }
 
-    public static class StockSearcher<T extends StockSearcher<T>> extends DatesSearcher<T> {
+    public static class StockSearcher<S, T extends StockSearcher<S, T>> extends DatesSearcher<S, T> {
 
         /**
          * @param parent Limit result set to those of particular parent IDs.

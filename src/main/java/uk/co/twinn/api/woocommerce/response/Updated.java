@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 public class Updated<T> extends Created<T> {
 
-    public Updated(ApiResponseResult result){
+    public Updated(ApiResponseResult<T> result){
 
         super(result);
 

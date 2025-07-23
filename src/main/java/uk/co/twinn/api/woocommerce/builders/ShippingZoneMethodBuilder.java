@@ -36,6 +36,8 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
 
         shippingZoneMethod.setMethodId(creator.methodId);
 
+
+
     }
 
     private ShippingZoneMethodBuilder(ShippingZoneMethodBuilder.Updater<?> updater){
@@ -78,7 +80,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Creator Builder">
-    public static class Creator<T extends ShippingZoneMethodBuilder.Creator<?>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ShippingZoneMethod>{
 
         protected final int zoneId;        //string	ShippingZone name.
         protected String methodId;        //string	ShippingZoneMethod name.
@@ -116,13 +118,22 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
 
             if (zoneId > 0) {
                 ShippingZoneMethodBuilder create = build();
-                //make the call
-                return new Created<>(
-                    new Rest().create(endPoint(zoneId, 0), create.toJson(), new TypeReference<ShippingZoneMethod>() {})
+                return super.getCreate(
+                    endPoint(zoneId, 0),
+                    create.toJson(),
+                    new TypeReference<ShippingZoneMethod>() {}
                 );
+                //make the call
+                /*return new Created<>(
+                    new Rest<ShippingZoneMethod>()
+                        .create(
+                            endPoint(zoneId, 0),
+                            create.toJson()
+                        )
+                );*/
             }else{
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "ZoneId is required.")
@@ -170,12 +181,17 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
             if (zoneId > 0 && instanceId > 0){
 
                 ShippingZoneMethodBuilder create = build();
-                return new Updated<>(
-                    new Rest().update(endPoint(zoneId, instanceId), create.toJson(), new TypeReference<ShippingZoneMethod>(){})
+                return super.getUpdate(
+                    endPoint(zoneId, 0),
+                    create.toJson(),
+                    new TypeReference<ShippingZoneMethod>() {}
                 );
+                /*return new Updated<>(
+                    new Rest<ShippingZoneMethod>().update(endPoint(zoneId, instanceId), create.toJson())
+                );*/
 
             }else{
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier(s)"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier(s)"));
             }
 
         }
@@ -184,32 +200,28 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Reader Builder">
-    public static class Reader extends CoreReader.ChildReaderCore{
+    public static class Reader extends CoreReader.ChildReaderCore<ShippingZoneMethod>{
 
         public Reader(int zoneId, int instanceId){
             super(zoneId, instanceId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<ShippingZoneMethod> getResponse(){
-            return (Read<ShippingZoneMethod>)super.getResponse(SHIPPINGZONES, METHODS, new TypeReference<ShippingZoneMethod>() {});
-
+            return super.getResponse(SHIPPINGZONES, METHODS, new TypeReference<ShippingZoneMethod>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Deleter Builder">
-    public static class Deleter extends CoreDeleter.ChildDeleterCore{
+    public static class Deleter extends CoreDeleter.ChildDeleterCore<ShippingZoneMethod>{
 
         public Deleter(int zoneId, int instanceId, boolean force){
             super(zoneId, instanceId, force);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<ShippingZoneMethod> getResponse(){
-            return (Deleted<ShippingZoneMethod>)super.getResponse(SHIPPINGZONES, METHODS, new TypeReference<ShippingZoneMethod>() {});
-
+            return super.getResponse(SHIPPINGZONES, METHODS, new TypeReference<ShippingZoneMethod>() {});
         }
 
     }
@@ -223,7 +235,7 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ShippingZoneMethodBuilder.ListAll<T>>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<ShippingZoneMethod>{
 
         private final int zoneId;
         public ListAll(int zoneId){
@@ -233,16 +245,19 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
         public Listed<ShippingZoneMethod> getResponse(){
 
             if (zoneId > 0){
-                return new Listed<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Listed<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }else {
-                return new Listed<>(
-                    new Rest().listAll(
-                        endPoint(zoneId, 0),
-                        "",
-                        new TypeReference<List<ShippingZoneMethod>>() {
-                        }
-                    )
+                return super.getResponse(
+                    endPoint(zoneId, 0),
+                    "",
+                    new TypeReference<List<ShippingZoneMethod>>() {}
                 );
+                /*return new Listed<>(
+                    new Rest<List<ShippingZoneMethod>>().listAll(
+                        endPoint(zoneId, 0),
+                        ""
+                    )
+                );*/
             }
 
         }

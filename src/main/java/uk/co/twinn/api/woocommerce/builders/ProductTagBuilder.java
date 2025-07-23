@@ -74,7 +74,7 @@ public class ProductTagBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<?>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<ProductTag>{
 
         private String name;        //string	Product name.
         private String slug;        //string	Product slug.
@@ -124,13 +124,14 @@ public class ProductTagBuilder extends ApiRequest {
         public Created<ProductTag> getResponse(){
 
             if (name == null || name.isEmpty()){
-                return new Created<>(new ApiResponseResult(false, 0, "Name is Mandatory"));
+                return new Created<>(new ApiResponseResult<>(false, 0, "Name is Mandatory"));
             }else {
                 ProductTagBuilder create = build();
+                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductTag>() {});
                 //make the call
-                return new Created<>(
-                    new Rest().create(create.endPoint(), create.toJson(), new TypeReference<ProductTag>() {})
-                );
+                /*return new Created<>(
+                    new Rest<ProductTag>().create(create.endPoint(), create.toJson())
+                );*/
             }
 
         }
@@ -163,35 +164,34 @@ public class ProductTagBuilder extends ApiRequest {
             if (id > 0){
 
                 ProductTagBuilder create = build();
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<ProductTag>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<ProductTag>().update(create.endPoint(), create.toJson())
+                );*/
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ProductTag>() {});
 
             }else{
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
 
         }
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<ProductTag>{
 
         public Reader(int productTagId){
             super(productTagId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<ProductTag> getResponse(){
-            return (Read<ProductTag>)super.getResponse(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
-
+            return super.getResponse(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<ProductTag>{
 
         public Deleter(int productTagId, boolean force){
             super(productTagId, force);
@@ -201,10 +201,8 @@ public class ProductTagBuilder extends ApiRequest {
             return new ProductTagBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<ProductTag> getResponse(){
-            return (Deleted<ProductTag>)super.getResponse(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
-
+            return super.getResponse(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
         }
 
     }
@@ -231,16 +229,15 @@ public class ProductTagBuilder extends ApiRequest {
             return self();
         }
 
-        @SuppressWarnings("unchecked")
         public Batched<ProductTag> getResponse(){
 
-            return (Batched<ProductTag>) super.getResponse(PRODUCTS_TAGS, batch, new TypeReference<BatchResult<ProductTag>>(){});
+            return super.getResponse(PRODUCTS_TAGS, batch, new TypeReference<BatchResult<ProductTag>>() {});
 
         }
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T> {
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<ProductTag, T> {
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -277,13 +274,16 @@ public class ProductTagBuilder extends ApiRequest {
 
         public Listed<ProductTag> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    PRODUCTS_TAGS,
-                    build(),
-                    new TypeReference<List<ProductTag>>(){}
-                )
+            return super.getResponse(
+                PRODUCTS_TAGS,
+                build(),
+                new TypeReference<List<ProductTag>>() {}
             );
+            /*return new Listed<>(
+                new Rest<List<ProductTag>>().listAll(
+
+                )
+            );*/
 
         }
 

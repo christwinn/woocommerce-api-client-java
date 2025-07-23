@@ -24,19 +24,23 @@ public class ProductCustomFieldBuilder {
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCorePaging<T> {
+    public static class ListAll<T extends ListAll<T>> extends Seek.SearchCorePaging<String, T> {
 
         public Listed<String> getResponse() {
 
-            return new Listed<>(
-                new Rest().listAll(
-                    PRODUCTS_CUSTOM_FIELDS_NAMES, //endPoint, SET endPoint
-                    build(),
-                    new TypeReference<List<String>>() {
-                    }
-                )
+            return super.getResponse(
+                PRODUCTS_CUSTOM_FIELDS_NAMES,
+                build(),
+                new TypeReference<List<String>>() {}
             );
 
+            /*return new Listed<>(
+                new Rest<List<String>>().listAll(
+                    PRODUCTS_CUSTOM_FIELDS_NAMES, //endPoint, SET endPoint
+                    build(),
+                    new TypeReference<List<String>>() { }
+                )
+            );*/
 
         }
 

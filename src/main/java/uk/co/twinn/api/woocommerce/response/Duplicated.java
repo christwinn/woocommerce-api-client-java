@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 public class Duplicated<T> extends Created<T>{
 
-    public Duplicated(ApiResponseResult result){
+    public Duplicated(ApiResponseResult<T> result){
 
         super(result);
 

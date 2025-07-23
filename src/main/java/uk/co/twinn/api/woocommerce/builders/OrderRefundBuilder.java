@@ -81,7 +81,7 @@ public class OrderRefundBuilder extends ApiRequest {
 
     }
 
-    public static class Creator<T extends Creator<T>>{
+    public static class Creator<T extends Creator<T>> extends CoreCreator<OrderRefund>{
 
         private final int orderId;
 
@@ -173,60 +173,56 @@ public class OrderRefundBuilder extends ApiRequest {
             return new OrderRefundBuilder(this);
         }
 
-
         /** Returns single Created ProductCategory, unless it is a duplicate! **/
         public Created<OrderRefund> getResponse(){
             if (orderId == 0) {
                 return new Created<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Order Id is MANDATORY!")
                 );
             }else {
                 OrderRefundBuilder create = build();
+                return super.getCreate(endPoint(orderId), create.toJson(), new TypeReference<OrderRefund>() {});
                 //make the call
-                return new Created<>(
-                    new Rest().create(endPoint(orderId), create.toJson(), new TypeReference<OrderRefund>(){})
-                );
+                /*return new Created<>(
+                    new Rest<OrderRefund>().create(endPoint(orderId), create.toJson())
+                );*/
             }
         }
 
     }
 
     //<editor-fold name="Reader">
-    public static class Reader extends CoreReader.ChildReaderCore{
+    public static class Reader extends CoreReader.ChildReaderCore<OrderRefund>{
 
         public Reader(int orderId, int refundId){
             super(orderId, refundId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<OrderRefund> getResponse(){
-            return (Read<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
-
+            return super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold name="Deleter">
-    public static class Deleter extends CoreDeleter.ChildDeleterCore{
+    public static class Deleter extends CoreDeleter.ChildDeleterCore<OrderRefund>{
 
         public Deleter(int orderId, int refundId, boolean force){
             super(orderId, refundId, force);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<OrderRefund> getResponse(){
-            return (Deleted<OrderRefund>)super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
-
+            return super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
         }
 
     }
     //</editor-fold>
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T>{
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<OrderRefund, T>{
 
         private final int orderId;
 
@@ -246,20 +242,22 @@ public class OrderRefundBuilder extends ApiRequest {
         public Listed<OrderRefund> getResponse(){
             if (orderId <= 0) {
                 return new Listed<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Order Id is MANDATORY!")
                 );
             }else {
 
-                return new Listed<>(
-                    new Rest().listAll(
-                        endPoint(orderId),
-                        build(),
-                        new TypeReference<List<OrderRefund>>(){}
-                    )
+                return super.getResponse(
+                    endPoint(orderId),
+                    build(),
+                    new TypeReference<List<OrderRefund>>() {}
                 );
+                /*return new Listed<>(
+                    new Rest<List<OrderRefund>>().listAll(
+                    )
+                );*/
 
             }
         }

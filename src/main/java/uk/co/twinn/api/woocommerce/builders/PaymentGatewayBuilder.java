@@ -61,7 +61,7 @@ public class PaymentGatewayBuilder extends ApiRequest {
 
     }
 
-    public static class Updater<T extends Updater<T>>{
+    public static class Updater<T extends Updater<T>> extends CoreCreator<PaymentGateway>{
 
         private final String gatewayId;
         private String title;
@@ -116,46 +116,47 @@ public class PaymentGatewayBuilder extends ApiRequest {
             if (gatewayId != null && !gatewayId.isEmpty()){
 
                 PaymentGatewayBuilder create = build();
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<PaymentGateway>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<PaymentGateway>().update(create.endPoint(), create.toJson())
+                );*/
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<PaymentGateway>() {});
 
             }else{
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
 
         }
     }
 
-    public static class Reader extends CoreReader.ReaderCoreStringKey{
+    public static class Reader extends CoreReader.ReaderCoreStringKey<PaymentGateway>{
 
         public Reader(String gatewayId){
             super(gatewayId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<PaymentGateway> getResponse(){
-            return (Read<PaymentGateway>)super.getResponse(PAYMENT_GATEWAYS, new TypeReference<PaymentGateway>() {});
-
+            return super.getResponse(PAYMENT_GATEWAYS, new TypeReference<PaymentGateway>() {});
         }
 
     }
 
-    public static class ListAll<T extends ListAll<T>>{
+    public static class ListAll<T extends ListAll<T>> extends CoreList<PaymentGateway>{
 
         /**
          *  List the Payment Gateways
          */
         public Listed<PaymentGateway> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    PAYMENT_GATEWAYS,
-                    "",
-                    new TypeReference<List<PaymentGateway>>(){}
-                )
+            return super.getResponse(
+                PAYMENT_GATEWAYS,
+                "",
+                new TypeReference<List<PaymentGateway>>() {}
             );
+            /*return new Listed<>(
+                new Rest<List<PaymentGateway>>().listAll(
 
+                )
+            );*/
 
         }
 

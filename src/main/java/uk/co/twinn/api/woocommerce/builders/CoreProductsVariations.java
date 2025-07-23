@@ -33,7 +33,7 @@ class CoreProductsVariations {
      *<br/>
      * Sets and Gets only do NOT use.
     **/
-    public static class Creator<T extends Creator<?>> {
+    public static class Creator<S, T extends Creator<S, T>> extends CoreCreator<S> {
 
         protected String description;    //string	Product description.
         protected String sku;    //string	Unique identifier.

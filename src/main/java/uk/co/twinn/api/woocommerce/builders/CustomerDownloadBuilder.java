@@ -21,7 +21,7 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 
 public class CustomerDownloadBuilder {
 
-    public static class ListAll{
+    public static class ListAll extends CoreList<CustomerDownload>{
 
         private final int customerId;
 
@@ -32,20 +32,25 @@ public class CustomerDownloadBuilder {
         public Listed<CustomerDownload> getResponse(){
             if (customerId == 0) {
                 return new Listed<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Retrieve customer downloads\n" +
                             "This API lets you retrieve customer downloads.")
                 );
             }else {
-                return new Listed<>(
-                    new Rest().listAll(
-                        CUSTOMERS + "/" + customerId + "/downloads",
-                        "",
-                        new TypeReference<List<CustomerDownload>>(){}
-                    )
+
+                return super.getResponse(
+                    CUSTOMERS + "/" + customerId + "/downloads",
+                    "",
+                    new TypeReference<List<CustomerDownload>>(){}
                 );
+                /*return new Listed<>(
+                    new Rest<List<CustomerDownload>>().listAll(
+                        CUSTOMERS + "/" + customerId + "/downloads",
+                        ""
+                    )
+                );*/
             }
         }
 

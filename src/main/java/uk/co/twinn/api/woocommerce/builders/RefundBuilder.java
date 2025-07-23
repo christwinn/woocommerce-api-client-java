@@ -25,7 +25,7 @@ public class RefundBuilder extends ApiRequest {
 
     public RefundBuilder(){}
 
-    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<T>{
+    public static class ListAll<T extends ListAll<T>> extends Seek.Searcher<Refund, T>{
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -92,13 +92,18 @@ public class RefundBuilder extends ApiRequest {
          */
         public Listed<Refund> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    REFUNDS,
-                    build(),
-                    new TypeReference<List<Refund>>(){}
-                )
+            return super.getResponse(
+                REFUNDS,
+                build(),
+                new TypeReference<List<Refund>>() {}
             );
+
+            /*return new Listed<>(
+                new Rest<List<Refund>>().listAll(
+                    REFUNDS,
+                    build()
+                )
+            );*/
 
         }
 

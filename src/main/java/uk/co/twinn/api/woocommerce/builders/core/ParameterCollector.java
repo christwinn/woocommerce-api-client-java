@@ -8,6 +8,12 @@
  */
 package uk.co.twinn.api.woocommerce.builders.core;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.builders.CoreList;
+import uk.co.twinn.api.woocommerce.response.Listed;
+import uk.co.twinn.api.woocommerce.rest.Rest;
+import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -21,8 +27,9 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.joining;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
 
-public class ParameterCollector<T> {
+public class ParameterCollector<S> extends CoreList<S> {
 
     //includeExclude is a list! while most parameters are single values
     private final HashMap<String, List<String>> urlParameters = new HashMap<>();
@@ -100,5 +107,7 @@ public class ParameterCollector<T> {
         return encodedURL;
 
     }
+
+
 
 }

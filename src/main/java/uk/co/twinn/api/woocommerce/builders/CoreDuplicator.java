@@ -22,7 +22,7 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreDuplicator {
 
-    static class DuplicatorCore{
+    static class DuplicatorCore<T>{
 
         protected final int id;
 
@@ -30,14 +30,14 @@ class CoreDuplicator {
             this.id = id;
         }
 
-        Duplicated<?> getResponse(String endPoint, TypeReference<?> type){
+        Duplicated<T> getResponse(String endPoint, TypeReference<T> type){
             return readResponse(endPoint + "/" + id + "/duplicate", type);
         }
 
-        private Duplicated<?> readResponse(String endPoint, TypeReference<?> type){
+        private Duplicated<T> readResponse(String endPoint, TypeReference<T> type){
             if (id <= 0) {
                 return new Duplicated<>(
-                    new ApiResponseResult(
+                    new ApiResponseResult<>(
                         false,
                         0,
                         "Duplicate is limited to a single object result\n" +
@@ -46,7 +46,7 @@ class CoreDuplicator {
                 );
             }else{
                 return new Duplicated<>(
-                    new Rest().duplicate(endPoint, type)
+                    new Rest<T>().duplicate(endPoint, type)
                 );
             }
 

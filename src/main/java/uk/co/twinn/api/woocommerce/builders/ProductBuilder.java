@@ -119,7 +119,7 @@ public class ProductBuilder extends ApiRequest {
     }
 
     //<editor-fold defaultstate="collapsed" desc="Creator Builder">
-    public static class Creator<T extends Creator<?>> extends CoreProductsVariations.Creator<T> {
+    public static class Creator<T extends Creator<T>> extends CoreProductsVariations.Creator<Product, T> {
 
         private String name;        //string	Product name.
         private String slug;        //string	Product slug.
@@ -298,9 +298,6 @@ public class ProductBuilder extends ApiRequest {
             return self();
         }
 
-
-
-
         /**
          *
          * @param soldIndividually Allow one item to be bought in a single order.
@@ -311,8 +308,6 @@ public class ProductBuilder extends ApiRequest {
             this.soldIndividually = soldIndividually;
             return self();
         }
-
-
 
         /**
          *
@@ -441,10 +436,12 @@ public class ProductBuilder extends ApiRequest {
             //nothing is defined as mandatory, but we may want to build in some pre-validation
             ProductBuilder create = build();
 
+            return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
+
             //make the call
-            return new Created<>(
-                new Rest().create(create.endPoint(), create.toJson(), new TypeReference<Product>(){})
-            );
+            /*return new Created<>(
+                new Rest<Product>().create(create.endPoint(), create.toJson())
+            );*/
 
         }
 
@@ -477,12 +474,13 @@ public class ProductBuilder extends ApiRequest {
             if (id > 0){
 
                 ProductBuilder create = build();
-                return new Updated<>(
-                    new Rest().update(create.endPoint(), create.toJson(), new TypeReference<Product>(){})
-                );
+                /*return new Updated<>(
+                    new Rest<Product>().update(create.endPoint(), create.toJson())
+                );*/
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
 
             }else{
-                return new Updated<>(new ApiResponseResult(false, 0, "Invalid Identifier"));
+                return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
 
         }
@@ -491,36 +489,32 @@ public class ProductBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Reader Builder">
-    public static class Reader extends CoreReader.ReaderCore{
+    public static class Reader extends CoreReader.ReaderCore<Product>{
 
         public Reader(int productId){
             super(productId);
         }
 
-        @SuppressWarnings("unchecked")
         public Read<Product> getResponse(){
-            return (Read<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
-
+            return super.getResponse(PRODUCTS, new TypeReference<Product>() {});
         }
 
     }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Deleter Builder">
-    public static class Deleter extends CoreDeleter.DeleterCore{
+    public static class Deleter extends CoreDeleter.DeleterCore<Product>{
 
         public Deleter(int productId, boolean force){
             super(productId, force);
         }
 
-        //require for batch
         protected ProductBuilder build(){
             return new ProductBuilder(this);
         }
 
-        @SuppressWarnings("unchecked")
         public Deleted<Product> getResponse(){
-            return (Deleted<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
+            return super.getResponse(PRODUCTS, new TypeReference<Product>() {});
 
         }
 
@@ -528,15 +522,15 @@ public class ProductBuilder extends ApiRequest {
     //</editor-fold>
 
     //<editor-fold  defaultstate="collapsed" desc="Duplicator Builder">
-    public static class Duplicator extends CoreDuplicator.DuplicatorCore{
+    public static class Duplicator extends CoreDuplicator.DuplicatorCore<Product>{
 
         public Duplicator(int productId){
             super(productId);
         }
 
-        @SuppressWarnings("unchecked")
         public Duplicated<Product> getResponse(){
-            return (Duplicated<Product>)super.getResponse(PRODUCTS, new TypeReference<Product>() {});
+
+            return super.getResponse(PRODUCTS, new TypeReference<Product>(){});
 
         }
 
@@ -570,9 +564,8 @@ public class ProductBuilder extends ApiRequest {
          *
          * @return Batched<Product>
          */
-        @SuppressWarnings("unchecked")
         public Batched<Product> getResponse(){
-            return (Batched<Product>) super.getResponse(PRODUCTS, batch, new TypeReference<BatchResult<Product>>(){});
+            return super.getResponse(PRODUCTS, batch, new TypeReference<BatchResult<Product>>() {});
         }
 
     }
@@ -586,7 +579,7 @@ public class ProductBuilder extends ApiRequest {
      *
      * @param <T>
      */
-    public static class ListAll<T extends ListAll<T>> extends Seek.StockSearcher<T> {
+    public static class ListAll<T extends ListAll<T>> extends Seek.StockSearcher<Product, T> {
 
         @SuppressWarnings ("unchecked")
         T self() {
@@ -716,13 +709,18 @@ public class ProductBuilder extends ApiRequest {
 
         public Listed<Product> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    PRODUCTS,
-                    build(),
-                    new TypeReference<List<Product>>(){}
-                )
+            return super.getResponse(
+                PRODUCTS,
+                build(),
+                new TypeReference<List<Product>>() {}
             );
+
+            /*return new Listed<>(
+                new Rest<List<Product>>().listAll(
+                    PRODUCTS,
+                    build()
+                )
+            );*/
 
         }
 

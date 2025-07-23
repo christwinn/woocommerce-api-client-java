@@ -25,120 +25,120 @@ public class ReportBuilder {
 
     public ReportBuilder(){}
 
-    public static class ListAll{
+    public static class ListAll extends CoreList<ReportListItem>{
         public Listed<ReportListItem> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
+            return super.getResponse(
+                REPORTS, //endPoint, SET endPoint
+                "",
+                new TypeReference<List<ReportListItem>>(){}
+            );
+            /*return new Listed<>(
+                new Rest<List<ReportListItem>>().listAll(
                     REPORTS, //endPoint, SET endPoint
                     "",
                     new TypeReference<List<ReportListItem>>(){}
                 )
-            );
+            );*/
 
         }
 
     }
 
-    public static class SalesSummary{
+    public static class SalesSummary extends CoreList<ReportSalesSummary>{
         public Listed<ReportSalesSummary> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
+            return super.getResponse(
+                REPORTS_SALES, //endPoint, SET endPoint
+                "",
+                new TypeReference<List<ReportSalesSummary>>(){}
+            );
+
+            /*return new Listed<>(
+                new Rest<List<ReportSalesSummary>>().listAll(
                     REPORTS_SALES, //endPoint, SET endPoint
                     "",
                     new TypeReference<List<ReportSalesSummary>>(){}
                 )
-            );
+            );*/
 
         }
 
     }
 
-    public static class TopSellers{
+    public static class TopSellers extends CoreList<ReportTopSellersItem>{
         public Listed<ReportTopSellersItem> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    REPORTS_TOP_SELLERS, //endPoint, SET endPoint
-                    "",
-                    new TypeReference<List<ReportTopSellersItem>>(){}
-                )
+            return super.getResponse(
+                REPORTS_TOP_SELLERS, //endPoint, SET endPoint
+                "",
+                new TypeReference<List<ReportTopSellersItem>>(){}
             );
 
         }
 
     }
 
-    public static class CouponTotals{
+    public static class CouponTotals extends CoreList<ReportOrderTotalSummary>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    REPORTS_COUPONS_TOTALS, //endPoint, SET endPoint
-                    "",
-                    new TypeReference<List<ReportOrderTotalSummary>>(){}
-                )
+            return super.getResponse(
+                REPORTS_COUPONS_TOTALS, //endPoint, SET endPoint
+                "",
+                new TypeReference<List<ReportOrderTotalSummary>>(){}
+
             );
 
         }
 
     }
 
-    public static class CustomerTotals{
+    public static class CustomerTotals extends CoreList<ReportOrderTotalSummary>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    REPORTS_CUSTOMERS_TOTALS, //endPoint, SET endPoint
-                    "",
-                    new TypeReference<List<ReportOrderTotalSummary>>(){}
-                )
+            return super.getResponse(
+                REPORTS_CUSTOMERS_TOTALS, //endPoint, SET endPoint
+                "",
+                new TypeReference<List<ReportOrderTotalSummary>>(){}
             );
 
         }
 
     }
 
-    public static class OrderTotals{
+    public static class OrderTotals extends CoreList<ReportOrderTotalSummary>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    REPORTS_ORDERS_TOTALS,  //endPoint, SET endPoint
-                    "",
-                    new TypeReference<List<ReportOrderTotalSummary>>(){}
-                )
+            return super.getResponse(
+                REPORTS_ORDERS_TOTALS,  //endPoint, SET endPoint
+                "",
+                new TypeReference<List<ReportOrderTotalSummary>>(){}
             );
 
         }
 
     }
 
-    public static class ProductTotals{
+    public static class ProductTotals extends CoreList<ReportOrderTotalSummary>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    REPORTS_PRODUCTS_TOTALS, //endPoint, SET endPoint
-                    "",
-                    new TypeReference<List<ReportOrderTotalSummary>>(){}
-                )
+            return super.getResponse(
+                REPORTS_PRODUCTS_TOTALS, //endPoint, SET endPoint
+                "",
+                new TypeReference<List<ReportOrderTotalSummary>>(){}
             );
 
         }
 
     }
 
-    public static class ReviewTotals{
+    public static class ReviewTotals extends CoreList<ReportOrderTotalSummary>{
         public Listed<ReportOrderTotalSummary> getResponse(){
 
-            return new Listed<>(
-                new Rest().listAll(
-                    REPORTS_REVIEWS_TOTALS,
-                    "",
-                    new TypeReference<List<ReportOrderTotalSummary>>(){}
-                )
+            return super.getResponse(
+                REPORTS_REVIEWS_TOTALS,
+                "",
+                new TypeReference<List<ReportOrderTotalSummary>>(){}
             );
 
         }

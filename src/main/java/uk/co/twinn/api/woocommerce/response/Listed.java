@@ -19,11 +19,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Listed<T> extends ApiResponse {
+public class Listed<T> extends ApiResponse<List<T>> {
 
     protected List<T> listed = new ArrayList<>();
 
-    public Listed(ApiResponseResult result){
+    public Listed(ApiResponseResult<List<T>>  result){
 
         super(result);
 
@@ -43,7 +43,7 @@ public class Listed<T> extends ApiResponse {
     }
 
     @SuppressWarnings("unchecked")
-    private void setList(ApiResponseResult result){
+    private void setList(ApiResponseResult<List<T>> result){
         try {
             this.listed = (List<T>) result.getData();
         }catch (Exception e){
