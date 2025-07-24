@@ -47,15 +47,7 @@ Implemented, awaiting manual
 <li>Payment Gateways</li>
 <li>Shipping Zones</li>
 <li>Shipping Zone Locations</li>   
-</ul>
-
-## Under Development
-<ul>
 <li>Shipping Zone Methods - Update</li>
-</ul>
-
-## To Do
-<ul>
 <li>Shipping Methods</li>
 <li>System Status</li>
 <li>System Status Tools</li>
