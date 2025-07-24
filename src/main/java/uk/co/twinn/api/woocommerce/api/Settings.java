@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.SettingBuilder;
 
 public class Settings {
 
-    private Settings(){}
+    protected Settings(){}
 
     public static SettingBuilder.ListAll<?> listing(){
 

@@ -11,6 +11,11 @@ package uk.co.twinn.api.woocommerce.defines;
 public class EndPoints {
     public static final String COUPONS = "coupons";
     public static final String CUSTOMERS = "customers";
+
+    public static final String DATA_CONTINENTS = "data/continents";
+    public static final String DATA_COUNTRIES = "data/countries";
+    public static final String DATA_CURRENCIES = "data/currencies";
+
     public static final String ORDERS = "orders";
         public static final String NOTES = "notes";
         public static final String REFUNDS = "refunds";
@@ -41,10 +46,16 @@ public class EndPoints {
         public static final String REPORTS_PRODUCTS_TOTALS = "reports/products/totals";
         public static final String REPORTS_REVIEWS_TOTALS = "reports/reviews/totals";
 
-    public static final String SHIPPINGZONES = "shipping/zones";
+    public static final String SHIPPING_METHODS = "shipping_methods";
+
+    public static final String SHIPPING_ZONES = "shipping/zones";
         public static final String METHODS = "methods";
 
         public static final String LOCATIONS = "locations";
+
+    public static final String SYSTEM_STATUS = "system_status";
+
+    public static final String SYSTEM_STATUS_TOOLS = "system_status/tools";
 
     public static final String TAXES = "taxes";
         public static final String TAX_CLASSES = "taxes/classes";

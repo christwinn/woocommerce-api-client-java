@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.ProductCustomFieldBuilder;
 
 public class ProductCustomFields {
 
-    private ProductCustomFields(){}
+    protected ProductCustomFields(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static ProductCustomFieldBuilder.ListAll<?> listing(){

@@ -10,11 +10,11 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.CustomerBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
+import uk.co.twinn.pl_wtx_woocommerce.model.customer.Customer;
 
 public class Customers {
 
-    private Customers(){}
+    protected Customers(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static CustomerBuilder.Creator<?> create(){

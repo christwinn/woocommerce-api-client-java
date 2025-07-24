@@ -16,7 +16,7 @@ import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductAttributeTerm;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductAttributeTerm;
 
 import java.util.List;
 

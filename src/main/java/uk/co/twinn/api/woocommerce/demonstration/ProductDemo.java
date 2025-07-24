@@ -10,13 +10,12 @@
 package uk.co.twinn.api.woocommerce.demonstration;
 
 import uk.co.twinn.api.woocommerce.api.Products;
-import uk.co.twinn.api.woocommerce.builders.ProductBuilder;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.Updated;
-import uk.co.twinn.pl_wtx_woocommerce.model.Product;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategoriesItem;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.Product;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategoriesItem;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

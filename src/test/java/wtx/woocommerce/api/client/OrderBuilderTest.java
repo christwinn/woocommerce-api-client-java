@@ -7,7 +7,7 @@ import okhttp3.mockwebserver.MockResponse;
 import uk.co.twinn.api.woocommerce.api.Orders;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.rest.Configuration;
-import uk.co.twinn.pl_wtx_woocommerce.model.Order;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.Order;
 
 import java.io.IOException;
 import java.nio.file.Files;

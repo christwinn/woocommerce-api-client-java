@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.ReportBuilder;
 
 public class Reports {
 
-    private Reports(){}
+    protected Reports(){}
 
     public static ReportBuilder.ListAll<?> listAll(){
 

@@ -10,11 +10,11 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductCategoryBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductCategory;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategory;
 
 public class ProductCategories {
 
-    private ProductCategories(){}
+    protected ProductCategories(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static ProductCategoryBuilder.Creator<?> create(String name){

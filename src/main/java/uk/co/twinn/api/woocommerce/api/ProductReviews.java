@@ -10,11 +10,11 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductReviewBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductReview;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductReview;
 
 public class ProductReviews {
 
-    private ProductReviews(){}
+    protected ProductReviews(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static ProductReviewBuilder.Creator<?> create(int productId){

@@ -11,7 +11,10 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.response.Listed;
-import uk.co.twinn.pl_wtx_woocommerce.model.*;
+import uk.co.twinn.pl_wtx_woocommerce.model.report.ReportListItem;
+import uk.co.twinn.pl_wtx_woocommerce.model.report.ReportOrderTotalSummary;
+import uk.co.twinn.pl_wtx_woocommerce.model.report.ReportSalesSummary;
+import uk.co.twinn.pl_wtx_woocommerce.model.report.ReportTopSellersItem;
 
 import java.util.List;
 

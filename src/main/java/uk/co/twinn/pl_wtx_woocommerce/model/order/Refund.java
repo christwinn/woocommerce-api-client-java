@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) 2025.
+ *
+ * Crud+ ActionBuilder
+ * Author: Chris Twinn
+ * Licence: MIT Licence see LICENCE file
+ * All Rights Reserved
+ */
+
+package uk.co.twinn.pl_wtx_woocommerce.model.order;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderRefund;
+
+public class Refund extends OrderRefund {
+    private Integer parentId;
+
+    public Refund(){
+        super();
+    }
+
+    @JsonProperty("parent_id")
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    @JsonProperty("parent_id")
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    @Override
+    public String toJson() {
+        return new JacksonObjectMapper().toJson(this);
+    }
+
+}

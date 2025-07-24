@@ -12,18 +12,30 @@ package uk.co.twinn;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.List;
 
+import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.api.woocommerce.api.*;
 import uk.co.twinn.api.woocommerce.response.*;
 
-import uk.co.twinn.api.woocommerce.response.core.Msg;
-import uk.co.twinn.pl_wtx_woocommerce.model.*;
-
 import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
+import uk.co.twinn.pl_wtx_woocommerce.model.billing.Billing;
+import uk.co.twinn.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.pl_wtx_woocommerce.model.customer.Customer;
+import uk.co.twinn.pl_wtx_woocommerce.model.data.Continent;
+import uk.co.twinn.pl_wtx_woocommerce.model.data.Currency;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.Order;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderLineItem;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderShippingLine;
+import uk.co.twinn.pl_wtx_woocommerce.model.payment.PaymentGateway;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.Product;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategory;
+import uk.co.twinn.pl_wtx_woocommerce.model.report.ReportOrderTotalSummary;
+import uk.co.twinn.pl_wtx_woocommerce.model.shipping.Shipping;
+import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZoneLocation;
 
 /**
  * WooCommerce API Client - Usage Demo
@@ -42,7 +54,101 @@ public class WooCommerceApiClientUsageDemo {
     /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
 
-        System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
+        /*System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
+        Listed<ShippingZone> zones = ShippingZones.listing().getResponse();
+
+        for (ShippingZone zone : zones.getResult()){
+
+            System.out.println(zone.toJson());*/
+
+  /*      Listed<ShippingZoneMethod> zoneMethodList = ShippingZoneMethods.listing(2).getResponse();
+
+
+        for (ShippingZoneMethod zoneMethod : zoneMethodList.getResult()) {
+            System.out.println(zoneMethod.toJson());
+        }
+*/
+
+        /*Listed<SystemStatusTool> systemStatusToolListed = SystemStatusTools.listing().getResponse();
+        for (SystemStatusTool systemStatusTool : systemStatusToolListed.getResult()){
+
+            System.out.println(systemStatusTool.toJson());
+
+        }*/
+
+        /*Listed<Continent> continents = WooCommerce.Data.listAllContinents().getResponse();
+        for (Continent continent : continents.getResult()){
+            System.out.println(continent.toJson());
+        }*/
+
+
+        /*Listed<Country> countries = WooCommerce.Data.listAllCountries().getResponse();
+        for (Country continent : countries.getResult()){
+            System.out.println(continent.toJson());
+        }*/
+
+        Listed<Currency> currencies = WooCommerce.Data.listAllCurrencies().getResponse();
+        for (Currency continent : currencies.getResult()){
+            System.out.println(continent.toJson());
+        }
+
+        Read<Continent> read = WooCommerce.Data.readContinent("eu").getResponse();
+        System.out.println(read.getResult().toJson());
+
+        //WooCommerce.Products.create()
+
+        /*Read<SystemStatusTool> readTool = WooCommerce. SystemStatusTools.read("clear_transients").getResponse();
+
+        System.out.println(readTool.getResult().toJson());
+
+        Ran<SystemStatusTool> ranTool = SystemStatusTools.run("clear_transients").setConfirm(true).getResponse();
+
+        System.out.println(ranTool.toJson());*/
+
+        /*Read<SystemStatusTool> statustool = SystemStatuses.read().getResponse();
+        System.out.println(status.getResult().toJson());*/
+
+
+        /*Read<SystemStatus> status = SystemStatuses.read().getResponse();
+        System.out.println(status.getResult().toJson());*/
+
+       /* Listed<ShippingMethod> shippingMethods = ShippingMethods.listing().getResponse();
+        for (ShippingMethod shippingMethod : shippingMethods.getResult()){
+
+                System.out.println(shippingMethod.toJson());
+
+        }*/
+
+
+        /*Read<ShippingZoneMethod> zoneMethod= ShippingZoneMethods.read(2, 4).getResponse();
+        System.out.println(zoneMethod.getResult().toJson());
+
+        Updated<ShippingZoneMethod> zoneUpdated = ShippingZoneMethods
+            .update(2, 4)
+            .setEnabled(false)
+            .setSetting("cost", "10")
+            .getResponse();
+        System.out.println(zoneUpdated.getResult().toJson());
+        System.out.println(zoneUpdated.getResult().getEnabled());
+        System.out.println(zoneUpdated.getResult().getSettings().get("cost").getValue());
+*/
+        /*}
+
+
+        Listed<ShippingZoneMethod> list = ShippingZoneMethods.listing(1).getResponse();
+        for (ShippingZoneMethod zoneMethod : list.getResult()){
+
+            System.out.println(zoneMethod.toJson());
+        }
+
+
+        /*Created<ShippingZoneMethod> create = ShippingZoneMethods.create(2, "flat_rate").getResponse();
+        System.out.println(create.toJson());*/
+
+        /*ShippingZoneMethods.create(1, "flat_rate").getResponse();
+        ShippingZoneMethods.update(1, "flat_rate").getResponse();*/
+
+        System.exit(0);
 
         Message m = Authentication.Https().getResponse();
         System.out.println(m.getMessage());
@@ -101,8 +207,8 @@ public class WooCommerceApiClientUsageDemo {
             .setZoneLocation("BR:SP", "state")
             .setZoneLocation("BR:RJ", "state").getResponse();
 
-        for (ShippingZoneLocation zone : shipZones.getResult()){
-            System.out.println(zone.toString());
+        for (ShippingZoneLocation zoned : shipZones.getResult()){
+            System.out.println(zoned.toString());
         }
 
         //Updated<ProductCategory> update = new ProductCategoryRequest.Updater<>().setId(346).setParent(0).getResponse();
@@ -227,12 +333,12 @@ public class WooCommerceApiClientUsageDemo {
         //Products.listing().setModifiedAfter(LocalDate.now()).setMaxPrice(BigDecimal.TEN).setSlug("").getResponse();
         //ProductVariations.listing().setContext().setProductId().setContext().setDownloadable()
         //System.out.println(list.toJson());
-        Listed<ReportOrderTotalSummary> list = Reports.orderTotals().getResponse();
+        Listed<ReportOrderTotalSummary> report = Reports.orderTotals().getResponse();
 
         //Orders.update(2).setBilling().setPaymentMethodTitle().
-        System.out.println(list.toJson());
+        System.out.println(report.toJson());
 
-        for (ReportOrderTotalSummary i : list.getResult()){
+        for (ReportOrderTotalSummary i : report.getResult()){
 
             System.out.println(i.toString());
 

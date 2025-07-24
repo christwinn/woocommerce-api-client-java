@@ -16,8 +16,8 @@ import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.TaxRate;
-import uk.co.twinn.pl_wtx_woocommerce.model.ISO3166;
+import uk.co.twinn.pl_wtx_woocommerce.model.tax.TaxRate;
+import uk.co.twinn.pl_wtx_woocommerce.model.tax.ISO3166;
 
 import java.util.List;
 

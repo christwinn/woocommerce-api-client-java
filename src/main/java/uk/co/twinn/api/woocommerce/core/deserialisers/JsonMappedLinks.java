@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import uk.co.twinn.pl_wtx_woocommerce.model.Link;
+import uk.co.twinn.pl_wtx_woocommerce.model.global.Link;
 import java.io.IOException;
 import java.util.*;
 

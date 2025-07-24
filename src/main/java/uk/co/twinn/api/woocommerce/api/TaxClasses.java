@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.TaxClassBuilder;
 
 public class TaxClasses {
 
-    private TaxClasses(){}
+    protected TaxClasses(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static TaxClassBuilder.Creator<?> create(String name){

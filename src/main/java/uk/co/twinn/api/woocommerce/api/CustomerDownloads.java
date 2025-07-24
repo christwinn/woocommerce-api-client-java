@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.CustomerDownloadBuilder;
 
 public class CustomerDownloads {
 
-    private CustomerDownloads(){}
+    protected CustomerDownloads(){}
 
     public static CustomerDownloadBuilder.ListAll<?> listing(int customerId){
 

@@ -11,6 +11,7 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.response.Created;
+import uk.co.twinn.api.woocommerce.response.Ran;
 import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.api.woocommerce.response.UpdatedList;
 import uk.co.twinn.api.woocommerce.rest.Rest;
@@ -52,6 +53,18 @@ public class CoreCreator<S, T> {
 
         return new UpdatedList<>(
             new Rest<List<S>>().updateList(
+                endPoint,
+                parameters,
+                type
+            )
+        );
+
+    }
+
+    Ran<S> getRunner(String endPoint, String parameters, TypeReference<?> type){
+
+        return new Ran<>(
+            new Rest<S>().update(
                 endPoint,
                 parameters,
                 type

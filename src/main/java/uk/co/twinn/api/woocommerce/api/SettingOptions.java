@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.SettingOptionBuilder;
 
 public class SettingOptions {
 
-    private SettingOptions(){}
+    protected SettingOptions(){}
 
     public static SettingOptionBuilder.Reader read(String groupId, String settingId){
 

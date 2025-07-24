@@ -10,11 +10,11 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.OrderBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.Order;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.Order;
 
 public class Orders {
 
-    private Orders(){}
+    protected Orders(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static OrderBuilder.Creator<?> create(){

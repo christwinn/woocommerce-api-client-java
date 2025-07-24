@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.ShippingZoneBuilder;
 
 public class ShippingZones {
 
-    private ShippingZones(){}
+    protected ShippingZones(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static ShippingZoneBuilder.Creator<?> create(String name){

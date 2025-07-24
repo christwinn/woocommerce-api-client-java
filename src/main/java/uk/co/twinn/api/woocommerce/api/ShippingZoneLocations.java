@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.ShippingZoneLocationBuilder;
 
 public class ShippingZoneLocations {
 
-    private ShippingZoneLocations(){}
+    protected ShippingZoneLocations(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static ShippingZoneLocationBuilder.UpdateList<?> update(int shippingZoneId){

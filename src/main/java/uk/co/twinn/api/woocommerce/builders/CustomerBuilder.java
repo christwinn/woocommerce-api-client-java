@@ -14,9 +14,9 @@ import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
-import uk.co.twinn.pl_wtx_woocommerce.model.Billing;
-import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
-import uk.co.twinn.pl_wtx_woocommerce.model.Shipping;
+import uk.co.twinn.pl_wtx_woocommerce.model.billing.Billing;
+import uk.co.twinn.pl_wtx_woocommerce.model.customer.Customer;
+import uk.co.twinn.pl_wtx_woocommerce.model.shipping.Shipping;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 
@@ -176,7 +176,7 @@ public class CustomerBuilder extends ApiRequest {
             this.id = productId;
         }
 
-        public Updater(uk.co.twinn.pl_wtx_woocommerce.model.Customer customer){
+        public Updater(Customer customer){
             super(customer);
             if (customer.getId() != null) {
                 this.id = customer.getId();

@@ -12,8 +12,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
-import uk.co.twinn.pl_wtx_woocommerce.model.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
+import uk.co.twinn.pl_wtx_woocommerce.model.billing.Billing;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.Order;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderLineItem;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderShippingLine;
+import uk.co.twinn.pl_wtx_woocommerce.model.shipping.Shipping;
 
 
 import java.time.LocalDate;
@@ -171,7 +175,7 @@ public class OrderBuilder extends ApiRequest {
 
         private final int id;
 
-        public Updater(uk.co.twinn.pl_wtx_woocommerce.model.Order order){
+        public Updater(Order order){
             super(order);
             if (order.getId() != null) {
                 this.id = order.getId();

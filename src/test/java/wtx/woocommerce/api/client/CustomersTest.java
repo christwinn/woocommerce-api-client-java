@@ -16,7 +16,7 @@ import okhttp3.mockwebserver.MockWebServer;
 import uk.co.twinn.api.woocommerce.api.Customers;
 import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
-import uk.co.twinn.pl_wtx_woocommerce.model.Customer;
+import uk.co.twinn.pl_wtx_woocommerce.model.customer.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.co.twinn.api.woocommerce.response.Batched;

@@ -9,7 +9,8 @@
 
 package uk.co.twinn.api.woocommerce.builders;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.*;
+import uk.co.twinn.pl_wtx_woocommerce.model.global.MetaData;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -305,7 +306,7 @@ class CoreProductsVariations {
          *                   Default is taxable.
          * @return T
          */
-        public T setTaxStatus(uk.co.twinn.pl_wtx_woocommerce.model.Product.TaxStatusEnum taxStatus) {
+        public T setTaxStatus(Product.TaxStatusEnum taxStatus) {
             this.taxStatus = taxStatus.getValue();
             return self();
         }
@@ -358,7 +359,7 @@ class CoreProductsVariations {
          *                     Default is instock.
          * @return T
          */
-        public T setStockStatus(uk.co.twinn.pl_wtx_woocommerce.model.Product.StockStatusEnum stockStatus) {
+        public T setStockStatus(Product.StockStatusEnum stockStatus) {
             this.stockStatus = stockStatus.getValue();
             return self();
         }

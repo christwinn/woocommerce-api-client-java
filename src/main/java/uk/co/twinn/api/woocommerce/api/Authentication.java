@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.AuthenticationBuilder;
 
 public class Authentication {
 
-    private Authentication(){}
+    protected Authentication(){}
 
     /**
      *  <h1>This is NOT to be supported</h1>

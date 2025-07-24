@@ -10,11 +10,11 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductAttributeTermBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductAttributeTerm;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductAttributeTerm;
 
 public class ProductAttributeTerms {
 
-    private ProductAttributeTerms(){}
+    protected ProductAttributeTerms(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static ProductAttributeTermBuilder.Creator<?> create(int attributeId, String name){

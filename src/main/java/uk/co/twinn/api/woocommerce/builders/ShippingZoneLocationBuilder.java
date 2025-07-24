@@ -15,7 +15,7 @@ import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.ShippingZoneLocation;
+import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZoneLocation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class ShippingZoneLocationBuilder  extends ApiRequest {
 
     public static String endPoint(int zoneId){
 
-        return SHIPPINGZONES + "/" + zoneId + "/" + LOCATIONS;
+        return SHIPPING_ZONES + "/" + zoneId + "/" + LOCATIONS;
 
     }
 

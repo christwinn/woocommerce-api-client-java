@@ -14,11 +14,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.pl_wtx_woocommerce.model.ShippingZone;
+import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZone;
 
 import java.util.List;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.SHIPPINGZONES;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.SHIPPING_ZONES;
 
 public class ShippingZoneBuilder extends ApiRequest {
 
@@ -49,7 +49,7 @@ public class ShippingZoneBuilder extends ApiRequest {
 
     public String endPoint(){
 
-        return SHIPPINGZONES +
+        return SHIPPING_ZONES +
             (shippingZone.getId() != null && shippingZone.getId() != 0
                 ? ("/" + shippingZone.getId())
                 : ""
@@ -154,7 +154,7 @@ public class ShippingZoneBuilder extends ApiRequest {
         }
 
         public Read<ShippingZone> getResponse(){
-            return super.getResponse(SHIPPINGZONES, new TypeReference<ShippingZone>() {});
+            return super.getResponse(SHIPPING_ZONES, new TypeReference<ShippingZone>() {});
 
         }
 
@@ -173,7 +173,7 @@ public class ShippingZoneBuilder extends ApiRequest {
         }
 
         public Deleted<ShippingZone> getResponse(){
-            return super.getResponse(SHIPPINGZONES, new TypeReference<ShippingZone>() {});
+            return super.getResponse(SHIPPING_ZONES, new TypeReference<ShippingZone>() {});
 
         }
 
@@ -194,17 +194,10 @@ public class ShippingZoneBuilder extends ApiRequest {
         public Listed<ShippingZone> getResponse(){
 
             return super.getResponse(
-                SHIPPINGZONES,
+                SHIPPING_ZONES,
                 "",
                 new TypeReference<List<ShippingZone>>() {}
             );
-            /*return new Listed<>(
-                new Rest<List<ShippingZone>>().listAll(
-                    SHIPPINGZONES,
-                    ""
-                )
-            );*/
-
 
         }
 

@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.WebhookBuilder;
 
 public class Webhooks {
 
-    private Webhooks(){}
+    protected Webhooks(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static WebhookBuilder.Creator<?> create(String topic, String delivery_url){

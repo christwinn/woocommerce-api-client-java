@@ -10,11 +10,11 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.OrderNoteBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.OrderNote;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderNote;
 
 public class OrderNotes {
 
-    private OrderNotes(){}
+    protected OrderNotes(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static OrderNoteBuilder.Creator<?> create(int orderId){

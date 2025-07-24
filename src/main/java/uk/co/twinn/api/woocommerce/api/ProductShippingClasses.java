@@ -10,11 +10,11 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductShippingClassBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductShippingClass;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductShippingClass;
 
 public class ProductShippingClasses {
 
-    private ProductShippingClasses(){ }
+    protected ProductShippingClasses(){ }
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static ProductShippingClassBuilder.Creator<?> create(String name){

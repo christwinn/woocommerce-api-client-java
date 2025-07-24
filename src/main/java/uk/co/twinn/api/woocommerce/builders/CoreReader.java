@@ -22,7 +22,24 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
  */
 class CoreReader {
 
-    static class ReaderCore<T> {
+    static class ReaderNoParameters<T> {
+
+        /** System Status */
+        Read<T> getResponse(String endPoint, TypeReference<?> type){
+            return readResponse(endPoint, type);
+        }
+
+        private Read<T> readResponse(String endPoint, TypeReference<?> type){
+
+            return new Read<>(
+                new Rest<T>().read(endPoint, type)
+            );
+
+        }
+
+    }
+
+    static class ReaderCore<T>{
 
         //set up the private variables
         protected final int id;

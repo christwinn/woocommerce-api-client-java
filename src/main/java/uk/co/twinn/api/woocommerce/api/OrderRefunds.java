@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.OrderRefundBuilder;
 
 public class OrderRefunds {
 
-    private OrderRefunds(){}
+    protected OrderRefunds(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static OrderRefundBuilder.Creator<?> create(int orderId){

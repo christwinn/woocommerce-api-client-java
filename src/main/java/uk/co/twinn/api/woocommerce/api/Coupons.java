@@ -10,11 +10,11 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.CouponBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.Coupon;
+import uk.co.twinn.pl_wtx_woocommerce.model.coupon.Coupon;
 
 public class Coupons {
 
-    private Coupons(){}
+    protected Coupons(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static CouponBuilder.Creator<?> create(){

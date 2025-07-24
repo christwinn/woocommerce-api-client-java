@@ -10,11 +10,11 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductVariationBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.ProductVariation;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductVariation;
 
 public class ProductVariations {
 
-    private ProductVariations(){}
+    protected ProductVariations(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
     public static ProductVariationBuilder.Creator<?> create(int productId){

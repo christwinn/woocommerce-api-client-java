@@ -13,7 +13,7 @@ import uk.co.twinn.api.woocommerce.builders.OrderActionBuilder;
 
 public class OrderActions {
 
-    private OrderActions(){}
+    protected OrderActions(){}
 
     public static OrderActionBuilder.SendEmail sendEmail(int customerId){
 

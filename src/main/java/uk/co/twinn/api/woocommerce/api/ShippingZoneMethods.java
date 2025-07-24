@@ -13,10 +13,12 @@ import uk.co.twinn.api.woocommerce.builders.ShippingZoneMethodBuilder;
 
 public class ShippingZoneMethods {
 
+    protected ShippingZoneMethods(){}
+
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public static ShippingZoneMethodBuilder.Creator<?> create(int shippingZoneId){
+    public static ShippingZoneMethodBuilder.Creator<?> create(int shippingZoneId, String methodId){
         //--breaks the mould!
-        return new ShippingZoneMethodBuilder.Creator<>(shippingZoneId);
+        return new ShippingZoneMethodBuilder.Creator<>(shippingZoneId, methodId);
 
     }
 
