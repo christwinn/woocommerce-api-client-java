@@ -48,10 +48,10 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
         shippingZoneMethodUpdate.setEnabled(updater.enabled);
 
         Set<Map.Entry<String, String>> entries = updater.values.entrySet();
-        for (Map.Entry entry : entries){
+        for (Map.Entry<String, String> entry : entries){
             shippingZoneMethodUpdate.addSettings(
-                (String)entry.getKey(),
-                (String)entry.getValue()
+                entry.getKey(),
+                entry.getValue()
             );
         }
 
