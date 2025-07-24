@@ -27,7 +27,7 @@ public class ShippingZoneMethodUpdate {
 
     private Boolean enabled; //	boolean	Shipping method enabled status.
 
-    private HashMap<String, String> settings = new LinkedHashMap<>();
+    private final HashMap<String, String> settings = new LinkedHashMap<>();
 
     public Integer getOrder() {
         return order;

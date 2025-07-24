@@ -27,9 +27,9 @@ public class SystemStatusTools {
 
     }
 
-    public static SystemStatusToolBuilder.Runner run(String toolId){
+    public static SystemStatusToolBuilder.Runner<?> run(String toolId){
 
-        return new SystemStatusToolBuilder.Runner(toolId);
+        return new SystemStatusToolBuilder.Runner<>(toolId);
 
     }
 

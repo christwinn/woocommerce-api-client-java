@@ -116,7 +116,7 @@ public class SystemState {
 
         } catch (JsonProcessingException e) {
 
-            return "Parse FAILURE!" + e.toString();
+            return "Parse FAILURE!" + e;
 
         }
 

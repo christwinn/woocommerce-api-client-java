@@ -10,7 +10,6 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.DataBuilder;
-import uk.co.twinn.api.woocommerce.builders.ReportBuilder;
 
 public class Data {
 

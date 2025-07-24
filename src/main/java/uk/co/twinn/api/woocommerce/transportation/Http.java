@@ -53,7 +53,11 @@ public class Http<T> {
                 (T) json.getObjectMapper().readValue(content, type)
             );
         }catch(IOException e){
-            e.printStackTrace();
+            Logger.getLogger(Http.class.getName()).log(
+                Level.SEVERE,
+                "ParseResponseFailure",
+                e
+            );
             return new ApiResponseResult<>(false, 0, e.toString());
         }
 

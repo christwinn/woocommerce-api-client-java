@@ -24,7 +24,7 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class SystemStatusToolBuilder extends ApiRequest {
 
-    private SystemStatusTool systemStatusTool = new SystemStatusTool();
+    private final SystemStatusTool systemStatusTool = new SystemStatusTool();
 
     private SystemStatusToolBuilder(Runner<?> runner){
 
@@ -61,7 +61,7 @@ public class SystemStatusToolBuilder extends ApiRequest {
     //<editor-fold defaultstate="collapsed" desc="Runner Builder">
     public static class Runner<T extends Runner<T>> extends CoreCreator<SystemStatusTool, T>{
 
-        private String toolId;
+        private final String toolId;
         private Boolean confirm;
 
         public Runner(String toolId){

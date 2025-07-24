@@ -11,9 +11,6 @@ package uk.co.twinn.pl_wtx_woocommerce.model.systemstatus;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.HashMap;
-import java.util.List;
-
 public class Database {
 
     private String wcDatabaseVersion; //	string	WC database version.read-only

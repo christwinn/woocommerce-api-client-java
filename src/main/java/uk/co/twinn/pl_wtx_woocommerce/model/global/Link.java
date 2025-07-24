@@ -22,8 +22,6 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
  **/
 public class Link {
 
-    public static final String SERIALIZED_NAME_HREF = "href";
-    //@SerializedName(SERIALIZED_NAME_HREF)
     @javax.annotation.Nullable
     private String href;
 

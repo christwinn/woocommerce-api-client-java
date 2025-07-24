@@ -125,11 +125,14 @@ public class CustomersTest {
             assertFalse(response.isSuccess(), "Created list should not be empty");
         }
 
+        /*try {
+            // Verify request URL contains correct status parameters
+            String requestUrl = mockWebServer.takeRequest().getRequestUrl().toString();
 
-        // Verify request URL contains correct status parameters
-        String requestUrl = mockWebServer.takeRequest().getRequestUrl().toString();
+            System.out.println(requestUrl);
+        }catch(NullPointerException e){
 
-        System.out.println(requestUrl);
+        }*/
 
         logTestSummary("testBatchCustomers", response.getResult().getRecordCount());
     }

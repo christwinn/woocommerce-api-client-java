@@ -31,7 +31,7 @@ public class ProductVariationBuilder extends ApiRequest {
 
     protected final ProductVariation productVariation = new ProductVariation();
 
-    public ProductVariationBuilder(){}
+    private ProductVariationBuilder(){}
 
     private ProductVariationBuilder(Creator<?> creator){
 

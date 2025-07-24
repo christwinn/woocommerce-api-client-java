@@ -15,8 +15,6 @@ import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.pl_wtx_woocommerce.model.data.Continent;
 import uk.co.twinn.pl_wtx_woocommerce.model.data.Country;
 import uk.co.twinn.pl_wtx_woocommerce.model.data.Currency;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingMethod;
-import uk.co.twinn.pl_wtx_woocommerce.model.systemstatus.SystemStatusTool;
 
 import java.util.List;
 
