@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>WooCommerce API Client for Java</name>
-    <description>FORK OF The WooCommerce wtx-labs REST API Client for Java provides easy access to the features of the e-commerce platform's API.</description>
+    <description>WooCommerce REST API Client for Java providing simple access to the features of the e-commerce platform's API.</description>
     <url>https://github.com/christwinn/woocommerce-api-client-java</url>
 
     <properties>
@@ -28,9 +28,9 @@
 
     <distributionManagement>
         <repository>
-            <id>internal.repo</id>
-            <name>Temporary Staging Repository</name>
-            <url>file://${project.build.directory}/mvn-artifact</url>
+            <id>ossrh</id>
+            <name>Central Repository OSSRH</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
 
