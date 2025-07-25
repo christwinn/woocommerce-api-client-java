@@ -7,6 +7,73 @@ Built for Java developers who need to quickly integrate their applications with 
 
 The samples shown are the same as [https://woocommerce.github.io/woocommerce-rest-api-docs/](https://woocommerce.github.io/woocommerce-rest-api-docs/) but using this WooCommerce API Java Client
 
+##### Installation
+
+```xml
+<dependency>
+    <groupId>uk.co.twinn.api</groupId>
+    <artifactId>woocommerce-api-client</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+##### Reaction = action
+
+Newton's Third Law of Motion: "For every action, there is an equal and opposite reaction"
+
+```java
+
+/** Follow the simple methodology: Reaction<SingularType> = PluralType.action.getResponse(); **/
+
+/**Create**/
+Created<SingularType> created = PluralType.create().setX("...").getResponse();
+
+/**Read**/
+Read<SingularType> read = PluralType.read(123).getResponse();
+
+/**Update**/
+Updated<SingularType> updated = PluralType.update(123).setX("...").getResponse();
+                        
+/**Delete**/
+Deleted<SingularType> deleted = PluralType.delete(123, true).getResponse();
+
+/**List All**/
+Listed<SingularType> listed = PluralType.listing().getResponse();
+
+/** Batch [Create, Update, Delete]**/
+Batched<SingularType> batched = PluralType.batch()
+        .addCreator(PluralType.create().setX("..."))
+        .addUpdater(PluralType.update().setX("..."))
+        .addDeleter(PluralType.delete(123, true))
+        .getResponse();
+
+/**
+    The left hand contains
+    .isSuccess() -> did it work;
+
+    Created, Read, Updated, Deleted will contain a single SingularType in .getResult(),
+        i.e SingularType result = [created, read, updated, deleted].getResult();
+
+    Listed will contain a list of SingularType in .getResult(),
+        i.e List<SingularType> result = listed.getResult();
+
+    Batched will contain a list of SingularType in .getResult() under the requested action.
+        i.e.
+            List<SingularType> created = batched.getResult().getCreated();
+            List<SingularType> updated = batched.getResult().getUpdated();
+            List<SingularType> deleted = batched.getResult().getDeleted();
+
+        Warning! While the action of batch() may be a success,
+                 you should loop the lists to check that each record
+                 actually succeeded and the API did not reject that request.
+        
+        Note: WooCommerce limits you to 100 objects per batch,
+                having run experiments this is a very hopeful limit.
+                You will experience PHP running out of memory and an error 500 being returned, use smaller batch sizes.
+**/
+
+```
+
 ##### Code Sample Index  
 [Authentication](README.md#authentication)
 
