@@ -81,9 +81,8 @@ Batched<SingularType> batched = PluralType.batch()
                  you should loop the lists to check that each record
                  actually succeeded and the API did not reject that request.
         
-        Note: WooCommerce limits you to 100 objects per batch,
-                having run experiments this is a very hopeful limit.
-                You will experience PHP running out of memory and an error 500 being returned, use smaller batch sizes.
+        Note: WooCommerce limits you to 100 objects per batch, having run experiments this is a very hopeful limit.
+            You could experience PHP running out of memory, isSuccess() will be false and an error message 500 will be returned in the .getError().getMessage(), try smaller batch sizes.
 
     result.getLinks() -> 
         HAL - Hypertext Application Language 
