@@ -28,7 +28,8 @@ Newton's Third Law of Motion: "For every action, there is an equal and opposite 
 /** Following the simple methodology: Reaction<SingularType> = PluralType.action.getResponse(); 
  *  More specific examples are provided under the 'PluralType' sections further down.
  *
- * Builders can also be accessed via Woocommerce.PluralType.create()/read()/etc for extra simplicity.
+ * Builder patterns can also be accessed via WooCommerce.PluralType.create()/read()/etc for extra simplicity.
+ *   e.g. WooCommerce.Products.read(123).getResponse();
  *
  **/
 
