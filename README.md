@@ -302,7 +302,6 @@ private void customers() {
                         .getResponse();
 }
 ```
-
 </details>
 
 ## [Orders]
@@ -310,7 +309,6 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#orders]
 
 <details>
 <summary>Example code to for Orders using the WooCommerce API</summary>
-    
 ```java
 private void orders(){    
 }
@@ -346,6 +344,8 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-r
 <summary>Example code for Order Refunds using the WooCommerce API</summary>
     
 ```java
+private void orderRefunds(){
+}    
 ```
 </details>
 
@@ -355,17 +355,19 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
     <summary>Example code for Products using the WooCommerce API</summary>
     
 ```java
+private void products(){
+}    
 ```
 </details>
 
 ## [Product Variations]
-
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-variations](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-variations)
 
 <details>
-    <summary>Example code for Products using the WooCommerce API</summary>
+    <summary>Example code for Product Variations using the WooCommerce API</summary>
 ```java
-    
+private void productVariations(){
+}    
 ```
 </details>
 
@@ -374,9 +376,10 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes)
 
 <details>
-    <summary>Example code for Products using the WooCommerce API</summary>
+    <summary>Example code for Product Attributes using the WooCommerce API</summary>
 ```java
-    
+private void productAttributes(){
+}        
 ```
 </details>
 
@@ -385,9 +388,10 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attribute-terms](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attribute-terms)
 
 <details>
-    <summary>Example code for Products using the WooCommerce API</summary>
+    <summary>Example code for Product Attribute Terms using the WooCommerce API</summary>
 ```java
-    
+private void productAttributeTerms(){
+}    
 ```
 </details>
 
@@ -396,9 +400,10 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-categories](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-categories)
 
 <details>
-    <summary>Example code for Products using the WooCommerce API</summary>
+    <summary>Example code for Product Categories using the WooCommerce API</summary>
 ```java
-    
+private void productCategories(){
+}    
 ```
 </details>
 
@@ -407,9 +412,10 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-custom-fields](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-custom-fields)
 
 <details>
-    <summary>Example code for Products using the WooCommerce API</summary>
+    <summary>Example code for Product Custom Fields using the WooCommerce API</summary>
 ```java
-    
+private void productCustomFields(){
+}    
 ```
 </details>
 
@@ -418,9 +424,10 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-shipping-classes](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-shipping-classes)
 
 <details>
-    <summary>Example code for Products using the WooCommerce API</summary>
+    <summary>Example code for Product Shipping Classes using the WooCommerce API</summary>
 ```java
-    
+private void productShippingClasses(){
+}    
 ```
 </details>
 
@@ -429,9 +436,10 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-tags](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-tags)
 
 <details>
-    <summary>Example code for Products using the WooCommerce API</summary>
+    <summary>Example code for Product Tags using the WooCommerce API</summary>
 ```java
-    
+private void productTags(){
+}    
 ```
 </details>
 
@@ -440,56 +448,29 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-reviews](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-reviews)
 
 <details>
-    <summary>Example code for Products using the WooCommerce API</summary>
+    <summary>Example code for Product Reviews using the WooCommerce API</summary>
 ```java
-    
+private void productReviews(){
+}    
 ```
 </details>
 
-
-## [Payment Gateways]
-
-Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways](https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways)
-
-<details>
-<summary>Example code to list and update Payment Gateways using the WooCommerce API</summary>
-    
-```java
-private void paymentGateways() {
-
-    /*Read*/
-    Read<PaymentGateway> gateway = PaymentGateways.read("woocommerce_payments").getResponse();
-    System.out.println(gateway.getResult().toJson()); 
-
-    /**List All**/
-    Listed<PaymentGateway> gateways = PaymentGateways.listing().getResponse();
-    for (PaymentGateway s : gateways.getResult()){
-        System.out.println(s.toJson()); 
-    }
-
-    /*Update*/
-    Updated<PaymentGateway> update = PaymentGateways.update("woocommerce_payments")
-                .setEnable(true).getResponse();
-}
-```
-</details>
-
-## [Reports](#reports)
+## [Reports]
 
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#reports](https://woocommerce.github.io/woocommerce-rest-api-docs/#reports)
 
 <details>
 <summary>Example code to retrieve the Reports using the WooCommerce API</summary>
-    
+
 ```java
 private void reports() {
 
     /*List All reports*/
     Listed<ReportListItem> list = Reports.listAll().getResponse();
-    System.out.println(list.toJson());
+    System.out.println(list.getResult().toJson());
 
     /*Retrieve sales report*/
-    Listed<ReportSalesSummary> sales = Reports.getSalesSummary().getResponse();
+    Listed<ReportSalesSummary> sales = Reports.salesSummary().getResponse();
     
     /*Retrieve top sellers report*/
     Listed<ReportTopSellersItem> topSellers = Reports.topSellers().getResponse();
@@ -513,7 +494,56 @@ private void reports() {
 ```
 </details>
 
-## [Settings](#settings)
+## [Refunds]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#refunds](https://woocommerce.github.io/woocommerce-rest-api-docs/#refunds)
+
+<details>
+    <summary>Example code for Refunds using the WooCommerce API</summary>
+```java
+private void refunds(){
+}    
+```
+</details>
+
+
+## [Tax Rates]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-rates](https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-rates)
+
+<details>
+    <summary>Example code for Tax Rates using the WooCommerce API</summary>
+```java
+private void taxRates(){
+}    
+```
+</details>
+
+## [Tax Classes]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-classes](https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-classes)
+
+<details>
+    <summary>Example code for Tax Classes using the WooCommerce API</summary>
+```java
+private void taxClasses(){
+}    
+```
+</details>
+
+## [Webhooks]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks](https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks)
+
+<details>
+    <summary>Example code for Webhooks using the WooCommerce API</summary>
+```java
+private void webhooks(){
+}    
+```
+</details>
+
+## [Settings]
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#settings](https://woocommerce.github.io/woocommerce-rest-api-docs/#settings)
 
 <details>
@@ -531,7 +561,7 @@ private void settings() {
 ```
 </details>
 
-## [SettingOptions](#setting-options)
+## [SettingOptions]
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties](https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties)
 
 <details>
@@ -573,10 +603,131 @@ private void settingOptions() {
 ```
 </details>
 
-# Why the Fork?
 
-We are no longer a fork of [https://github.com/wtx-labs/woocommerce-api-client-java](https://github.com/wtx-labs/woocommerce-api-client-java)
-We drifted too far apart. 
+## [Payment Gateways]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways](https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways)
+
+<details>
+<summary>Example code to list and update Payment Gateways using the WooCommerce API</summary>
+
+```java
+private void paymentGateways() {
+
+    /*Read*/
+    Read<PaymentGateway> gateway = PaymentGateways.read("woocommerce_payments").getResponse();
+    System.out.println(gateway.getResult().toJson()); 
+
+    /**List All**/
+    Listed<PaymentGateway> gateways = PaymentGateways.listing().getResponse();
+    for (PaymentGateway s : gateways.getResult()){
+        System.out.println(s.toJson()); 
+    }
+
+    /*Update*/
+    Updated<PaymentGateway> update = PaymentGateways.update("woocommerce_payments")
+                .setEnable(true).getResponse();
+}
+```
+</details>
+
+
+## [Shipping Zones]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zones](https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zones)
+
+<details>
+    <summary>Example code for Shipping Zones using the WooCommerce API</summary>
+```java
+private void shippingZones(){
+}    
+```
+</details>
+
+
+## [Shipping Zone Locations]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-locations](https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-locations)
+
+<details>
+    <summary>Example code for Shipping Zone Locations using the WooCommerce API</summary>
+```java
+private void shippingZoneLocations(){
+}    
+```
+</details>
+
+
+## [Shipping Zone Methods]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-methods](https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-methods)
+
+<details>
+    <summary>Example code for Shipping Zone Methods using the WooCommerce API</summary>
+```java
+private void shippingZoneMethods(){
+}    
+```
+</details>
+
+
+## [System Status]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status](https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status)
+
+<details>
+    <summary>Example code for System Status using the WooCommerce API</summary>
+```java
+private void systemStatus(){
+}    
+```
+</details>
+
+## [System Status Tools]
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status-tools](https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status-tools)
+<details>
+<summary>Example code for System Status Tools using the WooCommerce API</summary>
+```java
+private void
+```
+</details>
+
+
+## [Data]
+
+Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#data](https://woocommerce.github.io/woocommerce-rest-api-docs/#data)
+
+<details>
+    <summary>Example code for Data using the WooCommerce API</summary>
+```java
+private void data(){
+
+    Listed<Continent> continents = WooCommerce.Data.listAllContinents().getResponse();
+    for (Continent continent : continents.getResult()){
+        System.out.println(continent.toJson());
+    }
+
+    Read<Continent> continent = WooCommerce.Data.readContinent("eu").getResponse();
+    System.out.println(continent.getResult().toJson());
+
+    Listed<Country> countries = WooCommerce.Data.listAllCountries().getResponse();
+    for (Country country : countries.getResult()){
+        System.out.println(country.toJson());
+    }
+
+    Read<Country> country = WooCommerce.Data.readCountry("gb").getResponse();
+    System.out.println(country.getResult().toJson());
+
+    Listed<Currency> currencies = WooCommerce.Data.listAllCurrencies().getResponse();
+    for (Currency continent : currencies.getResult()){
+        System.out.println(continent.toJson());
+    }
+
+    Read<Currency> currency = WooCommerce.Data.readCurrency("gbp").getResponse();
+    System.out.println(currency.getResult().toJson());
+}    
+```
+</details>
 
 # WooCommerce API Client for Java
 

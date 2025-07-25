@@ -26,6 +26,7 @@ import uk.co.twinn.pl_wtx_woocommerce.model.billing.Billing;
 import uk.co.twinn.pl_wtx_woocommerce.model.coupon.Coupon;
 import uk.co.twinn.pl_wtx_woocommerce.model.customer.Customer;
 import uk.co.twinn.pl_wtx_woocommerce.model.data.Continent;
+import uk.co.twinn.pl_wtx_woocommerce.model.data.Country;
 import uk.co.twinn.pl_wtx_woocommerce.model.data.Currency;
 import uk.co.twinn.pl_wtx_woocommerce.model.order.Order;
 import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderLineItem;
@@ -51,8 +52,38 @@ public class WooCommerceApiClientUsageDemo {
     private static final String API_USERNAME = "ck_1234567890ABCDEF01234567890ABCDEF0123456";
     private static final String API_PASSWORD = "cs_1234567890ABCDEF01234567890ABCDEF0123456";*/
 
+    private static void data(){
+
+        Listed<Continent> continents = WooCommerce.Data.listAllContinents().getResponse();
+        for (Continent continent : continents.getResult()){
+            System.out.println(continent.toJson());
+        }
+
+        Read<Continent> continent = WooCommerce.Data.readContinent("eu").getResponse();
+        System.out.println(continent.getResult().toJson());
+
+        Listed<Country> countries = WooCommerce.Data.listAllCountries().getResponse();
+        for (Country country : countries.getResult()){
+            System.out.println(country.toJson());
+        }
+
+        Read<Country> country = WooCommerce.Data.readCountry("gb").getResponse();
+        System.out.println(country.getResult().toJson());
+
+        Listed<Currency> currencies = WooCommerce.Data.listAllCurrencies().getResponse();
+        for (Currency currency : currencies.getResult()){
+            System.out.println(currency.toJson());
+        }
+
+        Read<Currency> currency = WooCommerce.Data.readCurrency("gbp").getResponse();
+        System.out.println(currency.getResult().toJson());
+    }
+
     /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
+
+        data();
+
 
         /*System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
         Listed<ShippingZone> zones = ShippingZones.listing().getResponse();
@@ -87,13 +118,13 @@ public class WooCommerceApiClientUsageDemo {
             System.out.println(continent.toJson());
         }*/
 
-        Listed<Currency> currencies = WooCommerce.Data.listAllCurrencies().getResponse();
+        /*Listed<Currency> currencies = WooCommerce.Data.listAllCurrencies().getResponse();
         for (Currency continent : currencies.getResult()){
             System.out.println(continent.toJson());
         }
 
         Read<Continent> read = WooCommerce.Data.readContinent("eu").getResponse();
-        System.out.println(read.getResult().toJson());
+        System.out.println(read.getResult().toJson());*/
 
         //WooCommerce.Products.create()
 
