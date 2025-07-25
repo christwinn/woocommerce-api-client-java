@@ -13,7 +13,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 <dependency>
     <groupId>uk.co.twinn.api</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
@@ -26,7 +26,10 @@ Newton's Third Law of Motion: "For every action, there is an equal and opposite 
 /** Generic system setup **/
 
 /** Following the simple methodology: Reaction<SingularType> = PluralType.action.getResponse(); 
- *  More specific examples are provided under the 'PluralType' sections further down 
+ *  More specific examples are provided under the 'PluralType' sections further down.
+ *
+ * Builders can also be accessed via Woocommerce.PluralType.create()/read()/etc for extra simplicity.
+ *
  **/
 
 /**Create**/
