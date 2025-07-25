@@ -23,7 +23,11 @@ Newton's Third Law of Motion: "For every action, there is an equal and opposite 
 
 ```java
 
-/** Follow the simple methodology: Reaction<SingularType> = PluralType.action.getResponse(); **/
+/** Generic system setup **/
+
+/** Following the simple methodology: Reaction<SingularType> = PluralType.action.getResponse(); 
+ *  More specific examples are provided under the 'PluralType' sections further down 
+ **/
 
 /**Create**/
 Created<SingularType> created = PluralType.create().setX("...").getResponse();
