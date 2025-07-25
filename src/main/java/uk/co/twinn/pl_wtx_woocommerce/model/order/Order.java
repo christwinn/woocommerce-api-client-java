@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
@@ -43,6 +44,58 @@ import uk.co.twinn.pl_wtx_woocommerce.model.billing.Billing;
 /**
  * Order
  */
+@JsonPropertyOrder(
+    {
+        "id",
+        "parent_id",
+        "status",
+        "currency",
+        "version",
+        "prices_include_tax",
+        "date_created",
+        "date_modified",
+        "discount_total",
+        "discount_tax",
+        "shipping_total",
+        "shipping_tax",
+        "cart_tax",
+        "total",
+        "total_tax",
+        "customer_id",
+        "order_key",
+        "billing",
+        "shipping",
+        "payment_method",
+        "payment_method_title",
+        "transaction_id",
+        "customer_ip_address",
+        "customer_user_agent",
+        "created_via",
+        "customer_note",
+        "date_completed",
+        "date_paid",
+        "cart_hash",
+        "number",
+        "meta_data",
+        "line_items",
+        "tax_lines",
+        "shipping_lines",
+        "fee_lines",
+        "coupon_lines",
+        "refunds",
+        "payment_url",
+        "is_editable",
+        "needs_payment",
+        "needs_processing",
+        "date_created_gmt",
+        "vdate_modified_gmt",
+        "date_completed_gmt",
+        "date_paid_gmt",
+        "currency_symbol",
+        "_links"
+
+    }
+)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.13.0")
 public class Order {
   public static final String SERIALIZED_NAME_ID = "id";
@@ -80,9 +133,69 @@ public class Order {
   @javax.annotation.Nullable
   private String status;
 
+    private String  paymentUrl;
+    private Boolean isEditable;
+    private Boolean needsPayment;
+    private Boolean needsProcessing;
+    private LocalDateTime dateCreatedGmt;
+    private LocalDateTime dateModifiedGmt;
+    private LocalDateTime dateCompletedGmt;
+    private LocalDateTime datePaidGmt;
+    private String currencySymbol;
+
   private HashMap<String, Link> links;
 
-  /**
+    @JsonProperty("payment_url")
+    public String getPaymentUrl() {
+        return paymentUrl;
+    }
+
+    @JsonProperty("payment_url")
+    public void setPaymentUrl(String paymentUrl) {
+        this.paymentUrl = paymentUrl;
+    }
+
+    @JsonProperty("is_editable")
+    public Boolean getEditable() {
+        return isEditable;
+    }
+
+    @JsonProperty("is_editable")
+    public void setEditable(Boolean editable) {
+        isEditable = editable;
+    }
+
+    @JsonProperty("needs_payment")
+    public Boolean getNeedsPayment() {
+        return needsPayment;
+    }
+
+    @JsonProperty("needs_payment")
+    public void setNeedsPayment(Boolean needsPayment) {
+        this.needsPayment = needsPayment;
+    }
+
+    @JsonProperty("needs_processing")
+    public Boolean getNeedsProcessing() {
+        return needsProcessing;
+    }
+
+    @JsonProperty("needs_processing")
+    public void setNeedsProcessing(Boolean needsProcessing) {
+        this.needsProcessing = needsProcessing;
+    }
+
+    @JsonProperty("currency_symbol")
+    public String getCurrencySymbol() {
+        return currencySymbol;
+    }
+
+    @JsonProperty("currency_symbol")
+    public void setCurrencySymbol(String currencySymbol) {
+        this.currencySymbol = currencySymbol;
+    }
+
+    /**
    * Currency the order was created with, in ISO format.
    */
   public enum CurrencyEnum {
@@ -448,20 +561,10 @@ public class Order {
   @javax.annotation.Nullable
   private LocalDateTime dateCreated;
 
-  public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
-  //@SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
-  @javax.annotation.Nullable
-  private LocalDateTime dateCreatedGmt;
-
   public static final String SERIALIZED_NAME_DATE_MODIFIED = "date_modified";
   //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED)
   @javax.annotation.Nullable
   private LocalDateTime dateModified;
-
-  public static final String SERIALIZED_NAME_DATE_MODIFIED_GMT = "date_modified_gmt";
-  //@SerializedName(SERIALIZED_NAME_DATE_MODIFIED_GMT)
-  @javax.annotation.Nullable
-  private LocalDateTime dateModifiedGmt;
 
   public static final String SERIALIZED_NAME_DISCOUNT_TOTAL = "discount_total";
   //@SerializedName(SERIALIZED_NAME_DISCOUNT_TOTAL)
@@ -553,20 +656,10 @@ public class Order {
   @javax.annotation.Nullable
   private LocalDateTime datePaid;
 
-  public static final String SERIALIZED_NAME_DATE_PAID_GMT = "date_paid_gmt";
-  //@SerializedName(SERIALIZED_NAME_DATE_PAID_GMT)
-  @javax.annotation.Nullable
-  private LocalDateTime datePaidGmt;
-
   public static final String SERIALIZED_NAME_DATE_COMPLETED = "date_completed";
   //@SerializedName(SERIALIZED_NAME_DATE_COMPLETED)
   @javax.annotation.Nullable
   private LocalDateTime dateCompleted;
-
-  public static final String SERIALIZED_NAME_DATE_COMPLETED_GMT = "date_completed_gmt";
-  //@SerializedName(SERIALIZED_NAME_DATE_COMPLETED_GMT)
-  @javax.annotation.Nullable
-  private LocalDateTime dateCompletedGmt;
 
   public static final String SERIALIZED_NAME_CART_HASH = "cart_hash";
   //@SerializedName(SERIALIZED_NAME_CART_HASH)
@@ -794,7 +887,7 @@ public class Order {
 
 
   public Order dateCreatedGmt(@javax.annotation.Nullable LocalDateTime dateCreatedGmt) {
-    this.dateCreatedGmt = dateCreatedGmt;
+    this.setDateCreatedGmt(dateCreatedGmt);
     return this;
   }
 
@@ -834,7 +927,7 @@ public class Order {
 
 
   public Order dateModifiedGmt(@javax.annotation.Nullable LocalDateTime dateModifiedGmt) {
-    this.dateModifiedGmt = dateModifiedGmt;
+    this.setDateModifiedGmt(dateModifiedGmt);
     return this;
   }
 
@@ -1200,6 +1293,7 @@ public class Order {
    * @return datePaid
    */
   @javax.annotation.Nullable
+  @JsonProperty("date_paid")
   public LocalDateTime getDatePaid() {
     return datePaid;
   }
@@ -1211,7 +1305,7 @@ public class Order {
 
 
   public Order datePaidGmt(@javax.annotation.Nullable LocalDateTime datePaidGmt) {
-    this.datePaidGmt = datePaidGmt;
+    this.setDatePaidGmt(datePaidGmt);
     return this;
   }
 
@@ -1239,6 +1333,7 @@ public class Order {
    * The date the order was completed, in the site&#39;s timezone.
    * @return dateCompleted
    */
+  @JsonProperty("date_completed")
   @javax.annotation.Nullable
   public LocalDateTime getDateCompleted() {
     return dateCompleted;
@@ -1251,7 +1346,7 @@ public class Order {
 
 
   public Order dateCompletedGmt(@javax.annotation.Nullable LocalDateTime dateCompletedGmt) {
-    this.dateCompletedGmt = dateCompletedGmt;
+    this.setDateCompletedGmt(dateCompletedGmt);
     return this;
   }
 
@@ -1259,6 +1354,7 @@ public class Order {
    * The date the order was completed, as GMT.
    * @return dateCompletedGmt
    */
+  @JsonProperty("date_completed_gmt")
   @javax.annotation.Nullable
   public LocalDateTime getDateCompletedGmt() {
     return dateCompletedGmt;
@@ -1279,6 +1375,7 @@ public class Order {
    * MD5 hash of cart items to ensure orders are not modified.
    * @return cartHash
    */
+  @JsonProperty("cart_hash")
   @javax.annotation.Nullable
   public String getCartHash() {
     return cartHash;
@@ -1550,9 +1647,9 @@ public class Order {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    dateCreated: ").append(toIndentedString(dateCreated)).append("\n");
-    sb.append("    dateCreatedGmt: ").append(toIndentedString(dateCreatedGmt)).append("\n");
+    sb.append("    dateCreatedGmt: ").append(toIndentedString(getDateCreatedGmt())).append("\n");
     sb.append("    dateModified: ").append(toIndentedString(dateModified)).append("\n");
-    sb.append("    dateModifiedGmt: ").append(toIndentedString(dateModifiedGmt)).append("\n");
+    sb.append("    dateModifiedGmt: ").append(toIndentedString(getDateModifiedGmt())).append("\n");
     sb.append("    discountTotal: ").append(toIndentedString(discountTotal)).append("\n");
     sb.append("    discountTax: ").append(toIndentedString(discountTax)).append("\n");
     sb.append("    shippingTotal: ").append(toIndentedString(shippingTotal)).append("\n");
@@ -1571,9 +1668,9 @@ public class Order {
     sb.append("    paymentMethodTitle: ").append(toIndentedString(paymentMethodTitle)).append("\n");
     sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
     sb.append("    datePaid: ").append(toIndentedString(datePaid)).append("\n");
-    sb.append("    datePaidGmt: ").append(toIndentedString(datePaidGmt)).append("\n");
+    sb.append("    datePaidGmt: ").append(toIndentedString(getDatePaidGmt())).append("\n");
     sb.append("    dateCompleted: ").append(toIndentedString(dateCompleted)).append("\n");
-    sb.append("    dateCompletedGmt: ").append(toIndentedString(dateCompletedGmt)).append("\n");
+    sb.append("    dateCompletedGmt: ").append(toIndentedString(getDateCompletedGmt())).append("\n");
     sb.append("    cartHash: ").append(toIndentedString(cartHash)).append("\n");
     sb.append("    metaData: ").append(toIndentedString(metaData)).append("\n");
     sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");

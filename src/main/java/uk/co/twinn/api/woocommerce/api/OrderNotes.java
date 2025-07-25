@@ -41,9 +41,9 @@ public class OrderNotes {
 
     }
 
-    public OrderNoteBuilder.ListAll<?> listing(){
+    public static OrderNoteBuilder.ListAll<?> listing(int orderId){
 
-        return new OrderNoteBuilder.ListAll<>();
+        return new OrderNoteBuilder.ListAll<>(orderId);
 
     }
     //</editor-fold>

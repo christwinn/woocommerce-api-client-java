@@ -190,7 +190,11 @@ public class OrderNoteBuilder extends ApiRequest {
 
     public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchCore<OrderNote, T> {
 
-        protected int orderId;
+        private final int orderId;
+
+        public ListAll(int orderId){
+            this.orderId = orderId;
+        }
 
         /**
          *
@@ -201,16 +205,6 @@ public class OrderNoteBuilder extends ApiRequest {
          */
         public T setType(String type) {
             addNameValuePair("type", type);
-            return self();
-        }
-
-        /**
-         *
-         * @param orderId Order note(s) must be tied to an Order.
-         * @return  T
-         */
-        public T setOrderId(int orderId){
-            this.orderId = orderId;
             return self();
         }
 

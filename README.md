@@ -30,14 +30,16 @@ Newton's Third Law of Motion: "For every action, there is an equal and opposite 
  **/
 
 /**Create**/
-Created<SingularType> created = PluralType.create().setX("...").getResponse();
+Created<SingularType> created = PluralType.create(anyMandatoryValues).setX("...").getResponse();
+Created<SingularType> created = PluralType.create(aSingularObjectWeCreatedEarlier).getResponse();
 
 /**Read**/
 Read<SingularType> read = PluralType.read(123).getResponse();
 
 /**Update**/
 Updated<SingularType> updated = PluralType.update(123).setX("...").getResponse();
-                        
+Updated<SingularType> updated = PluralType.update(aSingularObjectWeCreatedEarlier).getResponse();
+
 /**Delete**/
 Deleted<SingularType> deleted = PluralType.delete(123, true).getResponse();
 
@@ -47,7 +49,9 @@ Listed<SingularType> listed = PluralType.listing().getResponse();
 /** Batch [Create, Update, Delete]**/
 Batched<SingularType> batched = PluralType.batch()
         .addCreator(PluralType.create().setX("..."))
+        .addCreator(PluralType.create(aSingularObjectWeCreatedEarlier))
         .addUpdater(PluralType.update().setX("..."))
+        .addUpdater(PluralType.update(aSingularObjectWeCreatedEarlier))
         .addDeleter(PluralType.delete(123, true))
         .getResponse();
 
@@ -321,7 +325,119 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#orders](https://w
 <summary>Example code to for Orders using the WooCommerce API</summary>
 
 ```java
-private void orders(){    
+private void orders(){  
+    
+    /** Create **/
+    Created<Order> creator = Orders.create()
+            .setPaymentMethod("bacs")
+            .setPaymentMethodTitle("Direct Bank Transfer")
+            .setPaid(true)
+            .setBilling(new Billing()
+                    .firstName("John")
+                    .lastName("Doe")
+                    .company("")
+                    .address1("969 Market Street")
+                    .address2("")
+                    .city("San Fancisco")
+                    .state("CA")
+                    .postcode("94103")
+                    .email("john.doe@example.com")
+                    .phone("(555) 555-5555")
+            )
+            .setShipping(new Shipping()
+                    .firstName("John")
+                    .lastName("Doe")
+                    .company("")
+                    .address1("969 Market")
+                    .address2("")
+                    .city("San Francisco")
+                    .state("CA")
+                    .postcode("94103")
+                    .country("US")
+            )
+            .setLineItems(
+                    Arrays.asList(
+                            new OrderLineItem().productId(93).quantity(2),
+                            new OrderLineItem().productId(22).variationId(23).quantity(2)
+                    )
+            )
+            .setShippingLines(
+                    Stream.of(
+                        new OrderShippingLine().methodId("flat_rate")
+                            .methodTitle("Flat Rate")
+                            .total(new BigDecimal(10))
+                    ).collect(Collectors.toList())
+            ).getResponse();
+
+    /** Read **/
+    Read<Order> read = Orders.read(123).getResponse();
+    
+    /** Update **/
+    Updated<Order> updater = Orders.update(123).setStatus("completed").getResponse();
+
+    /** Delete**/
+    Deleted<Order> deleted = Orders.delete(123, true).getResponse();
+
+    /** List All **/
+    Listed<Order> listed = Orders.listing().getResponse();
+
+    /** Batch Update of orders */
+    Batched<Order> batched = Orders.batch()
+            .addCreator(
+                    Orders.create()
+                            .setPaymentMethod("bacs")
+                            .setPaymentMethodTitle("Direct Bank Transfer")
+                            .setPaid(true)
+                            .setBilling(new Billing()
+                                    .firstName("John")
+                                    .lastName("Doe")
+                                    .company("")
+                                    .address1("969 Market Street")
+                                    .address2("")
+                                    .city("San Fancisco")
+                                    .state("CA")
+                                    .postcode("94103")
+                                    .email("john.doe@example.com")
+                                    .phone("(555) 555-5555")
+                            )
+                            .setShipping(new Shipping()
+                                    .firstName("John")
+                                    .lastName("Doe")
+                                    .company("")
+                                    .address1("969 Market")
+                                    .address2("")
+                                    .city("San Francisco")
+                                    .state("CA")
+                                    .postcode("94103")
+                                    .country("US")
+                            )
+                            .setLineItems(
+                                    Arrays.asList(
+                                            new OrderLineItem().productId(93).quantity(2),
+                                            new OrderLineItem().productId(22).variationId(23).quantity(2)
+                                    )
+                            )
+                            .setShippingLines(
+                                    Stream.of(
+                                            new OrderShippingLine().methodId("flat_rate")
+                                                    .methodTitle("Flat Rate")
+                                                    .total(new BigDecimal(10))
+                                    ).collect(Collectors.toList())
+                            )
+            )
+            .addCreator(
+                    Orders.create(anOrderWeMadeEarlier)
+            )
+            .addUpdater(
+                    Orders.update(727)
+                            .setStatus("completed")
+
+            )
+            .addDeleter(
+                    Orders.delete(723, true)
+            )
+            .getResponse();
+    
 }
 ```
 </details>
@@ -331,9 +447,15 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-actions](ht
 
 <details>
 <summary>Example code for Order Actions using the WooCommerce API</summary>
-    
+
 ```java
-private void orderActions(){
+import uk.co.twinn.api.woocommerce.api.OrderActions;
+
+private void orderActions(int customerId) {
+
+    /** Send Email **/
+    Created<Message> created = OrderActions.sendEmail(customerId).getResponse();
+    
 }    
 ```
 </details>
@@ -344,7 +466,16 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-notes](http
 <summary>Example code for Order Notes using the WooCommerce API</summary>
     
 ```java
-private void orderNotes(){
+private void orderNotes(int orderId, int noteId){
+
+    Created<OrderNote> created = OrderNotes.create(orderId).setNote("Hello World").getResponse();
+    
+    Read<OrderNote> read = OrderNotes.read(orderId, noteId).getResponse();
+
+    Listed<OrderNote> list = OrderNotes.listing(orderId).getResponse();
+    
+    Deleted<OrderNote> deleted = OrderNotes.delete(orderId, noteId, true).getResponse();
+    
 }    
 ```
 </details>
@@ -365,9 +496,71 @@ private void orderRefunds(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#products](https://woocommerce.github.io/woocommerce-rest-api-docs/#products)
 <details>
     <summary>Example code for Products using the WooCommerce API</summary>
-    
+
 ```java
-private void products(){
+import uk.co.twinn.api.woocommerce.api.Products;
+import uk.co.twinn.api.woocommerce.response.core.BatchResult;
+
+import java.math.BigDecimal;
+
+private void products() {
+
+    /*Create*/
+    Created<Product> created = Products.create()
+            .setName("Premium Quality")
+            .setType("simple")
+            .setRegularPrice(new BigDecimal(21.99))
+            .setDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. " +
+                    "Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. " +
+                    "Donec eu libero sit amet quam egestas semper. " +
+                    "Aenean ultricies mi vitae est. Mauris placerat eleifend leo.")
+            .setShortDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.")
+            .setCategories(
+                    Arrays.asList(
+                            new ProductCategoriesItem().id(9),
+                            new ProductCategoriesItem().id(14)
+                    )
+            )
+            .setImage("http://mysite/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg")
+            .getResponse();
+
+    Read<Product> read = Products.read(123).getResponse();
+
+    Updated<Product> updated = Products.update(123).setRegularPrice(new BigDecimal(9.99)).getResponse();
+
+    Duplicated<Product> duplicated = Products.duplicate(123).getResponse();
+
+    Deleted<Product> deleted = Products.delete(123, true).getResponse();
+
+    Listed<Product> list = Products.listing().getResponse();
+
+    Batched<Product> batched = Products.batch()
+            .addCreator(
+                Products.create()
+                    .setName("New Premium Quality 2")
+                    .setType("simple")
+                    .setRegularPrice(new BigDecimal(42.99))
+                    .setDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. " +
+                            "Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. " +
+                            "Donec eu libero sit amet quam egestas semper. " +
+                            "Aenean ultricies mi vitae est. Mauris placerat eleifend leo.")
+                    .setShortDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.")
+                    .setCategories(
+                            Arrays.asList(
+                                    new ProductCategoriesItem().id(9),
+                                    new ProductCategoriesItem().id(14)
+                            )
+                    )
+                    .setImage("http://mysite/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg")
+            )
+            .addUpdater(
+                Products.update(234).setMenuOrder(2).setName("Modified Title")
+            )
+            .addDeleter(
+                Products.delete(235, false)
+            )
+            .getResponse();
+
 }    
 ```
 </details>
@@ -537,6 +730,9 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-rates](https:
 
 ```java
 private void taxRates(){
+    
+    
+    
 }    
 ```
 </details>
@@ -562,7 +758,34 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks](https:/
     <summary>Example code for Webhooks using the WooCommerce API</summary>
 
 ```java
-private void webhooks(){
+import uk.co.twinn.api.woocommerce.api.Webhooks;
+import uk.co.twinn.api.woocommerce.response.core.BatchResult;
+import uk.co.twinn.pl_wtx_woocommerce.model.webhook.Webhook;
+
+private void webhooks() {
+
+    Created<Webhook> created = Webhooks.create("order.updated", "http://requestb.in/1g0sxmo1").setName("Order Updat!").getResponse();
+
+    Read<Webhook> read = Webhooks.read(2).getResponse();
+
+    Listed<Webhook> listed = Webhooks.listing().getResponse();
+
+    Updated<Webhook> updated = Webhooks.update(2).setName("Order Updated").getResponse();
+
+    Deleted<Webhook> deleted = Webhooks.delete(2, true).getResponse();
+
+    BatchResult<Webhook> batched = Webhooks.batch()
+            .addCreator(
+                    Webhooks.create("coupon.created", "http://requestb.in/1g0sxmo1").setName("Coupon created")
+            )
+            .addCreator(
+                    Webhooks.create("customer.deleted", "http://requestb.in/1g0sxmo1").setName("Customer deleted")
+            )
+            .addDeleter(
+                    Webhooks.delete(143, true)
+            )
+            .getResponse();
+
 }    
 ```
 </details>
@@ -662,7 +885,25 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zones](h
     <summary>Example code for Shipping Zones using the WooCommerce API</summary>
 
 ```java
-private void shippingZones(){
+import uk.co.twinn.api.woocommerce.api.ShippingZones;
+import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZone;
+
+private void shippingZones() {
+
+    Created<ShippingZone> created = ShippingZones.create("Brazil").getResponse();
+    
+    Read<ShippingZone> read = ShippingZones.read(5).getResponse();
+
+    Listed<ShippingZone> zones = ShippingZones.listing().getResponse();
+
+    for (ShippingZone zone : zones.getResult()) {
+        System.out.println(zone.toJson());
+    }
+
+    Updated<ShippingZone> updated = ShippingZones.update(1).setOrder(2).getResponse();
+
+    Deleted<ShippingZone> deleted = ShippingZones.delete(1, true).getResponse();
+
 }    
 ```
 </details>
@@ -675,7 +916,20 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-loc
     <summary>Example code for Shipping Zone Locations using the WooCommerce API</summary>
 
 ```java
-private void shippingZoneLocations(){
+import uk.co.twinn.api.woocommerce.api.ShippingZoneLocations;
+
+private void shippingZoneLocations() {
+
+    Listed<ShippingZoneLocation> listed = ShippingZoneLocations.listing(1).getResponse();
+
+    UpdatedList<ShippingZoneLocation> shipZones = ShippingZoneLocations.update(1)
+            .setZoneLocation("BR:SP", "state")
+            .setZoneLocation("BR:RJ", "state").getResponse();
+
+    for (ShippingZoneLocation zoned : shipZones.getResult()) {
+        System.out.println(zoned.toString());
+    }
+
 }    
 ```
 </details>
@@ -688,7 +942,28 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-met
     <summary>Example code for Shipping Zone Methods using the WooCommerce API</summary>
 
 ```java
-private void shippingZoneMethods(){
+import uk.co.twinn.api.woocommerce.api.ShippingZoneMethods;
+
+private void shippingZoneMethods() {
+
+    Created<ShippingZoneMethod> create = ShippingZoneMethods.create(2, "flat_rate").getResponse();
+
+    Read<ShippingZoneMethod> zoneMethod = ShippingZoneMethods.read(2, 4).getResponse();
+    System.out.println(zoneMethod.getResult().toJson());
+
+    Listed<ShippingZoneMethod> list = ShippingZoneMethods.listing(1).getResponse();
+    for (ShippingZoneMethod zoneMethod : list.getResult()) {
+        System.out.println(zoneMethod.toJson());
+    }
+
+    Updated<ShippingZoneMethod> zoneUpdated = ShippingZoneMethods
+            .update(2, 4)
+            .setEnabled(false)
+            .setSetting("cost", "10")
+            .getResponse();
+
+    Deleted<ShippingZoneMethod> zoneMethodDeleted = ShippingZoneMethods.delete(2, 4).getResponse();
+
 }    
 ```
 </details>
@@ -702,6 +977,9 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status](ht
 
 ```java
 private void systemStatus(){
+
+    Read<SystemState> status = SystemStatus.read().getResponse();
+    
 }    
 ```
 </details>
@@ -713,6 +991,15 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status-too
 
 ```java
 private void systemStatusTools(){
+
+    Listed<SystemStatusTool> systemStatusToolListed = SystemStatusTools.listing().getResponse();
+    for (SystemStatusTool systemStatusTool : systemStatusToolListed.getResult()){
+        System.out.println(systemStatusTool.toJson());
+    }
+
+    Read<SystemStatusTool> readTool = WooCommerce. SystemStatusTools.read("clear_transients").getResponse();
+
+    Ran<SystemStatusTool> ranTool = SystemStatusTools.run("clear_transients").setConfirm(true).getResponse();
     
 }
 ```

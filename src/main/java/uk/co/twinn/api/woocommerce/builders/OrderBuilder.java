@@ -53,6 +53,7 @@ public class OrderBuilder extends ApiRequest {
 
         this((Creator<?>)updater);
         order.setId(updater.id);
+        order.setStatus(updater.status);
 
     }
 
@@ -174,6 +175,7 @@ public class OrderBuilder extends ApiRequest {
     public static class Updater<T extends Updater<T>> extends Creator<T> {
 
         private final int id;
+        private String status;
 
         public Updater(Order order){
             super(order);
@@ -188,7 +190,8 @@ public class OrderBuilder extends ApiRequest {
             this.id = productId;
         }
 
-        public T setTest(boolean test) {
+        public T setStatus(String status) {
+            this.status = status;
             return self();
         }
 

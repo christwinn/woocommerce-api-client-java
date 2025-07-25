@@ -30,12 +30,15 @@ import uk.co.twinn.pl_wtx_woocommerce.model.data.Country;
 import uk.co.twinn.pl_wtx_woocommerce.model.data.Currency;
 import uk.co.twinn.pl_wtx_woocommerce.model.order.Order;
 import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderLineItem;
+import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderNote;
 import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderShippingLine;
 import uk.co.twinn.pl_wtx_woocommerce.model.payment.PaymentGateway;
 import uk.co.twinn.pl_wtx_woocommerce.model.product.Product;
+import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategoriesItem;
 import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategory;
 import uk.co.twinn.pl_wtx_woocommerce.model.report.ReportOrderTotalSummary;
 import uk.co.twinn.pl_wtx_woocommerce.model.shipping.Shipping;
+import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZone;
 import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZoneLocation;
 
 /**
@@ -53,6 +56,26 @@ public class WooCommerceApiClientUsageDemo {
     private static final String API_PASSWORD = "cs_1234567890ABCDEF01234567890ABCDEF0123456";*/
 
     private static void data(){
+
+        Created<Product> created = Products.create().setName("Premium Quality")
+            .setType("simple")
+            .setRegularPrice(new BigDecimal(21.99))
+            .setDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. " +
+                "Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. " +
+                "Donec eu libero sit amet quam egestas semper. " +
+                "Aenean ultricies mi vitae est. Mauris placerat eleifend leo.")
+            .setShortDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.")
+            .setCategories(Arrays.asList(new ProductCategoriesItem().id(9), new ProductCategoriesItem().id(14)))
+            .setImage("http://mysite/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg")
+            .getResponse();
+
+
+        Created<OrderNote> createdNote = OrderNotes.create(1).setNote("Hello World").getResponse();
+        Read<OrderNote> read = OrderNotes.read(1, 2).getResponse();
+
+        Deleted<OrderNote> deleted = OrderNotes.delete(1, 2, true).getResponse();
+
+        Listed<OrderNote> list = OrderNotes.listing(1).getResponse();
 
         Listed<Continent> continents = WooCommerce.Data.listAllContinents().getResponse();
         for (Continent continent : continents.getResult()){
@@ -82,8 +105,18 @@ public class WooCommerceApiClientUsageDemo {
     /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
 
-        data();
+        /*Created<Message> sentEmail = OrderActions.sendEmail(1).getResponse();
+        System.out.println(sentEmail.getResult().getMessage());*/
 
+        Listed<Customer> customers = Customers.listing().getResponse();
+        for (Customer customer : customers.getResult()){
+
+            System.out.println(customer.toJson());
+        }
+
+
+            //data();
+        Created<ShippingZone> zoneCreated =  ShippingZones.create("Brazil").getResponse();
 
         /*System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
         Listed<ShippingZone> zones = ShippingZones.listing().getResponse();
@@ -194,8 +227,8 @@ public class WooCommerceApiClientUsageDemo {
 
         CustomerDemo customerDemo = new CustomerDemo();
 
-        List<Customer> customers = customerDemo.listAllCustomers();
-        for (Customer bc : customers){
+        List<Customer> cs = customerDemo.listAllCustomers();
+        for (Customer bc : cs){
             if (!bc.hasError()){
                 System.out.println(bc.toString());
             }else{
@@ -933,6 +966,69 @@ public class WooCommerceApiClientUsageDemo {
                 ).collect(Collectors.toList())
             ).getResponse();
     }
+
+    Read<Order> read = Orders.read(123).getResponse();
+    Updated<Order> updater = Orders.update(123).setStatus("completed").getResponse();
+
+    Deleted<Order> deleted = Orders.delete(123, true).getResponse();
+
+    Listed<Order> listed = Orders.listing().getResponse();
+
+    Batched<Order> batched = Orders.batch()
+        .addCreator(
+            Orders.create()
+                .setPaymentMethod("bacs")
+                .setPaymentMethodTitle("Direct Bank Transfer")
+                .setPaid(true)
+                .setBilling(new Billing()
+                    .firstName("John")
+                    .lastName("Doe")
+                    .company("")
+                    .address1("969 Market Street")
+                    .address2("")
+                    .city("San Fancisco")
+                    .state("CA")
+                    .postcode("94103")
+                    .email("john.doe@example.com")
+                    .phone("(555) 555-5555")
+                )
+                .setShipping(new Shipping()
+                    .firstName("John")
+                    .lastName("Doe")
+                    .company("")
+                    .address1("969 Market")
+                    .address2("")
+                    .city("San Francisco")
+                    .state("CA")
+                    .postcode("94103")
+                    .country("US")
+                )
+                .setLineItems(
+                    Arrays.asList(
+                        new OrderLineItem().productId(93).quantity(2),
+                        new OrderLineItem().productId(22).variationId(23).quantity(2)
+                    )
+                )
+                .setShippingLines(
+                    Stream.of(
+                        new OrderShippingLine().methodId("flat_rate")
+                            .methodTitle("Flat Rate")
+                            .total(new BigDecimal(10))
+                    ).collect(Collectors.toList())
+                )
+        )
+        /*.addCreator(
+            Orders.create(anOrderWeMadeEarlier)
+        )*/
+        .addUpdater(
+            Orders.update(727)
+                .setStatus("completed")
+
+        )
+        .addDeleter(
+            Orders.delete(723, true)
+        )
+        .getResponse();
 
 }
 
