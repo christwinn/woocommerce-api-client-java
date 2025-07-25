@@ -342,10 +342,11 @@ private void orderNotes(){
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-refunds](https://woocommerce.github.io/woocommerce-rest-api-docs/#order-refunds)
 <details>
 <summary>Example code for Order Refunds using the WooCommerce API</summary>
-    
+
 ```java
 private void orderRefunds(){
-}    
+
+}
 ```
 </details>
 
@@ -365,6 +366,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 
 <details>
     <summary>Example code for Product Variations using the WooCommerce API</summary>
+
 ```java
 private void productVariations(){
 }    
@@ -377,6 +379,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 
 <details>
     <summary>Example code for Product Attributes using the WooCommerce API</summary>
+
 ```java
 private void productAttributes(){
 }        
@@ -389,6 +392,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 
 <details>
     <summary>Example code for Product Attribute Terms using the WooCommerce API</summary>
+
 ```java
 private void productAttributeTerms(){
 }    
@@ -401,6 +405,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 
 <details>
     <summary>Example code for Product Categories using the WooCommerce API</summary>
+
 ```java
 private void productCategories(){
 }    
@@ -413,6 +418,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 
 <details>
     <summary>Example code for Product Custom Fields using the WooCommerce API</summary>
+
 ```java
 private void productCustomFields(){
 }    
@@ -425,6 +431,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 
 <details>
     <summary>Example code for Product Shipping Classes using the WooCommerce API</summary>
+
 ```java
 private void productShippingClasses(){
 }    
@@ -437,6 +444,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 
 <details>
     <summary>Example code for Product Tags using the WooCommerce API</summary>
+
 ```java
 private void productTags(){
 }    
@@ -449,6 +457,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#product
 
 <details>
     <summary>Example code for Product Reviews using the WooCommerce API</summary>
+
 ```java
 private void productReviews(){
 }    
@@ -500,6 +509,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#refunds
 
 <details>
     <summary>Example code for Refunds using the WooCommerce API</summary>
+
 ```java
 private void refunds(){
 }    
@@ -513,6 +523,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-rat
 
 <details>
     <summary>Example code for Tax Rates using the WooCommerce API</summary>
+
 ```java
 private void taxRates(){
 }    
@@ -525,6 +536,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-cla
 
 <details>
     <summary>Example code for Tax Classes using the WooCommerce API</summary>
+
 ```java
 private void taxClasses(){
 }    
@@ -537,6 +549,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#webhook
 
 <details>
     <summary>Example code for Webhooks using the WooCommerce API</summary>
+
 ```java
 private void webhooks(){
 }    
@@ -638,6 +651,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#shippin
 
 <details>
     <summary>Example code for Shipping Zones using the WooCommerce API</summary>
+
 ```java
 private void shippingZones(){
 }    
@@ -651,6 +665,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#shippin
 
 <details>
     <summary>Example code for Shipping Zone Locations using the WooCommerce API</summary>
+
 ```java
 private void shippingZoneLocations(){
 }    
@@ -664,6 +679,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#shippin
 
 <details>
     <summary>Example code for Shipping Zone Methods using the WooCommerce API</summary>
+
 ```java
 private void shippingZoneMethods(){
 }    
@@ -677,6 +693,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-
 
 <details>
     <summary>Example code for System Status using the WooCommerce API</summary>
+
 ```java
 private void systemStatus(){
 }    
@@ -687,8 +704,11 @@ private void systemStatus(){
 Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status-tools](https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status-tools)
 <details>
 <summary>Example code for System Status Tools using the WooCommerce API</summary>
+
 ```java
-private void
+private void systemStatusTools(){
+    
+}
 ```
 </details>
 
@@ -699,6 +719,7 @@ Example as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#data](h
 
 <details>
     <summary>Example code for Data using the WooCommerce API</summary>
+
 ```java
 private void data(){
 
@@ -749,13 +770,6 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 - 🚀 **Wide Java support** - compatible with Java 8 and newer
 - ⚡ **OpenAPI Generated** - based on our [OpenAPI specification](https://github.com/wtx-labs/woocommerce-api-openapi-specification) developed from official WooCommerce documentation
 
-## 🚨 Project status
-
-> ⚠️ **Note: This is a development version!**
-> 
-> We are actively implementing more WooCommerce API features.
-> Contributions and feedback are welcome on GitHub!
-
 ## 📦 Version information
 
 - **Current version**: `0.1.0`
@@ -769,36 +783,6 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software.
 
 The only requirement is to preserve the original author attribution in the source code and documentation.
-
-### 1️⃣ Installation
-
-You can add the library to your project by including the dependency from Maven Central:
-```xml
-<!-- https://mvnrepository.com/artifact/pl.wtx.woocommerce/woocommerce-api-client -->
-<dependency>
-    <groupId>pl.wtx.woocommerce</groupId>
-    <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.7</version>
-</dependency>
-```
-
-Alternatively, clone and build the library from source:
-
-```sh
-git clone https://github.com/wtx-labs/woocommerce-api-client-java.git
-cd woocommerce-api-client-java
-mvn clean install
-```
-
-Then add the locally built artifact to your project:
-
-```xml
-<dependency>
-    <groupId>pl.wtx.woocommerce</groupId>
-    <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.7</version>
-</dependency>
-```
 
 ## 🔗 Get involved
 
