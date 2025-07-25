@@ -758,9 +758,6 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks](https:/
     <summary>Example code for Webhooks using the WooCommerce API</summary>
 
 ```java
-import uk.co.twinn.api.woocommerce.api.Webhooks;
-import uk.co.twinn.api.woocommerce.response.core.BatchResult;
-import uk.co.twinn.pl_wtx_woocommerce.model.webhook.Webhook;
 
 private void webhooks() {
 
@@ -885,9 +882,6 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zones](h
     <summary>Example code for Shipping Zones using the WooCommerce API</summary>
 
 ```java
-import uk.co.twinn.api.woocommerce.api.ShippingZones;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZone;
-
 private void shippingZones() {
 
     Created<ShippingZone> created = ShippingZones.create("Brazil").getResponse();
@@ -916,8 +910,6 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-loc
     <summary>Example code for Shipping Zone Locations using the WooCommerce API</summary>
 
 ```java
-import uk.co.twinn.api.woocommerce.api.ShippingZoneLocations;
-
 private void shippingZoneLocations() {
 
     Listed<ShippingZoneLocation> listed = ShippingZoneLocations.listing(1).getResponse();
@@ -942,8 +934,6 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-met
     <summary>Example code for Shipping Zone Methods using the WooCommerce API</summary>
 
 ```java
-import uk.co.twinn.api.woocommerce.api.ShippingZoneMethods;
-
 private void shippingZoneMethods() {
 
     Created<ShippingZoneMethod> create = ShippingZoneMethods.create(2, "flat_rate").getResponse();
@@ -1049,7 +1039,7 @@ private void data(){
 A lightweight Java client library for WooCommerce REST API integration. Built for Java developers who need to integrate their applications with WooCommerce e-commerce platform.
 
 This API client provides a type-safe Java interface for WooCommerce REST API v3, enabling seamless management of:
-- WooCommerce products and inventory
+- WooCommerce
 - Customer data and orders
 - E-commerce operations via REST API
 
