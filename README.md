@@ -764,7 +764,9 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks](https:/
 
 private void webhooks() {
 
-    Created<Webhook> created = Webhooks.create("order.updated", "http://requestb.in/1g0sxmo1").setName("Order Updat!").getResponse();
+    Created<Webhook> created = Webhooks.create("order.updated", "http://requestb.in/1g0sxmo1")
+            .setName("Order Updat!")
+            .getResponse();
 
     Read<Webhook> read = Webhooks.read(2).getResponse();
 
@@ -776,10 +778,12 @@ private void webhooks() {
 
     BatchResult<Webhook> batched = Webhooks.batch()
             .addCreator(
-                    Webhooks.create("coupon.created", "http://requestb.in/1g0sxmo1").setName("Coupon created")
+                    Webhooks.create("coupon.created", "http://requestb.in/1g0sxmo1")
+                        .setName("Coupon created")
             )
             .addCreator(
-                    Webhooks.create("customer.deleted", "http://requestb.in/1g0sxmo1").setName("Customer deleted")
+                    Webhooks.create("customer.deleted", "http://requestb.in/1g0sxmo1")
+                        .setName("Customer deleted")
             )
             .addDeleter(
                     Webhooks.delete(143, true)
