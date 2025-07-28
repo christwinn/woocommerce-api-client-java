@@ -12,11 +12,12 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductAttribute;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductAttributeTerm;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductAttributeTerm;
 
 import java.util.List;
 
@@ -273,31 +274,88 @@ public class ProductAttributeTermBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            batch.addCreate(create.build().productAttribute);
+            addCreator(create.build().productAttribute);
             return self();
         }
 
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update.build().productAttribute);
+            addUpdater(update.build().productAttribute);
             return self();
         }
 
         public T addDeleter(Deleter delete){
-            batch.addDelete(delete.build().productAttribute.getId());
+            addDeleter(delete.build().productAttribute);
             return self();
         }
 
-        /** Returns list of amended Orders **/
-        public Batched<ProductAttributeTerm> getResponse(){
+        /*
+         * these could go in CoreBatch with List<S>, etc.,
+         * but then the ide pushes them down the parameter list
+         * leaving here purely for end-user nicety
+         **/
+        public T addCreator(List<ProductAttributeTerm> createList){
+            for (ProductAttributeTerm create : createList) {
+                addCreator(create);
+            }
+            return self();
+        }
+        public T addUpdater(List<ProductAttributeTerm> updateList){
+            for (ProductAttributeTerm update : updateList) {
+                addUpdater(update);
+            }
+            return self();
+        }
+        public T addDeleter(List<ProductAttributeTerm> deleteList){
+            for (ProductAttributeTerm delete : deleteList) {
+                addDeleter(delete);
+            }
+            return self();
+        }
 
-            if (attributeId <= 0){
-                return new Batched<>(
-                    new ApiResponseResult<>(
-                        false,
-                        0,
-                        "Attribute Id is MANDATORY")
-                );
-            }else {
+        public T addCreator(ProductAttributeTerm create){
+            batch.addCreate(create);
+            return self();
+        }
+        public T addUpdater(ProductAttributeTerm update){
+            batch.addUpdate(update);
+            return self();
+        }
+        public T addDeleter(ProductAttributeTerm delete){
+            batch.addDelete(delete.getId());
+            return self();
+        }
+
+        public Batched<ProductAttributeTerm> getResponse() {
+
+            if (attributeId <= 0) {
+
+                return super.getFailure("Attribute Id is MANDATORY");
+
+            } else {
+
+                //pre-validate
+                for (int i = 0; i < batch.getCreate().size(); i++) {
+                    if (batch.getCreate().get(i).getName() == null ||
+                        batch.getCreate().get(i).getName().isEmpty()) {
+                        return super.getFailure(
+                            String.format("Name is MANDATORY!, Found Create @ %s with empty name", i)
+                        );
+                    }
+                    //stripping the id if is set
+                    if (batch.getCreate().get(i).getId() != null) {
+                        batch.getCreate().get(i).setId(null);
+                    }
+                }
+
+                for (int i = 0; i < batch.getUpdate().size(); i++) {
+                    if (batch.getUpdate().get(i).getId() == 0) {
+                        return super.getFailure(
+                            String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                        );
+                    }
+                }
+
+                //delete validation is in super
                 return super.getResponse(
                     endPoint(attributeId),
                     batch,

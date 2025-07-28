@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import uk.co.twinn.pl_wtx_woocommerce.model.global.MappedSetting;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.global.MappedSetting;
 
 import java.io.IOException;
 import java.util.*;

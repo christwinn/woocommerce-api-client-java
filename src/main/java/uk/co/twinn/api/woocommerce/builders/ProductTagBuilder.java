@@ -12,10 +12,11 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
-import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductTag;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 
 import java.util.List;
 
@@ -206,23 +207,83 @@ public class ProductTagBuilder extends ApiRequest {
             super();
         }
 
-        public T addCreator(ProductTagBuilder.Creator<?> create){
-            batch.addCreate(create.build().productTag);
+        public T addCreator(Creator<?> create){
+            addCreator(create.build().productTag);
             return self();
         }
 
-        public T addUpdater(ProductTagBuilder.Updater<?> update){
-            batch.addUpdate(update.build().productTag);
+        public T addUpdater(Updater<?> update){
+            addUpdater(update.build().productTag);
             return self();
         }
 
-        public T addDeleter(ProductTagBuilder.Deleter delete){
-            batch.addDelete(delete.build().productTag.getId());
+        public T addDeleter(Deleter delete){
+            addDeleter(delete.build().productTag);
+            return self();
+        }
+
+        /*
+         * these could go in CoreBatch with List<S>, etc.,
+         * but then the ide pushes them down the parameter list
+         * leaving here purely for end-user nicety
+         **/
+        public T addCreator(List<ProductTag> createList){
+            for (ProductTag create : createList) {
+                addCreator(create);
+            }
+            return self();
+        }
+        public T addUpdater(List<ProductTag> updateList){
+            for (ProductTag update : updateList) {
+                addUpdater(update);
+            }
+            return self();
+        }
+        public T addDeleter(List<ProductTag> deleteList){
+            for (ProductTag delete : deleteList) {
+                addDeleter(delete);
+            }
+            return self();
+        }
+
+        public T addCreator(ProductTag create){
+            batch.addCreate(create);
+            return self();
+        }
+        public T addUpdater(ProductTag update){
+            batch.addUpdate(update);
+            return self();
+        }
+        public T addDeleter(ProductTag delete){
+            batch.addDelete(delete.getId());
             return self();
         }
 
         public Batched<ProductTag> getResponse(){
 
+            //pre-validate
+            for (int i = 0; i < batch.getCreate().size(); i++) {
+                if (batch.getCreate().get(i).getName() == null ||
+                    batch.getCreate().get(i).getName().isEmpty()) {
+                    return super.getFailure(
+                        String.format("Name is MANDATORY!, Found Create @ %s with empty name", i)
+                    );
+                }
+                //stripping the id if is set
+                if (batch.getCreate().get(i).getId() != null){
+                    batch.getCreate().get(i).setId(null);
+                }
+            }
+
+            for (int i = 0; i < batch.getUpdate().size(); i++){
+                if (batch.getUpdate().get(i).getId() == 0){
+                    return super.getFailure(
+                        String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                    );
+                }
+            }
+
+            //delete validation is in super
             return super.getResponse(PRODUCTS_TAGS, batch, new TypeReference<BatchResult<ProductTag>>() {});
 
         }

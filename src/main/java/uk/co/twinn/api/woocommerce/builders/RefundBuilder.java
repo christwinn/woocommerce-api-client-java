@@ -12,7 +12,7 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.Listed;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.Refund;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.Refund;
 
 import java.time.LocalDate;
 import java.util.List;

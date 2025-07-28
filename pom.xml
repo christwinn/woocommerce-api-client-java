@@ -6,11 +6,11 @@
 
     <groupId>uk.co.twinn.api</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.1.1</version>
+    <version>0.2.0</version>
     <packaging>jar</packaging>
 
     <name>WooCommerce API Client for Java</name>
-    <description>WooCommerce REST API Client for Java providing simple access to the features of the e-commerce platform's API.</description>
+    <description>WooCommerce REST API Java Client Wrapper. Providing simple access to the features of the WooCommerce API.</description>
     <url>https://github.com/christwinn/woocommerce-api-client-java</url>
 
     <properties>

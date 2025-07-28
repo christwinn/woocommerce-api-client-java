@@ -12,9 +12,9 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
-import uk.co.twinn.pl_wtx_woocommerce.model.data.Continent;
-import uk.co.twinn.pl_wtx_woocommerce.model.data.Country;
-import uk.co.twinn.pl_wtx_woocommerce.model.data.Currency;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Continent;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Country;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Currency;
 
 import java.util.List;
 

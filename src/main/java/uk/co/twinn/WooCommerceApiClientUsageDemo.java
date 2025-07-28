@@ -22,24 +22,24 @@ import uk.co.twinn.api.woocommerce.api.*;
 import uk.co.twinn.api.woocommerce.response.*;
 
 import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
-import uk.co.twinn.pl_wtx_woocommerce.model.billing.Billing;
-import uk.co.twinn.pl_wtx_woocommerce.model.coupon.Coupon;
-import uk.co.twinn.pl_wtx_woocommerce.model.customer.Customer;
-import uk.co.twinn.pl_wtx_woocommerce.model.data.Continent;
-import uk.co.twinn.pl_wtx_woocommerce.model.data.Country;
-import uk.co.twinn.pl_wtx_woocommerce.model.data.Currency;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.Order;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderLineItem;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderNote;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderShippingLine;
-import uk.co.twinn.pl_wtx_woocommerce.model.payment.PaymentGateway;
-import uk.co.twinn.pl_wtx_woocommerce.model.product.Product;
-import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategoriesItem;
-import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategory;
-import uk.co.twinn.pl_wtx_woocommerce.model.report.ReportOrderTotalSummary;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.Shipping;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZone;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZoneLocation;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.billing.Billing;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.customer.Customer;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Continent;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Country;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Currency;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.Order;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderLineItem;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderNote;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderShippingLine;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.payment.PaymentGateway;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.Product;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategoriesItem;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.report.ReportOrderTotalSummary;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.Shipping;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZone;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZoneLocation;
 
 /**
  * WooCommerce API Client - Usage Demo
@@ -108,7 +108,16 @@ public class WooCommerceApiClientUsageDemo {
         /*Created<Message> sentEmail = OrderActions.sendEmail(1).getResponse();
         System.out.println(sentEmail.getResult().getMessage());*/
 
-        Listed<Customer> customers = Customers.listing().getResponse();
+        Read<Product> read = Products.read(1346).getResponse();
+
+        if (read.isSuccess()){
+            System.out.println(read.getResult().toJson());
+        }else{
+            System.out.println(read.getError().getMessage());
+        }
+
+        //Batched<Coupon> couponBatched = Coupons.batch().
+        /*Listed<Customer> customers = Customers.listing().getResponse();
         for (Customer customer : customers.getResult()){
 
             System.out.println(customer.toJson());
@@ -116,7 +125,7 @@ public class WooCommerceApiClientUsageDemo {
 
 
             //data();
-        Created<ShippingZone> zoneCreated =  ShippingZones.create("Brazil").getResponse();
+        Created<ShippingZone> zoneCreated =  ShippingZones.create("Brazil").getResponse();*/
 
         /*System.out.println(">>> Start running the WooCommerceApiClientUsageDemo...");
         Listed<ShippingZone> zones = ShippingZones.listing().getResponse();

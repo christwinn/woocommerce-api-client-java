@@ -10,7 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.OrderBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.Order;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.Order;
 
 public class Orders {
 

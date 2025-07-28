@@ -11,7 +11,7 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.response.Read;
-import uk.co.twinn.pl_wtx_woocommerce.model.systemstatus.SystemState;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.systemstatus.SystemState;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.SYSTEM_STATUS;
 

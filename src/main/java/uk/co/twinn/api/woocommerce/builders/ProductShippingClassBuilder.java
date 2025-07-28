@@ -12,11 +12,12 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductShippingClass;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductShippingClass;
 
 import java.util.List;
 
@@ -205,20 +206,84 @@ public class ProductShippingClassBuilder extends ApiRequest {
             super();
         }
 
-        public T addCreator(ProductShippingClassBuilder.Creator<?> create){
-            batch.addCreate(create.build().productShippingClass);
+        public T addCreator(Creator<?> create){
+            addCreator(create.build().productShippingClass);
             return self();
         }
-        public T addUpdater(ProductShippingClassBuilder.Updater<?> update){
-            batch.addUpdate(update.build().productShippingClass);
+        public T addUpdater(Updater<?> update){
+            addUpdater(update.build().productShippingClass);
             return self();
         }
-        public T addDeleter(ProductShippingClassBuilder.Deleter delete){
-            batch.addDelete(delete.build().productShippingClass.getId());
+        public T addDeleter(Deleter delete){
+            addDeleter(delete.build().productShippingClass);
+            return self();
+        }
+
+
+        /*
+         * these could go in CoreBatch with List<S>, etc.,
+         * but then the ide pushes them down the parameter list
+         * leaving here purely for end-user nicety
+         **/
+        public T addCreator(List<ProductShippingClass> createList){
+            for (ProductShippingClass create : createList) {
+                addCreator(create);
+            }
+            return self();
+        }
+        public T addUpdater(List<ProductShippingClass> updateList){
+            for (ProductShippingClass update : updateList) {
+                addUpdater(update);
+            }
+            return self();
+        }
+        public T addDeleter(List<ProductShippingClass> deleteList){
+            for (ProductShippingClass delete : deleteList) {
+                addDeleter(delete);
+            }
+            return self();
+        }
+
+        public T addCreator(ProductShippingClass create){
+            batch.addCreate(create);
+            return self();
+        }
+        public T addUpdater(ProductShippingClass update){
+            batch.addUpdate(update);
+            return self();
+        }
+        public T addDeleter(ProductShippingClass delete){
+            batch.addDelete(delete.getId());
             return self();
         }
 
         public Batched<ProductShippingClass> getResponse(){
+
+            //pre-validate
+            for (int i = 0; i < batch.getCreate().size(); i++) {
+                if (batch.getCreate().get(i).getName() == null ||
+                    batch.getCreate().get(i).getName().isEmpty()) {
+                    return super.getFailure(
+                        String.format("Name is MANDATORY!, Found Create @ %s with empty name", i)
+                    );
+                }
+                //stripping the id if is set
+                if (batch.getCreate().get(i).getId() != null){
+                    batch.getCreate().get(i).setId(null);
+                }
+            }
+
+            for (int i = 0; i < batch.getUpdate().size(); i++){
+                if (batch.getUpdate().get(i).getId() == 0){
+                    return super.getFailure(
+                        String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                    );
+                }
+            }
+
+            //delete validation is in super
+
+
             return super.getResponse(PRODUCTS_SHIPPING_CLASSES, batch, new TypeReference<BatchResult<ProductShippingClass>>() {});
         }
 

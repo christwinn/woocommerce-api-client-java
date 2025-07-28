@@ -12,12 +12,13 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.tax.TaxRate;
-import uk.co.twinn.pl_wtx_woocommerce.model.tax.ISO3166;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.tax.TaxRate;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.tax.ISO3166;
 
 import java.util.List;
 
@@ -334,22 +335,78 @@ public class TaxRateBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            batch.addCreate(create.build().taxRate);
+            addCreator(create.build().taxRate);
             return self();
         }
 
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update.build().taxRate);
+            addUpdater(update.build().taxRate);
             return self();
         }
 
         public T addDeleter(Deleter delete){
-            batch.addDelete(delete.build().taxRate.getId());
+            addDeleter(delete.build().taxRate);
+            return self();
+        }
+
+
+        /*
+         * these could go in CoreBatch with List<S>, etc.,
+         * but then the ide pushes them down the parameter list
+         * leaving here purely for end-user nicety
+         **/
+        public T addCreator(List<TaxRate> createList){
+            for (TaxRate create : createList) {
+                addCreator(create);
+            }
+            return self();
+        }
+        public T addUpdater(List<TaxRate> updateList){
+            for (TaxRate update : updateList) {
+                addUpdater(update);
+            }
+            return self();
+        }
+        public T addDeleter(List<TaxRate> deleteList){
+            for (TaxRate delete : deleteList) {
+                addDeleter(delete);
+            }
+            return self();
+        }
+
+        public T addCreator(TaxRate create){
+            batch.addCreate(create);
+            return self();
+        }
+        public T addUpdater(TaxRate update){
+            batch.addUpdate(update);
+            return self();
+        }
+        public T addDeleter(TaxRate delete){
+            batch.addDelete(delete.getId());
             return self();
         }
 
         public Batched<TaxRate> getResponse(){
 
+            //pre-validate
+            /** Nothing mandatory!**/
+            for(TaxRate taxRate : batch.getCreate()){
+                //stripping the id if is set
+                if (taxRate.getId() != null){
+                    taxRate.setId(null);
+                }
+            }
+
+            for (int i = 0; i < batch.getUpdate().size(); i++){
+                if (batch.getUpdate().get(i).getId() == 0){
+                    return super.getFailure(
+                        String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                    );
+                }
+            }
+
+            //delete validation is in super
             return super.getResponse(TAXES, batch, new TypeReference<BatchResult<TaxRate>>() {});
 
         }

@@ -18,7 +18,7 @@ import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderNote;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderNote;
 
 import java.util.List;
 

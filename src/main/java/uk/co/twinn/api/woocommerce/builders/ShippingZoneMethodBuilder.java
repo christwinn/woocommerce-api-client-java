@@ -16,8 +16,8 @@ import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZoneMethod;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingZoneMethodUpdate;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZoneMethod;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZoneMethodUpdate;
 
 import java.util.HashMap;
 import java.util.List;

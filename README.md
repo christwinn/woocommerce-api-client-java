@@ -1,5 +1,5 @@
 
-# A fluent java client interface to the  WooCommerce REST Api
+# A fluent java client interface to the WooCommerce REST Api
 
 A fully implemented lightweight, deceptively simple, fluent Java client library for the WooCommerce REST API v3.
 
@@ -31,14 +31,14 @@ Newton's Third Law of Motion: "For every action, there is an equal and opposite 
 
 /**Create**/
 Created<SingularType> created = PluralType.create(anyMandatoryValues).setX("...").getResponse();
-Created<SingularType> created = PluralType.create(aSingularObjectWeCreatedEarlier).getResponse();
+Created<SingularType> created = PluralType.create(aSingularPOJOWeCreatedEarlier).getResponse();
 
 /**Read**/
 Read<SingularType> read = PluralType.read(123).getResponse();
 
 /**Update**/
 Updated<SingularType> updated = PluralType.update(123).setX("...").getResponse();
-Updated<SingularType> updated = PluralType.update(aSingularObjectWeCreatedEarlier).getResponse();
+Updated<SingularType> updated = PluralType.update(aSingularPOJOWeCreatedEarlier).getResponse();
 
 /**Delete**/
 Deleted<SingularType> deleted = PluralType.delete(123, true).getResponse();
@@ -48,11 +48,15 @@ Listed<SingularType> listed = PluralType.listing().getResponse();
 
 /** Batch [Create, Update, Delete]**/
 Batched<SingularType> batched = PluralType.batch()
-        .addCreator(PluralType.create().setX("..."))
-        .addCreator(PluralType.create(aSingularObjectWeCreatedEarlier))
+        .addCreator(PluralType.create().setX("..."))   //creator
+        .addCreator(aSingularPOJOWeCreatedEarlier)     //Single POJO of SingularType
+        .addCreator(ListOfPOJOsWeCreatedEarlier)       //List<POJO> of SingularType
         .addUpdater(PluralType.update().setX("..."))
-        .addUpdater(PluralType.update(aSingularObjectWeCreatedEarlier))
+        .addUpdater(aSingularPOJOWeCreatedEarlier)
+        .addUpdater(ListOfPOJOsWeCreatedEarlier)
         .addDeleter(PluralType.delete(123, true))
+        .addDeleter(aSingularPOJOWeCreatedEarlier)
+        .addDeleter(ListOfPOJOsWeCreatedEarlier)
         .getResponse();
 
 /**

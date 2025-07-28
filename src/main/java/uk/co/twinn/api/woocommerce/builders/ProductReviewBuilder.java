@@ -12,11 +12,12 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductReview;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductReview;
 
 import java.util.List;
 
@@ -245,22 +246,85 @@ public class ProductReviewBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            batch.addCreate(create.build().productReview);
+            addCreator(create.build().productReview);
             return self();
         }
 
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update.build().productReview);
+            addUpdater(update.build().productReview);
             return self();
         }
 
         public T addDeleter(Deleter delete){
-            batch.addDelete(delete.build().productReview.getId());
+            addDeleter(delete.build().productReview);
             return self();
         }
 
+
+        /*
+         * these could go in CoreBatch with List<S>, etc.,
+         * but then the ide pushes them down the parameter list
+         * leaving here purely for end-user nicety
+         **/
+        public T addCreator(List<ProductReview> createList){
+            for (ProductReview create : createList) {
+                addCreator(create);
+            }
+            return self();
+        }
+        public T addUpdater(List<ProductReview> updateList){
+            for (ProductReview update : updateList) {
+                addUpdater(update);
+            }
+            return self();
+        }
+        public T addDeleter(List<ProductReview> deleteList){
+            for (ProductReview delete : deleteList) {
+                addDeleter(delete);
+            }
+            return self();
+        }
+
+        public T addCreator(ProductReview create){
+            batch.addCreate(create);
+            return self();
+        }
+        public T addUpdater(ProductReview update){
+            batch.addUpdate(update);
+            return self();
+        }
+        public T addDeleter(ProductReview delete){
+            batch.addDelete(delete.getId());
+            return self();
+        }
+
+        /** Returns list of amended ProductCategories **/
         public Batched<ProductReview> getResponse(){
+
+            //pre-validate
+            for (int i = 0; i < batch.getCreate().size(); i++) {
+                if (batch.getCreate().get(i).getProductId() == null ||
+                    batch.getCreate().get(i).getProductId() == 0) {
+                    return super.getFailure(
+                        String.format("Product Id is MANDATORY!, Found Create @ %s with ProductId == 0 or null", i)
+                    );
+                }
+                //stripping the id if is set
+                if (batch.getCreate().get(i).getId() != null) {
+                    batch.getCreate().get(i).setId(null);
+                }
+            }
+
+            for (int i = 0; i < batch.getUpdate().size(); i++) {
+                if (batch.getUpdate().get(i).getId() == 0) {
+                    return super.getFailure(
+                        String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                    );
+                }
+            }
+
             return super.getResponse(PRODUCTS_REVIEWS, batch, new TypeReference<BatchResult<ProductReview>>() {});
+
         }
 
     }

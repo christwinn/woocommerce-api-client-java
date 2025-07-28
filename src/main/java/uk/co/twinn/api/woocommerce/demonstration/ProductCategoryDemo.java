@@ -14,11 +14,11 @@ import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategory;
-import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductImage;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductImage;
 
-import static uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategory.DisplayEnum.PRODUCTS;
-import static uk.co.twinn.pl_wtx_woocommerce.model.product.ProductCategory.DisplayEnum.SUBCATEGORIES;
+import static uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory.DisplayEnum.PRODUCTS;
+import static uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory.DisplayEnum.SUBCATEGORIES;
 
 public class ProductCategoryDemo {
 

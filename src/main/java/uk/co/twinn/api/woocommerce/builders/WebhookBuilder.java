@@ -12,11 +12,12 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.webhook.Webhook;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.webhook.Webhook;
 
 import java.util.List;
 
@@ -227,21 +228,89 @@ public class WebhookBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            batch.addCreate(create.build().webhook);
+            addCreator(create.build().webhook);
             return self();
         }
 
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update.build().webhook);
+            addUpdater(update.build().webhook);
             return self();
         }
 
         public T addDeleter(Deleter delete){
-            batch.addDelete(delete.build().webhook.getId());
+            addDeleter(delete.build().webhook);
+            return self();
+        }
+
+
+        /*
+         * these could go in CoreBatch with List<S>, etc.,
+         * but then the ide pushes them down the parameter list
+         * leaving here purely for end-user nicety
+         **/
+        public T addCreator(List<Webhook> createList){
+            for (Webhook create : createList) {
+                addCreator(create);
+            }
+            return self();
+        }
+        public T addUpdater(List<Webhook> updateList){
+            for (Webhook update : updateList) {
+                addUpdater(update);
+            }
+            return self();
+        }
+        public T addDeleter(List<Webhook> deleteList){
+            for (Webhook delete : deleteList) {
+                addDeleter(delete);
+            }
+            return self();
+        }
+
+        public T addCreator(Webhook create){
+            batch.addCreate(create);
+            return self();
+        }
+        public T addUpdater(Webhook update){
+            batch.addUpdate(update);
+            return self();
+        }
+        public T addDeleter(Webhook delete){
+            batch.addDelete(delete.getId());
             return self();
         }
 
         public Batched<Webhook> getResponse(){
+
+            //pre-validate
+            for (int i = 0; i < batch.getCreate().size(); i++) {
+                if (batch.getCreate().get(i).getTopic() == null ||
+                    batch.getCreate().get(i).getTopic().isEmpty()) {
+                    return super.getFailure(
+                        String.format("Topic is MANDATORY!, Found Create @ %s with empty Topic", i)
+                    );
+                }
+                if (batch.getCreate().get(i).getDeliveryUrl() == null ||
+                    batch.getCreate().get(i).getDeliveryUrl().isEmpty()) {
+                    return super.getFailure(
+                        String.format("DeliveryUrl is MANDATORY!, Found Create @ %s with empty DeliveryUrl", i)
+                    );
+                }
+                //stripping the id if is set
+                if (batch.getCreate().get(i).getId() != null){
+                    batch.getCreate().get(i).setId(null);
+                }
+            }
+
+            for (int i = 0; i < batch.getUpdate().size(); i++){
+                if (batch.getUpdate().get(i).getId() == 0){
+                    return super.getFailure(
+                        String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                    );
+                }
+            }
+
+            //delete validation is in super
 
             return super.getResponse(WEBHOOKS, batch, new TypeReference<BatchResult<Webhook>>() {});
 

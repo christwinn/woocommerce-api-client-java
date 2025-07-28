@@ -10,7 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.PaymentGatewayBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.payment.PaymentGateway;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.payment.PaymentGateway;
 
 public class PaymentGateways {
 

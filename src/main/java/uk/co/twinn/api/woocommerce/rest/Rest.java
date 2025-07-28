@@ -16,11 +16,19 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import uk.co.twinn.api.woocommerce.transportation.Http;
 
+/**
+ *
+ * Transferring the Json that represents our request/response!
+ *
+**/
 public class Rest<T> {
 
     public Rest() {
@@ -72,75 +80,197 @@ public class Rest<T> {
      */
     public ApiResponseResult<T> create(String endPoint, TypeReference<?> type){
 
-        return http.create(
-            getUri(endPoint),
-            getHeaders(),
-            null,
-            type
-        );
+        try {
+
+            CompletableFuture<ApiResponseResult<T>> future =
+                CompletableFuture.supplyAsync(() ->
+                    http.create(
+                        getUri(endPoint),
+                        getHeaders(),
+                        null,
+                        type
+                    )
+                );
+
+            return future.get();
+
+        }catch(InterruptedException e){
+
+            return new ApiResponseResult<T>(false, 0, e.toString());
+
+        }catch(ExecutionException ee){
+
+            return new ApiResponseResult<T>(false, 0, ee.toString());
+
+        }
 
     }
 
     public ApiResponseResult<T> create(String endPoint, String content, TypeReference<?> type){
 
-        return http.create(
-            getUri(endPoint),
-            getHeaders(),
-            content,
-            type
-        );
+        try {
+
+            CompletableFuture<ApiResponseResult<T>> future =
+                CompletableFuture.supplyAsync(() ->
+                    http.create(
+                        getUri(endPoint),
+                        getHeaders(),
+                        content,
+                        type
+                    )
+                ).handle((s, t) -> s != null
+                    ? s :
+                    new ApiResponseResult<T>(false, 0, t.toString())
+                );
+
+            return future.get();
+
+        }catch(InterruptedException e){
+
+            return new ApiResponseResult<T>(false, 0, e.toString());
+
+        }catch(ExecutionException ee){
+
+            return new ApiResponseResult<T>(false, 0, ee.toString());
+
+        }
 
     }
 
     public ApiResponseResult<T> read(String endPoint, TypeReference<?> type){
 
-        return http.read(
-            getUri(endPoint),
-            getHeaders(),
-            type
-        );
+        try {
+
+            CompletableFuture<ApiResponseResult<T>> future =
+                CompletableFuture.supplyAsync(() ->
+                    http.read(
+                        getUri(endPoint),
+                        getHeaders(),
+                        type
+                    )
+                );
+
+            return future.get();
+
+        }catch(InterruptedException e){
+
+            return new ApiResponseResult<T>(false, 0, e.toString());
+
+        }catch(ExecutionException ee){
+
+            return new ApiResponseResult<T>(false, 0, ee.toString());
+
+        }
 
     }
 
     private ApiResponseResult<T> read(String endPoint, String parameters, TypeReference<?> type){
 
-        return http.read(
-        getUri(endPoint)
-            + (!parameters.isEmpty()
-                ? "?" + parameters
-                : ""
-            ),
-            getHeaders(),
-            type
-        );
+        try {
+
+            CompletableFuture<ApiResponseResult<T>> future =
+                CompletableFuture.supplyAsync(() ->
+                    http.read(
+                    getUri(endPoint)
+                        + (!parameters.isEmpty()
+                            ? "?" + parameters
+                            : ""
+                        ),
+                        getHeaders(),
+                        type
+                    )
+                );
+
+            return future.get();
+
+        }catch(InterruptedException e){
+
+            return new ApiResponseResult<T>(false, 0, e.toString());
+
+        }catch(ExecutionException ee){
+
+            return new ApiResponseResult<T>(false, 0, ee.toString());
+
+        }
 
     }
 
     public ApiResponseResult<T> update(String endPoint, String content, TypeReference<?> type){
 
-        return http.update(
-            getUri(endPoint),
-            getHeaders(),
-            content,
-            type
-        );
+        try {
+
+            CompletableFuture<ApiResponseResult<T>> future =
+                CompletableFuture.supplyAsync(() ->
+                    http.update(
+                        getUri(endPoint),
+                        getHeaders(),
+                        content,
+                        type
+                    )
+                );
+
+            return future.get();
+
+        }catch(InterruptedException e){
+
+            return new ApiResponseResult<T>(false, 0, e.toString());
+
+        }catch(ExecutionException ee){
+
+            return new ApiResponseResult<T>(false, 0, ee.toString());
+
+        }
 
     }
 
     public ApiResponseResult<T> updateList(String endPoint, String content, TypeReference<?> type){
 
-        return http.update(
-            getUri(endPoint),
-            getHeaders(),
-            content,
-            type
-        );
+        try {
+
+            CompletableFuture<ApiResponseResult<T>> future =
+                CompletableFuture.supplyAsync(() ->
+                    http.update(
+                        getUri(endPoint),
+                        getHeaders(),
+                        content,
+                        type
+                    )
+                );
+
+            return future.get();
+
+        }catch(InterruptedException e){
+
+            return new ApiResponseResult<T>(false, 0, e.toString());
+
+        }catch(ExecutionException ee){
+
+            return new ApiResponseResult<T>(false, 0, ee.toString());
+
+        }
 
     }
 
     public ApiResponseResult<T> delete(String endPoint, TypeReference<?> type){
 
-        return http.delete(endPoint, getHeaders(), type);
+        try {
+
+            CompletableFuture<ApiResponseResult<T>> future =
+                CompletableFuture.supplyAsync(() ->
+                    http.delete(endPoint, getHeaders(), type)
+                );
+
+            return future.get();
+
+        }catch(InterruptedException e){
+
+            return new ApiResponseResult<T>(false, 0, e.toString());
+
+        }catch(ExecutionException ee){
+
+            return new ApiResponseResult<T>(false, 0, ee.toString());
+
+        }
 
     }
 

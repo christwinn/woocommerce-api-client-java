@@ -10,7 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.CouponBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
 
 public class Coupons {
 

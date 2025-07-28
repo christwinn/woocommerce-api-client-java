@@ -9,8 +9,8 @@
 
 package uk.co.twinn.api.woocommerce.builders;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.global.MetaData;
-import uk.co.twinn.pl_wtx_woocommerce.model.product.*;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.global.MetaData;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

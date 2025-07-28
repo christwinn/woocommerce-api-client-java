@@ -16,7 +16,7 @@ import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Ran;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.pl_wtx_woocommerce.model.systemstatus.SystemStatusTool;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.systemstatus.SystemStatusTool;
 
 import java.util.List;
 

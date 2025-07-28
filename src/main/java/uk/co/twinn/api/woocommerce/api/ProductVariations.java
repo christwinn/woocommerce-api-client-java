@@ -10,7 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.ProductVariationBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.product.ProductVariation;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductVariation;
 
 public class ProductVariations {
 

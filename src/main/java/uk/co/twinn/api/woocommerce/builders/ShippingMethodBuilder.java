@@ -12,7 +12,7 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.ShippingMethod;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingMethod;
 
 import java.util.List;
 

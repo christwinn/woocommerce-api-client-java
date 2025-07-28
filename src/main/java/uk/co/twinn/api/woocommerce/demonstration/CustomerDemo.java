@@ -10,9 +10,9 @@
 package uk.co.twinn.api.woocommerce.demonstration;
 
 import uk.co.twinn.api.woocommerce.api.Customers;
-import uk.co.twinn.pl_wtx_woocommerce.model.billing.Billing;
-import uk.co.twinn.pl_wtx_woocommerce.model.customer.Customer;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.Shipping;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.billing.Billing;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.customer.Customer;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.Shipping;
 import uk.co.twinn.api.woocommerce.builders.CustomerBuilder;
 import uk.co.twinn.api.woocommerce.response.*;
 

@@ -10,7 +10,7 @@
 package uk.co.twinn.api.woocommerce.api;
 
 import uk.co.twinn.api.woocommerce.builders.TaxRateBuilder;
-import uk.co.twinn.pl_wtx_woocommerce.model.tax.TaxRate;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.tax.TaxRate;
 
 public class TaxRates {
 

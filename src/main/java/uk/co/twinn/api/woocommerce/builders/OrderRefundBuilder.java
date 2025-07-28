@@ -18,11 +18,11 @@ import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
-import uk.co.twinn.pl_wtx_woocommerce.model.global.MetaData;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderFeeLine;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderRefund;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderRefundLineItem;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderShippingLine;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.global.MetaData;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderFeeLine;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderRefund;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderRefundLineItem;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderShippingLine;
 
 import java.math.BigDecimal;
 import java.util.List;

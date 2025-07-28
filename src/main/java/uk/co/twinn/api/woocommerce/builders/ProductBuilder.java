@@ -10,12 +10,11 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.*;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
-
-import uk.co.twinn.pl_wtx_woocommerce.model.product.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -537,28 +536,86 @@ public class ProductBuilder extends ApiRequest {
         public Batcher(){
             super();
         }
+
         public T addCreator(Creator<?> create){
-            batch.addCreate(create.build().product);
+            addCreator(create.build().product);
             return self();
         }
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update.build().product);
+            addUpdater(update.build().product);
             return self();
         }
         public T addDeleter(Deleter delete){
-            batch.addDelete(delete.build().product.getId());
+            addDeleter(delete.build().product);
             return self();
         }
 
-        /**
-         * Mileage may vary
-         * Supposedly we can batch 100 at a time.
-         * I have been finding this leads to an internal server error (500)
-         * Shrinking the batch to a smaller number works.
-         *
-         * @return Batched<Product>
-         */
+
+        /*
+         * these could go in CoreBatch with List<S>, etc.,
+         * but then the ide pushes them down the parameter list
+         * leaving here purely for end-user nicety
+         **/
+        public T addCreator(List<Product> createList){
+            for (Product create : createList) {
+                addCreator(create);
+            }
+            return self();
+        }
+        public T addUpdater(List<Product> updateList){
+            for (Product update : updateList) {
+                addUpdater(update);
+            }
+            return self();
+        }
+        public T addDeleter(List<Product> deleteList){
+            for (Product delete : deleteList) {
+                addDeleter(delete);
+            }
+            return self();
+        }
+
+        public T addCreator(Product create){
+            batch.addCreate(create);
+            return self();
+        }
+        public T addUpdater(Product update){
+            batch.addUpdate(update);
+            return self();
+        }
+        public T addDeleter(Product delete){
+            batch.addDelete(delete.getId());
+            return self();
+        }
+
         public Batched<Product> getResponse(){
+
+            //pre-validate
+            /* Nothing is MANDATORY!!*/
+            for (Product product : batch.getCreate()){
+                if (product.getId() != null){
+                    product.setId(null);
+                }
+            }
+
+            for (int i = 0; i < batch.getUpdate().size(); i++){
+                if (batch.getUpdate().get(i).getId() == 0){
+                    return super.getFailure(
+                        String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                    );
+                }
+            }
+
+            //delete validation is in super
+            /**
+             * Mileage may vary
+             * Supposedly we can batch 100 at a time.
+             * I have been finding this leads to an internal server error (500)
+             * Shrinking the batch to a smaller number works.
+             *
+             * @return Batched<Product>
+             */
+
             return super.getResponse(PRODUCTS, batch, new TypeReference<BatchResult<Product>>() {});
         }
 

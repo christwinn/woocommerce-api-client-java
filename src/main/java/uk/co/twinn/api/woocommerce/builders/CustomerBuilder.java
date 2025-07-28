@@ -14,9 +14,9 @@ import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
-import uk.co.twinn.pl_wtx_woocommerce.model.billing.Billing;
-import uk.co.twinn.pl_wtx_woocommerce.model.customer.Customer;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.Shipping;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.billing.Billing;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.customer.Customer;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.Shipping;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 

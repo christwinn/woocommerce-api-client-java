@@ -12,10 +12,13 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
 import uk.co.twinn.api.woocommerce.response.Batched;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
+
+import java.util.List;
 
 /**
  *
@@ -26,17 +29,17 @@ import uk.co.twinn.api.woocommerce.rest.Rest;
 class CoreBatch {
 
     //Require S so we can type Batch, require T, so we can call back on the inheritors
-    static class BatchCore<S, T extends BatchCore<S, T>>{
+    static class BatchCore<S, T extends BatchCore<S, T>> {
 
         public static final int MAX_RECORDS = 100;
 
         protected Batch<S> batch;
 
-        public BatchCore(){
+        public BatchCore() {
             batch = new Batch<>();
         }
 
-        private Batch<S> getBatch(){
+        private Batch<S> getBatch() {
             return batch;
         }
 
@@ -45,30 +48,35 @@ class CoreBatch {
             return (T) this;
         }
 
-        public boolean empty(){
+        public boolean empty() {
             return batch.empty();
         }
-        public boolean isEmpty(){
+
+        public boolean isEmpty() {
             return size() == 0;
         }
 
-        public int size(){
+        public int size() {
             return batch.getRecordCount();
         }
 
-        public boolean isFull(){
+        public boolean isFull() {
             return batch.getRecordCount() >= MAX_RECORDS;
         }
 
-        Batched<S> getResponse(String endPoint, Batch<S> batch, TypeReference<?> type){
+        Batched<S> getResponse(String endPoint, Batch<S> batch, TypeReference<?> type) {
             return readResponse(endPoint + "/batch", batch, type);
+        }
+
+        Batched<S> getFailure(String failureMessage){
+            return new Batched<>(new ApiResponseResult<>(false,0,"Reference Id is required"));
         }
 
         /*Product Variations, are there others? */
         Batched<S> getResponse(String endPoint, int referenceId, String secondEndPoint, Batch<S> batch, TypeReference<?> type){
 
             if (referenceId <= 0) {
-                return new Batched<>(new ApiResponseResult<>(false, 0, "Reference Id is required"));
+                return getFailure("Reference Id is required");
             }else {
                 return readResponse(endPoint + referenceId + "/" + secondEndPoint + "/batch", batch, type);
             }
@@ -78,18 +86,24 @@ class CoreBatch {
 
             if (batch.isEmpty()){
 
-                return new Batched<>(new ApiResponseResult<>(false, 0, "Nothing to do"));
+                return getFailure("Nothing to do");
 
             }else if (batch.getRecordCount() > MAX_RECORDS){
 
-                return new Batched<>(new ApiResponseResult<>(false, 0,
+                return getFailure(
                     "This API helps you to batch create, update and delete multiple products.\n\n" +
-                        "Note: By default it's limited to up to 100 objects to be created, updated or deleted.")
+                        "Note: By default it's limited to up to 100 objects to be created, updated or deleted."
                 );
 
             }else{
 
-                //System.out.println(toJson(batch));
+                for (int i = 0; i < batch.getDelete().size(); i++){
+                    if (batch.getDelete().get(i) == 0){
+                        return getFailure(
+                            String.format("Id is MANDATORY!, Found Delete @ %s with id = 0", i)
+                        );
+                    }
+                }
 
                 return new Batched<>(
                     new Rest<BatchResult<S>>().batch(endPoint, toJson(), type)

@@ -13,11 +13,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
-import uk.co.twinn.pl_wtx_woocommerce.model.billing.Billing;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.Order;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderLineItem;
-import uk.co.twinn.pl_wtx_woocommerce.model.order.OrderShippingLine;
-import uk.co.twinn.pl_wtx_woocommerce.model.shipping.Shipping;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.billing.Billing;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.Order;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderLineItem;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderShippingLine;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.Shipping;
 
 
 import java.time.LocalDate;
