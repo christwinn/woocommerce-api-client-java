@@ -13,7 +13,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 <dependency>
     <groupId>uk.co.twinn.api</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
@@ -26,7 +26,11 @@ Newton's Third Law of Motion: "For every action, there is an equal and opposite 
 /** Generic system setup **/
 
 /** Following the simple methodology: Reaction<SingularType> = PluralType.action.getResponse(); 
- *  More specific examples are provided under the 'PluralType' sections further down 
+ *  More specific examples are provided under the 'PluralType' sections further down.
+ *
+ * Builder patterns can also be accessed via WooCommerce.PluralType.create()/read()/etc for extra simplicity.
+ *   e.g. WooCommerce.Products.read(123).getResponse();
+ *
  **/
 
 /**Create**/
@@ -81,9 +85,8 @@ Batched<SingularType> batched = PluralType.batch()
                  you should loop the lists to check that each record
                  actually succeeded and the API did not reject that request.
         
-        Note: WooCommerce limits you to 100 objects per batch,
-                having run experiments this is a very hopeful limit.
-                You will experience PHP running out of memory and an error 500 being returned, use smaller batch sizes.
+        Note: WooCommerce limits you to 100 objects per batch, having run experiments this is a very hopeful limit.
+            You could experience PHP running out of memory, isSuccess() will be false and an error message 500 will be returned in the .getError().getMessage(), try smaller batch sizes.
 
     result.getLinks() -> 
         HAL - Hypertext Application Language 
@@ -758,7 +761,9 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks](https:/
 
 private void webhooks() {
 
-    Created<Webhook> created = Webhooks.create("order.updated", "http://requestb.in/1g0sxmo1").setName("Order Updat!").getResponse();
+    Created<Webhook> created = Webhooks.create("order.updated", "http://requestb.in/1g0sxmo1")
+            .setName("Order Updat!")
+            .getResponse();
 
     Read<Webhook> read = Webhooks.read(2).getResponse();
 
@@ -770,10 +775,12 @@ private void webhooks() {
 
     BatchResult<Webhook> batched = Webhooks.batch()
             .addCreator(
-                    Webhooks.create("coupon.created", "http://requestb.in/1g0sxmo1").setName("Coupon created")
+                    Webhooks.create("coupon.created", "http://requestb.in/1g0sxmo1")
+                        .setName("Coupon created")
             )
             .addCreator(
-                    Webhooks.create("customer.deleted", "http://requestb.in/1g0sxmo1").setName("Customer deleted")
+                    Webhooks.create("customer.deleted", "http://requestb.in/1g0sxmo1")
+                        .setName("Customer deleted")
             )
             .addDeleter(
                     Webhooks.delete(143, true)
