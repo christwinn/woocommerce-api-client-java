@@ -453,8 +453,6 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-actions](ht
 <summary>Example code for Order Actions using the WooCommerce API</summary>
 
 ```java
-import uk.co.twinn.api.woocommerce.api.OrderActions;
-
 private void orderActions(int customerId) {
 
     /** Send Email **/
@@ -502,11 +500,6 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#products](https:/
     <summary>Example code for Products using the WooCommerce API</summary>
 
 ```java
-import uk.co.twinn.api.woocommerce.api.Products;
-import uk.co.twinn.api.woocommerce.response.core.BatchResult;
-
-import java.math.BigDecimal;
-
 private void products() {
 
     /*Create*/
