@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -246,38 +245,33 @@ public class ProductReviewBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            addCreator(create.build().productReview);
-            return self();
+            return addCreator(create.build().productReview);
+        }
+
+        public T addCreator(List<ProductReview> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(ProductReview create){
+            return super.addCreate(create);
         }
 
         public T addUpdater(Updater<?> update){
-            addUpdater(update.build().productReview);
-            return self();
+            return addUpdater(update.build().productReview);
+        }
+
+        public T addUpdater(List<ProductReview> updateList){
+            return super.addUpdate(updateList);
+        }
+
+        public T addUpdater(ProductReview update){
+            return super.addUpdate(update);
         }
 
         public T addDeleter(Deleter delete){
-            addDeleter(delete.build().productReview);
-            return self();
+            return addDeleter(delete.build().productReview);
         }
 
-
-        /*
-         * these could go in CoreBatch with List<S>, etc.,
-         * but then the ide pushes them down the parameter list
-         * leaving here purely for end-user nicety
-         **/
-        public T addCreator(List<ProductReview> createList){
-            for (ProductReview create : createList) {
-                addCreator(create);
-            }
-            return self();
-        }
-        public T addUpdater(List<ProductReview> updateList){
-            for (ProductReview update : updateList) {
-                addUpdater(update);
-            }
-            return self();
-        }
         public T addDeleter(List<ProductReview> deleteList){
             for (ProductReview delete : deleteList) {
                 addDeleter(delete);
@@ -285,17 +279,8 @@ public class ProductReviewBuilder extends ApiRequest {
             return self();
         }
 
-        public T addCreator(ProductReview create){
-            batch.addCreate(create);
-            return self();
-        }
-        public T addUpdater(ProductReview update){
-            batch.addUpdate(update);
-            return self();
-        }
         public T addDeleter(ProductReview delete){
-            batch.addDelete(delete.getId());
-            return self();
+            return super.addDelete(delete.getId());
         }
 
         /** Returns list of amended ProductCategories **/

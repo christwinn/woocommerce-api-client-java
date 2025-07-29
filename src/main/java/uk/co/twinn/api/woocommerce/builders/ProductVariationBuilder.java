@@ -254,23 +254,76 @@ public class ProductVariationBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            batch.addCreate(create.build().productVariation);
-            return self();
+            return addCreator(create.build().productVariation);
+        }
+
+        public T addCreator(List<ProductVariation> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(ProductVariation create){
+            return super.addCreate(create);
         }
 
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update.build().productVariation);
-            return self();
+            return addUpdater(update.build().productVariation);
+        }
+
+        public T addUpdater(List<ProductVariation> updateList){
+            return super.addUpdate(updateList);
+        }
+
+        public T addUpdater(ProductVariation update){
+            return super.addUpdate(update);
         }
 
         public T addDeleter(Deleter delete){
-            batch.addDelete(delete.build().productVariation.getVariationId());
+            return addDeleter(delete.build().productVariation);
+        }
+
+        public T addDeleter(List<ProductVariation> deleteList){
+            for (ProductVariation delete : deleteList) {
+                addDeleter(delete);
+            }
             return self();
         }
 
-        /** Returns list of amended Orders **/
+        public T addDeleter(ProductVariation delete){
+            return super.addDelete(delete.getVariationId());
+        }
+
+        /** Returns list of amended **/
         public Batched<ProductVariation> getResponse(){
-            return super.getResponse(PRODUCTS, id, VARIATIONS, batch, new TypeReference<BatchResult<ProductVariation>>() {});
+
+            if (id <= 0){
+                return super.getFailure("Product Id is Mandatory");
+            }else {
+                //pre-validate
+                /* Nothing is MANDATORY!!*/
+                for (ProductVariation product : batch.getCreate()) {
+                    if (product.getVariationId() != null) {
+                        product.setVariationId(null);
+                    }
+                }
+                for (int i = 0; i < batch.getUpdate().size(); i++) {
+                    if (batch.getUpdate().get(i).getVariationId() == 0) {
+                        return super.getFailure(
+                            String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                        );
+                    }
+                }
+
+                //delete validation is in super
+                return super.getResponse(
+                    PRODUCTS,
+                    id,
+                    VARIATIONS,
+                    batch,
+                    new TypeReference<BatchResult<ProductVariation>>() {}
+                );
+
+            }
+
         }
 
     }

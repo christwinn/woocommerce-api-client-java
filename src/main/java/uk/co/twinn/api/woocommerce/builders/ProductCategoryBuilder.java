@@ -10,7 +10,6 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductAttributeTerm;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductImage;
@@ -263,37 +262,33 @@ public class ProductCategoryBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            addCreator(create.build().category);
-            return self();
+            return addCreator(create.build().category);
+        }
+
+        public T addCreator(List<ProductCategory> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(ProductCategory create){
+            return super.addCreate(create);
         }
 
         public T addUpdater(Updater<?> update){
-            addUpdater(update.build().category);
-            return self();
+            return addUpdater(update.build().category);
+        }
+
+        public T addUpdater(List<ProductCategory> updateList){
+            return super.addUpdate(updateList);
+        }
+
+        public T addUpdater(ProductCategory update){
+            return super.addUpdate(update);
         }
 
         public T addDeleter(Deleter delete){
-            addDeleter(delete.build().category);
-            return self();
+            return addDeleter(delete.build().category);
         }
 
-        /*
-         * these could go in CoreBatch with List<S>, etc.,
-         * but then the ide pushes them down the parameter list
-         * leaving here purely for end-user nicety
-         **/
-        public T addCreator(List<ProductCategory> createList){
-            for (ProductCategory create : createList) {
-                addCreator(create);
-            }
-            return self();
-        }
-        public T addUpdater(List<ProductCategory> updateList){
-            for (ProductCategory update : updateList) {
-                addUpdater(update);
-            }
-            return self();
-        }
         public T addDeleter(List<ProductCategory> deleteList){
             for (ProductCategory delete : deleteList) {
                 addDeleter(delete);
@@ -301,17 +296,8 @@ public class ProductCategoryBuilder extends ApiRequest {
             return self();
         }
 
-        public T addCreator(ProductCategory create){
-            batch.addCreate(create);
-            return self();
-        }
-        public T addUpdater(ProductCategory update){
-            batch.addUpdate(update);
-            return self();
-        }
         public T addDeleter(ProductCategory delete){
-            batch.addDelete(delete.getId());
-            return self();
+            return super.addDelete(delete.getId());
         }
 
         /** Returns list of amended ProductCategories **/

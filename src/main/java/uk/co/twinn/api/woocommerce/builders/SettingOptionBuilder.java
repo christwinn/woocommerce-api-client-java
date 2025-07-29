@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 import uk.co.twinn.api.woocommerce.response.Batched;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
@@ -157,26 +156,15 @@ public class SettingOptionBuilder extends ApiRequest {
         }
 
         public T addUpdater(Updater<?> update){
-            addUpdater(update.build().settingOption);
-            return self();
+            return addUpdater(update.build().settingOption);
         }
 
-        /*
-         * these could go in CoreBatch with List<S>, etc.,
-         * but then the ide pushes them down the parameter list
-         * leaving here purely for end-user nicety
-         **/
-
         public T addUpdater(List<SettingOption> updateList){
-            for (SettingOption update : updateList) {
-                addUpdater(update);
-            }
-            return self();
+            return super.addUpdate(updateList);
         }
 
         public T addUpdater(SettingOption update){
-            batch.addUpdate(update);
-            return self();
+            return super.addUpdate(update);
         }
 
         public Batched<SettingOption> getResponse(){

@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -207,36 +206,33 @@ public class ProductShippingClassBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            addCreator(create.build().productShippingClass);
-            return self();
+            return addCreator(create.build().productShippingClass);
         }
+
+        public T addCreator(List<ProductShippingClass> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(ProductShippingClass create){
+            return super.addCreate(create);
+        }
+
         public T addUpdater(Updater<?> update){
-            addUpdater(update.build().productShippingClass);
-            return self();
-        }
-        public T addDeleter(Deleter delete){
-            addDeleter(delete.build().productShippingClass);
-            return self();
+            return addUpdater(update.build().productShippingClass);
         }
 
-
-        /*
-         * these could go in CoreBatch with List<S>, etc.,
-         * but then the ide pushes them down the parameter list
-         * leaving here purely for end-user nicety
-         **/
-        public T addCreator(List<ProductShippingClass> createList){
-            for (ProductShippingClass create : createList) {
-                addCreator(create);
-            }
-            return self();
-        }
         public T addUpdater(List<ProductShippingClass> updateList){
-            for (ProductShippingClass update : updateList) {
-                addUpdater(update);
-            }
-            return self();
+            return super.addUpdate(updateList);
         }
+
+        public T addUpdater(ProductShippingClass update){
+            return super.addUpdate(update);
+        }
+
+        public T addDeleter(Deleter delete){
+            return addDeleter(delete.build().productShippingClass);
+        }
+
         public T addDeleter(List<ProductShippingClass> deleteList){
             for (ProductShippingClass delete : deleteList) {
                 addDeleter(delete);
@@ -244,17 +240,8 @@ public class ProductShippingClassBuilder extends ApiRequest {
             return self();
         }
 
-        public T addCreator(ProductShippingClass create){
-            batch.addCreate(create);
-            return self();
-        }
-        public T addUpdater(ProductShippingClass update){
-            batch.addUpdate(update);
-            return self();
-        }
         public T addDeleter(ProductShippingClass delete){
-            batch.addDelete(delete.getId());
-            return self();
+            return super.addDelete(delete.getId());
         }
 
         public Batched<ProductShippingClass> getResponse(){

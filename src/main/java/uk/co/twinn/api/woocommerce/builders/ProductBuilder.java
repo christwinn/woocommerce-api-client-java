@@ -538,36 +538,33 @@ public class ProductBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            addCreator(create.build().product);
-            return self();
+            return addCreator(create.build().product);
         }
+
+        public T addCreator(List<Product> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(Product create){
+            return super.addCreate(create);
+        }
+
         public T addUpdater(Updater<?> update){
-            addUpdater(update.build().product);
-            return self();
-        }
-        public T addDeleter(Deleter delete){
-            addDeleter(delete.build().product);
-            return self();
+            return addUpdater(update.build().product);
         }
 
-
-        /*
-         * these could go in CoreBatch with List<S>, etc.,
-         * but then the ide pushes them down the parameter list
-         * leaving here purely for end-user nicety
-         **/
-        public T addCreator(List<Product> createList){
-            for (Product create : createList) {
-                addCreator(create);
-            }
-            return self();
-        }
         public T addUpdater(List<Product> updateList){
-            for (Product update : updateList) {
-                addUpdater(update);
-            }
-            return self();
+            return super.addUpdate(updateList);
         }
+
+        public T addUpdater(Product update){
+            return super.addUpdate(update);
+        }
+
+        public T addDeleter(Deleter delete){
+            return addDeleter(delete.build().product);
+        }
+
         public T addDeleter(List<Product> deleteList){
             for (Product delete : deleteList) {
                 addDeleter(delete);
@@ -575,17 +572,8 @@ public class ProductBuilder extends ApiRequest {
             return self();
         }
 
-        public T addCreator(Product create){
-            batch.addCreate(create);
-            return self();
-        }
-        public T addUpdater(Product update){
-            batch.addUpdate(update);
-            return self();
-        }
         public T addDeleter(Product delete){
-            batch.addDelete(delete.getId());
-            return self();
+            return super.addDelete(delete.getId());
         }
 
         public Batched<Product> getResponse(){

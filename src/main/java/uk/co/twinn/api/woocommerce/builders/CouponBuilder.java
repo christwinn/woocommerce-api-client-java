@@ -526,35 +526,33 @@ public class CouponBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            addCreator(create.build().coupon);
-            return self();
-        }
-        public T addUpdater(Updater<?> update){
-            addUpdater(update.build().coupon);
-            return self();
-        }
-        public T addDeleter(Deleter delete){
-            addDeleter(delete.build().coupon);
-            return self();
+            return addCreator(create.build().coupon);
         }
 
-        /*
-        * these could go in CoreBatch with List<S>, etc.,
-        * but then the ide pushes them down the parameter list
-        * leaving here purely for end-user nicety
-        **/
         public T addCreator(List<Coupon> create){
-            for (Coupon coupon : create) {
-                addCreator(coupon);
-            }
-            return self();
+            return super.addCreate(create);
         }
+
+        public T addCreator(Coupon create){
+            return super.addCreate(create);
+        }
+
+        public T addUpdater(Updater<?> update){
+            return addUpdater(update.build().coupon);
+        }
+
         public T addUpdater(List<Coupon> updateList){
-            for (Coupon update : updateList) {
-                addUpdater(update);
-            }
-            return self();
+            return super.addUpdate(updateList);
         }
+
+        public T addUpdater(Coupon update){
+            return super.addUpdate(update);
+        }
+
+        public T addDeleter(Deleter delete){
+            return addDeleter(delete.build().coupon);
+        }
+
         public T addDeleter(List<Coupon> deleteList){
             for (Coupon delete : deleteList) {
                 addDeleter(delete);
@@ -562,17 +560,8 @@ public class CouponBuilder extends ApiRequest {
             return self();
         }
 
-        public T addCreator(Coupon create){
-            batch.addCreate(create);
-            return self();
-        }
-        public T addUpdater(Coupon update){
-            batch.addUpdate(update);
-            return self();
-        }
         public T addDeleter(Coupon delete){
-            batch.addDelete(delete.getId());
-            return self();
+            return super.addDelete(delete.getId());
         }
 
         /** Returns list of amended Coupons **/

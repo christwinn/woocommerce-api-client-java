@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -228,38 +227,33 @@ public class WebhookBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            addCreator(create.build().webhook);
-            return self();
+            return addCreator(create.build().webhook);
+        }
+
+        public T addCreator(List<Webhook> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(Webhook create){
+            return super.addCreate(create);
         }
 
         public T addUpdater(Updater<?> update){
-            addUpdater(update.build().webhook);
-            return self();
+            return addUpdater(update.build().webhook);
+        }
+
+        public T addUpdater(List<Webhook> updateList){
+            return super.addUpdate(updateList);
+        }
+
+        public T addUpdater(Webhook update){
+            return super.addUpdate(update);
         }
 
         public T addDeleter(Deleter delete){
-            addDeleter(delete.build().webhook);
-            return self();
+            return addDeleter(delete.build().webhook);
         }
 
-
-        /*
-         * these could go in CoreBatch with List<S>, etc.,
-         * but then the ide pushes them down the parameter list
-         * leaving here purely for end-user nicety
-         **/
-        public T addCreator(List<Webhook> createList){
-            for (Webhook create : createList) {
-                addCreator(create);
-            }
-            return self();
-        }
-        public T addUpdater(List<Webhook> updateList){
-            for (Webhook update : updateList) {
-                addUpdater(update);
-            }
-            return self();
-        }
         public T addDeleter(List<Webhook> deleteList){
             for (Webhook delete : deleteList) {
                 addDeleter(delete);
@@ -267,17 +261,8 @@ public class WebhookBuilder extends ApiRequest {
             return self();
         }
 
-        public T addCreator(Webhook create){
-            batch.addCreate(create);
-            return self();
-        }
-        public T addUpdater(Webhook update){
-            batch.addUpdate(update);
-            return self();
-        }
         public T addDeleter(Webhook delete){
-            batch.addDelete(delete.getId());
-            return self();
+            return super.addDelete(delete.getId());
         }
 
         public Batched<Webhook> getResponse(){
@@ -289,8 +274,7 @@ public class WebhookBuilder extends ApiRequest {
                     return super.getFailure(
                         String.format("Topic is MANDATORY!, Found Create @ %s with empty Topic", i)
                     );
-                }
-                if (batch.getCreate().get(i).getDeliveryUrl() == null ||
+                }else if (batch.getCreate().get(i).getDeliveryUrl() == null ||
                     batch.getCreate().get(i).getDeliveryUrl().isEmpty()) {
                     return super.getFailure(
                         String.format("DeliveryUrl is MANDATORY!, Found Create @ %s with empty DeliveryUrl", i)

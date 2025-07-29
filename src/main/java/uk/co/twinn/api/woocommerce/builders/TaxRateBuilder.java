@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -335,38 +334,33 @@ public class TaxRateBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            addCreator(create.build().taxRate);
-            return self();
+            return addCreator(create.build().taxRate);
+        }
+
+        public T addCreator(List<TaxRate> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(TaxRate create){
+            return super.addCreate(create);
         }
 
         public T addUpdater(Updater<?> update){
-            addUpdater(update.build().taxRate);
-            return self();
+            return addUpdater(update.build().taxRate);
+        }
+
+        public T addUpdater(List<TaxRate> updateList){
+            return super.addUpdate(updateList);
+        }
+
+        public T addUpdater(TaxRate update){
+            return super.addUpdate(update);
         }
 
         public T addDeleter(Deleter delete){
-            addDeleter(delete.build().taxRate);
-            return self();
+            return addDeleter(delete.build().taxRate);
         }
 
-
-        /*
-         * these could go in CoreBatch with List<S>, etc.,
-         * but then the ide pushes them down the parameter list
-         * leaving here purely for end-user nicety
-         **/
-        public T addCreator(List<TaxRate> createList){
-            for (TaxRate create : createList) {
-                addCreator(create);
-            }
-            return self();
-        }
-        public T addUpdater(List<TaxRate> updateList){
-            for (TaxRate update : updateList) {
-                addUpdater(update);
-            }
-            return self();
-        }
         public T addDeleter(List<TaxRate> deleteList){
             for (TaxRate delete : deleteList) {
                 addDeleter(delete);
@@ -374,17 +368,8 @@ public class TaxRateBuilder extends ApiRequest {
             return self();
         }
 
-        public T addCreator(TaxRate create){
-            batch.addCreate(create);
-            return self();
-        }
-        public T addUpdater(TaxRate update){
-            batch.addUpdate(update);
-            return self();
-        }
         public T addDeleter(TaxRate delete){
-            batch.addDelete(delete.getId());
-            return self();
+            return super.addDelete(delete.getId());
         }
 
         public Batched<TaxRate> getResponse(){

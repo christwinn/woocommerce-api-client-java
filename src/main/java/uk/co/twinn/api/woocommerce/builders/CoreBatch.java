@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
 import uk.co.twinn.api.woocommerce.response.Batched;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -46,6 +45,33 @@ class CoreBatch {
         @SuppressWarnings("unchecked")
         T self() {
             return (T) this;
+        }
+
+        T addCreate(List<S> createList){
+            for (S create : createList) {
+                addCreate(create);
+            }
+            return self();
+        }
+        T addCreate(S create){
+            batch.addCreate(create);
+            return self();
+        }
+
+        T addUpdate(List<S> updateList){
+            for (S update : updateList) {
+                addUpdate(update);
+            }
+            return self();
+        }
+        T addUpdate(S update){
+            batch.addUpdate(update);
+            return self();
+        }
+
+        T addDelete(Integer delete){
+            batch.addDelete(delete);
+            return self();
         }
 
         public boolean empty() {

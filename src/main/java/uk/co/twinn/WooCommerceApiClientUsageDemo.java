@@ -116,7 +116,6 @@ public class WooCommerceApiClientUsageDemo {
             System.out.println(read.getError().getMessage());
         }
 
-        //Batched<Coupon> couponBatched = Coupons.batch().
         /*Listed<Customer> customers = Customers.listing().getResponse();
         for (Customer customer : customers.getResult()){
 

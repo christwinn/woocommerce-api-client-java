@@ -12,7 +12,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -208,37 +207,33 @@ public class ProductTagBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            addCreator(create.build().productTag);
-            return self();
+            return addCreator(create.build().productTag);
+        }
+
+        public T addCreator(List<ProductTag> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(ProductTag create){
+            return super.addCreate(create);
         }
 
         public T addUpdater(Updater<?> update){
-            addUpdater(update.build().productTag);
-            return self();
+            return addUpdater(update.build().productTag);
+        }
+
+        public T addUpdater(List<ProductTag> updateList){
+            return super.addUpdate(updateList);
+        }
+
+        public T addUpdater(ProductTag update){
+            return super.addUpdate(update);
         }
 
         public T addDeleter(Deleter delete){
-            addDeleter(delete.build().productTag);
-            return self();
+            return addDeleter(delete.build().productTag);
         }
 
-        /*
-         * these could go in CoreBatch with List<S>, etc.,
-         * but then the ide pushes them down the parameter list
-         * leaving here purely for end-user nicety
-         **/
-        public T addCreator(List<ProductTag> createList){
-            for (ProductTag create : createList) {
-                addCreator(create);
-            }
-            return self();
-        }
-        public T addUpdater(List<ProductTag> updateList){
-            for (ProductTag update : updateList) {
-                addUpdater(update);
-            }
-            return self();
-        }
         public T addDeleter(List<ProductTag> deleteList){
             for (ProductTag delete : deleteList) {
                 addDeleter(delete);
@@ -246,17 +241,8 @@ public class ProductTagBuilder extends ApiRequest {
             return self();
         }
 
-        public T addCreator(ProductTag create){
-            batch.addCreate(create);
-            return self();
-        }
-        public T addUpdater(ProductTag update){
-            batch.addUpdate(update);
-            return self();
-        }
         public T addDeleter(ProductTag delete){
-            batch.addDelete(delete.getId());
-            return self();
+            return super.addDelete(delete.getId());
         }
 
         public Batched<ProductTag> getResponse(){

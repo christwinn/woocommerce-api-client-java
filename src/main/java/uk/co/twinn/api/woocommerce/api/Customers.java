@@ -17,9 +17,9 @@ public class Customers {
     protected Customers(){}
 
     //<editor-fold defaultstate="collapsed" desc="Fluent Convenience Methods">
-    public static CustomerBuilder.Creator<?> create(){
+    public static CustomerBuilder.Creator<?> create(String email, String password){
 
-        return new CustomerBuilder.Creator<>();
+        return new CustomerBuilder.Creator<>(email, password);
 
     }
 

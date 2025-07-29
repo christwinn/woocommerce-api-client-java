@@ -12,6 +12,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.Product;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.billing.Billing;
@@ -90,9 +92,15 @@ public class CustomerBuilder extends ApiRequest {
         private Billing billing;
         private Shipping shipping;
 
-        public Creator(){
+        private Creator(){}
+
+        public Creator(String email, String password){
+
+            this.email = email;
+            this.password = password;
 
         }
+
         /** !Traditionally set a customer, passes through here only setting that, that we can */
         public Creator(Customer customer){
             email = customer.getEmail();
@@ -102,11 +110,6 @@ public class CustomerBuilder extends ApiRequest {
             password = customer.getPassword();
             billing = customer.getBilling();
             shipping = customer.getShipping();
-        }
-
-        public T setEmail(String email) {
-            this.email = email;
-            return self();
         }
 
         public T setFirstName(String firstName) {
@@ -121,11 +124,6 @@ public class CustomerBuilder extends ApiRequest {
 
         public T setUsername(String username) {
             this.username = username;
-            return self();
-        }
-
-        public T setPassword(String password) {
-            this.password = password;
             return self();
         }
 
@@ -253,47 +251,74 @@ public class CustomerBuilder extends ApiRequest {
             return self();
         }
 
-        public T addCreators(List<Creator<?>> creators){
-            //we need to extract the creator
-            for(Creator<?> create : creators){
-                addCreator(create);
-            }
-            return self();
-        }
-
         public T addCreator(Creator<?> create){
-            batch.addCreate(create.build().customer);
-            return self();
+            return addCreator(create.build().customer);
         }
 
-        public T addUpdaters(List<Updater<?>> updates){
-            //we need to extract the update
-            for(Updater<?> update : updates){
-                addUpdater(update);
-            }
-            return self();
+        public T addCreator(List<Customer> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(Customer create){
+            return super.addCreate(create);
         }
 
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update.build().customer);
-            return self();
+            return addUpdater(update.build().customer);
         }
 
-        public T addDeleters(List<Deleter> deletes){
-            //we need to extract the deleter
-            for(Deleter delete : deletes){
+        public T addUpdater(List<Customer> updateList){
+            return super.addUpdate(updateList);
+        }
+
+        public T addUpdater(Customer update){
+            return super.addUpdate(update);
+        }
+
+        public T addDeleter(Deleter delete){
+            return addDeleter(delete.build().customer);
+        }
+
+        public T addDeleter(List<Customer> deleteList){
+            for (Customer delete : deleteList) {
                 addDeleter(delete);
             }
             return self();
         }
 
-        public T addDeleter(Deleter delete){
-            batch.addDelete(delete.build().customer.getId());
-            return self();
+        public T addDeleter(Customer delete){
+            return super.addDelete(delete.getId());
         }
 
         /** Returns list of amended ProductCategories **/
         public Batched<Customer> getResponse(){
+
+            for (int i = 0; i < batch.getCreate().size(); i++) {
+                if (batch.getCreate().get(i).getEmail() == null ||
+                    batch.getCreate().get(i).getEmail().isEmpty()) {
+                    return super.getFailure(
+                        String.format("Email is MANDATORY!, Found Create @ %s with empty name", i)
+                    );
+                }else if (batch.getCreate().get(i).getPassword() == null ||
+                    batch.getCreate().get(i).getPassword().isEmpty()) {
+                    return super.getFailure(
+                        String.format("Password is MANDATORY!, Found Create @ %s with empty name", i)
+                    );
+                }
+                //stripping the id if is set
+                if (batch.getCreate().get(i).getId() != null) {
+                    batch.getCreate().get(i).setId(null);
+                }
+            }
+
+            //pre-validate
+            for (int i = 0; i < batch.getUpdate().size(); i++){
+                if (batch.getUpdate().get(i).getId() == 0){
+                    return super.getFailure(
+                        String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                    );
+                }
+            }
 
             return super.getResponse(CUSTOMERS, batch, new TypeReference<BatchResult<Customer>>() {});
 
@@ -348,11 +373,6 @@ public class CustomerBuilder extends ApiRequest {
         public Listed<Customer> getResponse(){
 
             return super.getResponse(CUSTOMERS, build(), new TypeReference<List<Customer>>() {});
-
-            /*return new Listed<>(
-                new Rest<List<Customer>>()
-                    .listAll(CUSTOMERS, build(), new TypeReference<List<Customer>>() {})
-            );*/
 
         }
 

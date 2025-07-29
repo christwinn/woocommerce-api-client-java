@@ -49,12 +49,10 @@ public class CustomerDemo {
             .postcode("94103")
             .country("US");
 
-        Created<Customer> response = Customers.create()
-            .setEmail("john.doe@example.com")
+        Created<Customer> response = Customers.create("john.doe@example.com", "helloworld")
             .setFirstName("John")
             .setLastName("Doe")
             .setUsername("john.doe")
-            .setPassword("helloworld")
             .setBilling(billing)
             .setShipping(shipping)
             .getResponse();
@@ -124,15 +122,15 @@ public class CustomerDemo {
     }
 
     public Batched<Customer> batchUpdateCustomers(
-        List<CustomerBuilder.Creator<?>> createThese,
-        List<CustomerBuilder.Updater<?>> modifyThese,
-        List<CustomerBuilder.Deleter> deleteThese
+        List<Customer> createThese,
+        List<Customer> modifyThese,
+        List<Customer> deleteThese
     ){
 
         return Customers.batch()
-            .addCreators(createThese)
-            .addUpdaters(modifyThese)
-            .addDeleters(deleteThese)
+            .addCreator(createThese)
+            .addUpdater(modifyThese)
+            .addDeleter(deleteThese)
             .getResponse();
 
     }
@@ -140,22 +138,22 @@ public class CustomerDemo {
     public Batched<Customer> batchUpdateCustomers(){
 
         return Customers.batch()
-            .addCreators(getBatchCreate())
-            .addCreators(getBatchCreate())
+            .addCreator(getBatchCreate())
+            .addCreator(getBatchCreate())
             .getResponse();
 
     }
 
-    private List<CustomerBuilder.Creator<?>> getBatchCreate() {
+    private List<Customer> getBatchCreate() {
 
-        List<CustomerBuilder.Creator<?>> list = new ArrayList<>();
+        List<Customer> list = new ArrayList<>();
         list.add(getJohnDoe());
         list.add(getJoaoSilva());
         return list;
 
     }
 
-    private CustomerBuilder.Creator<?> getJohnDoe(){
+    private Customer getJohnDoe(){
 
         Billing billing = new Billing()
             .firstName("John")
@@ -180,17 +178,17 @@ public class CustomerDemo {
             .postcode("94103")
             .country("US");
 
-        return Customers.create()
-            .setEmail("john.doe@example.com")
-            .setFirstName("John")
-            .setLastName("Doe")
-            .setUsername("john.doe")
-            .setBilling(billing)
-            .setShipping(shipping);
+        return new Customer()
+            .email("john.doe@example.com")
+            .firstName("John")
+            .lastName("Doe")
+            .username("john.doe")
+            .billing(billing)
+            .shipping(shipping);
 
     }
 
-    private CustomerBuilder.Creator<?> getJoaoSilva(){
+    private Customer getJoaoSilva(){
 
         Billing billing = new Billing()
             .firstName("Joao")
@@ -216,13 +214,13 @@ public class CustomerDemo {
             .postcode("12345-000")
             .country("BR");
 
-        return Customers.create()
-            .setEmail("joao.silva2@example.com")
-            .setFirstName("Joao")
-            .setLastName("Silva")
-            .setUsername("joao.silva")
-            .setBilling(billing)
-            .setShipping(shipping);
+        return new Customer()
+            .email("joao.silva2@example.com")
+            .firstName("Joao")
+            .lastName("Silva")
+            .username("joao.silva")
+            .billing(billing)
+            .shipping(shipping);
 
     }
 

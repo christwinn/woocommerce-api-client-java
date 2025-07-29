@@ -11,6 +11,7 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.customer.Customer;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.billing.Billing;
@@ -264,23 +265,64 @@ public class OrderBuilder extends ApiRequest {
         }
 
         public T addCreator(Creator<?> create){
-            batch.addCreate(create.build().order);
-            return self();
+            return addCreator(create.build().order);
+        }
+
+        public T addCreator(List<Order> create){
+            return super.addCreate(create);
+        }
+
+        public T addCreator(Order create){
+            return super.addCreate(create);
         }
 
         public T addUpdater(Updater<?> update){
-            batch.addUpdate(update.build().order);
-            return self();
+            return addUpdater(update.build().order);
+        }
+
+        public T addUpdater(List<Order> updateList){
+            return super.addUpdate(updateList);
+        }
+
+        public T addUpdater(Order update){
+            return super.addUpdate(update);
         }
 
         public T addDeleter(Deleter delete){
-            batch.addDelete(delete.build().order.getId());
+            return addDeleter(delete.build().order);
+        }
+
+        public T addDeleter(List<Order> deleteList){
+            for (Order delete : deleteList) {
+                addDeleter(delete);
+            }
             return self();
+        }
+
+        public T addDeleter(Order delete){
+            return super.addDelete(delete.getId());
         }
 
         /** Returns list of amended Orders **/
         public Batched<Order> getResponse(){
 
+            for (Order order : batch.getCreate()) {
+                //stripping the id if is set
+                if (order.getId() != null) {
+                    order.setId(null);
+                }
+            }
+
+            //pre-validate
+            for (int i = 0; i < batch.getUpdate().size(); i++){
+                if (batch.getUpdate().get(i).getId() == 0){
+                    return super.getFailure(
+                        String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                    );
+                }
+            }
+
+            //delete validation is in super
             return super.getResponse(ORDERS, batch, new TypeReference<Order>() {});
 
         }
