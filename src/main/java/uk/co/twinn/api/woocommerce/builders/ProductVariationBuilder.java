@@ -306,7 +306,7 @@ public class ProductVariationBuilder extends ApiRequest {
                     }
                 }
                 for (int i = 0; i < batch.getUpdate().size(); i++) {
-                    if (batch.getUpdate().get(i).getVariationId() == 0) {
+                    if (batch.getUpdate().get(i).getVariationId() == null || batch.getUpdate().get(i).getVariationId() == 0) {
                         return super.getFailure(
                             String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
                         );

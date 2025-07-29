@@ -38,7 +38,6 @@ import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCateg
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.report.ReportOrderTotalSummary;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.Shipping;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZone;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZoneLocation;
 
 /**
@@ -668,7 +667,7 @@ public class WooCommerceApiClientUsageDemo {
             if (create.hasResult()) {
 
                 try {
-                    id = create.getResult().getId();
+                    id = create.getResult().getId() == null ? 0 : create.getResult().getId();
                     printProduct(create.getResult());
                 }catch (NullPointerException e){
                     e.printStackTrace();

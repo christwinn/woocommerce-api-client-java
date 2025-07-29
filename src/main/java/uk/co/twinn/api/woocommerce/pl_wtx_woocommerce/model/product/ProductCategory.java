@@ -147,7 +147,7 @@ public class ProductCategory {
     return id;
   }
 
-  public void setId(@javax.annotation.Nonnull Integer id) {
+  public void setId(Integer id) {
         this.id = id;
     }
 

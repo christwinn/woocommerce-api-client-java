@@ -11,7 +11,6 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.customer.Customer;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.billing.Billing;
@@ -315,7 +314,7 @@ public class OrderBuilder extends ApiRequest {
 
             //pre-validate
             for (int i = 0; i < batch.getUpdate().size(); i++){
-                if (batch.getUpdate().get(i).getId() == 0){
+                if (batch.getUpdate().get(i).getId() == null || batch.getUpdate().get(i).getId() == 0){
                     return super.getFailure(
                         String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
                     );

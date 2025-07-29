@@ -318,7 +318,7 @@ public class ProductCategoryBuilder extends ApiRequest {
             }
 
             for (int i = 0; i < batch.getUpdate().size(); i++) {
-                if (batch.getUpdate().get(i).getId() == 0) {
+                if (batch.getUpdate().get(i).getId() == null || batch.getUpdate().get(i).getId() == 0) {
                     return super.getFailure(
                         String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
                     );
