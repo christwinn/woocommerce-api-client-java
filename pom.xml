@@ -6,7 +6,7 @@
 
     <groupId>uk.co.twinn.api</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>WooCommerce API Client for Java</name>
@@ -175,7 +175,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
+            <!--plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.3.0</version>
@@ -195,7 +195,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
@@ -262,7 +262,7 @@
             <organizationUrl>https://www.twinn.co.uk</organizationUrl>
         </developer>
         <developer>
-            <name>WTX Labs Team</name>
+            <name>WTX Labs Team (Models)</name>
             <organization>WTX Labs</organization>
             <organizationUrl>https://github.com/wtx-labs</organizationUrl>
         </developer>
