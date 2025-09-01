@@ -13,7 +13,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 <dependency>
     <groupId>uk.co.twinn.api</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.1.1</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -1083,4 +1083,5 @@ The only requirement is to preserve the original author attribution in the sourc
 ## 🔍 Keywords
 
 woocommerce java client, woocommerce rest api java, java woocommerce integration, woocommerce api v3 java, e-commerce java integration, woocommerce java library, java rest api client woocommerce, woocommerce api client library for java
+
 
