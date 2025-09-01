@@ -68,6 +68,17 @@ public class WooCommerceApiClientUsageDemo {
             .setImage("http://mysite/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg")
             .getResponse();
 
+        Created<Product> creatX = Products.create().setName("Premium Quality")
+            .setType("simple")
+            .setRegularPrice(new BigDecimal(21.99))
+            .setDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. " +
+                "Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. " +
+                "Donec eu libero sit amet quam egestas semper. " +
+                "Aenean ultricies mi vitae est. Mauris placerat eleifend leo.")
+            .setShortDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.")
+            .setCategories(Arrays.asList(new ProductCategoriesItem().id(9), new ProductCategoriesItem().id(14)))
+            .setImage("http://mysite/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg")
+            .getResponse();
 
         Created<OrderNote> createdNote = OrderNotes.create(1).setNote("Hello World").getResponse();
         Read<OrderNote> read = OrderNotes.read(1, 2).getResponse();
