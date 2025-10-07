@@ -14,7 +14,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 <dependency>
     <groupId>uk.co.twinn.api</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>3.1.1.0</version>
+    <version>3.1.2.0</version>
 </dependency>
 ```
 Note: We use a 4 point versioning system: (Semantic Versioning 2.0.0 + 1) W.X.Y.Z  
@@ -26,6 +26,9 @@ Z: PATCH version when we make backward compatible bug fixes
 ### Reaction = action
 
 Newton's Third Law of Motion: "For every action, there is an equal and opposite reaction"
+
+<details>
+<summary>An overview of how to get the responses, more specific details are under "Code Samples"</summary>
 
 ```java
 
@@ -70,6 +73,115 @@ Batched<SingularType> batched = PluralType.batch()
         .getResponse();
 
 ```
+</details>
+
+## Processing Responses
+
+<details>
+<summary>Always good to know what to do with the results...</summary>
+
+```java
+
+private void processResults() {
+
+/** The left hand always contains
+    .isSuccess() -> did it work;
+
+    Created, Read, Updated, Deleted will contain a single SingularType in .getResult(),
+    i.e SingularType result = [created, read, updated, deleted].getResult(); 
+ **/
+
+    Read<Product> readProduct = Products.read(123).getResponse();
+
+    if (readProduct.isSuccess()) {
+        //do something with the result.
+        Product p = readProduct.getResult();
+        System.out.println(readProduct.getResult().toJson());
+
+    } else {
+        System.out.println(readProduct.getError().getMessage());
+    }
+
+/** 
+    Listed will contain a list of SingularType in .getResult(), 
+        i.e List<SingularType> result = listed.getResult();
+        Really this is "search" with no parameters and only limited results are returned [default 10], 
+            you need to increment the offset to retrieve all the result)
+*/
+
+    Listed<Continent> continents = Data.listAllContinents().getResponse();
+    if (continents.isSuccss()) {
+        for (Continent continent : continents.getResult()) {
+            System.out.println(continent.toJson());
+        }
+    } else {
+        System.out.println(readProduct.getError().getMessage());
+    }
+
+
+/*
+    Batched will contain a list of SingularType in .getResult() under the requested action.
+        i.e.
+            List<SingularType> created = batched.getResult().getCreated();
+            List<SingularType> updated = batched.getResult().getUpdated();
+            List<SingularType> deleted = batched.getResult().getDeleted();
+
+        Warning! While the action of batch() may be a success,
+                 you should loop the lists to check that each record
+                 actually succeeded and the API did not reject that request.
+        
+        Note: WooCommerce limits you to 100 objects per batch, having run experiments this is a very hopeful limit.
+            You could experience PHP running out of memory, isSuccess() will be false and an error message 500 will be returned in the .getError().getMessage(), try smaller batch sizes.
+*/
+
+Batched<Customer> batched = Customers.batch()
+        .addCreator(Customers.create(customer))
+        .addUpdater(Customers.update(2).setFirstName("Fred"))
+        .addDeleter(Customers.delete(3, true))
+        .getResponse();
+
+if (batched.isSuccess()){
+
+    System.out.println("The request was a success BUT cycle the records to check that they are!");
+
+    for(Customer bc :batched.getResult().getCreated()){
+        if(!bc.hasError()){
+            System.out.println(bc.toString());
+        }else{
+            System.out.println("CREATE FAIL:"+bc.getError().getMessage());
+        }
+    }
+
+    for(Customer bc :batched.getResult().getUpdated()){
+        if(!bc.hasError()){
+            System.out.println(bc.toString());
+        }else{
+            System.out.println("UPDATE FAIL:"+bc.getError().getMessage());
+        }
+    }
+
+    for(Customer bc :batched.getResult().getDeleted()){
+        if(!bc.hasError()){
+            System.out.println(bc.toString());
+        }else{
+            System.out.println("DELETE FAIL:"+bc.getError().getMessage());
+        }
+    }
+}else{
+    System.out.println(batched.getError().getMessage());
+}
+
+/**
+ getResult.getLinks() -> 
+ HAL - Hypertext Application Language 
+ <a href="https://stateless.group/hal_specification.html">https://stateless.group/hal_specification.html</a>
+ **/
+
+}
+
+```
+</details>
+
 
 ## Code Samples
 
@@ -1119,109 +1231,6 @@ private void data(){
 }    
 ```
 </details>
-
-## Processing Responses
-
-```java
-
-private void processResults() {
-
-/** The left hand always contains
-    .isSuccess() -> did it work;
-
-    Created, Read, Updated, Deleted will contain a single SingularType in .getResult(),
-    i.e SingularType result = [created, read, updated, deleted].getResult(); 
- **/
-
-    Read<Product> readProduct = Products.read(123).getResponse();
-
-    if (readProduct.isSuccess()) {
-        //do something with the result.
-        Product p = readProduct.getResult();
-        System.out.println(readProduct.getResult().toJson());
-
-    } else {
-        System.out.println(readProduct.getError().getMessage());
-    }
-
-/** 
-    Listed will contain a list of SingularType in .getResult(), 
-        i.e List<SingularType> result = listed.getResult();
-        Really this is "search" with no parameters and only limited results are returned [default 10], 
-            you need to increment the offset to retrieve all the result)
-*/
-
-    Listed<Continent> continents = Data.listAllContinents().getResponse();
-    if (continents.isSuccss()) {
-        for (Continent continent : continents.getResult()) {
-            System.out.println(continent.toJson());
-        }
-    } else {
-        System.out.println(readProduct.getError().getMessage());
-    }
-
-
-/*
-    Batched will contain a list of SingularType in .getResult() under the requested action.
-        i.e.
-            List<SingularType> created = batched.getResult().getCreated();
-            List<SingularType> updated = batched.getResult().getUpdated();
-            List<SingularType> deleted = batched.getResult().getDeleted();
-
-        Warning! While the action of batch() may be a success,
-                 you should loop the lists to check that each record
-                 actually succeeded and the API did not reject that request.
-        
-        Note: WooCommerce limits you to 100 objects per batch, having run experiments this is a very hopeful limit.
-            You could experience PHP running out of memory, isSuccess() will be false and an error message 500 will be returned in the .getError().getMessage(), try smaller batch sizes.
-*/
-
-Batched<Customer> batched = Customers.batch()
-        .addCreator(Customers.create(customer))
-        .addUpdater(Customers.update(2).setFirstName("Fred"))
-        .addDeleter(Customers.delete(3, true))
-        .getResponse();
-
-if (batched.isSuccess()){
-
-    System.out.println("The request was a success BUT cycle the records to check that they are!");
-
-    for(Customer bc :batched.getResult().getCreated()){
-        if(!bc.hasError()){
-            System.out.println(bc.toString());
-        }else{
-            System.out.println("CREATE FAIL:"+bc.getError().getMessage());
-        }
-    }
-
-    for(Customer bc :batched.getResult().getUpdated()){
-        if(!bc.hasError()){
-            System.out.println(bc.toString());
-        }else{
-            System.out.println("UPDATE FAIL:"+bc.getError().getMessage());
-        }
-    }
-
-    for(Customer bc :batched.getResult().getDeleted()){
-        if(!bc.hasError()){
-            System.out.println(bc.toString());
-        }else{
-            System.out.println("DELETE FAIL:"+bc.getError().getMessage());
-        }
-    }
-}else{
-    System.out.println(batched.getError().getMessage());
-}
-
-/**
- getResult.getLinks() -> 
- HAL - Hypertext Application Language 
- <a href="https://stateless.group/hal_specification.html">https://stateless.group/hal_specification.html</a>
- **/
-
-}
-
-```
 
 ## WooCommerce API Client for Java
 
