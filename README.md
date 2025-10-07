@@ -659,6 +659,7 @@ private void productBrands(){
 }    
 ```
 </details>
+
 ## Product Attributes
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes)
