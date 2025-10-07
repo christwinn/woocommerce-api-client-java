@@ -79,10 +79,10 @@ import uk.co.twinn.api.woocommerce.api.Customers;
 private void processResults() {
 
 /** The left hand always contains
- .isSuccess() -> did it work;
+    .isSuccess() -> did it work;
 
- Created, Read, Updated, Deleted will contain a single SingularType in .getResult(),
- i.e SingularType result = [created, read, updated, deleted].getResult(); 
+    Created, Read, Updated, Deleted will contain a single SingularType in .getResult(),
+    i.e SingularType result = [created, read, updated, deleted].getResult(); 
  **/
 
     Read<Product> readProduct = Products.read(123).getResponse();
