@@ -111,7 +111,7 @@ private void processResults() {
 
     Listed<Continent> continents = Data.listAllContinents().getResponse();
     if (continents.isSuccss()) {
-        for (Continent continent : continents.getResult()) {
+        for (Continent continent : continents.getResult()) { //continents.getResult() is a List<Continent>
             System.out.println(continent.toJson());
         }
     } else {
@@ -143,7 +143,12 @@ Batched<Customer> batched = Customers.batch()
 if (batched.isSuccess()){
 
     System.out.println("The request was a success BUT cycle the records to check that they are!");
-
+    /** batched.getResult() is Batched<Customer> containing we elements: 
+    *  getCreated() which is a List<Customer> relating to all the customers we just tried to create
+    *  getUpdated() which is a List<Customer> relating to all the customers we just tried to update
+    *  getDeleted() which is a List<Customer> relating to all the customers we just tried to delete
+    */
+    
     for(Customer bc :batched.getResult().getCreated()){
         if(!bc.hasError()){
             System.out.println(bc.toString());
