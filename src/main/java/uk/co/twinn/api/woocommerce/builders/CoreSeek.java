@@ -14,7 +14,11 @@ import java.util.List;
 
 public class CoreSeek {
 
-    public static class SearchCore<S, T extends SearchCore<S, T>> extends CoreParameterCollector<S, T> {
+    public static class SearchBase<S, T extends SearchBase<S, T>> extends CoreParameterCollector<S, T> {
+
+    }
+
+    public static class SearchContext<S, T extends SearchContext<S, T>> extends SearchBase<S, T> {
 
         /**
          * @param context Scope under which the request is made; determines fields present in response.
@@ -35,7 +39,7 @@ public class CoreSeek {
      *  Page, PerPage, Search, Order
      *
      */
-    public static class SearchCorePaging<S, T extends SearchCorePaging<S, T>> extends SearchCore<S, T> {
+    public static class SearchPaging<S, T extends SearchPaging<S, T>> extends SearchContext<S, T> {
         /**
          * @param page Current page of the collection. Default is 1.
          * @return T
@@ -87,7 +91,7 @@ public class CoreSeek {
      *
      *  Exclude, Include, OrderBy<br>
      */
-    public static class Searcher<S, T extends Searcher<S, T>> extends SearchCorePaging<S, T> {
+    public static class Searcher<S, T extends Searcher<S, T>> extends SearchPaging<S, T> {
 
         /**
          * @param exclude Ensure result set excludes specific IDs.

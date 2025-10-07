@@ -69,6 +69,13 @@ public class Products {
         return new ProductBuilder.ListAll<>();
 
     }
+
+    /* Not in the API. Convenience method to "list Products in a category" */
+    public static ProductBuilder.ListProductsInCategory<?> listProductsInCategory(int categoryId){
+
+        return new ProductBuilder.ListProductsInCategory<>(categoryId);
+
+    }
     //</editor-fold>
 
 }

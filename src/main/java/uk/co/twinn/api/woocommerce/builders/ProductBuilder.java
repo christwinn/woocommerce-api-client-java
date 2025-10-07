@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
 
 public class ProductBuilder extends ApiRequest {
 
@@ -699,7 +700,7 @@ public class ProductBuilder extends ApiRequest {
          * @param category Limit result set to products assigned a specific category ID.
          * @return T
          */
-        public T setCategory(String category) {
+        public T setCategory(int category) {
             addNameValuePair("category", category);
             return self();
         }
@@ -760,5 +761,74 @@ public class ProductBuilder extends ApiRequest {
 
     }
     //</editor-fold>
+
+    public static class ListProductsInCategory<T extends ListProductsInCategory<T>> extends CoreSeek.SearchBase<Product, T> {
+
+        private int categoryId;
+        private static final int COUNT = 50;
+        private static final int FAILSAFE = 5;
+        private int counter = 1;
+
+        public ListProductsInCategory(int categoryId){
+            super();
+            this.categoryId = categoryId;
+        }
+
+        public Listed<Product> getResponse(){
+
+            //if in constructor, possible 'this' leakage
+            addNameValuePair("category", categoryId);
+            addNameValuePair("per_page", COUNT);
+            addNameValuePair("page", counter);
+
+            List<Product> products = new ArrayList<>();
+            Listed<Product> search;
+
+            counter = 1;
+
+            while (counter < FAILSAFE){
+
+                search = doSearch();
+                counter++;
+
+                if (search.isSuccess()){
+                    if (search.getResult().size() < COUNT){ //less than requested assume we have bottomed out
+                        if (!products.isEmpty()){
+                            products.addAll(search.getResult());
+                            return new Listed<>(products);
+                        }else{
+                            return search;
+                        }
+                    }else if (counter < FAILSAFE){
+                        addNameValuePair("page", counter);//nudge the page
+                        products.addAll(search.getResult());
+                        //continue loop
+                    }else{
+                        return new Listed<>(new ApiResponseResult<>(false,0,
+                            "Failsafe triggered. called " + COUNT + ", " + FAILSAFE + " times. Do not want a perpertual loop"));
+                    }
+                }else{
+                    return search;
+                }
+
+            }
+
+            return new Listed<>(new ApiResponseResult<>(false,0,
+                "Something has gone wrong we should have returned a result before now, " +
+                    "Could be Failsafe triggered. Hunted for " + COUNT + ", " + FAILSAFE + " times. " +
+                    "Do not want a perpertual loop")
+            );
+        }
+
+        private Listed<Product> doSearch(){
+            return super.getResponse(
+                PRODUCTS,
+                build(),
+                new TypeReference<List<Product>>() {}
+            );
+        }
+
+
+    }
 
 }

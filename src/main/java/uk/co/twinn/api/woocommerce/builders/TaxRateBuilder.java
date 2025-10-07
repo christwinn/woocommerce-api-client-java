@@ -398,7 +398,7 @@ public class TaxRateBuilder extends ApiRequest {
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchCorePaging<TaxRate, T>{
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchPaging<TaxRate, T>{
 
         /**
          *

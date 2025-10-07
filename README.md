@@ -13,7 +13,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 <dependency>
     <groupId>uk.co.twinn.api</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>3.1.0.3</version>
+    <version>3.1.1.0</version>
 </dependency>
 ```
 Note: We use a 4 point versioning system: (Semantic Versioning 2.0.0 + 1) W.X.Y.Z  
@@ -496,9 +496,42 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-refunds](ht
 <summary>Example code for Order Refunds using the WooCommerce API</summary>
 
 ```java
-private void orderRefunds(){
+private void create(
+    int orderId, 
+    List <OrderRefundLineItem> lineItems,
+    List <OrderShippingLine> shippingLines,
+    List <OrderFeeLine> feeLines
+){
+    Created<OrderRefund> created = OrderRefunds.create(orderId)
+            .setAmount(9.99)
+            .setReason("Damaged")
+            .setRefundedBy(2) /*id of user*/
+            .setLineItems(lineItems)
+            .setShippingLines(shippingLines)
+            .setFeeLines(feeLines)
+            .setApiRefund(true)
+            .setApiRestock(false) //do not put back into stock
+            .getResponse();
+}
+
+private void read(int orderId, int refundId){
+    
+    Read<OrderRefund> read = OrderRefunds.read(orderId, refundId).getResponse();
 
 }
+
+private void delete(int orderId, int refundId){
+
+    Deleted<OrderRefund> deleted = OrderRefunds.delete(orderId, refundId, true).getResponse();
+    
+}
+
+private void listing(int orderId){
+
+    Listed<OrderRefund> list = OrderRefunds.listing(orderId).getResponse();
+
+}
+
 ```
 </details>
 
@@ -508,6 +541,8 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#products](https:/
     <summary>Example code for Products using the WooCommerce API</summary>
 
 ```java
+import uk.co.twinn.api.woocommerce.WooCommerce;
+
 private void products() {
 
     /*Create*/
@@ -541,30 +576,33 @@ private void products() {
 
     Batched<Product> batched = Products.batch()
             .addCreator(
-                Products.create()
-                    .setName("New Premium Quality 2")
-                    .setType("simple")
-                    .setRegularPrice(new BigDecimal(42.99))
-                    .setDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. " +
-                            "Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. " +
-                            "Donec eu libero sit amet quam egestas semper. " +
-                            "Aenean ultricies mi vitae est. Mauris placerat eleifend leo.")
-                    .setShortDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.")
-                    .setCategories(
-                            Arrays.asList(
-                                    new ProductCategoriesItem().id(9),
-                                    new ProductCategoriesItem().id(14)
+                    Products.create()
+                            .setName("New Premium Quality 2")
+                            .setType("simple")
+                            .setRegularPrice(new BigDecimal(42.99))
+                            .setDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. " +
+                                    "Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. " +
+                                    "Donec eu libero sit amet quam egestas semper. " +
+                                    "Aenean ultricies mi vitae est. Mauris placerat eleifend leo.")
+                            .setShortDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.")
+                            .setCategories(
+                                    Arrays.asList(
+                                            new ProductCategoriesItem().id(9),
+                                            new ProductCategoriesItem().id(14)
+                                    )
                             )
-                    )
-                    .setImage("http://mysite/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg")
+                            .setImage("http://mysite/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg")
             )
             .addUpdater(
-                Products.update(234).setMenuOrder(2).setName("Modified Title")
+                    Products.update(234).setMenuOrder(2).setName("Modified Title")
             )
             .addDeleter(
-                Products.delete(235, false)
+                    Products.delete(235, false)
             )
             .getResponse();
+
+    /*Not in the API Convenience method to "list Products in a Category" in a category, will list up to 250 products*/
+    Listed<Product> children = Products.listProductsInCategory(1).getResponse();
 
 }    
 ```
@@ -616,7 +654,39 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-categorie
     <summary>Example code for Product Categories using the WooCommerce API</summary>
 
 ```java
-private void productCategories(){
+private void productCategories() {
+
+    Created<ProductCategory> created = ProductCategories.create("Category 1").getResponse();
+
+    Read<ProductCategory> read = ProductCategories.read(1).getResponse();
+
+    Updated<ProductCategory> update = ProductCategories.update(productCategory).getResponse();
+
+    Updated<ProductCategory> update = ProductCategories.update(1).setName("My New Name").getResponse();
+
+    Deleted<ProductCategory> delete = ProductCategories.delete(1, true).getResponse();
+
+    Batched<ProductCategory> batched = ProductCategories.batch()
+            .addCreator(
+                    ProductCategories.create("Category A")
+            )
+            .addUpdater(
+                    ProductCategories.update(2, "Category 2")
+            )
+            .addDeleter(
+                    Products.delete(1, false)
+            )
+            .getResponse();
+
+    Listed<ProductCategory> search = ProductCategories.listing()
+            .setSearch("new")
+            .setHideEmpty(true)
+            /** .... **/
+            .getResponse();
+
+    /*Not in the API Convenience method to "list Child Categories" in a category, will list up to 250 children*/
+    Listed<ProductCategory> children = ProductCategories.listChildCategories(1).getResponse();
+
 }    
 ```
 </details>

@@ -42,6 +42,11 @@ public class Listed<T> extends ApiResponse<List<T>> {
 
     }
 
+    public Listed(List<T> list){
+        success = true;
+        this.listed = list;
+    }
+
     private void setList(ApiResponseResult<List<T>> result){
         try {
             this.listed = result.getData();

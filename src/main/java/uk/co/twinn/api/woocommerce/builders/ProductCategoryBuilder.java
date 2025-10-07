@@ -10,6 +10,7 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.api.ProductCategories;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductImage;
@@ -18,6 +19,7 @@ import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
@@ -391,6 +393,74 @@ public class ProductCategoryBuilder extends ApiRequest {
                 )
             );*/
 
+        }
+
+    }
+
+    public static class ListChildCategories<T extends ListAll<T>> extends CoreSeek.SearchBase<ProductCategory, T> {
+
+        private int parentId;
+        private static final int COUNT = 50;
+        private static final int FAILSAFE = 5;
+        private int counter = 1;
+
+        public ListChildCategories(int parentId){
+            super();
+            this.parentId = parentId;
+        }
+
+        public Listed<ProductCategory> getResponse(){
+
+            //if in constructor, possible 'this' leakage
+            addNameValuePair("parent", parentId);
+            addNameValuePair("per_page", COUNT);
+            addNameValuePair("page", counter);
+
+            List<ProductCategory> cats = new ArrayList<>();
+            Listed<ProductCategory> search;
+
+            counter = 1;
+
+            while (counter < FAILSAFE){
+
+                search = doSearch();
+                counter++;
+
+                if (search.isSuccess()){
+                    if (search.getResult().size() < COUNT){ //less than requested assume we have bottomed out
+                        if (!cats.isEmpty()){
+                            cats.addAll(search.getResult());
+                            return new Listed<>(cats);
+                        }else{
+                            return search;
+                        }
+                    }else if (counter < FAILSAFE){
+                        addNameValuePair("page", counter);//nudge the page
+                        cats.addAll(search.getResult());
+                        //continue loop
+                    }else{
+                        return new Listed<>(new ApiResponseResult<>(false,0,
+                            "Failsafe triggered. called " + COUNT + ", " + FAILSAFE + " times. Do not want a perpertual loop"));
+                    }
+                }else{
+                    return search;
+                }
+
+            }
+
+            return new Listed<>(new ApiResponseResult<>(false,0,
+                "Something has gone wrong we should have returned a result before now, " +
+                    "Could be Failsafe triggered. Hunted for " + COUNT + ", " + FAILSAFE + " times. " +
+                    "Do not want a perpertual loop")
+            );
+        }
+
+        private Listed<ProductCategory> doSearch(){
+            return super.getResponse(
+                PRODUCT_CATEGORIES,
+                build(),
+                new TypeReference<List<ProductCategory>>() {}
+            );
         }
 
     }

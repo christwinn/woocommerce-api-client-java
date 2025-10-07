@@ -188,7 +188,7 @@ public class OrderNoteBuilder extends ApiRequest {
 
 
 
-    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchCore<OrderNote, T> {
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchContext<OrderNote, T> {
 
         private final int orderId;
 

@@ -22,7 +22,7 @@ public class ProductCustomFieldBuilder {
 
     }
 
-    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchCorePaging<String, T> {
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchPaging<String, T> {
 
         public Listed<String> getResponse() {
 

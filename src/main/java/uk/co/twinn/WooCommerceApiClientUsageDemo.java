@@ -19,6 +19,7 @@ import java.util.List;
 
 import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.api.woocommerce.api.*;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.*;
 import uk.co.twinn.api.woocommerce.response.*;
 
 import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
@@ -28,10 +29,6 @@ import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.customer.Customer;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Continent;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Country;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Currency;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.Order;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderLineItem;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderNote;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderShippingLine;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.payment.PaymentGateway;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.Product;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategoriesItem;
@@ -47,7 +44,41 @@ import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZon
  * license MIT
  */
 public class WooCommerceApiClientUsageDemo {
+    private void create(
+        int orderId,
+        List <OrderRefundLineItem> lineItems,
+        List <OrderShippingLine> shippingLines,
+        List <OrderFeeLine> feeLines
+    ){
+        Created<OrderRefund> created = OrderRefunds.create(orderId)
+            .setAmount(new BigDecimal(9.99))
+            .setReason("Damaged")
+            .setRefundedBy(2) /*id of user!*/
+            .setLineItems(lineItems)
+            .setShippingLines(shippingLines)
+            .setFeeLines(feeLines)
+            .setApiRefund(true)
+            .setApiRestock(false) //do not put back into stock
+            .getResponse();
+    }
 
+    private void read(int orderId, int refundId){
+
+        Read<OrderRefund> read = OrderRefunds.read(orderId, refundId).getResponse();
+
+    }
+
+    private void delete(int orderId, int refundId){
+
+        Deleted<OrderRefund> deleted = OrderRefunds.delete(orderId, refundId, true).getResponse();
+
+    }
+
+    private void listing(int orderId){
+
+        Listed<OrderRefund> list = OrderRefunds.listing(orderId).getResponse();
+
+    }
     //
 
     /*private static final String API_BASE_PATH = "https://woocommerce/wp-json/wc/v3";
@@ -115,10 +146,39 @@ public class WooCommerceApiClientUsageDemo {
     /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
 
+        Listed<ProductCategory> root = ProductCategories.listChildCategories(0).getResponse();
+
+        if (root.isSuccess()) {
+            for (ProductCategory p : root.getResult()) {
+
+                System.out.println(p.toJson());
+
+                /*Read<ProductCategory> categoryRead = ProductCategories.read(p.getId()).getResponse();
+
+                if (categoryRead.isSuccess()){
+                    if (categoryRead.getResult().getId().intValue() != p.getId().intValue()){
+                        System.out.println("EXPECTED: " + p.getId() + " GOT: " + categoryRead.getResult().getId());
+                        break;
+                    }
+                }else{
+                    System.out.println("FAIL" + categoryRead.getError().getMessage());
+                }*/
+
+                //System.out.println(categoryRead.getResult().toJson());
+                //Updated<ProductCategory> updte = new ProductCategoryRequest.Updater<>().setId(p.getId()).setDisplay(ProductCategory.DisplayEnum.SUBCATEGORIES).getResponse();
+
+                //if (updte.isSuccess()) {
+                //   System.out.println(updte.toString());
+                //}
+            }
+        }else{
+            System.out.println(root.getError().getMessage());
+        }
+
         /*Created<Message> sentEmail = OrderActions.sendEmail(1).getResponse();
         System.out.println(sentEmail.getResult().getMessage());*/
 
-        Read<Product> read = Products.read(1346).getResponse();
+        /*Read<Product> read = Products.read(1346).getResponse();
 
         if (read.isSuccess()){
             System.out.println(read.getResult().toJson());

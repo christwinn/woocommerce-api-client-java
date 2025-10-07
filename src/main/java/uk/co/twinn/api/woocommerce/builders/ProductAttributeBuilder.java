@@ -337,7 +337,7 @@ public class ProductAttributeBuilder extends ApiRequest {
     //</editor-fold>
 
     //or Seek.SearchCore<T>
-    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchCore<ProductAttribute, T>{
+    public static class ListAll<T extends ListAll<T>> extends CoreSeek.SearchContext<ProductAttribute, T>{
 
         public Listed<ProductAttribute> getResponse(){
 

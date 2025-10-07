@@ -63,6 +63,13 @@ public class ProductCategories {
         return new ProductCategoryBuilder.ListAll<>();
 
     }
+
+    /*Not in the API Convenience method to "list Child Categories" in a category*/
+    public static ProductCategoryBuilder.ListChildCategories<?> listChildCategories(int categoryId){
+
+        return new ProductCategoryBuilder.ListChildCategories<>(categoryId);
+
+    }
     //</editor-fold>
 
 
