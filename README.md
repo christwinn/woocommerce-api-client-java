@@ -620,6 +620,45 @@ private void productVariations(){
 ```
 </details>
 
+## Product Brands
+Ref: Not documented on the REST API
+
+<details>
+    <summary>Example code for Product Brands using the WooCommerce API</summary>
+
+```java
+private void productBrands(){
+
+    Created<ProductBrand> created = ProductBrands.create("Brand 1").getResponse();
+
+    Read<ProductBrand> read = ProductBrands.read(1).getResponse();
+
+    Updated<ProductBrand> update = ProductBrands.update(productCategory).getResponse();
+
+    Updated<ProductBrand> update = ProductBrands.update(1).setName("Super").getResponse();
+
+    Deleted<ProductCBrand> delete = ProductBrands.delete(1, true).getResponse();
+
+    Batched<ProductBrand> batched = ProductBrands.batch()
+            .addCreator(
+                    ProductBrands.create("Brand A")
+            )
+            .addUpdater(
+                    ProductBrands.update(2, "Amazing")
+            )
+            .addDeleter(
+                    ProductBrands.delete(1, false)
+            )
+            .getResponse();
+
+    Listed<ProductBrand> search = ProductBrands.listing()
+            .setSearch("new")
+            .setHideEmpty(true)
+            /** .... **/
+            .getResponse();
+}    
+```
+</details>
 ## Product Attributes
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes)
@@ -674,7 +713,7 @@ private void productCategories() {
                     ProductCategories.update(2, "Category 2")
             )
             .addDeleter(
-                    Products.delete(1, false)
+                    ProductCategories.delete(1, false)
             )
             .getResponse();
 
