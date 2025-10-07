@@ -1,5 +1,6 @@
+# WooCommerce API Client for Java
 
-# A fluent java client interface to the WooCommerce REST Api
+## A fluent java client interface to the WooCommerce REST Api
 
 A fully implemented lightweight, deceptively simple, fluent Java client library for the WooCommerce REST API v3.
 
@@ -7,7 +8,7 @@ Built for Java developers who need to quickly integrate their applications with 
 
 The samples shown are the same as [https://woocommerce.github.io/woocommerce-rest-api-docs/](https://woocommerce.github.io/woocommerce-rest-api-docs/) but using this WooCommerce API Java Client
 
-##### Installation
+## Installation
 
 ```xml
 <dependency>
@@ -22,7 +23,7 @@ X: MAJOR version when we make incompatible API changes
 Y: MINOR version when we add functionality in a backward compatible manner  
 Z: PATCH version when we make backward compatible bug fixes  
 
-##### Reaction = action
+### Reaction = action
 
 Newton's Third Law of Motion: "For every action, there is an equal and opposite reaction"
 
@@ -70,9 +71,9 @@ Batched<SingularType> batched = PluralType.batch()
 
 ```
 
-##### Code Samples
+## Code Samples
 
-## Authentication
+### Authentication
 It is assumed you have obtained the relevant credentials as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys](https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys)
 <details>
 <summary>Example methods to Authenticate when using the WooCommerce API</summary>
@@ -103,7 +104,7 @@ private void authentication(){
 
 </details>
 
-## Coupons 
+### Coupons 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons](https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons)
 
 <details>
@@ -165,7 +166,7 @@ private void coupons() {
 ```
 </details>
 
-## Customers
+### Customers
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
 
 <details>
@@ -300,7 +301,7 @@ private void customers() {
 ```
 </details>
 
-## Orders
+### Orders
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#orders](https://woocommerce.github.io/woocommerce-rest-api-docs/#orders)
 
 <details>
@@ -424,7 +425,7 @@ private void orders(){
 ```
 </details>
 
-## Order Actions
+### Order Actions
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-actions](https://woocommerce.github.io/woocommerce-rest-api-docs/#order-actions)
 
 <details>
@@ -440,7 +441,7 @@ private void orderActions(int customerId) {
 ```
 </details>
 
-## Order Notes
+### Order Notes
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-notes](https://woocommerce.github.io/woocommerce-rest-api-docs/#order-notes)
 <details>
 <summary>Example code for Order Notes using the WooCommerce API</summary>
@@ -460,7 +461,7 @@ private void orderNotes(int orderId, int noteId){
 ```
 </details>
 
-## Order Refunds
+### Order Refunds
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-refunds](https://woocommerce.github.io/woocommerce-rest-api-docs/#order-refunds)
 <details>
 <summary>Example code for Order Refunds using the WooCommerce API</summary>
@@ -505,7 +506,7 @@ private void listing(int orderId){
 ```
 </details>
 
-## Products
+### Products
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#products](https://woocommerce.github.io/woocommerce-rest-api-docs/#products)
 <details>
     <summary>Example code for Products using the WooCommerce API</summary>
@@ -578,7 +579,7 @@ private void products() {
 ```
 </details>
 
-## Product Variations
+### Product Variations
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-variations](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-variations)
 
 <details>
@@ -590,7 +591,7 @@ private void productVariations(){
 ```
 </details>
 
-## Product Brands
+### Product Brands
 Ref: Not documented on the REST API
 
 <details>
@@ -630,7 +631,7 @@ private void productBrands(){
 ```
 </details>
 
-## Product Attributes
+### Product Attributes
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes)
 
@@ -643,7 +644,7 @@ private void productAttributes(){
 ```
 </details>
 
-## Product Attribute Terms
+### Product Attribute Terms
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attribute-terms](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attribute-terms)
 
@@ -656,7 +657,7 @@ private void productAttributeTerms(){
 ```
 </details>
 
-## Product Categories
+### Product Categories
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-categories](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-categories)
 
@@ -701,7 +702,7 @@ private void productCategories() {
 ```
 </details>
 
-## Product Custom Fields
+### Product Custom Fields
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-custom-fields](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-custom-fields)
 
@@ -714,7 +715,7 @@ private void productCustomFields(){
 ```
 </details>
 
-## Product Shipping Classes
+### Product Shipping Classes
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-shipping-classes](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-shipping-classes)
 
@@ -727,7 +728,7 @@ private void productShippingClasses(){
 ```
 </details>
 
-## Product Tags
+### Product Tags
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-tags](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-tags)
 
@@ -740,7 +741,7 @@ private void productTags(){
 ```
 </details>
 
-## Product Reviews
+### Product Reviews
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-reviews](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-reviews)
 
@@ -753,7 +754,7 @@ private void productReviews(){
 ```
 </details>
 
-## Reports
+### Reports
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#reports](https://woocommerce.github.io/woocommerce-rest-api-docs/#reports)
 
@@ -792,7 +793,7 @@ private void reports() {
 ```
 </details>
 
-## Refunds
+### Refunds
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#refunds](https://woocommerce.github.io/woocommerce-rest-api-docs/#refunds)
 
@@ -806,7 +807,7 @@ private void refunds(){
 </details>
 
 
-## Tax Rates
+### Tax Rates
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-rates](https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-rates)
 
@@ -822,7 +823,7 @@ private void taxRates(){
 ```
 </details>
 
-## Tax Classes
+### Tax Classes
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-classes](https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-classes)
 
@@ -835,7 +836,7 @@ private void taxClasses(){
 ```
 </details>
 
-## Webhooks
+### Webhooks
 
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks](https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks)
 
@@ -876,7 +877,7 @@ private void webhooks() {
 ```
 </details>
 
-## Settings
+### Settings
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#settings](https://woocommerce.github.io/woocommerce-rest-api-docs/#settings)
 
 <details>
@@ -894,7 +895,7 @@ private void settings() {
 ```
 </details>
 
-## SettingOptions
+### SettingOptions
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties](https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties)
 
 <details>
@@ -937,7 +938,7 @@ private void settingOptions() {
 </details>
 
 
-## Payment Gateways
+### Payment Gateways
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways](https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways)
 
 <details>
@@ -963,8 +964,7 @@ private void paymentGateways() {
 ```
 </details>
 
-
-## Shipping Zones
+### Shipping Zones
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zones](https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zones)
 
 <details>
@@ -992,7 +992,7 @@ private void shippingZones() {
 </details>
 
 
-## Shipping Zone Locations
+### Shipping Zone Locations
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-locations](https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-locations)
 
 <details>
@@ -1016,7 +1016,7 @@ private void shippingZoneLocations() {
 </details>
 
 
-## Shipping Zone Methods
+### Shipping Zone Methods
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-methods](https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-methods)
 
 <details>
@@ -1048,7 +1048,7 @@ private void shippingZoneMethods() {
 </details>
 
 
-## System Status
+### System Status
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status](https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status)
 
 <details>
@@ -1063,7 +1063,7 @@ private void systemStatus(){
 ```
 </details>
 
-## System Status Tools
+### System Status Tools
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status-tools](https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status-tools)
 <details>
 <summary>Example code for System Status Tools using the WooCommerce API</summary>
@@ -1084,7 +1084,7 @@ private void systemStatusTools(){
 ```
 </details>
 
-## Data
+### Data
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#data](https://woocommerce.github.io/woocommerce-rest-api-docs/#data)
 
 <details>
@@ -1223,7 +1223,7 @@ if (batched.isSuccess()){
 
 ```
 
-# WooCommerce API Client for Java
+## WooCommerce API Client for Java
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java Version](https://img.shields.io/badge/Java-8%2B-blue)](https://www.java.com)
