@@ -329,7 +329,7 @@ public class WooCommerceApiClientUsageDemo {
             }
         }
 
-        Batched<Customer> batched = Customers.batch().addCreator().addUpdater().addDeleter().getResponse();
+        Batched<Customer> batched = Customers.batch().getResponse();
         if (batched.isSuccess()){
             System.out.println("The request was a success BUT cycle the records to check that they are!");
 
