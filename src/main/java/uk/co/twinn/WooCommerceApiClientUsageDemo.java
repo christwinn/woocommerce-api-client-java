@@ -87,6 +87,14 @@ public class WooCommerceApiClientUsageDemo {
     private static final String API_PASSWORD = "cs_1234567890ABCDEF01234567890ABCDEF0123456";*/
 
     private static void data(){
+        Read<Product> readProduct = Products.read(123).getResponse();
+        if (readProduct.isSuccess()){
+            //do something with the result.
+            System.out.println(readProduct.getResult().toJson());
+
+        }else{
+            System.out.println(readProduct.getError().getMessage());
+        }
 
         Created<Product> created = Products.create().setName("Premium Quality")
             .setType("simple")
@@ -321,7 +329,7 @@ public class WooCommerceApiClientUsageDemo {
             }
         }
 
-        Batched<Customer> batched = customerDemo.batchUpdateCustomers();
+        Batched<Customer> batched = Customers.batch().addCreator().addUpdater().addDeleter().getResponse();
         if (batched.isSuccess()){
             System.out.println("The request was a success BUT cycle the records to check that they are!");
 

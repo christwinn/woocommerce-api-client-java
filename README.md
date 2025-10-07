@@ -69,17 +69,39 @@ Batched<SingularType> batched = PluralType.batch()
         .getResponse();
 
 /**
-    The left hand contains
+    The left hand always contains
     .isSuccess() -> did it work;
-
+ 
     Created, Read, Updated, Deleted will contain a single SingularType in .getResult(),
-        i.e SingularType result = [created, read, updated, deleted].getResult();
+    i.e SingularType result = [created, read, updated, deleted].getResult();
+ 
+**/
+
+Read<Product> readProduct = Products.read(123).getResponse();
+
+if (readProduct.isSuccess()){
+    //do something with the result.
+    Product p = readProduct.getResult();
+    System.out.println(readProduct.getResult().toJson());
+    
+}else{
+    System.out.println(readProduct.getError().getMessage());
+}
+
+/*
 
     Listed will contain a list of SingularType in .getResult(), 
         i.e List<SingularType> result = listed.getResult();
         Really this is "search" with no parameters and only limited results are returned [default 10], 
             you need to increment the offset to retrieve all the result)
+*/
 
+Listed<Continent> continents = Data.listAllContinents().getResponse();
+for (Continent continent : continents.getResult()){
+    System.out.println(continent.toJson());
+}
+
+/*
     Batched will contain a list of SingularType in .getResult() under the requested action.
         i.e.
             List<SingularType> created = batched.getResult().getCreated();
@@ -92,7 +114,41 @@ Batched<SingularType> batched = PluralType.batch()
         
         Note: WooCommerce limits you to 100 objects per batch, having run experiments this is a very hopeful limit.
             You could experience PHP running out of memory, isSuccess() will be false and an error message 500 will be returned in the .getError().getMessage(), try smaller batch sizes.
+*/
 
+Batched<Customer> batched = Customers.batch().addCreator(...).addUpdater(...).addDeleter(...).getResponse();
+if (batched.isSuccess()){
+        
+    System.out.println("The request was a success BUT cycle the records to check that they are!");
+
+    for (Customer bc : batched.getResult().getCreated()){
+        if (!bc.hasError()){
+            System.out.println(bc.toString());
+        }else{
+            System.out.println("CFAIL:" + bc.getError().getMessage());
+        }
+    }
+    
+    for (Customer bc : batched.getResult().getUpdated()){
+        if (!bc.hasError()){
+            System.out.println(bc.toString());
+        }else{
+            System.out.println("UFAIL:" + bc.getError().getMessage());
+        }
+    }
+    
+    for (Customer bc : batched.getResult().getDeleted()){
+        if (!bc.hasError()){
+            System.out.println(bc.toString());
+        }else{
+            System.out.println("DFAIL:" + bc.getError().getMessage());
+        }
+    }
+}else{
+    System.out.println(batched.getError().getMessage());
+}     
+        
+/**        
     result.getLinks() -> 
         HAL - Hypertext Application Language 
         <a href="https://stateless.group/hal_specification.html">https://stateless.group/hal_specification.html</a>
@@ -462,7 +518,7 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-actions](ht
 
 ```java
 private void orderActions(int customerId) {
-
+    
     /** Send Email **/
     Created<Message> created = OrderActions.sendEmail(customerId).getResponse();
     
