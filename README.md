@@ -182,13 +182,12 @@ if (batched.isSuccess()){
 ```
 </details>
 
-
 ## Code Samples
 
 ### Authentication
 It is assumed you have obtained the relevant credentials as per [https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys](https://woocommerce.github.io/woocommerce-rest-api-docs/#rest-api-keys)
 <details>
-<summary>Example methods to Authenticate when using the WooCommerce API</summary>
+<summary>Expand for example methods to Authenticate when using the WooCommerce API</summary>
     
 ```java
 private void authentication(){
@@ -220,7 +219,7 @@ private void authentication(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons](https://woocommerce.github.io/woocommerce-rest-api-docs/#coupons)
 
 <details>
-<summary>Example code to Create, Read, Update, Delete, Batch and get listed Coupons using the WooCommerce API</summary>
+<summary>Expand for example code to Create, Read, Update, Delete, Batch and get listed Coupons using the WooCommerce API</summary>
     
 ```java
 private void coupons() {
@@ -282,7 +281,7 @@ private void coupons() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#customers](https://woocommerce.github.io/woocommerce-rest-api-docs/#customers)
 
 <details>
-<summary>Example code to Create, Read, Update, Delete, Batch and get listed Customers using the WooCommerce API</summary>
+<summary>Expand for example code to Create, Read, Update, Delete, Batch and get listed Customers using the WooCommerce API</summary>
     
 ```java
 private void customers() {
@@ -417,7 +416,7 @@ private void customers() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#orders](https://woocommerce.github.io/woocommerce-rest-api-docs/#orders)
 
 <details>
-<summary>Example code to for Orders using the WooCommerce API</summary>
+<summary>Expand for example code to for Orders using the WooCommerce API</summary>
 
 ```java
 private void orders(){  
@@ -541,7 +540,7 @@ private void orders(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-actions](https://woocommerce.github.io/woocommerce-rest-api-docs/#order-actions)
 
 <details>
-<summary>Example code for Order Actions using the WooCommerce API</summary>
+<summary>Expand for example code for Order Actions using the WooCommerce API</summary>
 
 ```java
 private void orderActions(int customerId) {
@@ -556,7 +555,7 @@ private void orderActions(int customerId) {
 ### Order Notes
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-notes](https://woocommerce.github.io/woocommerce-rest-api-docs/#order-notes)
 <details>
-<summary>Example code for Order Notes using the WooCommerce API</summary>
+<summary>Expand for example code for Order Notes using the WooCommerce API</summary>
     
 ```java
 private void orderNotes(int orderId, int noteId){
@@ -576,7 +575,7 @@ private void orderNotes(int orderId, int noteId){
 ### Order Refunds
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#order-refunds](https://woocommerce.github.io/woocommerce-rest-api-docs/#order-refunds)
 <details>
-<summary>Example code for Order Refunds using the WooCommerce API</summary>
+<summary>Expand for example code for Order Refunds using the WooCommerce API</summary>
 
 ```java
 private void create(
@@ -621,7 +620,7 @@ private void listing(int orderId){
 ### Products
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#products](https://woocommerce.github.io/woocommerce-rest-api-docs/#products)
 <details>
-    <summary>Example code for Products using the WooCommerce API</summary>
+    <summary>Expand for example code for Products using the WooCommerce API</summary>
 
 ```java
 import uk.co.twinn.api.woocommerce.WooCommerce;
@@ -695,7 +694,7 @@ private void products() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-variations](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-variations)
 
 <details>
-    <summary>Example code for Product Variations using the WooCommerce API</summary>
+    <summary>Expand for example code for Product Variations using the WooCommerce API</summary>
 
 ```java
 private void productVariations(){
@@ -707,7 +706,7 @@ private void productVariations(){
 Ref: Not documented on the REST API
 
 <details>
-    <summary>Example code for Product Brands using the WooCommerce API</summary>
+    <summary>Expand for example code for Product Brands using the WooCommerce API</summary>
 
 ```java
 private void productBrands(){
@@ -748,7 +747,7 @@ private void productBrands(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attributes)
 
 <details>
-    <summary>Example code for Product Attributes using the WooCommerce API</summary>
+    <summary>Expand for example code for Product Attributes using the WooCommerce API</summary>
 
 ```java
 private void productAttributes(){
@@ -761,7 +760,7 @@ private void productAttributes(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attribute-terms](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attribute-terms)
 
 <details>
-    <summary>Example code for Product Attribute Terms using the WooCommerce API</summary>
+    <summary>Expand for example code for Product Attribute Terms using the WooCommerce API</summary>
 
 ```java
 private void productAttributeTerms(){
@@ -774,7 +773,7 @@ private void productAttributeTerms(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-categories](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-categories)
 
 <details>
-    <summary>Example code for Product Categories using the WooCommerce API</summary>
+    <summary>Expand for example code for Product Categories using the WooCommerce API</summary>
 
 ```java
 private void productCategories() {
@@ -819,7 +818,7 @@ private void productCategories() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-custom-fields](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-custom-fields)
 
 <details>
-    <summary>Example code for Product Custom Fields using the WooCommerce API</summary>
+    <summary>Expand for example code for Product Custom Fields using the WooCommerce API</summary>
 
 ```java
 private void productCustomFields(){
@@ -832,7 +831,7 @@ private void productCustomFields(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-shipping-classes](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-shipping-classes)
 
 <details>
-    <summary>Example code for Product Shipping Classes using the WooCommerce API</summary>
+    <summary>Expand for example code for Product Shipping Classes using the WooCommerce API</summary>
 
 ```java
 private void productShippingClasses(){
@@ -845,7 +844,7 @@ private void productShippingClasses(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-tags](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-tags)
 
 <details>
-    <summary>Example code for Product Tags using the WooCommerce API</summary>
+    <summary>Expand for example code for Product Tags using the WooCommerce API</summary>
 
 ```java
 private void productTags(){
@@ -858,7 +857,7 @@ private void productTags(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-reviews](https://woocommerce.github.io/woocommerce-rest-api-docs/#product-reviews)
 
 <details>
-    <summary>Example code for Product Reviews using the WooCommerce API</summary>
+    <summary>Expand for example code for Product Reviews using the WooCommerce API</summary>
 
 ```java
 private void productReviews(){
@@ -871,7 +870,7 @@ private void productReviews(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#reports](https://woocommerce.github.io/woocommerce-rest-api-docs/#reports)
 
 <details>
-<summary>Example code to retrieve the Reports using the WooCommerce API</summary>
+<summary>Expand for example code to retrieve the Reports using the WooCommerce API</summary>
 
 ```java
 private void reports() {
@@ -910,7 +909,7 @@ private void reports() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#refunds](https://woocommerce.github.io/woocommerce-rest-api-docs/#refunds)
 
 <details>
-    <summary>Example code for Refunds using the WooCommerce API</summary>
+    <summary>Expand for example code for Refunds using the WooCommerce API</summary>
 
 ```java
 private void refunds(){
@@ -924,7 +923,7 @@ private void refunds(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-rates](https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-rates)
 
 <details>
-    <summary>Example code for Tax Rates using the WooCommerce API</summary>
+    <summary>Expand for example code for Tax Rates using the WooCommerce API</summary>
 
 ```java
 private void taxRates(){
@@ -940,7 +939,7 @@ private void taxRates(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-classes](https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-classes)
 
 <details>
-    <summary>Example code for Tax Classes using the WooCommerce API</summary>
+    <summary>Expand for example code for Tax Classes using the WooCommerce API</summary>
 
 ```java
 private void taxClasses(){
@@ -953,7 +952,7 @@ private void taxClasses(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks](https://woocommerce.github.io/woocommerce-rest-api-docs/#webhooks)
 
 <details>
-    <summary>Example code for Webhooks using the WooCommerce API</summary>
+    <summary>Expand for example code for Webhooks using the WooCommerce API</summary>
 
 ```java
 
@@ -993,7 +992,7 @@ private void webhooks() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#settings](https://woocommerce.github.io/woocommerce-rest-api-docs/#settings)
 
 <details>
-<summary>Example code to list Settings using the WooCommerce API</summary>
+<summary>Expand for example code to list Settings using the WooCommerce API</summary>
     
 ```java
 private void settings() {
@@ -1011,7 +1010,7 @@ private void settings() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties](https://woocommerce.github.io/woocommerce-rest-api-docs/#setting-option-properties)
 
 <details>
-<summary>Example code to read/ update Settings using the WooCommerce API</summary>
+<summary>Expand for example code to read/ update Settings using the WooCommerce API</summary>
     
 ```java
 private void settingOptions() {
@@ -1054,7 +1053,7 @@ private void settingOptions() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways](https://woocommerce.github.io/woocommerce-rest-api-docs/#payment-gateways)
 
 <details>
-<summary>Example code to list and update Payment Gateways using the WooCommerce API</summary>
+<summary>Expand for example code to list and update Payment Gateways using the WooCommerce API</summary>
 
 ```java
 private void paymentGateways() {
@@ -1080,7 +1079,7 @@ private void paymentGateways() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zones](https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zones)
 
 <details>
-    <summary>Example code for Shipping Zones using the WooCommerce API</summary>
+    <summary>Expand for example code for Shipping Zones using the WooCommerce API</summary>
 
 ```java
 private void shippingZones() {
@@ -1108,7 +1107,7 @@ private void shippingZones() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-locations](https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-locations)
 
 <details>
-    <summary>Example code for Shipping Zone Locations using the WooCommerce API</summary>
+    <summary>Expand for example code for Shipping Zone Locations using the WooCommerce API</summary>
 
 ```java
 private void shippingZoneLocations() {
@@ -1132,7 +1131,7 @@ private void shippingZoneLocations() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-methods](https://woocommerce.github.io/woocommerce-rest-api-docs/#shipping-zone-methods)
 
 <details>
-    <summary>Example code for Shipping Zone Methods using the WooCommerce API</summary>
+    <summary>Expand for example code for Shipping Zone Methods using the WooCommerce API</summary>
 
 ```java
 private void shippingZoneMethods() {
@@ -1164,7 +1163,7 @@ private void shippingZoneMethods() {
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status](https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status)
 
 <details>
-    <summary>Example code for System Status using the WooCommerce API</summary>
+    <summary>Expand for example code for System Status using the WooCommerce API</summary>
 
 ```java
 private void systemStatus(){
@@ -1178,7 +1177,7 @@ private void systemStatus(){
 ### System Status Tools
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status-tools](https://woocommerce.github.io/woocommerce-rest-api-docs/#system-status-tools)
 <details>
-<summary>Example code for System Status Tools using the WooCommerce API</summary>
+<summary>Expand for example code for System Status Tools using the WooCommerce API</summary>
 
 ```java
 private void systemStatusTools(){
@@ -1200,7 +1199,7 @@ private void systemStatusTools(){
 Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#data](https://woocommerce.github.io/woocommerce-rest-api-docs/#data)
 
 <details>
-    <summary>Example code for Data using the WooCommerce API</summary>
+    <summary>Expand for example code for Data using the WooCommerce API</summary>
 
 ```java
 private void data(){
