@@ -20,6 +20,7 @@ import java.util.List;
 import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.api.woocommerce.api.*;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.*;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
 import uk.co.twinn.api.woocommerce.response.*;
 
 import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
@@ -145,6 +146,12 @@ public class WooCommerceApiClientUsageDemo {
 
     /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
+
+        Read<ProductBrand> read = ProductBrands.read(360).getResponse();
+        if (read.isSuccess()) {
+            System.out.println(read.toJson());
+        }
+        System.exit(0);
 
         Listed<ProductCategory> root = ProductCategories.listChildCategories(0).getResponse();
 

@@ -22,6 +22,7 @@ public class EndPoints {
 
     public static final String PRODUCTS = "products";
 
+        public static final String PRODUCTS_BRANDS = "products/brands";
         public static final String VARIATIONS = "variations";
         public static final String PRODUCTS_ATTRIBUTES = "products/attributes";
 

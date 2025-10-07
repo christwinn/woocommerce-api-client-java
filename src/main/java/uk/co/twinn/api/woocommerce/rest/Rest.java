@@ -48,6 +48,7 @@ public class Rest<T> {
         urlParameters.add(new BasicNameValuePair("Authorization", "Basic " + credentials));
         urlParameters.add(new BasicNameValuePair("content-type", "application/json"));
 
+        //System.out.println(credentials);
         return urlParameters;
 
     }

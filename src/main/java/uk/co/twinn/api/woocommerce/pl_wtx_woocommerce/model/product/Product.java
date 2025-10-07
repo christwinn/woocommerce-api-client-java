@@ -259,7 +259,7 @@ public class Product {
     public static final String SERIALIZED_NAME_BRANDS = "brands";
     //@SerializedName(SERIALIZED_NAME_BRANDS)
     @javax.annotation.Nullable
-    private List<Brand> brands;
+    private List<ProductBrand> brands;
 
     public static final String SERIALIZED_NAME_HAS_OPTIONS = "has_options";
     //@SerializedName(SERIALIZED_NAME_HAS_OPTIONS)
@@ -1433,7 +1433,7 @@ public enum TaxStatusEnum {
     }
 
 
-    public Product brands(@javax.annotation.Nullable List<Brand> brands) {
+    public Product brands(@javax.annotation.Nullable List<ProductBrand> brands) {
         this.brands = brands;
         return this;
     }
@@ -1442,11 +1442,11 @@ public enum TaxStatusEnum {
      * @return brands
      */
     @javax.annotation.Nullable
-    public List<Brand> getBrands() {
+    public List<ProductBrand> getBrands() {
         return brands;
     }
 
-    public void setBrands(@javax.annotation.Nullable List<Brand> brands) {
+    public void setBrands(@javax.annotation.Nullable List<ProductBrand> brands) {
         this.brands = brands;
     }
 

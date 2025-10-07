@@ -29,6 +29,17 @@ import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
 *
 * Note: currently only one action is available, other actions will be introduced at a later time.
 *
+* Supposedly!
+*
+* order_actions is V2 I am getting 404 on SendEmail and SendOrderDetails
+*
+* email_templates DOES yield a result. to do : locate in PHP
+*
+* All other methods appear to show in the api folder. this is a strange one.
+*
+*
+*
+*
 * */
 public class OrderActionBuilder extends ApiRequest {
 
@@ -49,12 +60,27 @@ public class OrderActionBuilder extends ApiRequest {
             this.orderId = orderId;
         }
 
-        private String getEndPoint(){
-            return ORDERS + "/" + orderId + "/actions/send_order_details";
+        public Created<Message> getResponse(){
+
+            return new Created<>(
+                new ApiResponseResult<>(
+                    false,
+                    0,
+                    "API MIA!")
+            );
+
         }
-        /**
-        *
-         */
+
+        /*private final int orderId;
+
+        public SendEmail(int orderId){
+            this.orderId = orderId;
+        }
+
+        private String getEndPoint(){
+            return ORDERS + "/" + orderId + "/actions/send_email";
+        }
+
         public Created<Message> getResponse(){
             if (orderId == 0) {
                 return new Created<>(
@@ -68,7 +94,48 @@ public class OrderActionBuilder extends ApiRequest {
                     new Rest<Message>().create(getEndPoint(), new TypeReference<Message>() {})
                 );
             }
+        }*/
+
+    }
+
+
+    public static class SendOrderDetails{
+
+        public Created<Message> getResponse(){
+
+            return new Created<>(
+                new ApiResponseResult<>(
+                    false,
+                    0,
+                    "API MIA!")
+            );
+
         }
+
+        /*private final int orderId;
+
+        public SendEmail(int orderId){
+            this.orderId = orderId;
+        }
+
+        private String getEndPoint(){
+            return ORDERS + "/" + orderId + "/actions/send_order_details";
+        }
+
+        public Created<Message> getResponse(){
+            if (orderId == 0) {
+                return new Created<>(
+                    new ApiResponseResult<>(
+                        false,
+                        0,
+                        "An OrderId is required.")
+                );
+            }else {
+                return new Created<>(
+                    new Rest<Message>().create(getEndPoint(), new TypeReference<Message>() {})
+                );
+            }
+        }*/
 
     }
 }

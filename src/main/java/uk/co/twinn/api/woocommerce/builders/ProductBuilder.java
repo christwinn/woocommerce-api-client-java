@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
 
 public class ProductBuilder extends ApiRequest {
 
