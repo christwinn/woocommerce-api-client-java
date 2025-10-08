@@ -19,6 +19,7 @@ import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.tax.TaxRate;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.tax.ISO3166;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.TAXES;
@@ -91,7 +92,7 @@ public class TaxRateBuilder extends ApiRequest {
         //city	string	City name, it doesn't support multiple values. Deprecated as of WooCommerce 5.3, postcodes should be used instead.
         private List<String> postcodes; //	string[]	Postcodes/ZIPs. Introduced in WooCommerce 5.3.
         private List<String> cities; //	string[]	City names. Introduced in WooCommerce 5.3.
-        private String rate; //	string	Tax rate.
+        private BigDecimal rate; //	string	Tax rate.
         private String name; //	string	Tax rate name.
         private Integer priority; //	integer	Tax priority. Only 1 matching rate per priority will be used. To define multiple tax rates for a single area you need to specify a different priority per rate. Default is 1.
         private Boolean compound; //	boolean	Whether or not this is a compound tax rate. Compound rates are applied on top of other tax rates. Default is false.
@@ -170,7 +171,7 @@ public class TaxRateBuilder extends ApiRequest {
          * @param rate Tax rate.
          * @return T
          */
-        public T setRate(String rate) {
+        public T setRate(BigDecimal rate) {
             this.rate = rate;
             return self();
         }

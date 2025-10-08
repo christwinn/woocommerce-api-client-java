@@ -90,14 +90,15 @@ private void processResults() {
     Created, Read, Updated, Deleted will contain a single SingularType in .getResult(),
     i.e SingularType result = [created, read, updated, deleted].getResult(); 
  **/
-
     Read<Product> readProduct = Products.read(123).getResponse();
 
     if (readProduct.isSuccess()) {
         //do something with the result.
         Product p = readProduct.getResult();
-        System.out.println(readProduct.getResult().toJson());
-
+        System.out.println(p.getSku());
+        System.out.println(p.getDescription());
+        /* p.get...*/
+        System.out.println(p.toJson());
     } else {
         System.out.println(readProduct.getError().getMessage());
     }
@@ -108,16 +109,21 @@ private void processResults() {
         Really this is "search" with no parameters and only limited results are returned [default 10], 
             you need to increment the offset to retrieve all the result)
 */
-
     Listed<Continent> continents = Data.listAllContinents().getResponse();
+    
     if (continents.isSuccss()) {
         for (Continent continent : continents.getResult()) { //continents.getResult() is a List<Continent>
+            System.out.println(continent.getName());
             System.out.println(continent.toJson());
+            for(Country country : continent.getCountries()){
+                System.out.println(country.getName());
+                System.out.println(country.getCode()); 
+                /* country.get... */
+            }
         }
     } else {
         System.out.println(readProduct.getError().getMessage());
     }
-
 
 /*
     Batched will contain a list of SingularType in .getResult() under the requested action.
@@ -151,6 +157,7 @@ if (batched.isSuccess()){
     
     for(Customer bc :batched.getResult().getCreated()){
         if(!bc.hasError()){
+            System.out.println(bc.getEmail()); /* bc.get... */
             System.out.println(bc.toString());
         }else{
             System.out.println("CREATE FAIL:"+bc.getError().getMessage());
@@ -159,6 +166,7 @@ if (batched.isSuccess()){
 
     for(Customer bc :batched.getResult().getUpdated()){
         if(!bc.hasError()){
+            System.out.println(bc.getEmail()); /* bc.get... */
             System.out.println(bc.toString());
         }else{
             System.out.println("UPDATE FAIL:"+bc.getError().getMessage());
@@ -167,6 +175,7 @@ if (batched.isSuccess()){
 
     for(Customer bc :batched.getResult().getDeleted()){
         if(!bc.hasError()){
+            System.out.println(bc.getEmail()); /* bc.get... */
             System.out.println(bc.toString());
         }else{
             System.out.println("DELETE FAIL:"+bc.getError().getMessage());
@@ -628,8 +637,6 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#products](https:/
     <summary>Expand for example code for Products using the WooCommerce API</summary>
 
 ```java
-import uk.co.twinn.api.woocommerce.WooCommerce;
-
 private void products() {
 
     /*Create*/
@@ -703,6 +710,7 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-variation
 
 ```java
 private void productVariations(){
+    //todo
 }    
 ```
 </details>
@@ -756,6 +764,7 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attribute
 
 ```java
 private void productAttributes(){
+    //documentation todo
 }        
 ```
 </details>
@@ -769,6 +778,7 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-attribute
 
 ```java
 private void productAttributeTerms(){
+    //documentation todo
 }    
 ```
 </details>
@@ -827,6 +837,7 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-custom-fi
 
 ```java
 private void productCustomFields(){
+    //documentation todo
 }    
 ```
 </details>
@@ -840,6 +851,7 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-shipping-
 
 ```java
 private void productShippingClasses(){
+    //documentation todo
 }    
 ```
 </details>
@@ -853,6 +865,7 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-tags](htt
 
 ```java
 private void productTags(){
+    //documentation todo
 }    
 ```
 </details>
@@ -866,6 +879,7 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#product-reviews](
 
 ```java
 private void productReviews(){
+    //documentation todo
 }    
 ```
 </details>
@@ -918,6 +932,7 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#refunds](https://
 
 ```java
 private void refunds(){
+    //documentation todo
 }    
 ```
 </details>
@@ -931,9 +946,29 @@ Ref: [https://woocommerce.github.io/woocommerce-rest-api-docs/#tax-rates](https:
     <summary>Expand for example code for Tax Rates using the WooCommerce API</summary>
 
 ```java
-private void taxRates(){
+import java.math.BigDecimal;
+
+private void taxRates() {
     
+    Created<TaxRate> created = TaxRates.create().setName("Standard VAT").setRate(new BigDecimal(20.0)).getResponse();
+
+    Created<TaxRate> created = TaxRates.create(new TaxRate().name("Zero VAT").rate(new BigDecimal(0.0))).getResponse();
+
+    Read<TaxRate> read = TaxRates.read(1).getResponse();
+
+    Updated<TaxRate> updated = TaxRates.update(2).setName("Std VAT").setRate(new BigDecimal(19.99)).getResponse();
+
+    Updated<TaxRate> updated = TaxRates.update(new TaxRate().id(1).name("Std VAT").rate(new BigDecimal(15.0))).getResponse();
+
+    Deleted<TaxRate> deleted = TaxRates.delete(1, true).getResponse();
+
+    Listed<TaxRate> listed = TaxRates.listing().getResponse();
     
+    Batched<TaxRate> batched = TaxRates.batch()
+            .addCreator(new TaxRate().name("Fuels Tax").rate(new BigDecimal(5.0)))
+            .addUpdater(TaxRates.update(2).setName("Standard VAT"))
+            .addDeleter(TaxRates.delete(9, true))
+            .getResponse();
     
 }    
 ```

@@ -155,6 +155,9 @@ public class WooCommerceApiClientUsageDemo {
     /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
 
+        System.out.println(TaxRates.listing().getResponse().toJson());
+        System.out.println(Refunds.listing().getResponse().toJson());
+
         Read<ProductBrand> read = ProductBrands.read(360).getResponse();
         if (read.isSuccess()) {
             System.out.println(read.toJson());

@@ -15,6 +15,7 @@ import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.core.deserialisers.JsonMappedLinks;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.global.Link;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class TaxRate {
     //city	string	City name, it doesn't support multiple values. Deprecated as of WooCommerce 5.3, postcodes should be used instead.
     private List<String> postcodes; //	string[]	Postcodes/ZIPs. Introduced in WooCommerce 5.3.
     private List<String> cities; //	string[]	City names. Introduced in WooCommerce 5.3.
-    private String rate; //	string	Tax rate.
+    private BigDecimal rate; //	string	Tax rate.
     private String name; //	string	Tax rate name.
     private Integer priority; //	integer	Tax priority. Only 1 matching rate per priority will be used. To define multiple tax rates for a single area you need to specify a different priority per rate. Default is 1.
     private Boolean compound; //	boolean	Whether or not this is a compound tax rate. Compound rates are applied on top of other tax rates. Default is false.
@@ -90,11 +91,11 @@ public class TaxRate {
         this.cities = cities;
     }
 
-    public String getRate() {
+    public BigDecimal getRate() {
         return rate;
     }
 
-    public void setRate(String rate) {
+    public void setRate(BigDecimal rate) {
         this.rate = rate;
     }
 
@@ -160,5 +161,76 @@ public class TaxRate {
 
     public String toJson() {
         return new JacksonObjectMapper().toJson(this);
+    }
+
+
+
+
+
+
+    public TaxRate id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public TaxRate country(ISO3166.CountryEnum country) {
+        this.country = country;
+        return this;
+    }
+    public TaxRate countryAsString(String country) {
+        if (country != null && !country.isEmpty()) {
+            this.country = ISO3166.CountryEnum.fromValue(country);
+        }
+        return this;
+    }
+
+    public TaxRate state(String state) {
+        this.state = state;
+        return this;
+    }
+
+    public TaxRate postcodes(List<String> postcodes) {
+        this.postcodes = postcodes;
+        return this;
+    }
+
+    public TaxRate cities(List<String> cities) {
+        this.cities = cities;
+        return this;
+    }
+
+    public TaxRate rate(BigDecimal rate) {
+        this.rate = rate;
+        return this;
+    }
+
+    public TaxRate name(String name){
+        this.name = name;
+        return this;
+    }
+
+    public TaxRate priority(Integer priority) {
+        this.priority = priority;
+        return this;
+    }
+
+    public TaxRate compound(Boolean compound) {
+        this.compound = compound;
+        return this;
+    }
+
+    public TaxRate shipping(Boolean shipping) {
+        this.shipping = shipping;
+        return this;
+    }
+
+    public TaxRate order(Integer order) {
+        this.order = order;
+        return this;
+    }
+
+    public TaxRate taxClass(String taxClass) {
+        this.taxClass = taxClass;
+        return this;
     }
 }
