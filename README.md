@@ -18,7 +18,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 </dependency>
 ```
 Note: We use a 4 point versioning system: (Semantic Versioning 2.0.0 + 1) W.X.Y.Z  
-W: The Upstream API version that is being targetted  
+W: The Upstream API version that is being targeted - simpler to ensure the correct client API 
 X: MAJOR version when we make incompatible API changes  
 Y: MINOR version when we add functionality in a backward compatible manner  
 Z: PATCH version when we make backward compatible bug fixes  
