@@ -14,7 +14,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 <dependency>
     <groupId>uk.co.twinn.api</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>3.1.2.0</version>
+    <version>3.1.2.1</version>
 </dependency>
 ```
 Note: We use a 4 point versioning system: (Semantic Versioning 2.0.0 + 1) W.X.Y.Z  
@@ -1289,11 +1289,10 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 - 🛡️ **Basic authentication** - secure WooCommerce API access
 - 📚 **Clear documentation** - comprehensive examples for Java integration
 - 🚀 **Wide Java support** - compatible with Java 8 and newer
-- ⚡ **OpenAPI Generated** - based on our [OpenAPI specification](https://github.com/wtx-labs/woocommerce-api-openapi-specification) developed from official WooCommerce documentation
 
 ## 📦 Version information
 
-- **Current version**: `0.1.0`
+- **Current version**: See installation at the top
 - **Supported WooCommerce API version**: `v3`
 - **Java compatibility**: Java 8+
 
