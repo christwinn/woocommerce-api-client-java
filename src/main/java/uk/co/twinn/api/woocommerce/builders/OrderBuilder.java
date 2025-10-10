@@ -115,8 +115,8 @@ public class OrderBuilder extends ApiRequest {
             paid = order.getSetPaid();
             billing = order.getBilling();
             shipping = order.getShipping();
-            lineItems = order.getLineItems();
-            shippingLines = order.getShippingLines();
+            lineItems = order.getLineItems().isEmpty() ? null : order.getLineItems();
+            shippingLines = order.getShippingLines().isEmpty() ? null : order.getShippingLines();
         }
 
         public T setPaymentMethod(String paymentMethod) {

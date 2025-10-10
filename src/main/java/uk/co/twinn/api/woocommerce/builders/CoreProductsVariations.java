@@ -82,7 +82,7 @@ class CoreProductsVariations {
             virtual = product.getVirtual();
             status = product.getStatus();
             downloadable = product.getDownloadable();
-            downloads = product.getDownloads();
+
             downloadLimit = product.getDownloadLimit();
             downloadExpiry = product.getDownloadExpiry();
 
@@ -96,9 +96,11 @@ class CoreProductsVariations {
             weight = product.getWeight();
             dimensions = product.getDimensions();
             shippingClass = product.getShippingClass();
-            attributes = product.getAttributes();
             menuOrder = product.getMenuOrder();
-            metaData = product.getMetaData();
+            //initialised in product as a list, therefore if new list is empty force ignore with null
+            downloads = product.getDownloads().isEmpty() ? null : product.getDownloads();
+            attributes = product.getAttributes().isEmpty() ? null : product.getAttributes();
+            metaData = product.getMetaData().isEmpty() ? null : product.getMetaData();
 
         }
 
@@ -116,7 +118,6 @@ class CoreProductsVariations {
             virtual = product.getVirtual();
             status = product.getStatus();
             downloadable = product.getDownloadable();
-            downloads = product.getDownloads();
             downloadLimit = product.getDownloadLimit();
             downloadExpiry = product.getDownloadExpiry();
 
@@ -130,9 +131,11 @@ class CoreProductsVariations {
             weight = product.getWeight();
             dimensions = product.getDimensions();
             shippingClass = product.getShippingClass();
-            attributes = product.getAttributes();
             menuOrder = product.getMenuOrder();
-            metaData = product.getMetaData();
+
+            downloads = product.getDownloads().isEmpty() ? null : product.getDownloads();
+            attributes = product.getAttributes().isEmpty() ? null : product.getAttributes();
+            metaData = product.getMetaData().isEmpty() ? null : product.getMetaData();
 
         }
 

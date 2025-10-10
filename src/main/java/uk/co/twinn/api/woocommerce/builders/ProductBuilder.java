@@ -136,10 +136,10 @@ public class ProductBuilder extends ApiRequest {
         private String buttonText;    //string	Product external button text. Only for external products.
         private Boolean soldIndividually;    //boolean	Allow one item to be bought in a single order. Default is false.
         private Boolean reviewsAllowed;    //boolean	Allow reviews. Default is true.
-        private List<Integer> upsellIds;    //array	List of up-sell products IDs.
-        private List<Integer> crossSellIds;    //array	List of cross-sell products IDs.
         private Integer parentId;    //integer	Product parent ID.
         private String purchaseNote;    //string	Optional note to send the customer after purchase.
+        private List<Integer> upsellIds;    //array	List of up-sell products IDs.
+        private List<Integer> crossSellIds;    //array	List of cross-sell products IDs.
         private List<ProductCategoriesItem> categories;    //array	List of categories. See Product - Categories properties
         private List<ProductTag> tags;    //array	List of tags. See Product - Tags properties
         private List<ProductImage> images;    //array	List of images. See Product - Images properties
@@ -162,27 +162,25 @@ public class ProductBuilder extends ApiRequest {
 
             featured = product.getFeatured();
             catalogVisibility = product.getCatalogVisibility();
-
             shortDescription = product.getShortDescription();
-
             externalUrl = product.getExternalUrl();
             buttonText = product.getButtonText();
-
             soldIndividually = product.getSoldIndividually();
-
             reviewsAllowed = product.getReviewsAllowed();
-            upsellIds = product.getUpsellIds();
-            crossSellIds = product.getCrossSellIds();
+
             parentId = product.getParentId();
             purchaseNote = product.getPurchaseNote();
-            categories = product.getCategories();
-            tags = product.getTags();
-            images = product.getImages();
-            defaultAttributes = product.getDefaultAttributes();
-            groupedProducts = product.getGroupedProducts();
 
-            variationIds = product.getVariations();
-            relatedIds = product.getRelatedIds();
+            //initialised in product as a list, therefore if new list is empty force ignore with null
+            upsellIds = product.getUpsellIds().isEmpty() ? null : product.getUpsellIds();
+            crossSellIds = product.getCrossSellIds().isEmpty() ? null : product.getCrossSellIds();
+            categories = product.getCategories().isEmpty() ? null : product.getCategories();
+            tags = product.getTags().isEmpty() ? null : product.getTags();
+            images = product.getImages().isEmpty() ? null : product.getImages();
+            defaultAttributes = product.getDefaultAttributes().isEmpty() ? null : product.getDefaultAttributes();
+            groupedProducts = product.getGroupedProducts().isEmpty()? null : product.getGroupedProducts();
+            variationIds = product.getVariations().isEmpty() ? null : product.getVariations();
+            relatedIds = product.getRelatedIds().isEmpty() ? null : product.getRelatedIds();
 
         }
         /**

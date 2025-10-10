@@ -35,7 +35,6 @@ public class ShippingMethodBuilder {
     }
     //</editor-fold>
 
-
     //<editor-fold  defaultstate="collapsed" desc="Listing Builder">
     /**
      *

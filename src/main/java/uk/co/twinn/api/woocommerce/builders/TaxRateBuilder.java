@@ -107,8 +107,8 @@ public class TaxRateBuilder extends ApiRequest {
             country = taxRate.getCountry();
             state = taxRate.getState();
 
-            postcodes = taxRate.getPostcodes();
-            cities = taxRate.getCities();
+            postcodes = taxRate.getPostcodes().isEmpty() ? null : taxRate.getPostcodes();
+            cities = taxRate.getCities().isEmpty() ? null : taxRate.getCities();
             rate = taxRate.getRate();
             name = taxRate.getName();
             priority = taxRate.getPriority();

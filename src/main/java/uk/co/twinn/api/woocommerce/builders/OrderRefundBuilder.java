@@ -113,10 +113,10 @@ public class OrderRefundBuilder extends ApiRequest {
             amount = orderRefund.getAmount();
             reason = orderRefund.getReason();
             refundedBy = orderRefund.getRefundedBy();
-            metaData = orderRefund.getMetaData();
-            lineItems = orderRefund.getLineItems();
-            shippingLines = orderRefund.getShippingLines();
-            feeLines = orderRefund.getFeeLines();
+            metaData = orderRefund.getMetaData().isEmpty() ? null : orderRefund.getMetaData();
+            lineItems = orderRefund.getLineItems().isEmpty() ? null : orderRefund.getLineItems();
+            shippingLines = orderRefund.getShippingLines().isEmpty() ? null : orderRefund.getShippingLines();
+            feeLines = orderRefund.getFeeLines().isEmpty() ? null : orderRefund.getFeeLines();
             apiRefund = orderRefund.getApiRefund();
             apiRestock = orderRefund.getApiRestock();
         }
