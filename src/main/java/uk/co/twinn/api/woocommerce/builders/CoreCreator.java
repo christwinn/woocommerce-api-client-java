@@ -17,6 +17,8 @@ import uk.co.twinn.api.woocommerce.response.UpdatedList;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CoreCreator<S, T> {
 
@@ -39,6 +41,7 @@ public class CoreCreator<S, T> {
 
     Updated<S> getUpdate(String endPoint, String parameters, TypeReference<?> type){
 
+        Logger.getLogger(CoreCreator.class.getName()).log(Level.INFO,String.format("Updating: %s with %s", endPoint, parameters));
         return new Updated<>(
             new Rest<S>().update(
                 endPoint,
