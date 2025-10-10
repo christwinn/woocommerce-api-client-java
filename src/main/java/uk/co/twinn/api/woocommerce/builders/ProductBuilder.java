@@ -487,6 +487,7 @@ public class ProductBuilder extends ApiRequest {
 
         @Override
         public Updated<Product> getResponse(){
+
             if (id > 0){
 
                 ProductBuilder create = build();
@@ -495,7 +496,7 @@ public class ProductBuilder extends ApiRequest {
                 /*return new Updated<>(
                     new Rest<Product>().update(create.endPoint(), create.toJson())
                 );*/
-                Updated updated = super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
+                Updated<Product> updated = super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
 
                 if (updated.isSuccess()) {
                     Logger.getLogger(ProductBuilder.class.getName()).log(Level.INFO, String.format("Updated: %s", updated.toJson()));
