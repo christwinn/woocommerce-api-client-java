@@ -10,6 +10,7 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import org.slf4j.LoggerFactory;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.*;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
@@ -19,11 +20,14 @@ import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 
 public class ProductBuilder extends ApiRequest {
 
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(ProductBuilder.class);
     protected final Product product = new Product();
 
     public ProductBuilder(){}
@@ -77,6 +81,9 @@ public class ProductBuilder extends ApiRequest {
         product.setGroupedProducts(creator.groupedProducts);
         product.setMenuOrder(creator.menuOrder);
         product.setMetaData(creator.metaData);
+
+        product.setVariations(creator.variationIds);
+        product.setRelatedIds(creator.relatedIds);
 
     }
 
@@ -140,6 +147,9 @@ public class ProductBuilder extends ApiRequest {
         //private int[] variations;    //array	List of variations IDs.read-only
         private List<Integer> groupedProducts;    //array	List of grouped products ID.
 
+        private List<Integer> variationIds;    //array	List of grouped products ID.
+        private List<Integer> relatedIds;    //array	List of grouped products ID.
+
         public Creator(){}
 
         public Creator(Product product){
@@ -170,6 +180,9 @@ public class ProductBuilder extends ApiRequest {
             images = product.getImages();
             defaultAttributes = product.getDefaultAttributes();
             groupedProducts = product.getGroupedProducts();
+
+            variationIds = product.getVariations();
+            relatedIds = product.getRelatedIds();
 
         }
         /**
@@ -420,6 +433,16 @@ public class ProductBuilder extends ApiRequest {
             return self();
         }
 
+        public T setVariationIds(List<Integer> variationIds) {
+            this.variationIds = variationIds;
+            return self();
+        }
+
+        public T setRelatedIds(List<Integer> relatedIds) {
+            this.relatedIds = relatedIds;
+            return self();
+        }
+
         private ProductBuilder build(){
             return new ProductBuilder(this);
         }
@@ -467,15 +490,22 @@ public class ProductBuilder extends ApiRequest {
             if (id > 0){
 
                 ProductBuilder create = build();
+
+                Logger.getLogger(ProductBuilder.class.getName()).log(Level.INFO,String.format("Updating: %s", create.toJson()));
                 /*return new Updated<>(
                     new Rest<Product>().update(create.endPoint(), create.toJson())
                 );*/
-                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
+                Updated updated = super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
+
+                if (updated.isSuccess()) {
+                    Logger.getLogger(ProductBuilder.class.getName()).log(Level.INFO, String.format("Updated: %s", updated.toJson()));
+                }
+
+                return updated;
 
             }else{
                 return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
-
         }
     }
 

@@ -13,6 +13,7 @@ package uk.co.twinn;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.List;
@@ -155,43 +156,76 @@ public class WooCommerceApiClientUsageDemo {
     /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
 
-        System.out.println(TaxRates.listing().getResponse().toJson());
-        System.out.println(Refunds.listing().getResponse().toJson());
+        //System.out.println(TaxRates.listing().getResponse().toJson());
+        //System.out.println(Refunds.listing().getResponse().toJson());
 
-        Read<ProductBrand> read = ProductBrands.read(360).getResponse();
+        /*Read<ProductCategory> read = ProductCategories.listChildCategories(0).getResponse();
         if (read.isSuccess()) {
             System.out.println(read.toJson());
-        }
-        System.exit(0);
+        }*/
 
-        Listed<ProductCategory> root = ProductCategories.listChildCategories(0).getResponse();
+        /*Updated<Product> updated = Products.update(498)
+            .setFeatured(true).getResponse();*/
+
+        Listed<Product> pre = Products.listing().setSku("67190001").getResponse();
+        for (Product p : pre.getResult()) {
+            System.out.println(p.toJson());
+            for (ProductCategoriesItem pi : p.getCategories()){
+                System.out.println(pi.getId());
+            }
+        }
+
+        Updated<Product> updated = Products.update(497)
+            //.setCategories(Collections.singletonList(new ProductCategoriesItem().id(91)))
+            .setMenuOrder(99)
+            .getResponse();
+
+        //  .setCategories(Collections.singletonList(new ProductCategoriesItem().id(91))).getResponse();
+
+        Listed<Product> post = Products.listing().setSku("67190001").getResponse();
+
+        for (Product p : post.getResult()) {
+            System.out.println(p.toJson());
+            for (ProductCategoriesItem pi : p.getCategories()){
+                System.out.println(pi.getId());
+            }
+        }
+
+        //Updated<Product> updated = Products.update(498)
+          //  .setCategories(Collections.singletonList(new ProductCategoriesItem().id(91))).getResponse();
+
+        System.exit(0);
+        Listed<Product> read = Products.listing().setSku("67190001").getResponse();
+
+        for (Product p : read.getResult()) {
+            System.out.println(p.getId() + " " + p.getMenuOrder());
+            for (ProductCategoriesItem pc : p.getCategories()){
+                System.out.println(pc.toJson());
+            }
+        }
+
+        Listed<Product> root = Products.listProductsInCategory(91).getResponse();
+        for (Product p : root.getResult()) {
+            System.out.println(p.getName() + " " + p.getMenuOrder());
+            for (ProductCategoriesItem pc : p.getCategories()){
+                System.out.println(pc.toJson());
+            }
+        }
+        /*Updated<ProductCategory> so = ProductCategories.update(200).setMenuOrder(5).getResponse();
+
+        Listed<ProductCategory> root = ProductCategories.listChildCategories(47).getResponse();
 
         if (root.isSuccess()) {
             for (ProductCategory p : root.getResult()) {
 
-                System.out.println(p.toJson());
+                System.out.println(p.getName() + " " + p.getMenuOrder() + " " + p.getId());
 
-                /*Read<ProductCategory> categoryRead = ProductCategories.read(p.getId()).getResponse();
-
-                if (categoryRead.isSuccess()){
-                    if (categoryRead.getResult().getId().intValue() != p.getId().intValue()){
-                        System.out.println("EXPECTED: " + p.getId() + " GOT: " + categoryRead.getResult().getId());
-                        break;
-                    }
-                }else{
-                    System.out.println("FAIL" + categoryRead.getError().getMessage());
-                }*/
-
-                //System.out.println(categoryRead.getResult().toJson());
-                //Updated<ProductCategory> updte = new ProductCategoryRequest.Updater<>().setId(p.getId()).setDisplay(ProductCategory.DisplayEnum.SUBCATEGORIES).getResponse();
-
-                //if (updte.isSuccess()) {
-                //   System.out.println(updte.toString());
-                //}
             }
         }else{
             System.out.println(root.getError().getMessage());
-        }
+        }*/
+
+        System.exit(0);
 
         /*Created<Message> sentEmail = OrderActions.sendEmail(1).getResponse();
         System.out.println(sentEmail.getResult().getMessage());*/
