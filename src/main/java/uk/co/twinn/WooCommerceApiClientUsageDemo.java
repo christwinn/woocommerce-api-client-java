@@ -156,6 +156,15 @@ public class WooCommerceApiClientUsageDemo {
     /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
 
+        Listed<Product> root = Products.listProductsInCategory(91).getResponse();
+        for (Product p : root.getResult()) {
+            System.out.println(p.getSku() + " "  + p.getName() + " " + p.getMenuOrder());
+            for (ProductCategoriesItem pc : p.getCategories()){
+                System.out.println(pc.toJson());
+            }
+        }
+
+        System.exit(0);
         //System.out.println(TaxRates.listing().getResponse().toJson());
         //System.out.println(Refunds.listing().getResponse().toJson());
 
@@ -167,7 +176,7 @@ public class WooCommerceApiClientUsageDemo {
         /*Updated<Product> updated = Products.update(498)
             .setFeatured(true).getResponse();*/
 
-        Listed<Product> pre = Products.listing().setSku("67190001").getResponse();
+        Listed<Product> pre = Products.listing().setSku("67000017").getResponse();
         for (Product p : pre.getResult()) {
             System.out.println(p.toJson());
             for (ProductCategoriesItem pi : p.getCategories()){
@@ -175,14 +184,17 @@ public class WooCommerceApiClientUsageDemo {
             }
         }
 
-        Updated<Product> updated = Products.update(497)
-            //.setCategories(Collections.singletonList(new ProductCategoriesItem().id(91)))
-            .setMenuOrder(99)
-            .getResponse();
+        Product product = new Product();
+        product.setId(686);
+        product.setName("Aluminium Angle 1 & 1/2\" X 1\" X 1/8\"");
+
+        Updated<Product> updated = Products.update(product).getResponse();
+
+        Updated<Product> upd = Products.update(686).setName("Aluminium Angle 1 & 1/2\" X 1\" X 1/8\"").getResponse();
 
         //  .setCategories(Collections.singletonList(new ProductCategoriesItem().id(91))).getResponse();
 
-        Listed<Product> post = Products.listing().setSku("67190001").getResponse();
+        Listed<Product> post = Products.listing().setSku("67000017").getResponse();
 
         for (Product p : post.getResult()) {
             System.out.println(p.toJson());
@@ -204,13 +216,7 @@ public class WooCommerceApiClientUsageDemo {
             }
         }
 
-        Listed<Product> root = Products.listProductsInCategory(91).getResponse();
-        for (Product p : root.getResult()) {
-            System.out.println(p.getName() + " " + p.getMenuOrder());
-            for (ProductCategoriesItem pc : p.getCategories()){
-                System.out.println(pc.toJson());
-            }
-        }
+
         /*Updated<ProductCategory> so = ProductCategories.update(200).setMenuOrder(5).getResponse();
 
         Listed<ProductCategory> root = ProductCategories.listChildCategories(47).getResponse();
@@ -347,9 +353,9 @@ public class WooCommerceApiClientUsageDemo {
         Message m = Authentication.Https().getResponse();
         System.out.println(m.getMessage());
 
-        Read<Product> product = Products.read(315).getResponse();
+        Read<Product> readProduct = Products.read(315).getResponse();
 
-        System.out.println(product.toJson());
+        System.out.println(readProduct.toJson());
 
 
         //System.exit(0);

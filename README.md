@@ -25,6 +25,18 @@ Z: PATCH version when we make backward compatible bug fixes
 
 ### Reaction = action
 
+This API implements the upstream API in an action for action methodology. 
+Using generics we also simplify the codebase funnelling the code through a few pipelines while enabling simple enforcement of the 
+upstream API interface.
+
+Using builder class methodology we have a simple to read and simple to use basis for generating our API calls.
+
+Rather than force you to error catch everywhere we error catch for you, leaving you with a simple call to isSuccess() to verify that a 
+successful call was made, and of course if not then we have the error in plain speak getError().getMessage(). 
+If it is a success we have our successful object inside getResult();
+
+From a user point of view, all you need is the classes under api (Plurals) and then we have a few response types, these contain the returned object types (Singular type, or list of Singlular).
+
 Newton's Third Law of Motion: "For every action, there is an equal and opposite reaction"
 
 <details>
