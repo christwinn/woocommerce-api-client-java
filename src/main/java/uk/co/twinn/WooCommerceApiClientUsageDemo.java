@@ -165,14 +165,20 @@ public class WooCommerceApiClientUsageDemo {
             }
         }*/
 
-        Coupon y = Coupons.create()
+
+        Updated<Order> update = Orders.update(3189).setStatus("completed").getResponse();
+
+        if (!update.isSuccess()){
+            System.out.println(update.getError().getMessage());
+        }
+        /*Coupon y = Coupons.create()
             .setCode("10off")
             .setDiscountType("percent")
             .setIndividualUse(true)
             .setExcludeSaleItems(true)
             .setMinimumAmount(new BigDecimal(10000.00))
             .getCreate()
-            .orElseThrow(()-> new ResponseException("Failure to create"));
+            .orElseThrow(()-> new ResponseException("Failure to create"));*/
 
         System.exit(0);
         //System.out.println(TaxRates.listing().getResponse().toJson());

@@ -39,6 +39,12 @@ public class OrderBuilder extends ApiRequest {
 
     private OrderBuilder(Creator<?> creator){
 
+        order.setMetaData(null);
+        order.setTaxLines(null);
+        order.setFeeLines(null);
+        order.setCouponLines(null);
+        order.setRefunds(null);
+
         order.setPaymentMethod(creator.paymentMethod);
         order.setPaymentMethodTitle(creator.paymentMethodTitle);
         order.setPaid(creator.paid);
@@ -52,8 +58,10 @@ public class OrderBuilder extends ApiRequest {
     private OrderBuilder(Updater<?> updater){
 
         this((Creator<?>)updater);
-        order.setId(updater.id);
+        //order.setId(updater.id); this must be set in the url if here we get denied
         order.setStatus(updater.status);
+
+
 
     }
 
@@ -67,9 +75,15 @@ public class OrderBuilder extends ApiRequest {
 
     public String endPoint(){
 
+        return endPoint(order.getId() != null ? order.getId() : 0);
+
+    }
+
+    private String endPoint(int orderId){
+
         return ORDERS +
-            (order.getId() != null && order.getId() != 0
-                ? ("/" + order.getId())
+            (orderId != 0
+                ? ("/" + orderId)
                 : ""
             ) +
             (isBatch
@@ -186,8 +200,8 @@ public class OrderBuilder extends ApiRequest {
             }
         }
 
-        public Updater(int productId){
-            this.id = productId;
+        public Updater(int id){
+            this.id = id;
         }
 
         public T setStatus(String status) {
@@ -210,7 +224,7 @@ public class OrderBuilder extends ApiRequest {
                 /*return new Updated<>(
                     new Rest<Order>().update(create.endPoint(), create.toJson())
                 );*/
-                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Order>() {});
+                return super.getUpdate(create.endPoint(id), create.toJson(), new TypeReference<Order>() {});
 
             }else{
                 return new Updated<>(

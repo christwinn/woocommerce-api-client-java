@@ -55,8 +55,8 @@ public class OrderNoteBuilder extends ApiRequest {
 
         return ORDERS +
             "/" +
-            orderId
-            +
+            orderId +
+            "/" +
             NOTES +
             (noteId > 0
                 ? ("/" + noteId)
