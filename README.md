@@ -25,7 +25,7 @@ Z: PATCH version when we make backward compatible bug fixes
 
 ### Reaction = action
 
-This API implements the upstream API in an action for action methodology. 
+This API implements the upstream API in an 1 for 1, action for action methodology. 
 Using generics we also simplify the codebase funnelling the code through a few pipelines while enabling simple enforcement of the 
 upstream API interface.
 
@@ -1330,6 +1330,7 @@ The only requirement is to preserve the original author attribution in the sourc
 ## 🔍 Keywords
 
 woocommerce java client, woocommerce rest api java, java woocommerce integration, woocommerce api v3 java, e-commerce java integration, woocommerce java library, java rest api client woocommerce, woocommerce api client library for java
+
 
 
 
