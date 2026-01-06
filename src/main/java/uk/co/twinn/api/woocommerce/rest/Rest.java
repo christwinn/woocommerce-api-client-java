@@ -11,11 +11,13 @@ package uk.co.twinn.api.woocommerce.rest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
@@ -133,6 +135,33 @@ public class Rest<T> {
         }catch(ExecutionException ee){
 
             return new ApiResponseResult<T>(false, 0, ee.toString());
+
+        }
+
+    }
+
+    public Optional<ApiResponseResult<T>> creating(String endPoint, String content, TypeReference<?> type){
+
+        try {
+
+            CompletableFuture<ApiResponseResult<T>> future =
+                CompletableFuture.supplyAsync(() ->
+                    http.create(
+                        getUri(endPoint),
+                        getHeaders(),
+                        content,
+                        type
+                    )
+                ).handle((s, t) -> s != null
+                    ? s :
+                    new ApiResponseResult<T>(false, 0, t.toString())
+                );
+
+            return Optional.of(future.get());
+
+        } catch(InterruptedException | ExecutionException e){
+
+            throw new ResponseException(e);
 
         }
 

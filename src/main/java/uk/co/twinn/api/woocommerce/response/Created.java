@@ -9,14 +9,23 @@
 
 package uk.co.twinn.api.woocommerce.response;
 
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.response.core.CrudResponse;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
+
+import java.util.Optional;
 
 public class Created<T> extends CrudResponse<T> {
 
     public Created(ApiResponseResult<T>result){
 
         super(result);
+
+    }
+
+    public Created(Optional<ApiResponseResult<T>> result){
+
+        super(result.orElseThrow(()->new ResponseException("No Result received")));
 
     }
 

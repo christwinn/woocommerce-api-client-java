@@ -10,13 +10,16 @@
 package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Ran;
 import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.api.woocommerce.response.UpdatedList;
+import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,6 +41,24 @@ public class CoreCreator<S, T> {
         );
 
     }
+
+    Optional<S> getCreated(String endPoint, String parameters, TypeReference<?> type){
+
+        return (
+            Optional.of(
+                new Created<>(
+                    new Rest<S>().creating(
+                        endPoint,
+                        parameters,
+                        type
+                    )
+                )
+                .getObject()
+            ).orElseThrow(()->new ResponseException("CoreCreator->getCreated")));
+
+    }
+
+
 
     Updated<S> getUpdate(String endPoint, String parameters, TypeReference<?> type){
 

@@ -13,15 +13,15 @@ package uk.co.twinn;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.List;
 
 import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.api.woocommerce.api.*;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.*;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
 import uk.co.twinn.api.woocommerce.response.*;
 
 import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
@@ -38,6 +38,7 @@ import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCateg
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.report.ReportOrderTotalSummary;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.Shipping;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZoneLocation;
+import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 /**
  * WooCommerce API Client - Usage Demo
@@ -156,13 +157,22 @@ public class WooCommerceApiClientUsageDemo {
     /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
 
-        Listed<Product> root = Products.listProductsInCategory(91).getResponse();
+        /*Listed<Product> root = Products.listProductsInCategory(91).getResponse();
         for (Product p : root.getResult()) {
             System.out.println(p.getSku() + " "  + p.getName() + " " + p.getMenuOrder());
             for (ProductCategoriesItem pc : p.getCategories()){
                 System.out.println(pc.toJson());
             }
-        }
+        }*/
+
+        Coupon y = Coupons.create()
+            .setCode("10off")
+            .setDiscountType("percent")
+            .setIndividualUse(true)
+            .setExcludeSaleItems(true)
+            .setMinimumAmount(new BigDecimal(10000.00))
+            .getCreate()
+            .orElseThrow(()-> new ResponseException("Failure to create"));
 
         System.exit(0);
         //System.out.println(TaxRates.listing().getResponse().toJson());

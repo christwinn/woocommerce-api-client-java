@@ -11,6 +11,8 @@ package uk.co.twinn.api.woocommerce.response.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import java.util.Optional;
+
 public class CrudResponse<T> extends ApiResponse<T>{
 
     protected T object = null;
@@ -54,6 +56,11 @@ public class CrudResponse<T> extends ApiResponse<T>{
     public T getResult(){
         /*T is set by the call*/
         return object;
+    }
+
+    public Optional<T> getObject(){
+        /*T is set by the call*/
+        return Optional.ofNullable(object);
     }
 
     public boolean hasResult(){

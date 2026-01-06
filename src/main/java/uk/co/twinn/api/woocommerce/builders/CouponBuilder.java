@@ -11,6 +11,7 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.global.MetaData;
@@ -23,6 +24,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
 
@@ -348,13 +350,32 @@ public class CouponBuilder extends ApiRequest {
             }else {
 
                 CouponBuilder create = build();
-                return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){});
+                return
+                    super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){});
 
                 //make the call
                 /*return new Created<>(
                     new Rest<Coupon>().create(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
                 );*/
             }
+        }
+
+        public Optional<Coupon> getCreate() {
+
+            if (code == null || code.isEmpty()) {
+
+                throw new ResponseException("Code is MANDATORY!");
+
+            }
+
+            CouponBuilder create = build();
+
+            return super.getCreated(
+                create.endPoint(),
+                create.toJson(),
+                new TypeReference<Coupon>() {}
+            );
+
         }
 
     }

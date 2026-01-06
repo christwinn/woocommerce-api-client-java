@@ -37,6 +37,7 @@ public class OrderNoteBuilder extends ApiRequest {
     private OrderNoteBuilder(Creator<?> creator){
 
         orderId = creator.orderId;
+        orderNote.setId(0);
         orderNote.setNote(creator.note);
         orderNote.setCustomerNote(creator.customerNote);
         orderNote.setAddedByUser(creator.addedByUser);
@@ -46,7 +47,7 @@ public class OrderNoteBuilder extends ApiRequest {
     public String endPoint(){
 
         return
-           endPoint((orderId != null ? orderId : 0), orderNote.getId());
+           endPoint((orderId != null ? orderId : 0), orderNote.getId() == null ? 0 : orderNote.getId());
 
     }
 
