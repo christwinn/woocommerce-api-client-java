@@ -192,6 +192,8 @@ public class Configuration {
                 }
             }
 
+        }else{
+            Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, pathToConfigDOTjson, "FileNotFoundException");
         }
     }
 

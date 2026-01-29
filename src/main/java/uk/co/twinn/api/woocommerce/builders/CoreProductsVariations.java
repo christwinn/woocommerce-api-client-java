@@ -60,7 +60,7 @@ class CoreProductsVariations {
         protected String weight;    //string	Product weight.
         protected ProductDimension dimensions;    //object	Product dimensions. See Product - Dimensions properties
         protected String shippingClass;    //string	Shipping class slug.
-        protected List<ProductAttribute>attributes;    //array	List of attributes. See Product - Attributes properties
+        protected List<Attribute> attributes;    //array	List of attributes. See Product - Attributes properties
         protected Integer menuOrder;    //integer	Menu order, used to custom sort products.
 
         protected List<MetaData> metaData;    //array	Meta data. See Product - Meta data properties
@@ -413,7 +413,7 @@ class CoreProductsVariations {
          * @param attributes  List of attributes. See Product - Attributes properties
          * @return T
          */
-        public T setAttributes(List<ProductAttribute> attributes) {
+        public T setAttributes(List<Attribute> attributes) {
             this.attributes = attributes;
             return self();
         }

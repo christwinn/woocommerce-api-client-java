@@ -44,6 +44,12 @@ public class Authentication {
 
     }
 
+    public static AuthenticationBuilder.ConfigFile ConfigFile(String fullPathToFile){
+
+        return new AuthenticationBuilder.ConfigFile(fullPathToFile);
+
+    }
+
     public static AuthenticationBuilder.Https Https(){
 
         return new AuthenticationBuilder.Https();

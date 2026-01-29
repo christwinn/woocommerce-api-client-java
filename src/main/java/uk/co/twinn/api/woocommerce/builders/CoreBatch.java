@@ -74,10 +74,22 @@ class CoreBatch {
             return self();
         }
 
+        /**
+         *
+         * Empty the lists
+         * @return are we empty?
+         *
+         */
         public boolean empty() {
             return batch.empty();
         }
 
+        /**
+         *
+         * Is the list empty
+         * @return are we empty?
+         *
+         */
         public boolean isEmpty() {
             return size() == 0;
         }

@@ -16,7 +16,29 @@ import uk.co.twinn.api.woocommerce.rest.Configuration;
 public class AuthenticationBuilder {
 
 
+    public static class ConfigFile {
 
+        private final String fullPathToFile;
+
+        public ConfigFile(String fullPathToFile){
+            this.fullPathToFile = fullPathToFile;
+        }
+
+        public Message getResponse(){
+
+            new Configuration(fullPathToFile);
+
+            return new Message(
+                new ApiResponseResult<>(
+                    true,
+                    200,
+                    "{\"message\": \"The Authentication Configuration has been updated with the provided values.\"}"
+                )
+            );
+
+        }
+
+    }
     /**
      *
      * REST API keys
@@ -25,6 +47,7 @@ public class AuthenticationBuilder {
      *
      */
     public static class Https{
+
 
         private String website;
         private String apiPath;

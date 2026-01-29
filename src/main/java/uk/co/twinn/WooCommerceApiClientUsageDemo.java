@@ -12,6 +12,7 @@ package uk.co.twinn;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,6 +23,7 @@ import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.api.woocommerce.api.*;
 import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.*;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.*;
 import uk.co.twinn.api.woocommerce.response.*;
 
 import uk.co.twinn.api.woocommerce.demonstration.CustomerDemo;
@@ -32,9 +34,6 @@ import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Continent;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Country;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Currency;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.payment.PaymentGateway;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.Product;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategoriesItem;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.report.ReportOrderTotalSummary;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.Shipping;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZoneLocation;
@@ -165,12 +164,71 @@ public class WooCommerceApiClientUsageDemo {
             }
         }*/
 
+        Authentication.ConfigFile(System.getProperty("user.home") + "/.woocommerce-api/fireworks.json").getResponse();
 
-        Updated<Order> update = Orders.update(3189).setStatus("completed").getResponse();
+        Listed<ProductAttribute> productAttributeListed = ProductAttributes.listing().getResponse();
+        if (productAttributeListed.isSuccess()) {
+
+            String attributeName = "Cleareance";
+            String attributeValue = "attributeValue";
+            List<ProductAttribute> productAttributes = productAttributeListed.getResult();
+            List<Attribute> attributes = new ArrayList<>();
+
+            try {
+
+                ProductAttribute pa = productAttributes
+                    .stream()
+                    .filter(e -> e.getName().equals(attributeName))
+                    .findFirst()
+                    .orElseThrow(
+                        () -> new ResponseException("no matching attribute could be found")
+                    );
+
+                attributes.add(
+                    new Attribute(pa.getId(), attributeValue).visible(true)
+                );
+
+            } catch (ResponseException e) {
+                Created<ProductAttribute> createProductAttribute =
+                    ProductAttributes.create(attributeName).getResponse();
+                if (createProductAttribute.isSuccess()){
+                    attributes.add(
+                        new Attribute(
+                            createProductAttribute.getResult().getId(),
+                            attributeValue
+                        ).visible(true)
+                    );
+                }
+            }
+
+
+            Updated<Product> prd = Products.update(96)
+                .setRegularPrice(new BigDecimal(10000))
+                .setAttributes(attributes)
+                .getResponse();
+
+            if (prd.isSuccess()) {
+                System.out.println(prd.getResult().getAttributes().size());
+                System.out.println(prd.getResult().toJson());
+            } else {
+                System.out.println(prd.getError().getMessage());
+            }
+
+        }
+
+        System.exit(0);
+        /*Read<Order> orders = Orders.read(3199).getResponse();
+
+        if (orders.isSuccess()){
+            System.out.println(orders.getResult().toJson());
+        }*
+
+
+        /*Updated<Order> update = Orders.update(3189).setStatus("completed").getResponse();
 
         if (!update.isSuccess()){
             System.out.println(update.getError().getMessage());
-        }
+        }*/
         /*Coupon y = Coupons.create()
             .setCode("10off")
             .setDiscountType("percent")
@@ -180,7 +238,7 @@ public class WooCommerceApiClientUsageDemo {
             .getCreate()
             .orElseThrow(()-> new ResponseException("Failure to create"));*/
 
-        System.exit(0);
+
         //System.out.println(TaxRates.listing().getResponse().toJson());
         //System.out.println(Refunds.listing().getResponse().toJson());
 

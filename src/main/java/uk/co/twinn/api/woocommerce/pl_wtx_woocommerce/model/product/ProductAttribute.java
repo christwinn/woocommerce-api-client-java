@@ -22,7 +22,9 @@
 
 package uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 //import com.google.gson.annotations.SerializedName;
@@ -49,10 +51,10 @@ public class ProductAttribute {
   @javax.annotation.Nullable
   private String name;
 
-  public static final String SERIALIZED_NAME_OPTION = "option";
+  /*public static final String SERIALIZED_NAME_OPTION = "option";
   //@SerializedName(SERIALIZED_NAME_OPTION)
   @javax.annotation.Nullable
-  private String option;
+  private List<String> option = null;*/
 
   public static final String SERIALIZED_NAME_SLUG = "slug";
   //@SerializedName(SERIALIZED_NAME_SLUG)
@@ -117,23 +119,31 @@ public class ProductAttribute {
   }
 
 
-  public ProductAttribute option(@javax.annotation.Nullable String option) {
-    this.option = option;
-    return this;
+/*  public ProductAttribute option(String option) {
+      addOption(option);
+      return this;
   }
 
+    public ProductAttribute option(List<String> option) {
+        this.option = option;
+        return this;
+    }
+*/
   /**
    * Selected attribute term name. Applicable only for Product represents SKU (variation)
    * @return option
    */
-  @javax.annotation.Nullable
-  public String getOption() {
+  /*@javax.annotation.Nullable
+  public List<String> getOption() {
     return option;
   }
 
-  public void setOption(@javax.annotation.Nullable String option) {
-    this.option = option;
-  }
+  public void addOption(String option) {
+      if (this.option == null){
+          this.option = new ArrayList<>();
+      }
+      this.option.add(option);
+  }*/
 
 
   public ProductAttribute slug(@javax.annotation.Nullable String slug) {
@@ -232,7 +242,7 @@ public class ProductAttribute {
     ProductAttribute productAttribute = (ProductAttribute) o;
     return Objects.equals(this.id, productAttribute.id) &&
         Objects.equals(this.name, productAttribute.name) &&
-        Objects.equals(this.option, productAttribute.option) &&
+        //Objects.equals(this.option, productAttribute.option) &&
         Objects.equals(this.slug, productAttribute.slug) &&
         Objects.equals(this.type, productAttribute.type) &&
         Objects.equals(this.orderBy, productAttribute.orderBy) &&
@@ -241,7 +251,8 @@ public class ProductAttribute {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, option, slug, type, orderBy, hasArchives);
+      //option,
+      return Objects.hash(id, name, slug, type, orderBy, hasArchives);
   }
 
   @Override
@@ -250,7 +261,7 @@ public class ProductAttribute {
     sb.append("class ProductAttribute {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    option: ").append(toIndentedString(option)).append("\n");
+    //sb.append("    option: ").append(toIndentedString(option)).append("\n");
     sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");

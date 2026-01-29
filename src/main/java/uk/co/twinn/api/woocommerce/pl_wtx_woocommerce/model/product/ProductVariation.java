@@ -227,7 +227,7 @@ public class ProductVariation {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   //@SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   @javax.annotation.Nullable
-  private List<ProductAttribute> attributes = new ArrayList<>();
+  private List<Attribute> attributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MENU_ORDER = "menu_order";
   //@SerializedName(SERIALIZED_NAME_MENU_ORDER)
@@ -954,12 +954,12 @@ public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) 
   }
 
 
-  public ProductVariation attributes(@javax.annotation.Nullable List<ProductAttribute> attributes) {
+  public ProductVariation attributes(@javax.annotation.Nullable List<Attribute> attributes) {
     this.attributes = attributes;
     return this;
   }
 
-  public ProductVariation addAttributesItem(ProductAttribute attributesItem) {
+  public ProductVariation addAttributesItem(Attribute attributesItem) {
     if (this.attributes == null) {
       this.attributes = new ArrayList<>();
     }
@@ -972,11 +972,11 @@ public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) 
    * @return attributes
    */
   @javax.annotation.Nullable
-  public List<ProductAttribute> getAttributes() {
+  public List<Attribute> getAttributes() {
     return attributes;
   }
 
-  public void setAttributes(@javax.annotation.Nullable List<ProductAttribute> attributes) {
+  public void setAttributes(@javax.annotation.Nullable List<Attribute> attributes) {
     this.attributes = attributes;
   }
 

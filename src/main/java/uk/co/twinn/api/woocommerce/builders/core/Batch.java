@@ -30,6 +30,12 @@ public class Batch<T> {
 
     }
 
+    /**
+     *
+     * Empty the lists
+     * @return are we empty?
+     *
+     */
     public boolean empty(){
 
         create.clear();

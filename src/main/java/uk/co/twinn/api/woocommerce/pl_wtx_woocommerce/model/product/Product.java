@@ -26,6 +26,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 //import com.google.gson.annotations.SerializedName;
@@ -396,7 +397,7 @@ public class Product {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   //@SerializedName(SERIALIZED_NAME_ATTRIBUTES)
   @javax.annotation.Nullable
-  private List<ProductAttribute> attributes = new ArrayList<>();
+  private List<Attribute> attributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DEFAULT_ATTRIBUTES = "default_attributes";
   //@SerializedName(SERIALIZED_NAME_DEFAULT_ATTRIBUTES)
@@ -900,6 +901,7 @@ public enum TaxStatusEnum {
    * Current product price. read-only
    * @return price
    */
+  @JsonIgnore
   @javax.annotation.Nullable
   public BigDecimal getPrice() {
     return price;
@@ -920,15 +922,21 @@ public enum TaxStatusEnum {
    * Regular product price.
    * @return regularPrice
    */
-  @JsonProperty("regular_price")
+  @JsonIgnore
   @javax.annotation.Nullable
   public BigDecimal getRegularPrice() {
     return regularPrice;
   }
 
+    @javax.annotation.Nullable
+    @JsonProperty("regular_price")
+    public String get_regular_price() {
+
+      return regularPrice == null ? null : regularPrice.toString();
+
+    }
 
   /*public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) {this.regularPrice = regularPrice;  }*/
-
     @JsonProperty("regular_price")
   public void setRegularPrice(@javax.annotation.Nullable BigDecimal regularPrice) {
         this.regularPrice = regularPrice;
@@ -943,13 +951,19 @@ public enum TaxStatusEnum {
    * Product sale price.
    * @return salePrice
    */
-  @JsonProperty("sale_price")
+
   @javax.annotation.Nullable
   public BigDecimal getSalePrice() {
     return salePrice;
   }
 
+    @javax.annotation.Nullable
+    @JsonProperty("sale_price")
+    public String get_sale_price() {
 
+        return salePrice == null ? null : salePrice.toString();
+
+    }
   /*public void setSalePrice(@javax.annotation.Nullable String salePrice) {this.salePrice = salePrice;}*/
 
     @JsonProperty("sale_price")
@@ -1972,12 +1986,12 @@ public enum TaxStatusEnum {
   }
 
 
-  public Product attributes(@javax.annotation.Nullable List<ProductAttribute> attributes) {
+  public Product attributes(@javax.annotation.Nullable List<Attribute> attributes) {
     this.attributes = attributes;
     return this;
   }
 
-  public Product addAttributesItem(ProductAttribute attributesItem) {
+  public Product addAttributesItem(Attribute attributesItem) {
     if (this.attributes == null) {
       this.attributes = new ArrayList<>();
     }
@@ -1990,11 +2004,11 @@ public enum TaxStatusEnum {
    * @return attributes
    */
   @javax.annotation.Nullable
-  public List<ProductAttribute> getAttributes() {
+  public List<Attribute> getAttributes() {
     return attributes;
   }
 
-  public void setAttributes(@javax.annotation.Nullable List<ProductAttribute> attributes) {
+  public void setAttributes(@javax.annotation.Nullable List<Attribute> attributes) {
     this.attributes = attributes;
   }
 
