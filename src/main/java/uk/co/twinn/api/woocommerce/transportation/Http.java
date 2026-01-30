@@ -11,12 +11,16 @@ package uk.co.twinn.api.woocommerce.transportation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import javax.annotation.Nonnull;
+
+import uk.co.twinn.api.woocommerce.builders.CoreParameterCollector;
 import uk.co.twinn.api.woocommerce.core.JacksonObjectMapper;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Configuration;
@@ -34,15 +38,29 @@ import java.util.logging.Logger;
  */
 public class Http<T> {
 
-    private static final CloseableHttpClient httpClient = HttpClients.createDefault();
+    private static CloseableHttpClient getHttpClient(){
+
+        int connectTimeout = 5;
+        int requestTimeout = 60;
+        int socketTimeout = 5;
+
+        RequestConfig config = RequestConfig.custom()
+            .setConnectTimeout(connectTimeout * 1000)
+            .setConnectionRequestTimeout(requestTimeout * 1000)
+            .setSocketTimeout(socketTimeout * 1000).build();
+
+        return HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+
+    }
+
+    private static final CloseableHttpClient httpClient = getHttpClient();
 
     private final JacksonObjectMapper json = new JacksonObjectMapper();
 
-    /*private ApiResponseResult<T> parseResponse(CloseableHttpResponse response){
+    public Http() {
+    }
 
-        return parseResponse(response, new TypeReference<T>(){});
 
-    }*/
 
     @SuppressWarnings("unchecked")
     private ApiResponseResult<T> parseResponse(String content, int statusCode, TypeReference<?> type) {
@@ -64,6 +82,8 @@ public class Http<T> {
     }
 
     private ApiResponseResult<T> parseResponse(CloseableHttpResponse response, TypeReference<?> type){
+
+        Logger.getLogger(Http.class.getName()).log(Level.INFO,"parseResponse");
 
         try {
 
@@ -129,6 +149,10 @@ public class Http<T> {
 
         } catch (IOException e) {
 
+            Logger.getLogger(Http.class.getName())
+                .log(Level.SEVERE, "create->IOException", e
+            );
+
             return new ApiResponseResult<>(false, 0, e.toString());
 
         }
@@ -182,6 +206,10 @@ public class Http<T> {
 
         } catch (IOException e) {
 
+            Logger.getLogger(Http.class.getName())
+                .log(Level.SEVERE, "read->IOException", e
+            );
+
             return new ApiResponseResult<>(false, 0, e.toString());
 
         }
@@ -202,6 +230,10 @@ public class Http<T> {
 
 
         } catch (IOException e) {
+
+            Logger.getLogger(Http.class.getName())
+                .log(Level.SEVERE, "update->IOException", e
+            );
 
             return new ApiResponseResult<>(false, 0, e.toString());
 
@@ -249,6 +281,10 @@ public class Http<T> {
             }
 
         } catch (IOException e) {
+
+            Logger.getLogger(Http.class.getName())
+                .log(Level.SEVERE, "delete->IOException", e
+            );
 
             return new ApiResponseResult<>(false, 0, e.toString());
 
