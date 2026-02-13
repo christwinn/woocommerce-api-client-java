@@ -10,9 +10,13 @@
 package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.response.Deleted;
+import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
+
+import java.util.Optional;
 
 /**
  *
@@ -34,6 +38,19 @@ class CoreDeleter {
 
         Deleted<T> getResponse(String endPoint, TypeReference<T> type){
             return readResponse(endPoint + "/" + id + "?force=" + force, type);
+        }
+
+        Optional<T> getDeleted(String endPoint, TypeReference<?> type){
+
+            return
+                new Deleted<T>(
+                    new Rest<T>().deleted(
+                        endPoint + "/" + id + "?force=" + force,
+                        type
+                    )
+                )
+                .getObject();
+
         }
 
         private Deleted<T> readResponse(String endPoint, TypeReference<T> type){

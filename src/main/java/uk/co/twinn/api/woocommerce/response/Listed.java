@@ -10,12 +10,14 @@
 package uk.co.twinn.api.woocommerce.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponse;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,6 +44,12 @@ public class Listed<T> extends ApiResponse<List<T>> {
 
     }
 
+    public Listed(Optional<ApiResponseResult<List<T>>>  result){
+
+        this(result.orElseThrow(()->new ResponseException("No Result received")));
+
+    }
+
     public Listed(List<T> list){
         success = true;
         this.listed = list;
@@ -63,6 +71,10 @@ public class Listed<T> extends ApiResponse<List<T>> {
 
     public List<T> getResult(){
         return listed;
+    }
+
+    public Optional<List<T>> getList(){
+        return Optional.ofNullable(listed);
     }
 
     public String toJson(){

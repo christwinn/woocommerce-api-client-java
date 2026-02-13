@@ -22,6 +22,7 @@ import java.util.List;
 import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.api.woocommerce.api.*;
 import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.global.MetaData;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.*;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.*;
 import uk.co.twinn.api.woocommerce.response.*;
@@ -164,7 +165,45 @@ public class WooCommerceApiClientUsageDemo {
             }
         }*/
 
-        Authentication.ConfigFile(System.getProperty("user.home") + "/.woocommerce-api/fireworks.json").getResponse();
+        Authentication.ConfigFile(System.getProperty("user.home") + "/.woocommerce-api/metals.json").getResponse();
+
+        List<Product> products = Products.listing().setSku("67020401")
+            .getListed()
+            .orElseThrow(
+                () -> new ResponseException("list failure")
+            );
+
+        for (Product product : products){
+
+            Product pa = Products.read(product.getId())
+                .getRead()
+                .orElseThrow(
+                    () -> new ResponseException("no matching product could be found")
+                );
+
+            System.out.println("======" + pa.getSku() + "======");
+
+            for (MetaData meta : pa.getMetaData()){
+
+                System.out.println(meta.toJson() + "\n");
+
+            }
+
+        }
+
+        System.exit(0);
+
+        /*Product pa = Products.read()
+            .stream()
+            .filter(e -> e.getName().equals(attributeName))
+            .findFirst()
+            .orElseThrow(
+                () -> new ResponseException("no matching attribute could be found")
+            );
+
+        attributes.add(
+            new Attribute(pa.getId(), attributeValue).visible(true)
+        );
 
         Listed<ProductAttribute> productAttributeListed = ProductAttributes.listing().getResponse();
         if (productAttributeListed.isSuccess()) {
@@ -215,8 +254,8 @@ public class WooCommerceApiClientUsageDemo {
             }
 
         }
+*/
 
-        System.exit(0);
         /*Read<Order> orders = Orders.read(3199).getResponse();
 
         if (orders.isSuccess()){

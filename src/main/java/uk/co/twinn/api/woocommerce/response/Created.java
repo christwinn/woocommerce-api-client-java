@@ -25,7 +25,7 @@ public class Created<T> extends CrudResponse<T> {
 
     public Created(Optional<ApiResponseResult<T>> result){
 
-        super(result.orElseThrow(()->new ResponseException("No Result received")));
+        this(result.orElseThrow(()->new ResponseException("No Result received")));
 
     }
 

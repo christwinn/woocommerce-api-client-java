@@ -20,6 +20,7 @@ public class BatchResult<T> {
     private List<T> create = new ArrayList<>();
     private List<T> update = new ArrayList<>();
     private List<T> delete = new ArrayList<>();
+
     @JsonIgnore
     public boolean isEmpty(){
 

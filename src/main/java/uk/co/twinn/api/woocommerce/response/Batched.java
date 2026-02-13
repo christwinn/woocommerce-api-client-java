@@ -10,10 +10,13 @@
 package uk.co.twinn.api.woocommerce.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponse;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.ErrorMessage;
+
+import java.util.Optional;
 
 public class Batched<T> extends ApiResponse<BatchResult<T>> {
 
@@ -38,6 +41,12 @@ public class Batched<T> extends ApiResponse<BatchResult<T>> {
 
     }
 
+    public Batched(Optional<ApiResponseResult<BatchResult<T>>> result){
+
+        this(result.orElseThrow(()->new ResponseException("No Result received")));
+
+    }
+
     private void setBatch(BatchResult<T> data){
         /* if we are not a batch then something has gone very wrong*/
         this.batchResult = data;
@@ -45,6 +54,10 @@ public class Batched<T> extends ApiResponse<BatchResult<T>> {
 
     public BatchResult<T> getResult(){
         return batchResult;
+    }
+
+    public Optional<BatchResult<T>> getBatched(){
+        return  Optional.ofNullable(batchResult);
     }
 
     public String toJson(){

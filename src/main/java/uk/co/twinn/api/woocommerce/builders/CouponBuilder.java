@@ -360,7 +360,7 @@ public class CouponBuilder extends ApiRequest {
             }
         }
 
-        public Optional<Coupon> getCreate() {
+        public Optional<Coupon> getCreated() {
 
             if (code == null || code.isEmpty()) {
 
@@ -420,6 +420,27 @@ public class CouponBuilder extends ApiRequest {
             }
         }
 
+        public Optional<Coupon> getUpdated() {
+
+            if (id > 0) {
+
+                CouponBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<Coupon>() {
+                    }
+                );
+
+            }else{
+
+                throw new ResponseException("Id is MANDATORY!");
+
+            }
+
+        }
+
     }
 
     //<editor-fold name="Reader">
@@ -432,6 +453,21 @@ public class CouponBuilder extends ApiRequest {
         public Read<Coupon> getResponse(){
             return super.getResponse(COUPONS, new TypeReference<Coupon>() {});
         }
+
+        public Optional<Coupon> getRead() {
+
+            if (id > 0) {
+
+                return super.getRead(COUPONS, new TypeReference<Coupon>() {});
+
+            }else{
+
+                throw new ResponseException("Id is MANDATORY!");
+
+            }
+
+        }
+
 
     }
     //</editor-fold>
@@ -449,6 +485,20 @@ public class CouponBuilder extends ApiRequest {
 
         public Deleted<Coupon> getResponse(){
             return super.getResponse(COUPONS, new TypeReference<Coupon>() {});
+        }
+
+        public Optional<Coupon> getDeleted() {
+
+            if (id > 0) {
+
+                return super.getDeleted(COUPONS, new TypeReference<Coupon>() {});
+
+            }else{
+
+                throw new ResponseException("Id is MANDATORY!");
+
+            }
+
         }
 
     }

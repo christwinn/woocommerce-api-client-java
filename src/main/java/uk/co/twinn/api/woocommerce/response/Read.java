@@ -9,8 +9,11 @@
 
 package uk.co.twinn.api.woocommerce.response;
 
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.response.core.CrudResponse;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
+
+import java.util.Optional;
 
 public class Read<T> extends CrudResponse<T> {
 
@@ -20,5 +23,10 @@ public class Read<T> extends CrudResponse<T> {
 
     }
 
+    public Read(Optional<ApiResponseResult<T>> result){
+
+        this(result.orElseThrow(()->new ResponseException("No Result received")));
+
+    }
 
 }

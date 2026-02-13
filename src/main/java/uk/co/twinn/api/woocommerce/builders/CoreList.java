@@ -11,9 +11,11 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.response.Listed;
+import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.rest.Rest;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CoreList<S, T> {
 
@@ -31,6 +33,20 @@ public class CoreList<S, T> {
                 type
             )
         );
+
+    }
+
+    Optional<List<S>> getListed(String endPoint, String parameters, TypeReference<?> type){
+
+        return
+            new Listed<S>(
+                new Rest<List<S>>()
+                    .listed(
+                        endPoint,
+                        parameters,
+                        type
+                    )
+                ).getList();
 
     }
 

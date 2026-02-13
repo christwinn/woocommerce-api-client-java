@@ -10,9 +10,13 @@
 package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.response.Read;
+import uk.co.twinn.api.woocommerce.response.Updated;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.rest.Rest;
+
+import java.util.Optional;
 
 /**
  *
@@ -51,6 +55,19 @@ class CoreReader {
         /** this needs to be exported to inheritor but not beyond* package-private*/
         Read<T> getResponse(String endPoint, TypeReference<?> type){
             return readResponse(endPoint + "/" + id, type);
+        }
+
+        Optional<T> getRead(String endPoint, TypeReference<?> type){
+
+            return
+                new Read<T>(
+                    new Rest<T>()
+                        .readed(
+                            endPoint+ "/" + id,
+                            type
+                        )
+                    ).getObject();
+
         }
 
         /**

@@ -11,6 +11,8 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.slf4j.LoggerFactory;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.*;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
@@ -20,9 +22,11 @@ import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
 
 public class ProductBuilder extends ApiRequest {
@@ -459,6 +463,14 @@ public class ProductBuilder extends ApiRequest {
 
         }
 
+        public Optional<Product> getCreated() {
+
+            ProductBuilder create = build();
+
+            return super.getCreated(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
+
+        }
+
     }
     //</editor-fold>
 
@@ -506,6 +518,22 @@ public class ProductBuilder extends ApiRequest {
                 return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
         }
+
+        public Optional<Product> getUpdated() {
+
+            if (id > 0){
+
+                ProductBuilder create = build();
+
+                return super.getUpdated(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
+
+            }else{
+
+                throw new ResponseException("Id is MANDATORY!");
+
+            }
+
+        }
     }
 
     //</editor-fold>
@@ -521,6 +549,19 @@ public class ProductBuilder extends ApiRequest {
             return super.getResponse(PRODUCTS, new TypeReference<Product>() {});
         }
 
+        public Optional<Product> getRead() {
+
+            if (id > 0) {
+
+                return super.getRead(PRODUCTS, new TypeReference<Product>() {});
+
+            }else{
+
+                throw new ResponseException("Id is MANDATORY!");
+
+            }
+
+        }
     }
     //</editor-fold>
 
@@ -537,6 +578,20 @@ public class ProductBuilder extends ApiRequest {
 
         public Deleted<Product> getResponse(){
             return super.getResponse(PRODUCTS, new TypeReference<Product>() {});
+
+        }
+
+        public Optional<Product> getDeleted() {
+
+            if (id > 0) {
+
+                return super.getDeleted(PRODUCTS, new TypeReference<Product>() {});
+
+            }else{
+
+                throw new ResponseException("Id is MANDATORY!");
+
+            }
 
         }
 
@@ -634,6 +689,38 @@ public class ProductBuilder extends ApiRequest {
              */
 
             return super.getResponse(PRODUCTS, batch, new TypeReference<BatchResult<Product>>() {});
+
+        }
+
+        public Optional<BatchResult<Product>> getBatched(){
+
+            //pre-validate
+            /* Nothing is MANDATORY!!*/
+            for (Product product : batch.getCreate()){
+                if (product.getId() != null){
+                    product.setId(null);
+                }
+            }
+
+            for (int i = 0; i < batch.getUpdate().size(); i++){
+                if (batch.getUpdate().get(i).getId() == null || batch.getUpdate().get(i).getId() == 0){
+                    throw new ResponseException(
+                        String.format("Id is MANDATORY!, Found Update @ %s with id = 0", i)
+                    );
+                }
+            }
+
+            //delete validation is in super
+            /**
+             * Mileage may vary
+             * Supposedly we can batch 100 at a time.
+             * I have been finding this leads to an internal server error (500)
+             * Shrinking the batch to a smaller number works.
+             *
+             * @return Batched<Product>
+             */
+
+            return super.getBatched(PRODUCTS, batch, new TypeReference<BatchResult<Product>>() {});
         }
 
     }
@@ -787,6 +874,23 @@ public class ProductBuilder extends ApiRequest {
 
         }
 
+        public Optional<List<Product>> getListed(){
+
+            return super.getListed(
+                PRODUCTS,
+                build(),
+                new TypeReference<List<Product>>() {}
+            );
+
+            /*return new Listed<>(
+                new Rest<List<Product>>().listAll(
+                    PRODUCTS,
+                    build()
+                )
+            );*/
+
+        }
+
     }
     //</editor-fold>
 
@@ -856,6 +960,59 @@ public class ProductBuilder extends ApiRequest {
             );
         }
 
+        /**
+        * Max return is 50 per page, we loop the results to get the full list in what we make appear to be one hit
+        **/
+        public Optional<List<Product>> getListed(){
+
+            //if in constructor, possible 'this' leakage
+            addNameValuePair("category", categoryId);
+            addNameValuePair("per_page", COUNT);
+            addNameValuePair("page", counter);
+
+            List<Product> products = new ArrayList<>();
+            Listed<Product> search;
+
+            counter = 1;
+
+            while (counter < FAILSAFE){
+
+                search = doSearch();
+                counter++;
+
+                if (search.isSuccess()){
+
+                    if (search.getResult().size() < COUNT){ //less than requested assume we have bottomed out
+
+                        products.addAll(search.getResult());
+                        return Optional.of(search.getResult());
+
+                    }else if (counter < FAILSAFE){
+
+                        addNameValuePair("page", counter);//nudge the page
+                        products.addAll(search.getResult());
+
+                        //continue loop
+                    }else{
+                        throw new ResponseException(
+                            "Failsafe triggered. called " + COUNT + ", " + FAILSAFE + " times. Do not want a perpertual loop"
+                        );
+                    }
+                }else{
+
+                    return Optional.of(search.getResult());
+
+                }
+
+            }
+
+            throw new ResponseException(
+                "Something has gone wrong we should have returned a result before now, " +
+                    "Could be Failsafe triggered. Hunted for " + COUNT + ", " + FAILSAFE + " times. " +
+                    "Do not want a perpertual loop"
+            );
+
+        }
 
     }
 

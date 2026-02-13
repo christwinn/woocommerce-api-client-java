@@ -30,6 +30,36 @@ public class CoreCreator<S, T> {
         return (T) this;
     }
 
+
+    Optional<S> getCreated(String endPoint, String parameters, TypeReference<?> type){
+
+        return
+            new Created<>(
+                new Rest<S>().created(
+                    endPoint,
+                    parameters,
+                    type
+                )
+            )
+            .getObject();
+
+    }
+
+    Optional<S> getUpdated(String endPoint, String parameters, TypeReference<?> type){
+
+        return
+            new Updated<>(
+                new Rest<S>().updated(
+                    endPoint,
+                    parameters,
+                    type
+                )
+            )
+            .getObject();
+
+    }
+
+
     Created<S> getCreate(String endPoint, String parameters, TypeReference<?> type){
 
         return new Created<>(
@@ -41,24 +71,6 @@ public class CoreCreator<S, T> {
         );
 
     }
-
-    Optional<S> getCreated(String endPoint, String parameters, TypeReference<?> type){
-
-        return (
-            Optional.of(
-                new Created<>(
-                    new Rest<S>().creating(
-                        endPoint,
-                        parameters,
-                        type
-                    )
-                )
-                .getObject()
-            ).orElseThrow(()->new ResponseException("CoreCreator->getCreated")));
-
-    }
-
-
 
     Updated<S> getUpdate(String endPoint, String parameters, TypeReference<?> type){
 
@@ -72,6 +84,8 @@ public class CoreCreator<S, T> {
         );
 
     }
+
+
 
     UpdatedList<S> getUpdateList(String endPoint, String parameters, TypeReference<?> type){
 
