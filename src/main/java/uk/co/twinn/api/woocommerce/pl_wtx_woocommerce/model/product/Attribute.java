@@ -24,11 +24,11 @@ public class Attribute /*extends ProductAttribute you would think! id and name a
     protected Attribute(){}
 
     /**
-     * Attribute as part of a product is different to a ProductAttribute
+     * Attribute as part of a product is different to a ProductAttribute,
      * ProductAttribute is the main listing
-     * Attribute is a tie up between the ProductAttribute and the Product
-     * @param productAttributeId
-     * @param options
+     * Attribute is a tie-up between the ProductAttribute and the Product
+     * @param productAttributeId the productAttributeId
+     * @param options the list of options
      */
     public Attribute(int productAttributeId, List<String> options){
         this.id = productAttributeId;
@@ -36,11 +36,11 @@ public class Attribute /*extends ProductAttribute you would think! id and name a
     }
 
     /**
-     * Attribute as part of a product is different to a ProductAttribute
+     * Attribute as part of a product is different to a ProductAttribute,
      * ProductAttribute is the main listing
-     * Attribute is a tie up between the ProductAttribute and the Product
-     * @param productAttributeId
-     * @param options
+     * Attribute is a tie-up between the ProductAttribute and the Product
+     * @param productAttributeId the productAttributeId
+     * @param option an option to set
      */
     public Attribute(int productAttributeId, String option){
         this.id = productAttributeId;
@@ -83,8 +83,8 @@ public class Attribute /*extends ProductAttribute you would think! id and name a
     }
 
     /**
-     * Name is read only here for json.
-     * @param name
+     * Name is read-only, here for json.
+     * @param name the name of the attribute
      */
     public void setName(String name) {
         this.name = name;
