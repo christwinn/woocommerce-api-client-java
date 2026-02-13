@@ -42,7 +42,7 @@ private void demo() {
     List<Product> products = Products.listing().setSku("67020401")
             .getListed()
             .orElseThrow(
-                    () -> new ResponseException("list failure")
+                () -> new ResponseException("list failure")
             );
 
     for (Product product : products) {
@@ -50,7 +50,7 @@ private void demo() {
         Product pa = Products.read(product.getId())
                 .getRead()
                 .orElseThrow(
-                        () -> new ResponseException("no matching product could be found")
+                    () -> new ResponseException("no matching product could be found")
                 );
 
         System.out.println("======" + pa.getSku() + "======");
