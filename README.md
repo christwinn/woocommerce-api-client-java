@@ -266,6 +266,10 @@ private void authentication(){
         .setSecret("myverysecretsecretthatIgotfrommywoocommerceinstallation")
         .getResponse();
 
+    /*Or*/
+    
+    Authentication.ConfigFile(System.getProperty("user.home") + "/.woocommerce-api/config.json").getResponse();
+    
     /** Please note we have not implemented "Authentication over HTTP". We should not be retrieving customer detail's unencrypted **/
 }
 ```
