@@ -23,13 +23,44 @@ X: MAJOR version when we make incompatible API changes
 Y: MINOR version when we add functionality in a backward compatible manner  
 Z: PATCH version when we make backward compatible bug fixes  
 
-### Reaction = action
+### Optionals or Reactions
 
 This API implements the upstream API in an 1 for 1, action for action methodology. 
 Using generics we also simplify the codebase funnelling the code through a few pipelines while enabling simple enforcement of the 
 upstream API interface.
 
 Using builder class methodology we have a simple to read and simple to use basis for generating our API calls.
+
+Two choices of usage. Either Optionals or Reactions
+
+#### Optionals
+
+```java
+
+private void demo() {
+    
+    List<Product> products = Products.listing().setSku("67020401")
+            .getListed()
+            .orElseThrow(
+                    () -> new ResponseException("list failure")
+            );
+
+    for (Product product : products) {
+
+        Product pa = Products.read(product.getId())
+                .getRead()
+                .orElseThrow(
+                        () -> new ResponseException("no matching product could be found")
+                );
+
+        System.out.println("======" + pa.getSku() + "======");
+
+    }
+    
+}
+```
+
+#### Reactions
 
 Rather than force you to error catch everywhere we error catch for you, leaving you with a simple call to isSuccess() to verify that a 
 successful call was made, and of course if not then we have the error in plain speak getError().getMessage(). 
