@@ -58,6 +58,7 @@ public class ProductCategories {
         return new ProductCategoryBuilder.Batcher<>();
 
     }
+
     public static ProductCategoryBuilder.ListAll<?> listing(){
 
         return new ProductCategoryBuilder.ListAll<>();

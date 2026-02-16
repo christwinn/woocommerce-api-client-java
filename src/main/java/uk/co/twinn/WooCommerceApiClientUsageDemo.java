@@ -21,6 +21,7 @@ import java.util.List;
 
 import uk.co.twinn.api.woocommerce.WooCommerce;
 import uk.co.twinn.api.woocommerce.api.*;
+import uk.co.twinn.api.woocommerce.builders.ProductCategoryBuilder;
 import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.global.MetaData;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.*;
@@ -47,114 +48,8 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
  * license MIT
  */
 public class WooCommerceApiClientUsageDemo {
-    private void create(
-        int orderId,
-        List <OrderRefundLineItem> lineItems,
-        List <OrderShippingLine> shippingLines,
-        List <OrderFeeLine> feeLines
-    ){
-        Created<OrderRefund> created = OrderRefunds.create(orderId)
-            .setAmount(new BigDecimal(9.99))
-            .setReason("Damaged")
-            .setRefundedBy(2) /*id of user!*/
-            .setLineItems(lineItems)
-            .setShippingLines(shippingLines)
-            .setFeeLines(feeLines)
-            .setApiRefund(true)
-            .setApiRestock(false) //do not put back into stock
-            .getResponse();
-    }
 
-    private void read(int orderId, int refundId){
-
-        Read<OrderRefund> read = OrderRefunds.read(orderId, refundId).getResponse();
-
-    }
-
-    private void delete(int orderId, int refundId){
-
-        Deleted<OrderRefund> deleted = OrderRefunds.delete(orderId, refundId, true).getResponse();
-
-    }
-
-    private void listing(int orderId){
-
-        Listed<OrderRefund> list = OrderRefunds.listing(orderId).getResponse();
-
-    }
-    //
-
-    /*private static final String API_BASE_PATH = "https://woocommerce/wp-json/wc/v3";
-    private static final String API_USERNAME = "ck_1234567890ABCDEF01234567890ABCDEF0123456";
-    private static final String API_PASSWORD = "cs_1234567890ABCDEF01234567890ABCDEF0123456";*/
-
-    private static void data(){
-        Read<Product> readProduct = Products.read(123).getResponse();
-        if (readProduct.isSuccess()){
-            //do something with the result.
-            System.out.println(readProduct.getResult().toJson());
-
-        }else{
-            System.out.println(readProduct.getError().getMessage());
-        }
-
-        Created<Product> created = Products.create().setName("Premium Quality")
-            .setType("simple")
-            .setRegularPrice(new BigDecimal(21.99))
-            .setDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. " +
-                "Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. " +
-                "Donec eu libero sit amet quam egestas semper. " +
-                "Aenean ultricies mi vitae est. Mauris placerat eleifend leo.")
-            .setShortDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.")
-            .setCategories(Arrays.asList(new ProductCategoriesItem().id(9), new ProductCategoriesItem().id(14)))
-            .setImage("http://mysite/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg")
-            .getResponse();
-
-        Created<Product> creatX = Products.create().setName("Premium Quality")
-            .setType("simple")
-            .setRegularPrice(new BigDecimal(21.99))
-            .setDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. " +
-                "Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. " +
-                "Donec eu libero sit amet quam egestas semper. " +
-                "Aenean ultricies mi vitae est. Mauris placerat eleifend leo.")
-            .setShortDescription("Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.")
-            .setCategories(Arrays.asList(new ProductCategoriesItem().id(9), new ProductCategoriesItem().id(14)))
-            .setImage("http://mysite/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg")
-            .getResponse();
-
-        Created<OrderNote> createdNote = OrderNotes.create(1).setNote("Hello World").getResponse();
-        Read<OrderNote> read = OrderNotes.read(1, 2).getResponse();
-
-        Deleted<OrderNote> deleted = OrderNotes.delete(1, 2, true).getResponse();
-
-        Listed<OrderNote> list = OrderNotes.listing(1).getResponse();
-
-        Listed<Continent> continents = WooCommerce.Data.listAllContinents().getResponse();
-        for (Continent continent : continents.getResult()){
-            System.out.println(continent.toJson());
-        }
-
-        Read<Continent> continent = WooCommerce.Data.readContinent("eu").getResponse();
-        System.out.println(continent.getResult().toJson());
-
-        Listed<Country> countries = WooCommerce.Data.listAllCountries().getResponse();
-        for (Country country : countries.getResult()){
-            System.out.println(country.toJson());
-        }
-
-        Read<Country> country = WooCommerce.Data.readCountry("gb").getResponse();
-        System.out.println(country.getResult().toJson());
-
-        Listed<Currency> currencies = WooCommerce.Data.listAllCurrencies().getResponse();
-        for (Currency currency : currencies.getResult()){
-            System.out.println(currency.toJson());
-        }
-
-        Read<Currency> currency = WooCommerce.Data.readCurrency("gbp").getResponse();
-        System.out.println(currency.getResult().toJson());
-    }
-
-    /** Scratchpad, initial testing zone.*/
+        /** Scratchpad, initial testing zone.*/
     public static void main(String[] args) {
 
         /*Listed<Product> root = Products.listProductsInCategory(91).getResponse();
@@ -167,28 +62,91 @@ public class WooCommerceApiClientUsageDemo {
 
         Authentication.ConfigFile(System.getProperty("user.home") + "/.woocommerce-api/metals.json").getResponse();
 
-        List<Product> products = Products.listing().setSku("67020401")
-            .getListed()
-            .orElseThrow(
-                () -> new ResponseException("list failure")
-            );
+        ProductCategoryBuilder.Batcher<?> batch = ProductCategories.batch();
 
-        for (Product product : products){
+        List<MetaData> original = null;
+        List<MetaData> drift = new ArrayList<>();
 
-            Product pa = Products.read(product.getId())
-                .getRead()
+        for (String s : new String[]{"67000203", "12345678"}){
+
+            List<Product> products = Products.listing().setSku(s)
+                .getListed()
                 .orElseThrow(
-                    () -> new ResponseException("no matching product could be found")
+                    () -> new ResponseException("list failure")
                 );
 
-            System.out.println("======" + pa.getSku() + "======");
+            for (Product product : products) {
 
-            for (MetaData meta : pa.getMetaData()){
+                System.out.println("======" + product.getSku() + "======");
 
-                System.out.println(meta.toJson() + "\n");
+                //product id on read is not null
+                if (product.getId() != null) { //but better safe than sorry
 
+                    //and here we just read the product based on the id
+                    //yes we do have it from the listing but this is an example!
+                    Product p = Products
+                        .read(product.getId())
+                        .getRead()
+                        .orElseThrow(
+                            () -> new ResponseException("Read Failure")
+                        );
+
+                }
+
+                if (original == null){
+                    original = product.getMetaData();
+                }else{
+
+                    for (MetaData m : product.getMetaData()){
+
+                        boolean matched = false;
+
+                        for (MetaData o : original){
+
+                            if (m.getKey().equals(o.getKey())){
+                                matched = true;
+                                if (!m.getValue().equals(o.getValue())){
+                                    drift.add(o);
+                                    drift.add(m);
+                                }
+                                break;
+                            }
+
+                        }
+                        if (!matched){
+
+                            drift.add(m);
+                        }
+                    }
+                }
+
+                for (MetaData meta : product.getMetaData()) {
+
+                    System.out.println(meta.toJson());
+
+                }
+
+                /*Product demo = Products.read(product.getId())
+                    .getRead()
+                    .orElseThrow(
+                        () -> new ResponseException("no matching product could be found")
+                    );
+
+                System.out.println("======" + pa.getSku() + "======");
+
+                for (MetaData meta : pa.getMetaData()){
+
+                    System.out.println(meta.toJson() + "\n");
+
+                }*/
             }
 
+
+        }
+
+        System.out.println("DRIFT");
+        for (MetaData md : drift){
+            System.out.println(md.toJson() + "\n");
         }
 
         System.exit(0);
