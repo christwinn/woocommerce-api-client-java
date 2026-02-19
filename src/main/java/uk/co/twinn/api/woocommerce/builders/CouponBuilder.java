@@ -360,7 +360,7 @@ public class CouponBuilder extends ApiRequest {
             }
         }
 
-        public Optional<Coupon> getCreated() {
+        public Optional<Coupon> getCreated() throws ResponseException{
 
             if (code == null || code.isEmpty()) {
 
@@ -404,10 +404,7 @@ public class CouponBuilder extends ApiRequest {
             if (id > 0) {
 
                 CouponBuilder create = build();
-                //make the call
-                /*return new Updated<>(
-                    new Rest<Coupon>().update(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){})
-                );*/
+
                 return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Coupon>(){});
 
             }else{
@@ -420,7 +417,7 @@ public class CouponBuilder extends ApiRequest {
             }
         }
 
-        public Optional<Coupon> getUpdated() {
+        public Optional<Coupon> getUpdated() throws ResponseException {
 
             if (id > 0) {
 
@@ -454,7 +451,7 @@ public class CouponBuilder extends ApiRequest {
             return super.getResponse(COUPONS, new TypeReference<Coupon>() {});
         }
 
-        public Optional<Coupon> getRead() {
+        public Optional<Coupon> getRead() throws ResponseException {
 
             if (id > 0) {
 
@@ -487,7 +484,7 @@ public class CouponBuilder extends ApiRequest {
             return super.getResponse(COUPONS, new TypeReference<Coupon>() {});
         }
 
-        public Optional<Coupon> getDeleted() {
+        public Optional<Coupon> getDeleted() throws ResponseException {
 
             if (id > 0) {
 

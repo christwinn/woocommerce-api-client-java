@@ -12,11 +12,16 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZoneMethod;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.tax.TaxClass;
 
 import java.util.List;
+import java.util.Optional;
 
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.TAX_CLASSES;
 
 public class TaxClassBuilder extends ApiRequest {
@@ -71,11 +76,21 @@ public class TaxClassBuilder extends ApiRequest {
         public Created<TaxClass> getResponse(){
 
             TaxClassBuilder create = build();
+
             return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<TaxClass>() {});
-            //make the call
-            /*return new Created<>(
-                new Rest<TaxClass>().create(create.endPoint(), create.toJson())
-            );*/
+
+        }
+
+        public Optional<TaxClass> getCreated() throws ResponseException {
+
+            TaxClassBuilder create = build();
+
+            return super.getCreated(
+                create.endPoint(),
+                create.toJson(),
+                new TypeReference<TaxClass>() {}
+            );
+
 
         }
 
@@ -90,6 +105,12 @@ public class TaxClassBuilder extends ApiRequest {
 
         public Deleted<TaxClass> getResponse(){
             return super.getResponse(TAX_CLASSES, new TypeReference<TaxClass>() {});
+
+        }
+
+        public Optional<TaxClass> getDeleted() throws ResponseException {
+
+            return super.getDeleted(TAX_CLASSES, new TypeReference<TaxClass>(){});
 
         }
 

@@ -11,6 +11,9 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.customer.Customer;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.billing.Billing;
@@ -22,8 +25,9 @@ import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.Shipping;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.ORDERS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class OrderBuilder extends ApiRequest {
 
@@ -179,9 +183,18 @@ public class OrderBuilder extends ApiRequest {
 
             return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Order>() {});
 
-            /*return new Created<>(
-                new Rest<Order>().create(create.endPoint(), create.toJson())
-            );*/
+        }
+
+        public Optional<Order> getCreated() throws ResponseException {
+
+            OrderBuilder create = build();
+
+            return super.getCreated(
+                create.endPoint(),
+                create.toJson(),
+                new TypeReference<Order>() {}
+            );
+
         }
 
     }
@@ -220,10 +233,7 @@ public class OrderBuilder extends ApiRequest {
             if (id > 0) {
 
                 OrderBuilder create = build();
-                //make the call
-                /*return new Updated<>(
-                    new Rest<Order>().update(create.endPoint(), create.toJson())
-                );*/
+
                 return super.getUpdate(create.endPoint(id), create.toJson(), new TypeReference<Order>() {});
 
             }else{
@@ -233,6 +243,25 @@ public class OrderBuilder extends ApiRequest {
                         0,
                         "Order Id is MANDATORY!")
                 );
+            }
+        }
+
+        public Optional<Order> getUpdated() throws ResponseException {
+
+            if (id > 0) {
+
+                OrderBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(id),
+                    create.toJson(),
+                    new TypeReference<Order>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Order Id is MANDATORY!");
+
             }
         }
 
@@ -247,6 +276,12 @@ public class OrderBuilder extends ApiRequest {
 
         public Read<Order> getResponse(){
             return super.getResponse(ORDERS, new TypeReference<Order>() {});
+        }
+
+        public Optional<Order> getRead() throws ResponseException {
+
+            return super.getRead(ORDERS, new TypeReference<Order>() {});
+
         }
 
     }
@@ -265,6 +300,12 @@ public class OrderBuilder extends ApiRequest {
 
         public Deleted<Order> getResponse(){
             return super.getResponse(ORDERS, new TypeReference<Order>() {});
+        }
+
+        public Optional<Order> getDeleted() throws ResponseException {
+
+            return super.getDeleted(ORDERS, new TypeReference<Order>(){});
+
         }
 
     }

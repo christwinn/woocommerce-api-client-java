@@ -12,6 +12,10 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductReview;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -19,8 +23,9 @@ import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductShippingClass;
 
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS_SHIPPING_CLASSES;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class ProductShippingClassBuilder extends ApiRequest {
 
@@ -129,6 +134,26 @@ public class ProductShippingClassBuilder extends ApiRequest {
 
         }
 
+        public Optional<ProductShippingClass> getCreated() throws ResponseException {
+
+            if (name != null && !name.isEmpty()){
+
+                ProductShippingClassBuilder create = build();
+
+                return super.getCreated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductShippingClass>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Name is Mandatory");
+
+            }
+
+        }
+
     }
 
     public static class Updater<T extends Updater<T>> extends Creator<T> {
@@ -165,6 +190,25 @@ public class ProductShippingClassBuilder extends ApiRequest {
             }
 
         }
+
+        public Optional<ProductShippingClass> getUpdated() throws ResponseException{
+
+            if (id > 0){
+
+                ProductShippingClassBuilder create = build();
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductShippingClass>() {}
+                );
+
+            }else{
+
+                throw new ResponseException( "Invalid Identifier");
+
+            }
+
+        }
     }
 
     //<editor-fold name="Reader">
@@ -176,6 +220,12 @@ public class ProductShippingClassBuilder extends ApiRequest {
 
         public Read<ProductShippingClass> getResponse(){
             return super.getResponse(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
+        }
+
+        public Optional<ProductShippingClass> getRead() throws ResponseException {
+
+            return super.getRead(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
+
         }
 
     }
@@ -194,6 +244,12 @@ public class ProductShippingClassBuilder extends ApiRequest {
 
         public Deleted<ProductShippingClass> getResponse(){
             return super.getResponse(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>() {});
+        }
+
+        public Optional<ProductShippingClass> getDeleted() throws ResponseException {
+
+            return super.getDeleted(PRODUCTS_SHIPPING_CLASSES, new TypeReference<ProductShippingClass>(){});
+
         }
 
     }

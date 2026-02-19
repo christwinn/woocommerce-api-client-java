@@ -41,6 +41,19 @@ class CoreReader {
 
         }
 
+        Optional<T> getRead(String endPoint, TypeReference<?> type) throws ResponseException {
+
+            return
+                new Read<T>(
+                    new Rest<T>()
+                        .reader(
+                            endPoint,
+                            type
+                        )
+                ).getObject();
+
+        }
+
     }
 
     static class ReaderCore<T>{
@@ -57,12 +70,12 @@ class CoreReader {
             return readResponse(endPoint + "/" + id, type);
         }
 
-        Optional<T> getRead(String endPoint, TypeReference<?> type){
+        Optional<T> getRead(String endPoint, TypeReference<?> type) throws ResponseException {
 
             return
                 new Read<T>(
                     new Rest<T>()
-                        .readed(
+                        .reader(
                             endPoint+ "/" + id,
                             type
                         )
@@ -121,6 +134,19 @@ class CoreReader {
             }
         }
 
+        Optional<T> getRead(String endPoint, String childEndPoint, TypeReference<?> type) throws ResponseException {
+
+            return
+                new Read<T>(
+                    new Rest<T>()
+                        .reader(
+                            endPoint + "/" + id + "/" + childEndPoint + "/" + childId,
+                            type
+                        )
+                ).getObject();
+
+        }
+
     }
 
     static class ReaderCoreStringKey<T> {
@@ -130,6 +156,19 @@ class CoreReader {
 
         public ReaderCoreStringKey(String key){
             this.key = key;
+        }
+
+        Optional<T> getRead(String endPoint, TypeReference<?> type) throws ResponseException {
+
+            return
+                new Read<T>(
+                    new Rest<T>()
+                        .reader(
+                            endPoint+ "/" + key,
+                            type
+                        )
+                ).getObject();
+
         }
 
         /** this needs to be exported to inheritor but not beyond* package-private*/

@@ -12,6 +12,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.Batch;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.billing.Billing;
@@ -21,7 +23,9 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 
 import java.util.List;
+import java.util.Optional;
 
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.COUPONS;
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.CUSTOMERS;
 
 public class CustomerBuilder extends ApiRequest {
@@ -143,11 +147,9 @@ public class CustomerBuilder extends ApiRequest {
         public Created<Customer> getResponse(){
 
             if (username != null && password != null) {
+
                 CustomerBuilder create = build();
-                //make the call
-                /*return new Created<>(
-                    new Rest<Customer>().create(create.endPoint(), create.toJson())
-                );*/
+
                 return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Customer>() {});
 
             }else{
@@ -158,6 +160,27 @@ public class CustomerBuilder extends ApiRequest {
                         "Username and Password are required.")
                 );
             }
+        }
+
+        public Optional<Customer> getCreated() throws ResponseException {
+
+            if (username != null && password != null) {
+
+                CustomerBuilder create = build();
+
+                return super.getCreated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<Customer>() {
+                    }
+                );
+
+            }else{
+
+                throw new ResponseException("Username and Password are required");
+
+            }
+
         }
 
 
@@ -192,15 +215,30 @@ public class CustomerBuilder extends ApiRequest {
             if (id > 0){
 
                 CustomerBuilder create = build();
-                //make the call
-                /*return new Updated<>(
-                    new Rest<Customer>().update(create.endPoint(), create.toJson())
-                );*/
+
                 return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Customer>() {});
 
             }else {
                 return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
             }
+        }
+
+        public Optional<Customer> getUpdated() throws ResponseException{
+
+            if (id > 0){
+
+                CustomerBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<Customer>() {}
+                );
+
+            }else {
+                throw new ResponseException("Invalid Identifier");
+            }
+
         }
 
     }
@@ -214,6 +252,12 @@ public class CustomerBuilder extends ApiRequest {
 
         public Read<Customer> getResponse(){
             return super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
+        }
+
+        public Optional<Customer> getRead() throws ResponseException {
+
+            return super.getRead(CUSTOMERS, new TypeReference<Customer>() {});
+
         }
 
     }
@@ -232,6 +276,20 @@ public class CustomerBuilder extends ApiRequest {
 
         public Deleted<Customer> getResponse(){
             return super.getResponse(CUSTOMERS, new TypeReference<Customer>() {});
+        }
+
+        public Optional<Customer> getDeleted() throws ResponseException {
+
+            if (id > 0) {
+
+                return super.getDeleted(CUSTOMERS, new TypeReference<Customer>(){});
+
+            }else{
+
+                throw new ResponseException("Id is MANDATORY!");
+
+            }
+
         }
 
     }

@@ -12,6 +12,10 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.tax.TaxRate;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -19,8 +23,9 @@ import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.webhook.Webhook;
 
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.WEBHOOKS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class WebhookBuilder extends ApiRequest {
 
@@ -144,10 +149,19 @@ public class WebhookBuilder extends ApiRequest {
 
             WebhookBuilder create = build();
             return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Webhook>() {});
-            //make the call
-            /*return new Created<>(
-                new Rest<Webhook>().create(create.endPoint(), create.toJson())
-            );*/
+
+        }
+
+        public Optional<Webhook> getCreated() throws ResponseException {
+
+            WebhookBuilder create = build();
+
+            return super.getCreated(
+                create.endPoint(),
+                create.toJson(),
+                new TypeReference<Webhook>() {}
+            );
+
 
         }
 
@@ -187,6 +201,27 @@ public class WebhookBuilder extends ApiRequest {
             }
 
         }
+
+        public Optional<Webhook> getUpdated() throws ResponseException{
+
+            if (id > 0){
+
+                WebhookBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<Webhook>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Invalid Identifier");
+
+            }
+
+        }
+
     }
 
     //<editor-fold name="Reader">
@@ -198,6 +233,12 @@ public class WebhookBuilder extends ApiRequest {
 
         public Read<Webhook> getResponse(){
             return super.getResponse(WEBHOOKS, new TypeReference<Webhook>() {});
+        }
+
+        public Optional<Webhook> getRead() throws ResponseException {
+
+            return super.getRead(WEBHOOKS, new TypeReference<Webhook>() {});
+
         }
 
     }
@@ -216,6 +257,12 @@ public class WebhookBuilder extends ApiRequest {
 
         public Deleted<Webhook> getResponse(){
             return super.getResponse(WEBHOOKS, new TypeReference<Webhook>() {});
+        }
+
+        public Optional<Webhook> getDeleted() throws ResponseException {
+
+            return super.getDeleted(WEBHOOKS, new TypeReference<Webhook>(){});
+
         }
 
     }

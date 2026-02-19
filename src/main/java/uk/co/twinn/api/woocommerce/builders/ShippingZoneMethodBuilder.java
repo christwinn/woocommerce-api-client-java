@@ -13,19 +13,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
 
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZone;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZoneMethod;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZoneMethodUpdate;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.METHODS;
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.SHIPPING_ZONES;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class ShippingZoneMethodBuilder  extends ApiRequest {
 
@@ -144,6 +144,26 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
             }
         }
 
+        public Optional<ShippingZoneMethod> getCreated() throws ResponseException {
+
+            if (zoneId > 0){
+
+                ShippingZoneMethodBuilder create = build();
+
+                return super.getCreated(
+                    endPoint(zoneId, 0),
+                    create.toJson(),
+                    new TypeReference<ShippingZoneMethod>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Zone Id is required.");
+
+            }
+
+        }
+
     }
     //</editor-fold>
 
@@ -196,6 +216,26 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
             }
 
         }
+
+        public Optional<ShippingZoneMethod> getUpdated() throws ResponseException{
+
+            if (zoneId > 0 && instanceId > 0){
+
+                ShippingZoneMethodBuilder create = build();
+
+                return super.getUpdated(
+                    endPoint(zoneId, instanceId),
+                    create.updateJson(),
+                    new TypeReference<ShippingZoneMethod>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Invalid Identifier(s)");
+
+            }
+
+        }
     }
 
     //</editor-fold>
@@ -211,6 +251,12 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
             return super.getResponse(SHIPPING_ZONES, METHODS, new TypeReference<ShippingZoneMethod>() {});
         }
 
+        public Optional<ShippingZoneMethod> getRead() throws ResponseException {
+
+            return super.getRead(SHIPPING_ZONES, METHODS, new TypeReference<ShippingZoneMethod>() {});
+
+        }
+
     }
     //</editor-fold>
 
@@ -223,6 +269,12 @@ public class ShippingZoneMethodBuilder  extends ApiRequest {
 
         public Deleted<ShippingZoneMethod> getResponse(){
             return super.getResponse(SHIPPING_ZONES, METHODS, new TypeReference<ShippingZoneMethod>() {});
+        }
+
+        public Optional<ShippingZoneMethod> getDeleted() throws ResponseException {
+
+            return super.getDeleted(SHIPPING_ZONES, METHODS, new TypeReference<ShippingZoneMethod>(){});
+
         }
 
     }

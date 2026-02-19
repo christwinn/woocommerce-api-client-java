@@ -12,6 +12,10 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -19,8 +23,9 @@ import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductReview;
 
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS_REVIEWS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class ProductReviewBuilder extends ApiRequest {
 
@@ -153,14 +158,34 @@ public class ProductReviewBuilder extends ApiRequest {
         public Created<ProductReview> getResponse(){
 
             if (productId == null || productId == 0){
+
                 return new Created<>(new ApiResponseResult<>(false, 0, "Review MUST belong to a Product Id"));
+
             }else {
+
                 ProductReviewBuilder create = build();
                 return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductReview>() {});
-                //make the call
-                /*return new Created<>(
-                    new Rest<ProductReview>().create(create.endPoint(), create.toJson())
-                );*/
+
+            }
+
+        }
+
+        public Optional<ProductReview> getCreated() throws ResponseException {
+
+            if (productId != null && productId > 0) {
+
+                ProductReviewBuilder create = build();
+
+                return super.getCreated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductReview>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Review MUST belong to a Product Id");
+
             }
 
         }
@@ -204,6 +229,27 @@ public class ProductReviewBuilder extends ApiRequest {
             }
 
         }
+
+        public Optional<ProductReview> getUpdated() throws ResponseException{
+
+            if (id > 0){
+
+                ProductReviewBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductReview>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Invalid Identifier");
+
+            }
+
+        }
+
     }
 
     //<editor-fold name="Reader">
@@ -215,6 +261,12 @@ public class ProductReviewBuilder extends ApiRequest {
 
         public Read<ProductReview> getResponse(){
             return super.getResponse(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
+        }
+
+        public Optional<ProductReview> getRead() throws ResponseException {
+
+            return super.getRead(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
+
         }
 
     }
@@ -235,6 +287,11 @@ public class ProductReviewBuilder extends ApiRequest {
             return super.getResponse(PRODUCTS_REVIEWS, new TypeReference<ProductReview>() {});
         }
 
+        public Optional<ProductReview> getDeleted() throws ResponseException {
+
+            return super.getDeleted(PRODUCTS_REVIEWS, new TypeReference<ProductReview>(){});
+
+        }
     }
     //</editor-fold>
 

@@ -44,12 +44,7 @@ public class CustomerDownloadBuilder {
                     "",
                     new TypeReference<List<CustomerDownload>>(){}
                 );
-                /*return new Listed<>(
-                    new Rest<List<CustomerDownload>>().listAll(
-                        CUSTOMERS + "/" + customerId + "/downloads",
-                        ""
-                    )
-                );*/
+
             }
         }
 

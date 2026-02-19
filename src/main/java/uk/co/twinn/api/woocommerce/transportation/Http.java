@@ -60,8 +60,6 @@ public class Http<T> {
     public Http() {
     }
 
-
-
     @SuppressWarnings("unchecked")
     private ApiResponseResult<T> parseResponse(String content, int statusCode, TypeReference<?> type) {
         try {

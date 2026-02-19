@@ -67,13 +67,15 @@ public class WooCommerceApiClientUsageDemo {
         List<MetaData> original = null;
         List<MetaData> drift = new ArrayList<>();
 
-        for (String s : new String[]{"67000203", "12345678"}){
+        for (String s : new String[]{"67000203", "67001302"}){
 
-            List<Product> products = Products.listing().setSku(s)
-                .getListed()
-                .orElseThrow(
-                    () -> new ResponseException("list failure")
-                );
+
+                List<Product> products = Products.listing().setSku(s)
+                    .getListed()
+                    .orElseThrow(
+                        () -> new ResponseException("list failure")
+                    );
+
 
             for (Product product : products) {
 
@@ -84,12 +86,17 @@ public class WooCommerceApiClientUsageDemo {
 
                     //and here we just read the product based on the id
                     //yes we do have it from the listing but this is an example!
-                    Product p = Products
-                        .read(product.getId())
-                        .getRead()
-                        .orElseThrow(
-                            () -> new ResponseException("Read Failure")
-                        );
+
+                    //try {
+                        Product p = Products
+                            .read(0)
+                            .getRead()
+                            .orElseThrow(
+                                () -> new ResponseException("Read Failure")
+                            );
+                    //}catch(ResponseException re){
+                    //    System.out.println(re.getMessage());
+                    //}
 
                 }
 

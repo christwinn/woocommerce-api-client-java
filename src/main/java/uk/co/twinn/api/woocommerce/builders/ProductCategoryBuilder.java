@@ -10,6 +10,10 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.Product;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductCategory;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductImage;
@@ -20,8 +24,9 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCT_CATEGORIES;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class ProductCategoryBuilder extends ApiRequest {
 
@@ -169,6 +174,19 @@ public class ProductCategoryBuilder extends ApiRequest {
             );*/
 
         }
+
+        public Optional<ProductCategory> getCreated() throws ResponseException {
+
+            ProductCategoryBuilder create = build();
+
+            return super.getCreated(
+                create.endPoint(),
+                create.toJson(),
+                new TypeReference<ProductCategory>() {}
+            );
+
+        }
+
     }
 
     public static class Updater<T extends Updater<T>> extends Creator<T>{
@@ -220,6 +238,26 @@ public class ProductCategoryBuilder extends ApiRequest {
 
         }
 
+        public Optional<ProductCategory> getUpdated() throws ResponseException{
+
+            if (id > 0) {
+
+                ProductCategoryBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductCategory>() {}
+                );
+
+            }else {
+
+                throw new ResponseException("Category Id is MANDATORY!");
+
+            }
+
+        }
+
     }
 
     //<editor-fold name="Reader">
@@ -231,6 +269,12 @@ public class ProductCategoryBuilder extends ApiRequest {
 
         public Read<ProductCategory> getResponse(){
             return super.getResponse(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>() {});
+
+        }
+
+        public Optional<ProductCategory> getRead() throws ResponseException {
+
+            return super.getRead(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>(){});
 
         }
 
@@ -253,6 +297,11 @@ public class ProductCategoryBuilder extends ApiRequest {
 
         }
 
+        public Optional<ProductCategory> getDeleted() throws ResponseException {
+
+            return super.getDeleted(PRODUCT_CATEGORIES, new TypeReference<ProductCategory>(){});
+
+        }
     }
     //</editor-fold>
 

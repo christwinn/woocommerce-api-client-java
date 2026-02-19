@@ -40,19 +40,6 @@ class CoreDeleter {
             return readResponse(endPoint + "/" + id + "?force=" + force, type);
         }
 
-        Optional<T> getDeleted(String endPoint, TypeReference<?> type){
-
-            return
-                new Deleted<T>(
-                    new Rest<T>().deleted(
-                        endPoint + "/" + id + "?force=" + force,
-                        type
-                    )
-                )
-                .getObject();
-
-        }
-
         private Deleted<T> readResponse(String endPoint, TypeReference<T> type){
             if (id <= 0 || !force) {
                 return new Deleted<>(
@@ -71,6 +58,25 @@ class CoreDeleter {
 
         }
 
+        Optional<T> getDeleted(String endPoint, TypeReference<?> type) {
+
+            return deletedResponse(endPoint +"/"+id+"?force="+force, type);
+
+        }
+
+        private Optional<T> deletedResponse(String endPoint, TypeReference<?> type){
+
+            return
+                new Deleted<T>(
+                    new Rest<T>().deleted(
+                        endPoint,
+                        type
+                    )
+                )
+                .getObject();
+
+        }
+
     }
 
     static class ChildDeleterCore<T> extends DeleterCore<T> {
@@ -81,6 +87,12 @@ class CoreDeleter {
         public ChildDeleterCore(int id, int childId, boolean force){
             super(id, force);
             this.childId = childId;
+        }
+
+        Optional<T> getDeleted(String endPoint, String childEndPoint, TypeReference<?> type) throws ResponseException {
+
+            return super.deletedResponse(endPoint + "/" + id + "/" + childEndPoint + "/" + childId, type);
+
         }
 
         Deleted<T> getResponse(String endPoint, String childEndPoint, TypeReference<T> type){
@@ -134,6 +146,20 @@ class CoreDeleter {
             }
 
         }
+
+        Optional<T> getDeleted(String endPoint, TypeReference<?> type) throws ResponseException {
+
+            return
+                new Deleted<T>(
+                    new Rest<T>().deleted(
+                        endPoint,
+                        type
+                    )
+                )
+                .getObject();
+
+        }
+
 
     }
 

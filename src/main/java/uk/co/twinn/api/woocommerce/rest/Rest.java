@@ -128,19 +128,15 @@ public class Rest<T> {
 
             return future.get();
 
-        }catch(InterruptedException e){
+        }catch(InterruptedException | ExecutionException e){
 
             return new ApiResponseResult<T>(false, 0, e.toString());
-
-        }catch(ExecutionException ee){
-
-            return new ApiResponseResult<T>(false, 0, ee.toString());
 
         }
 
     }
 
-    public Optional<ApiResponseResult<T>> created(String endPoint, String content, TypeReference<?> type){
+    public Optional<ApiResponseResult<T>> created(String endPoint, String content, TypeReference<?> type) throws ResponseException{
 
         try {
 
@@ -182,23 +178,18 @@ public class Rest<T> {
 
             return future.get();
 
-        }catch(InterruptedException e){
+        }catch(InterruptedException | ExecutionException e){
 
             return new ApiResponseResult<T>(false, 0, e.toString());
-
-        }catch(ExecutionException ee){
-
-            return new ApiResponseResult<T>(false, 0, ee.toString());
 
         }
 
     }
 
     /**
-     * Apologies for the poor use of the English language but the only way to follow the rest
-     * read is already defined
+     *
      * */
-    public Optional<ApiResponseResult<T>> readed(String endPoint, TypeReference<?> type){
+    public Optional<ApiResponseResult<T>> reader(String endPoint, TypeReference<?> type) throws ResponseException{
 
         try {
 
@@ -243,19 +234,15 @@ public class Rest<T> {
 
             return future.get();
 
-        }catch(InterruptedException e){
+        }catch(InterruptedException | ExecutionException e){
 
             return new ApiResponseResult<T>(false, 0, e.toString());
-
-        }catch(ExecutionException ee){
-
-            return new ApiResponseResult<T>(false, 0, ee.toString());
 
         }
 
     }
 
-    private Optional<ApiResponseResult<T>> readed(String endPoint, String parameters, TypeReference<?> type){
+    private Optional<ApiResponseResult<T>> reader(String endPoint, String parameters, TypeReference<?> type) throws ResponseException {
 
         try {
 
@@ -301,19 +288,15 @@ public class Rest<T> {
 
             return future.get();
 
-        }catch(InterruptedException e){
+        }catch(InterruptedException | ExecutionException e){
 
             return new ApiResponseResult<T>(false, 0, e.toString());
-
-        }catch(ExecutionException ee){
-
-            return new ApiResponseResult<T>(false, 0, ee.toString());
 
         }
 
     }
 
-    public Optional<ApiResponseResult<T>> updated(String endPoint, String content, TypeReference<?> type){
+    public Optional<ApiResponseResult<T>> updated(String endPoint, String content, TypeReference<?> type) throws ResponseException {
 
         try {
 
@@ -356,13 +339,9 @@ public class Rest<T> {
 
             return future.get();
 
-        }catch(InterruptedException e){
+        }catch(InterruptedException | ExecutionException e){
 
             return new ApiResponseResult<T>(false, 0, e.toString());
-
-        }catch(ExecutionException ee){
-
-            return new ApiResponseResult<T>(false, 0, ee.toString());
 
         }
 
@@ -379,19 +358,15 @@ public class Rest<T> {
 
             return future.get();
 
-        }catch(InterruptedException e){
+        }catch(InterruptedException | ExecutionException e){
 
             return new ApiResponseResult<T>(false, 0, e.toString());
-
-        }catch(ExecutionException ee){
-
-            return new ApiResponseResult<T>(false, 0, ee.toString());
 
         }
 
     }
 
-    public Optional<ApiResponseResult<T>> deleted(String endPoint, TypeReference<?> type){
+    public Optional<ApiResponseResult<T>> deleted(String endPoint, TypeReference<?> type) throws ResponseException {
 
         try {
 
@@ -417,19 +392,19 @@ public class Rest<T> {
 
     }
 
-    public ApiResponseResult<T> duplicate(String endPoint, TypeReference<?> type){
+    public ApiResponseResult<T> duplicate(String endPoint, TypeReference<?> type) throws ResponseException {
 
         return create(endPoint, null, type);
 
     }
 
-    public ApiResponseResult<T> batch(String endPoint, String content, TypeReference<?> type){
+    public ApiResponseResult<T> batch(String endPoint, String content, TypeReference<?> type) throws ResponseException {
 
         return create(endPoint, content, type);
 
     }
 
-    public Optional<ApiResponseResult<T>> batched(String endPoint, String content, TypeReference<?> type){
+    public Optional<ApiResponseResult<T>> batched(String endPoint, String content, TypeReference<?> type) throws ResponseException {
 
         return created(endPoint, content, type);
 
@@ -452,9 +427,9 @@ public class Rest<T> {
 
     }
 
-    public Optional<ApiResponseResult<T>> listed(String endPoint, String parameters, TypeReference<?> type){
+    public Optional<ApiResponseResult<T>> listed(String endPoint, String parameters, TypeReference<?> type) throws ResponseException {
 
-        return readed(endPoint, parameters, type);
+        return reader(endPoint, parameters, type);
 
     }
 

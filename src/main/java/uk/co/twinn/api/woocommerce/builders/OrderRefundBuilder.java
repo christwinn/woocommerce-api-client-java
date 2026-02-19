@@ -12,6 +12,9 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.*;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Deleted;
 import uk.co.twinn.api.woocommerce.response.Listed;
@@ -19,13 +22,10 @@ import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.global.MetaData;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderFeeLine;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderRefund;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderRefundLineItem;
-import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderShippingLine;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
@@ -183,11 +183,26 @@ public class OrderRefundBuilder extends ApiRequest {
             }else {
                 OrderRefundBuilder create = build();
                 return super.getCreate(endPoint(orderId), create.toJson(), new TypeReference<OrderRefund>() {});
-                //make the call
-                /*return new Created<>(
-                    new Rest<OrderRefund>().create(endPoint(orderId), create.toJson())
-                );*/
+
             }
+        }
+
+        public Optional<OrderRefund> getCreated() throws ResponseException {
+
+            if (orderId != 0) {
+
+                OrderRefundBuilder create = build();
+
+                return super.getCreated(
+                    endPoint(orderId),
+                    create.toJson(),
+                    new TypeReference<OrderRefund>() {}
+                );
+
+            }else{
+                throw new ResponseException("Order Id MANDATORY!");
+            }
+
         }
 
     }
@@ -203,6 +218,12 @@ public class OrderRefundBuilder extends ApiRequest {
             return super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
         }
 
+        public Optional<OrderRefund> getRead() throws ResponseException {
+
+            return super.getRead(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
+
+        }
+
     }
     //</editor-fold>
 
@@ -214,9 +235,14 @@ public class OrderRefundBuilder extends ApiRequest {
         }
 
         public Deleted<OrderRefund> getResponse(){
-            return super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>() {});
+            return super.getResponse(ORDERS, REFUNDS, new TypeReference<OrderRefund>(){});
         }
 
+        public Optional<OrderRefund> getDeleted() throws ResponseException {
+
+            return super.getDeleted(ORDERS, REFUNDS, new TypeReference<OrderRefund>(){});
+
+        }
     }
     //</editor-fold>
 

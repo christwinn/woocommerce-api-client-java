@@ -12,6 +12,10 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -20,9 +24,9 @@ import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductImage
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductVariation;
 
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS;
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.VARIATIONS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class ProductVariationBuilder extends ApiRequest {
 
@@ -136,7 +140,7 @@ public class ProductVariationBuilder extends ApiRequest {
 
         /** Returns single Created ProductVariation**/
         public Created<ProductVariation> getResponse(){
-            //premliminary checks
+
             if (productId <= 0) {
                 return new Created<>(
                     new ApiResponseResult<>(
@@ -148,11 +152,28 @@ public class ProductVariationBuilder extends ApiRequest {
 
                 ProductVariationBuilder create = build();
                 return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductVariation>() {});
-                //make the call
-                /*return new Created<>(
-                    new Rest<ProductVariation>().create(create.endPoint(), create.toJson())
-                );*/
+
             }
+        }
+
+        public Optional<ProductVariation> getCreated() throws ResponseException {
+
+            if (productId > 0){
+
+                ProductVariationBuilder create = build();
+
+                return super.getCreated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductVariation>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Product Id is Mandatory");
+
+            }
+
         }
 
     }
@@ -205,6 +226,27 @@ public class ProductVariationBuilder extends ApiRequest {
 
         }
 
+        public Optional<ProductVariation> getUpdated() throws ResponseException{
+
+            //preliminary checks
+            if (productId > 0 && variationId > 0) {
+
+                ProductVariationBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductVariation>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("ProductId and id are MANDATORY");
+
+            }
+
+        }
+
     }
 
 
@@ -217,6 +259,12 @@ public class ProductVariationBuilder extends ApiRequest {
 
         public Read<ProductVariation> getResponse(){
             return super.getResponse(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
+        }
+
+        public Optional<ProductVariation> getRead() throws ResponseException {
+
+            return super.getRead(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
+
         }
 
     }
@@ -235,6 +283,12 @@ public class ProductVariationBuilder extends ApiRequest {
 
         public Deleted<ProductVariation> getResponse(){
             return super.getResponse(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>() {});
+        }
+
+        public Optional<ProductVariation> getDeleted() throws ResponseException {
+
+            return super.getDeleted(PRODUCTS, VARIATIONS, new TypeReference<ProductVariation>(){});
+
         }
 
     }

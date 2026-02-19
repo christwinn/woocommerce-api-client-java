@@ -91,13 +91,6 @@ public class RefundBuilder extends ApiRequest {
                 new TypeReference<List<Refund>>() {}
             );
 
-            /*return new Listed<>(
-                new Rest<List<Refund>>().listAll(
-                    REFUNDS,
-                    build()
-                )
-            );*/
-
         }
 
     }

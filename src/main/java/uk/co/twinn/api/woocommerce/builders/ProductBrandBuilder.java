@@ -12,6 +12,9 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductAttributeTerm;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductImage;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
 import uk.co.twinn.api.woocommerce.response.*;
@@ -19,8 +22,9 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS_BRANDS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class ProductBrandBuilder extends ApiRequest {
 
@@ -159,10 +163,17 @@ public class ProductBrandBuilder extends ApiRequest {
 
             return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductBrand>() {});
 
-            //make the call
-            /*return new Created<>(
-                new Rest<Product>().create(create.endPoint(), create.toJson())
-            );*/
+        }
+
+        public Optional<ProductBrand> getCreated() throws ResponseException{
+
+            ProductBrandBuilder create = build();
+
+            return super.getCreated(
+                create.endPoint(),
+                create.toJson(),
+                new TypeReference<ProductBrand>() {}
+            );
 
         }
 
@@ -216,6 +227,26 @@ public class ProductBrandBuilder extends ApiRequest {
             }
 
         }
+
+        public Optional<ProductBrand> getUpdated() throws ResponseException{
+
+            if (id > 0){
+
+                ProductBrandBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductBrand>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Invalid Identifier");
+
+            }
+
+        }
     }
 
     //</editor-fold>
@@ -229,6 +260,12 @@ public class ProductBrandBuilder extends ApiRequest {
 
         public Read<ProductBrand> getResponse(){
             return super.getResponse(PRODUCTS_BRANDS, new TypeReference<ProductBrand>() {});
+        }
+
+        public Optional<ProductBrand> getRead() throws ResponseException {
+
+            return super.getRead(PRODUCTS_BRANDS, new TypeReference<ProductBrand>() {});
+
         }
 
     }
@@ -247,6 +284,12 @@ public class ProductBrandBuilder extends ApiRequest {
 
         public Deleted<ProductBrand> getResponse(){
             return super.getResponse(PRODUCTS_BRANDS, new TypeReference<ProductBrand>() {});
+
+        }
+
+        public Optional<ProductBrand> getDeleted() throws ResponseException {
+
+            return super.getDeleted(PRODUCTS_BRANDS, new TypeReference<ProductBrand>(){});
 
         }
 

@@ -12,6 +12,8 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Ran;
 import uk.co.twinn.api.woocommerce.response.Read;
@@ -19,6 +21,7 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.systemstatus.SystemStatusTool;
 
 import java.util.List;
+import java.util.Optional;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
@@ -53,6 +56,12 @@ public class SystemStatusToolBuilder extends ApiRequest {
 
         public Read<SystemStatusTool> getResponse(){
             return super.getResponse(SYSTEM_STATUS_TOOLS, new TypeReference<SystemStatusTool>() {});
+        }
+
+        public Optional<SystemStatusTool> getRead() throws ResponseException {
+
+            return super.getRead(SYSTEM_STATUS_TOOLS, new TypeReference<SystemStatusTool>() {});
+
         }
 
     }

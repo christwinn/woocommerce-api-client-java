@@ -456,14 +456,9 @@ public class ProductBuilder extends ApiRequest {
 
             return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
 
-            //make the call
-            /*return new Created<>(
-                new Rest<Product>().create(create.endPoint(), create.toJson())
-            );*/
-
         }
 
-        public Optional<Product> getCreated() {
+        public Optional<Product> getCreated() throws ResponseException {
 
             ProductBuilder create = build();
 
@@ -502,24 +497,16 @@ public class ProductBuilder extends ApiRequest {
 
                 ProductBuilder create = build();
 
-                Logger.getLogger(ProductBuilder.class.getName()).log(Level.INFO,String.format("Updating: %s", create.toJson()));
-                /*return new Updated<>(
-                    new Rest<Product>().update(create.endPoint(), create.toJson())
-                );*/
-                Updated<Product> updated = super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
-
-                if (updated.isSuccess()) {
-                    Logger.getLogger(ProductBuilder.class.getName()).log(Level.INFO, String.format("Updated: %s", updated.toJson()));
-                }
-
-                return updated;
+                return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<Product>() {});
 
             }else{
+
                 return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
+
             }
         }
 
-        public Optional<Product> getUpdated() {
+        public Optional<Product> getUpdated() throws ResponseException {
 
             if (id > 0){
 
@@ -549,7 +536,7 @@ public class ProductBuilder extends ApiRequest {
             return super.getResponse(PRODUCTS, new TypeReference<Product>() {});
         }
 
-        public Optional<Product> getRead() {
+        public Optional<Product> getRead() throws ResponseException {
 
             if (id > 0) {
 
@@ -581,7 +568,7 @@ public class ProductBuilder extends ApiRequest {
 
         }
 
-        public Optional<Product> getDeleted() {
+        public Optional<Product> getDeleted() throws ResponseException {
 
             if (id > 0) {
 
@@ -660,6 +647,14 @@ public class ProductBuilder extends ApiRequest {
             return super.addDelete(delete.getId());
         }
 
+        /**
+         * Mileage may vary
+         * Supposedly we can batch 100 at a time.
+         * I have been finding this leads to an internal server error (500)
+         * Shrinking the batch to a smaller number works.
+         *
+         * @return Batched<Product>
+         */
         public Batched<Product> getResponse(){
 
             //pre-validate
@@ -677,16 +672,6 @@ public class ProductBuilder extends ApiRequest {
                     );
                 }
             }
-
-            //delete validation is in super
-            /**
-             * Mileage may vary
-             * Supposedly we can batch 100 at a time.
-             * I have been finding this leads to an internal server error (500)
-             * Shrinking the batch to a smaller number works.
-             *
-             * @return Batched<Product>
-             */
 
             return super.getResponse(PRODUCTS, batch, new TypeReference<BatchResult<Product>>() {});
 
@@ -865,29 +850,15 @@ public class ProductBuilder extends ApiRequest {
                 new TypeReference<List<Product>>() {}
             );
 
-            /*return new Listed<>(
-                new Rest<List<Product>>().listAll(
-                    PRODUCTS,
-                    build()
-                )
-            );*/
-
         }
 
-        public Optional<List<Product>> getListed(){
+        public Optional<List<Product>> getListed() throws ResponseException{
 
             return super.getListed(
                 PRODUCTS,
                 build(),
                 new TypeReference<List<Product>>() {}
             );
-
-            /*return new Listed<>(
-                new Rest<List<Product>>().listAll(
-                    PRODUCTS,
-                    build()
-                )
-            );*/
 
         }
 

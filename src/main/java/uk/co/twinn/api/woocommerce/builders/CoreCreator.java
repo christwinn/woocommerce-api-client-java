@@ -31,7 +31,11 @@ public class CoreCreator<S, T> {
     }
 
 
-    Optional<S> getCreated(String endPoint, String parameters, TypeReference<?> type){
+    Optional<S> getCreated(
+        String endPoint,
+        String parameters,
+        TypeReference<?> type
+    ) throws ResponseException {
 
         return
             new Created<>(
@@ -45,7 +49,11 @@ public class CoreCreator<S, T> {
 
     }
 
-    Optional<S> getUpdated(String endPoint, String parameters, TypeReference<?> type){
+    Optional<S> getUpdated(
+        String endPoint,
+        String parameters,
+        TypeReference<?> type
+    ) throws ResponseException {
 
         return
             new Updated<>(
@@ -72,9 +80,9 @@ public class CoreCreator<S, T> {
 
     }
 
-    Updated<S> getUpdate(String endPoint, String parameters, TypeReference<?> type){
+    Updated<S> getUpdate(String endPoint, String parameters, TypeReference<?> type) {
 
-        Logger.getLogger(CoreCreator.class.getName()).log(Level.INFO,String.format("Updating: %s with %s", endPoint, parameters));
+        Logger.getLogger(CoreCreator.class.getName()).log(Level.INFO, String.format("Updating: %s with %s", endPoint, parameters));
         return new Updated<>(
             new Rest<S>().update(
                 endPoint,
@@ -84,8 +92,6 @@ public class CoreCreator<S, T> {
         );
 
     }
-
-
 
     UpdatedList<S> getUpdateList(String endPoint, String parameters, TypeReference<?> type){
 

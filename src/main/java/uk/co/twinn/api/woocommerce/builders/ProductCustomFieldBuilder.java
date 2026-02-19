@@ -32,14 +32,6 @@ public class ProductCustomFieldBuilder {
                 new TypeReference<List<String>>() {}
             );
 
-            /*return new Listed<>(
-                new Rest<List<String>>().listAll(
-                    PRODUCTS_CUSTOM_FIELDS_NAMES, //endPoint, SET endPoint
-                    build(),
-                    new TypeReference<List<String>>() { }
-                )
-            );*/
-
         }
 
     }

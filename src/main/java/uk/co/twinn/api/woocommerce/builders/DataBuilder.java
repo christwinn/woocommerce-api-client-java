@@ -10,6 +10,8 @@
 package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.customer.Customer;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Continent;
@@ -17,6 +19,7 @@ import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Country;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.data.Currency;
 
 import java.util.List;
+import java.util.Optional;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
@@ -34,6 +37,12 @@ public class DataBuilder {
             return super.getResponse(DATA_CONTINENTS, new TypeReference<Continent>() {});
         }
 
+        public Optional<Continent> getRead() throws ResponseException {
+
+            return super.getRead(DATA_CONTINENTS, new TypeReference<Continent>() {});
+
+        }
+
     }
     //</editor-fold>
 
@@ -46,6 +55,12 @@ public class DataBuilder {
 
         public Read<Country> getResponse(){
             return super.getResponse(DATA_COUNTRIES, new TypeReference<Country>() {});
+        }
+
+        public Optional<Country> getRead() throws ResponseException {
+
+            return super.getRead(DATA_COUNTRIES, new TypeReference<Country>() {});
+
         }
 
     }
@@ -61,6 +76,12 @@ public class DataBuilder {
 
         public Read<Currency> getResponse(){
             return super.getResponse(DATA_CURRENCIES, new TypeReference<Currency>() {});
+        }
+
+        public Optional<Currency> getRead() throws ResponseException {
+
+            return super.getRead(DATA_CURRENCIES, new TypeReference<Currency>() {});
+
         }
 
     }

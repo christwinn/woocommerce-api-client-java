@@ -12,13 +12,18 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductVariation;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.shipping.ShippingZone;
 
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.SHIPPING_ZONES;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class ShippingZoneBuilder extends ApiRequest {
 
@@ -107,6 +112,26 @@ public class ShippingZoneBuilder extends ApiRequest {
             }
         }
 
+        public Optional<ShippingZone> getCreated() throws ResponseException {
+
+            if (name != null && !name.isEmpty()){
+
+                ShippingZoneBuilder create = build();
+
+                return super.getCreated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ShippingZone>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Name is required.");
+
+            }
+
+        }
+
 
     }
 
@@ -132,18 +157,39 @@ public class ShippingZoneBuilder extends ApiRequest {
         /** Returns single Updated ProductCategory**/
         @Override
         public Updated<ShippingZone> getResponse(){
+
             if (id > 0){
+
                 ShippingZoneBuilder create = build();
-                //make the call
+
                 return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ShippingZone>() {});
-                /*return new Updated<>(
-                    new Rest<ShippingZone>().update(create.endPoint(), create.toJson())
-                );*/
+
             }else {
+
                 return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
+
             }
         }
 
+        public Optional<ShippingZone> getUpdated() throws ResponseException{
+
+            if (id > 0){
+
+                ShippingZoneBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ShippingZone>(){}
+                );
+
+            }else {
+
+                throw new ResponseException("Invalid Identifier");
+
+            }
+
+        }
     }
 
     //<editor-fold name="Reader">
@@ -155,6 +201,12 @@ public class ShippingZoneBuilder extends ApiRequest {
 
         public Read<ShippingZone> getResponse(){
             return super.getResponse(SHIPPING_ZONES, new TypeReference<ShippingZone>() {});
+
+        }
+
+        public Optional<ShippingZone> getRead() throws ResponseException {
+
+            return super.getRead(SHIPPING_ZONES, new TypeReference<ShippingZone>() {});
 
         }
 
@@ -174,6 +226,12 @@ public class ShippingZoneBuilder extends ApiRequest {
 
         public Deleted<ShippingZone> getResponse(){
             return super.getResponse(SHIPPING_ZONES, new TypeReference<ShippingZone>() {});
+
+        }
+
+        public Optional<ShippingZone> getDeleted() throws ResponseException {
+
+            return super.getDeleted(SHIPPING_ZONES, new TypeReference<ShippingZone>(){});
 
         }
 

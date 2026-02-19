@@ -35,13 +35,6 @@ public class ReportBuilder {
                 "",
                 new TypeReference<List<ReportListItem>>(){}
             );
-            /*return new Listed<>(
-                new Rest<List<ReportListItem>>().listAll(
-                    REPORTS, //endPoint, SET endPoint
-                    "",
-                    new TypeReference<List<ReportListItem>>(){}
-                )
-            );*/
 
         }
 
@@ -55,14 +48,6 @@ public class ReportBuilder {
                 "",
                 new TypeReference<List<ReportSalesSummary>>(){}
             );
-
-            /*return new Listed<>(
-                new Rest<List<ReportSalesSummary>>().listAll(
-                    REPORTS_SALES, //endPoint, SET endPoint
-                    "",
-                    new TypeReference<List<ReportSalesSummary>>(){}
-                )
-            );*/
 
         }
 

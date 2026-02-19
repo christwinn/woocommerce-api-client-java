@@ -12,6 +12,8 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderRefund;
 import uk.co.twinn.api.woocommerce.response.Listed;
 import uk.co.twinn.api.woocommerce.response.Read;
 import uk.co.twinn.api.woocommerce.response.Updated;
@@ -20,8 +22,9 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.payment.PaymentGateway;
 
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PAYMENT_GATEWAYS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class PaymentGatewayBuilder extends ApiRequest {
 
@@ -111,13 +114,28 @@ public class PaymentGatewayBuilder extends ApiRequest {
             if (gatewayId != null && !gatewayId.isEmpty()){
 
                 PaymentGatewayBuilder create = build();
-                /*return new Updated<>(
-                    new Rest<PaymentGateway>().update(create.endPoint(), create.toJson())
-                );*/
                 return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<PaymentGateway>() {});
 
             }else{
+
                 return new Updated<>(new ApiResponseResult<>(false, 0, "Invalid Identifier"));
+
+            }
+
+        }
+
+        public Optional<PaymentGateway> getUpdated() throws ResponseException{
+
+            if (gatewayId != null && !gatewayId.isEmpty()){
+
+                PaymentGatewayBuilder create = build();
+
+                return super.getUpdated(create.endPoint(), create.toJson(), new TypeReference<PaymentGateway>() {});
+
+            }else{
+
+                throw new ResponseException("Invalid Identifier");
+
             }
 
         }
@@ -131,6 +149,12 @@ public class PaymentGatewayBuilder extends ApiRequest {
 
         public Read<PaymentGateway> getResponse(){
             return super.getResponse(PAYMENT_GATEWAYS, new TypeReference<PaymentGateway>() {});
+        }
+
+        public Optional<PaymentGateway> getRead() throws ResponseException {
+
+            return super.getRead(PAYMENT_GATEWAYS, new TypeReference<PaymentGateway>() {});
+
         }
 
     }

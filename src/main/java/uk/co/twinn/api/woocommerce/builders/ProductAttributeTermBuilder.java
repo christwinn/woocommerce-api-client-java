@@ -12,6 +12,9 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductAttribute;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -19,6 +22,7 @@ import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductAttributeTerm;
 
 import java.util.List;
+import java.util.Optional;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
@@ -155,25 +159,40 @@ public class ProductAttributeTermBuilder extends ApiRequest {
 
         /** Returns single Created ProductAttribute**/
         public Created<ProductAttributeTerm> getResponse(){
-            //premliminary checks
+
             if (attributeId <= 0 || name == null || name.isEmpty()) {
+
                 return new Created<>(
                     new ApiResponseResult<>(
                         false,
                         0,
                         "AttributeId and Name is MANDATORY!")
                 );
+
             }else {
 
                 ProductAttributeTermBuilder create = build();
                 return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductAttributeTerm>() {});
 
-                //make the call
-                /*return new Created<>(
-                    new Rest<ProductAttributeTerm>().create(create.endPoint(), create.toJson())
-                );*/
-
             }
+        }
+
+        public Optional<ProductAttributeTerm> getCreated() throws ResponseException {
+
+            if (attributeId > 0 && name != null && !name.isEmpty()) {
+
+                ProductAttributeTermBuilder create = build();
+
+                return super.getCreated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductAttributeTerm>() {}
+                );
+
+            }else{
+                throw new ResponseException("AttributeId and Name is MANDATORY!");
+            }
+
         }
 
 
@@ -215,10 +234,27 @@ public class ProductAttributeTermBuilder extends ApiRequest {
             }else {
                 ProductAttributeTermBuilder create = build();
                 return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<ProductAttributeTerm>() {});
-                //make the call
-                /*return new Updated<>(
-                    new Rest<ProductAttributeTerm>().update(create.endPoint(), create.toJson())
-                );*/
+
+            }
+
+        }
+
+        public Optional<ProductAttributeTerm> getUpdated() throws ResponseException{
+
+            if (attributeId > 0 && termsId > 0) {
+
+                ProductAttributeTermBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductAttributeTerm>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Attribute Id and Term Id are MANDATORY");
+
             }
 
         }
@@ -234,7 +270,15 @@ public class ProductAttributeTermBuilder extends ApiRequest {
         }
 
         public Read<ProductAttributeTerm> getResponse(){
+
             return super.getResponse(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
+
+        }
+
+        public Optional<ProductAttributeTerm> getRead() throws ResponseException {
+
+            return super.getRead(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
+
         }
 
     }
@@ -253,6 +297,12 @@ public class ProductAttributeTermBuilder extends ApiRequest {
 
         public Deleted<ProductAttributeTerm> getResponse(){
             return super.getResponse(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>() {});
+        }
+
+        public Optional<ProductAttributeTerm> getDeleted() throws ResponseException {
+
+            return super.getDeleted(PRODUCTS_ATTRIBUTES, TERMS, new TypeReference<ProductAttributeTerm>(){});
+
         }
 
     }

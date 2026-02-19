@@ -12,14 +12,19 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductShippingClass;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductTag;
 
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.PRODUCTS_TAGS;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class ProductTagBuilder extends ApiRequest {
 
@@ -120,10 +125,27 @@ public class ProductTagBuilder extends ApiRequest {
             }else {
                 ProductTagBuilder create = build();
                 return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<ProductTag>() {});
-                //make the call
-                /*return new Created<>(
-                    new Rest<ProductTag>().create(create.endPoint(), create.toJson())
-                );*/
+
+            }
+
+        }
+
+        public Optional<ProductTag> getCreated() throws ResponseException {
+
+            if (name != null && !name.isEmpty()){
+
+                ProductTagBuilder create = build();
+
+                return super.getCreated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductTag>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Name is Mandatory");
+
             }
 
         }
@@ -166,6 +188,27 @@ public class ProductTagBuilder extends ApiRequest {
             }
 
         }
+
+        public Optional<ProductTag> getUpdated() throws ResponseException{
+
+            if (id > 0){
+
+                ProductTagBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<ProductTag>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Invalid Identifier");
+
+            }
+
+        }
+
     }
 
     //<editor-fold name="Reader">
@@ -177,6 +220,12 @@ public class ProductTagBuilder extends ApiRequest {
 
         public Read<ProductTag> getResponse(){
             return super.getResponse(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
+        }
+
+        public Optional<ProductTag> getRead() throws ResponseException {
+
+            return super.getRead(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
+
         }
 
     }
@@ -195,6 +244,12 @@ public class ProductTagBuilder extends ApiRequest {
 
         public Deleted<ProductTag> getResponse(){
             return super.getResponse(PRODUCTS_TAGS, new TypeReference<ProductTag>() {});
+        }
+
+        public Optional<ProductTag> getDeleted() throws ResponseException {
+
+            return super.getDeleted(PRODUCTS_TAGS, new TypeReference<ProductTag>(){});
+
         }
 
     }

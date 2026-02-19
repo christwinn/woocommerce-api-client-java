@@ -12,6 +12,10 @@ package uk.co.twinn.api.woocommerce.builders;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import uk.co.twinn.api.woocommerce.builders.core.ApiRequest;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.product.ProductBrand;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.tax.TaxClass;
 import uk.co.twinn.api.woocommerce.response.*;
 import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.response.core.BatchResult;
@@ -21,8 +25,9 @@ import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.tax.ISO3166;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
-import static uk.co.twinn.api.woocommerce.defines.EndPoints.TAXES;
+import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
 public class TaxRateBuilder extends ApiRequest {
 
@@ -254,11 +259,21 @@ public class TaxRateBuilder extends ApiRequest {
         public Created<TaxRate> getResponse(){
 
             TaxRateBuilder create = build();
-            //make the call
-            /*return new Created<>(
-                new Rest<TaxRate>().create(create.endPoint(), create.toJson())
-            );*/
+
             return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<TaxRate>() {});
+
+        }
+
+        public Optional<TaxRate> getCreated() throws ResponseException {
+
+            TaxRateBuilder create = build();
+
+            return super.getCreated(
+                create.endPoint(),
+                create.toJson(),
+                new TypeReference<TaxRate>() {}
+            );
+
 
         }
 
@@ -285,9 +300,7 @@ public class TaxRateBuilder extends ApiRequest {
             if (id > 0){
 
                 TaxRateBuilder create = build();
-                /*return new Updated<>(
-                    new Rest<TaxRate>().update(create.endPoint(), create.toJson())
-                );*/
+
                 return super.getUpdate(create.endPoint(), create.toJson(), new TypeReference<TaxRate>() {});
 
             }else{
@@ -295,6 +308,27 @@ public class TaxRateBuilder extends ApiRequest {
             }
 
         }
+
+        public Optional<TaxRate> getUpdated() throws ResponseException {
+
+            if (id > 0){
+
+                TaxRateBuilder create = build();
+
+                return super.getUpdated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<TaxRate>() {}
+                );
+
+            }else{
+
+                throw new ResponseException("Invalid Identifier");
+
+            }
+
+        }
+
     }
 
     //<editor-fold name="Reader">
@@ -306,6 +340,12 @@ public class TaxRateBuilder extends ApiRequest {
 
         public Read<TaxRate> getResponse(){
             return super.getResponse(TAXES, new TypeReference<TaxRate>() {});
+        }
+
+        public Optional<TaxRate> getRead() throws ResponseException {
+
+            return super.getRead(TAXES, new TypeReference<TaxRate>() {});
+
         }
 
     }
@@ -324,6 +364,12 @@ public class TaxRateBuilder extends ApiRequest {
 
         public Deleted<TaxRate> getResponse(){
             return super.getResponse(TAXES, new TypeReference<TaxRate>() {});
+        }
+
+        public Optional<TaxRate> getDeleted() throws ResponseException {
+
+            return super.getDeleted(TAXES, new TypeReference<TaxRate>(){});
+
         }
 
     }

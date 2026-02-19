@@ -11,6 +11,9 @@ package uk.co.twinn.api.woocommerce.builders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import uk.co.twinn.api.woocommerce.exceptions.ResponseException;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.coupon.Coupon;
+import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.Order;
 import uk.co.twinn.api.woocommerce.response.Created;
 import uk.co.twinn.api.woocommerce.response.Deleted;
 import uk.co.twinn.api.woocommerce.response.Read;
@@ -21,6 +24,7 @@ import uk.co.twinn.api.woocommerce.response.core.ApiResponseResult;
 import uk.co.twinn.api.woocommerce.pl_wtx_woocommerce.model.order.OrderNote;
 
 import java.util.List;
+import java.util.Optional;
 
 import static uk.co.twinn.api.woocommerce.defines.EndPoints.*;
 
@@ -149,12 +153,26 @@ public class OrderNoteBuilder extends ApiRequest {
                 OrderNoteBuilder create = build();
                 return super.getCreate(create.endPoint(), create.toJson(), new TypeReference<OrderNote>() {});
 
-                //make the call
-                /*return new Created<>(
-                    new Rest<OrderNote>().create(create.endPoint(), create.toJson())
-                );*/
-
             }
+        }
+
+        public Optional<OrderNote> getCreated() throws ResponseException {
+
+            if (orderId != 0) {
+
+                OrderNoteBuilder create = build();
+
+                return super.getCreated(
+                    create.endPoint(),
+                    create.toJson(),
+                    new TypeReference<OrderNote>() {
+                    }
+                );
+
+            }else{
+                throw new ResponseException("Order Id MANDATORY!\nUse Lister to ListAll");
+            }
+
         }
 
     }
@@ -170,6 +188,12 @@ public class OrderNoteBuilder extends ApiRequest {
             return super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
         }
 
+        public Optional<OrderNote> getRead() throws ResponseException {
+
+            return super.getRead(ORDERS, NOTES, new TypeReference<OrderNote>() {});
+
+        }
+
     }
     //</editor-fold>
 
@@ -182,6 +206,12 @@ public class OrderNoteBuilder extends ApiRequest {
 
         public Deleted<OrderNote> getResponse(){
             return super.getResponse(ORDERS, NOTES, new TypeReference<OrderNote>() {});
+        }
+
+        public Optional<OrderNote> getDeleted() throws ResponseException {
+
+            return super.getDeleted(ORDERS, NOTES, new TypeReference<OrderNote>() {});
+
         }
 
     }
