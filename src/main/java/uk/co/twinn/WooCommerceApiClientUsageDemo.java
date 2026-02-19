@@ -87,16 +87,17 @@ public class WooCommerceApiClientUsageDemo {
                     //and here we just read the product based on the id
                     //yes we do have it from the listing but this is an example!
 
-                    //try {
+                    try {
                         Product p = Products
                             .read(0)
+                            //.read(product.getId()) //set to zero to catch
                             .getRead()
                             .orElseThrow(
                                 () -> new ResponseException("Read Failure")
                             );
-                    //}catch(ResponseException re){
-                    //    System.out.println(re.getMessage());
-                    //}
+                    }catch(ResponseException re){
+                        System.out.println(re.getMessage());
+                    }
 
                 }
 

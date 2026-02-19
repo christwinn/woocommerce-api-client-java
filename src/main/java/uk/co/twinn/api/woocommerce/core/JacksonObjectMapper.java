@@ -15,7 +15,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 
 public class JacksonObjectMapper {
 
@@ -26,10 +28,21 @@ public class JacksonObjectMapper {
 
         if (objectMapper == null) {
 
-            objectMapper = new ObjectMapper()
+            objectMapper = JsonMapper
+                .builder()
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-                //.disable(MapperFeature.REQUIRE_HANDLERS_FOR_JAVA8_OPTIONALS)
+                .disable(MapperFeature.REQUIRE_HANDLERS_FOR_JAVA8_OPTIONALS)
+                // handle LocalDateTime in J8.
+                .addModule(new JavaTimeModule())
+                .serializationInclusion(JsonInclude.Include.NON_ABSENT)
+                .configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true)
+                .build()
+            ;
+
+            /*objectMapper = new ObjectMapper()
+                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 //.setDateFormat(new RFC3339DateFormat())
                 //handle LocalDateTime in J8
                 .registerModule(new JavaTimeModule())
@@ -39,7 +52,10 @@ public class JacksonObjectMapper {
                 // use NON_ABSENT which, if it is null then it is not included but includes isEmpty()
                 .setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
 
-            objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
+            objectMapper
+                .configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true)
+
+            ;*/
 
         }
 
