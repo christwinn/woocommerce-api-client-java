@@ -70,12 +70,11 @@ public class WooCommerceApiClientUsageDemo {
         for (String s : new String[]{"67000203", "67001302"}){
 
 
-                List<Product> products = Products.listing().setSku(s)
-                    .getListed()
-                    .orElseThrow(
-                        () -> new ResponseException("list failure")
-                    );
-
+            List<Product> products = Products.listing().setSku(s)
+                .getListed()
+                .orElseThrow(
+                    () -> new ResponseException("list failure")
+                );
 
             for (Product product : products) {
 

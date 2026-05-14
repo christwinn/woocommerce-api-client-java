@@ -14,7 +14,7 @@ The samples shown are the same as [https://woocommerce.github.io/woocommerce-res
 <dependency>
     <groupId>uk.co.twinn.api</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>3.1.2.2</version>
+    <version>3.1.3.1</version>
 </dependency>
 ```
 Note: We use a 4 point versioning system: (Semantic Versioning 2.0.0 + 1) W.X.Y.Z  
