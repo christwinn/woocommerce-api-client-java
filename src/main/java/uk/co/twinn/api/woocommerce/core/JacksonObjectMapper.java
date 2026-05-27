@@ -35,27 +35,11 @@ public class JacksonObjectMapper {
                 .disable(MapperFeature.REQUIRE_HANDLERS_FOR_JAVA8_OPTIONALS)
                 // handle LocalDateTime in J8.
                 .addModule(new JavaTimeModule())
-                .serializationInclusion(JsonInclude.Include.NON_ABSENT)
+                .defaultPropertyInclusion(JsonInclude.Value.ALL_NON_ABSENT)
+                //.serializationInclusion(JsonInclude.Include.NON_ABSENT)
                 .configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true)
                 .build()
             ;
-
-            /*objectMapper = new ObjectMapper()
-                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-                //.setDateFormat(new RFC3339DateFormat())
-                //handle LocalDateTime in J8
-                .registerModule(new JavaTimeModule())
-                //.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-                // excludes empty ("") strings
-                // not what we want as it causes Php to error so...
-                // use NON_ABSENT which, if it is null then it is not included but includes isEmpty()
-                .setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
-
-            objectMapper
-                .configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true)
-
-            ;*/
 
         }
 
