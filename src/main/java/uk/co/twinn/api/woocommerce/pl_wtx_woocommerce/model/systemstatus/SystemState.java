@@ -106,7 +106,9 @@ public class SystemState {
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 //.registerModule(new JavaTimeModule()
                 //show everything even nulls.
-                .setSerializationInclusion(JsonInclude.Include.ALWAYS);
+                //.setSerializationInclusion(JsonInclude.Include.ALWAYS)
+                .setDefaultPropertyInclusion(JsonInclude.Value.ALL_ALWAYS);
+                //.defaultPropertyInclusion(JsonInclude.Value.ALL_ALWAYS);
 
         objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
 

@@ -214,8 +214,8 @@ public class Configuration {
         ObjectMapper objectMapper = new ObjectMapper()
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            //.setDateFormat(new RFC3339DateFormat())
-            .setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+            .setDefaultPropertyInclusion(JsonInclude.Value.ALL_ALWAYS);
+            //.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
 
         objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
 
