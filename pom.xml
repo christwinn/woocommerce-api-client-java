@@ -178,28 +178,7 @@
                 </executions>
             </plugin>
 
-            <!--plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <skipAssembly>${assembly.skipAssembly}</skipAssembly>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>assemble-jar-with-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin-->
-			<plugin>
+			<!--plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
 				<version>3.2.8</version>
@@ -216,7 +195,7 @@
 					</configuration>
 				  </execution>
 				</executions>
-			</plugin>
+			</plugin-->
 
 			<plugin>
 				<groupId>org.sonatype.central</groupId>
